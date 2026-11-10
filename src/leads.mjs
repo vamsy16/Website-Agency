@@ -11,7 +11,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { ROOT, readJSON, writeJSON, ensureDir, domainOf, normalizeUrl, slug, log, parseList, isoDate } from "./util.mjs";
-import { loadState, nicheTags } from "./config.mjs";
+import { resolveState, nicheTags } from "./config.mjs";
 import { checkLead, recordLead } from "./dedupe.mjs";
 import { SOCIAL_HOSTS } from "./measure.mjs";
 
@@ -148,7 +148,7 @@ export function readCsv(file, state) {
       website: normalizeWebsite(get("website") || get("url")),
       phone: get("phone"),
       email: get("email"),
-      city: get("city") || state.cities?.[0] || null,
+      city: get("city") || (state.cities || [])[0] || null,
       state: state.state,
       country: state.country,
       niche: get("niche"),
@@ -163,8 +163,8 @@ export function readCsv(file, state) {
  * Fetch candidates for a state and register the new ones.
  * Returns { added, skipped, candidates } so the caller can print an honest count.
  */
-export async function fetchLeads({ stateName, niches, limit = 25, csv = null, useOverpass = true, usePlaces = true }) {
-  const state = loadState(stateName);
+export async function fetchLeads({ stateName, niches, limit = 25, csv = null, useOverpass = true, usePlaces = true, country = null }) {
+  const state = resolveState(stateName, { country });
   const settings = readJSON(path.join(ROOT, "config", "settings.json"));
   const cap = Math.min(limit || settings.caps.maxLeadsPerRun, settings.caps.maxLeadsPerRun);
   const chosenNiches = niches?.length ? niches : state.defaultNiches;
@@ -173,6 +173,9 @@ export async function fetchLeads({ stateName, niches, limit = 25, csv = null, us
 
   let candidates = [];
   const notes = [];
+  if (!state.configured) {
+    notes.push(`no config/states/${slug(state.state)}.json — searching by boundary name; add a config only if you need a curated city list`);
+  }
 
   if (csv) {
     candidates = readCsv(csv, state);
@@ -192,12 +195,16 @@ export async function fetchLeads({ stateName, niches, limit = 25, csv = null, us
       }
     }
     if (usePlaces) {
-      const places = await fromGooglePlaces(state, chosenNiches, cap);
-      if (places.leads?.length) {
-        candidates.push(...places.leads);
-        notes.push(`google places: ${places.leads.length} businesses`);
-      } else if (places.skipped) {
-        notes.push(places.skipped);
+      if (!state.cities.length) {
+        notes.push("google places skipped: needs a city list — add config/states/" + slug(state.state) + ".json or pass --csv");
+      } else {
+        const places = await fromGooglePlaces(state, chosenNiches, cap);
+        if (places.leads?.length) {
+          candidates.push(...places.leads);
+          notes.push(`google places: ${places.leads.length} businesses`);
+        } else if (places.skipped) {
+          notes.push(places.skipped);
+        }
       }
     }
   }

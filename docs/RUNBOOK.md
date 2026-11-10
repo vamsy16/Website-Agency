@@ -62,15 +62,17 @@ Edit `config/settings.json` → `agency`:
   "name": "Smart Pursuit",
   "tagline": "Websites that win customers",
   "auditLabel": "Website & conversion audit",
-  "phone": "+91 00000 00000",
-  "email": "hello@example.com",
+  "phone": "+91 70950 24220",
+  "email": "smartpursuit3@gmail.com",
   "basedIn": "Ahmedabad",
   "auditRefPrefix": "SP-AUD"
 }
 ```
 
 These strings are printed on the cover and page 10 and are used in the email
-signature. Change them once, everywhere.
+signature. Change them once, everywhere. `auditLabel` is the noun after the
+agency name in every footer — set it per niche ("conversion" for a plumber,
+"patient-conversion" for a clinic).
 
 Also review:
 
@@ -80,6 +82,10 @@ Also review:
 | `outreach.cadenceDays` | the three gaps between follow-ups (default `[3,3,3]`) |
 | `outreach.dailySendCap` | a human reminder, not enforced by code (default 20) |
 | `caps.maxLeadsPerRun` | hard cap on leads added per run (default 25) |
+| `run.auditsPerRun` | audits attempted by one `run` (default 5) |
+| `run.leadsPerRun` | leads fetched by one `run` (default 25) |
+| `run.maxAuditAttempts` | how many times a failing site is retried before the queue gives up (default 3) |
+| `defaults.country`, `defaults.niches` | what an unconfigured state falls back to |
 | `scoring.weights` | must sum to 1.00 |
 
 ---
@@ -170,7 +176,101 @@ sourced and audited twice.
 
 ---
 
-## 3. Choose who to audit
+## 3. The daily run — one command, no duplicates
+
+This is the normal way to operate. Give it a state; it sources leads and audits
+only the businesses it has never audited.
+
+```powershell
+npm.cmd run run -- --state "Andhra Pradesh"
+npm.cmd run run -- --state "Andhra Pradesh" --max 3 --niches dentist
+npm.cmd run run -- --state "Andhra Pradesh" --dry-run
+```
+
+`npm.cmd run daily` is the same command under a second name.
+
+What one run does:
+
+1. **Fetch** — sources new leads for the state (Overpass; Places only if
+   `GOOGLE_MAPS_API_KEY` is set; or a CSV you pass with `--csv`). New domains
+   only — duplicates are rejected at intake, before anything is measured.
+2. **Queue** — asks `pendingLeads()` for businesses that are `new` or
+   `audit-failed`, are not inside the 60-day cooldown, are not `blocked`, and
+   have not already failed `run.maxAuditAttempts` times.
+3. **Audit** — measures, scores, renders, QAs, PDFs and third-eye-verifies each
+   one, then writes its 1 + 3 drafts.
+4. **Record** — marks the lead `audited` (or `audit-failed` with `lastError`)
+   and writes `data/run-<state>-<date>.json`.
+
+The PDF is named after the business: `reports/<slug>/Smart-Pursuit-Audit-<Business-Name>.pdf`.
+If a business has no usable name, the domain is used instead.
+
+### Why a second run on the same day does nothing
+
+The queue is computed from `data/leads.json` and `data/audits.json` — not from a
+"last run" timestamp. Once a domain has an audit row inside the cooldown, every
+later run skips it. Running the command twice is safe, running it in a loop is
+safe, and a crash halfway through is safe: the leads already audited stay
+audited.
+
+Two states are retried on purpose, because neither is an audit:
+
+| Lead status | Retried? | Why |
+| --- | --- | --- |
+| `audit-failed` (site down, timeout, third-eye block) | yes, up to `run.maxAuditAttempts` | the site may come back |
+| `blocked` (owner opted out) | never | the owner said stop |
+
+A failed attempt is never written to `data/audits.json`, so a broken site cannot
+consume a domain's cooldown.
+
+### State names
+
+Any state name works. `Andhra Pradesh`, `Kerala`, `Tamil Nadu` resolve without a
+config file: Overpass finds the state boundary by name. A file in
+`config/states/` only adds a curated city list (needed for Google Places) and
+default niches.
+
+### Scheduling it
+
+Each run is a fresh process, so the scheduler is trivial.
+
+Windows Task Scheduler, every day at 09:00:
+
+```powershell
+$task = 'cmd /c cd /d "C:\path\to\agency-os" && npm.cmd run run -- --state "Andhra Pradesh"'
+schtasks /create /tn "Agency OS daily" /tr $task /sc daily /st 09:00
+```
+
+Single quotes around `$task` keep the inner double quotes intact; a nested
+`\"` does not survive PowerShell. Check it with `schtasks /query /tn "Agency OS daily" /v /fo list`
+and remove it with `schtasks /delete /tn "Agency OS daily" /f`.
+
+cron (macOS / Linux), weekdays at 09:00:
+
+```cron
+0 9 * * 1-5 cd /path/to/agency-os && npm run run -- --state "Andhra Pradesh" >> data/cron.log 2>&1
+```
+
+`data/` and `reports/` are git-ignored, so a scheduled run never dirties the
+repository. It also never sends anything.
+
+### Limits of one run
+
+| Flag | Default | Meaning |
+| --- | --- | --- |
+| `--max` | `run.auditsPerRun` (5) | audits attempted in this run |
+| `--leads-limit` | `run.leadsPerRun` (25) | new leads fetched in this run |
+| `--no-leads` | off | audit the existing queue, fetch nothing |
+| `--no-sequence` | off | audit only, write no drafts |
+| `--dry-run` | off | print the queue; fetch and measure nothing |
+
+A run is deliberately small. One audit takes one to three minutes; ten in a row
+compete with each other for the machine, and ten near-identical PDFs are harder
+to send well than three.
+
+---
+
+## 4. Choose who to audit
 
 A lead is worth an audit when **all** of these are true:
 
@@ -187,7 +287,7 @@ would be cold-submitting.
 
 ---
 
-## 4. The duplicate gate (runs automatically)
+## 5. The duplicate gate (runs automatically)
 
 `audit` calls `checkAudit()` **before any network request**. It refuses when:
 
@@ -226,7 +326,7 @@ because `blocked` is checked before the cooldown. Use this for opt-outs.
 
 ---
 
-## 5. Audit a live site
+## 6. Audit a live site
 
 ```powershell
 npm.cmd run audit -- --url https://example.com --name "Example Dental" --city Ahmedabad --state gujarat
@@ -309,7 +409,7 @@ blocker precisely because the site may have changed since.
 
 ---
 
-## 6. Run the third eye separately
+## 7. Run the third eye separately
 
 ```powershell
 npm.cmd run verify -- --audit reports/<slug>/audit.json
@@ -347,7 +447,7 @@ A `WARN` is informational. A `FAIL` is a blocker.
 
 ---
 
-## 7. Build the email sequence
+## 8. Build the email sequence
 
 ```powershell
 npm.cmd run sequence -- --audit reports/<slug>/audit.json --send-date 2026-11-10
@@ -393,7 +493,7 @@ schedule.
 
 ---
 
-## 8. Send — by hand, one at a time
+## 9. Send — by hand, one at a time
 
 The system has no sender, no SMTP credentials and no scheduler. This is
 deliberate.
@@ -456,7 +556,7 @@ If someone says "no thanks", "stop", "unsubscribe", or anything equivalent:
 
 ---
 
-## 9. Re-audit and cooldown
+## 10. Re-audit and cooldown
 
 After `reauditCooldownDays` (60) the gate opens automatically. Re-audit when:
 
@@ -468,7 +568,7 @@ Use `--force` only for a deliberate before/after, and say so in the lead notes.
 
 ---
 
-## 10. Status
+## 11. Status
 
 ```powershell
 npm.cmd run status
@@ -480,7 +580,7 @@ reference and page count.
 
 ---
 
-## 11. Troubleshooting
+## 12. Troubleshooting
 
 | Symptom | Cause | Fix |
 | --- | --- | --- |
@@ -496,14 +596,15 @@ reference and page count.
 | `numbers.traceable` fails | a number was typed into prose | find it in the renderer; replace with a `facts.*` value or remove |
 | `provenance.age` fails | measurement older than 72 h | re-measure before sending |
 | Overpass times out | public endpoint busy | retry, reduce `--limit`, or use `--csv` |
-| `No state config for "..."` | state file missing | add `config/states/<state>.json` |
+| `no config/states/<state>.json` note | that state has no curated city list | harmless: Overpass searches by boundary name. Add a config only for Google Places |
+| Every lead skipped, queue empty | they are audited, cooled down, or out of attempts | run `status`; see `data/run-<state>-<date>.json` |
 | `Unknown niche` | niche missing from `config/niches.json` | add it |
 | Emails contain `—` as `�?"` in the console | PowerShell console encoding | the file is correct UTF-8; verify with an editor, not `Get-Content` |
 | `sequence` refuses "missing the opt-out line" | template edited without `{{optOut}}` | restore the placeholder |
 
 ---
 
-## 12. Compliance
+## 13. Compliance
 
 The system is built to make lawful outreach the easy path.
 
@@ -527,14 +628,16 @@ The system is built to make lawful outreach the easy path.
 
 ---
 
-## 13. Daily operating checklist
+## 14. Daily operating checklist
 
-**Sourcing**
+**Sourcing and audit**
 
-- [ ] `leads --state <state>` run, duplicates skipped
-- [ ] new leads triaged and bad fits removed from the audit queue
+- [ ] `run --state <state>` completed; read the summary line
+- [ ] nothing new queued? that is normal — it means nothing is left un-audited
+- [ ] `data/run-<state>-<date>.json` read: anything in `failed` is a site to look at by hand
+- [ ] new leads triaged and bad fits marked in `data/leads.json`
 
-**Audit**
+**One audit, by hand (when you want control)**
 
 - [ ] `selftest` passes
 - [ ] `audit` completed without `--force` (unless intentional)

@@ -43,6 +43,33 @@ export function slug(input) {
     .slice(0, 60);
 }
 
+/**
+ * A filename that survives Windows, macOS, Linux, email clients and cloud
+ * storage. Keeps letters from any script, digits, spaces, dots and hyphens;
+ * everything else becomes a hyphen.
+ */
+export function safeFileName(input, fallback = "audit") {
+  const cleaned = String(input ?? "")
+    .normalize("NFKD")
+    .replace(/[\u2122\u00ae\u00a9]/g, "")
+    .replace(/[^\p{L}\p{N}\s.-]+/gu, " ")
+    .replace(/\s+/g, "-")
+    .replace(/-{2,}/g, "-")
+    .replace(/^[-.]+|[-.]+$/g, "")
+    .slice(0, 80);
+  return cleaned || fallback;
+}
+
+/**
+ * The delivered PDF's name. A client opens this file in an inbox, so it has to
+ * say who it belongs to: their business name, or failing that their website.
+ */
+export function auditFileName(agencyName, business = {}) {
+  const agency = safeFileName(agencyName, "Smart-Pursuit");
+  const label = safeFileName(business.name, "") || safeFileName(business.domain, "Site");
+  return `${agency}-Audit-${label}.pdf`;
+}
+
 /** Adds https:// if missing, strips trailing slash on origin, keeps the path. */
 export function normalizeUrl(input) {
   const raw = String(input || "").trim();

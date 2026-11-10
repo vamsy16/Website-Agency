@@ -18,6 +18,9 @@ reports/
 data/batch-*.json
 outreach/
 
+# A daily run report names the prospects it audited and why some were skipped.
+data/run-*.json
+
 # Binaries travel as .b64 sidecars when a transport only carries text.
 # Decode with `npm run decode`; the real files are not tracked.
 *.pdf

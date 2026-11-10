@@ -3,6 +3,34 @@
 All notable changes to the Agency OS. Newest first. Keep it short: one line per
 change, and say why if the reason is not obvious.
 
+## 1.1.0 — 10 November 2026
+
+**The daily run**
+
+- `run` (alias `daily`) — one command for one state: fetch leads, audit only the
+  businesses that have never been audited, write their 1 + 3 drafts, and write
+  `data/run-<state>-<date>.json`. `--dry-run` prints the queue and measures
+  nothing.
+- `pendingLeads()` computes the queue from the two registries, so a second run
+  on the same day finds nothing to do. No "last run" flag exists to drift.
+- A failed measurement is not an audit: it is retried up to
+  `run.maxAuditAttempts` times and never consumes a domain's cooldown.
+
+**State names**
+
+- `resolveState()` — any state name works, with or without a config file.
+  Overpass finds the boundary by name; `config/states/<state>.json` only adds a
+  curated city list and default niches.
+
+**Filenames and identity**
+
+- The audit PDF is named after the business,
+  `Smart-Pursuit-Audit-<Business-Name>.pdf`, falling back to the domain.
+- `runAudit()` replaces the body of `cmdAudit()` and throws `AuditError`
+  (`duplicate` / `dead-site` / `failed`) so a batch survives one bad lead.
+- Agency contact details and the niche-specific audit label live in
+  `config/settings.json`.
+
 ## 1.0.0 — 10 November 2026
 
 First public release.

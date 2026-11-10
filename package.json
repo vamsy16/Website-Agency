@@ -6,6 +6,8 @@
   "description": "Lead sourcing, measured website audits, third-eye verification and honest outreach drafts for a website-design agency. Nothing is ever sent automatically.",
   "engines": { "node": ">=20" },
   "scripts": {
+    "run": "node src/cli.mjs run",
+    "daily": "node src/cli.mjs run",
     "leads": "node src/cli.mjs leads",
     "audit": "node src/cli.mjs audit",
     "sequence": "node src/cli.mjs sequence",

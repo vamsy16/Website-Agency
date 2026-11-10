@@ -11,10 +11,10 @@ import path from "node:path";
 import fs from "node:fs";
 import {
   ROOT, argValue, hasFlag, parseList, readJSON, writeJSON, ensureDir, slug, domainOf,
-  normalizeUrl, isoDate, longDate, auditRef, hash, log, die, fmtInt,
+  normalizeUrl, isoDate, auditRef, auditFileName, hash, log, die, fmtInt,
 } from "./util.mjs";
-import { loadSettings, loadState } from "./config.mjs";
-import { checkAudit, recordAudit, statusSummary, loadAudits } from "./dedupe.mjs";
+import { loadSettings, resolveState } from "./config.mjs";
+import { checkAudit, recordAudit, statusSummary, pendingLeads, updateLead } from "./dedupe.mjs";
 import { fetchLeads, OSM_ATTRIBUTION } from "./leads.mjs";
 import { measureSite } from "./measure.mjs";
 import { computeScores, buildFacts, deriveFindings, deriveAlsoItems } from "./findings.mjs";
@@ -31,6 +31,7 @@ function usage() {
   console.log(`
 Smart Pursuit Agency OS
 
+  node src/cli.mjs run      --state "Andhra Pradesh" [--niches dentist,clinic] [--max 5] [--dry-run] [--csv leads.csv]
   node src/cli.mjs leads    --state gujarat [--niches dentist,clinic] [--limit 25] [--csv leads.csv]
   node src/cli.mjs audit    --url https://example.com --name "Business Name" --city Ahmedabad [--force] [--live]
   node src/cli.mjs audit    --from-raw data/raw/<slug>.json [--fixture] [--force]
@@ -38,6 +39,10 @@ Smart Pursuit Agency OS
   node src/cli.mjs verify   --audit reports/<slug>/audit.json [--live] [--fixture]
   node src/cli.mjs status
   node src/cli.mjs selftest
+
+  run is the daily driver: it fetches leads for a state, then audits only the ones
+  that have not been audited before. Run it as often as you like; a second run on
+  the same day finds nothing new to do.
 
 Nothing in this tool sends email. The audit command never builds a demo website.
 `);
@@ -135,62 +140,95 @@ function buildDemo(auditInputs, assetsDir) {
   return { ...demo, image: `assets/${name}` };
 }
 
-async function cmdAudit() {
-  const settings = loadSettings();
-  const fromRaw = argValue(argv, "--from-raw");
-  const fixture = hasFlag(argv, "--fixture");
-  if (fixture && (!fromRaw || fromRaw === true)) die("--fixture is only valid with --from-raw. A live audit must be fresh.");
-  let raw;
-  let business;
+/** A blocked or failed audit, as an exception, so a batch run can keep going. */
+class AuditError extends Error {
+  constructor(kind, message, extra = {}) {
+    super(message);
+    this.name = "AuditError";
+    this.kind = kind;
+    Object.assign(this, extra);
+  }
+}
+
+/** Turns a lead row from data/leads.json into the business block an audit needs. */
+function leadToBusiness(lead, settings) {
+  const website = normalizeUrl(lead.website);
+  const domain = lead.domain || domainOf(website);
+  return {
+    name: lead.name,
+    legalName: lead.legalName || lead.name,
+    url: website,
+    domain,
+    city: lead.city || null,
+    state: lead.state || null,
+    niche: lead.niche || null,
+    contactName: lead.contactName || lead.name,
+    contactPage: lead.contactPage || website.replace(/\/$/, "") + "/contact/",
+    phone: lead.phone || null,
+    email: lead.email || null,
+    ref: auditRef(settings.agency.auditRefPrefix, new Date(), lead.name),
+  };
+}
+
+/**
+ * One audit, end to end: gate, measure, score, render, QA, PDF, third eye,
+ * register. Throws AuditError instead of exiting, so `run` can process a queue
+ * without the first blocked lead killing the batch.
+ *
+ * kinds:  duplicate  the registry says no (already audited, or do-not-audit)
+ *         dead-site  the site did not return 200
+ *         failed     measurement, render, QA, PDF or a third-eye blocker
+ */
+async function runAudit({
+  settings,
+  business = null,
+  fromRaw = null,
+  fixture = false,
+  force = false,
+  live = false,
+  skipLighthouse = false,
+  announce = true,
+} = {}) {
+  let raw = null;
 
   if (fromRaw && fromRaw !== true) {
     const rawPath = path.resolve(ROOT, String(fromRaw));
     raw = readJSON(rawPath);
-    if (!raw.business) die(`${fromRaw} has no "business" block. Add name, legalName, url, domain, city, state, contactPage.`);
+    if (!raw.business) throw new AuditError("failed", `${fromRaw} has no "business" block. Add name, legalName, url, domain, city, state, contactPage.`);
     business = { ...raw.business };
     business.url = normalizeUrl(business.url);
     business.domain = business.domain || domainOf(business.url);
     business.ref = business.ref || auditRef(settings.agency.auditRefPrefix, raw.measuredAt || new Date(), business.name);
     log("audit", `using recorded measurement ${path.relative(ROOT, rawPath)}`);
   } else {
-    const url = argValue(argv, "--url");
-    const name = argValue(argv, "--name");
-    if (!url || url === true) die("--url is required (or use --from-raw <file>)");
-    if (!name || name === true) die("--name is required");
-    const stateName = argValue(argv, "--state");
-    const stateCfg = stateName ? loadState(stateName) : null;
-    const city = argValue(argv, "--city", stateCfg?.cities?.[0] || null);
-    const website = normalizeUrl(url);
-    business = {
-      name,
-      legalName: argValue(argv, "--legal-name", name),
-      url: website,
-      domain: domainOf(website),
-      city,
-      state: stateCfg?.state || argValue(argv, "--state-name", null),
-      niche: argValue(argv, "--niche", null),
-      contactName: argValue(argv, "--contact", name),
-      contactPage: argValue(argv, "--contact-page", website.replace(/\/$/, "") + "/contact/"),
-    };
-    business.ref = auditRef(settings.agency.auditRefPrefix, new Date(), name);
+    if (!business) throw new AuditError("failed", "runAudit needs a business block, or --from-raw <file>");
+    business.url = normalizeUrl(business.url);
+    business.domain = business.domain || domainOf(business.url);
+    business.ref = business.ref || auditRef(settings.agency.auditRefPrefix, new Date(), business.name);
   }
 
-  const businessSlug = slug(business.name);
+  const businessSlug = slug(business.name) || slug(business.domain) || "audit";
   const reportDir = ensureDir(path.join(ROOT, "reports", businessSlug));
   const assetsDir = ensureDir(path.join(reportDir, "assets"));
 
   // ---- duplicate gate, BEFORE any network call ----
-  const gate = checkAudit(business.url, { cooldownDays: settings.audit.reauditCooldownDays, force: hasFlag(argv, "--force") });
+  const gate = checkAudit(business.url, { cooldownDays: settings.audit.reauditCooldownDays, force });
   if (gate.duplicate) {
-    die(`Refusing to audit ${business.domain}: it is already on file.\n  - ${gate.reasons.join("\n  - ")}\n\n  Use --force only if you have a reason (e.g. a re-audit for before/after proof).\n  This is what stops a lead receiving the same audit twice.`);
+    throw new AuditError("duplicate", `Refusing to audit ${business.domain}: it is already on file.\n  - ${gate.reasons.join("\n  - ")}\n\n  Use --force only if you have a reason (e.g. a re-audit for before/after proof).\n  This is what stops a lead receiving the same audit twice.`, { gate });
   }
   if (gate.forced) log("audit", `duplicate overridden with --force: ${gate.reasons.join("; ")}`);
 
   // ---- measure ----
   if (!raw) {
     log("audit", `measuring ${business.url} (mobile + desktop + Lighthouse)`);
-    raw = await measureSite(business.url, { slug: businessSlug, skipLighthouse: hasFlag(argv, "--skip-lighthouse") });
-    if (raw.mobile?.status !== 200) die(`The site did not return HTTP 200 (got ${raw.mobile?.status || raw.mobile?.navError}). A dead site is not an audit.`);
+    try {
+      raw = await measureSite(business.url, { slug: businessSlug, skipLighthouse });
+    } catch (err) {
+      throw new AuditError("failed", `Measurement failed: ${err.message}`);
+    }
+    if (raw.mobile?.status !== 200) {
+      throw new AuditError("dead-site", `The site did not return HTTP 200 (got ${raw.mobile?.status || raw.mobile?.navError}). A dead site is not an audit.`);
+    }
   }
   raw.business = business;
 
@@ -200,7 +238,7 @@ async function cmdAudit() {
   const findings = deriveFindings(raw, facts, business);
   const also = deriveAlsoItems(raw, facts);
 
-  if (!findings.page1.length) die("No defensible findings were produced from the measurement. Refusing to render a report with nothing to say.");
+  if (!findings.page1.length) throw new AuditError("failed", "No defensible findings were produced from the measurement. Refusing to render a report with nothing to say.");
 
   const auditInputs = fromRaw ? raw : {};
   const screens = buildScreens(raw, assetsDir, auditInputs);
@@ -247,7 +285,7 @@ async function cmdAudit() {
   writeJSON(path.join(reportDir, "qa.json"), qa);
   assertQa(qa);
 
-  const pdfName = `${String(settings.agency.name).replace(/\s+/g, "-")}-Audit-${business.name.replace(/[™®]/g, "").trim().replace(/\s+/g, "-")}.pdf`;
+  const pdfName = auditFileName(settings.agency.name, business);
   const pdfPath = path.join(reportDir, pdfName);
   const pdf = await htmlToPdf({ htmlFile: htmlPath, pdfFile: pdfPath, expectPages: 10 });
   audit.pdfPages = pdf.pages;
@@ -259,11 +297,15 @@ async function cmdAudit() {
   writeJSON(auditPath, audit);
 
   // ---- third eye ----
-  const verdict = await verifyAudit({ auditPath, live: hasFlag(argv, "--live"), fixture });
+  const verdict = await verifyAudit({ auditPath, live, fixture });
   if (!verdict.ok) {
-    console.error(`\n  The third-eye check blocked this audit. Do not send it.`);
-    for (const c of verdict.checks.filter(x => !x.ok)) console.error(`   - ${c.id}: ${c.detail}`);
-    process.exit(2);
+    const blockers = verdict.checks.filter(c => !c.ok);
+    for (const c of blockers) console.error(`   - ${c.id}: ${c.detail}`);
+    throw new AuditError(
+      "failed",
+      `The third-eye check blocked this audit: ${blockers.map(c => c.id).join(", ")}. Do not send it.`,
+      { verdict },
+    );
   }
 
   recordAudit({
@@ -279,13 +321,226 @@ async function cmdAudit() {
     mode: fromRaw ? "from-raw" : "live",
   });
 
-  console.log(`\n  Audit complete — ${business.name}`);
-  console.log(`  Overall ${scoring.scores.overall}/100  ·  speed ${scoring.scores.speed} mobile ${scoring.scores.mobile} conversion ${scoring.scores.conversion} design ${scoring.scores.design} seo ${scoring.scores.seo}`);
-  console.log(`  Findings: ${findings.all.map(f => `${f.id} ${f.severity}`).join(" · ")}`);
-  console.log(`  PDF:    ${audit.provenance.pdfFile}  (${pdf.pages} pages, ${(pdf.bytes / 1024 / 1024).toFixed(2)} MB)`);
-  console.log(`  Audit:  ${path.relative(ROOT, auditPath).replace(/\\/g, "/")}`);
-  console.log(`  Verify: ${verdict.checks.length} checks passed${verdict.warnings ? `, ${verdict.warnings} warning(s)` : ""}`);
-  console.log(`\n  Next: node src/cli.mjs sequence --audit "${path.relative(ROOT, auditPath).replace(/\\/g, "/")}" --send-date ${isoDate(new Date())}\n`);
+  if (announce) {
+    console.log(`\n  Audit complete — ${business.name}`);
+    console.log(`  Overall ${scoring.scores.overall}/100  ·  speed ${scoring.scores.speed} mobile ${scoring.scores.mobile} conversion ${scoring.scores.conversion} design ${scoring.scores.design} seo ${scoring.scores.seo}`);
+    console.log(`  Findings: ${findings.all.map(f => `${f.id} ${f.severity}`).join(" · ")}`);
+    console.log(`  PDF:    ${audit.provenance.pdfFile}  (${pdf.pages} pages, ${(pdf.bytes / 1024 / 1024).toFixed(2)} MB)`);
+    console.log(`  Audit:  ${path.relative(ROOT, auditPath).replace(/\\/g, "/")}`);
+    console.log(`  Verify: ${verdict.checks.length} checks passed${verdict.warnings ? `, ${verdict.warnings} warning(s)` : ""}`);
+    console.log(`\n  Next: node src/cli.mjs sequence --audit "${path.relative(ROOT, auditPath).replace(/\\/g, "/")}" --send-date ${isoDate(new Date())}\n`);
+  }
+
+  return {
+    audit,
+    auditPath,
+    pdfFile: audit.provenance.pdfFile,
+    verdict,
+    scores: scoring.scores,
+    findings: findings.all,
+    business,
+  };
+}
+
+async function cmdAudit() {
+  const settings = loadSettings();
+  const fromRaw = argValue(argv, "--from-raw");
+  const fixture = hasFlag(argv, "--fixture");
+  if (fixture && (!fromRaw || fromRaw === true)) die("--fixture is only valid with --from-raw. A live audit must be fresh.");
+
+  let business = null;
+  if (!fromRaw || fromRaw === true) {
+    const url = argValue(argv, "--url");
+    const name = argValue(argv, "--name");
+    if (!url || url === true) die("--url is required (or use --from-raw <file>)");
+    if (!name || name === true) die("--name is required");
+    const stateName = argValue(argv, "--state");
+    const stateCfg = stateName && stateName !== true ? resolveState(stateName) : null;
+    const website = normalizeUrl(url);
+    business = {
+      name,
+      legalName: argValue(argv, "--legal-name", name),
+      url: website,
+      domain: domainOf(website),
+      city: argValue(argv, "--city", stateCfg?.cities?.[0] || null),
+      state: stateCfg?.state || argValue(argv, "--state-name", null),
+      niche: argValue(argv, "--niche", null),
+      contactName: argValue(argv, "--contact", name),
+      contactPage: argValue(argv, "--contact-page", website.replace(/\/$/, "") + "/contact/"),
+    };
+  }
+
+  try {
+    await runAudit({
+      settings,
+      business,
+      fromRaw,
+      fixture,
+      force: hasFlag(argv, "--force"),
+      live: hasFlag(argv, "--live"),
+      skipLighthouse: hasFlag(argv, "--skip-lighthouse"),
+    });
+  } catch (err) {
+    if (!(err instanceof AuditError)) throw err;
+    die(err.message);
+  }
+}
+
+// ------------------------------------------------------------------ run (daily)
+/**
+ * The daily driver: one command, one state, no duplicate audits.
+ *
+ *   1. pull new leads for the state (unless --no-leads)
+ *   2. ask the registry which leads are still un-audited
+ *   3. audit each one, write its 1 + 3 drafts, mark the lead
+ *   4. write data/run-<state>-<date>.json
+ *
+ * Running it twice in a day audits nothing the second time. Step 2 reads
+ * data/leads.json and data/audits.json, so there is no separate "already ran
+ * today" flag to get out of sync, and no way for the queue to repeat a lead.
+ */
+async function cmdRun() {
+  const settings = loadSettings();
+  const stateArg = argValue(argv, "--state");
+  if (!stateArg || stateArg === true) die('--state is required, e.g. --state "Andhra Pradesh"');
+
+  const state = resolveState(stateArg);
+  const niches = parseList(argValue(argv, "--niches"));
+  const chosenNiches = niches.length ? niches : state.defaultNiches;
+  const dryRun = hasFlag(argv, "--dry-run");
+  const fetchNew = !hasFlag(argv, "--no-leads");
+  const doSequence = !hasFlag(argv, "--no-sequence");
+  const csv = argValue(argv, "--csv", null);
+  const runCfg = settings.run || {};
+  const max = Number(argValue(argv, "--max", runCfg.auditsPerRun ?? 5));
+  const leadsLimit = Number(argValue(argv, "--leads-limit", runCfg.leadsPerRun ?? 25));
+  const maxAttempts = Number(runCfg.maxAuditAttempts ?? 3);
+  const cooldownDays = settings.audit.reauditCooldownDays;
+
+  const summary = {
+    ranAt: new Date().toISOString(),
+    state: state.state,
+    stateConfigured: state.configured,
+    niches: chosenNiches,
+    dryRun,
+    fetched: null,
+    queue: [],
+    skippedByRegistry: null,
+    audited: [],
+    skipped: [],
+    failed: [],
+    draftsWritten: 0,
+  };
+
+  console.log(`\n  ${state.state}  ·  ${chosenNiches.join(", ")}${state.configured ? "" : "  (no state config — searching by boundary name)"}`);
+  if (dryRun) console.log("  dry run: nothing will be fetched or measured");
+
+  if (fetchNew && !dryRun) {
+    try {
+      const found = await fetchLeads({ stateName: stateArg, niches, limit: leadsLimit, csv: csv === true ? null : csv });
+      summary.fetched = { added: found.added, skipped: found.skipped, batchFile: found.batchFile };
+      console.log(`  leads     ${found.added} new, ${found.skipped} skipped`);
+      for (const note of found.notes) console.log(`    · ${note}`);
+    } catch (err) {
+      summary.fetched = { error: err.message };
+      console.log(`  leads     FAILED — ${err.message}`);
+      console.log("  continuing with the leads already on file");
+    }
+  }
+
+  const pending = pendingLeads({
+    state: state.state,
+    niches: chosenNiches,
+    limit: max,
+    cooldownDays,
+    maxAttempts,
+  });
+  summary.queue = pending.leads.map(l => ({ name: l.name, domain: l.domain, city: l.city }));
+  summary.skippedByRegistry = pending.skipped;
+
+  const s = pending.skipped;
+  if (!pending.leads.length) {
+    console.log("\n  Nothing to audit. Every lead in this state is already audited, blocked, or has failed too often.");
+    console.log(`  skipped — audited ${s.audited}, cooldown ${s.blocked}, failed ${s.failedTooOften}, no website ${s.noWebsite}, other state ${s.wrongState}, other niche ${s.wrongNiche}`);
+    const outFile = writeRunReport(state, summary);
+    console.log(`  Run report: ${outFile}\n`);
+    return;
+  }
+
+  console.log(`\n  queue     ${pending.leads.length} lead(s)`);
+  for (const lead of pending.leads) console.log(`    · ${lead.name} — ${lead.domain}${lead.city ? ` · ${lead.city}` : ""}`);
+
+  if (dryRun) {
+    const outFile = writeRunReport(state, summary);
+    console.log(`\n  dry run: nothing measured. Run report: ${outFile}\n`);
+    return;
+  }
+
+  console.log("");
+  for (let i = 0; i < pending.leads.length; i++) {
+    const lead = pending.leads[i];
+    const label = `[${i + 1}/${pending.leads.length}] ${String(lead.name).slice(0, 34).padEnd(34)}`;
+    try {
+      const result = await runAudit({
+        settings,
+        business: leadToBusiness(lead, settings),
+        skipLighthouse: hasFlag(argv, "--skip-lighthouse"),
+        announce: false,
+      });
+      updateLead(lead.domain, {
+        status: "audited",
+        lastAuditedAt: result.audit.date,
+        lastAuditRef: result.audit.ref,
+        lastAuditPdf: result.pdfFile,
+        auditAttempts: (lead.auditAttempts || 0) + 1,
+        lastError: null,
+      });
+      let drafts = 0;
+      if (doSequence) {
+        const schedule = writeSequence(result.audit, { sendDate: isoDate(new Date()) });
+        drafts = schedule.emails.length;
+        summary.draftsWritten += drafts;
+      }
+      summary.audited.push({
+        name: lead.name,
+        domain: lead.domain,
+        ref: result.audit.ref,
+        overall: result.scores.overall,
+        pdf: result.pdfFile,
+        drafts,
+      });
+      console.log(`  ${label} ${String(result.scores.overall).padStart(3)}/100  ${drafts ? `${drafts} drafts` : "no drafts"}`);
+    } catch (err) {
+      const firstLine = String(err.message).split("\n")[0];
+      const kind = err instanceof AuditError ? err.kind : "error";
+      if (kind === "duplicate") {
+        const blocked = err.gate?.existing?.status === "blocked";
+        updateLead(lead.domain, { status: blocked ? "blocked" : "audited", lastError: firstLine });
+        summary.skipped.push({ name: lead.name, domain: lead.domain, kind: "duplicate", reason: firstLine });
+        console.log(`  ${label} skipped — already on file`);
+      } else {
+        updateLead(lead.domain, {
+          status: "audit-failed",
+          auditAttempts: (lead.auditAttempts || 0) + 1,
+          lastError: firstLine,
+        });
+        summary.failed.push({ name: lead.name, domain: lead.domain, kind, reason: firstLine });
+        console.log(`  ${label} FAILED (${kind}) — ${firstLine}`);
+      }
+    }
+  }
+
+  const outFile = writeRunReport(state, summary);
+  console.log(`\n  Audited ${summary.audited.length} · skipped ${summary.skipped.length} · failed ${summary.failed.length} · drafts ${summary.draftsWritten}`);
+  console.log(`  Run report: ${outFile}`);
+  if (summary.audited.length) console.log("  Drafts are in outreach/<business>/. Nothing has been sent.");
+  console.log("");
+}
+
+function writeRunReport(state, summary) {
+  const file = path.join(ROOT, "data", `run-${slug(state.state)}-${isoDate(new Date())}.json`);
+  writeJSON(file, summary);
+  return path.relative(ROOT, file).replace(/\\/g, "/");
 }
 
 // ------------------------------------------------------------------ sequence
@@ -340,6 +595,8 @@ function cmdSelftest() {
 
 // ------------------------------------------------------------------ main
 switch (command) {
+  case "run":
+  case "daily": await cmdRun(); break;
   case "leads": await cmdLeads(); break;
   case "audit": await cmdAudit(); break;
   case "sequence": await cmdSequence(); break;

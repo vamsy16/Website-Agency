@@ -28,6 +28,7 @@ leads → dedupe → measure → score → findings → 10-page HTML → PDF
 
 | Command | What it produces |
 | --- | --- |
+| `run --state "Andhra Pradesh"` | the daily driver: fetch leads, audit only the ones never audited, write their drafts |
 | `leads --state gujarat` | new business leads, duplicate-checked, from OSM / Places / CSV |
 | `audit --url …` | a measured 10-page A4 audit PDF + `audit.json` + `qa.json` + `verify.json` |
 | `sequence --audit …` | four email drafts dated day 0, +3, +6, +9 |
@@ -69,6 +70,19 @@ npm run audit -- --url https://the-lead.example --name "The Lead" --city Ahmedab
 npm run sequence -- --audit reports/<slug>/audit.json --send-date 2026-11-10
 ```
 
+Or let the daily driver do all of it for a whole state:
+
+```bash
+npm run run -- --state "Andhra Pradesh"           # fetch, audit what is new, draft
+npm run run -- --state "Andhra Pradesh" --dry-run # show the queue, measure nothing
+npm run daily -- --state "Kerala" --max 3         # same command, second name
+```
+
+The PDF is named after the business:
+`reports/<slug>/Smart-Pursuit-Audit-<Business-Name>.pdf`. A second run on the same
+day finds nothing to do, because the queue is computed from the lead and audit
+registries rather than from a "last run" timestamp.
+
 On PowerShell, use `npm.cmd` instead of `npm`.
 
 ---
@@ -109,7 +123,8 @@ agency-os/
 │   └── states/gujarat.json       state → cities, country, default niches
 ├── data/
 │   ├── leads.json                append-only lead registry
-│   └── audits.json               append-only audit registry + cooldown
+│   ├── audits.json               append-only audit registry + cooldown
+│   └── run-<state>-<date>.json   one daily-run report
 ├── docs/
 │   ├── AUDIT-SPEC.md             what an audit is; rubric; checks
 │   ├── DESIGN-SPEC.md            frozen visual contract
@@ -211,7 +226,9 @@ Other honest limits:
 - **Screenshots are the client's site.** They are evidence, not decoration, and
   they are never committed to this repo.
 - **The 60-day cooldown is a promise.** A business that received an audit should
-  not receive the same one twice.
+  not receive the same one twice. The daily runner enforces it without a flag:
+  `pendingLeads()` builds the queue from `data/leads.json` and
+  `data/audits.json`, so an audited domain is never queued again.
 
 ---
 

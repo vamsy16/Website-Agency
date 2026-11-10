@@ -108,6 +108,16 @@ someone else's business. Check the output against docs/AUDIT-SPEC.md page by pag
 There is no bundled reference PDF to diff against, by design. The specs are the
 baseline.
 
+SHORTCUT - The daily path (when the operator gives a state)
+-----------------------------------------------------------
+  npm run run -- --state "Andhra Pradesh" --dry-run   # read the queue first
+  npm run run -- --state "Andhra Pradesh"             # fetch, audit new leads, draft
+
+The runner sources leads, then audits only businesses with no audit on file, so
+running it twice in a day does nothing the second time. It writes drafts, never
+sends. Steps 1-3 below are the manual equivalent, for when you want to choose
+the site yourself.
+
 STEP 1 - Source leads
 ---------------------
   npm run leads -- --state <state> --niches <niches> --limit 25

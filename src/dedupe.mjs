@@ -176,6 +176,46 @@ export function recordAudit({ website, name, ref, pdfPath, auditPath, reportPath
   return row;
 }
 
+/**
+ * The daily queue.
+ *
+ * A lead is auditable today only if it has a website, has not already been
+ * audited inside the cooldown, is not blocked, and has not failed too many times.
+ * This is the function that makes a daily run idempotent: running it twice on the
+ * same day returns nothing the second time, without needing any external state.
+ */
+export function pendingLeads({ state = null, niches = [], limit = 5, cooldownDays = 60, maxAttempts = 3 } = {}) {
+  const leads = loadLeads().leads;
+  const stateKey = state ? String(state).toLowerCase().trim() : null;
+  const nicheKeys = niches.map(n => String(n).toLowerCase().trim()).filter(Boolean);
+  const out = [];
+  const skipped = { audited: 0, blocked: 0, failedTooOften: 0, noWebsite: 0, wrongState: 0, wrongNiche: 0 };
+
+  for (const lead of leads) {
+    if (out.length >= limit) break;
+    if (!lead.website) { skipped.noWebsite++; continue; }
+    if (stateKey && String(lead.state || "").toLowerCase().trim() !== stateKey) { skipped.wrongState++; continue; }
+    if (nicheKeys.length && !nicheKeys.includes(String(lead.niche || "").toLowerCase().trim())) { skipped.wrongNiche++; continue; }
+    if (!["new", "audit-failed"].includes(lead.status || "new")) { skipped.audited++; continue; }
+    if ((lead.auditAttempts || 0) >= maxAttempts) { skipped.failedTooOften++; continue; }
+    const gate = checkAudit(lead.website, { cooldownDays });
+    if (gate.duplicate) { skipped.blocked++; continue; }
+    out.push(lead);
+  }
+
+  return { leads: out, skipped };
+}
+
+/** Patches one lead row in place. Rows are never deleted. */
+export function updateLead(domainOrKey, patch) {
+  const db = loadLeads();
+  const row = db.leads.find(l => l.domain === domainOrKey || l.key === domainOrKey || l.id === domainOrKey);
+  if (!row) return null;
+  Object.assign(row, patch, { updatedAt: new Date().toISOString() });
+  saveLeads(db);
+  return row;
+}
+
 export function statusSummary() {
   const leads = loadLeads();
   const audits = loadAudits();

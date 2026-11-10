@@ -45,6 +45,59 @@ export function loadState(name) {
   return state;
 }
 
+/**
+ * Resolves a state by name, and works without a config file.
+ *
+ * The operator says "Andhra Pradesh" and it should just run. A config file is an
+ * *optimisation*: it adds a curated city list (needed only for Google Places) and
+ * default niches. Overpass can find a state boundary by name alone, so a missing
+ * config is not an error — it is a state we have not curated yet.
+ *
+ *   { state: "Andhra Pradesh", country: "India", overpassArea: "Andhra Pradesh",
+ *     adminLevel: 4, cities: [], defaultNiches: [...], configured: false }
+ */
+export function resolveState(name, { country = null } = {}) {
+  if (!name || name === true) throw new Error(`--state is required, e.g. --state "Andhra Pradesh"`);
+  const cleaned = String(name).replace(/,\s*(india|in)$/i, "").trim();
+  const key = slug(cleaned);
+  const file = path.join(CONFIG_DIR, "states", `${key}.json`);
+
+  if (fs.existsSync(file)) {
+    const state = readJSON(file);
+    return {
+      ...state,
+      state: state.state || cleaned,
+      country: country || state.country || "India",
+      overpassArea: state.overpassArea || state.state || cleaned,
+      adminLevel: state.adminLevel || 4,
+      cities: state.cities || [],
+      defaultNiches: state.defaultNiches || defaults().niches,
+      configured: true,
+    };
+  }
+
+  const d = defaults();
+  return {
+    state: cleaned,
+    country: country || d.country,
+    overpassArea: cleaned,
+    adminLevel: 4,
+    cities: [],
+    defaultNiches: d.niches,
+    configured: false,
+  };
+}
+
+/** Defaults that make an unconfigured state usable. */
+export function defaults() {
+  const settings = readJSON(path.join(CONFIG_DIR, "settings.json"));
+  const d = settings.defaults || {};
+  return {
+    country: d.country || "India",
+    niches: Array.isArray(d.niches) && d.niches.length ? d.niches : ["dentist", "clinic", "lawyer"],
+  };
+}
+
 export function nicheTags(niches) {
   const all = loadNiches();
   const out = [];

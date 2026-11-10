@@ -9,6 +9,17 @@
     "auditRefPrefix": "SP-AUD"
   },
 
+  "defaults": {
+    "country": "India",
+    "niches": ["dentist", "clinic", "lawyer", "real_estate"]
+  },
+
+  "run": {
+    "leadsPerRun": 25,
+    "auditsPerRun": 5,
+    "maxAuditAttempts": 3
+  },
+
   "audit": {
     "viewport": { "width": 390, "height": 844 },
     "desktopViewport": { "width": 1440, "height": 900 },

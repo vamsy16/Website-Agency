@@ -18,8 +18,9 @@ renderer.
 2. **The third eye fails closed.** `verify.mjs` runs after QA and before the PDF
    is accepted. A blocker means the audit is not sendable. Never weaken a check
    to get a pass; fix the data.
-3. **Dedupe before network.** `cmdAudit` calls `checkAudit()` before measuring.
-   Do not move that call later, and do not add a path that skips it.
+3. **Dedupe before network.** `runAudit()` calls `checkAudit()` before measuring,
+   and `pendingLeads()` never queues a domain that already has an audit. Do not
+   move either check later, and do not add a path that skips them.
 4. **The rubric is frozen.** `npm run selftest` must print
    `{speed:3,mobile:4,conversion:2,design:6,seo:5,overall:36}`. If it does not,
    the rubric has drifted from the calibration case. Fix the rubric, not the
@@ -42,6 +43,7 @@ renderer.
 ```bash
 npm install
 npm run selftest
+npm run run      -- --state "Andhra Pradesh" [--max 5] [--dry-run] [--csv f.csv]
 npm run leads    -- --state gujarat [--niches dentist,clinic] [--limit 25] [--csv f.csv]
 npm run audit    -- --url https://the-lead.example --name "Business" --city Ahmedabad --state gujarat
 npm run audit    -- --from-raw data/raw/<slug>.json [--force]
