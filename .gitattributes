@@ -1,0 +1,11 @@
+# The repo is authored on Windows but must behave identically on any machine.
+# LF in the index, LF in the working tree, no surprise conversions.
+* text=auto eol=lf
+
+*.png binary
+*.pdf binary
+*.b64 binary
+*.sha256 text eol=lf
+
+# Base64 sidecars are hashed, so their bytes must never be normalised.
+examples/**/*.b64 -text

@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+
+# Secrets — never commit a Google Places key
+.env
+.env.*
+*.key
+*.pem
+
+# Raw measurements are large, machine-specific, and often describe a real
+# prospect's site. They stay on the operator's machine.
+data/raw/
+
+# Audit output is the client's document. It is never committed, in any repo.
+reports/
+
+# Lead batches can contain contact data; the registry is data/leads.json.
+data/batch-*.json
+outreach/
+
+# Binaries travel as .b64 sidecars when a transport only carries text.
+# Decode with `npm run decode`; the real files are not tracked.
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.webp
+
+# OS noise
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+
+# Local scratch
+tmp/
+scratch/

@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "niches": {
+    "dentist": {
+      "label": "Dentist",
+      "osmTags": ["amenity=dentist"],
+      "budget": "high",
+      "why": "Established clinics buy implants and orthodontics; a single extra case pays for the site."
+    },
+    "lawyer": {
+      "label": "Law firm",
+      "osmTags": ["office=lawyer"],
+      "budget": "high",
+      "why": "Consultation-driven; a working contact form is directly billable."
+    },
+    "restaurant": {
+      "label": "Restaurant",
+      "osmTags": ["amenity=restaurant"],
+      "budget": "low-medium",
+      "why": "Menu, hours and booking are the whole job. Fast to deliver, low ticket."
+    },
+    "plumber": {
+      "label": "Plumber",
+      "osmTags": ["craft=plumber"],
+      "budget": "medium",
+      "why": "Emergency calls; click-to-call is the entire conversion path."
+    },
+    "electrician": {
+      "label": "Electrician",
+      "osmTags": ["craft=electrician"],
+      "budget": "medium",
+      "why": "Same as plumber — phone-first, mobile-first."
+    },
+    "hvac": {
+      "label": "HVAC / AC repair",
+      "osmTags": ["craft=hvac"],
+      "budget": "medium",
+      "why": "Seasonal spikes; a slow site costs bookings in the peak month."
+    },
+    "real_estate": {
+      "label": "Real estate agent",
+      "osmTags": ["office=estate_agent"],
+      "budget": "high",
+      "why": "Listings and lead capture; high commission per enquiry."
+    },
+    "gym": {
+      "label": "Gym / fitness studio",
+      "osmTags": ["leisure=fitness_centre"],
+      "budget": "low-medium",
+      "why": "Membership signup is a form; usually a dated site."
+    },
+    "salon": {
+      "label": "Salon / spa",
+      "osmTags": ["shop=beauty", "leisure=spa"],
+      "budget": "low-medium",
+      "why": "Booking is the product; many run on Instagram only."
+    },
+    "clinic": {
+      "label": "Medical clinic",
+      "osmTags": ["amenity=clinic", "amenity=doctors"],
+      "budget": "high",
+      "why": "Same logic as dentist — appointment flow and trust signals."
+    }
+  }
+}

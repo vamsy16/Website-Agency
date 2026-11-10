@@ -1,0 +1,60 @@
+{
+  "agency": {
+    "name": "Smart Pursuit",
+    "tagline": "Websites that win customers",
+    "auditLabel": "Website & conversion audit",
+    "phone": "+91 00000 00000",
+    "email": "hello@example.com",
+    "basedIn": "Ahmedabad",
+    "auditRefPrefix": "SP-AUD"
+  },
+
+  "audit": {
+    "viewport": { "width": 390, "height": 844 },
+    "desktopViewport": { "width": 1440, "height": 900 },
+    "reauditCooldownDays": 60,
+    "competitorCount": 2,
+    "screenshotRetries": 3,
+    "minScreenshotSpread": 12,
+    "maxScreenshotWhitePct": 94
+  },
+
+  "scoring": {
+    "weights": { "speed": 0.30, "mobile": 0.20, "conversion": 0.25, "design": 0.15, "seo": 0.10 },
+    "healthyOverall": 70
+  },
+
+  "thresholds": {
+    "perfMobile": { "poor": 50, "warn": 90 },
+    "perfDesktop": { "poor": 50, "warn": 90 },
+    "lcpMs": { "good": 2500, "poor": 4000 },
+    "tbtMs": { "good": 200, "poor": 600 },
+    "cls": { "good": 0.1, "poor": 0.25 },
+    "ttfbMs": { "good": 800, "poor": 1800 },
+    "bytesKB": { "good": 1600, "poor": 3000 },
+    "requests": { "good": 50, "poor": 100 },
+    "screens": { "good": 6, "poor": 12 },
+    "smallTapTargets": { "good": 0, "poor": 3 },
+    "minFontPx": { "good": 14, "poor": 12 },
+    "headlineOffsetPx": { "good": 300, "poor": 600 },
+    "words": { "good": 300, "poor": 150 },
+    "h1Count": { "good": 1, "poor": 3 },
+    "thirdPartyCookies": { "good": 5, "poor": 20 },
+    "readMoreLinks": { "good": 0, "poor": 5 }
+  },
+
+  "outreach": {
+    "cadenceDays": [3, 3, 3],
+    "maxFollowUps": 3,
+    "dailySendCap": 20,
+    "signatureName": "Smart Pursuit",
+    "replyTo": "hello@example.com",
+    "optOutLine": "If you would rather not hear from me again, reply “no thanks” and I will not follow up.",
+    "neverSendAutomatically": true
+  },
+
+  "caps": {
+    "maxLeadsPerRun": 25,
+    "maxCompetitorsPerAudit": 2
+  }
+}

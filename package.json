@@ -1,0 +1,22 @@
+{
+  "name": "smart-pursuit-agency-os",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Lead sourcing, measured website audits, third-eye verification and honest outreach drafts for a website-design agency. Nothing is ever sent automatically.",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "leads": "node src/cli.mjs leads",
+    "audit": "node src/cli.mjs audit",
+    "sequence": "node src/cli.mjs sequence",
+    "verify": "node src/cli.mjs verify",
+    "status": "node src/cli.mjs status",
+    "selftest": "node src/cli.mjs selftest",
+    "class-diff": "node tools/class-diff.mjs",
+    "decode": "node tools/decode-b64.mjs",
+    "encode": "node tools/encode-b64.mjs"
+  },
+  "dependencies": {
+    "playwright-core": "^1.49.0"
+  }
+}

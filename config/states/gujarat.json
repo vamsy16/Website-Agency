@@ -1,0 +1,20 @@
+{
+  "state": "Gujarat",
+  "country": "IN",
+  "overpassArea": "Gujarat",
+  "adminLevel": 4,
+  "cities": [
+    "Ahmedabad",
+    "Surat",
+    "Vadodara",
+    "Rajkot",
+    "Bhavnagar",
+    "Jamnagar",
+    "Gandhinagar",
+    "Junagadh",
+    "Anand",
+    "Navsari"
+  ],
+  "defaultNiches": ["dentist", "clinic", "lawyer", "real_estate"],
+  "notes": "Cities are used only for labelling and for the Overpass area filter. Extend this file for another state; keep the same shape."
+}
