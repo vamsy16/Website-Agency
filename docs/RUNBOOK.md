@@ -62,8 +62,8 @@ Edit `config/settings.json` → `agency`:
   "name": "Smart Pursuit",
   "tagline": "Websites that win customers",
   "auditLabel": "Website & conversion audit",
-  "phone": "+91 70950 24220",
-  "email": "smartpursuit3@gmail.com",
+  "phone": "+91 00000 00000",
+  "email": "hello@example.com",
   "basedIn": "Ahmedabad",
   "auditRefPrefix": "SP-AUD"
 }
