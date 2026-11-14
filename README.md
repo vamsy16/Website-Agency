@@ -255,4 +255,5 @@ See `docs/RUNBOOK.md` → **Compliance** for the operating procedure.
 | `docs/AUDIT-SPEC.md` | you need to know what counts as an audit |
 | `docs/DESIGN-SPEC.md` | you are touching the renderer or the CSS |
 | `docs/ARENA-AGENT-PROMPT.md` | you are handing the repo to another agent |
+| `docs/ARENA-LEADS-TO-GMAIL.md` | you want a one-line Arena invocation for lead sourcing, verified audits and Gmail drafts (never sending) |
 | `AGENTS.md` | you are an agent working in this repo |
