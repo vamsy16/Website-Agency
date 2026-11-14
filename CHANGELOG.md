@@ -30,6 +30,9 @@ change, and say why if the reason is not obvious.
   (`duplicate` / `dead-site` / `failed`) so a batch survives one bad lead.
 - Agency contact details and the niche-specific audit label live in
   `config/settings.json`.
+- `agency.name` and `agency.basedIn` are printed on page 10 next to the phone
+  and email, so they are live settings, not part of the frozen layout. The
+  rest of the page is unchanged and still checked by `qa.mjs`.
 
 ## 1.0.0 — 10 November 2026
 

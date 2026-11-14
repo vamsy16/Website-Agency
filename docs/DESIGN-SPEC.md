@@ -143,6 +143,12 @@ The cover has no top bar and no footer. It carries its own wordmark, a 2.2 mm te
 spine down the left edge, a radial teal glow top-right, and the
 `Private & confidential` line bottom-left at 6 pt, 14% uppercase.
 
+**Two strings are live, not frozen.** `agency.name` and `agency.basedIn` are
+printed together on the navy block of page 10 (`SMART PURSUIT · <CITY>`), and the
+phone and email beside them come from the same `config/settings.json`. Everything
+else on the page — geometry, type scale, colour, the `NN / 10` tab — is frozen and
+checked by `qa.mjs` and `tools/class-diff.mjs`.
+
 ---
 
 ## 5. Page-by-page layout
