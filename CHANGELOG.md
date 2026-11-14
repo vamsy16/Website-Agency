@@ -3,6 +3,10 @@
 All notable changes to the Agency OS. Newest first. Keep it short: one line per
 change, and say why if the reason is not obvious.
 
+## Unreleased
+
+- Added `docs/ARENA-LEADS-TO-GMAIL.md`: a reusable state/count invocation for deduplicated lead sourcing, verified audit PDFs and deduplicated Gmail drafts with planned follow-up dates. Drafts only; no sending or scheduled-send integration.
+
 ## 1.1.0 — 10 November 2026
 
 **The daily run**
