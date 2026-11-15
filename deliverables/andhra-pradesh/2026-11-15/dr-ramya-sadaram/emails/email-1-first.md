@@ -1,13 +1,13 @@
 <!-- DRAFT — not sent. Sent by the operator only. -->
 
-**To:** (operator fills in the published business address)
+**To:** dr.ramya@blissfulpregnancy.com  (Gmail draft created 2026-11-15)
 **Subject:** Dr. Ramya Sadaram — what I found testing gynecologistvizag.com
 **Send:** 15 November 2026
 **Attachments:** reports/dr-ramya-sadaram/Smart-Pursuit-Audit-Dr.-Ramya-Sadaram.pdf
 
 ---
 
-Hi there,
+Dear Dr. Sadaram,
 
 I ran the same tests Google runs on gynecologistvizag.com and put the results in the attached audit (10 pages, all numbers measured 15 November 2026).
 
