@@ -24,6 +24,7 @@ import { qaLayout, assertQa } from "./qa.mjs";
 import { htmlToPdf } from "./pdf.mjs";
 import { verifyAudit, selftestRubric } from "./verify.mjs";
 import { writeSequence } from "./sequence.mjs";
+import { screenSite, notAProspect } from "./prospect.mjs";
 
 const argv = process.argv.slice(2);
 const command = argv[0];
@@ -32,10 +33,12 @@ function usage() {
   console.log(`
 Smart Pursuit Agency OS
 
-  node src/cli.mjs run      --state "Andhra Pradesh" [--niches dentist,clinic] [--max 5] [--target 5] [--allow-no-email] [--dry-run] [--csv leads.csv]
+  node src/cli.mjs run      --state "Andhra Pradesh" [--niches dentist,clinic] [--max 5] [--target 5] [--allow-no-email] [--no-site-screen] [--no-prospect-filter] [--dry-run] [--csv leads.csv]
   node src/cli.mjs leads    --state gujarat [--niches dentist,clinic] [--limit 25] [--csv leads.csv]
   node src/cli.mjs audit    --url https://example.com --name "Business Name" --city Ahmedabad [--force] [--live]
   node src/cli.mjs audit    --from-raw data/raw/<slug>.json [--fixture] [--force]
+  node src/cli.mjs screen   --domain a.com,b.in | --audited   (is the email on the business's own site?)
+  node src/cli.mjs reaudit  --domain a.com --reason "report wording fix"
   node src/cli.mjs sequence --audit reports/<slug>/audit.json [--send-date 2026-11-10]
   node src/cli.mjs verify   --audit reports/<slug>/audit.json [--live] [--fixture]
   node src/cli.mjs status
@@ -173,6 +176,7 @@ function leadToBusiness(lead, settings) {
     state: lead.state || null,
     niche: lead.niche || null,
     nicheLabel: lead.nicheLabel || null,
+    category: lead.category || null,
     contactName: lead.contactName || lead.name,
     contactPage: lead.contactPage || website.replace(/\/$/, "") + "/contact/",
     phone: lead.phone || null,
@@ -569,6 +573,14 @@ async function cmdRun() {
   const targetArg = argValue(argv, "--target", null);
   const target = targetArg && targetArg !== true ? Number(targetArg) : null;
   const cooldownDays = settings.audit.reauditCooldownDays;
+  // Owner rule (2026-11-15): an email counts only if it is published on the
+  // business's own website, and chains / government / nonprofits / IT firms are
+  // not prospects. Screening is one small fetch per lead and does not count as
+  // an audit attempt; --max caps audits, run.maxScreens caps screens.
+  const siteScreen = requireEmail && !hasFlag(argv, "--no-site-screen") && runCfg.siteScreen !== false;
+  const filterProspects = !hasFlag(argv, "--no-prospect-filter") && runCfg.filterProspects !== false;
+  const maxScreens = Number(runCfg.maxScreens ?? 60);
+  const screenRecheckDays = Number(runCfg.screenRecheckDays ?? 30);
 
   const summary = {
     ranAt: new Date().toISOString(),
@@ -582,6 +594,8 @@ async function cmdRun() {
     audited: [],
     skipped: [],
     failed: [],
+    screenedOut: [],
+    notProspects: [],
     draftsWritten: 0,
   };
 
@@ -632,24 +646,32 @@ async function cmdRun() {
     // Only narrow by niche when the operator asked for specific ones. A broad
     // lead has no niche, and filtering on the default list would silently drop it.
     niches,
-    limit: max,
+    limit: siteScreen ? maxScreens : max,
     cooldownDays,
     maxAttempts,
     requireEmail,
+    siteScreen,
+    screenRecheckDays,
+    filterProspects,
   });
   summary.queue = pending.leads.map(l => ({ name: l.name, domain: l.domain, city: l.city }));
   summary.skippedByRegistry = pending.skipped;
+  summary.notProspects = pending.notProspects || [];
+  if (summary.notProspects.length) {
+    console.log(`\n  not prospects (${summary.notProspects.length}) — skipped without any network call:`);
+    for (const n of summary.notProspects) console.log(`    · ${n.name} — ${n.domain} · ${n.kind}: ${n.reason}`);
+  }
 
   const s = pending.skipped;
   if (!pending.leads.length) {
     console.log("\n  Nothing to audit. Every lead in this state is already audited, blocked, or has failed too often.");
-    console.log(`  skipped — audited ${s.audited}, cooldown ${s.blocked}, failed ${s.failedTooOften}, no website ${s.noWebsite}, no email ${s.noEmail}, other state ${s.wrongState}, other niche ${s.wrongNiche}`);
+    console.log(`  skipped — audited ${s.audited}, cooldown ${s.blocked}, failed ${s.failedTooOften}, no website ${s.noWebsite}, no email ${s.noEmail}, not a prospect ${s.notProspect}, screened out recently ${s.screenedOut}, other state ${s.wrongState}, other niche ${s.wrongNiche}`);
     const outFile = writeRunReport(state, summary);
     console.log(`  Run report: ${outFile}\n`);
     return;
   }
 
-  console.log(`\n  queue     ${pending.leads.length} lead(s)${requireEmail ? " — published email only" : ""}${target ? `, stop after ${target} verified` : ""}`);
+  console.log(`\n  queue     ${pending.leads.length} lead(s)${requireEmail ? (siteScreen ? " — email must be published on the business's own site" : " — published email only") : ""}${target ? `, stop after ${target} verified` : ""}, at most ${max} audit attempt(s)`);
   for (const lead of pending.leads) console.log(`    · ${lead.name} — ${lead.domain}${lead.city ? ` · ${lead.city}` : ""}${lead.email ? ` · ${lead.email}` : ""}`);
 
   if (dryRun) {
@@ -659,13 +681,36 @@ async function cmdRun() {
   }
 
   console.log("");
+  let attempts = 0;
   for (let i = 0; i < pending.leads.length; i++) {
     if (target && summary.audited.length >= target) {
       console.log(`  target reached: ${summary.audited.length} verified audit(s) — stopping`);
       break;
     }
+    if (attempts >= max) {
+      console.log(`  audit attempts used up (${attempts}/${max}) — stopping`);
+      break;
+    }
     const lead = pending.leads[i];
     const label = `[${i + 1}/${pending.leads.length}] ${String(lead.name).slice(0, 34).padEnd(34)}`;
+
+    if (siteScreen) {
+      const sc = await screenSite(lead);
+      updateLead(lead.domain, { screen: sc });
+      if (!sc.ok) {
+        summary.screenedOut.push({ name: lead.name, domain: lead.domain, result: sc.result, reason: sc.reason, osmEmail: sc.osmEmail, siteEmails: sc.siteEmails });
+        console.log(`  ${label} screened out (${sc.result}) — ${sc.reason}`);
+        continue;
+      }
+      if (sc.email !== (lead.email || "").toLowerCase()) {
+        console.log(`  ${label} email from the site: ${sc.email} (OpenStreetMap had ${lead.email || "none"})`);
+      }
+      lead.email = sc.email;
+      updateLead(lead.domain, { email: sc.email, osmEmail: sc.osmEmail, emailSource: sc.emailSource, emailFoundOn: sc.foundOn });
+      console.log(`  ${label} email confirmed: ${sc.email} on ${sc.foundOn}`);
+    }
+
+    attempts++;
     try {
       const result = await runAudit({
         settings,
@@ -683,7 +728,7 @@ async function cmdRun() {
       });
       let drafts = 0;
       if (doSequence) {
-        const schedule = writeSequence(result.audit, { sendDate: isoDate(new Date()) });
+        const schedule = writeSequence(result.audit, { sendDate: isoDate(new Date()), to: siteScreen ? lead.email : null });
         drafts = schedule.emails.length;
         summary.draftsWritten += drafts;
       }
@@ -717,7 +762,7 @@ async function cmdRun() {
   }
 
   const outFile = writeRunReport(state, summary);
-  console.log(`\n  Audited ${summary.audited.length} · skipped ${summary.skipped.length} · failed ${summary.failed.length} · drafts ${summary.draftsWritten}`);
+  console.log(`\n  Audited ${summary.audited.length} · screened out ${summary.screenedOut.length} · not prospects ${summary.notProspects.length} · skipped ${summary.skipped.length} · failed ${summary.failed.length} · drafts ${summary.draftsWritten}`);
   console.log(`  Run report: ${outFile}`);
   if (summary.audited.length) console.log("  Drafts are in outreach/<business>/. Nothing has been sent.");
   console.log("");
@@ -727,6 +772,63 @@ function writeRunReport(state, summary) {
   const file = path.join(ROOT, "data", `run-${slug(state.state)}-${isoDate(new Date())}.json`);
   writeJSON(file, summary);
   return path.relative(ROOT, file).replace(/\\/g, "/");
+}
+
+// ------------------------------------------------------------------ screen
+/**
+ * Re-checks leads' emails against their own websites without auditing.
+ *   screen --domain a.com,b.in     specific leads
+ *   screen --audited               every audited lead (used before a run)
+ * Writes lead.screen in data/leads.json. Never changes an audited lead's email.
+ */
+async function cmdScreen() {
+  const { loadLeads } = await import("./dedupe.mjs");
+  const domains = parseList(argValue(argv, "--domain"));
+  const leads = loadLeads().leads.filter(l => l.website && (domains.length ? domains.includes(l.domain) : hasFlag(argv, "--audited") && l.status === "audited"));
+  if (!leads.length) die("No matching leads. Use --domain a.com,b.in or --audited.");
+  for (const lead of leads) {
+    const np = notAProspect(lead);
+    const sc = await screenSite(lead);
+    updateLead(lead.domain, { emailRecheck: { ...sc, notAProspect: np } });
+    const verdict = sc.ok && sc.email === (lead.email || "").toLowerCase() ? "CONFIRMED" : sc.ok ? `SITE SHOWS ${sc.email}` : `NOT CONFIRMED (${sc.result})`;
+    console.log(`  ${String(lead.name).slice(0, 40).padEnd(40)} ${String(lead.email || "—").padEnd(36)} ${verdict}${np ? ` · not a prospect: ${np.kind}` : ""}${sc.ok ? ` · ${sc.foundOn}` : ` · ${sc.reason}`}`);
+  }
+}
+
+// ------------------------------------------------------------------ reaudit
+/**
+ * Re-measures and re-renders an audit that was already delivered, e.g. after a
+ * wording fix in the report. This is the only place a cooldown is overridden,
+ * and a re-audit never counts toward a run's target.
+ *   reaudit --domain khushishoppingmall.in --reason "report wording fix"
+ */
+async function cmdReaudit() {
+  const settings = loadSettings();
+  const { loadLeads } = await import("./dedupe.mjs");
+  const domains = parseList(argValue(argv, "--domain"));
+  const reason = argValue(argv, "--reason");
+  if (!domains.length) die("--domain is required");
+  if (!reason || reason === true) die('--reason is required, e.g. --reason "report wording fix"');
+  for (const domain of domains) {
+    const lead = loadLeads().leads.find(l => l.domain === domain);
+    if (!lead) { console.log(`  ${domain}: not in data/leads.json — skipped`); continue; }
+    const np = notAProspect(lead);
+    if (np) { console.log(`  ${domain}: not a prospect (${np.reason}) — skipped`); continue; }
+    const sc = await screenSite(lead);
+    updateLead(domain, { screen: sc });
+    if (!sc.ok) { console.log(`  ${domain}: screened out (${sc.result}) — ${sc.reason}`); continue; }
+    lead.email = sc.email;
+    updateLead(domain, { email: sc.email, osmEmail: sc.osmEmail, emailSource: sc.emailSource, emailFoundOn: sc.foundOn });
+    log("reaudit", `${domain}: ${reason} (email ${sc.email} confirmed on ${sc.foundOn})`);
+    try {
+      const result = await runAudit({ settings, business: leadToBusiness(lead, settings), force: true, announce: false });
+      updateLead(domain, { status: "audited", lastAuditedAt: result.audit.date, lastAuditRef: result.audit.ref, lastAuditPdf: result.pdfFile, reauditReason: reason, lastError: null });
+      const schedule = writeSequence(result.audit, { sendDate: isoDate(new Date()), to: sc.email });
+      console.log(`  ${domain}: re-audited ${result.scores.overall}/100 · ${schedule.emails.length} drafts`);
+    } catch (err) {
+      console.log(`  ${domain}: re-audit FAILED — ${String(err.message).split("\n")[0]}`);
+    }
+  }
 }
 
 // ------------------------------------------------------------------ sequence
@@ -784,6 +886,8 @@ switch (command) {
   case "run":
   case "daily": await cmdRun(); break;
   case "leads": await cmdLeads(); break;
+  case "screen": await cmdScreen(); break;
+  case "reaudit": await cmdReaudit(); break;
   case "audit": await cmdAudit(); break;
   case "sequence": await cmdSequence(); break;
   case "verify": await cmdVerify(); break;

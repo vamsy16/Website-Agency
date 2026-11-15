@@ -23,6 +23,19 @@ const slugify = s => String(s || "unknown").toLowerCase().normalize("NFKD")
 const readJSON = f => JSON.parse(fs.readFileSync(f, "utf8"));
 const blob = rel => `https://github.com/${REPO}/blob/${BRANCH}/${rel.split(path.sep).map(encodeURIComponent).join("/")}`;
 
+// The run screens every lead's email against the business's own website
+// (src/prospect.mjs). Surface that result next to each audit.
+const LEADS = (() => { try { return readJSON(path.join(ROOT, "data", "leads.json")).leads || []; } catch { return []; } })();
+function autoEmailCheck(domain, email) {
+  const lead = LEADS.find(l => l.domain === domain);
+  if (!lead) return null;
+  const sc = lead.screen?.ok ? lead.screen : lead.emailRecheck || lead.screen;
+  if (!sc) return null;
+  if (sc.ok && email && sc.email === String(email).toLowerCase()) return { status: "confirmed", note: `published on ${sc.foundOn}`, checkedAt: String(sc.checkedAt).slice(0, 10) };
+  if (sc.ok) return { status: "mismatch", note: `the site publishes ${sc.email} (${sc.foundOn})`, checkedAt: String(sc.checkedAt).slice(0, 10) };
+  return { status: "not confirmed", note: sc.reason, checkedAt: String(sc.checkedAt).slice(0, 10) };
+}
+
 let published = 0;
 if (fs.existsSync(REPORTS)) {
   for (const slug of fs.readdirSync(REPORTS)) {
@@ -52,7 +65,9 @@ if (fs.existsSync(REPORTS)) {
       scores: audit.scores, pdf,
     };
     const prev = path.join(dest, "summary.json");
-    if (fs.existsSync(prev)) { const old = readJSON(prev); if (old.emailCheck) card.emailCheck = old.emailCheck; }
+    const auto = autoEmailCheck(card.domain, card.email);
+    if (auto) card.emailCheck = auto;
+    else if (fs.existsSync(prev)) { const old = readJSON(prev); if (old.emailCheck) card.emailCheck = old.emailCheck; }
     fs.writeFileSync(prev, JSON.stringify(card, null, 2) + "\n");
     published++;
   }

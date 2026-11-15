@@ -65,12 +65,24 @@ jobs:
           echo "niches=$(jq -r '(.niches // []) | join(",")' run-request.json)" >> "$GITHUB_OUTPUT"
           echo "sendDate=$(jq -r '.sendDate // ""' run-request.json)" >> "$GITHUB_OUTPUT"
           echo "target=$(jq -r '.target // ""' run-request.json)" >> "$GITHUB_OUTPUT"
+          echo "reaudit=$(jq -r '(.reaudit // []) | join(",")' run-request.json)" >> "$GITHUB_OUTPUT"
+          echo "reauditReason=$(jq -r '.reauditReason // "operator request"' run-request.json)" >> "$GITHUB_OUTPUT"
 
       - name: Selftest (rubric must reproduce 36)
         run: npm run selftest
 
       - name: Doctor
         run: npm run doctor -- --state "${{ steps.req.outputs.state }}" || true
+
+      - name: Re-check emails of audited leads against their own websites
+        run: node src/cli.mjs screen --audited 2>&1 | tee screen.log || true
+
+      - name: Re-audit requested domains (wording fix; never counts toward the target)
+        if: steps.req.outputs.reaudit != ''
+        env:
+          DOMAINS: ${{ steps.req.outputs.reaudit }}
+          REASON: ${{ steps.req.outputs.reauditReason }}
+        run: node src/cli.mjs reaudit --domain "$DOMAINS" --reason "$REASON" 2>&1 | tee reaudit.log || true
 
       - name: Daily run
         env:
@@ -94,7 +106,7 @@ jobs:
         run: |
           mkdir -p results
           paths=()
-          for p in reports outreach data/run-*.json data/batch-*.json run.log; do
+          for p in reports outreach data/run-*.json data/batch-*.json run.log screen.log reaudit.log; do
             [ -e "$p" ] && paths+=("$p")
           done
           if [ ${#paths[@]} -eq 0 ]; then echo "nothing to pack"; exit 0; fi

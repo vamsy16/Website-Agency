@@ -242,3 +242,16 @@ export function parseList(value) {  if (!value || value === true) return [];
     .map(s => s.trim())
     .filter(Boolean);
 }
+
+/**
+ * Who the business's visitors are. The report and emails say "patient" and
+ * "booking" only for healthcare; every other business gets "customer" and
+ * "enquiry", so a grocery store is never told it loses patients.
+ */
+export function audienceOf(b = {}) {
+  const hay = [b.nicheLabel, b.niche, b.category, b.name].filter(Boolean).join(" ");
+  const health = /dent|clinic|doctor|hospital|health|medical|physio|diagnos|gyn|ortho|pediatric|paediatric|ayurved|homeo|eye care|optometr|optician|veterin|skin|derma|ivf|fertility|maternity|nursing|pregnan/i.test(hay);
+  return health
+    ? { health: true, person: "patient", act: "book", noun: "a booking", nounPl: "bookings", path: "booking path", cta: "Book", comparing: "comparing three clinics" }
+    : { health: false, person: "customer", act: "get in touch", noun: "an enquiry", nounPl: "enquiries", path: "enquiry path", cta: "Enquire", comparing: "comparing three options" };
+}

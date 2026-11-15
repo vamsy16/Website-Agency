@@ -3,6 +3,36 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## 1.4.0 — 15 November 2026
+
+**Confirmed emails only, real prospects only, honest wording.**
+
+- `src/prospect.mjs` — `screenSite(lead)`: before an audit, fetch the business's
+  own homepage and up to three contact/about pages. The email counts only if it
+  is published there (mailto, plain text, `[at]`/`[dot]`, Cloudflare-protected).
+  If OpenStreetMap's address is not on the site but the site publishes its own,
+  the site's address is used and the OSM one kept as `osmEmail`. No published
+  address → the lead is skipped (`screenedOut`), never guessed. The same fetch
+  skips dead sites, non-Indian companies and self-declared nonprofits before a
+  3-minute audit. Screens do not count as audit attempts; `run.maxScreens` caps
+  them and a screened-out lead is retried after `run.screenRecheckDays`.
+- `notAProspect(lead)` (no network): national chains and store-locator pages,
+  government/education bodies, nonprofits/NGOs/societies, and IT/web/marketing
+  firms are skipped and listed in the run log. Owner decision after Reliance,
+  RISE (an Austrian IT firm), Red Cross, Swecha and a golf club were audited.
+- Email 1 no longer claims "the enquiry form on your site is broken" for every
+  site. Subjects are "<name> — what I found testing <domain>", using a short
+  name so long company names no longer fail review (RISE). Email 2's money line
+  is built only from what was measured. Drafts now carry the confirmed `To:`.
+- Report wording: "patient", "book an appointment" and "booking path" only for
+  healthcare businesses (`audienceOf`); others read "customer" / "enquiry".
+  The summary verdict names only problems the site has — it no longer says
+  "a broken form" when no broken form was found. Rubric unchanged (selftest 36).
+- `screen --domain|--audited` re-checks emails without auditing;
+  `reaudit --domain … --reason …` re-measures a delivered audit after a wording
+  fix (the one place the cooldown is overridden; never counts toward a target).
+  `run-request.json` accepts `reaudit` and `reauditReason`.
+
 ## 1.3.0 — 15 November 2026
 
 **Email-only audits, GitHub runner, verified deliverables.**

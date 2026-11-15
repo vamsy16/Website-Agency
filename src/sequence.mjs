@@ -59,6 +59,14 @@ function firstName(contactName, businessName) {
   return first;
 }
 
+/** "Research Industrial Systems Engineering (RISE) India Ventures Pvt Ltd." -> a subject-sized name. */
+export function shortName(name) {
+  let n = String(name || "").replace(/[™®]/g, "").replace(/\s*\([^)]*\)\s*/g, " ").replace(/\s+-\s+.*$/, "")
+    .replace(/\b(pvt\.?|private)\s*(ltd\.?|limited)\.?$/i, "").replace(/\b(ltd\.?|limited|llp)$/i, "").replace(/\s+/g, " ").trim().replace(/[.,]$/, "");
+  if (n.length > 40) n = n.slice(0, 40).replace(/\s+\S*$/, "");
+  return n || String(name || "").slice(0, 40);
+}
+
 export function buildSequence(audit, { sendDate = isoDate(new Date()), cadenceDays, settings } = {}) {
   if (!audit?.facts) throw new Error("buildSequence: audit.facts is required");
   const cfg = settings || readJSON(path.join(ROOT, "config", "settings.json"));
@@ -81,14 +89,18 @@ export function buildSequence(audit, { sendDate = isoDate(new Date()), cadenceDa
     return `${title}. ${firstSentence}`.replace(/\s+/g, " ").trim();
   };
 
+  // Every sentence here must be true for THIS site: built only from what was measured.
+  const lcpSlow = Number.isFinite(m.lcpMs) && m.lcpMs > 4000;
   const moneyLine = facts.http.adTech?.length
-    ? `Your pages load ${facts.http.adTech.slice(0, 3).map(adTechLabel).join(", ")} — you are buying attention. Every click that lands on the contact page and finds a broken form instead of a form cannot convert. That is the leak.`
-    : `The page reaches a visitor in ${m.lcp} on a phone. By then a good share of them have gone. The fix is not a redesign — it is delivery.`;
+    ? `Your pages load ${facts.http.adTech.slice(0, 3).map(adTechLabel).join(", ")}, so some of these visits are paid for. Every visitor who leaves before the page appears${lcpSlow ? ` (${m.lcp} on a phone today)` : ""}, or cannot find a quick way to get in touch, is money already spent.`
+    : lcpSlow
+      ? `Your homepage takes ${m.lcp} to show its main content on a phone. Google’s target is 2.5 s, and a good share of visitors leave before then.`
+      : `The quickest win in the audit is the first item: ${String(finding1.title || "").replace(/<[^>]+>/g, "").trim()}.`;
 
   const outcomeLine = `Your mobile performance score is ${m.perfMobile}/100. The eight items on page 8 of the audit are the route to 90+, in the order that pays back fastest, and none of them require a new design.`;
 
   const mailFacts = {
-    business: { name: facts.business.name, domain: facts.business.domain, city: facts.business.city },
+    business: { name: facts.business.name, shortName: shortName(facts.business.name), domain: facts.business.domain, city: facts.business.city },
     contactFirstName: firstName(audit.business?.contactName || facts.business.contactName, facts.business.name),
     agency: {
       signatureName: cfg.outreach.signatureName,
@@ -161,7 +173,8 @@ export function writeSequence(audit, opts = {}) {
   const dir = ensureDir(path.join(ROOT, "outreach", slug(audit.business.name)));
   for (const email of built.emails) {
     const file = path.join(dir, `email-${email.step}-${email.id}.md`);
-    const text = `<!-- DRAFT — not sent. Sent by the operator only. -->\n\n**To:** (operator fills in the published business address)\n**Subject:** ${email.subject}\n**Send:** ${email.scheduledForLong}\n**Attachments:** ${email.attachments.length ? email.attachments.join(", ") : "none"}\n\n---\n\n${email.body}\n`;
+    const to = opts.to ? String(opts.to) : "(operator fills in the published business address)";
+    const text = `<!-- DRAFT — not sent. Sent by the operator only. -->\n\n**To:** ${to}\n**Subject:** ${email.subject}\n**Send:** ${email.scheduledForLong}\n**Attachments:** ${email.attachments.length ? email.attachments.join(", ") : "none"}\n\n---\n\n${email.body}\n`;
     fs.writeFileSync(file, text);
     email.file = path.relative(ROOT, file).replace(/\\/g, "/");
   }
@@ -172,6 +185,7 @@ export function writeSequence(audit, opts = {}) {
     createdAt: new Date().toISOString(),
     sendDate: built.sendDate,
     cadenceDays: built.cadence,
+    to: opts.to || null,
     status: "draft",
     neverSendAutomatically: true,
     note: "Dates shift if the operator sends email 1 on a different day — recompute with `sequence --send-date YYYY-MM-DD`.",

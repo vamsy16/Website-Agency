@@ -7,7 +7,7 @@
 //
 // No constant in here is a judgement about a business. Each penalty is attached
 // to one measured threshold from config/settings.json.
-import { clamp, round, fmtInt, fmtBytesKB, fmtSec, fmtCls, longDate, isoDate } from "./util.mjs";
+import { clamp, round, fmtInt, fmtBytesKB, fmtSec, fmtCls, longDate, isoDate, audienceOf } from "./util.mjs";
 
 const PENALTY = {
   // speed
@@ -176,6 +176,7 @@ export function buildFacts(raw, scoring, business, settings = {}) {
       contactName: business.contactName || business.name,
       contactPage: business.contactPage || `${business.url.replace(/\/$/, "")}/contact/`,
       nicheLabel: business.nicheLabel || business.niche || "",
+      category: business.category || "",
     },
     agency: settings.agency || {},
     date: { iso: dateIso, long: longDate(dateIso), measuredIst: raw.measuredAtIst || "" },
@@ -297,6 +298,7 @@ const SEVERITY_ORDER = { Critical: 0, High: 1, Medium: 2 };
 export function deriveFindings(raw, facts, business) {
   const m = facts.metric;
   const h = facts.http;
+  const v = audienceOf({ ...facts.business, ...business });
   const candidates = [];
 
   if (m.visibleForms === 0 && h.contactShortcode) {
@@ -305,8 +307,10 @@ export function deriveFindings(raw, facts, business) {
       tone: "crit",
       title: `Your Contact page shows code where the form should be`,
       measured: `The page at <b>${business.contactPage || business.domain + "/contact/"}</b> prints <span class="mono">${escapeText(h.contactShortcode)}</span> as visible text. The form itself never renders. The homepage also has <b>${m.visibleForms}</b> visible forms with fields.`,
-      why: `This is the page every “Contact” link, Google Business Profile button and ad click lands on. A patient who has decided to book sees a broken page at the exact moment they were ready to choose you.`,
-      fix: `Rebuild the form: name, phone, treatment, preferred branch, preferred date. Add a thank-you page so it can be tracked.`,
+      why: `This is the page every “Contact” link, Google Business Profile button and ad click lands on. A ${v.person} who has decided to ${v.act} sees a broken page at the exact moment they were ready to choose you.`,
+      fix: v.health
+        ? `Rebuild the form: name, phone, treatment, preferred branch, preferred date. Add a thank-you page so it can be tracked.`
+        : `Rebuild the form: name, phone, what they need, best time to call. Add a thank-you page so it can be tracked.`,
       effort: "1 hour",
       evidence: ["http.contactShortcode", "metric.visibleForms"],
     });
@@ -316,10 +320,14 @@ export function deriveFindings(raw, facts, business) {
     candidates.push({
       severity: "Critical",
       tone: "crit",
-      title: `There is no way to book an appointment from the homepage`,
+      title: v.health ? `There is no way to book an appointment from the homepage` : `There is no enquiry form on the homepage`,
       measured: `Zero form fields on the home page. The page has <b>${m.telLinks}</b> click-to-call links and <b>${m.whatsapp}</b> WhatsApp capture element${m.whatsapp === 1 ? "" : "s"}.`,
-      why: `WhatsApp suits a patient who is already sure. It loses the one who is comparing three clinics at 11 pm and does not want to start a conversation to ask a price. Every additional step is a decision to leave.`,
-      fix: `A booking block above the fold, a sticky “Call / Book” bar on mobile, and a working form that emails the business.`,
+      why: v.health
+        ? `WhatsApp suits a patient who is already sure. It loses the one who is comparing three clinics at 11 pm and does not want to start a conversation to ask a price. Every additional step is a decision to leave.`
+        : `A phone call or WhatsApp suits a customer who is already sure. It loses the one who is ${v.comparing} at 11 pm and does not want to start a conversation just to ask a price. Every additional step is a decision to leave.`,
+      fix: v.health
+        ? `A booking block above the fold, a sticky “Call / Book” bar on mobile, and a working form that emails the business.`
+        : `An enquiry block above the fold, a sticky “Call / WhatsApp” bar on mobile, and a working form that emails the business.`,
       effort: "half a day",
       evidence: ["metric.visibleForms", "metric.telLinks", "metric.whatsapp"],
     });
@@ -345,7 +353,9 @@ export function deriveFindings(raw, facts, business) {
       title: `${m.h1Count} H1 headings competing for one page`,
       measured: `The homepage carries <b>${m.h1Count} × H1</b> and ${m.h2Count} × H2. Headline blocks seen in the first screen: ${(raw.mobile?.dom?.firstScreenClaims || []).slice(0, 3).map(c => `“${c}”`).join(" · ") || "—"}.`,
       why: `One page, one H1 — that is how a search engine reads the topic and how a person reads the offer. Several slogans mean the reader does the work of deciding what the business actually does, and the crawler gets no clear signal.`,
-      fix: `One H1 naming the service and the city, then H2s for treatments, locations and doctors.`,
+      fix: v.health
+        ? `One H1 naming the service and the city, then H2s for treatments, locations and doctors.`
+        : `One H1 naming what you offer and the city, then H2s for products or services, location and contact details.`,
       effort: "2 hours",
       evidence: ["metric.h1Count", "metric.h2Count"],
     });
@@ -370,7 +380,7 @@ export function deriveFindings(raw, facts, business) {
       tone: "med",
       title: `${m.thirdPartyCookies} third-party cookies and ${m.consoleErrors} JavaScript errors on a business site`,
       measured: `${m.thirdPartyRequests} third-party requests from ${Math.max(0, m.thirdPartyDomains.length)} external domains${m.thirdPartyDomains.length ? ` (${m.thirdPartyDomains.slice(0, 6).join(", ")})` : ""}. <b>${m.thirdPartyCookies} third-party cookies</b>, and third-party code blocked the main thread for <b>${fmtInt(m.blockingMs)} ms</b>. ${m.consoleErrors} uncaught console error${m.consoleErrors === 1 ? "" : "s"} on load.`,
-      why: `Ad and analytics pixels are pure weight on a page that is already slow, and on a healthcare page they are a trust and data-protection question. None of it helps a visitor get in touch.`,
+      why: `Ad and analytics pixels are pure weight on a page that is already slow, ${v.health ? "and on a healthcare page they are a trust and data-protection question" : "and each one is a privacy question for the visitor"}. None of it helps a visitor get in touch.`,
       fix: `Remove the retargeting pixels, keep one analytics tool, fix the console errors.`,
       effort: "one afternoon",
       evidence: ["metric.thirdPartyCookies", "metric.consoleErrors", "metric.blockingMs"],
@@ -383,7 +393,7 @@ export function deriveFindings(raw, facts, business) {
       tone: "med",
       title: `The sitemap returns a web page instead of a sitemap`,
       measured: `<span class="mono">/sitemap.xml</span> answered <b>${h.sitemapStatus}</b> but the body is HTML, not a <span class="mono">&lt;urlset&gt;</span>. Search engines are being handed a page they cannot read.`,
-      why: `A broken sitemap slows discovery of new treatment pages and makes indexing depend on crawling alone.`,
+      why: `A broken sitemap slows discovery of new ${v.health ? "treatment" : "product and service"} pages and makes indexing depend on crawling alone.`,
       fix: `Generate a real XML sitemap and submit it in Search Console.`,
       effort: "30 minutes",
       evidence: ["http.sitemapStatus", "http.sitemapLooksValid"],
