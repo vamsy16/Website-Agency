@@ -13,7 +13,7 @@ I ran the same tests Google runs on srisaipvrhospitals.in and put the results in
 
 Two things stood out:
 
-1. There is no way to book an appointment from the homepage. WhatsApp suits a patient who is already sure.
+1. There is no way to book an appointment from the homepage. A patient comparing clinics at 11 pm will not start a call or a chat just to ask a question.
 2. A 57/100 mobile score and a 30.9 s main image. Google’s thresholds are 2.5 s for LCP and 200 ms for TBT.
 
 The full report has the measurements, screenshots and an eight-item fix list in payback order. No estimates — every figure was taken from your live site.

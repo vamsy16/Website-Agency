@@ -839,7 +839,8 @@ async function cmdSequence() {
   if (!fs.existsSync(auditPath)) die(`No audit at ${auditArg}`);
   const audit = readJSON(auditPath);
   const sendDate = argValue(argv, "--send-date", isoDate(new Date()));
-  const schedule = writeSequence(audit, { sendDate: String(sendDate) });
+  const to = argValue(argv, "--to", null);
+  const schedule = writeSequence(audit, { sendDate: String(sendDate), to: to && to !== true ? String(to) : null });
   console.log(`\n  ${schedule.emails.length} drafts · ${schedule.business}`);
   for (const mail of schedule.emails) {
     console.log(`   ${mail.step}. ${mail.scheduledForLong.padEnd(20)} ${mail.subject}`);

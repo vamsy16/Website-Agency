@@ -13,7 +13,7 @@ I ran the same tests Google runs on milknmore.org and put the results in the att
 
 Two things stood out:
 
-1. There is no enquiry form on the homepage. A phone call or WhatsApp suits a customer who is already sure.
+1. There is no enquiry form on the homepage. A customer comparing options at 11 pm will not start a call or a chat just to ask a question.
 2. A 51/100 mobile score and a 13.0 s main image. Google’s thresholds are 2.5 s for LCP and 200 ms for TBT.
 
 The full report has the measurements, screenshots and an eight-item fix list in payback order. No estimates — every figure was taken from your live site.

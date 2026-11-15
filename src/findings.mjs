@@ -378,9 +378,11 @@ export function deriveFindings(raw, facts, business) {
     candidates.push({
       severity: "Medium",
       tone: "med",
-      title: `${m.thirdPartyCookies} third-party cookies and ${m.consoleErrors} JavaScript errors on a business site`,
+      title: [m.thirdPartyCookies > 0 ? `${m.thirdPartyCookies} third-party cookie${m.thirdPartyCookies === 1 ? "" : "s"}` : null, m.consoleErrors > 0 ? `${m.consoleErrors} JavaScript error${m.consoleErrors === 1 ? "" : "s"}` : null].filter(Boolean).join(" and ") + " on a business site",
       measured: `${m.thirdPartyRequests} third-party requests from ${Math.max(0, m.thirdPartyDomains.length)} external domains${m.thirdPartyDomains.length ? ` (${m.thirdPartyDomains.slice(0, 6).join(", ")})` : ""}. <b>${m.thirdPartyCookies} third-party cookies</b>, and third-party code blocked the main thread for <b>${fmtInt(m.blockingMs)} ms</b>. ${m.consoleErrors} uncaught console error${m.consoleErrors === 1 ? "" : "s"} on load.`,
-      why: `Ad and analytics pixels are pure weight on a page that is already slow, ${v.health ? "and on a healthcare page they are a trust and data-protection question" : "and each one is a privacy question for the visitor"}. None of it helps a visitor get in touch.`,
+      why: m.thirdPartyCookies <= 5
+        ? `A JavaScript error can stop a button, menu or form from working without anyone noticing. ${v.health ? "On a healthcare page, every third-party script is also a trust and data-protection question." : "Every third-party script is extra weight for every visitor."} None of it helps a visitor get in touch.`
+        : `Ad and analytics pixels are pure weight on a page that is already slow, ${v.health ? "and on a healthcare page they are a trust and data-protection question" : "and each one is a privacy question for the visitor"}. None of it helps a visitor get in touch.`,
       fix: `Remove the retargeting pixels, keep one analytics tool, fix the console errors.`,
       effort: "one afternoon",
       evidence: ["metric.thirdPartyCookies", "metric.consoleErrors", "metric.blockingMs"],

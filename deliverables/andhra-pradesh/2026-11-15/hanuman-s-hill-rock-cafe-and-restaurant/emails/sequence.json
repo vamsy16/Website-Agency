@@ -2,7 +2,7 @@
   "business": "Hanuman's Hill Rock Cafe & Restaurant",
   "domain": "hanumanshillrock.com",
   "ref": "SP-AUD-2026-11-15-HHR",
-  "createdAt": "2026-11-15T12:33:44.612Z",
+  "createdAt": "2026-11-15T12:51:45.180Z",
   "sendDate": "2026-11-15",
   "cadenceDays": [
     3,
@@ -22,7 +22,7 @@
         "reports/hanuman-s-hill-rock-cafe-and-restaurant/Smart-Pursuit-Audit-Hanuman-s-Hill-Rock-Cafe-Restaurant.pdf"
       ],
       "subject": "Hanuman's Hill Rock Cafe & Restaurant — what I found testing hanumanshillrock.com",
-      "words": 142,
+      "words": 150,
       "scheduledFor": "2026-11-15",
       "scheduledForLong": "15 November 2026",
       "status": "draft",

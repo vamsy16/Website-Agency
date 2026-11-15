@@ -2,7 +2,7 @@
   "business": "Krishna Multispeciality Dental Clinic",
   "domain": "krishnadental.in",
   "ref": "SP-AUD-2026-11-15-KMD",
-  "createdAt": "2026-11-15T12:32:57.289Z",
+  "createdAt": "2026-11-15T12:51:45.016Z",
   "sendDate": "2026-11-15",
   "cadenceDays": [
     3,
@@ -22,7 +22,7 @@
         "reports/krishna-multispeciality-dental-clinic/Smart-Pursuit-Audit-Krishna-Multispeciality-Dental-Clinic.pdf"
       ],
       "subject": "Krishna Multispeciality Dental Clinic — what I found testing krishnadental.in",
-      "words": 127,
+      "words": 139,
       "scheduledFor": "2026-11-15",
       "scheduledForLong": "15 November 2026",
       "status": "draft",

@@ -13,8 +13,8 @@ I ran the same tests Google runs on hanumanshillrock.com and put the results in 
 
 Two things stood out:
 
-1. There is no enquiry form on the homepage. A phone call or WhatsApp suits a customer who is already sure.
-2. 0 third-party cookies and 2 JavaScript errors on a business site. Ad and analytics pixels are pure weight on a page that is already slow, and each one is a privacy question for the visitor.
+1. There is no enquiry form on the homepage. A customer comparing options at 11 pm will not start a call or a chat just to ask a question.
+2. The homepage throws 2 JavaScript errors on load, and there is no sitemap at /sitemap.xml (it answers 404), so search engines have to find every page on their own.
 
 The full report has the measurements, screenshots and an eight-item fix list in payback order. No estimates — every figure was taken from your live site.
 

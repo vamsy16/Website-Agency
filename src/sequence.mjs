@@ -10,7 +10,7 @@
 // Markdown plus a schedule.json with status "draft".
 import fs from "node:fs";
 import path from "node:path";
-import { ROOT, readJSON, writeJSON, ensureDir, slug, addDays, isoDate, longDate, log, interpolate, adTechLabel } from "./util.mjs";
+import { ROOT, readJSON, writeJSON, ensureDir, slug, addDays, isoDate, longDate, log, interpolate, adTechLabel, audienceOf } from "./util.mjs";
 
 const TEMPLATE_DIR = path.join(ROOT, "templates", "emails");
 
@@ -82,7 +82,14 @@ export function buildSequence(audit, { sendDate = isoDate(new Date()), cadenceDa
   const finding2 = audit.findings.page1[1] || {};
   const m = facts.metric;
 
+  const v = audienceOf({ ...facts.business, ...(audit.business || {}) });
   const short = (f) => {
+    const plainTitle = String(f.title || "").replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+    // Out of the report's context, the first "why" sentence of the form finding
+    // reads as a fragment. Say the consequence instead.
+    if (/no way to book|no enquiry form/i.test(plainTitle)) {
+      return `${plainTitle}. ${v.health ? "A patient comparing clinics at 11 pm" : "A customer comparing options at 11 pm"} will not start a call or a chat just to ask a question.`;
+    }
     const why = String(f.why || "").replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
     const firstSentence = why.split(/(?<=\.)\s/)[0] || why;
     const title = String(f.title || "").replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();

@@ -2,7 +2,7 @@
   "business": "Krishna Hospital",
   "domain": "krishnaivf.com",
   "ref": "SP-AUD-2026-11-15-KH",
-  "createdAt": "2026-11-15T12:38:47.002Z",
+  "createdAt": "2026-11-15T12:51:45.127Z",
   "sendDate": "2026-11-15",
   "cadenceDays": [
     3,
@@ -22,7 +22,7 @@
         "reports/krishna-hospital/Smart-Pursuit-Audit-Krishna-Hospital.pdf"
       ],
       "subject": "Krishna Hospital — what I found testing krishnaivf.com",
-      "words": 128,
+      "words": 140,
       "scheduledFor": "2026-11-15",
       "scheduledForLong": "15 November 2026",
       "status": "draft",

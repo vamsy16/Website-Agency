@@ -2,7 +2,7 @@
   "business": "Sri Sai P.V.R. Hospitals",
   "domain": "srisaipvrhospitals.in",
   "ref": "SP-AUD-2026-11-15-SSP",
-  "createdAt": "2026-11-15T12:39:57.264Z",
+  "createdAt": "2026-11-15T12:51:45.073Z",
   "sendDate": "2026-11-15",
   "cadenceDays": [
     3,
@@ -22,7 +22,7 @@
         "reports/sri-sai-p-v-r-hospitals/Smart-Pursuit-Audit-Sri-Sai-P.V.R.-Hospitals.pdf"
       ],
       "subject": "Sri Sai P.V.R. Hospitals — what I found testing srisaipvrhospitals.in",
-      "words": 128,
+      "words": 140,
       "scheduledFor": "2026-11-15",
       "scheduledForLong": "15 November 2026",
       "status": "draft",

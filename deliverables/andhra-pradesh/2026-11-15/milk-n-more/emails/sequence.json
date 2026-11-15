@@ -2,7 +2,7 @@
   "business": "Milk n More",
   "domain": "milknmore.org",
   "ref": "SP-AUD-2026-11-15-MNM",
-  "createdAt": "2026-11-15T12:32:15.013Z",
+  "createdAt": "2026-11-15T12:51:45.236Z",
   "sendDate": "2026-11-15",
   "cadenceDays": [
     3,
@@ -22,7 +22,7 @@
         "reports/milk-n-more/Smart-Pursuit-Audit-Milk-n-More.pdf"
       ],
       "subject": "Milk n More — what I found testing milknmore.org",
-      "words": 129,
+      "words": 137,
       "scheduledFor": "2026-11-15",
       "scheduledForLong": "15 November 2026",
       "status": "draft",
