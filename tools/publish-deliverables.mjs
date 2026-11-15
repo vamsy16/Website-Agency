@@ -51,7 +51,9 @@ if (fs.existsSync(REPORTS)) {
       phone: audit.business?.phone || null, ref: audit.ref, date, overall: audit.scores?.overall,
       scores: audit.scores, pdf,
     };
-    fs.writeFileSync(path.join(dest, "summary.json"), JSON.stringify(card, null, 2) + "\n");
+    const prev = path.join(dest, "summary.json");
+    if (fs.existsSync(prev)) { const old = readJSON(prev); if (old.emailCheck) card.emailCheck = old.emailCheck; }
+    fs.writeFileSync(prev, JSON.stringify(card, null, 2) + "\n");
     published++;
   }
 }
@@ -70,10 +72,10 @@ walk(OUT);
 rows.sort((a, b) => (b.date || "").localeCompare(a.date || "") || (a.overall ?? 0) - (b.overall ?? 0));
 
 let md = `# Verified audits\n\nOnly audits that passed every third-eye check (\`verify.json\` → \`ok: true\`) are\nlisted here. Email drafts are drafts — nothing is sent automatically.\n\n`;
-md += `| Date | Business | City | State | Score | Email | Audit PDF | Drafts |\n|---|---|---|---|---|---|---|---|\n`;
+md += `| Date | Business | City | State | Score | Email | Email check | Audit PDF | Drafts |\n|---|---|---|---|---|---|---|---|---|\n`;
 for (const r of rows) {
   const relDir = path.relative(ROOT, r.dir);
-  md += `| ${r.date} | ${r.name} | ${r.city || "—"} | ${r.state || "—"} | ${r.overall}/100 | ${r.email || "—"} | [PDF](${blob(path.join(relDir, r.pdf))}) | ${fs.existsSync(path.join(r.dir, "emails")) ? `[emails](${blob(path.join(relDir, "emails")).replace("/blob/", "/tree/")})` : "not generated"} |\n`;
+  md += `| ${r.date} | ${r.name} | ${r.city || "—"} | ${r.state || "—"} | ${r.overall}/100 | ${r.email || "—"} | ${r.emailCheck ? `${r.emailCheck.status}: ${r.emailCheck.note}` : "not checked"} | [PDF](${blob(path.join(relDir, r.pdf))}) | ${fs.existsSync(path.join(r.dir, "emails")) ? `[emails](${blob(path.join(relDir, "emails")).replace("/blob/", "/tree/")})` : "not generated"} |\n`;
 }
 fs.mkdirSync(OUT, { recursive: true });
 fs.writeFileSync(path.join(OUT, "README.md"), md);

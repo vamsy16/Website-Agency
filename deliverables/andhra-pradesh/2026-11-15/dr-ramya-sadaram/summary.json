@@ -16,5 +16,10 @@
     "seo": 9,
     "overall": 76
   },
-  "pdf": "Smart-Pursuit-Audit-Dr.-Ramya-Sadaram.pdf"
+  "pdf": "Smart-Pursuit-Audit-Dr.-Ramya-Sadaram.pdf",
+  "emailCheck": {
+    "status": "plausible",
+    "note": "Not shown on homepage; domain matches her clinic name (Blissful Pregnancy)",
+    "checkedAt": "2026-11-15"
+  }
 }

@@ -16,5 +16,10 @@
     "seo": 7,
     "overall": 75
   },
-  "pdf": "Smart-Pursuit-Audit-Reliance-Smart-Point.pdf"
+  "pdf": "Smart-Pursuit-Audit-Reliance-Smart-Point.pdf",
+  "emailCheck": {
+    "status": "wrong target",
+    "note": "Reliance Retail corporate customer-service address; national chain",
+    "checkedAt": "2026-11-15"
+  }
 }

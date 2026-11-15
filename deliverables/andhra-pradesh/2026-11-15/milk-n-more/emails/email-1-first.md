@@ -1,6 +1,6 @@
 <!-- DRAFT — not sent. Sent by the operator only. -->
 
-**To:** care@milknmore.org  (Gmail draft created 2026-11-15)
+**To:** (operator fills in the published business address)
 **Subject:** Milk n More — what I found testing milknmore.org
 **Send:** 15 November 2026
 **Attachments:** reports/milk-n-more/Smart-Pursuit-Audit-Milk-n-More.pdf

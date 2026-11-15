@@ -16,5 +16,10 @@
     "seo": 9,
     "overall": 75
   },
-  "pdf": "Smart-Pursuit-Audit-Khushi-Shopping-Mall.pdf"
+  "pdf": "Smart-Pursuit-Audit-Khushi-Shopping-Mall.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "Shown on khushishoppingmall.in under \"Email Us\"",
+    "checkedAt": "2026-11-15"
+  }
 }

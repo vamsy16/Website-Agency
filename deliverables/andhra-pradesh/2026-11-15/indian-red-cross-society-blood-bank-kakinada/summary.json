@@ -16,5 +16,10 @@
     "seo": 8,
     "overall": 68
   },
-  "pdf": "Smart-Pursuit-Audit-Indian-Red-Cross-Society-Blood-Bank-Kakinada.pdf"
+  "pdf": "Smart-Pursuit-Audit-Indian-Red-Cross-Society-Blood-Bank-Kakinada.pdf",
+  "emailCheck": {
+    "status": "mismatch",
+    "note": "Website contact page lists redcrossegrc@yahoo.com, not the OSM address nraopydah@yahoo.co.in",
+    "checkedAt": "2026-11-15"
+  }
 }

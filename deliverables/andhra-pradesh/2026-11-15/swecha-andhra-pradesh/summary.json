@@ -16,5 +16,10 @@
     "seo": 6,
     "overall": 64
   },
-  "pdf": "Smart-Pursuit-Audit-Swecha-Andhra-Pradesh.pdf"
+  "pdf": "Smart-Pursuit-Audit-Swecha-Andhra-Pradesh.pdf",
+  "emailCheck": {
+    "status": "not confirmed",
+    "note": "Site has only a contact form; same domain as the website",
+    "checkedAt": "2026-11-15"
+  }
 }

@@ -16,5 +16,10 @@
     "seo": 8,
     "overall": 82
   },
-  "pdf": "Smart-Pursuit-Audit-East-Point-Golf-Course.pdf"
+  "pdf": "Smart-Pursuit-Audit-East-Point-Golf-Course.pdf",
+  "emailCheck": {
+    "status": "not confirmed",
+    "note": "Not shown on epgc.in homepage; same domain as the website",
+    "checkedAt": "2026-11-15"
+  }
 }

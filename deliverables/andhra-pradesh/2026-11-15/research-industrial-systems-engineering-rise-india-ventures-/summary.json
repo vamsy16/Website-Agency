@@ -16,5 +16,10 @@
     "seo": 9,
     "overall": 65
   },
-  "pdf": "Smart-Pursuit-Audit-Research-Industrial-Systems-Engineering-RISE-India-Ventures-Pvt-Ltd.pdf"
+  "pdf": "Smart-Pursuit-Audit-Research-Industrial-Systems-Engineering-RISE-India-Ventures-Pvt-Ltd.pdf",
+  "emailCheck": {
+    "status": "real but wrong target",
+    "note": "Head-office address of RISE GmbH, a large Austrian/German IT company - not a local AP business",
+    "checkedAt": "2026-11-15"
+  }
 }
