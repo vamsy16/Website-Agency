@@ -7,7 +7,7 @@
 
 ---
 
-Hi there,
+Dear Dr. Sadaram,
 
 Following up once, briefly.
 
