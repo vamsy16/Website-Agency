@@ -1,16 +1,13 @@
 {
   "state": "Andhra Pradesh",
-  "max": 12,
-  "target": 5,
+  "max": 6,
+  "target": 1,
   "leadsLimit": 60,
   "niches": [],
   "reaudit": [
     "khushishoppingmall.in",
-    "milknmore.org",
-    "gynecologistvizag.com",
-    "krishnadental.in",
-    "hanumanshillrock.com"
+    "gynecologistvizag.com"
   ],
   "reauditReason": "report wording fix: no clinic/broken-form wording for non-clinics",
-  "requestedAt": "2026-11-15T15:00:00Z"
+  "requestedAt": "2026-11-15T13:10:00Z"
 }

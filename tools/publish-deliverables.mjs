@@ -10,6 +10,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { notAProspect } from "../src/prospect.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const REPORTS = path.join(ROOT, "reports");
@@ -36,8 +37,12 @@ function autoEmailCheck(domain, email) {
   return { status: "not confirmed", note: sc.reason, checkedAt: String(sc.checkedAt).slice(0, 10) };
 }
 
+// --index-only: rebuild deliverables/README.md without copying anything from
+// reports/ (keeps hand-edited drafts in deliverables/*/emails intact).
+const INDEX_ONLY = process.argv.includes("--index-only");
+
 let published = 0;
-if (fs.existsSync(REPORTS)) {
+if (!INDEX_ONLY && fs.existsSync(REPORTS)) {
   for (const slug of fs.readdirSync(REPORTS)) {
     const dir = path.join(REPORTS, slug);
     const vf = path.join(dir, "verify.json");
@@ -86,11 +91,24 @@ const walk = d => {
 walk(OUT);
 rows.sort((a, b) => (b.date || "").localeCompare(a.date || "") || (a.overall ?? 0) - (b.overall ?? 0));
 
-let md = `# Verified audits\n\nOnly audits that passed every third-eye check (\`verify.json\` → \`ok: true\`) are\nlisted here. Email drafts are drafts — nothing is sent automatically.\n\n`;
-md += `| Date | Business | City | State | Score | Email | Email check | Audit PDF | Drafts |\n|---|---|---|---|---|---|---|---|---|\n`;
+function verdictFor(r) {
+  const lead = LEADS.find(l => l.domain === r.domain);
+  const np = lead ? notAProspect(lead) : null;
+  if (np) return `❌ no — ${np.kind}: ${np.reason}`;
+  const sc = lead?.emailRecheck || lead?.screen;
+  if (sc && ["nonprofit", "foreign"].includes(sc.result)) return `❌ no — ${sc.reason}`;
+  if (r.emailCheck?.status === "confirmed") return "✅ yes";
+  return `❌ no — email ${r.emailCheck?.status || "not checked"}`;
+}
+
+let md = `# Verified audits\n\nOnly audits that passed every third-eye check (\`verify.json\` → \`ok: true\`) are\nlisted here. Email drafts are drafts — nothing is sent automatically.\n\n**Send?** is ✅ only when the business is a real prospect (not a chain, public body,\nnonprofit or IT firm) **and** its email is published on its own website.\n\n`;
+md += `| Date | Business | Score | Email | Email check | Send? | Audit PDF | Drafts |\n|---|---|---|---|---|---|---|---|\n`;
 for (const r of rows) {
   const relDir = path.relative(ROOT, r.dir);
-  md += `| ${r.date} | ${r.name} | ${r.city || "—"} | ${r.state || "—"} | ${r.overall}/100 | ${r.email || "—"} | ${r.emailCheck ? `${r.emailCheck.status}: ${r.emailCheck.note}` : "not checked"} | [PDF](${blob(path.join(relDir, r.pdf))}) | ${fs.existsSync(path.join(r.dir, "emails")) ? `[emails](${blob(path.join(relDir, "emails")).replace("/blob/", "/tree/")})` : "not generated"} |\n`;
+  const auto = autoEmailCheck(r.domain, r.email);
+  if (auto) r.emailCheck = auto;
+  const check = r.emailCheck ? `${r.emailCheck.status}: ${r.emailCheck.note}` : "not checked";
+  md += `| ${r.date} | ${r.name}${r.city ? ` (${r.city})` : ""} | ${r.overall}/100 | ${r.email || "—"} | ${check} | ${verdictFor(r)} | [PDF](${blob(path.join(relDir, r.pdf))}) | ${fs.existsSync(path.join(r.dir, "emails")) ? `[emails](${blob(path.join(relDir, "emails")).replace("/blob/", "/tree/")})` : "not generated"} |\n`;
 }
 fs.mkdirSync(OUT, { recursive: true });
 fs.writeFileSync(path.join(OUT, "README.md"), md);

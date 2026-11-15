@@ -49,8 +49,12 @@ const CHAIN_NAME = [
   "thyrocare", "manipal", "care hospitals", "kims", "rainbow children", "yashoda", "aster dm", "aster ramesh",
   "chennai shopping mall", "south india shopping mall", "cmr", "r s brothers", "sangeetha mobiles",
   "lot mobiles", "big c", "happi mobiles", "bharat petroleum", "indian oil", "hp petrol",
+  "fortune inn", "sarovar", "renault", "nissan", "life insurance corporation", "hyderabad house",
+  "the chocolate room", "penna cement", "penna cements",
 ];
-const CHAIN_DOMAIN = /(^|\.)(relianceretail\.com|ril\.com|jiomart\.com|tatamotors\.com|hdfclife\.com|hdfcbank\.com|ramrajcotton\.in|tumbledry\.in|preethi\.in|apollohospitals\.com|apollopharmacy\.in|medplusmart\.com|kfc\.co\.in|dominos\.co\.in|marutisuzuki\.com|hyundai\.com|hondacarindia\.com|tanishq\.co\.in|titan\.co\.in|lenskart\.com|decathlon\.in|ikea\.com|bata\.com|croma\.com)$/i;
+// Names that are a chain only when they are the whole name ("More", not "More Than Coffee").
+const CHAIN_EXACT = ["more", "trends", "max", "zudio", "lic"];
+const CHAIN_DOMAIN = /(^|\.)(itchotels\.com|fortunehotels\.in|sarovarhotels\.com|tajhotels\.com|oyorooms\.com|renault\.co\.in|licindia\.in|moreretail\.in|hyderabadhouse\.com|thechocolateroomindia\.com|pennacement\.com|kia\.com|toyotabharat\.com|mahindra\.com|nissan\.in|skoda-auto\.co\.in|volkswagen\.co\.in|mgmotor\.co\.in|heromotocorp\.com|bajajauto\.com|tvsmotor\.com|royalenfield\.com|yamaha-motor-india\.com|airtel\.in|jio\.com|relianceretail\.com|ril\.com|jiomart\.com|tatamotors\.com|hdfclife\.com|hdfcbank\.com|ramrajcotton\.in|tumbledry\.in|preethi\.in|apollohospitals\.com|apollopharmacy\.in|medplusmart\.com|kfc\.co\.in|dominos\.co\.in|marutisuzuki\.com|hyundai\.com|hondacarindia\.com|tanishq\.co\.in|titan\.co\.in|lenskart\.com|decathlon\.in|ikea\.com|bata\.com|croma\.com)$/i;
 // "branch.example.com", "stores.example.com": a store locator, not the business's own site.
 const LOCATOR_SUBDOMAIN = /^(branch|branches|stores?|locations?|outlets?|dealers?|local|showrooms?)\./i;
 
@@ -60,6 +64,7 @@ function normName(s) {
 
 function isChainName(name) {
   const n = normName(name);
+  if (CHAIN_EXACT.includes(n)) return true;
   return !!n && CHAIN_NAME.some(b => n === b || n.startsWith(b + " ") || n.endsWith(" " + b) || n.includes(" " + b + " "));
 }
 
@@ -76,7 +81,10 @@ export function notAProspect(lead) {
   if (PUBLIC_CATEGORY.test(cat) || PUBLIC_NAME.test(name) || PUBLIC_DOMAIN.test(domain)) {
     return { kind: "public", reason: "government, education or public body" };
   }
-  if (CHAIN_DOMAIN.test(domain) || isChainName(name) || LOCATOR_SUBDOMAIN.test(host)) {
+  // A website that is a deep page on someone else's site (itchotels.com/in/en/fortune-inn-…)
+  // means the business does not own a site — head office does.
+  const depth = (() => { try { return new URL(lead.website).pathname.split("/").filter(Boolean).length; } catch { return 0; } })();
+  if (CHAIN_DOMAIN.test(domain) || isChainName(name) || LOCATOR_SUBDOMAIN.test(host) || depth >= 2) {
     return { kind: "chain", reason: "national chain / branch — the website is run by head office" };
   }
   if (NONPROFIT_CATEGORY.test(cat) || NONPROFIT_NAME.test(name)) {
@@ -180,16 +188,23 @@ const NONPROFIT_TEXT = /\b(non[- ]?profit|not[- ]for[- ]profit|registered (socie
  * Returns { ok, result, email, emailSource, foundOn, osmEmail, siteEmails, reason, checkedAt }.
  *   result: "ok" | "no-email" | "unreachable" | "foreign" | "nonprofit"
  */
-export async function screenSite(lead, { maxPages = 4 } = {}) {
-  const checkedAt = new Date().toISOString();
-  const osmEmail = lead.email ? String(lead.email).trim().toLowerCase() : null;
-  const base = { checkedAt, osmEmail, email: null, emailSource: null, foundOn: null, siteEmails: [] };
+export async function screenSite(lead, { maxPages = 4, browser = true } = {}) {
+  const first = await screenWith(lead, await fetchPages(lead, maxPages));
+  // Plain fetch found nothing, or the site refused a non-browser (403/429/503):
+  // the address may be rendered by JavaScript. Look again in a real browser.
+  const retry = browser && (first.result === "no-email" || (first.result === "unreachable" && first.httpStatus > 0));
+  if (!retry) return first;
+  let rendered;
+  try { rendered = await renderPages(lead, maxPages); } catch (err) { return { ...first, browserError: String(err.message || err).split("\n")[0] }; }
+  if (!rendered.length) return first;
+  const second = await screenWith(lead, rendered);
+  return { ...second, rendered: true };
+}
 
+/** Plain HTTP: homepage plus up to three contact/about pages. */
+async function fetchPages(lead, maxPages) {
   const home = await fetchPage(lead.website);
-  if (!home.ok) {
-    return { ...base, ok: false, result: "unreachable", reason: home.error ? `site unreachable (${home.error})` : `homepage returned HTTP ${home.status}` };
-  }
-
+  if (!home.ok) return { home, pages: [] };
   const pages = [home];
   const links = contactLinks(home.body, home.url);
   const guesses = ["/contact", "/contact-us", "/contact.html", "/contactus"].map(p => { try { return new URL(p, home.url).href; } catch { return null; } }).filter(Boolean);
@@ -199,6 +214,52 @@ export async function screenSite(lead, { maxPages = 4 } = {}) {
     if (pages.some(p => p.url.replace(/\/$/, "") === url.replace(/\/$/, ""))) continue;
     const p = await fetchPage(url, 15000);
     if (p.ok && p.body) pages.push(p);
+  }
+  return { home, pages };
+}
+
+/** The same pages, rendered by Chromium (only used when plain fetch finds nothing). */
+async function renderPages(lead, maxPages) {
+  const { resolveBrowser, launchOptions } = await import("./browser.mjs");
+  const resolved = await resolveBrowser({ install: false });
+  const browser = await resolved.chromium.launch(launchOptions(resolved));
+  const out = [];
+  try {
+    const ctx = await browser.newContext({ userAgent: UA, viewport: { width: 390, height: 844 }, locale: "en-IN" });
+    const page = await ctx.newPage();
+    const grab = async (url) => {
+      try {
+        const res = await page.goto(url, { waitUntil: "domcontentloaded", timeout: 30000 });
+        await page.waitForTimeout(2500);
+        const html = await page.content();
+        const text = await page.evaluate(() => document.body ? document.body.innerText : "");
+        return { ok: !!res && res.status() < 400, status: res ? res.status() : 0, url: page.url(), body: `${html}\n${text}` };
+      } catch (err) {
+        return { ok: false, status: 0, url, body: "", error: String(err.message || err).split("\n")[0] };
+      }
+    };
+    const home = await grab(lead.website);
+    if (!home.ok) return out;
+    out.push(home);
+    for (const url of contactLinks(home.body, home.url)) {
+      if (out.length >= maxPages) break;
+      const p = await grab(url);
+      if (p.ok) out.push(p);
+    }
+  } finally {
+    await browser.close().catch(() => {});
+  }
+  return out;
+}
+
+async function screenWith(lead, fetched) {
+  const checkedAt = new Date().toISOString();
+  const osmEmail = lead.email ? String(lead.email).trim().toLowerCase() : null;
+  const base = { checkedAt, osmEmail, email: null, emailSource: null, foundOn: null, siteEmails: [] };
+  const pages = Array.isArray(fetched) ? fetched : fetched.pages;
+  const home = Array.isArray(fetched) ? fetched[0] : fetched.home;
+  if (!pages.length) {
+    return { ...base, ok: false, result: "unreachable", httpStatus: home?.status || 0, reason: home?.error ? `site unreachable (${home.error})` : `homepage returned HTTP ${home?.status}` };
   }
 
   // Which page published which address.

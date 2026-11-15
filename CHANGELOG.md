@@ -32,6 +32,12 @@ if the reason is not obvious.
   `reaudit --domain … --reason …` re-measures a delivered audit after a wording
   fix (the one place the cooldown is overridden; never counts toward a target).
   `run-request.json` accepts `reaudit` and `reauditReason`.
+- When a plain fetch finds no address (JavaScript-rendered page) or the site
+  refuses a non-browser (HTTP 403), the screen looks again in Chromium.
+- A "website" that is a deep page on another company's site
+  (`itchotels.com/in/en/fortune-inn-…`) marks a chain branch. Hotel Sree Kanya
+  (ITC Fortune) slipped through the first 1.4.0 run because of this.
+- `publish-deliverables --index-only`; the index has a **Send?** column.
 
 ## 1.3.0 — 15 November 2026
 
