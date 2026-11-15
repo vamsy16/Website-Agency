@@ -1,7 +1,7 @@
 <!-- DRAFT — not sent. Sent by the operator only. -->
 
-**To:** (operator fills in the published business address)
-**Subject:** Re: Dr. Ramya Sadaram — one page is losing the enquiries
+**To:** dr.ramya@gynaecspecialist.com
+**Subject:** Re: Dr. Ramya Sadaram — what I found testing gynecologistvizag.com
 **Send:** 18 November 2026
 **Attachments:** none
 
@@ -11,9 +11,9 @@ Hi there,
 
 Following up once, briefly.
 
-The page reaches a visitor in 2.7 s on a phone, just over Google’s 2.5 s target.
+The quickest win in the audit is the first item: 30 screens of scrolling, with the useful details at the bottom.
 
-The point is simple: every visit that lands there and cannot book is a visit you already paid for, in time or in ads.
+None of this needs a new design. The fix list in the audit is in the order that pays back fastest, and the first item takes included in a rebuild.
 
 The 10-page audit in my last email has the evidence. Happy to walk through it on a call, or to send it to whoever looks after the site.
 

@@ -1,6 +1,6 @@
 <!-- DRAFT — not sent. Sent by the operator only. -->
 
-**To:** (operator fills in the published business address)
+**To:** dr.ramya@gynaecspecialist.com
 **Subject:** Closing the loop — Dr. Ramya Sadaram
 **Send:** 24 November 2026
 **Attachments:** none

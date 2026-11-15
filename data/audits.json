@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-15T12:50:19.269Z",
+  "updatedAt": "2026-11-15T12:54:29.435Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -78,25 +78,25 @@
       "domain": "gynecologistvizag.com",
       "name": "Dr. Ramya Sadaram",
       "ref": "SP-AUD-2026-11-15-DRS",
-      "generatedAt": "2026-11-15T10:50:41.477Z",
+      "generatedAt": "2026-11-15T12:54:29.435Z",
       "status": "complete",
       "mode": "live",
       "scores": {
-        "speed": 6,
+        "speed": 7,
         "mobile": 6,
         "conversion": 10,
         "design": 8,
         "seo": 9,
-        "overall": 76
+        "overall": 79
       },
       "pdfPages": 10,
-      "pdfBytes": 1371298,
+      "pdfBytes": 1374424,
       "files": {
         "pdf": "reports/dr-ramya-sadaram/Smart-Pursuit-Audit-Dr.-Ramya-Sadaram.pdf",
         "audit": "reports/dr-ramya-sadaram/audit.json",
         "html": "reports/dr-ramya-sadaram/report.html"
       },
-      "fingerprint": "50331f557ab8f968"
+      "fingerprint": "d781e5597e7476ce"
     },
     {
       "domain": "swechaap.org",

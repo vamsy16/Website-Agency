@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-15-DRS",
   "domain": "gynecologistvizag.com",
-  "verifiedAt": "2026-11-15T10:50:41.476Z",
+  "verifiedAt": "2026-11-15T12:54:29.434Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/dr-ramya-sadaram/2026-11-15T10-49-36-569Z.json",
+      "detail": "raw measurement: data/raw/dr-ramya-sadaram/2026-11-15T12-53-40-282Z.json",
       "severity": "ok"
     },
     {
@@ -41,13 +41,13 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 15/11/2026, 4:19:36 pm",
+      "detail": "measurement timestamp: 15/11/2026, 6:23:40 pm",
       "severity": "ok"
     },
     {
       "id": "scores.speed",
       "ok": true,
-      "detail": "report prints 6, rubric computes 6",
+      "detail": "report prints 7, rubric computes 7",
       "severity": "ok"
     },
     {
@@ -77,7 +77,7 @@
     {
       "id": "scores.overall",
       "ok": true,
-      "detail": "report prints 76, rubric computes 76",
+      "detail": "report prints 79, rubric computes 79",
       "severity": "ok"
     },
     {
@@ -95,7 +95,7 @@
     {
       "id": "numbers.traceable",
       "ok": true,
-      "detail": "all 76 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "detail": "all 77 distinct numbers in the report trace to the measurement, the rubric or a stated target",
       "severity": "ok"
     },
     {

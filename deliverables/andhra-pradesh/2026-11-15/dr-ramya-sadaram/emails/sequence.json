@@ -2,13 +2,14 @@
   "business": "Dr. Ramya Sadaram",
   "domain": "gynecologistvizag.com",
   "ref": "SP-AUD-2026-11-15-DRS",
-  "createdAt": "2026-11-15T10:50:41.481Z",
+  "createdAt": "2026-11-15T12:54:29.440Z",
   "sendDate": "2026-11-15",
   "cadenceDays": [
     3,
     3,
     3
   ],
+  "to": "dr.ramya@gynaecspecialist.com",
   "status": "draft",
   "neverSendAutomatically": true,
   "note": "Dates shift if the operator sends email 1 on a different day — recompute with `sequence --send-date YYYY-MM-DD`.",
@@ -20,7 +21,7 @@
       "attachments": [
         "reports/dr-ramya-sadaram/Smart-Pursuit-Audit-Dr.-Ramya-Sadaram.pdf"
       ],
-      "subject": "Dr. Ramya Sadaram — the enquiry form on your site is broken",
+      "subject": "Dr. Ramya Sadaram — what I found testing gynecologistvizag.com",
       "words": 145,
       "scheduledFor": "2026-11-15",
       "scheduledForLong": "15 November 2026",
@@ -32,10 +33,10 @@
     {
       "step": 2,
       "id": "followup-1",
-      "purpose": "convert the bug into a money argument",
+      "purpose": "turn the top measured finding into a money argument",
       "attachments": [],
-      "subject": "Re: Dr. Ramya Sadaram — one page is losing the enquiries",
-      "words": 125,
+      "subject": "Re: Dr. Ramya Sadaram — what I found testing gynecologistvizag.com",
+      "words": 108,
       "scheduledFor": "2026-11-18",
       "scheduledForLong": "18 November 2026",
       "status": "draft",

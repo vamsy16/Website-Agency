@@ -1,20 +1,20 @@
 <!-- DRAFT — not sent. Sent by the operator only. -->
 
-**To:** (operator fills in the published business address)
+**To:** dr.ramya@gynaecspecialist.com
 **Subject:** Dr. Ramya Sadaram — what I found testing gynecologistvizag.com
 **Send:** 15 November 2026
 **Attachments:** reports/dr-ramya-sadaram/Smart-Pursuit-Audit-Dr.-Ramya-Sadaram.pdf
 
 ---
 
-Dear Dr. Sadaram,
+Hi there,
 
 I ran the same tests Google runs on gynecologistvizag.com and put the results in the attached audit (10 pages, all numbers measured 15 November 2026).
 
 Two things stood out:
 
 1. 30 screens of scrolling, with the useful details at the bottom. A visitor has four questions — what, where, when, how much.
-2. 7 JavaScript errors on the homepage. Errors like these can stop buttons or forms working on some phones, and nobody notices until a patient gives up.
+2. 0 third-party cookies and 8 JavaScript errors on a business site. Ad and analytics pixels are pure weight on a page that is already slow, and on a healthcare page they are a trust and data-protection question.
 
 The full report has the measurements, screenshots and an eight-item fix list in payback order. No estimates — every figure was taken from your live site.
 

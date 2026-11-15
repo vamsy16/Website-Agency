@@ -3,23 +3,23 @@
   "domain": "gynecologistvizag.com",
   "city": "Visakhapatnam",
   "state": "Andhra Pradesh",
-  "email": "dr.ramya@blissfulpregnancy.com",
+  "email": "dr.ramya@gynaecspecialist.com",
   "phone": null,
   "ref": "SP-AUD-2026-11-15-DRS",
   "date": "2026-11-15",
-  "overall": 76,
+  "overall": 79,
   "scores": {
-    "speed": 6,
+    "speed": 7,
     "mobile": 6,
     "conversion": 10,
     "design": 8,
     "seo": 9,
-    "overall": 76
+    "overall": 79
   },
   "pdf": "Smart-Pursuit-Audit-Dr.-Ramya-Sadaram.pdf",
   "emailCheck": {
-    "status": "plausible",
-    "note": "Not shown on homepage; domain matches her clinic name (Blissful Pregnancy)",
+    "status": "confirmed",
+    "note": "published on https://gynecologistvizag.com/",
     "checkedAt": "2026-11-15"
   }
 }
