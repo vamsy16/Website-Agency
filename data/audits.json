@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-15T10:40:12.695Z",
+  "updatedAt": "2026-11-15T10:50:41.477Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -49,6 +49,54 @@
         "html": "reports/milk-n-more/report.html"
       },
       "fingerprint": "10fa57d98f0b8831"
+    },
+    {
+      "domain": "hanumanshillrock.com",
+      "name": "Hanuman's Hill Rock Cafe & Restaurant",
+      "ref": "SP-AUD-2026-11-15-HHR",
+      "generatedAt": "2026-11-15T10:49:36.565Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 9,
+        "mobile": 8,
+        "conversion": 8,
+        "design": 10,
+        "seo": 9,
+        "overall": 87
+      },
+      "pdfPages": 10,
+      "pdfBytes": 3689737,
+      "files": {
+        "pdf": "reports/hanuman-s-hill-rock-cafe-and-restaurant/Smart-Pursuit-Audit-Hanuman-s-Hill-Rock-Cafe-Restaurant.pdf",
+        "audit": "reports/hanuman-s-hill-rock-cafe-and-restaurant/audit.json",
+        "html": "reports/hanuman-s-hill-rock-cafe-and-restaurant/report.html"
+      },
+      "fingerprint": "4f65aa5e43f192fa"
+    },
+    {
+      "domain": "gynecologistvizag.com",
+      "name": "Dr. Ramya Sadaram",
+      "ref": "SP-AUD-2026-11-15-DRS",
+      "generatedAt": "2026-11-15T10:50:41.477Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 6,
+        "mobile": 6,
+        "conversion": 10,
+        "design": 8,
+        "seo": 9,
+        "overall": 76
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1371298,
+      "files": {
+        "pdf": "reports/dr-ramya-sadaram/Smart-Pursuit-Audit-Dr.-Ramya-Sadaram.pdf",
+        "audit": "reports/dr-ramya-sadaram/audit.json",
+        "html": "reports/dr-ramya-sadaram/report.html"
+      },
+      "fingerprint": "50331f557ab8f968"
     }
   ]
 }
