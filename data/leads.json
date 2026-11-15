@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-15T10:51:23.730Z",
+  "updatedAt": "2026-11-15T11:06:50.361Z",
   "leads": [
     {
       "id": "nikithahospital.com",
@@ -23,9 +23,9 @@
       "firstSeenAt": "2026-11-15T10:33:42.842Z",
       "lastSeenAt": "2026-11-15T10:33:42.842Z",
       "timesSeen": 1,
-      "auditAttempts": 2,
+      "auditAttempts": 3,
       "lastError": "The third-eye check blocked this audit: provenance.tool. Do not send it.",
-      "updatedAt": "2026-11-15T10:48:13.557Z"
+      "updatedAt": "2026-11-15T11:03:45.710Z"
     },
     {
       "id": "rakulfollowers.com",
@@ -48,9 +48,9 @@
       "firstSeenAt": "2026-11-15T10:33:42.843Z",
       "lastSeenAt": "2026-11-15T10:33:42.843Z",
       "timesSeen": 1,
-      "auditAttempts": 2,
+      "auditAttempts": 3,
       "lastError": "The site did not return HTTP 200 (got page.goto: net::ERR_NAME_NOT_RESOLVED at http://rakulfollowers.com/",
-      "updatedAt": "2026-11-15T10:48:30.593Z"
+      "updatedAt": "2026-11-15T11:04:01.846Z"
     },
     {
       "id": "krishnadental.in",
@@ -137,9 +137,9 @@
       "firstSeenAt": "2026-11-15T10:33:42.846Z",
       "lastSeenAt": "2026-11-15T10:33:42.846Z",
       "timesSeen": 1,
-      "auditAttempts": 2,
-      "lastError": "The site did not return HTTP 200 (got page.goto: net::ERR_CONNECTION_CLOSED at https://edenparkvijayawada.com/",
-      "updatedAt": "2026-11-15T10:48:48.261Z"
+      "auditAttempts": 3,
+      "lastError": "The site did not return HTTP 200 (got page.goto: net::ERR_CONNECTION_RESET at https://edenparkvijayawada.com/",
+      "updatedAt": "2026-11-15T11:04:17.969Z"
     },
     {
       "id": "hanumanshillrock.com",
@@ -226,9 +226,9 @@
       "firstSeenAt": "2026-11-15T10:33:42.847Z",
       "lastSeenAt": "2026-11-15T10:33:42.847Z",
       "timesSeen": 1,
-      "auditAttempts": 1,
+      "auditAttempts": 2,
       "lastError": "Layout QA failed:",
-      "updatedAt": "2026-11-15T10:51:23.730Z"
+      "updatedAt": "2026-11-15T11:04:59.358Z"
     },
     {
       "id": "pepkan.com",
@@ -247,10 +247,13 @@
       "address": "Masjid Road",
       "source": "openstreetmap",
       "sourceUrl": "https://www.openstreetmap.org/node/5640992522",
-      "status": "new",
+      "status": "audit-failed",
       "firstSeenAt": "2026-11-15T10:33:42.848Z",
       "lastSeenAt": "2026-11-15T10:33:42.848Z",
-      "timesSeen": 1
+      "timesSeen": 1,
+      "auditAttempts": 1,
+      "lastError": "The site did not return HTTP 200 (got page.goto: net::ERR_NAME_NOT_RESOLVED at http://www.pepkan.com/",
+      "updatedAt": "2026-11-15T11:05:15.380Z"
     },
     {
       "id": "mastersmedia.in",
@@ -269,10 +272,13 @@
       "address": "9-3-6/1 Maddilapalem",
       "source": "openstreetmap",
       "sourceUrl": "https://www.openstreetmap.org/node/5855599393",
-      "status": "new",
+      "status": "audit-failed",
       "firstSeenAt": "2026-11-15T10:33:42.848Z",
       "lastSeenAt": "2026-11-15T10:33:42.848Z",
-      "timesSeen": 1
+      "timesSeen": 1,
+      "auditAttempts": 1,
+      "lastError": "The third-eye check blocked this audit: screenshots.real. Do not send it.",
+      "updatedAt": "2026-11-15T11:05:58.753Z"
     },
     {
       "id": "indianredcross.ap.org",
@@ -291,10 +297,13 @@
       "address": null,
       "source": "openstreetmap",
       "sourceUrl": "https://www.openstreetmap.org/node/6749298083",
-      "status": "new",
+      "status": "audit-failed",
       "firstSeenAt": "2026-11-15T10:33:42.864Z",
       "lastSeenAt": "2026-11-15T10:33:42.864Z",
-      "timesSeen": 1
+      "timesSeen": 1,
+      "auditAttempts": 1,
+      "lastError": "The site did not return HTTP 200 (got page.goto: net::ERR_NAME_NOT_RESOLVED at http://www.indianredcross.ap.org/",
+      "updatedAt": "2026-11-15T11:06:15.617Z"
     },
     {
       "id": "gvpmc.in",
@@ -313,10 +322,13 @@
       "address": null,
       "source": "openstreetmap",
       "sourceUrl": "https://www.openstreetmap.org/node/6751616374",
-      "status": "new",
+      "status": "audit-failed",
       "firstSeenAt": "2026-11-15T10:33:42.865Z",
       "lastSeenAt": "2026-11-15T10:33:42.865Z",
-      "timesSeen": 1
+      "timesSeen": 1,
+      "auditAttempts": 1,
+      "lastError": "Layout QA failed:",
+      "updatedAt": "2026-11-15T11:06:50.361Z"
     },
     {
       "id": "satyaregalia.com",
