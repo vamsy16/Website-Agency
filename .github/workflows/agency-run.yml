@@ -1,0 +1,117 @@
+name: Agency Run
+
+# Runs `npm run run -- --state …` where it CAN run: a GitHub runner has a
+# browser and open internet (the Arena sandbox can only reach GitHub/npm/PyPI,
+# so it cannot reach OpenStreetMap or any prospect website).
+#
+# HOW TO START A RUN
+#   Edit run-request.json (state, max, leadsLimit, niches) and push it to the
+#   branch below. The push is the trigger — the Arena agent cannot dispatch
+#   workflows, but it can push.
+#
+# WHAT COMES BACK
+#   - data/leads.json and data/audits.json (the tracked registries, so the next
+#     run never re-audits a domain) are committed in plain text, as designed.
+#   - Reports, raw measurements, run reports and email drafts are client/prospect
+#     material. This repo is public and .gitignore says they are never committed
+#     in plain text, so they are packed into results/<run>.tgz.enc, encrypted to
+#     .github/results-key.pub. Only the holder of the matching private key
+#     (kept outside Git) can open them. No plaintext artifact is uploaded.
+
+on:
+  push:
+    branches: [arena/841dee38-website-agency]
+    paths: [run-request.json]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: agency-run
+  cancel-in-progress: false
+
+env:
+  ARENA_BRANCH: arena/841dee38-website-agency
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Checkout the working branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.ARENA_BRANCH }}
+          fetch-depth: 0
+
+      - name: Set up Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies + Chromium
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+
+      - name: Read run request
+        id: req
+        run: |
+          echo "state=$(jq -r '.state' run-request.json)" >> "$GITHUB_OUTPUT"
+          echo "max=$(jq -r '.max // 5' run-request.json)" >> "$GITHUB_OUTPUT"
+          echo "leadsLimit=$(jq -r '.leadsLimit // 25' run-request.json)" >> "$GITHUB_OUTPUT"
+          echo "niches=$(jq -r '(.niches // []) | join(",")' run-request.json)" >> "$GITHUB_OUTPUT"
+          echo "sendDate=$(jq -r '.sendDate // ""' run-request.json)" >> "$GITHUB_OUTPUT"
+
+      - name: Selftest (rubric must reproduce 36)
+        run: npm run selftest
+
+      - name: Doctor
+        run: npm run doctor -- --state "${{ steps.req.outputs.state }}" || true
+
+      - name: Daily run
+        env:
+          STATE: ${{ steps.req.outputs.state }}
+          MAX: ${{ steps.req.outputs.max }}
+          LIMIT: ${{ steps.req.outputs.leadsLimit }}
+          NICHES: ${{ steps.req.outputs.niches }}
+        run: |
+          args=(--state "$STATE" --max "$MAX" --leads-limit "$LIMIT")
+          if [ -n "$NICHES" ]; then args+=(--niches "$NICHES"); fi
+          npm run run -- "${args[@]}" 2>&1 | tee run.log
+
+      - name: Encrypt results
+        if: always()
+        run: |
+          mkdir -p results
+          paths=()
+          for p in reports outreach data/raw data/run-*.json data/batch-*.json run.log; do
+            [ -e "$p" ] && paths+=("$p")
+          done
+          if [ ${#paths[@]} -eq 0 ]; then echo "nothing to pack"; exit 0; fi
+          out="results/run-${{ github.run_id }}"
+          tar czf /tmp/results.tgz "${paths[@]}"
+          openssl rand -hex 32 > /tmp/k
+          openssl enc -aes-256-cbc -pbkdf2 -salt -in /tmp/results.tgz -out "$out.tgz.enc" -pass file:/tmp/k
+          openssl pkeyutl -encrypt -pubin -inkey .github/results-key.pub \
+            -pkeyopt rsa_padding_mode:oaep -in /tmp/k -out "$out.key.enc"
+          shred -u /tmp/k /tmp/results.tgz
+          ls -la results
+
+      - name: Commit registries + encrypted results back
+        if: always()
+        run: |
+          git config user.name "smart-pursuit-bot"
+          git config user.email "actions@github.com"
+          git add data/leads.json data/audits.json results/ || true
+          if git diff --cached --quiet; then
+            echo "Nothing to commit."
+            exit 0
+          fi
+          git commit -m "Agency run: ${{ steps.req.outputs.state }} (run ${{ github.run_id }})"
+          for i in 1 2 3; do
+            git pull --rebase origin "$ARENA_BRANCH" && git push origin "HEAD:refs/heads/${ARENA_BRANCH}" && break
+            sleep 5
+          done
