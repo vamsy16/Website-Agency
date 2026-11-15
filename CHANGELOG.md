@@ -59,6 +59,10 @@ blocks a public Overpass mirror used to stop the tool dead. Both are fixed.
 pages, 0 mm overflow, 23 verify checks; `class-diff` PASS; daily-run integration
 10/10; `doctor` green on a machine where 4 of 5 Overpass mirrors are unreachable.
 
+## Unreleased
+
+- Added `docs/ARENA-LEADS-TO-GMAIL.md`: a reusable state/count invocation for deduplicated lead sourcing, verified audit PDFs and deduplicated Gmail drafts with planned follow-up dates. Drafts only; no sending or scheduled-send integration.
+
 ## 1.1.0 — 10 November 2026
 
 **The daily run**

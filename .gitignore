@@ -24,6 +24,8 @@ data/run-*.json
 # Binaries travel as .b64 sidecars when a transport only carries text.
 # Decode with `npm run decode`; the real files are not tracked.
 *.pdf
+# Keep the public operator tutorial; client audit PDFs remain ignored.
+!docs/Smart-Pursuit-Arena-Tutorial.pdf
 *.png
 *.jpg
 *.jpeg
