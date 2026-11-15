@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-15T12:41:27.029Z",
+  "updatedAt": "2026-11-15T12:50:19.269Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -126,25 +126,25 @@
       "domain": "khushishoppingmall.in",
       "name": "Khushi Shopping Mall",
       "ref": "SP-AUD-2026-11-15-KSM",
-      "generatedAt": "2026-11-15T12:06:42.469Z",
+      "generatedAt": "2026-11-15T12:46:58.149Z",
       "status": "complete",
       "mode": "live",
       "scores": {
-        "speed": 5,
+        "speed": 6,
         "mobile": 8,
         "conversion": 8,
         "design": 10,
         "seo": 9,
-        "overall": 75
+        "overall": 78
       },
       "pdfPages": 10,
-      "pdfBytes": 3427575,
+      "pdfBytes": 3181268,
       "files": {
         "pdf": "reports/khushi-shopping-mall/Smart-Pursuit-Audit-Khushi-Shopping-Mall.pdf",
         "audit": "reports/khushi-shopping-mall/audit.json",
         "html": "reports/khushi-shopping-mall/report.html"
       },
-      "fingerprint": "b040e610e9075bf5"
+      "fingerprint": "74e66eb6f83824dc"
     },
     {
       "domain": "relianceretail.com",
@@ -361,6 +361,30 @@
         "html": "reports/orange-tours-and-travels/report.html"
       },
       "fingerprint": "7bbed64b4aeb11c5"
+    },
+    {
+      "domain": "srmt.com",
+      "name": "Sri Ramadas Motor Transport Ltd",
+      "ref": "SP-AUD-2026-11-15-SRM",
+      "generatedAt": "2026-11-15T12:50:19.269Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 4,
+        "mobile": 8,
+        "conversion": 8,
+        "design": 10,
+        "seo": 8,
+        "overall": 71
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2684161,
+      "files": {
+        "pdf": "reports/sri-ramadas-motor-transport-ltd/Smart-Pursuit-Audit-Sri-Ramadas-Motor-Transport-Ltd.pdf",
+        "audit": "reports/sri-ramadas-motor-transport-ltd/audit.json",
+        "html": "reports/sri-ramadas-motor-transport-ltd/report.html"
+      },
+      "fingerprint": "cfbe0b63bcde1441"
     }
   ]
 }

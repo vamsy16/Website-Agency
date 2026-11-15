@@ -1,6 +1,6 @@
 <!-- DRAFT — not sent. Sent by the operator only. -->
 
-**To:** (operator fills in the published business address)
+**To:** khushishoppingmall@gmail.com
 **Subject:** Closing the loop — Khushi Shopping Mall
 **Send:** 24 November 2026
 **Attachments:** none

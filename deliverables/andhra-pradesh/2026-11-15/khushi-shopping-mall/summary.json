@@ -7,19 +7,19 @@
   "phone": "+91 9885139742",
   "ref": "SP-AUD-2026-11-15-KSM",
   "date": "2026-11-15",
-  "overall": 75,
+  "overall": 78,
   "scores": {
-    "speed": 5,
+    "speed": 6,
     "mobile": 8,
     "conversion": 8,
     "design": 10,
     "seo": 9,
-    "overall": 75
+    "overall": 78
   },
   "pdf": "Smart-Pursuit-Audit-Khushi-Shopping-Mall.pdf",
   "emailCheck": {
     "status": "confirmed",
-    "note": "Shown on khushishoppingmall.in under \"Email Us\"",
+    "note": "published on https://www.khushishoppingmall.in/",
     "checkedAt": "2026-11-15"
   }
 }

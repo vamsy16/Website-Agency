@@ -1,0 +1,25 @@
+{
+  "name": "Sri Ramadas Motor Transport Ltd",
+  "domain": "srmt.com",
+  "city": null,
+  "state": "Andhra Pradesh",
+  "email": "ho@srmt.com",
+  "phone": "+91 089125 17045",
+  "ref": "SP-AUD-2026-11-15-SRM",
+  "date": "2026-11-15",
+  "overall": 71,
+  "scores": {
+    "speed": 4,
+    "mobile": 8,
+    "conversion": 8,
+    "design": 10,
+    "seo": 8,
+    "overall": 71
+  },
+  "pdf": "Smart-Pursuit-Audit-Sri-Ramadas-Motor-Transport-Ltd.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://srmt.com/",
+    "checkedAt": "2026-11-15"
+  }
+}

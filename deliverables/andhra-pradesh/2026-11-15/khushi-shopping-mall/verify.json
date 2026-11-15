@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-15-KSM",
   "domain": "khushishoppingmall.in",
-  "verifiedAt": "2026-11-15T12:06:42.469Z",
+  "verifiedAt": "2026-11-15T12:46:58.149Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/khushi-shopping-mall/2026-11-15T12-05-57-317Z.json",
+      "detail": "raw measurement: data/raw/khushi-shopping-mall/2026-11-15T12-46-18-338Z.json",
       "severity": "ok"
     },
     {
@@ -41,13 +41,13 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 15/11/2026, 5:35:57 pm",
+      "detail": "measurement timestamp: 15/11/2026, 6:16:18 pm",
       "severity": "ok"
     },
     {
       "id": "scores.speed",
       "ok": true,
-      "detail": "report prints 5, rubric computes 5",
+      "detail": "report prints 6, rubric computes 6",
       "severity": "ok"
     },
     {
@@ -77,7 +77,7 @@
     {
       "id": "scores.overall",
       "ok": true,
-      "detail": "report prints 75, rubric computes 75",
+      "detail": "report prints 78, rubric computes 78",
       "severity": "ok"
     },
     {
@@ -137,7 +137,7 @@
     {
       "id": "pdf.size",
       "ok": true,
-      "detail": "3.27 MB",
+      "detail": "3.03 MB",
       "severity": "ok"
     },
     {
