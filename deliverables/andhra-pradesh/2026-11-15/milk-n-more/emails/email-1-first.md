@@ -13,7 +13,7 @@ I ran the same tests Google runs on milknmore.org and put the results in the att
 
 Two things stood out:
 
-1. There is no order or enquiry form on the homepage and no WhatsApp button, so a customer who wants to start a delivery has one phone link to go on.
+1. There is no order or enquiry form on the homepage and no WhatsApp button. A visitor who is not ready to download the app has no quick way to ask a question or start a delivery.
 2. A 53/100 mobile score and a 11.6 s main image. Google’s thresholds are 2.5 s for LCP and 200 ms for TBT.
 
 The full report has the measurements, screenshots and an eight-item fix list in payback order. No estimates — every figure was taken from your live site.
