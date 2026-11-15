@@ -1,0 +1,20 @@
+{
+  "name": "East Point Golf Course",
+  "domain": "epgc.in",
+  "city": null,
+  "state": "Andhra Pradesh",
+  "email": "epgc@epgc.in",
+  "phone": null,
+  "ref": "SP-AUD-2026-11-15-EPG",
+  "date": "2026-11-15",
+  "overall": 82,
+  "scores": {
+    "speed": 7,
+    "mobile": 9,
+    "conversion": 8,
+    "design": 10,
+    "seo": 8,
+    "overall": 82
+  },
+  "pdf": "Smart-Pursuit-Audit-East-Point-Golf-Course.pdf"
+}

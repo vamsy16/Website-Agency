@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-15T10:50:41.477Z",
+  "updatedAt": "2026-11-15T12:13:48.037Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -97,6 +97,150 @@
         "html": "reports/dr-ramya-sadaram/report.html"
       },
       "fingerprint": "50331f557ab8f968"
+    },
+    {
+      "domain": "swechaap.org",
+      "name": "Swecha Andhra Pradesh",
+      "ref": "SP-AUD-2026-11-15-SAP",
+      "generatedAt": "2026-11-15T12:05:57.311Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 4,
+        "mobile": 8,
+        "conversion": 7,
+        "design": 8,
+        "seo": 6,
+        "overall": 64
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2628043,
+      "files": {
+        "pdf": "reports/swecha-andhra-pradesh/Smart-Pursuit-Audit-Swecha-Andhra-Pradesh.pdf",
+        "audit": "reports/swecha-andhra-pradesh/audit.json",
+        "html": "reports/swecha-andhra-pradesh/report.html"
+      },
+      "fingerprint": "74d7f1fada5e0979"
+    },
+    {
+      "domain": "khushishoppingmall.in",
+      "name": "Khushi Shopping Mall",
+      "ref": "SP-AUD-2026-11-15-KSM",
+      "generatedAt": "2026-11-15T12:06:42.469Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 8,
+        "conversion": 8,
+        "design": 10,
+        "seo": 9,
+        "overall": 75
+      },
+      "pdfPages": 10,
+      "pdfBytes": 3427575,
+      "files": {
+        "pdf": "reports/khushi-shopping-mall/Smart-Pursuit-Audit-Khushi-Shopping-Mall.pdf",
+        "audit": "reports/khushi-shopping-mall/audit.json",
+        "html": "reports/khushi-shopping-mall/report.html"
+      },
+      "fingerprint": "b040e610e9075bf5"
+    },
+    {
+      "domain": "relianceretail.com",
+      "name": "Reliance Smart Point",
+      "ref": "SP-AUD-2026-11-15-RSP",
+      "generatedAt": "2026-11-15T12:08:49.559Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 6,
+        "mobile": 9,
+        "conversion": 8,
+        "design": 8,
+        "seo": 7,
+        "overall": 75
+      },
+      "pdfPages": 10,
+      "pdfBytes": 3080085,
+      "files": {
+        "pdf": "reports/reliance-smart-point/Smart-Pursuit-Audit-Reliance-Smart-Point.pdf",
+        "audit": "reports/reliance-smart-point/audit.json",
+        "html": "reports/reliance-smart-point/report.html"
+      },
+      "fingerprint": "9a10a1c7f6c43342"
+    },
+    {
+      "domain": "rise-world.com",
+      "name": "Research Industrial Systems Engineering (RISE) India Ventures Pvt Ltd.",
+      "ref": "SP-AUD-2026-11-15-RIS",
+      "generatedAt": "2026-11-15T12:10:17.242Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 4,
+        "mobile": 6,
+        "conversion": 8,
+        "design": 8,
+        "seo": 9,
+        "overall": 65
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1214609,
+      "files": {
+        "pdf": "reports/research-industrial-systems-engineering-rise-india-ventures-/Smart-Pursuit-Audit-Research-Industrial-Systems-Engineering-RISE-India-Ventures-Pvt-Ltd.pdf",
+        "audit": "reports/research-industrial-systems-engineering-rise-india-ventures-/audit.json",
+        "html": "reports/research-industrial-systems-engineering-rise-india-ventures-/report.html"
+      },
+      "fingerprint": "7bd2521d4166f613"
+    },
+    {
+      "domain": "epgc.in",
+      "name": "East Point Golf Course",
+      "ref": "SP-AUD-2026-11-15-EPG",
+      "generatedAt": "2026-11-15T12:11:13.712Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 7,
+        "mobile": 9,
+        "conversion": 8,
+        "design": 10,
+        "seo": 8,
+        "overall": 82
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2847851,
+      "files": {
+        "pdf": "reports/east-point-golf-course/Smart-Pursuit-Audit-East-Point-Golf-Course.pdf",
+        "audit": "reports/east-point-golf-course/audit.json",
+        "html": "reports/east-point-golf-course/report.html"
+      },
+      "fingerprint": "0c5709a1ce772b9c"
+    },
+    {
+      "domain": "indianredcross-eg.org",
+      "name": "Indian Red Cross Society Blood Bank - Kakinada",
+      "ref": "SP-AUD-2026-11-15-IRC",
+      "generatedAt": "2026-11-15T12:13:48.037Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 3,
+        "mobile": 8,
+        "conversion": 8,
+        "design": 10,
+        "seo": 8,
+        "overall": 68
+      },
+      "pdfPages": 10,
+      "pdfBytes": 3282738,
+      "files": {
+        "pdf": "reports/indian-red-cross-society-blood-bank-kakinada/Smart-Pursuit-Audit-Indian-Red-Cross-Society-Blood-Bank-Kakinada.pdf",
+        "audit": "reports/indian-red-cross-society-blood-bank-kakinada/audit.json",
+        "html": "reports/indian-red-cross-society-blood-bank-kakinada/report.html"
+      },
+      "fingerprint": "50c86ce6bb09b35c"
     }
   ]
 }

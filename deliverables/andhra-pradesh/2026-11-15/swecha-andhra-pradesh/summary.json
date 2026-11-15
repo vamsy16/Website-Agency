@@ -1,0 +1,20 @@
+{
+  "name": "Swecha Andhra Pradesh",
+  "domain": "swechaap.org",
+  "city": "Vijayawada",
+  "state": "Andhra Pradesh",
+  "email": "contactus@swechaap.org",
+  "phone": "+91 95055 62303",
+  "ref": "SP-AUD-2026-11-15-SAP",
+  "date": "2026-11-15",
+  "overall": 64,
+  "scores": {
+    "speed": 4,
+    "mobile": 8,
+    "conversion": 7,
+    "design": 8,
+    "seo": 6,
+    "overall": 64
+  },
+  "pdf": "Smart-Pursuit-Audit-Swecha-Andhra-Pradesh.pdf"
+}
