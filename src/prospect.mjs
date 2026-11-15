@@ -303,7 +303,11 @@ async function screenWith(lead, fetched) {
   const domainRoot = domain.split(".")[0];
   const nameTokens = new Set([...tokens(lead.name), domainRoot].filter(t => t && t.length >= 4));
   const sameDomain = siteEmails.filter(e => domainOf("https://" + e.split("@")[1]) === domain);
-  const freeMatching = siteEmails.filter(e => FREE_MAIL.test(e) && [...nameTokens].some(t => e.split("@")[0].replace(/[^a-z0-9]/g, "").includes(t.replace(/[^a-z0-9]/g, ""))));
+  // The mailbox name itself carries the business or owner name (dr.ramya@… for
+  // "Dr. Ramya Sadaram", redcrossegrc@yahoo.com for "Indian Red Cross"). Only the
+  // part before @ counts, so a designer's hello@krishnadesigns.com never matches.
+  const localMatches = e => [...nameTokens].some(t => e.split("@")[0].replace(/[^a-z0-9]/g, "").includes(t.replace(/[^a-z0-9]/g, "")));
+  const freeMatching = [...siteEmails.filter(e => FREE_MAIL.test(e) && localMatches(e)), ...siteEmails.filter(e => !FREE_MAIL.test(e) && localMatches(e))];
   const onlyFree = siteEmails.length === 1 && FREE_MAIL.test(siteEmails[0]) ? siteEmails : [];
   const pick = sameDomain[0] || freeMatching[0] || onlyFree[0] || null;
   if (pick) {

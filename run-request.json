@@ -1,13 +1,12 @@
 {
   "state": "Andhra Pradesh",
-  "max": 6,
+  "max": 0,
   "target": 1,
-  "leadsLimit": 60,
+  "leadsLimit": 10,
   "niches": [],
   "reaudit": [
-    "khushishoppingmall.in",
     "gynecologistvizag.com"
   ],
-  "reauditReason": "report wording fix: no clinic/broken-form wording for non-clinics",
-  "requestedAt": "2026-11-15T13:10:00Z"
+  "reauditReason": "report wording fix: summary claimed a broken form that does not exist",
+  "requestedAt": "2026-11-15T13:30:00Z"
 }
