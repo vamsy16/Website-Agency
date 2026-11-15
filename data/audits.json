@@ -1,5 +1,54 @@
 {
   "version": 1,
-  "updatedAt": null,
-  "audits": []
+  "updatedAt": "2026-11-15T10:40:12.695Z",
+  "audits": [
+    {
+      "domain": "krishnadental.in",
+      "name": "Krishna Multispeciality Dental Clinic",
+      "ref": "SP-AUD-2026-11-15-KMD",
+      "generatedAt": "2026-11-15T10:39:21.415Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 10,
+        "mobile": 5,
+        "conversion": 7,
+        "design": 10,
+        "seo": 10,
+        "overall": 83
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1168227,
+      "files": {
+        "pdf": "reports/krishna-multispeciality-dental-clinic/Smart-Pursuit-Audit-Krishna-Multispeciality-Dental-Clinic.pdf",
+        "audit": "reports/krishna-multispeciality-dental-clinic/audit.json",
+        "html": "reports/krishna-multispeciality-dental-clinic/report.html"
+      },
+      "fingerprint": "4d60b6e767d10f42"
+    },
+    {
+      "domain": "milknmore.org",
+      "name": "Milk n More",
+      "ref": "SP-AUD-2026-11-15-MNM",
+      "generatedAt": "2026-11-15T10:40:12.695Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 4,
+        "mobile": 7,
+        "conversion": 8,
+        "design": 8,
+        "seo": 9,
+        "overall": 67
+      },
+      "pdfPages": 10,
+      "pdfBytes": 4652117,
+      "files": {
+        "pdf": "reports/milk-n-more/Smart-Pursuit-Audit-Milk-n-More.pdf",
+        "audit": "reports/milk-n-more/audit.json",
+        "html": "reports/milk-n-more/report.html"
+      },
+      "fingerprint": "10fa57d98f0b8831"
+    }
+  ]
 }
