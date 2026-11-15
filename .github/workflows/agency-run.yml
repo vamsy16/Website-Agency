@@ -87,7 +87,7 @@ jobs:
         run: |
           mkdir -p results
           paths=()
-          for p in reports outreach data/raw data/run-*.json data/batch-*.json run.log; do
+          for p in reports outreach data/run-*.json data/batch-*.json run.log; do
             [ -e "$p" ] && paths+=("$p")
           done
           if [ ${#paths[@]} -eq 0 ]; then echo "nothing to pack"; exit 0; fi
