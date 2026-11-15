@@ -186,16 +186,19 @@ export function recordAudit({ website, name, ref, pdfPath, auditPath, reportPath
  * This is the function that makes a daily run idempotent: running it twice on the
  * same day returns nothing the second time, without needing any external state.
  */
-export function pendingLeads({ state = null, niches = [], limit = 5, cooldownDays = 60, maxAttempts = 3 } = {}) {
+export function pendingLeads({ state = null, niches = [], limit = 5, cooldownDays = 60, maxAttempts = 3, requireEmail = false } = {}) {
   const leads = loadLeads().leads;
   const stateKey = state ? String(state).toLowerCase().trim() : null;
   const nicheKeys = niches.map(n => String(n).toLowerCase().trim()).filter(Boolean);
   const out = [];
-  const skipped = { audited: 0, blocked: 0, failedTooOften: 0, noWebsite: 0, wrongState: 0, wrongNiche: 0 };
+  const skipped = { audited: 0, blocked: 0, failedTooOften: 0, noWebsite: 0, noEmail: 0, wrongState: 0, wrongNiche: 0 };
+  const eligible = [];
 
   for (const lead of leads) {
-    if (out.length >= limit) break;
     if (!lead.website) { skipped.noWebsite++; continue; }
+    // Owner rule (2026-11-15): only audit a business we can actually email.
+    // The address must be published (OSM tag, Places, or operator CSV) - never guessed.
+    if (requireEmail && !hasPublishedEmail(lead)) { skipped.noEmail++; continue; }
     if (stateKey && String(lead.state || "").toLowerCase().trim() !== stateKey) { skipped.wrongState++; continue; }
     // A lead with no niche was found by the broad search (or came from a CSV).
     // Unknown is not the same as wrong, so it is kept.
@@ -204,10 +207,19 @@ export function pendingLeads({ state = null, niches = [], limit = 5, cooldownDay
     if ((lead.auditAttempts || 0) >= maxAttempts) { skipped.failedTooOften++; continue; }
     const gate = checkAudit(lead.website, { cooldownDays });
     if (gate.duplicate) { skipped.blocked++; continue; }
-    out.push(lead);
+    eligible.push(lead);
   }
 
+  // Fresh leads before retries: a site that already failed once is the least
+  // likely to pass, so it should not take a slot from one never tried.
+  eligible.sort((a, b) => (a.auditAttempts || 0) - (b.auditAttempts || 0));
+  out.push(...eligible.slice(0, limit));
   return { leads: out, skipped };
+}
+
+/** A lead counts as emailable only with a syntactically valid, published address. */
+export function hasPublishedEmail(lead) {
+  return /^[^\s@<>(),;:]+@[^\s@<>(),;:]+\.[a-z]{2,}$/i.test(String(lead?.email || "").trim());
 }
 
 /** Patches one lead row in place. Rows are never deleted. */

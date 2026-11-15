@@ -23,7 +23,7 @@ leads → dedupe → measure → score → findings → 10-page HTML → PDF
 
 | Command | What it produces |
 | --- | --- |
-| `run --state "Andhra Pradesh"` | the daily driver: fetch leads, audit only the ones never audited, write their drafts |
+| `run --state "Andhra Pradesh" [--target 5]` | the daily driver: fetch leads, audit only never-audited businesses **that publish an email**, write their drafts; `--target` stops after N verified audits |
 | `leads --state gujarat` | new business leads, duplicate-checked, from OSM / Places / CSV |
 | `audit --url …` | a measured 10-page A4 audit PDF + `audit.json` + `qa.json` + `verify.json` |
 | `sequence --audit …` | four email drafts dated day 0, +3, +6, +9 |

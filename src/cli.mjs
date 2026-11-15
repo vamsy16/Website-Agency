@@ -32,7 +32,7 @@ function usage() {
   console.log(`
 Smart Pursuit Agency OS
 
-  node src/cli.mjs run      --state "Andhra Pradesh" [--niches dentist,clinic] [--max 5] [--dry-run] [--csv leads.csv]
+  node src/cli.mjs run      --state "Andhra Pradesh" [--niches dentist,clinic] [--max 5] [--target 5] [--allow-no-email] [--dry-run] [--csv leads.csv]
   node src/cli.mjs leads    --state gujarat [--niches dentist,clinic] [--limit 25] [--csv leads.csv]
   node src/cli.mjs audit    --url https://example.com --name "Business Name" --city Ahmedabad [--force] [--live]
   node src/cli.mjs audit    --from-raw data/raw/<slug>.json [--fixture] [--force]
@@ -563,6 +563,11 @@ async function cmdRun() {
   const max = Number(argValue(argv, "--max", runCfg.auditsPerRun ?? 5));
   const leadsLimit = Number(argValue(argv, "--leads-limit", runCfg.leadsPerRun ?? 25));
   const maxAttempts = Number(runCfg.maxAuditAttempts ?? 3);
+  // Only businesses with a published email are audited unless --allow-no-email.
+  const requireEmail = hasFlag(argv, "--allow-no-email") ? false : (hasFlag(argv, "--require-email") || runCfg.requireEmail === true);
+  // --target N: stop once N audits have passed verification (--max caps attempts).
+  const targetArg = argValue(argv, "--target", null);
+  const target = targetArg && targetArg !== true ? Number(targetArg) : null;
   const cooldownDays = settings.audit.reauditCooldownDays;
 
   const summary = {
@@ -630,6 +635,7 @@ async function cmdRun() {
     limit: max,
     cooldownDays,
     maxAttempts,
+    requireEmail,
   });
   summary.queue = pending.leads.map(l => ({ name: l.name, domain: l.domain, city: l.city }));
   summary.skippedByRegistry = pending.skipped;
@@ -637,14 +643,14 @@ async function cmdRun() {
   const s = pending.skipped;
   if (!pending.leads.length) {
     console.log("\n  Nothing to audit. Every lead in this state is already audited, blocked, or has failed too often.");
-    console.log(`  skipped — audited ${s.audited}, cooldown ${s.blocked}, failed ${s.failedTooOften}, no website ${s.noWebsite}, other state ${s.wrongState}, other niche ${s.wrongNiche}`);
+    console.log(`  skipped — audited ${s.audited}, cooldown ${s.blocked}, failed ${s.failedTooOften}, no website ${s.noWebsite}, no email ${s.noEmail}, other state ${s.wrongState}, other niche ${s.wrongNiche}`);
     const outFile = writeRunReport(state, summary);
     console.log(`  Run report: ${outFile}\n`);
     return;
   }
 
-  console.log(`\n  queue     ${pending.leads.length} lead(s)`);
-  for (const lead of pending.leads) console.log(`    · ${lead.name} — ${lead.domain}${lead.city ? ` · ${lead.city}` : ""}`);
+  console.log(`\n  queue     ${pending.leads.length} lead(s)${requireEmail ? " — published email only" : ""}${target ? `, stop after ${target} verified` : ""}`);
+  for (const lead of pending.leads) console.log(`    · ${lead.name} — ${lead.domain}${lead.city ? ` · ${lead.city}` : ""}${lead.email ? ` · ${lead.email}` : ""}`);
 
   if (dryRun) {
     const outFile = writeRunReport(state, summary);
@@ -654,6 +660,10 @@ async function cmdRun() {
 
   console.log("");
   for (let i = 0; i < pending.leads.length; i++) {
+    if (target && summary.audited.length >= target) {
+      console.log(`  target reached: ${summary.audited.length} verified audit(s) — stopping`);
+      break;
+    }
     const lead = pending.leads[i];
     const label = `[${i + 1}/${pending.leads.length}] ${String(lead.name).slice(0, 34).padEnd(34)}`;
     try {

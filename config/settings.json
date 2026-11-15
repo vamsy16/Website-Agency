@@ -17,7 +17,8 @@
   "run": {
     "leadsPerRun": 25,
     "auditsPerRun": 5,
-    "maxAuditAttempts": 3
+    "maxAuditAttempts": 3,
+    "requireEmail": true
   },
 
   "audit": {

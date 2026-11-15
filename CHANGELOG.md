@@ -3,6 +3,21 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## 1.3.0 — 15 November 2026
+
+**Email-only audits, GitHub runner, verified deliverables.**
+
+- Owner rule: only audit a business with a published email. `run.requireEmail`
+  in `config/settings.json` (default `true`); `pendingLeads({ requireEmail })`
+  skips leads without a valid published address and reports them as `no email`.
+  `--allow-no-email` overrides for one run. Addresses are never guessed.
+- `run --target N` stops once N audits pass verification; `--max` still caps
+  attempts. Fresh leads are queued before retries of failed ones.
+- `.github/workflows/agency-run.yml`: pushing `run-request.json` runs the daily
+  driver on a GitHub runner (the Arena sandbox cannot reach OSM or prospect
+  sites). Verified audits are published to `deliverables/` by
+  `tools/publish-deliverables.mjs`; everything else returns encrypted.
+
 ## 1.2.0 — 14 November 2026
 
 **Runs in a bare sandbox.** A fresh machine with no Chrome and a network that
