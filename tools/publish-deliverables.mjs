@@ -73,7 +73,7 @@ let md = `# Verified audits\n\nOnly audits that passed every third-eye check (\`
 md += `| Date | Business | City | State | Score | Email | Audit PDF | Drafts |\n|---|---|---|---|---|---|---|---|\n`;
 for (const r of rows) {
   const relDir = path.relative(ROOT, r.dir);
-  md += `| ${r.date} | ${r.name} | ${r.city || "—"} | ${r.state || "—"} | ${r.overall}/100 | ${r.email || "—"} | [PDF](${blob(path.join(relDir, r.pdf))}) | [emails](${blob(path.join(relDir, "emails")).replace("/blob/", "/tree/")}) |\n`;
+  md += `| ${r.date} | ${r.name} | ${r.city || "—"} | ${r.state || "—"} | ${r.overall}/100 | ${r.email || "—"} | [PDF](${blob(path.join(relDir, r.pdf))}) | ${fs.existsSync(path.join(r.dir, "emails")) ? `[emails](${blob(path.join(relDir, "emails")).replace("/blob/", "/tree/")})` : "not generated"} |\n`;
 }
 fs.mkdirSync(OUT, { recursive: true });
 fs.writeFileSync(path.join(OUT, "README.md"), md);
