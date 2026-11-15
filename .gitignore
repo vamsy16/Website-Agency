@@ -26,6 +26,8 @@ data/run-*.json
 *.pdf
 # Keep the public operator tutorial; client audit PDFs remain ignored.
 !docs/Smart-Pursuit-Arena-Tutorial.pdf
+# Verified audits the owner chose to keep in GitHub (tools/publish-deliverables.mjs).
+!deliverables/**/*.pdf
 *.png
 *.jpg
 *.jpeg
