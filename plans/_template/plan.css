@@ -1,0 +1,164 @@
+/* ============================================================================
+   Strategy-plan components.
+
+   This file is additive. Everything about type, colour and page furniture comes
+   from src/styles.css (frozen); this only adds the blocks a *plan* needs that an
+   *audit* never used. Nothing here may redefine a class from styles.css.
+   ========================================================================== */
+
+/* ---------- page skeleton ---------- */
+.page .body{flex:1;min-height:0;display:flex;flex-direction:column;padding-bottom:14mm}
+.page .body > *{flex:0 0 auto}
+.body .grow{flex:1 1 auto;min-height:0}
+
+/* ---------- grids ---------- */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:3.4mm}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:3.2mm}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:2.8mm}
+.grid2.tight,.grid3.tight,.grid4.tight{gap:2.2mm}
+.stack{display:flex;flex-direction:column;gap:3mm}
+.stack.tight{gap:2mm}
+.split8{display:grid;grid-template-columns:1fr 0.62fr;gap:4mm}
+
+/* ---------- brand chip ---------- */
+.logochip{width:15mm;height:15mm;border-radius:3.6mm;background:#fff;border:.3mm solid var(--line);
+  display:flex;align-items:center;justify-content:center;padding:2.1mm;flex:0 0 15mm}
+.logochip img{width:100%;height:100%;object-fit:contain;display:block}
+.logochip.on-dark{border-color:rgba(255,255,255,.22);background:#fff}
+
+/* ---------- labels ---------- */
+.lbl{font-size:5.9pt;letter-spacing:.15em;text-transform:uppercase;color:var(--mut);font-weight:800;margin-bottom:1.4mm}
+.lbl.b{color:var(--brand-dark)}
+.pill{display:inline-block;font-size:5.6pt;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
+  padding:.7mm 1.6mm;border-radius:1mm;background:var(--mint);color:#08514E}
+.pill.warn{background:var(--amber-soft);color:#7A5300}
+.pill.bad{background:var(--coral-soft);color:#8A2B14}
+.pill.dark{background:#0B2B28;color:#E7F4F2}
+
+/* ---------- callouts ---------- */
+.callout{border:.3mm solid var(--line);border-left:1.1mm solid var(--brand);border-radius:2mm;
+  padding:3.2mm 4mm;background:var(--mint)}
+.callout.warn{border-left-color:var(--amber);background:var(--amber-soft)}
+.callout.bad{border-left-color:var(--coral);background:var(--coral-soft)}
+.callout.plain{border-left-color:var(--ink2);background:var(--sand)}
+.callout h4{font-size:8.4pt;font-weight:700;margin-bottom:1mm;color:#08514E}
+.callout.warn h4{color:#6B4700}
+.callout.bad h4{color:#8A2B14}
+.callout.plain h4{color:var(--ink)}
+.callout p{font-size:7.4pt;line-height:1.45;color:#134E4B}
+.callout.warn p{color:#63431A}
+.callout.bad p{color:#7A2E18}
+.callout.plain p{color:var(--ink2)}
+.callout ul{list-style:none;margin-top:1.2mm}
+.callout li{font-size:7.4pt;color:inherit;line-height:1.42;padding-left:3.4mm;position:relative}
+.callout li + li{margin-top:.7mm}
+.callout li::before{content:"";position:absolute;left:0;top:1.5mm;width:1.3mm;height:1.3mm;border-radius:50%;background:currentColor;opacity:.55}
+
+/* ---------- journey ---------- */
+.jr{display:grid;grid-template-columns:repeat(5,1fr);gap:2.4mm}
+.js{border:.3mm solid var(--line);border-radius:2.2mm;padding:3mm 3mm 3.2mm;background:var(--sand);position:relative}
+.js .n{font-family:'Instrument Serif',Georgia,serif;font-size:13pt;line-height:1;color:var(--brand);letter-spacing:-.01em}
+.js .who{font-size:5.6pt;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);font-weight:800;margin-top:1.4mm}
+.js h4{font-size:7.9pt;line-height:1.2;margin:.6mm 0 1.2mm;letter-spacing:-.01em}
+.js p{font-size:6.9pt;line-height:1.4;color:var(--ink2)}
+.js .own{font-size:6.5pt;line-height:1.38;color:#08514E;margin-top:1.6mm;padding-top:1.4mm;border-top:.25mm dashed #BFDCD8}
+
+/* ---------- check table ---------- */
+table.chk{width:100%;border-collapse:collapse}
+table.chk th{font-size:5.9pt;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);font-weight:800;
+  text-align:left;padding:0 2mm 2mm 0;border-bottom:.3mm solid var(--line)}
+table.chk td{padding:1.85mm 2mm 1.85mm 0;border-bottom:.25mm solid var(--line2);font-size:7.15pt;
+  line-height:1.38;vertical-align:top;color:var(--ink2)}
+table.chk td.i{width:4.6mm;color:var(--mut);font-variant-numeric:tabular-nums;font-size:6.6pt;padding-top:2.2mm}
+table.chk td.a{color:var(--ink);font-weight:600}
+table.chk td.w{width:11mm;text-align:right;color:var(--mut);font-variant-numeric:tabular-nums;font-size:6.6pt}
+table.chk tr.hi td{background:var(--mint)}
+table.chk td b{color:var(--ink);font-weight:700}
+
+/* ---------- pillars ---------- */
+.pillar{display:grid;grid-template-columns:9mm 1fr 40mm;gap:3.4mm;padding:2.9mm 0;border-bottom:.3mm solid var(--line2)}
+.pillar:last-child{border-bottom:0;padding-bottom:0}
+.pillar .pn{font-family:'Instrument Serif',Georgia,serif;font-size:17pt;line-height:.9;color:var(--brand);letter-spacing:-.02em}
+.pillar h4{font-size:9.2pt;letter-spacing:-.01em;margin-bottom:.7mm}
+.pillar .job{font-size:7.5pt;color:var(--ink2);line-height:1.42}
+.pillar .mv{font-size:7pt;color:var(--ink2);line-height:1.45;margin-top:1mm}
+.pillar .mv b{font-weight:700;color:var(--ink)}
+.pillar .m{border-left:.3mm solid var(--line);padding-left:3.4mm;font-size:6.8pt;color:var(--ink2);line-height:1.4}
+.pillar .m .k{display:block;font-size:5.6pt;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);font-weight:800;margin-bottom:.8mm}
+.pillar .m .v{display:block;font-weight:600;color:var(--brand-dark);margin-top:.8mm;font-size:7pt}
+
+/* ---------- calendar ---------- */
+table.cal{width:100%;border-collapse:collapse}
+table.cal th{font-size:5.8pt;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);font-weight:800;
+  text-align:left;padding:0 2mm 2mm 0;border-bottom:.3mm solid var(--line)}
+table.cal td{padding:2.05mm 2mm 2.05mm 0;border-bottom:.25mm solid var(--line2);font-size:6.9pt;
+  line-height:1.36;vertical-align:top;color:var(--ink2)}
+table.cal td.mo{width:15mm;font-weight:700;color:var(--ink);font-size:7.4pt}
+table.cal td.mo span{display:block;font-weight:600;font-size:5.6pt;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-dark);margin-top:.5mm}
+table.cal tr.peak td{background:var(--mint)}
+table.cal tr.peak td.mo span{color:#8A2B14}
+
+/* ---------- roadmap ---------- */
+.road{display:grid;grid-template-columns:repeat(3,1fr);gap:2.4mm}
+.wk{border:.3mm solid var(--line);border-radius:2mm;padding:2.6mm 2.8mm 2.8mm;background:#fff;display:flex;flex-direction:column}
+.wk .w{font-size:5.5pt;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-dark);font-weight:800}
+.wk h4{font-size:7.7pt;line-height:1.2;margin:.7mm 0 1mm}
+.wk p{font-size:6.6pt;line-height:1.38;color:var(--ink2)}
+.wk .g{font-size:6pt;line-height:1.35;color:var(--mut);margin-top:auto;padding-top:1.2mm;border-top:.25mm dashed var(--line)}
+
+/* ---------- budget bars ---------- */
+.split{display:flex;flex-direction:column;gap:2.4mm}
+.split .row{display:grid;grid-template-columns:36mm 1fr 15mm;gap:2.6mm;align-items:center;font-size:7pt;color:var(--ink2)}
+.split .row b{color:var(--ink);font-weight:600}
+.split .track{height:3.4mm;border-radius:1.7mm;background:#EDF1F0;overflow:hidden}
+.split .fill{height:100%;background:var(--brand);border-radius:1.7mm}
+.split .fill.navy{background:var(--navy)}
+.split .fill.amber{background:#E2A32B}
+.split .fill.coral{background:var(--coral)}
+.split .pct{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;color:var(--ink);font-size:7pt}
+
+/* ---------- funnel ---------- */
+.fn{display:flex;flex-direction:column;gap:1.1mm}
+.fn .st{display:grid;grid-template-columns:8mm 42mm 1fr 26mm;gap:2.6mm;align-items:center;
+  border:.3mm solid var(--line);border-radius:1.6mm;padding:1.55mm 2.6mm;background:var(--sand)}
+.fn .st .n{font-size:6.2pt;font-weight:800;color:#fff;background:var(--brand-dark);border-radius:50%;
+  width:5.4mm;height:5.4mm;display:flex;align-items:center;justify-content:center}
+.fn .st .nm{font-size:7.5pt;font-weight:700;color:var(--ink)}
+.fn .st .ds{font-size:6.8pt;color:var(--ink2);line-height:1.35}
+.fn .st .sl{font-size:6.4pt;color:var(--brand-dark);font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+
+/* ---------- proof / asset matrix ---------- */
+.tagrow{display:flex;flex-wrap:wrap;gap:1.4mm}
+.tagrow .pill{font-size:5.4pt}
+
+/* ---------- small print ---------- */
+.fine{font-size:6.2pt;line-height:1.45;color:var(--mut)}
+.fine b{color:var(--ink2);font-weight:600}
+.hr.tight{margin:3.2mm 0}
+
+/* ---------- two-column bullet list ---------- */
+.blist{columns:2;column-gap:6mm}
+.blist li{break-inside:avoid;font-size:7.2pt;line-height:1.4;color:var(--ink2);padding-left:3.2mm;position:relative;margin-bottom:1.5mm;list-style:none}
+.blist li::before{content:"";position:absolute;left:0;top:1.5mm;width:1.2mm;height:1.2mm;border-radius:50%;background:var(--brand)}
+
+/* ---------- stat strip ---------- */
+.strip3{display:grid;grid-template-columns:repeat(3,1fr);border-top:.3mm solid var(--line);border-bottom:.3mm solid var(--line)}
+.strip3 > div{padding:3.4mm 4mm 3.4mm 0}
+.strip3 > div + div{border-left:.3mm solid var(--line);padding-left:4mm}
+.strip3 .k{font-size:5.8pt;letter-spacing:.13em;text-transform:uppercase;color:var(--mut);font-weight:800}
+.strip3 .v{font-family:'Instrument Serif',Georgia,serif;font-size:13.4pt;line-height:1.08;margin-top:1mm;letter-spacing:-.01em}
+.strip3 .v small{font-family:'Inter';font-size:7pt;color:var(--mut);letter-spacing:0}
+.strip3 .d{font-size:6.6pt;color:var(--ink2);line-height:1.38;margin-top:.8mm}
+
+/* ---------- cover extras ---------- */.cover .logochip{width:13mm;height:13mm;flex:0 0 13mm;border-radius:3.2mm;padding:1.8mm}
+.cover .mast{margin-top:24mm}
+.cover h1{font-size:42pt}
+.cover h1 em{font-style:italic;color:#7FD9D2}
+.cover .sub{max-width:132mm}
+.cover .stats{margin-top:12mm}
+.cover .honest{margin-top:8mm;font-size:6.6pt;line-height:1.5;color:rgba(255,255,255,.52);max-width:150mm;
+  border-left:.5mm solid rgba(127,217,210,.5);padding-left:3.4mm}
+
+/* Plan-only modifier: on the investment page each card carries a long list, so
+   the fixed minimum height of the description line is unnecessary there. */
+.plan-c.compact .ds{min-height:0}

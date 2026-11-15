@@ -649,6 +649,30 @@ reference and page count.
 
 ---
 
+## 11b. Render a strategy plan
+
+An audit proves what is broken; a plan is what a management committee signs.
+Same design system, same voice, sixteen A4 pages, one config file.
+
+```powershell
+notepad plans\plan.config.json      # school, city, state, board, fee band, year
+npm.cmd run plan
+```
+
+Writes `reports/plans/<slug>/Smart-Pursuit-Digital-Strategy-<School>.pdf` plus
+`plan-report.json`, which holds the measured fill of every page.
+
+The render is refused on any of: wrong page count, non-A4 media box, content
+overflow, content in the footer band, cover colliding with the confidential line,
+text past the right margin, a broken image, an unloaded font, or an unresolved
+`{{TOKEN}}`. A value in `[brackets]` is a placeholder — the PDF renders as a
+draft and the run names the fields still unresolved.
+
+`reports/` is gitignored, so a client's plan never reaches the public export.
+Template rules live in `plans/README.md`.
+
+---
+
 ## 12. Troubleshooting
 
 | Symptom | Cause | Fix |

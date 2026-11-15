@@ -88,6 +88,25 @@ from the lead and audit registries rather than from a "last run" timestamp.
 
 On PowerShell, use `npm.cmd` instead of `npm`.
 
+### A strategy plan, not just an audit
+
+An audit proves what is broken; a plan is what a management committee signs.
+`plan` renders a fixed 16-page A4 strategy from a five-field config — same
+design system, same voice, one page per pillar, a 90-day roadmap, three
+investment tiers, and the compliance rules school advertising lives under.
+
+```bash
+npm run plan            # plans/plan.config.json -> reports/plans/<slug>/*.pdf
+npm run plan -- --keep  # also keep the built HTML for inspection
+```
+
+The render is refused rather than shipped if the page count is wrong, the media
+box is not A4, content overflows or reaches the footer band, text crosses the
+right margin, an image or font fails to load, or a `{{TOKEN}}` is left
+unresolved. Per-page measurements land in `reports/plans/<slug>/plan-report.json`.
+A value in `[brackets]` is a placeholder: the PDF renders as a draft and the run
+names what is still unresolved. See `plans/README.md`.
+
 ---
 
 ## The three guarantees
@@ -153,12 +172,17 @@ agency-os/
 │   ├── verify.mjs                the third eye
 │   ├── sequence.mjs              the 1 + 3 email drafts
 │   └── util.mjs                  shared helpers
+├── plans/
+│   ├── plan.config.json         the one editable block: school, board, fee band
+│   └── _template/               plan.html + plan.css (additive to styles.css)
+├── assets/                      agency logo, embedded at render time
 ├── templates/emails/             the four email bodies
 └── tools/
     ├── image-stats.mjs           real pixel statistics for screenshots
     ├── encode-b64.mjs            binary → .b64 + sha256
     ├── decode-b64.mjs            .b64 → binary, hash-checked
-    └── class-diff.mjs            proves every emitted class has a CSS rule
+    ├── class-diff.mjs            proves every emitted class has a CSS rule
+    └── render-plan.mjs           strategy plan: config -> 16-page A4 PDF
 ```
 
 ---
@@ -195,5 +219,4 @@ See `docs/RUNBOOK.md` → **Compliance** for the operating procedure.
 | `docs/AUDIT-SPEC.md` | you need to know what counts as an audit |
 | `docs/DESIGN-SPEC.md` | you are touching the renderer or the CSS |
 | `docs/ARENA-AGENT-PROMPT.md` | you are handing the repo to another agent |
-| `docs/ARENA-LEADS-TO-GMAIL.md` | you want a one-line Arena invocation for lead sourcing, verified audits and Gmail drafts (never sending) |
 | `AGENTS.md` | you are an agent working in this repo |

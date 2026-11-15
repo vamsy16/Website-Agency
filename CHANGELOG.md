@@ -3,6 +3,41 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## 1.3.0 — 15 November 2026
+
+**A strategy plan, not just an audit.** A school that asks "what should we do"
+needs a document a management committee can sign, not a scorecard. Same frozen
+design system, same voice, sixteen A4 pages.
+
+- `plans/_template/plan.html` — the fixed 16-page document: cover, one-page
+  summary, the parent decision journey, a 12-point baseline that says out loud it
+  is not a score, the five pillars, one page per pillar, the admissions funnel,
+  measurement, paid media, the Nov–Jun calendar, the 90-day roadmap, three
+  investment tiers, risks and compliance, next steps. Placeholders only — no
+  client data.
+- `plans/_template/plan.css` — additive plan components (`.pillar`,
+  `table.chk`, `table.cal`, `.road`, `.fn`, `.split`, `.logochip`, three-tier
+  `.plan-c`). It defines no new type or colour tokens; `src/styles.css` and
+  `src/fonts.css` are untouched.
+- `plans/plan.config.json` — the single editable block: school, city, state,
+  board, fee band, admission year, prepared-on date.
+- `npm run plan` (`tools/render-plan.mjs`) — inlines fonts, styles, plan CSS and
+  the logo into one self-contained HTML, resolves every token (an unknown token
+  is a hard failure, never a blank), measures every page in Chromium at A4, then
+  renders the PDF. It refuses to hand back a document that has the wrong page
+  count, a non-A4 media box, content overflowing its column or reaching into the
+  footer band, cover content under the confidential line, text past the 194 mm
+  right margin, a broken image, an unloaded font, a console error, or an
+  unresolved token. Measurements land in `reports/plans/<slug>/plan-report.json`.
+- Output goes to `reports/`, which is already gitignored, so a client's plan can
+  never reach the public export.
+- The plan carries no testimonial, no fabricated statistic and no promised
+  admission number. Forward-looking figures are labelled arithmetic
+  (`seats = enquiries × visit rate × admission rate`), labelled examples, or
+  targets. Investment is example pricing with media spend separated and paid at
+  cost, 90-day minimum, no guarantee.
+- `plans/README.md` and RUNBOOK §11b document the swap and the refusal list.
+
 ## 1.2.0 — 14 November 2026
 
 **Runs in a bare sandbox.** A fresh machine with no Chrome and a network that
@@ -58,10 +93,6 @@ blocks a public Overpass mirror used to stop the tool dead. Both are fixed.
 **Tests.** `selftest` 3/4/2/6/5 → 36; reference audit 36/100, 6 findings, 10
 pages, 0 mm overflow, 23 verify checks; `class-diff` PASS; daily-run integration
 10/10; `doctor` green on a machine where 4 of 5 Overpass mirrors are unreachable.
-
-## Unreleased
-
-- Added `docs/ARENA-LEADS-TO-GMAIL.md`: a reusable state/count invocation for deduplicated lead sourcing, verified audit PDFs and deduplicated Gmail drafts with planned follow-up dates. Drafts only; no sending or scheduled-send integration.
 
 ## 1.1.0 — 10 November 2026
 

@@ -1,6 +1,6 @@
 {
   "name": "smart-pursuit-agency-os",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "private": true,
   "type": "module",
   "description": "Lead sourcing, measured website audits, third-eye verification and honest outreach drafts for a website-design agency. Nothing is ever sent automatically.",
@@ -19,7 +19,8 @@
     "selftest": "node src/cli.mjs selftest",
     "class-diff": "node tools/class-diff.mjs",
     "decode": "node tools/decode-b64.mjs",
-    "encode": "node tools/encode-b64.mjs"
+    "encode": "node tools/encode-b64.mjs",
+    "plan": "node tools/render-plan.mjs"
   },
   "dependencies": {
     "lighthouse": "^12.8.2",
