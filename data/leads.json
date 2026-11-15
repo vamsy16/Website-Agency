@@ -1107,7 +1107,7 @@
         "rendered": true,
         "notAProspect": {
           "kind": "chain",
-          "reason": "national chain / branch — the website is run by head office"
+          "reason": "national chain / branch \u2014 the website is run by head office"
         }
       }
     },
@@ -2131,7 +2131,7 @@
         "result": "ok",
         "notAProspect": {
           "kind": "chain",
-          "reason": "national chain / branch — the website is run by head office"
+          "reason": "national chain / branch \u2014 the website is run by head office"
         }
       }
     },
@@ -2390,7 +2390,7 @@
     {
       "id": "shichime.in",
       "key": "d:shichime.in",
-      "name": "Shichime Café & Patisserie",
+      "name": "Shichime Caf\u00e9 & Patisserie",
       "website": "https://shichime.in/",
       "domain": "shichime.in",
       "phone": "08062208179",
@@ -3093,7 +3093,7 @@
         ],
         "ok": false,
         "result": "foreign",
-        "reason": "site never mentions India, the state, the city or an Indian phone number — not a local business"
+        "reason": "site never mentions India, the state, the city or an Indian phone number \u2014 not a local business"
       },
       "updatedAt": "2026-11-15T12:48:31.641Z"
     },
@@ -3802,7 +3802,7 @@
       "address": null,
       "source": "openstreetmap",
       "sourceUrl": "https://www.openstreetmap.org/node/6761054028",
-      "status": "audit-failed",
+      "status": "audited",
       "firstSeenAt": "2026-11-15T13:08:21.217Z",
       "lastSeenAt": "2026-11-15T13:08:21.217Z",
       "timesSeen": 1,
@@ -3831,7 +3831,8 @@
       "lastAuditRef": "SP-AUD-2026-11-15-LFR",
       "lastAuditPdf": "reports/lakshmi-fertility-research-and-laparoscopic-surgical-center/Smart-Pursuit-Audit-Lakshmi-Fertility-Research-and-Laparoscopic-Surgical-Center.pdf",
       "auditAttempts": 1,
-      "lastError": "Email drafts failed review:"
+      "lastError": null,
+      "note": "audit verified; drafts regenerated after subject-length fix"
     },
     {
       "id": "capitalhotel.in",

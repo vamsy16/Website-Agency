@@ -64,6 +64,8 @@ export function shortName(name) {
   let n = String(name || "").replace(/[™®]/g, "").replace(/\s*\([^)]*\)\s*/g, " ").replace(/\s+-\s+.*$/, "")
     .replace(/\b(pvt\.?|private)\s*(ltd\.?|limited)\.?$/i, "").replace(/\b(ltd\.?|limited|llp)$/i, "").replace(/\s+/g, " ").trim().replace(/[.,]$/, "");
   if (n.length > 40) n = n.slice(0, 40).replace(/\s+\S*$/, "");
+  // Never end a name on a connecting word ("Lakshmi Fertility Research and").
+  n = n.replace(/(\s+(and|of|the|for|&|in|at|by|-))+$/i, "").trim();
   return n || String(name || "").slice(0, 40);
 }
 
@@ -107,7 +109,14 @@ export function buildSequence(audit, { sendDate = isoDate(new Date()), cadenceDa
   const outcomeLine = `Your mobile performance score is ${m.perfMobile}/100. The eight items on page 8 of the audit are the route to 90+, in the order that pays back fastest, and none of them require a new design.`;
 
   const mailFacts = {
-    business: { name: facts.business.name, shortName: shortName(facts.business.name), domain: facts.business.domain, city: facts.business.city },
+    business: {
+      name: facts.business.name,
+      shortName: shortName(facts.business.name),
+      domain: facts.business.domain,
+      // Subjects stay under the length limit even with a long domain.
+      siteLabel: shortName(facts.business.name).length + String(facts.business.domain).length <= 55 ? facts.business.domain : "your website",
+      city: facts.business.city,
+    },
     contactFirstName: firstName(audit.business?.contactName || facts.business.contactName, facts.business.name),
     agency: {
       signatureName: cfg.outreach.signatureName,

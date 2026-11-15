@@ -1,6 +1,6 @@
 ---
 id: followup-1
-subject: "Re: {{business.shortName}} — what I found testing {{business.domain}}"
+subject: "Re: {{business.shortName}} — what I found testing {{business.siteLabel}}"
 dayOffset: 3
 purpose: turn the top measured finding into a money argument
 attachments: none

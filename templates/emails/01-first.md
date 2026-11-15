@@ -1,6 +1,6 @@
 ---
 id: first
-subject: "{{business.shortName}} — what I found testing {{business.domain}}"
+subject: "{{business.shortName}} — what I found testing {{business.siteLabel}}"
 dayOffset: 0
 purpose: deliver the audit, earn a reply
 attachments: audit-pdf

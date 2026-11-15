@@ -50,7 +50,8 @@ const CHAIN_NAME = [
   "chennai shopping mall", "south india shopping mall", "cmr", "r s brothers", "sangeetha mobiles",
   "lot mobiles", "big c", "happi mobiles", "bharat petroleum", "indian oil", "hp petrol",
   "fortune inn", "sarovar", "renault", "nissan", "life insurance corporation", "hyderabad house",
-  "the chocolate room", "penna cement", "penna cements",
+  "the chocolate room", "penna cement", "penna cements", "anoos", "anoo s", "naturals salon", "green trends",
+  "lakme salon", "vlcc", "kaya clinic", "oliva", "enrich salon",
 ];
 // Names that are a chain only when they are the whole name ("More", not "More Than Coffee").
 const CHAIN_EXACT = ["more", "trends", "max", "zudio", "lic"];
