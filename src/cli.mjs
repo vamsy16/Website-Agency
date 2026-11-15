@@ -705,6 +705,16 @@ async function cmdRun() {
       if (sc.email !== (lead.email || "").toLowerCase()) {
         console.log(`  ${label} email from the site: ${sc.email} (OpenStreetMap had ${lead.email || "none"})`);
       }
+      // Same mailbox as a business already audited (a second domain or branch of
+      // the same owner) is a duplicate lead, even when the domain differs.
+      const { loadLeads } = await import("./dedupe.mjs");
+      const twin = loadLeads().leads.find(l => l.domain !== lead.domain && l.status === "audited" && String(l.email || "").toLowerCase() === sc.email);
+      if (twin) {
+        updateLead(lead.domain, { status: "duplicate", lastError: `same email as ${twin.name} (${twin.domain})` });
+        summary.skipped.push({ name: lead.name, domain: lead.domain, kind: "duplicate", reason: `same email as ${twin.name}` });
+        console.log(`  ${label} skipped — duplicate: ${sc.email} already belongs to ${twin.name} (${twin.domain})`);
+        continue;
+      }
       lead.email = sc.email;
       updateLead(lead.domain, { email: sc.email, osmEmail: sc.osmEmail, emailSource: sc.emailSource, emailFoundOn: sc.foundOn });
       console.log(`  ${label} email confirmed: ${sc.email} on ${sc.foundOn}`);
