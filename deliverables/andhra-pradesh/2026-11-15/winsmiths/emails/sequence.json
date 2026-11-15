@@ -1,0 +1,76 @@
+{
+  "business": "Winsmiths",
+  "domain": "winsmiths.com",
+  "ref": "SP-AUD-2026-11-15-W",
+  "createdAt": "2026-11-15T13:17:49.435Z",
+  "sendDate": "2026-11-15",
+  "cadenceDays": [
+    3,
+    3,
+    3
+  ],
+  "to": "info@winsmiths.com",
+  "status": "draft",
+  "neverSendAutomatically": true,
+  "note": "Dates shift if the operator sends email 1 on a different day — recompute with `sequence --send-date YYYY-MM-DD`.",
+  "emails": [
+    {
+      "step": 1,
+      "id": "first",
+      "purpose": "deliver the audit, earn a reply",
+      "attachments": [
+        "reports/winsmiths/Smart-Pursuit-Audit-Winsmiths.pdf"
+      ],
+      "subject": "Winsmiths — what I found testing winsmiths.com",
+      "words": 137,
+      "scheduledFor": "2026-11-15",
+      "scheduledForLong": "15 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/winsmiths/email-1-first.md"
+    },
+    {
+      "step": 2,
+      "id": "followup-1",
+      "purpose": "turn the top measured finding into a money argument",
+      "attachments": [],
+      "subject": "Re: Winsmiths — what I found testing winsmiths.com",
+      "words": 113,
+      "scheduledFor": "2026-11-18",
+      "scheduledForLong": "18 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/winsmiths/email-2-followup-1.md"
+    },
+    {
+      "step": 3,
+      "id": "followup-2",
+      "purpose": "show the outcome, make the next step concrete",
+      "attachments": [],
+      "subject": "Re: Winsmiths — what a fixed version looks like",
+      "words": 121,
+      "scheduledFor": "2026-11-21",
+      "scheduledForLong": "21 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/winsmiths/email-3-followup-2.md"
+    },
+    {
+      "step": 4,
+      "id": "followup-3-final",
+      "purpose": "final mail, leave the door open, no pressure",
+      "attachments": [],
+      "subject": "Closing the loop — Winsmiths",
+      "words": 98,
+      "scheduledFor": "2026-11-24",
+      "scheduledForLong": "24 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/winsmiths/email-4-followup-3-final.md"
+    }
+  ]
+}

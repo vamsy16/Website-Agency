@@ -1,0 +1,25 @@
+{
+  "name": "Winsmiths",
+  "domain": "winsmiths.com",
+  "city": null,
+  "state": "Andhra Pradesh",
+  "email": "info@winsmiths.com",
+  "phone": null,
+  "ref": "SP-AUD-2026-11-15-W",
+  "date": "2026-11-15",
+  "overall": 72,
+  "scores": {
+    "speed": 5,
+    "mobile": 7,
+    "conversion": 8,
+    "design": 10,
+    "seo": 8,
+    "overall": 72
+  },
+  "pdf": "Smart-Pursuit-Audit-Winsmiths.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://www.winsmiths.com/",
+    "checkedAt": "2026-11-15"
+  }
+}

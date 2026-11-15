@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-15T12:54:29.435Z",
+  "updatedAt": "2026-11-15T13:24:15.360Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -385,6 +385,150 @@
         "html": "reports/sri-ramadas-motor-transport-ltd/report.html"
       },
       "fingerprint": "cfbe0b63bcde1441"
+    },
+    {
+      "domain": "drandalslakshmifertilityclinic.com",
+      "name": "Lakshmi Fertility Research and Laparoscopic Surgical Center",
+      "ref": "SP-AUD-2026-11-15-LFR",
+      "generatedAt": "2026-11-15T13:10:24.842Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 2,
+        "mobile": 5,
+        "conversion": 10,
+        "design": 10,
+        "seo": 9,
+        "overall": 65
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2123532,
+      "files": {
+        "pdf": "reports/lakshmi-fertility-research-and-laparoscopic-surgical-center/Smart-Pursuit-Audit-Lakshmi-Fertility-Research-and-Laparoscopic-Surgical-Center.pdf",
+        "audit": "reports/lakshmi-fertility-research-and-laparoscopic-surgical-center/audit.json",
+        "html": "reports/lakshmi-fertility-research-and-laparoscopic-surgical-center/report.html"
+      },
+      "fingerprint": "c35081fd5405adc5"
+    },
+    {
+      "domain": "sriramachandrahospital.com",
+      "name": "Sri Ramachandra Children and Dental Hospital",
+      "ref": "SP-AUD-2026-11-15-SRC",
+      "generatedAt": "2026-11-15T13:11:43.347Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 3,
+        "mobile": 7,
+        "conversion": 8,
+        "design": 10,
+        "seo": 9,
+        "overall": 67
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2385524,
+      "files": {
+        "pdf": "reports/sri-ramachandra-children-and-dental-hospital/Smart-Pursuit-Audit-Sri-Ramachandra-Children-and-Dental-Hospital.pdf",
+        "audit": "reports/sri-ramachandra-children-and-dental-hospital/audit.json",
+        "html": "reports/sri-ramachandra-children-and-dental-hospital/report.html"
+      },
+      "fingerprint": "5511ccfbefdb44c9"
+    },
+    {
+      "domain": "anoos.com",
+      "name": "Anoos Beauty Clinic",
+      "ref": "SP-AUD-2026-11-15-ABC",
+      "generatedAt": "2026-11-15T13:15:24.449Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 2,
+        "mobile": 8,
+        "conversion": 10,
+        "design": 6,
+        "seo": 8,
+        "overall": 64
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1972609,
+      "files": {
+        "pdf": "reports/anoos-beauty-clinic/Smart-Pursuit-Audit-Anoos-Beauty-Clinic.pdf",
+        "audit": "reports/anoos-beauty-clinic/audit.json",
+        "html": "reports/anoos-beauty-clinic/report.html"
+      },
+      "fingerprint": "b53ee04c9c9d7f58"
+    },
+    {
+      "domain": "winsmiths.com",
+      "name": "Winsmiths",
+      "ref": "SP-AUD-2026-11-15-W",
+      "generatedAt": "2026-11-15T13:17:49.430Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 7,
+        "conversion": 8,
+        "design": 10,
+        "seo": 8,
+        "overall": 72
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2595274,
+      "files": {
+        "pdf": "reports/winsmiths/Smart-Pursuit-Audit-Winsmiths.pdf",
+        "audit": "reports/winsmiths/audit.json",
+        "html": "reports/winsmiths/report.html"
+      },
+      "fingerprint": "f79a3beeb436ba88"
+    },
+    {
+      "domain": "vizagwaterworld.com",
+      "name": "Vizag Water World",
+      "ref": "SP-AUD-2026-11-15-VWW",
+      "generatedAt": "2026-11-15T13:22:18.929Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 8,
+        "conversion": 8,
+        "design": 10,
+        "seo": 8,
+        "overall": 74
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2975439,
+      "files": {
+        "pdf": "reports/vizag-water-world/Smart-Pursuit-Audit-Vizag-Water-World.pdf",
+        "audit": "reports/vizag-water-world/audit.json",
+        "html": "reports/vizag-water-world/report.html"
+      },
+      "fingerprint": "a28228dd881e0491"
+    },
+    {
+      "domain": "goldenglobeoverseas.com",
+      "name": "Golden Globe Overseas Consultants",
+      "ref": "SP-AUD-2026-11-15-GGO",
+      "generatedAt": "2026-11-15T13:24:15.360Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 6,
+        "conversion": 7,
+        "design": 9,
+        "seo": 9,
+        "overall": 67
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1331995,
+      "files": {
+        "pdf": "reports/golden-globe-overseas-consultants/Smart-Pursuit-Audit-Golden-Globe-Overseas-Consultants.pdf",
+        "audit": "reports/golden-globe-overseas-consultants/audit.json",
+        "html": "reports/golden-globe-overseas-consultants/report.html"
+      },
+      "fingerprint": "0664ef753323218a"
     }
   ]
 }

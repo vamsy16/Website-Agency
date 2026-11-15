@@ -1,0 +1,25 @@
+{
+  "name": "Golden Globe Overseas Consultants",
+  "domain": "goldenglobeoverseas.com",
+  "city": null,
+  "state": "Andhra Pradesh",
+  "email": "info@goldenglobeoverseas.com",
+  "phone": null,
+  "ref": "SP-AUD-2026-11-15-GGO",
+  "date": "2026-11-15",
+  "overall": 67,
+  "scores": {
+    "speed": 5,
+    "mobile": 6,
+    "conversion": 7,
+    "design": 9,
+    "seo": 9,
+    "overall": 67
+  },
+  "pdf": "Smart-Pursuit-Audit-Golden-Globe-Overseas-Consultants.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://goldenglobeoverseas.com/",
+    "checkedAt": "2026-11-15"
+  }
+}

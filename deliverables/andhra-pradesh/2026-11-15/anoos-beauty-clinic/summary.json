@@ -1,0 +1,25 @@
+{
+  "name": "Anoos Beauty Clinic",
+  "domain": "anoos.com",
+  "city": null,
+  "state": "Andhra Pradesh",
+  "email": "customercare@anoos.com",
+  "phone": null,
+  "ref": "SP-AUD-2026-11-15-ABC",
+  "date": "2026-11-15",
+  "overall": 64,
+  "scores": {
+    "speed": 2,
+    "mobile": 8,
+    "conversion": 10,
+    "design": 6,
+    "seo": 8,
+    "overall": 64
+  },
+  "pdf": "Smart-Pursuit-Audit-Anoos-Beauty-Clinic.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://www.anoos.com/",
+    "checkedAt": "2026-11-15"
+  }
+}
