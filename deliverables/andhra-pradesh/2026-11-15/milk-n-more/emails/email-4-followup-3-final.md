@@ -1,6 +1,6 @@
 <!-- DRAFT — not sent. Sent by the operator only. -->
 
-**To:** (operator fills in the published business address)
+**To:** care@milknmore.org
 **Subject:** Closing the loop — Milk n More
 **Send:** 24 November 2026
 **Attachments:** none

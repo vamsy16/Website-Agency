@@ -3,7 +3,7 @@
   "domain": "krishnadental.in",
   "city": "Gudivada",
   "state": "Andhra Pradesh",
-  "email": null,
+  "email": "vidya@krishnadental.in",
   "phone": "+91 86742 44241",
   "ref": "SP-AUD-2026-11-15-KMD",
   "date": "2026-11-15",
@@ -16,5 +16,10 @@
     "seo": 10,
     "overall": 83
   },
-  "pdf": "Smart-Pursuit-Audit-Krishna-Multispeciality-Dental-Clinic.pdf"
+  "pdf": "Smart-Pursuit-Audit-Krishna-Multispeciality-Dental-Clinic.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://www.krishnadental.in/",
+    "checkedAt": "2026-11-15"
+  }
 }

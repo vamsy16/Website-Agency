@@ -1,7 +1,7 @@
 <!-- DRAFT — not sent. Sent by the operator only. -->
 
-**To:** (operator fills in the published business address)
-**Subject:** Re: Krishna Multispeciality Dental Clinic — one page is losing the enquiries
+**To:** vidya@krishnadental.in
+**Subject:** Re: Krishna Multispeciality Dental Clinic — what I found testing krishnadental.in
 **Send:** 18 November 2026
 **Attachments:** none
 
@@ -11,9 +11,9 @@ Hi there,
 
 Following up once, briefly.
 
-Your page is fast on a phone (96/100, main image in 1.7 s) — that part is done well. What is left is getting a visitor from the page to a booking.
+The quickest win in the audit is the first item: There is no way to book an appointment from the homepage.
 
-The point is simple: every visit that lands there and cannot book is a visit you already paid for, in time or in ads.
+None of this needs a new design. The fix list in the audit is in the order that pays back fastest, and the first item takes half a day.
 
 The 10-page audit in my last email has the evidence. Happy to walk through it on a call, or to send it to whoever looks after the site.
 

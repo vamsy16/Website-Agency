@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-15-KMD",
   "domain": "krishnadental.in",
-  "verifiedAt": "2026-11-15T10:39:21.415Z",
+  "verifiedAt": "2026-11-15T12:32:57.284Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/krishna-multispeciality-dental-clinic/2026-11-15T10-38-31-634Z.json",
+      "detail": "raw measurement: data/raw/krishna-multispeciality-dental-clinic/2026-11-15T12-32-15-246Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 15/11/2026, 4:08:31 pm",
+      "detail": "measurement timestamp: 15/11/2026, 6:02:15 pm",
       "severity": "ok"
     },
     {
@@ -137,7 +137,7 @@
     {
       "id": "pdf.size",
       "ok": true,
-      "detail": "1.11 MB",
+      "detail": "1.84 MB",
       "severity": "ok"
     },
     {

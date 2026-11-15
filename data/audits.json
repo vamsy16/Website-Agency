@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-15T12:13:48.037Z",
+  "updatedAt": "2026-11-15T12:41:27.029Z",
   "audits": [
     {
       "domain": "krishnadental.in",
       "name": "Krishna Multispeciality Dental Clinic",
       "ref": "SP-AUD-2026-11-15-KMD",
-      "generatedAt": "2026-11-15T10:39:21.415Z",
+      "generatedAt": "2026-11-15T12:32:57.284Z",
       "status": "complete",
       "mode": "live",
       "scores": {
@@ -18,7 +18,7 @@
         "overall": 83
       },
       "pdfPages": 10,
-      "pdfBytes": 1168227,
+      "pdfBytes": 1933614,
       "files": {
         "pdf": "reports/krishna-multispeciality-dental-clinic/Smart-Pursuit-Audit-Krishna-Multispeciality-Dental-Clinic.pdf",
         "audit": "reports/krishna-multispeciality-dental-clinic/audit.json",
@@ -30,31 +30,31 @@
       "domain": "milknmore.org",
       "name": "Milk n More",
       "ref": "SP-AUD-2026-11-15-MNM",
-      "generatedAt": "2026-11-15T10:40:12.695Z",
+      "generatedAt": "2026-11-15T12:32:15.009Z",
       "status": "complete",
       "mode": "live",
       "scores": {
         "speed": 4,
         "mobile": 7,
         "conversion": 8,
-        "design": 8,
+        "design": 10,
         "seo": 9,
-        "overall": 67
+        "overall": 70
       },
       "pdfPages": 10,
-      "pdfBytes": 4652117,
+      "pdfBytes": 4655223,
       "files": {
         "pdf": "reports/milk-n-more/Smart-Pursuit-Audit-Milk-n-More.pdf",
         "audit": "reports/milk-n-more/audit.json",
         "html": "reports/milk-n-more/report.html"
       },
-      "fingerprint": "10fa57d98f0b8831"
+      "fingerprint": "64486094b35255e3"
     },
     {
       "domain": "hanumanshillrock.com",
       "name": "Hanuman's Hill Rock Cafe & Restaurant",
       "ref": "SP-AUD-2026-11-15-HHR",
-      "generatedAt": "2026-11-15T10:49:36.565Z",
+      "generatedAt": "2026-11-15T12:33:44.609Z",
       "status": "complete",
       "mode": "live",
       "scores": {
@@ -66,7 +66,7 @@
         "overall": 87
       },
       "pdfPages": 10,
-      "pdfBytes": 3689737,
+      "pdfBytes": 3744796,
       "files": {
         "pdf": "reports/hanuman-s-hill-rock-cafe-and-restaurant/Smart-Pursuit-Audit-Hanuman-s-Hill-Rock-Cafe-Restaurant.pdf",
         "audit": "reports/hanuman-s-hill-rock-cafe-and-restaurant/audit.json",
@@ -241,6 +241,126 @@
         "html": "reports/indian-red-cross-society-blood-bank-kakinada/report.html"
       },
       "fingerprint": "50c86ce6bb09b35c"
+    },
+    {
+      "domain": "majjiexportimport.linker.store",
+      "name": "Majji Export Import",
+      "ref": "SP-AUD-2026-11-15-MEI",
+      "generatedAt": "2026-11-15T12:35:56.727Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 9,
+        "conversion": 10,
+        "design": 10,
+        "seo": 8,
+        "overall": 81
+      },
+      "pdfPages": 10,
+      "pdfBytes": 3809577,
+      "files": {
+        "pdf": "reports/majji-export-import/Smart-Pursuit-Audit-Majji-Export-Import.pdf",
+        "audit": "reports/majji-export-import/audit.json",
+        "html": "reports/majji-export-import/report.html"
+      },
+      "fingerprint": "e441cf678db72efd"
+    },
+    {
+      "domain": "itchotels.com",
+      "name": "Hotel Sree Kanya INN",
+      "ref": "SP-AUD-2026-11-15-HSK",
+      "generatedAt": "2026-11-15T12:37:32.667Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 2,
+        "mobile": 7,
+        "conversion": 8,
+        "design": 8,
+        "seo": 6,
+        "overall": 58
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2288656,
+      "files": {
+        "pdf": "reports/hotel-sree-kanya-inn/Smart-Pursuit-Audit-Hotel-Sree-Kanya-INN.pdf",
+        "audit": "reports/hotel-sree-kanya-inn/audit.json",
+        "html": "reports/hotel-sree-kanya-inn/report.html"
+      },
+      "fingerprint": "4060aaac31cc9b6a"
+    },
+    {
+      "domain": "krishnaivf.com",
+      "name": "Krishna Hospital",
+      "ref": "SP-AUD-2026-11-15-KH",
+      "generatedAt": "2026-11-15T12:38:46.999Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 6,
+        "conversion": 7,
+        "design": 8,
+        "seo": 10,
+        "overall": 67
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1668955,
+      "files": {
+        "pdf": "reports/krishna-hospital/Smart-Pursuit-Audit-Krishna-Hospital.pdf",
+        "audit": "reports/krishna-hospital/audit.json",
+        "html": "reports/krishna-hospital/report.html"
+      },
+      "fingerprint": "27b04abee70d61ec"
+    },
+    {
+      "domain": "srisaipvrhospitals.in",
+      "name": "Sri Sai P.V.R. Hospitals",
+      "ref": "SP-AUD-2026-11-15-SSP",
+      "generatedAt": "2026-11-15T12:39:57.261Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 4,
+        "mobile": 8,
+        "conversion": 7,
+        "design": 6,
+        "seo": 9,
+        "overall": 64
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2317534,
+      "files": {
+        "pdf": "reports/sri-sai-p-v-r-hospitals/Smart-Pursuit-Audit-Sri-Sai-P.V.R.-Hospitals.pdf",
+        "audit": "reports/sri-sai-p-v-r-hospitals/audit.json",
+        "html": "reports/sri-sai-p-v-r-hospitals/report.html"
+      },
+      "fingerprint": "ff903d48c1231c03"
+    },
+    {
+      "domain": "orangetravels.in",
+      "name": "Orange Tours & Travels",
+      "ref": "SP-AUD-2026-11-15-OT&",
+      "generatedAt": "2026-11-15T12:41:27.029Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 4,
+        "mobile": 7,
+        "conversion": 10,
+        "design": 9,
+        "seo": 8,
+        "overall": 72
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2241143,
+      "files": {
+        "pdf": "reports/orange-tours-and-travels/Smart-Pursuit-Audit-Orange-Tours-Travels.pdf",
+        "audit": "reports/orange-tours-and-travels/audit.json",
+        "html": "reports/orange-tours-and-travels/report.html"
+      },
+      "fingerprint": "7bbed64b4aeb11c5"
     }
   ]
 }

@@ -1,6 +1,6 @@
 <!-- DRAFT — not sent. Sent by the operator only. -->
 
-**To:** (operator fills in the published business address)
+**To:** welcome@hanumanshillrock.com
 **Subject:** Hanuman's Hill Rock Cafe & Restaurant — what I found testing hanumanshillrock.com
 **Send:** 15 November 2026
 **Attachments:** reports/hanuman-s-hill-rock-cafe-and-restaurant/Smart-Pursuit-Audit-Hanuman-s-Hill-Rock-Cafe-Restaurant.pdf
@@ -13,8 +13,8 @@ I ran the same tests Google runs on hanumanshillrock.com and put the results in 
 
 Two things stood out:
 
-1. There is no way to book a table or send an enquiry from the homepage — no form, no tap-to-call link and no WhatsApp button.
-2. 2 JavaScript errors on the homepage. Errors like these can stop menus or buttons working on some phones, and nobody notices until a guest gives up.
+1. There is no enquiry form on the homepage. A phone call or WhatsApp suits a customer who is already sure.
+2. 0 third-party cookies and 2 JavaScript errors on a business site. Ad and analytics pixels are pure weight on a page that is already slow, and each one is a privacy question for the visitor.
 
 The full report has the measurements, screenshots and an eight-item fix list in payback order. No estimates — every figure was taken from your live site.
 

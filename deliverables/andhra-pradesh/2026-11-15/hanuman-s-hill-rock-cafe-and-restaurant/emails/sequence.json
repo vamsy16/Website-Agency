@@ -2,13 +2,14 @@
   "business": "Hanuman's Hill Rock Cafe & Restaurant",
   "domain": "hanumanshillrock.com",
   "ref": "SP-AUD-2026-11-15-HHR",
-  "createdAt": "2026-11-15T10:49:36.569Z",
+  "createdAt": "2026-11-15T12:33:44.612Z",
   "sendDate": "2026-11-15",
   "cadenceDays": [
     3,
     3,
     3
   ],
+  "to": "welcome@hanumanshillrock.com",
   "status": "draft",
   "neverSendAutomatically": true,
   "note": "Dates shift if the operator sends email 1 on a different day — recompute with `sequence --send-date YYYY-MM-DD`.",
@@ -20,8 +21,8 @@
       "attachments": [
         "reports/hanuman-s-hill-rock-cafe-and-restaurant/Smart-Pursuit-Audit-Hanuman-s-Hill-Rock-Cafe-Restaurant.pdf"
       ],
-      "subject": "Hanuman's Hill Rock Cafe & Restaurant — the enquiry form on your site is broken",
-      "words": 143,
+      "subject": "Hanuman's Hill Rock Cafe & Restaurant — what I found testing hanumanshillrock.com",
+      "words": 142,
       "scheduledFor": "2026-11-15",
       "scheduledForLong": "15 November 2026",
       "status": "draft",
@@ -32,10 +33,10 @@
     {
       "step": 2,
       "id": "followup-1",
-      "purpose": "convert the bug into a money argument",
+      "purpose": "turn the top measured finding into a money argument",
       "attachments": [],
-      "subject": "Re: Hanuman's Hill Rock Cafe & Restaurant — one page is losing the enquiries",
-      "words": 124,
+      "subject": "Re: Hanuman's Hill Rock Cafe & Restaurant — what I found testing hanumanshillrock.com",
+      "words": 104,
       "scheduledFor": "2026-11-18",
       "scheduledForLong": "18 November 2026",
       "status": "draft",

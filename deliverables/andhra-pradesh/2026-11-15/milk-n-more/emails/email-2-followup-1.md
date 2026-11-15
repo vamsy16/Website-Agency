@@ -1,7 +1,7 @@
 <!-- DRAFT — not sent. Sent by the operator only. -->
 
-**To:** (operator fills in the published business address)
-**Subject:** Re: Milk n More — one page is losing the enquiries
+**To:** care@milknmore.org
+**Subject:** Re: Milk n More — what I found testing milknmore.org
 **Send:** 18 November 2026
 **Attachments:** none
 
@@ -11,9 +11,9 @@ Hi there,
 
 Following up once, briefly.
 
-The page reaches a visitor in 11.6 s on a phone. By then a good share of them have gone. The fix is not a redesign — it is delivery.
+Your homepage takes 13.0 s to show its main content on a phone. Google’s target is 2.5 s, and a good share of visitors leave before then.
 
-The point is simple: every visit that lands there and cannot book is a visit you already paid for, in time or in ads.
+None of this needs a new design. The fix list in the audit is in the order that pays back fastest, and the first item takes half a day.
 
 The 10-page audit in my last email has the evidence. Happy to walk through it on a call, or to send it to whoever looks after the site.
 

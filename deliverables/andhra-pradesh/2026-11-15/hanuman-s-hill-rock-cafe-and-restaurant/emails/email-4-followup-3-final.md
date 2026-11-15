@@ -1,6 +1,6 @@
 <!-- DRAFT — not sent. Sent by the operator only. -->
 
-**To:** (operator fills in the published business address)
+**To:** welcome@hanumanshillrock.com
 **Subject:** Closing the loop — Hanuman's Hill Rock Cafe & Restaurant
 **Send:** 24 November 2026
 **Attachments:** none

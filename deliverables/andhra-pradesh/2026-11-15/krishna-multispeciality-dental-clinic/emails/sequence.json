@@ -2,13 +2,14 @@
   "business": "Krishna Multispeciality Dental Clinic",
   "domain": "krishnadental.in",
   "ref": "SP-AUD-2026-11-15-KMD",
-  "createdAt": "2026-11-15T10:39:21.419Z",
+  "createdAt": "2026-11-15T12:32:57.289Z",
   "sendDate": "2026-11-15",
   "cadenceDays": [
     3,
     3,
     3
   ],
+  "to": "vidya@krishnadental.in",
   "status": "draft",
   "neverSendAutomatically": true,
   "note": "Dates shift if the operator sends email 1 on a different day — recompute with `sequence --send-date YYYY-MM-DD`.",
@@ -20,7 +21,7 @@
       "attachments": [
         "reports/krishna-multispeciality-dental-clinic/Smart-Pursuit-Audit-Krishna-Multispeciality-Dental-Clinic.pdf"
       ],
-      "subject": "Krishna Multispeciality Dental Clinic — the enquiry form on your site is broken",
+      "subject": "Krishna Multispeciality Dental Clinic — what I found testing krishnadental.in",
       "words": 127,
       "scheduledFor": "2026-11-15",
       "scheduledForLong": "15 November 2026",
@@ -32,10 +33,10 @@
     {
       "step": 2,
       "id": "followup-1",
-      "purpose": "convert the bug into a money argument",
+      "purpose": "turn the top measured finding into a money argument",
       "attachments": [],
-      "subject": "Re: Krishna Multispeciality Dental Clinic — one page is losing the enquiries",
-      "words": 124,
+      "subject": "Re: Krishna Multispeciality Dental Clinic — what I found testing krishnadental.in",
+      "words": 107,
       "scheduledFor": "2026-11-18",
       "scheduledForLong": "18 November 2026",
       "status": "draft",

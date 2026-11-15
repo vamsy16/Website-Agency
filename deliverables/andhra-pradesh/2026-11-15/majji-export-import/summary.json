@@ -1,0 +1,25 @@
+{
+  "name": "Majji Export Import",
+  "domain": "majjiexportimport.linker.store",
+  "city": "Tarluvada",
+  "state": "Andhra Pradesh",
+  "email": "majjiexportimport@gmail.com",
+  "phone": "+91-9133330056",
+  "ref": "SP-AUD-2026-11-15-MEI",
+  "date": "2026-11-15",
+  "overall": 81,
+  "scores": {
+    "speed": 5,
+    "mobile": 9,
+    "conversion": 10,
+    "design": 10,
+    "seo": 8,
+    "overall": 81
+  },
+  "pdf": "Smart-Pursuit-Audit-Majji-Export-Import.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://majjiexportimport.linker.store/",
+    "checkedAt": "2026-11-15"
+  }
+}

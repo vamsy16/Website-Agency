@@ -1,6 +1,6 @@
 <!-- DRAFT — not sent. Sent by the operator only. -->
 
-**To:** (operator fills in the published business address)
+**To:** vidya@krishnadental.in
 **Subject:** Re: Krishna Multispeciality Dental Clinic — what a fixed version looks like
 **Send:** 21 November 2026
 **Attachments:** none
@@ -11,7 +11,7 @@ Hi there,
 
 One more thing that might be more useful than the report.
 
-Your mobile performance score is already 96/100, so none of this is about speed. The eight items on page 8 of the audit cover booking, page length and tap targets, in the order that pays back fastest, and none of them require a new design.
+Your mobile performance score is 97/100. The eight items on page 8 of the audit are the route to 90+, in the order that pays back fastest, and none of them require a new design.
 
 I am not asking you to commit to anything. If you would rather hand the list to your own developer, the audit is yours to keep — the measurements are the hard part and they are already done.
 

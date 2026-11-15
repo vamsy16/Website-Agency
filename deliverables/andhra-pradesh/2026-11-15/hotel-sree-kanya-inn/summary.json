@@ -1,0 +1,25 @@
+{
+  "name": "Hotel Sree Kanya INN",
+  "domain": "itchotels.com",
+  "city": null,
+  "state": "Andhra Pradesh",
+  "email": "innsreekanya@fortunehotels.in",
+  "phone": "1-800-102-2333",
+  "ref": "SP-AUD-2026-11-15-HSK",
+  "date": "2026-11-15",
+  "overall": 58,
+  "scores": {
+    "speed": 2,
+    "mobile": 7,
+    "conversion": 8,
+    "design": 8,
+    "seo": 6,
+    "overall": 58
+  },
+  "pdf": "Smart-Pursuit-Audit-Hotel-Sree-Kanya-INN.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://www.itchotels.com/in/en/fortuneinnsreekanya-visakhapatnam",
+    "checkedAt": "2026-11-15"
+  }
+}

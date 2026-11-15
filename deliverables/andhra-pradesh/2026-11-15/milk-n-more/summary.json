@@ -7,19 +7,19 @@
   "phone": "+91 7989889297",
   "ref": "SP-AUD-2026-11-15-MNM",
   "date": "2026-11-15",
-  "overall": 67,
+  "overall": 70,
   "scores": {
     "speed": 4,
     "mobile": 7,
     "conversion": 8,
-    "design": 8,
+    "design": 10,
     "seo": 9,
-    "overall": 67
+    "overall": 70
   },
   "pdf": "Smart-Pursuit-Audit-Milk-n-More.pdf",
   "emailCheck": {
-    "status": "not confirmed",
-    "note": "Not shown on milknmore.org homepage; same domain as the website",
+    "status": "confirmed",
+    "note": "published on https://milknmore.org/",
     "checkedAt": "2026-11-15"
   }
 }
