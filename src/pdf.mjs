@@ -1,20 +1,13 @@
 // HTML -> A4 PDF. Refuses to hand back a file it has not counted the pages of.
 import fs from "node:fs";
 import path from "node:path";
-import { ensureDir, findChrome, log } from "./util.mjs";
-
-async function loadPlaywrightChromium() {
-  const { chromium: pw } = await import("playwright-core");
-  return pw;
-}
+import { ensureDir, log } from "./util.mjs";
+import { resolveBrowser, launchOptions } from "./browser.mjs";
 
 export async function htmlToPdf({ htmlFile, pdfFile, expectPages = 10 }) {
-  const chromium = await loadPlaywrightChromium();
-  const browser = await chromium.launch({
-    executablePath: findChrome(),
-    headless: true,
-    args: ["--no-sandbox", "--font-render-hinting=none", "--disable-lcd-text"],
-  });
+  const resolved = await resolveBrowser();
+  const { chromium } = resolved;
+  const browser = await chromium.launch(launchOptions(resolved, { args: ["--no-sandbox", "--font-render-hinting=none", "--disable-lcd-text"] }));
   ensureDir(path.dirname(pdfFile));
   const errors = [];
   try {

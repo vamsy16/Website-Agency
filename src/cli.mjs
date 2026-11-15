@@ -15,7 +15,8 @@ import {
 } from "./util.mjs";
 import { loadSettings, resolveState } from "./config.mjs";
 import { checkAudit, recordAudit, statusSummary, pendingLeads, updateLead } from "./dedupe.mjs";
-import { fetchLeads, OSM_ATTRIBUTION } from "./leads.mjs";
+import { fetchLeads, OSM_ATTRIBUTION, overpassEndpoints, stateBbox } from "./leads.mjs";
+import { resolveBrowser, describeBrowser, BrowserError } from "./browser.mjs";
 import { measureSite } from "./measure.mjs";
 import { computeScores, buildFacts, deriveFindings, deriveAlsoItems } from "./findings.mjs";
 import { renderReport } from "./render.mjs";
@@ -38,11 +39,16 @@ Smart Pursuit Agency OS
   node src/cli.mjs sequence --audit reports/<slug>/audit.json [--send-date 2026-11-10]
   node src/cli.mjs verify   --audit reports/<slug>/audit.json [--live] [--fixture]
   node src/cli.mjs status
+  node src/cli.mjs doctor   [--state "Andhra Pradesh"] [--json] [--no-install]
   node src/cli.mjs selftest
 
   run is the daily driver: it fetches leads for a state, then audits only the ones
   that have not been audited before. Run it as often as you like; a second run on
   the same day finds nothing new to do.
+
+  doctor answers "can this machine run a run?" — it finds or installs a browser,
+  probes every Overpass mirror and checks the state boundary. Run it first on a
+  fresh machine; it never asks you for a list of businesses.
 
 Nothing in this tool sends email. The audit command never builds a demo website.
 `);
@@ -62,13 +68,17 @@ async function cmdLeads() {
     csv: csv === true ? null : csv,
     useOverpass: !hasFlag(argv, "--no-overpass"),
     usePlaces: !hasFlag(argv, "--no-places"),
+    broad: !hasFlag(argv, "--no-broad"),
   });
-  console.log(`\n  ${result.state} · ${result.niches.join(", ")}`);
+  console.log(`\n  ${result.state} · ${result.broad ? "any business with a website" : result.niches.join(", ")}`);
   console.log(`  added ${result.added} new lead(s), skipped ${result.skipped} (duplicates / no website)`);
   for (const note of result.notes) console.log(`    · ${note}`);
   if (result.leads.length) {
     console.log("\n  New leads:");
-    for (const l of result.leads.slice(0, 25)) console.log(`    ${l.name} — ${l.domain}${l.city ? ` · ${l.city}` : ""}`);
+    for (const l of result.leads.slice(0, 25)) {
+      const label = l.nicheLabel ? ` · ${l.nicheLabel}` : "";
+      console.log(`    ${l.name} — ${l.domain}${l.city ? ` · ${l.city}` : ""}${label}`);
+    }
   }
   if (result.notes.some(n => n.startsWith("openstreetmap"))) console.log(`\n  ${OSM_ATTRIBUTION}`);
   console.log(`\n  Batch written to ${result.batchFile}\n`);
@@ -162,6 +172,7 @@ function leadToBusiness(lead, settings) {
     city: lead.city || null,
     state: lead.state || null,
     niche: lead.niche || null,
+    nicheLabel: lead.nicheLabel || null,
     contactName: lead.contactName || lead.name,
     contactPage: lead.contactPage || website.replace(/\/$/, "") + "/contact/",
     phone: lead.phone || null,
@@ -224,6 +235,9 @@ async function runAudit({
     try {
       raw = await measureSite(business.url, { slug: businessSlug, skipLighthouse });
     } catch (err) {
+      if (err instanceof BrowserError) {
+        throw new AuditError("no-browser", `No browser available to measure ${business.domain}: ${err.message}\n  ${(err.fix || []).join("\n  ")}`);
+      }
       throw new AuditError("failed", `Measurement failed: ${err.message}`);
     }
     if (raw.mobile?.status !== 200) {
@@ -386,6 +400,140 @@ async function cmdAudit() {
   }
 }
 
+// ------------------------------------------------------------------ doctor
+/** Probes one Overpass mirror with a cheap, valid query. */
+async function probeOverpass(url, timeoutMs = 25_000) {
+  const started = Date.now();
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "content-type": "application/x-www-form-urlencoded", "user-agent": "smart-pursuit-agency-os/1.1" },
+      body: "data=" + encodeURIComponent("[out:json][timeout:15];node(1);out;"),
+      signal: AbortSignal.timeout(timeoutMs),
+    });
+    const ms = Date.now() - started;
+    if (!res.ok) return { url, ok: false, detail: `HTTP ${res.status}`, ms };
+    const data = await res.json();
+    const ok = Array.isArray(data.elements);
+    return { url, ok, detail: ok ? "answered" : "answered without an elements array", ms };
+  } catch (err) {
+    const ms = Date.now() - started;
+    return { url, ok: false, detail: err.name === "TimeoutError" ? `timed out after ${timeoutMs / 1000}s` : err.message, ms };
+  }
+}
+
+/**
+ * "Can this machine run a run?" — answers it, and fixes what it may fix.
+ *
+ *   node src/cli.mjs doctor
+ *   node src/cli.mjs doctor --state "Andhra Pradesh"
+ *   node src/cli.mjs doctor --json
+ *
+ * It never asks the operator for a list of businesses. If every lead source is
+ * unreachable it says so, with the mirrors it tried, because the next run would
+ * hit the same wall.
+ */
+async function cmdDoctor() {
+  const asJson = hasFlag(argv, "--json");
+  const stateArg = argValue(argv, "--state");
+  const checks = [];
+  const fixes = [];
+  const add = (id, ok, detail, fix = null) => {
+    checks.push({ id, ok, detail });
+    if (ok === false && fix) fixes.push(fix);
+    return ok;
+  };
+
+  // ---- node ----
+  const major = Number(process.versions.node.split(".")[0]);
+  add("node", major >= 20, `node ${process.versions.node} (needs 20+)`, "install Node 20 or newer");
+
+  // ---- playwright package ----
+  let pkg = null;
+  for (const name of ["playwright", "playwright-core"]) {
+    try { await import(name); pkg = name; break; } catch {}
+  }
+  add("playwright", !!pkg, pkg ? `"${pkg}" is installed` : "neither playwright nor playwright-core is installed", "npm install");
+
+  // ---- browser ----
+  let browser = null;
+  let browserError = null;
+  if (pkg) {
+    try {
+      browser = await resolveBrowser({ install: !hasFlag(argv, "--no-install") });
+      add("browser", true, describeBrowser(browser));
+    } catch (err) {
+      browserError = err;
+      add("browser", false, err.message, (err.fix || []).join(" | "));
+    }
+  } else {
+    add("browser", false, "skipped: no playwright package", "npm install");
+  }
+
+  // ---- lead sources ----
+  const endpoints = overpassEndpoints();
+  const probes = await Promise.all(endpoints.map(url => probeOverpass(url)));
+  const working = probes.filter(p => p.ok);
+  add("overpass", working.length > 0,
+    working.length ? `${working[0].url.replace(/\/api\/interpreter$/, "")} answered (${working.length}/${probes.length} mirrors up)`
+      : `all ${probes.length} mirrors failed`,
+    "set OVERPASS_URL to a reachable mirror, or supply leads another way");
+  for (const p of probes) checks.push({ id: "overpass.mirror", ok: p.ok, detail: `${p.url.replace(/\/api\/interpreter$/, "")} — ${p.detail} (${p.ms} ms)` });
+
+  let nominatim = { ok: false, detail: "not tried" };
+  try {
+    const res = await fetch("https://nominatim.openstreetmap.org/search?q=Andhra%20Pradesh%2C%20India&format=jsonv2&limit=1", {
+      headers: { "user-agent": "smart-pursuit-agency-os/1.1" },
+      signal: AbortSignal.timeout(20_000),
+    });
+    nominatim = { ok: res.ok, detail: `HTTP ${res.status}` };
+  } catch (err) {
+    nominatim = { ok: false, detail: err.name === "TimeoutError" ? "timeout" : err.message };
+  }
+  add("nominatim", nominatim.ok, `boundary lookup: ${nominatim.detail}`, "not fatal: only used when an area-name lookup returns nothing");
+
+  // ---- state ----
+  if (stateArg && stateArg !== true) {
+    try {
+      const state = resolveState(stateArg);
+      let box = null;
+      try { box = await stateBbox(state); } catch (err) { box = { error: err.message }; }
+      add("state", !!box && !box.error,
+        box && !box.error
+          ? `${state.state} resolves to a bounding box (${box.displayName || "named"})`
+          : `${state.state}: ${box.error}`,
+        "check the spelling, or add config/states/<state>.json with a city list");
+    } catch (err) {
+      add("state", false, err.message, 'check the state name, e.g. --state "Andhra Pradesh"');
+    }
+  }
+
+  const ready = checks.every(c => c.ok || c.id === "nominatim" || c.id === "overpass.mirror");
+
+  if (asJson) {
+    console.log(JSON.stringify({ ok: ready, checks, fixes, browser: browser ? describeBrowser(browser) : null }, null, 2));
+    process.exitCode = ready ? 0 : 1;
+    return;
+  }
+
+  console.log("\n  Agency OS — environment check\n");
+  for (const c of checks) {
+    const mark = c.ok === true ? "ok  " : c.ok === false ? "FAIL" : "skip";
+    console.log(`  ${mark}  ${String(c.id).padEnd(16)} ${c.detail}`);
+  }
+
+  if (ready) {
+    console.log(`\n  Ready. Nothing here invents a measurement; the next command does the real work.\n`);
+    console.log(`  next: npm.cmd run run -- --state "${stateArg && stateArg !== true ? stateArg : "Andhra Pradesh"}" --dry-run`);
+    console.log(`  then: npm.cmd run run -- --state "${stateArg && stateArg !== true ? stateArg : "Andhra Pradesh"}"\n`);
+  } else {
+    console.log("\n  Not ready. Fix these, then run this command again:\n");
+    for (const f of fixes) console.log(`    · ${f}`);
+    console.log("");
+    process.exitCode = 1;
+  }
+}
+
 // ------------------------------------------------------------------ run (daily)
 /**
  * The daily driver: one command, one state, no duplicate audits.
@@ -432,25 +580,53 @@ async function cmdRun() {
     draftsWritten: 0,
   };
 
-  console.log(`\n  ${state.state}  ·  ${chosenNiches.join(", ")}${state.configured ? "" : "  (no state config — searching by boundary name)"}`);
+  const broad = !hasFlag(argv, "--no-broad");
+  const feed = broad ? `any business with a website${niches.length ? ` (preferring ${chosenNiches.join(", ")})` : ""}` : chosenNiches.join(", ");
+  console.log(`\n  ${state.state}  ·  ${feed}${state.configured ? "" : "  (no state config — searching by boundary name)"}`);
   if (dryRun) console.log("  dry run: nothing will be fetched or measured");
+
+  // A run cannot measure without a browser, and a fresh sandbox rarely has one.
+  // Resolve it (installing Playwright's Chromium if needed) before doing any
+  // network work, so the operator gets one clear message instead of ten failures.
+  if (dryRun) {
+    try {
+      const r = await resolveBrowser({ install: false });
+      console.log(`  browser   ${describeBrowser(r)}`);
+    } catch {
+      console.log("  browser   none found (dry run — nothing is measured)");
+    }
+  } else {
+    try {
+      const r = await resolveBrowser();
+      console.log(`  browser   ${describeBrowser(r)}`);
+    } catch (err) {
+      die(`No browser available, so nothing can be measured.\n\n  ${err.message}\n\n  Fix:\n    ${(err.fix || []).join("\n    ")}\n\n  Then: node src/cli.mjs doctor`);
+    }
+  }
 
   if (fetchNew && !dryRun) {
     try {
-      const found = await fetchLeads({ stateName: stateArg, niches, limit: leadsLimit, csv: csv === true ? null : csv });
+      const found = await fetchLeads({ stateName: stateArg, niches, limit: leadsLimit, csv: csv === true ? null : csv, broad });
       summary.fetched = { added: found.added, skipped: found.skipped, batchFile: found.batchFile };
       console.log(`  leads     ${found.added} new, ${found.skipped} skipped`);
       for (const note of found.notes) console.log(`    · ${note}`);
+      if (found.added === 0) {
+        console.log("    hint: no new businesses from this pass. `npm run doctor` shows which sources answered;");
+        console.log("          a bigger --leads-limit widens the search, and a new state or month brings new businesses.");
+      }
     } catch (err) {
       summary.fetched = { error: err.message };
       console.log(`  leads     FAILED — ${err.message}`);
       console.log("  continuing with the leads already on file");
+      console.log("  if this keeps happening: npm run doctor");
     }
   }
 
   const pending = pendingLeads({
     state: state.state,
-    niches: chosenNiches,
+    // Only narrow by niche when the operator asked for specific ones. A broad
+    // lead has no niche, and filtering on the default list would silently drop it.
+    niches,
     limit: max,
     cooldownDays,
     maxAttempts,
@@ -602,6 +778,7 @@ switch (command) {
   case "sequence": await cmdSequence(); break;
   case "verify": await cmdVerify(); break;
   case "status": cmdStatus(); break;
+  case "doctor": await cmdDoctor(); break;
   case "selftest": cmdSelftest(); break;
   case undefined:
   case "--help":

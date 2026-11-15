@@ -9,15 +9,12 @@
 //   - no console errors
 import fs from "node:fs";
 import path from "node:path";
-import { findChrome, log } from "./util.mjs";
+import { log } from "./util.mjs";
+import { resolveBrowser, launchOptions } from "./browser.mjs";
 
 export async function qaLayout({ htmlFile, expectPages = 10, toleranceMm = 1.0 }) {
-  const { chromium: pw } = await import("playwright-core");
-  const browser = await pw.launch({
-    executablePath: findChrome(),
-    headless: true,
-    args: ["--no-sandbox", "--font-render-hinting=none"],
-  });
+  const resolved = await resolveBrowser();
+  const browser = await resolved.chromium.launch(launchOptions(resolved, { args: ["--no-sandbox", "--font-render-hinting=none"] }));
   const errors = [];
   const failedRequests = [];
   try {

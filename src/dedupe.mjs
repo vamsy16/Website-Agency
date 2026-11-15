@@ -105,6 +105,8 @@ export function recordLead(lead, meta = {}) {
     state: lead.state || null,
     country: lead.country || null,
     niche: lead.niche || null,
+    nicheLabel: lead.nicheLabel || null,
+    category: lead.category || null,
     address: lead.address || null,
     source: lead.source || "manual",
     sourceUrl: lead.sourceUrl || null,
@@ -195,7 +197,9 @@ export function pendingLeads({ state = null, niches = [], limit = 5, cooldownDay
     if (out.length >= limit) break;
     if (!lead.website) { skipped.noWebsite++; continue; }
     if (stateKey && String(lead.state || "").toLowerCase().trim() !== stateKey) { skipped.wrongState++; continue; }
-    if (nicheKeys.length && !nicheKeys.includes(String(lead.niche || "").toLowerCase().trim())) { skipped.wrongNiche++; continue; }
+    // A lead with no niche was found by the broad search (or came from a CSV).
+    // Unknown is not the same as wrong, so it is kept.
+    if (nicheKeys.length && lead.niche && !nicheKeys.includes(String(lead.niche).toLowerCase().trim())) { skipped.wrongNiche++; continue; }
     if (!["new", "audit-failed"].includes(lead.status || "new")) { skipped.audited++; continue; }
     if ((lead.auditAttempts || 0) >= maxAttempts) { skipped.failedTooOften++; continue; }
     const gate = checkAudit(lead.website, { cooldownDays });

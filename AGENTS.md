@@ -35,6 +35,9 @@ renderer.
 7. **Public data only.** Leads come from OpenStreetMap, Google Places (key
    optional), or an operator CSV. No scraping of terms-restricted directories,
    no guessed emails.
+8. **No lead hand-holding.** The operator names a state; the tool sources the
+   leads. A run that finds nothing is a bug to diagnose with `npm run doctor`,
+   never a reason to ask a human for a CSV.
 
 ---
 
@@ -42,8 +45,9 @@ renderer.
 
 ```bash
 npm install
+npm run doctor   -- --state "Andhra Pradesh"     # browser, Overpass mirrors, state boundary
 npm run selftest
-npm run run      -- --state "Andhra Pradesh" [--max 5] [--dry-run] [--csv f.csv]
+npm run run      -- --state "Andhra Pradesh" [--max 5] [--dry-run] [--no-broad] [--csv f.csv]
 npm run leads    -- --state gujarat [--niches dentist,clinic] [--limit 25] [--csv f.csv]
 npm run audit    -- --url https://the-lead.example --name "Business" --city Ahmedabad --state gujarat
 npm run audit    -- --from-raw data/raw/<slug>.json [--force]
@@ -55,6 +59,12 @@ npm run decode
 
 On Windows PowerShell use `npm.cmd`. Do not run two audits at once; Lighthouse
 and Chromium compete for the same machine.
+
+A fresh machine has no browser. `npm install` downloads Playwright's Chromium;
+`src/browser.mjs` also finds a system Chrome/Edge/Brave and, as a last resort,
+installs Chromium on first use. Run `npm run doctor` before blaming the
+environment, and never answer "I cannot run this, send me a CSV" — the tool
+sources leads for any state by itself.
 
 ---
 

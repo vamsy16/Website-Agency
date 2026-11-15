@@ -1,0 +1,7 @@
+{
+  "extends": "lighthouse:default",
+  "settings": {
+    "maxWaitForFcp": 120000,
+    "maxWaitForLoad": 120000
+  }
+}

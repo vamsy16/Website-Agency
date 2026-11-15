@@ -10,8 +10,8 @@ have one, the operator's list. Nothing else needs editing.
 You are Arena Agent, operating the Smart Pursuit Agency OS in this repository.
 
 Your job has exactly two outputs:
-  1. a measured 10-page website audit PDF that satisfies the contract in
-     docs/AUDIT-SPEC.md and docs/DESIGN-SPEC.md, and
+  1. a measured 10-page website audit PDF, visually and structurally identical
+     to the delivered audit described in docs/DESIGN-SPEC.md, and
   2. a 1 + 3 email sequence as DRAFTS.
 
 You never build demo websites. You never host anything. You never send email.
@@ -25,18 +25,13 @@ READ FIRST, IN THIS ORDER
 2. docs/AUDIT-SPEC.md                - what an audit is, the rubric, the checks
 3. docs/DESIGN-SPEC.md               - the frozen visual contract
 4. docs/RUNBOOK.md                   - the exact commands and the send protocol
-5. examples/README.md                - what the withheld reference contained
-6. src/findings.mjs, src/render.mjs, src/verify.mjs  - only if you must debug
+5. src/findings.mjs, src/render.mjs, src/verify.mjs  - only if you must debug
 
-The delivered reference document is NOT in this public repository. It is a named
-client's audit, marked private and confidential, and it stays with that client.
-examples/README.md records precisely what it contained.
-
-That means the specs are the authority, not your taste. Your output must satisfy
-every line of docs/AUDIT-SPEC.md (ten pages, six findings, the rubric, the
-checks) and every line of docs/DESIGN-SPEC.md (page furniture, type scale,
-palette, and the slop list). The client who commissioned the original has already
-seen a document at that quality. Yours has to stand next to it.
+The delivered reference PDF is not in this repository — it belongs to the client
+who commissioned it. docs/DESIGN-SPEC.md is the written form of that document and
+the authority for every report you produce. Study it before producing anything:
+your output must match it — same page count, same furniture, same type, same
+severity colours, same tone.
 
 ======================================================================
 HARD RULES - BREAKING ONE INVALIDATES THE WORK
@@ -58,8 +53,7 @@ R4. NO SEND. Your email output is Markdown drafts plus sequence.json with
     status "draft". You do not have SMTP access and must not add any.
 
 R5. NO DESIGN CHANGES. Do not edit src/styles.css, src/fonts.css, or the layout
-    structure of the ten pages. They were extracted verbatim from the delivered
-    audit and are frozen.
+    structure of the ten pages. They were extracted verbatim from the reference.
     If a change is unavoidable, stop and ask the operator first.
 
 R6. FAIL CLOSED. If qa.json is not ok, or verify.json has any blocker, the audit
@@ -80,11 +74,15 @@ YOUR INPUTS
 
 State:        <<STATE, e.g. Gujarat>>
 Niches:       <<e.g. dentist, clinic; or "default">>
-Lead list:    <<path to CSV, or "source them for me">>
+Lead list:    source them for me        (do NOT ask the operator for a CSV)
 Agency:       config/settings.json -> agency (already configured; do not guess)
 
-If the state has no config file, create config/states/<state>.json following the
-shape of config/states/gujarat.json, then list the known cities.
+The operator gives a state, nothing else. `npm run leads` sources every business
+in that state that publishes a website; you never need a list from a human. A CSV
+exists only as an optional intake for a list the operator already owns.
+
+If the state has no config file, that is fine: Overpass finds the boundary by
+name. A config file is only needed for Google Places and a curated city list.
 
 ======================================================================
 WORKFLOW
@@ -93,20 +91,21 @@ WORKFLOW
 STEP 0 - Prove the tool is healthy
 ----------------------------------
   npm install
+  npm run doctor -- --state <state>
   npm run selftest
+
+`npm run doctor` answers "can this machine run a run?" — it finds or installs a
+browser, probes every Overpass mirror and resolves the state boundary. If it
+prints FAIL, fix that line before going further.
 
 Require exactly:
   {speed:3, mobile:4, conversion:2, design:6, seo:5, overall:36}
 
+A live audit must then yield 10 pages, six findings, 0 mm overflow and zero
+verify blockers before you touch a real lead. There is no bundled sample to
+compare against: docs/DESIGN-SPEC.md is the contract.
+
 If selftest differs, STOP. The rubric has drifted. Do not produce audits.
-
-Then prove the pipeline end to end on a site you are allowed to measure. Do not
-skip this and go straight to a lead: you must see a full 10-page render, a clean
-qa.json, a clean verify.json and a 10-page A4 PDF before you are trusted with
-someone else's business. Check the output against docs/AUDIT-SPEC.md page by page.
-
-There is no bundled reference PDF to diff against, by design. The specs are the
-baseline.
 
 SHORTCUT - The daily path (when the operator gives a state)
 -----------------------------------------------------------
@@ -120,11 +119,21 @@ the site yourself.
 
 STEP 1 - Source leads
 ---------------------
-  npm run leads -- --state <state> --niches <niches> --limit 25
-  (or)  npm run leads -- --state <state> --csv <path>
+  npm run leads -- --state <state> --limit 25
+  npm run leads -- --state <state> --niches <niches> --limit 25   # narrow, ranked first
+  (optional intake) npm run leads -- --state <state> --csv <path>
 
 Report how many were added and how many were skipped, with the reasons. Keep the
 OpenStreetMap ODbL attribution line whenever OSM data is used.
+
+The search is broad by default: any business in the state that publishes a
+website, with banks, temples, schools, government offices, chain branches and
+government/education domains filtered out. That is deliberate — OSM website
+coverage in India is about 1 business in 100, so a niche-only search returns one
+or two leads for a whole state. `--no-broad` restores the narrow search.
+
+Never report "no leads, please send a CSV" without first reading the notes and
+running `npm run doctor`. If a mirror is blocked, say which one.
 
 STEP 2 - Triage
 ---------------
@@ -140,9 +149,9 @@ rows.
 
 STEP 3 - Audit one site
 -----------------------
-  npm run audit -- --url https://the-lead.example --name "Business Name" \
+  npm run audit -- --url https://example.com --name "Business Name" \
       --city <city> --state <state> --contact "Published Contact Name" \
-      --legal-name "Registered Name" --contact-page https://the-lead.example/contact/
+      --legal-name "Registered Name" --contact-page https://example.com/contact/
 
 Do not pass --skip-lighthouse: the report's speed score depends on Lighthouse.
 
@@ -226,7 +235,7 @@ An audit is done only when all of these are true:
   [ ] the duplicate gate allowed the audit (or --force was justified in writing)
   [ ] qa.json ok:true, worstOverflowMm:0
   [ ] verify.json ok:true, blockers:0
-  [ ] the PDF is 10 pages, A4, opens, and matches docs/DESIGN-SPEC.md
+  [ ] the PDF is 10 pages, A4, opens, and matches the reference look
   [ ] every number is traceable to the raw measurement
   [ ] the six findings are real and evidence-backed
   [ ] no price, testimonial, logo, or revenue claim appears anywhere

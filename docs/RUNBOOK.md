@@ -16,22 +16,55 @@ It does **not** build demo websites, host anything, or send email.
 | Need | Detail |
 | --- | --- |
 | Node.js | 20 or newer (`node --version`) |
-| Google Chrome | installed; `playwright-core` drives it, it does not download one |
-| Disk | a few hundred MB for screenshots and PDFs |
+| A Chromium-family browser | Chrome, Edge, Brave or Chromium. `npm install` downloads Playwright's own Chromium, so a fresh machine usually needs nothing |
+| Disk | a few hundred MB for the browser, screenshots and PDFs |
 | OS | Windows, macOS or Linux. Commands below use `npm`; on PowerShell use `npm.cmd` |
-| Network | outbound HTTPS to the target site, Lighthouse needs nothing else; Overpass for leads |
-
-If Chrome is not in a standard location, set `CHROME_PATH` to the executable:
-
-```powershell
-$env:CHROME_PATH = "D:\Apps\Chrome\chrome.exe"
-```
+| Network | outbound HTTPS to the target site and to an Overpass mirror for leads |
 
 Install dependencies once:
 
 ```powershell
 cd "C:\Users\hp\Documents\Agency\Website Agency\agency-os"
 npm.cmd install --no-audit --no-fund
+```
+
+The `playwright` package downloads its own Chromium during `npm install`. If the
+download was skipped (`PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1`) or the cache is empty,
+the tool installs one itself the first time it needs a browser. Any normal Chrome,
+Edge, Brave or Chromium install is used instead when one is present.
+
+Then check the machine:
+
+```powershell
+npm.cmd run doctor -- --state "Andhra Pradesh"
+```
+
+```
+  Agency OS — environment check
+
+  ok    node             node 24.11.0 (needs 20+)
+  ok    playwright       "playwright" is installed
+  ok    browser          playwright + playwright browser: …/ms-playwright/chromium-1148/chrome-win/chrome.exe
+  ok    overpass         https://overpass-api.de answered (3/5 mirrors up)
+  ok    overpass.mirror  https://overpass-api.de — answered (412 ms)
+  ok    nominatim        boundary lookup: HTTP 200
+  ok    state            Andhra Pradesh resolves to a bounding box (Andhra Pradesh, India)
+```
+
+`doctor` never asks you for a list of businesses. It answers three questions: is
+there a browser, is a lead source reachable, and does the state resolve. Fix
+whatever it marks `FAIL`, then run it again.
+
+To point the tool at a specific browser:
+
+```powershell
+$env:CHROME_PATH = "D:\Apps\Chrome\chrome.exe"
+```
+
+To point lead sourcing at a specific Overpass mirror (comma-separate several):
+
+```powershell
+$env:OVERPASS_URL = "https://overpass.kumi.systems/api/interpreter"
 ```
 
 Prove the scoring rubric still reproduces the shipped reference:
@@ -60,8 +93,8 @@ Edit `config/settings.json` → `agency`:
 ```json
 "agency": {
   "name": "Smart Pursuit",
-  "tagline": "Websites that win customers",
-  "auditLabel": "Website & conversion audit",
+  "tagline": "Websites that win patients",
+  "auditLabel": "Website & patient-conversion audit",
   "phone": "+91 70950 24220",
   "email": "smartpursuit3@gmail.com",
   "basedIn": "Ahmedabad",
@@ -103,15 +136,45 @@ npm.cmd run leads -- --state gujarat --csv my-list.csv
 
 What happens:
 
-1. `config/states/gujarat.json` is loaded (cities, country, default niches).
-2. OpenStreetMap Overpass is queried for the niche tags in `config/niches.json`.
-3. Google Places is queried **only if** `GOOGLE_MAPS_API_KEY` is set.
-4. Businesses without a website are kept as `no-website` and are **not** added
-   to the auditable pool (you cannot audit a site that does not exist).
-5. Every candidate passes `checkLead()` before insertion: same domain, same
+1. `config/states/gujarat.json` is loaded when it exists (cities, country,
+   default niches). A state without a config file still works — it is searched by
+   its boundary name.
+2. OpenStreetMap Overpass is queried for **businesses that publish a website**,
+   bounded to the state's administrative area. The website filter is inside the
+   query, because OSM returns elements unordered: without it the result cap fills
+   with businesses that have no site and the state looks empty.
+3. The search is **broad by default**: shops, offices, trades, healthcare,
+   restaurants and cafes, hotels, gyms, salons, clinics. Banks, temples, schools,
+   government offices, chain branches and government/education domains are
+   filtered out. `--niches dentist,clinic` narrows it (and is ranked first);
+   `--no-broad` restricts it to those tags only.
+4. If the area-name lookup returns nothing, the same query is re-run inside the
+   state's bounding box from Nominatim. Either way the result is local: a run for
+   Andhra Pradesh cannot return a Kerala business.
+5. Several public Overpass mirrors are tried in order, so one unreachable mirror
+   does not end the run. Set `OVERPASS_URL` to override the list.
+6. Google Places is queried **only if** `GOOGLE_MAPS_API_KEY` is set, and any
+   result whose state does not match the requested one is dropped.
+7. Every candidate passes `checkLead()` before insertion: same domain, same
    phone (last 10 digits), or same name + city is a duplicate.
-6. New leads are appended to `data/leads.json` and a batch file is written to
+8. New leads are appended to `data/leads.json` and a batch file is written to
    `data/batch-<state>-<date>.json`.
+
+You are never asked to supply a list. If every source is unreachable the tool
+says which mirrors it tried — run `npm.cmd run doctor` and it will name the
+blocked host.
+
+A real example, for one state:
+
+```
+openstreetmap broad: 248 business(es) with a website (area, overpass-api.de)
+  — filtered out 35 public/non-business, 17 chain branch(es),
+    4 government/education site(s), 0 unnamed
+```
+
+OSM website coverage in India is roughly 1 business in 100, which is why the
+broad search exists: a niche-only pass returns one or two leads for a whole
+state, and an empty day is not useful.
 
 Attribution is printed when OSM data is used, and must be kept if the lead list
 is ever published:
@@ -184,6 +247,7 @@ only the businesses it has never audited.
 ```powershell
 npm.cmd run run -- --state "Andhra Pradesh"
 npm.cmd run run -- --state "Andhra Pradesh" --max 3 --niches dentist
+npm.cmd run run -- --state "Andhra Pradesh" --no-broad
 npm.cmd run run -- --state "Andhra Pradesh" --dry-run
 ```
 
@@ -191,15 +255,18 @@ npm.cmd run run -- --state "Andhra Pradesh" --dry-run
 
 What one run does:
 
-1. **Fetch** — sources new leads for the state (Overpass; Places only if
-   `GOOGLE_MAPS_API_KEY` is set; or a CSV you pass with `--csv`). New domains
-   only — duplicates are rejected at intake, before anything is measured.
-2. **Queue** — asks `pendingLeads()` for businesses that are `new` or
+1. **Resolve a browser** — first, before any network work, so a machine with no
+   Chromium fails once with a fix list instead of failing five times.
+2. **Fetch** — sources new leads for the state (Overpass; Places only if
+   `GOOGLE_MAPS_API_KEY` is set; or a CSV you pass with `--csv`). Only businesses
+   that publish a website. New domains only — duplicates are rejected at intake,
+   before anything is measured.
+3. **Queue** — asks `pendingLeads()` for businesses that are `new` or
    `audit-failed`, are not inside the 60-day cooldown, are not `blocked`, and
    have not already failed `run.maxAuditAttempts` times.
-3. **Audit** — measures, scores, renders, QAs, PDFs and third-eye-verifies each
+4. **Audit** — measures, scores, renders, QAs, PDFs and third-eye-verifies each
    one, then writes its 1 + 3 drafts.
-4. **Record** — marks the lead `audited` (or `audit-failed` with `lastError`)
+5. **Record** — marks the lead `audited` (or `audit-failed` with `lastError`)
    and writes `data/run-<state>-<date>.json`.
 
 The PDF is named after the business: `reports/<slug>/Smart-Pursuit-Audit-<Business-Name>.pdf`.
@@ -226,9 +293,15 @@ consume a domain's cooldown.
 ### State names
 
 Any state name works. `Andhra Pradesh`, `Kerala`, `Tamil Nadu` resolve without a
-config file: Overpass finds the state boundary by name. A file in
-`config/states/` only adds a curated city list (needed for Google Places) and
-default niches.
+config file: Overpass finds the state boundary by name, and Nominatim supplies a
+bounding box if the area lookup comes back empty. A file in `config/states/` only
+adds a curated city list (needed for Google Places) and default niches.
+
+Check a state before a run:
+
+```powershell
+npm.cmd run doctor -- --state "Tamil Nadu"
+```
 
 ### Scheduling it
 
@@ -237,7 +310,7 @@ Each run is a fresh process, so the scheduler is trivial.
 Windows Task Scheduler, every day at 09:00:
 
 ```powershell
-$task = 'cmd /c cd /d "C:\path\to\agency-os" && npm.cmd run run -- --state "Andhra Pradesh"'
+$task = 'cmd /c cd /d "C:\Users\hp\Documents\Agency\Website Agency\agency-os" && npm.cmd run run -- --state "Andhra Pradesh"'
 schtasks /create /tn "Agency OS daily" /tr $task /sc daily /st 09:00
 ```
 
@@ -260,6 +333,8 @@ repository. It also never sends anything.
 | --- | --- | --- |
 | `--max` | `run.auditsPerRun` (5) | audits attempted in this run |
 | `--leads-limit` | `run.leadsPerRun` (25) | new leads fetched in this run |
+| `--niches` | state default | narrow the search; these are ranked first |
+| `--no-broad` | off | request only the `--niches`/default tags, never any business with a website |
 | `--no-leads` | off | audit the existing queue, fetch nothing |
 | `--no-sequence` | off | audit only, write no drafts |
 | `--dry-run` | off | print the queue; fetch and measure nothing |
@@ -297,7 +372,7 @@ would be cold-submitting.
 Example refusal:
 
 ```
-FAILED: Refusing to audit the-lead.example: it is already on file.
+FAILED: Refusing to audit example.com: it is already on file.
   - already audited on 2026-11-08 — cooldown runs to 2027-01-07 (60 days)
 ```
 
@@ -307,8 +382,7 @@ around it casually.
 `--force` exists for exactly two reasons:
 
 1. a **before/after re-audit** after the client has shipped fixes;
-2. re-rendering an archived measurement on a machine whose registry already
-   contains that domain.
+2. reproducing a recorded measurement on a machine whose registry already contains it.
 
 When you force, the registry records the new audit under the same reference; the
 old one is replaced, not duplicated.
@@ -367,11 +441,11 @@ What the command does, in order:
 A good run ends like this:
 
 ```
-Audit complete — Example Dental Co
-Overall 41/100  ·  speed 4 mobile 3 conversion 5 design 6 seo 7
-Findings: 01 Critical · 02 High · 03 High · 04 High · 05 Medium · 06 Medium
-PDF:    reports/example-dental-co/Smart-Pursuit-Audit-Example-Dental-Co.pdf (10 pages, 3.1 MB)
-Verify: 23 checks passed, 0 warning(s)
+Audit complete — <Business name>
+Overall 36/100  ·  speed 3 mobile 4 conversion 2 design 6 seo 5
+Findings: 01 Critical · 02 Critical · 03 High · 04 High · 05 Medium · 06 Medium
+PDF:    reports/<slug>/Smart-Pursuit-Audit-<Business-Name>.pdf (10 pages)
+Verify: 23 checks passed
 ```
 
 If instead you see:
@@ -383,29 +457,24 @@ The third-eye check blocked this audit. Do not send it.
 open `reports/<slug>/verify.json` and read the failed check. Fix the measurement
 or the data; never edit the report text to make the verifier happy.
 
-### Rendering a measurement captured elsewhere
+### Render a recorded measurement
 
 ```powershell
-npm.cmd run audit -- --from-raw data/raw/<slug>.json
+npm.cmd run audit -- --from-raw data/raw/<slug>/<stamp>.json --force
 ```
 
 `--from-raw` trusts a recorded measurement file instead of touching the network.
-It is how an audit captured on one machine is rendered on another, and how a
-measurement is re-rendered after a renderer fix without re-measuring. It is
-**not** a shortcut for a real lead: the third eye still checks URL, scores,
-facts, screenshots and PDF.
+It is how a report is rebuilt on a machine that cannot reach the site, and how a
+measurement captured elsewhere is rendered. It is **not** a shortcut for a real
+lead: the third eye still checks URL, scores, facts, screenshots and PDF.
 
-The screenshot files the raw file points at must exist on disk. If they arrived
-as `.b64` sidecars, decode them first:
+`--fixture` exists only for a recorded calibration measurement. It downgrades the
+72-hour freshness check to a warning, so the document stays reproducible months
+after its measurement date. It is rejected without `--from-raw`. **Never use it
+on a lead:** a stale measurement is a blocker precisely because the site may have
+changed since.
 
-```powershell
-npm.cmd run decode
-```
-
-`--fixture` downgrades the 72-hour freshness check to a warning. It exists for
-re-rendering an archived measurement whose age is irrelevant. It is rejected
-without `--from-raw`. **Never use it on a lead:** a stale measurement is a
-blocker precisely because the site may have changed since.
+The screenshot files `raw.json` points at must exist on disk.
 
 ---
 
@@ -416,8 +485,8 @@ npm.cmd run verify -- --audit reports/<slug>/audit.json
 npm.cmd run verify -- --audit reports/<slug>/audit.json --live
 ```
 
-`--fixture` is accepted only together with `--from-raw`, for archived
-measurements; it downgrades the age check. Do not use it on a lead.
+`--fixture` is accepted only to re-check a recorded calibration measurement; it
+downgrades the age check. Do not use it on a lead.
 
 `--live` re-fetches the site and re-checks the findings that depend on the live
 page (homepage status, the shortcode leak, the sitemap). Use it when:
@@ -459,11 +528,11 @@ computed from it: `+3`, `+6`, `+9` days by default.
 Output:
 
 ```
-4 drafts · Example Dental Co
- 1. 10 November 2026   Example Dental Co — the enquiry form on your site is broken
- 2. 13 November 2026   Re: Example Dental Co — one page is losing the enquiries
- 3. 16 November 2026   Re: Example Dental Co — what a fixed version looks like
- 4. 19 November 2026   Closing the loop — Example Dental Co
+4 drafts · <Business name>
+ 1. 10 November 2026   <Business name> — the enquiry form on your site is broken
+ 2. 13 November 2026   Re: <Business name> — one page is losing the enquiries
+ 3. 16 November 2026   Re: <Business name> — what a fixed version looks like
+ 4. 19 November 2026   Closing the loop — <Business name>
 ```
 
 Files, in `outreach/<slug>/`:
@@ -585,17 +654,20 @@ reference and page count.
 | Symptom | Cause | Fix |
 | --- | --- | --- |
 | `EACCES` / scripts blocked on PowerShell | execution policy blocks `.ps1` shims | use `npm.cmd` / `npx.cmd` |
-| `Chrome not found` | Chrome not in a standard path | set `CHROME_PATH` |
-| `Cannot find package 'playwright-core'` | dependencies not installed | `npm.cmd install` |
+| `No Chromium-family browser found` | no browser, and the automatic download failed | `npx playwright install chromium`, or `sudo apt-get install -y chromium`, or set `CHROME_PATH`; then `npm run doctor` |
+| `Chrome not found` | browser not in a standard path | set `CHROME_PATH`, or `npm run doctor` |
+| `Cannot find package 'playwright'` | dependencies not installed | `npm.cmd install` |
 | `ENOENT ... Website%20Agency\...` | old bug where `ROOT` kept URL encoding | fixed with `fileURLToPath`; update the repo |
 | PageSpeed Insights returns 429 | shared IP quota | the OS uses local Lighthouse, not the PSI API; do not add PSI |
-| Lighthouse takes minutes | local Chrome under load | wait; do not run two audits at once |
+| Lighthouse takes minutes | local browser under load | wait; do not run two audits at once |
 | PDF has 11 or 12 pages | content overflow | read `qa.json` → `worstOverflowMm` and the page number; fix content length |
 | `pdf.format` fails | non-A4 media box | check `@page{size:A4;margin:0}` is intact |
 | `screenshots.real` fails | blank or near-white capture | recapture; check the site actually painted, not a cookie wall |
 | `numbers.traceable` fails | a number was typed into prose | find it in the renderer; replace with a `facts.*` value or remove |
 | `provenance.age` fails | measurement older than 72 h | re-measure before sending |
-| Overpass times out | public endpoint busy | retry, reduce `--limit`, or use `--csv` |
+| `provenance.tool` fails — `Lighthouse failed (NO_FCP…)` | the page never painted its first pixel inside the 120 s wait, usually a dead or JS-wedged page | the audit is refused rather than scored; retry later, and check the site in a browser. `tools/lighthouse/*.json` hold the wait |
+| `Overpass unreachable` — all mirrors | network blocks the mirrors, or all are down | `npm run doctor` names the hosts; set `OVERPASS_URL` to a reachable mirror |
+| Overpass times out | public endpoint busy | the next mirror is tried automatically; reduce `--limit` if every one is slow |
 | `no config/states/<state>.json` note | that state has no curated city list | harmless: Overpass searches by boundary name. Add a config only for Google Places |
 | Every lead skipped, queue empty | they are audited, cooled down, or out of attempts | run `status`; see `data/run-<state>-<date>.json` |
 | `Unknown niche` | niche missing from `config/niches.json` | add it |

@@ -12,7 +12,8 @@
 import path from "node:path";
 import fs from "node:fs";
 import { spawnSync } from "node:child_process";
-import { ROOT, ensureDir, findChrome, isoDate, writeJSON, readJSON, round, log } from "./util.mjs";
+import { ROOT, ensureDir, isoDate, writeJSON, readJSON, round, log } from "./util.mjs";
+import { resolveBrowser, launchOptions, describeBrowser, systemBrowsers } from "./browser.mjs";
 
 const UA_MOBILE =
   "Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36";
@@ -20,15 +21,7 @@ const UA_DESKTOP =
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36";
 
 const SHORTCODE_RE = /\[(contact-form-7|contact-form|gravityform|wpforms|ninja_form|formidable|caldera_form|et_pb_contact_form)[^\]]{0,160}\]/i;
-const SOCIAL_HOSTS = ["facebook.com", "instagram.com", "twitter.com", "x.com", "linkedin.com", "wa.me", "linktr.ee", "google.com", "business.site", "wixsite.com", "wordpress.com", "blogspot.com"];
-
-async function loadPlaywright() {
-  try {
-    return await import("playwright-core");
-  } catch {
-    throw new Error('playwright-core is not installed. Run: npm install  (it is the only dependency)');
-  }
-}
+const SOCIAL_HOSTS = ["facebook.com", "fb.com", "fb.me", "instagram.com", "twitter.com", "x.com", "linkedin.com", "wa.me", "wa.link", "t.me", "linktr.ee", "youtube.com", "youtu.be", "google.com", "google.co.in", "business.site", "wixsite.com", "wordpress.com", "blogspot.com"];
 
 /** Pixel statistics: catches blank, white or placeholder screenshots. */
 async function imageStats(browser, file) {
@@ -200,7 +193,7 @@ function collectDom() {
     clientWidth: de.clientWidth,
     overflowX: Math.max(0, de.scrollWidth - de.clientWidth),
     pageHeightPx: de.scrollHeight,
-    screens: round(de.scrollHeight / vh, 1),
+    screens: Math.round((de.scrollHeight / vh) * 10) / 10,
     domNodes: document.querySelectorAll("*").length,
     words,
     textChars: text.length,
@@ -220,7 +213,7 @@ function collectDom() {
       text: (el.innerText || el.tagName).replace(/\s+/g, " ").trim().slice(0, 30),
       height: Math.round(el.getBoundingClientRect().height),
     })),
-    minFontPx: minFont === null ? null : round(minFont, 1),
+    minFontPx: minFont === null ? null : Math.round(minFont * 10) / 10,
     telLinks: telLinks.length,
     mailLinks: mailLinks.length,
     whatsapp: whatsapp.length,
@@ -249,19 +242,17 @@ function collectDom() {
  */
 export async function measureSite(website, opts = {}) {
   const settings = readJSON(path.join(ROOT, "config", "settings.json"));
-  const { chromium } = await loadPlaywright();
-  const chrome = findChrome();
+  const resolved = await resolveBrowser();
+  const { chromium } = resolved;
+  const chrome = resolved.executablePath;
   const slugName = opts.slug || "site";
   const stamp = new Date().toISOString().replace(/[:.]/g, "-");
   const rawDir = ensureDir(path.join(ROOT, "data", "raw", slugName));
   const shotDir = ensureDir(path.join(rawDir, `shots-${stamp}`));
   const base = new URL(website);
 
-  const browser = await chromium.launch({
-    executablePath: chrome,
-    headless: true,
-    args: ["--no-sandbox", "--disable-dev-shm-usage", "--font-render-hinting=none", "--hide-scrollbars"],
-  });
+  log("measure", `browser: ${describeBrowser(resolved)}`);
+  const browser = await chromium.launch(launchOptions(resolved));
 
   const result = {
     schemaVersion: "1.0",
@@ -269,7 +260,7 @@ export async function measureSite(website, opts = {}) {
     domain: base.hostname.replace(/^www\./, ""),
     measuredAt: new Date().toISOString(),
     measuredAtIst: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
-    tool: { name: "playwright-core + local Chrome", chrome, lighthosue: "see lighthouse blocks" },
+    tool: { name: describeBrowser(resolved), chrome, lighthouse: "see lighthouse blocks" },
     mobile: null,
     desktop: null,
     http: {},
@@ -480,7 +471,7 @@ export async function measureSite(website, opts = {}) {
 
   // ---------- Lighthouse ----------
   if (!opts.skipLighthouse) {
-    result.lighthouse = runLighthousePair(website, rawDir, stamp);
+    result.lighthouse = runLighthousePair(website, rawDir, stamp, chrome);
   }
 
   const outFile = path.join(rawDir, `${stamp}.json`);
@@ -560,18 +551,50 @@ export async function checkHttp(website, settings) {
   return out;
 }
 
-/** Runs Lighthouse twice (mobile, desktop) through the local Chrome. */
-export function runLighthousePair(website, rawDir, stamp) {
+/**
+ * Where Lighthouse lives, if it is installed.
+ *
+ * Lighthouse is a declared dependency rather than an `npx` download: an npx run
+ * fetches the package on every audit (slow, and impossible on a machine with no
+ * npm registry access), and Windows cannot spawn the `npx.cmd` shim from
+ * `child_process` without a shell — which silently produced no report at all.
+ */
+function lighthouseCli() {
+  const candidates = [
+    path.join(ROOT, "node_modules", "lighthouse", "cli", "index.js"),
+    path.join(ROOT, "node_modules", "lighthouse", "cli.js"),
+  ];
+  return candidates.find(p => { try { return fs.existsSync(p); } catch { return false; } }) || null;
+}
+
+/** The config that raises the first-contentful-paint wait, if it shipped. */
+function configPath(key) {
+  const file = path.join(ROOT, "tools", "lighthouse", `${key}.json`);
+  try { return fs.existsSync(file) ? file : null; } catch { return null; }
+}
+
+/**
+ * Runs Lighthouse twice (mobile, desktop) through the resolved browser.
+ *
+ * The browser may be Playwright's downloaded Chromium rather than a system
+ * Chrome, so Lighthouse is told where it is through CHROME_PATH.
+ */
+export function runLighthousePair(website, rawDir, stamp, chromePath = null) {
   const out = {};
-  const chrome = findChrome();
+  const chrome = chromePath || process.env.CHROME_PATH || systemBrowsers()[0] || null;
+  const cli = lighthouseCli();
+  if (!cli) {
+    const error = "Lighthouse is not installed. Run `npm install` in the repository root.";
+    return { mobile: { error }, desktop: { error } };
+  }
   const runs = [
-    { key: "mobile", extra: "", preset: "" },
-    { key: "desktop", extra: "--preset=desktop", preset: "desktop" },
+    { key: "mobile", extra: "", config: configPath("mobile") },
+    { key: "desktop", extra: "", config: configPath("desktop") },
   ];
   for (const run of runs) {
     const file = path.join(rawDir, `lh-${run.key}-${stamp}.json`);
     const args = [
-      "lighthouse@12",
+      cli,
       website,
       "--output=json",
       `--output-path=${file}`,
@@ -579,20 +602,33 @@ export function runLighthousePair(website, rawDir, stamp) {
       `--chrome-flags=--headless=new --no-sandbox --disable-gpu --hide-scrollbars`,
       "--quiet",
     ];
+    // Our config raises `maxWaitForFcp`, the timeout that produces NO_FCP. The
+    // CLI exposes only `--max-wait-for-load`, and a headless run of a slow
+    // shared-hosting site routinely needs longer than the 30 s default to paint
+    // its first pixel. NO_FCP means the audit is unscoreable — a measurement
+    // failure, not a finding — so the wait is raised rather than the check.
+    if (run.config) args.push(`--config-path=${run.config}`);
     if (run.extra) args.push(run.extra);
     log("lighthouse", `running ${run.key}…`);
-    const res = spawnSync("npx.cmd", ["--yes", ...args], {
+    const env = { ...process.env };
+    if (chrome) env.CHROME_PATH = chrome;
+    // The actual node binary, not a .cmd shim: portable and shell-free.
+    const res = spawnSync(process.execPath, args, {
       cwd: ROOT,
-      shell: true,
-      env: { ...process.env, CHROME_PATH: chrome },
-      timeout: 8 * 60 * 1000,
+      env,
+      timeout: 12 * 60 * 1000,
       encoding: "utf8",
     });
     if (!fs.existsSync(file)) {
-      out[run.key] = { error: (res.stderr || res.stdout || "lighthouse produced no file").slice(-600) };
+      out[run.key] = { error: (res.stderr || res.stdout || res.error?.message || "lighthouse produced no file").slice(-600) };
       continue;
     }
-    out[run.key] = normalizeLighthouse(readJSON(file), file);
+    const lhr = readJSON(file);
+    if (lhr.runtimeError) {
+      out[run.key] = { error: `${lhr.runtimeError.code}: ${lhr.runtimeError.message}`.slice(-600) };
+      continue;
+    }
+    out[run.key] = normalizeLighthouse(lhr, file);
   }
   return out;
 }

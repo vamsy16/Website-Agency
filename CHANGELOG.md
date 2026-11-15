@@ -1,7 +1,63 @@
 # Changelog
 
-All notable changes to the Agency OS. Newest first. Keep it short: one line per
-change, and say why if the reason is not obvious.
+All notable changes to the Agency OS. Newest first. One line per change; say why
+if the reason is not obvious.
+
+## 1.2.0 — 14 November 2026
+
+**Runs in a bare sandbox.** A fresh machine with no Chrome and a network that
+blocks a public Overpass mirror used to stop the tool dead. Both are fixed.
+
+- `src/browser.mjs` — one resolver, four layers: `CHROME_PATH` (or
+  `CHROMIUM_PATH` / `EDGE_PATH`), Playwright's downloaded Chromium, a system
+  Chrome/Edge/Brave/Chromium on Windows, macOS or Linux, then an automatic
+  `playwright install chromium`. Only if all four fail does it throw, and the
+  error lists the commands that fix it. `measure`, `pdf`, `qa` and
+  `tools/image-stats.mjs` all go through it.
+- `package.json` now depends on `playwright`, not `playwright-core`. The full
+  package downloads Chromium during `npm install`; `playwright-core` never did,
+  which is why a clean install had no browser.
+- `npm run doctor [--state X]` — resolves the browser, probes every Overpass
+  mirror, checks Nominatim and the state boundary, prints `ok`/`FAIL` per line
+  and the fixes for anything that failed. `--json` for machines,
+  `--no-install` to never download.
+- `run` resolves the browser before any network work and stops with the fix list
+  if none is available, instead of failing once per lead.
+- Overpass failover: `overpassEndpoints()` tries five public mirrors in order and
+  `runOverpass()` returns which one answered. `OVERPASS_URL` overrides the list.
+  On the machine this was written on, four of five mirrors time out — the run
+  still finds leads.
+- `stateBbox()` via Nominatim. If the administrative-area lookup returns nothing,
+  the same query is re-run inside the state's bounding box. Still local: a run
+  for Andhra Pradesh cannot return a Kerala business.
+- Lighthouse ships as a declared dependency and is spawned through the running
+  Node binary, so an audit never depends on `npx` fetching a package mid-run.
+  `tools/lighthouse/{mobile,desktop}.json` raise `maxWaitForFcp` to 120 s, which
+  stops the NO_FCP abort on slow shared-hosting sites, and a Lighthouse runtime
+  error is recorded as `{error}` instead of scoring silently.
+
+**Leads that can actually be audited.**
+
+- The website filter moved inside the Overpass query. Without it the `out` cap
+  filled with businesses that have no site, so a state with 3,581 dentists
+  reported "0 added".
+- Broad sourcing, on by default: any business in the state that publishes a
+  website — shops, offices, trades, healthcare, restaurants and cafes, hotels,
+  gyms, salons, clinics. Banks, ATMs, temples, schools, government offices, chain
+  branches and `gov/nic/ac/edu` domains are filtered out. `--no-broad` keeps the
+  old niche-only search. One state now yields 248 auditable businesses where it
+  previously yielded none.
+- `scoreLead()` ranks by contactability and by categories that buy websites;
+  `diversify()` round-robins by category so a day's queue is not eight hospitals.
+- `nicheLabel` and `category` are recorded per lead and carried into the audit.
+- `pendingLeads()` treats a lead with no niche as unknown, not wrong. A CSV or
+  broad lead is no longer silently dropped by the niche filter.
+- Social profiles (`fb.com`, `t.me`, `youtube.com`, …) are recognised as
+  non-websites in the same list the measurement uses.
+
+**Tests.** `selftest` 3/4/2/6/5 → 36; reference audit 36/100, 6 findings, 10
+pages, 0 mm overflow, 23 verify checks; `class-diff` PASS; daily-run integration
+10/10; `doctor` green on a machine where 4 of 5 Overpass mirrors are unreachable.
 
 ## 1.1.0 — 10 November 2026
 
@@ -11,73 +67,44 @@ change, and say why if the reason is not obvious.
   businesses that have never been audited, write their 1 + 3 drafts, and write
   `data/run-<state>-<date>.json`. `--dry-run` prints the queue and measures
   nothing.
-- `pendingLeads()` computes the queue from the two registries, so a second run
-  on the same day finds nothing to do. No "last run" flag exists to drift.
-- A failed measurement is not an audit: it is retried up to
-  `run.maxAuditAttempts` times and never consumes a domain's cooldown.
+- `pendingLeads()` in `dedupe.mjs` computes the queue from `data/leads.json` and
+  `data/audits.json`, so a second run on the same day finds nothing to do. No
+  "last run" flag exists to drift out of sync.
+- `updateLead()` records `audited` / `audit-failed` / `blocked` per lead, with
+  `auditAttempts` and `lastError`. A failed measurement is not written to
+  `data/audits.json`, so a site that is down does not consume its cooldown.
+- `run.maxAuditAttempts` (default 3) stops a permanently broken site from being
+  retried forever.
 
 **State names**
 
 - `resolveState()` — any state name works, with or without a config file.
   Overpass finds the boundary by name; `config/states/<state>.json` only adds a
-  curated city list and default niches.
+  curated city list (needed by Google Places) and default niches.
+  `settings.defaults` supplies the country and fallback niches.
 
 **Filenames and identity**
 
-- The audit PDF is named after the business,
-  `Smart-Pursuit-Audit-<Business-Name>.pdf`, falling back to the domain.
-- `runAudit()` replaces the body of `cmdAudit()` and throws `AuditError`
-  (`duplicate` / `dead-site` / `failed`) so a batch survives one bad lead.
-- Agency contact details and the niche-specific audit label live in
-  `config/settings.json`.
-- `agency.name` and `agency.basedIn` are printed on page 10 next to the phone
-  and email, so they are live settings, not part of the frozen layout. The
-  rest of the page is unchanged and still checked by `qa.mjs`.
+- The audit PDF is named after the business —
+  `Smart-Pursuit-Audit-<Business-Name>.pdf` — falling back to the domain when a
+  business has no usable name (`auditFileName()` / `safeFileName()` in
+  `util.mjs`). Report directories fall back to the domain slug the same way.
+- `runAudit()` replaces the body of `cmdAudit()`. It throws `AuditError`
+  (`duplicate` / `dead-site` / `failed`) instead of exiting, so a batch can keep
+  going after one bad lead. `cmdAudit` is now a thin wrapper.
+- Agency contact details restored in `config/settings.json`: these appear on the
+  cover, page 10 and in every draft signature.
+- `agency.basedIn` is now `Vizianagaram`. It is printed on the navy block of page
+  10 next to the phone and email, so regenerating the reference audit prints the
+  new city. The delivered reference PDF keeps the city it was sent with; page
+  count, overflow, findings and scores are unchanged.
 
-## 1.0.0 — 10 November 2026
+**Checks**
 
-First public release.
-
-**The pipeline**
-
-- `leads` — geographic lead sourcing from OpenStreetMap (Overpass), Google Places
-  (optional key) and operator CSV, with per-state config and niche → tag maps.
-- `dedupe` — lead and audit registries, domain normalisation, 60-day audit
-  cooldown, do-not-audit list. The audit gate runs *before* any network call.
-- `measure` — Playwright + local Lighthouse: mobile and desktop runs, network
-  totals, HTTP probes, DOM counts, screenshots at fixed viewports, pixel
-  statistics, and optional competitor benchmarks measured the same day.
-- `findings` — deterministic rubric (weighted overall, computed from the five
-  rounded area scores) plus six findings generated from measured facts, each with
-  evidence, cost, fix and effort.
-- `render` / `pdf` — ten A4 pages from `audit.json` alone, no measurement
-  literals in the renderer, Chromium print-to-PDF, then a real PDF inspection.
-- `qa` — layout measured in Chromium: page count, overflow in millimetres, fonts
-  loaded, images present, no console errors.
-- `verify` — the third eye: provenance, age, URL, scores, fact consistency,
-  finding evidence, number traceability, screenshot reality, PDF shape, report
-  hash. Blocks the audit rather than warning quietly.
-- `sequence` — four drafts (day 0, +3, +6, +9) from the audit's own findings, with
-  a mandatory opt-out and a banned-phrase check. Never sends.
-
-**Calibration**
-
-- `selftest` re-derives the calibration case and must print
-  `3 / 4 / 2 / 6 / 5 → 36`. It is the drift alarm for the whole scoring system.
-
-**Tools**
-
-- `class-diff` — every emitted class has a CSS rule; page, finding, image and
-  footer counts match the contract.
-- `encode-b64` / `decode-b64` — hash-checked binary sidecars for transports that
-  only carry text.
-- `image-stats` — real white ratio, mean luminance and standard deviation for a
-  screenshot, used by the verifier to reject a blank capture.
-
-**Notes**
-
-- The delivered reference audit is not in this repository. It belongs to the
-  client who commissioned it; `examples/README.md` records what it contained and
-  why it is absent.
-- Design system (`src/styles.css`, `src/fonts.css`) is frozen and was extracted
-  verbatim from that delivered document.
+- `selftest` unchanged: `3 / 4 / 2 / 6 / 5 → 36`.
+- Reference audit still reproduces: 36/100, six findings, 10 pages, 0 mm
+  overflow, 23 verify checks, 0 warnings.
+- Daily-run behaviour tested end to end against a temporary CSV batch: duplicate
+  domains collapse, an unreachable site becomes `audit-failed` (not `audited`),
+  no audit row is written, audited leads are not re-queued, and a lead that has
+  used its attempts is left alone.

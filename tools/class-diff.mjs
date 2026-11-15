@@ -5,9 +5,11 @@
 //   2. the report must have exactly 10 pages, 6 findings and at most 4 images
 //   3. optionally, compare the class set with a reference report
 //
-//   node tools/class-diff.mjs                                    # newest report
+//   node tools/class-diff.mjs
 //   node tools/class-diff.mjs reports/<slug>/report.html
-//   node tools/class-diff.mjs reports/<slug>/report.html path/to/earlier-report.html
+//   node tools/class-diff.mjs reports/<slug>/report.html path/to/reference.html
+//
+// With no argument it uses the first report it finds under reports/.
 //
 // Exits non-zero on any unstyled class or a wrong page/finding count, so it can
 // be wired into a release check.
@@ -16,26 +18,20 @@ import path from "node:path";
 import { ROOT, die } from "../src/util.mjs";
 
 const argv = process.argv.slice(2).filter(a => !a.startsWith("--"));
-
-/** Newest reports/<slug>/report.html on disk, so no run has to be hard-coded. */
-function newestReport() {
+const newReport = () => path.join(ROOT, "reports", "<slug>", "report.html");
+const firstReport = () => {
   const dir = path.join(ROOT, "reports");
-  if (!fs.existsSync(dir)) return null;
-  const candidates = fs.readdirSync(dir, { withFileTypes: true })
-    .filter(d => d.isDirectory())
-    .map(d => path.join(dir, d.name, "report.html"))
-    .filter(f => fs.existsSync(f))
-    .map(f => ({ f, t: fs.statSync(f).mtimeMs }))
-    .sort((a, b) => b.t - a.t);
-  return candidates.length ? candidates[0].f : null;
-}
-
-const genFile = argv[0] ? path.resolve(ROOT, argv[0]) : newestReport();
+  const found = fs.existsSync(dir)
+    ? fs.readdirSync(dir, { withFileTypes: true })
+        .filter(e => e.isDirectory() && fs.existsSync(path.join(dir, e.name, "report.html")))
+        .map(e => path.join(dir, e.name, "report.html"))
+    : [];
+  return found[0] || newReport();
+};
+const genFile = argv[0] ? path.resolve(ROOT, argv[0]) : firstReport();
 const refFile = argv[1] ? path.resolve(ROOT, argv[1]) : null;
 
-if (!genFile || !fs.existsSync(genFile)) {
-  die("No rendered report found. Run an audit first, or pass one: node tools/class-diff.mjs reports/<slug>/report.html");
-}
+if (!fs.existsSync(genFile)) die(`No report at ${path.relative(ROOT, genFile)}. Pass one: node tools/class-diff.mjs reports/<slug>/report.html`);
 
 const css = fs.readFileSync(path.join(ROOT, "src", "styles.css"), "utf8");
 const html = fs.readFileSync(genFile, "utf8");

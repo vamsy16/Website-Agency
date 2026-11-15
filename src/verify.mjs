@@ -74,10 +74,10 @@ export async function verifyAudit({ auditPath, live = false, fixture = false }) 
 
   if (raw) {
     const ageHours = (Date.now() - new Date(raw.measuredAt).getTime()) / 36e5;
-    // Fixture mode exists only for re-rendering an archived measurement, which
-    // must stay reproducible long after its measurement date. A real lead is
-    // never a fixture: stale data is a blocker, because sending it would state
-    // something that may no longer be true.
+    // Fixture mode exists only for the bundled reference audit, which must stay
+    // reproducible long after its measurement date. A real lead is never a
+    // fixture: stale data is a blocker, because sending it would state something
+    // that may no longer be true.
     add(
       "provenance.age",
       ageHours <= MAX_AGE_HOURS || fixture,
@@ -86,7 +86,13 @@ export async function verifyAudit({ auditPath, live = false, fixture = false }) 
     );
     add("provenance.url", !!raw.website && raw.website === audit.business?.url, `raw measurement is for ${raw.website}${raw.website === audit.business?.url ? "" : ` but the report is for ${audit.business?.url}`}`);
     add("provenance.status", raw.mobile?.status === 200, `homepage returned HTTP ${raw.mobile?.status}`);
-    add("provenance.tool", !!raw.lighthouse?.mobile?.lighthouseVersion, `Lighthouse ${raw.lighthouse?.mobile?.lighthouseVersion || "not recorded"}; screenshots: ${raw.screenshots?.length || 0}`);
+    const lhMobile = raw.lighthouse?.mobile || null;
+    const lhNote = lhMobile?.lighthouseVersion
+      ? `Lighthouse ${lhMobile.lighthouseVersion}`
+      : lhMobile?.error
+        ? `Lighthouse failed (${lhMobile.error})`
+        : "Lighthouse not recorded";
+    add("provenance.tool", !!lhMobile?.lighthouseVersion, `${lhNote}; screenshots: ${raw.screenshots?.length || 0}`);
     add("provenance.ist", !!raw.measuredAtIst, `measurement timestamp: ${raw.measuredAtIst || "not recorded"}`);
   }
 

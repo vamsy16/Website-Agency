@@ -10,17 +10,14 @@
 //   node tools/image-stats.mjs a.png b.png > stats.json
 import fs from "node:fs";
 import path from "node:path";
-import { findChrome, log, die } from "../src/util.mjs";
+import { log, die } from "../src/util.mjs";
+import { resolveBrowser, launchOptions } from "../src/browser.mjs";
 
 const files = process.argv.slice(2).filter(f => !f.startsWith("-"));
 if (!files.length) die("usage: node tools/image-stats.mjs <image.png> [more.png ...]");
 
-const { chromium } = await import("playwright-core");
-const browser = await chromium.launch({
-  executablePath: findChrome(),
-  headless: true,
-  args: ["--no-sandbox", "--disable-dev-shm-usage"],
-});
+const resolved = await resolveBrowser();
+const browser = await resolved.chromium.launch(launchOptions(resolved));
 
 async function statsFor(file) {
   const b64 = fs.readFileSync(file).toString("base64");

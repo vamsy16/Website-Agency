@@ -206,21 +206,6 @@ export function interpolateDeep(value, facts, where) {
   return value;
 }
 
-/** Which Chrome binary does this machine have? */
-export function findChrome() {
-  const candidates = [
-    process.env.CHROME_PATH,
-    "C:/Program Files/Google/Chrome/Application/chrome.exe",
-    "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
-    `${process.env.LOCALAPPDATA || ""}/Google/Chrome/Application/chrome.exe`,
-    "/usr/bin/google-chrome",
-    "/usr/bin/chromium",
-    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-  ].filter(Boolean);
-  for (const p of candidates) if (fs.existsSync(p)) return p;
-  throw new Error("Chrome not found. Set CHROME_PATH to the Chrome/Chromium executable.");
-}
-
 export function argValue(argv, flag, fallback = undefined) {
   const i = argv.indexOf(flag);
   if (i === -1) return fallback;
