@@ -1,0 +1,76 @@
+{
+  "business": "Bhimavaram Hospitals",
+  "domain": "bhimavaramhospital.com",
+  "ref": "SP-AUD-2026-11-16-BH",
+  "createdAt": "2026-11-16T01:01:15.876Z",
+  "sendDate": "2026-11-16",
+  "cadenceDays": [
+    3,
+    3,
+    3
+  ],
+  "to": "info@bhimavaramhospitals.com",
+  "status": "draft",
+  "neverSendAutomatically": true,
+  "note": "Dates shift if the operator sends email 1 on a different day — recompute with `sequence --send-date YYYY-MM-DD`.",
+  "emails": [
+    {
+      "step": 1,
+      "id": "first",
+      "purpose": "deliver the audit, earn a reply",
+      "attachments": [
+        "reports/bhimavaram-hospitals/Smart-Pursuit-Audit-Bhimavaram-Hospitals.pdf"
+      ],
+      "subject": "Bhimavaram Hospitals — what I found testing bhimavaramhospital.com",
+      "words": 140,
+      "scheduledFor": "2026-11-16",
+      "scheduledForLong": "16 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/bhimavaram-hospitals/email-1-first.md"
+    },
+    {
+      "step": 2,
+      "id": "followup-1",
+      "purpose": "turn the top measured finding into a money argument",
+      "attachments": [],
+      "subject": "Re: Bhimavaram Hospitals — what I found testing bhimavaramhospital.com",
+      "words": 107,
+      "scheduledFor": "2026-11-19",
+      "scheduledForLong": "19 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/bhimavaram-hospitals/email-2-followup-1.md"
+    },
+    {
+      "step": 3,
+      "id": "followup-2",
+      "purpose": "show the outcome, make the next step concrete",
+      "attachments": [],
+      "subject": "Re: Bhimavaram Hospitals — what a fixed version looks like",
+      "words": 121,
+      "scheduledFor": "2026-11-22",
+      "scheduledForLong": "22 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/bhimavaram-hospitals/email-3-followup-2.md"
+    },
+    {
+      "step": 4,
+      "id": "followup-3-final",
+      "purpose": "final mail, leave the door open, no pressure",
+      "attachments": [],
+      "subject": "Closing the loop — Bhimavaram Hospitals",
+      "words": 98,
+      "scheduledFor": "2026-11-25",
+      "scheduledForLong": "25 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/bhimavaram-hospitals/email-4-followup-3-final.md"
+    }
+  ]
+}

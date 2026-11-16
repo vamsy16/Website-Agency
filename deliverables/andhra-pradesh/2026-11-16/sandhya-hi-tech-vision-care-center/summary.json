@@ -1,0 +1,25 @@
+{
+  "name": "Sandhya Hi-Tech Vision Care Center",
+  "domain": "sandhyaeyehospitals.com",
+  "city": null,
+  "state": "Andhra Pradesh",
+  "email": "bhargav@sandhyaeyehospitals.com",
+  "phone": "8662438956,98481 85960",
+  "ref": "SP-AUD-2026-11-16-SHT",
+  "date": "2026-11-16",
+  "overall": 60,
+  "scores": {
+    "speed": 4,
+    "mobile": 4,
+    "conversion": 7,
+    "design": 9,
+    "seo": 9,
+    "overall": 60
+  },
+  "pdf": "Smart-Pursuit-Audit-Sandhya-Hi-Tech-Vision-Care-Center.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://sandhyaeyehospitals.com/",
+    "checkedAt": "2026-11-16"
+  }
+}

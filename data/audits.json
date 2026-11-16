@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-16T00:40:42.736Z",
+  "updatedAt": "2026-11-16T01:03:21.467Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -673,6 +673,126 @@
         "html": "reports/karumuri-super-speciality-hospital-pvt-ltd/report.html"
       },
       "fingerprint": "c82fc5319d86abbb"
+    },
+    {
+      "domain": "nesthospital.in",
+      "name": "NEST Sagar Hospital",
+      "ref": "SP-AUD-2026-11-16-NSH",
+      "generatedAt": "2026-11-16T00:52:05.157Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 7,
+        "conversion": 10,
+        "design": 10,
+        "seo": 9,
+        "overall": 78
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1854718,
+      "files": {
+        "pdf": "reports/nest-sagar-hospital/Smart-Pursuit-Audit-NEST-Sagar-Hospital.pdf",
+        "audit": "reports/nest-sagar-hospital/audit.json",
+        "html": "reports/nest-sagar-hospital/report.html"
+      },
+      "fingerprint": "3051a49eeb57c2ba"
+    },
+    {
+      "domain": "sandhyaeyehospitals.com",
+      "name": "Sandhya Hi-Tech Vision Care Center",
+      "ref": "SP-AUD-2026-11-16-SHT",
+      "generatedAt": "2026-11-16T00:53:42.072Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 4,
+        "mobile": 4,
+        "conversion": 7,
+        "design": 9,
+        "seo": 9,
+        "overall": 60
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2601820,
+      "files": {
+        "pdf": "reports/sandhya-hi-tech-vision-care-center/Smart-Pursuit-Audit-Sandhya-Hi-Tech-Vision-Care-Center.pdf",
+        "audit": "reports/sandhya-hi-tech-vision-care-center/audit.json",
+        "html": "reports/sandhya-hi-tech-vision-care-center/report.html"
+      },
+      "fingerprint": "977a671b6f202a6b"
+    },
+    {
+      "domain": "jnananandaeyehospital.co.in",
+      "name": "Jnanananda Eye Hospital",
+      "ref": "SP-AUD-2026-11-16-JEH",
+      "generatedAt": "2026-11-16T00:59:24.058Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 4,
+        "mobile": 8,
+        "conversion": 7,
+        "design": 7,
+        "seo": 9,
+        "overall": 65
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2301049,
+      "files": {
+        "pdf": "reports/jnanananda-eye-hospital/Smart-Pursuit-Audit-Jnanananda-Eye-Hospital.pdf",
+        "audit": "reports/jnanananda-eye-hospital/audit.json",
+        "html": "reports/jnanananda-eye-hospital/report.html"
+      },
+      "fingerprint": "2419293a5020f3d6"
+    },
+    {
+      "domain": "bhimavaramhospital.com",
+      "name": "Bhimavaram Hospitals",
+      "ref": "SP-AUD-2026-11-16-BH",
+      "generatedAt": "2026-11-16T01:01:15.870Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 9,
+        "mobile": 8,
+        "conversion": 8,
+        "design": 10,
+        "seo": 9,
+        "overall": 87
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1692766,
+      "files": {
+        "pdf": "reports/bhimavaram-hospitals/Smart-Pursuit-Audit-Bhimavaram-Hospitals.pdf",
+        "audit": "reports/bhimavaram-hospitals/audit.json",
+        "html": "reports/bhimavaram-hospitals/report.html"
+      },
+      "fingerprint": "f6fa7258a59b0498"
+    },
+    {
+      "domain": "bhalajigroup.com",
+      "name": "SREE BHALAJI INDUSTRIES PRIVATE LIMITED",
+      "ref": "SP-AUD-2026-11-16-SBI",
+      "generatedAt": "2026-11-16T01:03:21.467Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 7,
+        "conversion": 8,
+        "design": 8,
+        "seo": 7,
+        "overall": 68
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2034420,
+      "files": {
+        "pdf": "reports/sree-bhalaji-industries-private-limited/Smart-Pursuit-Audit-SREE-BHALAJI-INDUSTRIES-PRIVATE-LIMITED.pdf",
+        "audit": "reports/sree-bhalaji-industries-private-limited/audit.json",
+        "html": "reports/sree-bhalaji-industries-private-limited/report.html"
+      },
+      "fingerprint": "8e3e97ab50439255"
     }
   ]
 }
