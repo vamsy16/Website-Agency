@@ -63,6 +63,8 @@ function firstName(contactName, businessName) {
 export function shortName(name) {
   let n = String(name || "").replace(/[™®]/g, "").replace(/\s*\([^)]*\)\s*/g, " ").replace(/\s+-\s+.*$/, "")
     .replace(/\b(pvt\.?|private)\s*(ltd\.?|limited)\.?$/i, "").replace(/\b(ltd\.?|limited|llp)$/i, "").replace(/\s+/g, " ").trim().replace(/[.,]$/, "");
+  // "SREE BHALAJI INDUSTRIES" -> "Sree Bhalaji Industries"; vowel-less acronyms (PVR, KGH) stay.
+  if (/[A-Z]{3}/.test(n) && n === n.toUpperCase()) n = n.replace(/[A-Z][A-Z'’]*/g, w => /[AEIOUY]/.test(w) ? w[0] + w.slice(1).toLowerCase() : w);
   if (n.length > 40) n = n.slice(0, 40).replace(/\s+\S*$/, "");
   // Never end a name on a connecting word ("Lakshmi Fertility Research and").
   n = n.replace(/(\s+(and|of|the|for|&|in|at|by|-))+$/i, "").trim();

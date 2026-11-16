@@ -1,7 +1,7 @@
 <!-- DRAFT — not sent. Sent by the operator only. -->
 
 **To:** info@bhalajigroup.com
-**Subject:** Re: SREE BHALAJI INDUSTRIES — what a fixed version looks like
+**Subject:** Re: Sree Bhalaji Industries — what a fixed version looks like
 **Send:** 22 November 2026
 **Attachments:** none
 

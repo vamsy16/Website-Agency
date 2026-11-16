@@ -14,7 +14,7 @@ I ran the same tests Google runs on bhimavaramhospital.com and put the results i
 Two things stood out:
 
 1. There is no way to book an appointment from the homepage. A patient comparing clinics at 11 pm will not start a call or a chat just to ask a question.
-2. 2 JavaScript errors on a business site. A JavaScript error can stop a button, menu or form from working without anyone noticing.
+2. The homepage throws 2 JavaScript errors on load. Either one can stop a button, menu or form from working without anyone noticing.
 
 The full report has the measurements, screenshots and an eight-item fix list in payback order. No estimates — every figure was taken from your live site.
 

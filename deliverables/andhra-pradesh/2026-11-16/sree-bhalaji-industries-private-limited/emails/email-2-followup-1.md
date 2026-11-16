@@ -1,7 +1,7 @@
 <!-- DRAFT — not sent. Sent by the operator only. -->
 
 **To:** info@bhalajigroup.com
-**Subject:** Re: SREE BHALAJI INDUSTRIES — what I found testing bhalajigroup.com
+**Subject:** Re: Sree Bhalaji Industries — what I found testing bhalajigroup.com
 **Send:** 19 November 2026
 **Attachments:** none
 

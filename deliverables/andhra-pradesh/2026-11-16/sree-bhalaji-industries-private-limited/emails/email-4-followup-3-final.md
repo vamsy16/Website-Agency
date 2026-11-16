@@ -1,7 +1,7 @@
 <!-- DRAFT — not sent. Sent by the operator only. -->
 
 **To:** info@bhalajigroup.com
-**Subject:** Closing the loop — SREE BHALAJI INDUSTRIES
+**Subject:** Closing the loop — Sree Bhalaji Industries
 **Send:** 25 November 2026
 **Attachments:** none
 

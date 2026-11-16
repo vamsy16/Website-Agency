@@ -1,7 +1,7 @@
 <!-- DRAFT — not sent. Sent by the operator only. -->
 
 **To:** info@bhalajigroup.com
-**Subject:** SREE BHALAJI INDUSTRIES — what I found testing bhalajigroup.com
+**Subject:** Sree Bhalaji Industries — what I found testing bhalajigroup.com
 **Send:** 16 November 2026
 **Attachments:** reports/sree-bhalaji-industries-private-limited/Smart-Pursuit-Audit-SREE-BHALAJI-INDUSTRIES-PRIVATE-LIMITED.pdf
 
