@@ -337,7 +337,7 @@ export function deriveFindings(raw, facts, business) {
     candidates.push({
       severity: "High",
       tone: "med",
-      title: `A ${m.perfMobile}/100 mobile score and a ${m.lcp} main image`,
+      title: `A ${m.perfMobile}/100 mobile score and ${/^(8|1[18](?![\d]))/.test(String(m.lcp)) ? "an" : "a"} ${m.lcp} main image`,
       measured: `LCP <b>${m.lcp}</b> · TBT <b>${m.tbt}</b> · ${m.requests} requests · <b>${m.bytes}</b> · ${fmtInt(m.unusedJsKb)} KiB unused JavaScript · ${fmtInt(m.oversizedImgsKb)} KiB of oversized images · render-blocking CSS/JS costing ${fmtInt(m.renderBlockingMs)} ms.`,
       why: `Google’s thresholds are 2.5 s for LCP and 200 ms for TBT. This page is ${m.lcpOver}× and ${m.tbtOver}× over. Page experience is a documented ranking input.`,
       fix: `Server-side caching plus a CDN, images re-encoded at the size they are displayed, non-critical scripts deferred, unused plugins removed.`,
