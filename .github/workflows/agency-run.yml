@@ -101,6 +101,24 @@ jobs:
         if: always()
         run: node tools/publish-deliverables.mjs
 
+      - name: Plain-text run summary (counts + audited/failed businesses only)
+        if: always()
+        run: |
+          [ -f run.log ] || exit 0
+          d="deliverables/runs"; mkdir -p "$d"
+          f="$d/$(date -u +%F)-run-${{ github.run_id }}.md"
+          {
+            echo "# Run ${{ github.run_id }} — ${{ steps.req.outputs.state }} ($(date -u +%F))"
+            echo
+            echo '```'
+            grep -E '^  (leads|queue) ' run.log || true
+            grep -E '^  not prospects \(' run.log || true
+            awk '/^  \[[0-9]+\/[0-9]+\]/ { show = ($0 ~ /\/100|FAILED|duplicate/); if (show) print; next } show && /^    / { print; next } { show = 0 }' run.log | head -200
+            grep -E '^  (Audited|target reached)' run.log || true
+            echo '```'
+          } > "$f"
+          cat "$f"
+
       - name: Encrypt results
         if: always()
         run: |
