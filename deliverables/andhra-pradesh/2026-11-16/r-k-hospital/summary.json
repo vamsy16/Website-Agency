@@ -1,0 +1,25 @@
+{
+  "name": "R K Hospital",
+  "domain": "rkhospital.co.in",
+  "city": null,
+  "state": "Andhra Pradesh",
+  "email": "rkhospital.gajuwaka@gmail.com",
+  "phone": "0891-2764411",
+  "ref": "SP-AUD-2026-11-16-RKH",
+  "date": "2026-11-16",
+  "overall": 55,
+  "scores": {
+    "speed": 2,
+    "mobile": 4,
+    "conversion": 8,
+    "design": 8,
+    "seo": 9,
+    "overall": 55
+  },
+  "pdf": "Smart-Pursuit-Audit-R-K-Hospital.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://www.rkhospital.co.in/",
+    "checkedAt": "2026-11-16"
+  }
+}

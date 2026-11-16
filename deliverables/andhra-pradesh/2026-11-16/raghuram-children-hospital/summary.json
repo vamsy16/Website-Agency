@@ -1,0 +1,25 @@
+{
+  "name": "Raghuram Children Hospital",
+  "domain": "raghuramhospitals.com",
+  "city": null,
+  "state": "Andhra Pradesh",
+  "email": "info@raghuramhospitals.com",
+  "phone": "9848135059, 9393373737, 0863-2351656",
+  "ref": "SP-AUD-2026-11-16-RCH",
+  "date": "2026-11-16",
+  "overall": 82,
+  "scores": {
+    "speed": 6,
+    "mobile": 7,
+    "conversion": 10,
+    "design": 10,
+    "seo": 10,
+    "overall": 82
+  },
+  "pdf": "Smart-Pursuit-Audit-Raghuram-Children-Hospital.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on http://www.raghuramhospitals.com/",
+    "checkedAt": "2026-11-16"
+  }
+}

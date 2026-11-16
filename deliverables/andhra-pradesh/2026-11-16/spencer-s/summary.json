@@ -1,0 +1,25 @@
+{
+  "name": "Spencer's",
+  "domain": "spencers.in",
+  "city": "Guntur",
+  "state": "Andhra Pradesh",
+  "email": "customercare@spencers.in",
+  "phone": null,
+  "ref": "SP-AUD-2026-11-16-S",
+  "date": "2026-11-16",
+  "overall": 75,
+  "scores": {
+    "speed": 5,
+    "mobile": 8,
+    "conversion": 8,
+    "design": 10,
+    "seo": 9,
+    "overall": 75
+  },
+  "pdf": "Smart-Pursuit-Audit-Spencer-s.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://www.spencers.in/",
+    "checkedAt": "2026-11-16"
+  }
+}

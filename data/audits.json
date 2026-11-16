@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-15T13:24:15.360Z",
+  "updatedAt": "2026-11-16T00:34:00.047Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -529,6 +529,126 @@
         "html": "reports/golden-globe-overseas-consultants/report.html"
       },
       "fingerprint": "0664ef753323218a"
+    },
+    {
+      "domain": "rkhospital.co.in",
+      "name": "R K Hospital",
+      "ref": "SP-AUD-2026-11-16-RKH",
+      "generatedAt": "2026-11-16T00:28:26.144Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 2,
+        "mobile": 4,
+        "conversion": 8,
+        "design": 8,
+        "seo": 9,
+        "overall": 55
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1735990,
+      "files": {
+        "pdf": "reports/r-k-hospital/Smart-Pursuit-Audit-R-K-Hospital.pdf",
+        "audit": "reports/r-k-hospital/audit.json",
+        "html": "reports/r-k-hospital/report.html"
+      },
+      "fingerprint": "626982249909b86f"
+    },
+    {
+      "domain": "praveenhospitals.com",
+      "name": "Praveen  Hospital",
+      "ref": "SP-AUD-2026-11-16-PH",
+      "generatedAt": "2026-11-16T00:30:35.797Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 7,
+        "conversion": 8,
+        "design": 8,
+        "seo": 8,
+        "overall": 69
+      },
+      "pdfPages": 10,
+      "pdfBytes": 3196800,
+      "files": {
+        "pdf": "reports/praveen-hospital/Smart-Pursuit-Audit-Praveen-Hospital.pdf",
+        "audit": "reports/praveen-hospital/audit.json",
+        "html": "reports/praveen-hospital/report.html"
+      },
+      "fingerprint": "a35a9f88717be937"
+    },
+    {
+      "domain": "raghuramhospitals.com",
+      "name": "Raghuram Children Hospital",
+      "ref": "SP-AUD-2026-11-16-RCH",
+      "generatedAt": "2026-11-16T00:31:36.918Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 6,
+        "mobile": 7,
+        "conversion": 10,
+        "design": 10,
+        "seo": 10,
+        "overall": 82
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2289971,
+      "files": {
+        "pdf": "reports/raghuram-children-hospital/Smart-Pursuit-Audit-Raghuram-Children-Hospital.pdf",
+        "audit": "reports/raghuram-children-hospital/audit.json",
+        "html": "reports/raghuram-children-hospital/report.html"
+      },
+      "fingerprint": "57d1977a1e180b57"
+    },
+    {
+      "domain": "bluefoxrestaurant.com",
+      "name": "Blue Fox",
+      "ref": "SP-AUD-2026-11-16-BF",
+      "generatedAt": "2026-11-16T00:32:54.202Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 6,
+        "mobile": 8,
+        "conversion": 8,
+        "design": 8,
+        "seo": 8,
+        "overall": 74
+      },
+      "pdfPages": 10,
+      "pdfBytes": 6737760,
+      "files": {
+        "pdf": "reports/blue-fox/Smart-Pursuit-Audit-Blue-Fox.pdf",
+        "audit": "reports/blue-fox/audit.json",
+        "html": "reports/blue-fox/report.html"
+      },
+      "fingerprint": "2ea427f1270c40fe"
+    },
+    {
+      "domain": "spencers.in",
+      "name": "Spencer's",
+      "ref": "SP-AUD-2026-11-16-S",
+      "generatedAt": "2026-11-16T00:34:00.047Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 8,
+        "conversion": 8,
+        "design": 10,
+        "seo": 9,
+        "overall": 75
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1462275,
+      "files": {
+        "pdf": "reports/spencer-s/Smart-Pursuit-Audit-Spencer-s.pdf",
+        "audit": "reports/spencer-s/audit.json",
+        "html": "reports/spencer-s/report.html"
+      },
+      "fingerprint": "d860cc0d20022248"
     }
   ]
 }
