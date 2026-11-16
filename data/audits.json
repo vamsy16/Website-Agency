@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-16T00:34:00.047Z",
+  "updatedAt": "2026-11-16T00:40:42.736Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -649,6 +649,30 @@
         "html": "reports/spencer-s/report.html"
       },
       "fingerprint": "d860cc0d20022248"
+    },
+    {
+      "domain": "karumurihospital.com",
+      "name": "Karumuri Super Speciality Hospital Pvt Ltd",
+      "ref": "SP-AUD-2026-11-16-KSS",
+      "generatedAt": "2026-11-16T00:40:42.736Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 8,
+        "conversion": 8,
+        "design": 10,
+        "seo": 9,
+        "overall": 75
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2256111,
+      "files": {
+        "pdf": "reports/karumuri-super-speciality-hospital-pvt-ltd/Smart-Pursuit-Audit-Karumuri-Super-Speciality-Hospital-Pvt-Ltd.pdf",
+        "audit": "reports/karumuri-super-speciality-hospital-pvt-ltd/audit.json",
+        "html": "reports/karumuri-super-speciality-hospital-pvt-ltd/report.html"
+      },
+      "fingerprint": "c82fc5319d86abbb"
     }
   ]
 }
