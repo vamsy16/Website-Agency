@@ -51,11 +51,11 @@ const CHAIN_NAME = [
   "lot mobiles", "big c", "happi mobiles", "bharat petroleum", "indian oil", "hp petrol",
   "fortune inn", "sarovar", "renault", "nissan", "life insurance corporation", "hyderabad house",
   "the chocolate room", "penna cement", "penna cements", "anoos", "anoo s", "naturals salon", "green trends",
-  "lakme salon", "vlcc", "kaya clinic", "oliva", "enrich salon",
+  "lakme salon", "vlcc", "kaya clinic", "oliva", "enrich salon", "spencer's", "spencers", "spencer s",
 ];
 // Names that are a chain only when they are the whole name ("More", not "More Than Coffee").
 const CHAIN_EXACT = ["more", "trends", "max", "zudio", "lic"];
-const CHAIN_DOMAIN = /(^|\.)(itchotels\.com|fortunehotels\.in|sarovarhotels\.com|tajhotels\.com|oyorooms\.com|renault\.co\.in|licindia\.in|moreretail\.in|hyderabadhouse\.com|thechocolateroomindia\.com|pennacement\.com|kia\.com|toyotabharat\.com|mahindra\.com|nissan\.in|skoda-auto\.co\.in|volkswagen\.co\.in|mgmotor\.co\.in|heromotocorp\.com|bajajauto\.com|tvsmotor\.com|royalenfield\.com|yamaha-motor-india\.com|airtel\.in|jio\.com|relianceretail\.com|ril\.com|jiomart\.com|tatamotors\.com|hdfclife\.com|hdfcbank\.com|ramrajcotton\.in|tumbledry\.in|preethi\.in|apollohospitals\.com|apollopharmacy\.in|medplusmart\.com|kfc\.co\.in|dominos\.co\.in|marutisuzuki\.com|hyundai\.com|hondacarindia\.com|tanishq\.co\.in|titan\.co\.in|lenskart\.com|decathlon\.in|ikea\.com|bata\.com|croma\.com)$/i;
+const CHAIN_DOMAIN = /(^|\.)(itchotels\.com|fortunehotels\.in|sarovarhotels\.com|tajhotels\.com|oyorooms\.com|renault\.co\.in|licindia\.in|moreretail\.in|hyderabadhouse\.com|thechocolateroomindia\.com|pennacement\.com|kia\.com|toyotabharat\.com|mahindra\.com|nissan\.in|skoda-auto\.co\.in|volkswagen\.co\.in|mgmotor\.co\.in|heromotocorp\.com|bajajauto\.com|tvsmotor\.com|royalenfield\.com|yamaha-motor-india\.com|airtel\.in|jio\.com|relianceretail\.com|ril\.com|jiomart\.com|tatamotors\.com|hdfclife\.com|hdfcbank\.com|ramrajcotton\.in|tumbledry\.in|preethi\.in|apollohospitals\.com|apollopharmacy\.in|medplusmart\.com|kfc\.co\.in|dominos\.co\.in|marutisuzuki\.com|hyundai\.com|hondacarindia\.com|tanishq\.co\.in|titan\.co\.in|lenskart\.com|decathlon\.in|ikea\.com|bata\.com|croma\.com|spencers\.in|anoos\.com)$/i;
 // "branch.example.com", "stores.example.com": a store locator, not the business's own site.
 const LOCATOR_SUBDOMAIN = /^(branch|branches|stores?|locations?|outlets?|dealers?|local|showrooms?)\./i;
 
