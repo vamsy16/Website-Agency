@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-20T02:55:06.995Z",
+  "updatedAt": "2026-11-20T03:04:11.963Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -889,6 +889,30 @@
         "html": "reports/dr-sushma-dental/report.html"
       },
       "fingerprint": "a0832b7a2827e139"
+    },
+    {
+      "domain": "msdentalhospital.in",
+      "name": "MS Dental Hospital",
+      "ref": "SP-AUD-2026-11-20-MDH",
+      "generatedAt": "2026-11-20T03:04:11.963Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 4,
+        "mobile": 6,
+        "conversion": 8,
+        "design": 10,
+        "seo": 9,
+        "overall": 68
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1753804,
+      "files": {
+        "pdf": "reports/ms-dental-hospital/Smart-Pursuit-Audit-MS-Dental-Hospital.pdf",
+        "audit": "reports/ms-dental-hospital/audit.json",
+        "html": "reports/ms-dental-hospital/report.html"
+      },
+      "fingerprint": "5790de5474c0dbfd"
     }
   ]
 }
