@@ -7,6 +7,7 @@
 // The audit step MUST call assertAuditable() before it touches the network.
 import path from "node:path";
 import { ROOT, readJSON, writeJSON, domainOf, leadKey, isoDate, hash, addDays } from "./util.mjs";
+import { notAProspect } from "./prospect.mjs";
 
 const DATA = path.join(ROOT, "data");
 const LEADS = path.join(DATA, "leads.json");
@@ -186,16 +187,33 @@ export function recordAudit({ website, name, ref, pdfPath, auditPath, reportPath
  * This is the function that makes a daily run idempotent: running it twice on the
  * same day returns nothing the second time, without needing any external state.
  */
-export function pendingLeads({ state = null, niches = [], limit = 5, cooldownDays = 60, maxAttempts = 3 } = {}) {
+export function pendingLeads({ state = null, niches = [], limit = 5, cooldownDays = 60, maxAttempts = 3, requireEmail = false, siteScreen = false, screenRecheckDays = 30, filterProspects = false } = {}) {
   const leads = loadLeads().leads;
   const stateKey = state ? String(state).toLowerCase().trim() : null;
   const nicheKeys = niches.map(n => String(n).toLowerCase().trim()).filter(Boolean);
   const out = [];
-  const skipped = { audited: 0, blocked: 0, failedTooOften: 0, noWebsite: 0, wrongState: 0, wrongNiche: 0 };
+  const skipped = { audited: 0, blocked: 0, failedTooOften: 0, noWebsite: 0, noEmail: 0, wrongState: 0, wrongNiche: 0, notProspect: 0, screenedOut: 0 };
+  const notProspects = [];
+  const eligible = [];
+  const now = Date.now();
 
   for (const lead of leads) {
-    if (out.length >= limit) break;
     if (!lead.website) { skipped.noWebsite++; continue; }
+    // Owner rule (2026-11-15): only audit a business we can actually email.
+    // The address must be published - never guessed. With siteScreen on, a lead
+    // without an OSM email stays in the queue because the run checks the
+    // business's own website for a published address before auditing it.
+    if (requireEmail && !siteScreen && !hasPublishedEmail(lead)) { skipped.noEmail++; continue; }
+    // Owner rule (2026-11-15): chains, government/education, nonprofits and
+    // IT/web/marketing firms are not clients. No network involved.
+    if (filterProspects && ["new", "audit-failed"].includes(lead.status || "new")) {
+      const np = notAProspect(lead);
+      if (np) { skipped.notProspect++; notProspects.push({ name: lead.name, domain: lead.domain, ...np }); continue; }
+    }
+    // Screened out recently (no published email, dead site, foreign, nonprofit):
+    // try again only after screenRecheckDays.
+    if (siteScreen && lead.screen && lead.screen.result !== "ok" && lead.screen.checkedAt &&
+        now - new Date(lead.screen.checkedAt).getTime() < screenRecheckDays * 86400000) { skipped.screenedOut++; continue; }
     if (stateKey && String(lead.state || "").toLowerCase().trim() !== stateKey) { skipped.wrongState++; continue; }
     // A lead with no niche was found by the broad search (or came from a CSV).
     // Unknown is not the same as wrong, so it is kept.
@@ -204,10 +222,21 @@ export function pendingLeads({ state = null, niches = [], limit = 5, cooldownDay
     if ((lead.auditAttempts || 0) >= maxAttempts) { skipped.failedTooOften++; continue; }
     const gate = checkAudit(lead.website, { cooldownDays });
     if (gate.duplicate) { skipped.blocked++; continue; }
-    out.push(lead);
+    eligible.push(lead);
   }
 
-  return { leads: out, skipped };
+  // Fresh leads before retries: a site that already failed once is the least
+  // likely to pass, so it should not take a slot from one never tried.
+  // A lead whose email was already published somewhere is likelier to pass the
+  // site screen, so it goes first within the same attempt count.
+  eligible.sort((a, b) => (a.auditAttempts || 0) - (b.auditAttempts || 0) || (hasPublishedEmail(b) ? 1 : 0) - (hasPublishedEmail(a) ? 1 : 0));
+  out.push(...eligible.slice(0, limit));
+  return { leads: out, skipped, notProspects };
+}
+
+/** A lead counts as emailable only with a syntactically valid, published address. */
+export function hasPublishedEmail(lead) {
+  return /^[^\s@<>(),;:]+@[^\s@<>(),;:]+\.[a-z]{2,}$/i.test(String(lead?.email || "").trim());
 }
 
 /** Patches one lead row in place. Rows are never deleted. */

@@ -1,0 +1,76 @@
+{
+  "business": "Krishna Multispeciality Dental Clinic",
+  "domain": "krishnadental.in",
+  "ref": "SP-AUD-2026-11-15-KMD",
+  "createdAt": "2026-11-15T12:51:45.016Z",
+  "sendDate": "2026-11-15",
+  "cadenceDays": [
+    3,
+    3,
+    3
+  ],
+  "to": "vidya@krishnadental.in",
+  "status": "draft",
+  "neverSendAutomatically": true,
+  "note": "Dates shift if the operator sends email 1 on a different day — recompute with `sequence --send-date YYYY-MM-DD`.",
+  "emails": [
+    {
+      "step": 1,
+      "id": "first",
+      "purpose": "deliver the audit, earn a reply",
+      "attachments": [
+        "reports/krishna-multispeciality-dental-clinic/Smart-Pursuit-Audit-Krishna-Multispeciality-Dental-Clinic.pdf"
+      ],
+      "subject": "Krishna Multispeciality Dental Clinic — what I found testing krishnadental.in",
+      "words": 139,
+      "scheduledFor": "2026-11-15",
+      "scheduledForLong": "15 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/krishna-multispeciality-dental-clinic/email-1-first.md"
+    },
+    {
+      "step": 2,
+      "id": "followup-1",
+      "purpose": "turn the top measured finding into a money argument",
+      "attachments": [],
+      "subject": "Re: Krishna Multispeciality Dental Clinic — what I found testing krishnadental.in",
+      "words": 107,
+      "scheduledFor": "2026-11-18",
+      "scheduledForLong": "18 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/krishna-multispeciality-dental-clinic/email-2-followup-1.md"
+    },
+    {
+      "step": 3,
+      "id": "followup-2",
+      "purpose": "show the outcome, make the next step concrete",
+      "attachments": [],
+      "subject": "Re: Krishna Multispeciality Dental Clinic — what a fixed version looks like",
+      "words": 121,
+      "scheduledFor": "2026-11-21",
+      "scheduledForLong": "21 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/krishna-multispeciality-dental-clinic/email-3-followup-2.md"
+    },
+    {
+      "step": 4,
+      "id": "followup-3-final",
+      "purpose": "final mail, leave the door open, no pressure",
+      "attachments": [],
+      "subject": "Closing the loop — Krishna Multispeciality Dental Clinic",
+      "words": 98,
+      "scheduledFor": "2026-11-24",
+      "scheduledForLong": "24 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/krishna-multispeciality-dental-clinic/email-4-followup-3-final.md"
+    }
+  ]
+}

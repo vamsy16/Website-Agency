@@ -1,6 +1,6 @@
 ---
 id: followup-3-final
-subject: "Closing the loop — {{business.name}}"
+subject: "Closing the loop — {{business.shortName}}"
 dayOffset: 9
 purpose: final mail, leave the door open, no pressure
 attachments: none

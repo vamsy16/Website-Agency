@@ -1,0 +1,76 @@
+{
+  "business": "Golden Globe Overseas Consultants",
+  "domain": "goldenglobeoverseas.com",
+  "ref": "SP-AUD-2026-11-15-GGO",
+  "createdAt": "2026-11-15T13:24:15.365Z",
+  "sendDate": "2026-11-15",
+  "cadenceDays": [
+    3,
+    3,
+    3
+  ],
+  "to": "info@goldenglobeoverseas.com",
+  "status": "draft",
+  "neverSendAutomatically": true,
+  "note": "Dates shift if the operator sends email 1 on a different day — recompute with `sequence --send-date YYYY-MM-DD`.",
+  "emails": [
+    {
+      "step": 1,
+      "id": "first",
+      "purpose": "deliver the audit, earn a reply",
+      "attachments": [
+        "reports/golden-globe-overseas-consultants/Smart-Pursuit-Audit-Golden-Globe-Overseas-Consultants.pdf"
+      ],
+      "subject": "Golden Globe Overseas Consultants — what I found testing goldenglobeoverseas.com",
+      "words": 137,
+      "scheduledFor": "2026-11-15",
+      "scheduledForLong": "15 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/golden-globe-overseas-consultants/email-1-first.md"
+    },
+    {
+      "step": 2,
+      "id": "followup-1",
+      "purpose": "turn the top measured finding into a money argument",
+      "attachments": [],
+      "subject": "Re: Golden Globe Overseas Consultants — what I found testing goldenglobeoverseas.com",
+      "words": 113,
+      "scheduledFor": "2026-11-18",
+      "scheduledForLong": "18 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/golden-globe-overseas-consultants/email-2-followup-1.md"
+    },
+    {
+      "step": 3,
+      "id": "followup-2",
+      "purpose": "show the outcome, make the next step concrete",
+      "attachments": [],
+      "subject": "Re: Golden Globe Overseas Consultants — what a fixed version looks like",
+      "words": 121,
+      "scheduledFor": "2026-11-21",
+      "scheduledForLong": "21 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/golden-globe-overseas-consultants/email-3-followup-2.md"
+    },
+    {
+      "step": 4,
+      "id": "followup-3-final",
+      "purpose": "final mail, leave the door open, no pressure",
+      "attachments": [],
+      "subject": "Closing the loop — Golden Globe Overseas Consultants",
+      "words": 98,
+      "scheduledFor": "2026-11-24",
+      "scheduledForLong": "24 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/golden-globe-overseas-consultants/email-4-followup-3-final.md"
+    }
+  ]
+}

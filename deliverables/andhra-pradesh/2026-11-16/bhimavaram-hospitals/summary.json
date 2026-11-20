@@ -1,0 +1,25 @@
+{
+  "name": "Bhimavaram Hospitals",
+  "domain": "bhimavaramhospital.com",
+  "city": null,
+  "state": "Andhra Pradesh",
+  "email": "info@bhimavaramhospitals.com",
+  "phone": "08816-221111, 22, 33",
+  "ref": "SP-AUD-2026-11-16-BH",
+  "date": "2026-11-16",
+  "overall": 87,
+  "scores": {
+    "speed": 9,
+    "mobile": 8,
+    "conversion": 8,
+    "design": 10,
+    "seo": 9,
+    "overall": 87
+  },
+  "pdf": "Smart-Pursuit-Audit-Bhimavaram-Hospitals.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://www.bhimavaramhospital.com/contactus.htm",
+    "checkedAt": "2026-11-16"
+  }
+}

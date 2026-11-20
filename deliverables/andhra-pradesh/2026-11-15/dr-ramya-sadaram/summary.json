@@ -1,0 +1,25 @@
+{
+  "name": "Dr. Ramya Sadaram",
+  "domain": "gynecologistvizag.com",
+  "city": "Visakhapatnam",
+  "state": "Andhra Pradesh",
+  "email": "dr.ramya@gynaecspecialist.com",
+  "phone": null,
+  "ref": "SP-AUD-2026-11-15-DRS",
+  "date": "2026-11-15",
+  "overall": 79,
+  "scores": {
+    "speed": 7,
+    "mobile": 6,
+    "conversion": 10,
+    "design": 8,
+    "seo": 9,
+    "overall": 79
+  },
+  "pdf": "Smart-Pursuit-Audit-Dr.-Ramya-Sadaram.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://gynecologistvizag.com/",
+    "checkedAt": "2026-11-15"
+  }
+}

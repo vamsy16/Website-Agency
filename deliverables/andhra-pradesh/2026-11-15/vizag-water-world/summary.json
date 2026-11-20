@@ -1,0 +1,25 @@
+{
+  "name": "Vizag Water World",
+  "domain": "vizagwaterworld.com",
+  "city": null,
+  "state": "Andhra Pradesh",
+  "email": "vizagwaterworld@gmail.com",
+  "phone": null,
+  "ref": "SP-AUD-2026-11-15-VWW",
+  "date": "2026-11-15",
+  "overall": 74,
+  "scores": {
+    "speed": 5,
+    "mobile": 8,
+    "conversion": 8,
+    "design": 10,
+    "seo": 8,
+    "overall": 74
+  },
+  "pdf": "Smart-Pursuit-Audit-Vizag-Water-World.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://www.vizagwaterworld.com/",
+    "checkedAt": "2026-11-15"
+  }
+}

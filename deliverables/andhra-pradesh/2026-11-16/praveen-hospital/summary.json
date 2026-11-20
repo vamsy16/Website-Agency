@@ -1,0 +1,25 @@
+{
+  "name": "Praveen  Hospital",
+  "domain": "praveenhospitals.com",
+  "city": null,
+  "state": "Andhra Pradesh",
+  "email": "praveencardiaccentre@gmail.com",
+  "phone": "8662444440",
+  "ref": "SP-AUD-2026-11-16-PH",
+  "date": "2026-11-16",
+  "overall": 69,
+  "scores": {
+    "speed": 5,
+    "mobile": 7,
+    "conversion": 8,
+    "design": 8,
+    "seo": 8,
+    "overall": 69
+  },
+  "pdf": "Smart-Pursuit-Audit-Praveen-Hospital.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://praveenhospitals.com/",
+    "checkedAt": "2026-11-16"
+  }
+}

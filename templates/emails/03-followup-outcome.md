@@ -1,6 +1,6 @@
 ---
 id: followup-2
-subject: "Re: {{business.name}} — what a fixed version looks like"
+subject: "Re: {{business.shortName}} — what a fixed version looks like"
 dayOffset: 6
 purpose: show the outcome, make the next step concrete
 attachments: none

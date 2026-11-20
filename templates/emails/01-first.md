@@ -1,6 +1,6 @@
 ---
 id: first
-subject: "{{business.name}} — the enquiry form on your site is broken"
+subject: "{{business.shortName}} — what I found testing {{business.siteLabel}}"
 dayOffset: 0
 purpose: deliver the audit, earn a reply
 attachments: audit-pdf

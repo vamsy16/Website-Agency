@@ -1,0 +1,25 @@
+{
+  "name": "Jnanananda Eye Hospital",
+  "domain": "jnananandaeyehospital.co.in",
+  "city": null,
+  "state": "Andhra Pradesh",
+  "email": "joinstitute@yahoo.co.in",
+  "phone": "08816223321; 222381",
+  "ref": "SP-AUD-2026-11-16-JEH",
+  "date": "2026-11-16",
+  "overall": 65,
+  "scores": {
+    "speed": 4,
+    "mobile": 8,
+    "conversion": 7,
+    "design": 7,
+    "seo": 9,
+    "overall": 65
+  },
+  "pdf": "Smart-Pursuit-Audit-Jnanananda-Eye-Hospital.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://www.jnananandaeyehospital.co.in/index.html",
+    "checkedAt": "2026-11-16"
+  }
+}

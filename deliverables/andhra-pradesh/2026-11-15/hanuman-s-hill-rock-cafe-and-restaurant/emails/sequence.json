@@ -1,0 +1,76 @@
+{
+  "business": "Hanuman's Hill Rock Cafe & Restaurant",
+  "domain": "hanumanshillrock.com",
+  "ref": "SP-AUD-2026-11-15-HHR",
+  "createdAt": "2026-11-15T12:51:45.180Z",
+  "sendDate": "2026-11-15",
+  "cadenceDays": [
+    3,
+    3,
+    3
+  ],
+  "to": "welcome@hanumanshillrock.com",
+  "status": "draft",
+  "neverSendAutomatically": true,
+  "note": "Dates shift if the operator sends email 1 on a different day — recompute with `sequence --send-date YYYY-MM-DD`.",
+  "emails": [
+    {
+      "step": 1,
+      "id": "first",
+      "purpose": "deliver the audit, earn a reply",
+      "attachments": [
+        "reports/hanuman-s-hill-rock-cafe-and-restaurant/Smart-Pursuit-Audit-Hanuman-s-Hill-Rock-Cafe-Restaurant.pdf"
+      ],
+      "subject": "Hanuman's Hill Rock Cafe & Restaurant — what I found testing hanumanshillrock.com",
+      "words": 150,
+      "scheduledFor": "2026-11-15",
+      "scheduledForLong": "15 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/hanuman-s-hill-rock-cafe-and-restaurant/email-1-first.md"
+    },
+    {
+      "step": 2,
+      "id": "followup-1",
+      "purpose": "turn the top measured finding into a money argument",
+      "attachments": [],
+      "subject": "Re: Hanuman's Hill Rock Cafe & Restaurant — what I found testing hanumanshillrock.com",
+      "words": 104,
+      "scheduledFor": "2026-11-18",
+      "scheduledForLong": "18 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/hanuman-s-hill-rock-cafe-and-restaurant/email-2-followup-1.md"
+    },
+    {
+      "step": 3,
+      "id": "followup-2",
+      "purpose": "show the outcome, make the next step concrete",
+      "attachments": [],
+      "subject": "Re: Hanuman's Hill Rock Cafe & Restaurant — what a fixed version looks like",
+      "words": 121,
+      "scheduledFor": "2026-11-21",
+      "scheduledForLong": "21 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/hanuman-s-hill-rock-cafe-and-restaurant/email-3-followup-2.md"
+    },
+    {
+      "step": 4,
+      "id": "followup-3-final",
+      "purpose": "final mail, leave the door open, no pressure",
+      "attachments": [],
+      "subject": "Closing the loop — Hanuman's Hill Rock Cafe & Restaurant",
+      "words": 98,
+      "scheduledFor": "2026-11-24",
+      "scheduledForLong": "24 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/hanuman-s-hill-rock-cafe-and-restaurant/email-4-followup-3-final.md"
+    }
+  ]
+}

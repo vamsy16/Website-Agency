@@ -1,0 +1,76 @@
+{
+  "business": "Khushi Shopping Mall",
+  "domain": "khushishoppingmall.in",
+  "ref": "SP-AUD-2026-11-15-KSM",
+  "createdAt": "2026-11-15T12:51:44.955Z",
+  "sendDate": "2026-11-15",
+  "cadenceDays": [
+    3,
+    3,
+    3
+  ],
+  "to": "khushishoppingmall@gmail.com",
+  "status": "draft",
+  "neverSendAutomatically": true,
+  "note": "Dates shift if the operator sends email 1 on a different day — recompute with `sequence --send-date YYYY-MM-DD`.",
+  "emails": [
+    {
+      "step": 1,
+      "id": "first",
+      "purpose": "deliver the audit, earn a reply",
+      "attachments": [
+        "reports/khushi-shopping-mall/Smart-Pursuit-Audit-Khushi-Shopping-Mall.pdf"
+      ],
+      "subject": "Khushi Shopping Mall — what I found testing khushishoppingmall.in",
+      "words": 137,
+      "scheduledFor": "2026-11-15",
+      "scheduledForLong": "15 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/khushi-shopping-mall/email-1-first.md"
+    },
+    {
+      "step": 2,
+      "id": "followup-1",
+      "purpose": "turn the top measured finding into a money argument",
+      "attachments": [],
+      "subject": "Re: Khushi Shopping Mall — what I found testing khushishoppingmall.in",
+      "words": 113,
+      "scheduledFor": "2026-11-18",
+      "scheduledForLong": "18 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/khushi-shopping-mall/email-2-followup-1.md"
+    },
+    {
+      "step": 3,
+      "id": "followup-2",
+      "purpose": "show the outcome, make the next step concrete",
+      "attachments": [],
+      "subject": "Re: Khushi Shopping Mall — what a fixed version looks like",
+      "words": 121,
+      "scheduledFor": "2026-11-21",
+      "scheduledForLong": "21 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/khushi-shopping-mall/email-3-followup-2.md"
+    },
+    {
+      "step": 4,
+      "id": "followup-3-final",
+      "purpose": "final mail, leave the door open, no pressure",
+      "attachments": [],
+      "subject": "Closing the loop — Khushi Shopping Mall",
+      "words": 98,
+      "scheduledFor": "2026-11-24",
+      "scheduledForLong": "24 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/khushi-shopping-mall/email-4-followup-3-final.md"
+    }
+  ]
+}

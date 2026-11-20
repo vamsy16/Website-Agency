@@ -1,0 +1,25 @@
+{
+  "name": "Blue Fox",
+  "domain": "bluefoxrestaurant.com",
+  "city": "Tirupati",
+  "state": "Andhra Pradesh",
+  "email": "gm@bluefoxrestaurant.com",
+  "phone": "+ 91 80080 02312",
+  "ref": "SP-AUD-2026-11-16-BF",
+  "date": "2026-11-16",
+  "overall": 74,
+  "scores": {
+    "speed": 6,
+    "mobile": 8,
+    "conversion": 8,
+    "design": 8,
+    "seo": 8,
+    "overall": 74
+  },
+  "pdf": "Smart-Pursuit-Audit-Blue-Fox.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://www.bluefoxrestaurant.com/",
+    "checkedAt": "2026-11-16"
+  }
+}

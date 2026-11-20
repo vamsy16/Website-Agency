@@ -137,7 +137,7 @@ export async function verifyAudit({ auditPath, live = false, fixture = false }) 
       if (/contact page shows code|raw code|shortcode/i.test(`${f.title} ${f.measured}`) && !audit.facts?.http?.contactShortcode) {
         missing.push(`${f.id}: claims a shortcode leak but http.contactShortcode is empty`);
       }
-      if (/no way to book|no visible form/i.test(f.title) && Number(audit.facts?.metric?.visibleForms) > 0) {
+      if (/no way to book|no visible form|no enquiry form/i.test(f.title) && Number(audit.facts?.metric?.visibleForms) > 0) {
         missing.push(`${f.id}: claims no form but metric.visibleForms = ${audit.facts.metric.visibleForms}`);
       }
     }

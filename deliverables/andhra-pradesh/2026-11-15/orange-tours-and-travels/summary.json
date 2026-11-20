@@ -1,0 +1,25 @@
+{
+  "name": "Orange Tours & Travels",
+  "domain": "orangetravels.in",
+  "city": null,
+  "state": "Andhra Pradesh",
+  "email": "custcare@orangetravels.in",
+  "phone": "7729997586",
+  "ref": "SP-AUD-2026-11-15-OT&",
+  "date": "2026-11-15",
+  "overall": 72,
+  "scores": {
+    "speed": 4,
+    "mobile": 7,
+    "conversion": 10,
+    "design": 9,
+    "seo": 8,
+    "overall": 72
+  },
+  "pdf": "Smart-Pursuit-Audit-Orange-Tours-Travels.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://orangetravels.in/",
+    "checkedAt": "2026-11-15"
+  }
+}

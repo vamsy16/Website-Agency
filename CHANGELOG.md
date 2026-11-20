@@ -3,7 +3,56 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## 1.4.0 — 15 November 2026
+
+**Confirmed emails only, real prospects only, honest wording.**
+
+- `src/prospect.mjs` — `screenSite(lead)`: before an audit, fetch the business's
+  own homepage and up to three contact/about pages. The email counts only if it
+  is published there (mailto, plain text, `[at]`/`[dot]`, Cloudflare-protected).
+  If OpenStreetMap's address is not on the site but the site publishes its own,
+  the site's address is used and the OSM one kept as `osmEmail`. No published
+  address → the lead is skipped (`screenedOut`), never guessed. The same fetch
+  skips dead sites, non-Indian companies and self-declared nonprofits before a
+  3-minute audit. Screens do not count as audit attempts; `run.maxScreens` caps
+  them and a screened-out lead is retried after `run.screenRecheckDays`.
+- `notAProspect(lead)` (no network): national chains and store-locator pages,
+  government/education bodies, nonprofits/NGOs/societies, and IT/web/marketing
+  firms are skipped and listed in the run log. Owner decision after Reliance,
+  RISE (an Austrian IT firm), Red Cross, Swecha and a golf club were audited.
+- Email 1 no longer claims "the enquiry form on your site is broken" for every
+  site. Subjects are "<name> — what I found testing <domain>", using a short
+  name so long company names no longer fail review (RISE). Email 2's money line
+  is built only from what was measured. Drafts now carry the confirmed `To:`.
+- Report wording: "patient", "book an appointment" and "booking path" only for
+  healthcare businesses (`audienceOf`); others read "customer" / "enquiry".
+  The summary verdict names only problems the site has — it no longer says
+  "a broken form" when no broken form was found. Rubric unchanged (selftest 36).
+- `screen --domain|--audited` re-checks emails without auditing;
+  `reaudit --domain … --reason …` re-measures a delivered audit after a wording
+  fix (the one place the cooldown is overridden; never counts toward a target).
+  `run-request.json` accepts `reaudit` and `reauditReason`.
+- When a plain fetch finds no address (JavaScript-rendered page) or the site
+  refuses a non-browser (HTTP 403), the screen looks again in Chromium.
+- A "website" that is a deep page on another company's site
+  (`itchotels.com/in/en/fortune-inn-…`) marks a chain branch. Hotel Sree Kanya
+  (ITC Fortune) slipped through the first 1.4.0 run because of this.
+- `publish-deliverables --index-only`; the index has a **Send?** column.
+
 ## 1.3.0 — 15 November 2026
+
+**Email-only audits, GitHub runner, verified deliverables.**
+
+- Owner rule: only audit a business with a published email. `run.requireEmail`
+  in `config/settings.json` (default `true`); `pendingLeads({ requireEmail })`
+  skips leads without a valid published address and reports them as `no email`.
+  `--allow-no-email` overrides for one run. Addresses are never guessed.
+- `run --target N` stops once N audits pass verification; `--max` still caps
+  attempts. Fresh leads are queued before retries of failed ones.
+- `.github/workflows/agency-run.yml`: pushing `run-request.json` runs the daily
+  driver on a GitHub runner (the Arena sandbox cannot reach OSM or prospect
+  sites). Verified audits are published to `deliverables/` by
+  `tools/publish-deliverables.mjs`; everything else returns encrypted.
 
 **A strategy plan, not just an audit.** A school that asks "what should we do"
 needs a document a management committee can sign, not a scorecard. Same frozen

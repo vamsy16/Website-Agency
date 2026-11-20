@@ -1,0 +1,154 @@
+name: Agency Run
+
+# Runs `npm run run -- --state …` where it CAN run: a GitHub runner has a
+# browser and open internet (the Arena sandbox can only reach GitHub/npm/PyPI,
+# so it cannot reach OpenStreetMap or any prospect website).
+#
+# HOW TO START A RUN
+#   Edit run-request.json (state, max, leadsLimit, niches) and push it to the
+#   branch below. The push is the trigger — the Arena agent cannot dispatch
+#   workflows, but it can push.
+#
+# WHAT COMES BACK
+#   - data/leads.json and data/audits.json (the tracked registries, so the next
+#     run never re-audits a domain) are committed in plain text, as designed.
+#   - VERIFIED audits (PDF + email drafts + verify.json) are copied to
+#     deliverables/<state>/<date>/<business>/ in plain text and indexed in
+#     deliverables/README.md — the owner chose to keep audits in GitHub.
+#   - Everything else (failed/blocked reports, run log, lead batches) is packed
+#     into results/<run>.tgz.enc, encrypted to .github/results-key.pub.
+
+on:
+  push:
+    branches: [arena/841dee38-website-agency]
+    paths: [run-request.json]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: agency-run
+  cancel-in-progress: false
+
+env:
+  ARENA_BRANCH: arena/841dee38-website-agency
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Checkout the working branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.ARENA_BRANCH }}
+          fetch-depth: 0
+
+      - name: Set up Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies + Chromium
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+
+      - name: Read run request
+        id: req
+        run: |
+          echo "state=$(jq -r '.state' run-request.json)" >> "$GITHUB_OUTPUT"
+          echo "max=$(jq -r '.max // 5' run-request.json)" >> "$GITHUB_OUTPUT"
+          echo "leadsLimit=$(jq -r '.leadsLimit // 25' run-request.json)" >> "$GITHUB_OUTPUT"
+          echo "niches=$(jq -r '(.niches // []) | join(",")' run-request.json)" >> "$GITHUB_OUTPUT"
+          echo "sendDate=$(jq -r '.sendDate // ""' run-request.json)" >> "$GITHUB_OUTPUT"
+          echo "target=$(jq -r '.target // ""' run-request.json)" >> "$GITHUB_OUTPUT"
+          echo "reaudit=$(jq -r '(.reaudit // []) | join(",")' run-request.json)" >> "$GITHUB_OUTPUT"
+          echo "reauditReason=$(jq -r '.reauditReason // "operator request"' run-request.json)" >> "$GITHUB_OUTPUT"
+
+      - name: Selftest (rubric must reproduce 36)
+        run: npm run selftest
+
+      - name: Doctor
+        run: npm run doctor -- --state "${{ steps.req.outputs.state }}" || true
+
+      - name: Re-check emails of audited leads against their own websites
+        run: node src/cli.mjs screen --audited 2>&1 | tee screen.log || true
+
+      - name: Re-audit requested domains (wording fix; never counts toward the target)
+        if: steps.req.outputs.reaudit != ''
+        env:
+          DOMAINS: ${{ steps.req.outputs.reaudit }}
+          REASON: ${{ steps.req.outputs.reauditReason }}
+        run: node src/cli.mjs reaudit --domain "$DOMAINS" --reason "$REASON" 2>&1 | tee reaudit.log || true
+
+      - name: Daily run
+        env:
+          STATE: ${{ steps.req.outputs.state }}
+          MAX: ${{ steps.req.outputs.max }}
+          LIMIT: ${{ steps.req.outputs.leadsLimit }}
+          NICHES: ${{ steps.req.outputs.niches }}
+          TARGET: ${{ steps.req.outputs.target }}
+        run: |
+          args=(--state "$STATE" --max "$MAX" --leads-limit "$LIMIT")
+          if [ -n "$NICHES" ]; then args+=(--niches "$NICHES"); fi
+          if [ -n "$TARGET" ]; then args+=(--target "$TARGET"); fi
+          npm run run -- "${args[@]}" 2>&1 | tee run.log
+
+      - name: Publish verified audits to deliverables/
+        if: always()
+        run: node tools/publish-deliverables.mjs
+
+      - name: Plain-text run summary (counts + audited/failed businesses only)
+        if: always()
+        run: |
+          [ -f run.log ] || exit 0
+          d="deliverables/runs"; mkdir -p "$d"
+          f="$d/$(date -u +%F)-run-${{ github.run_id }}.md"
+          {
+            echo "# Run ${{ github.run_id }} — ${{ steps.req.outputs.state }} ($(date -u +%F))"
+            echo
+            echo '```'
+            grep -E '^  (leads|queue) ' run.log || true
+            grep -E '^  not prospects \(' run.log || true
+            awk '/^  \[[0-9]+\/[0-9]+\]/ { show = ($0 ~ /\/100|FAILED|duplicate/); if (show) print; next } show && /^    / { print; next } { show = 0 }' run.log | head -200
+            grep -E '^  (Audited|target reached)' run.log || true
+            echo '```'
+          } > "$f"
+          cat "$f"
+
+      - name: Encrypt results
+        if: always()
+        run: |
+          mkdir -p results
+          paths=()
+          for p in reports outreach data/run-*.json data/batch-*.json run.log screen.log reaudit.log; do
+            [ -e "$p" ] && paths+=("$p")
+          done
+          if [ ${#paths[@]} -eq 0 ]; then echo "nothing to pack"; exit 0; fi
+          out="results/run-${{ github.run_id }}"
+          tar czf /tmp/results.tgz "${paths[@]}"
+          openssl rand -hex 32 > /tmp/k
+          openssl enc -aes-256-cbc -pbkdf2 -salt -in /tmp/results.tgz -out "$out.tgz.enc" -pass file:/tmp/k
+          openssl pkeyutl -encrypt -pubin -inkey .github/results-key.pub \
+            -pkeyopt rsa_padding_mode:oaep -in /tmp/k -out "$out.key.enc"
+          shred -u /tmp/k /tmp/results.tgz
+          ls -la results
+
+      - name: Commit registries + encrypted results back
+        if: always()
+        run: |
+          git config user.name "smart-pursuit-bot"
+          git config user.email "actions@github.com"
+          git add data/leads.json data/audits.json results/ deliverables/ || true
+          if git diff --cached --quiet; then
+            echo "Nothing to commit."
+            exit 0
+          fi
+          git commit -m "Agency run: ${{ steps.req.outputs.state }} (run ${{ github.run_id }})"
+          for i in 1 2 3; do
+            git pull --rebase origin "$ARENA_BRANCH" && git push origin "HEAD:refs/heads/${ARENA_BRANCH}" && break
+            sleep 5
+          done

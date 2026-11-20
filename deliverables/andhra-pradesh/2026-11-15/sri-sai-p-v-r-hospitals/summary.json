@@ -1,0 +1,25 @@
+{
+  "name": "Sri Sai P.V.R. Hospitals",
+  "domain": "srisaipvrhospitals.in",
+  "city": null,
+  "state": "Andhra Pradesh",
+  "email": "info@srisaipvrhospitals.in",
+  "phone": "089222 - 23225",
+  "ref": "SP-AUD-2026-11-15-SSP",
+  "date": "2026-11-15",
+  "overall": 64,
+  "scores": {
+    "speed": 4,
+    "mobile": 8,
+    "conversion": 7,
+    "design": 6,
+    "seo": 9,
+    "overall": 64
+  },
+  "pdf": "Smart-Pursuit-Audit-Sri-Sai-P.V.R.-Hospitals.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://srisaipvrhospitals.in/",
+    "checkedAt": "2026-11-15"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "Krishna Hospital",
+  "domain": "krishnaivf.com",
+  "city": null,
+  "state": "Andhra Pradesh",
+  "email": "krishnaivf@krishnaivf.com",
+  "phone": "0891- 2538194 / 95",
+  "ref": "SP-AUD-2026-11-15-KH",
+  "date": "2026-11-15",
+  "overall": 67,
+  "scores": {
+    "speed": 5,
+    "mobile": 6,
+    "conversion": 7,
+    "design": 8,
+    "seo": 10,
+    "overall": 67
+  },
+  "pdf": "Smart-Pursuit-Audit-Krishna-Hospital.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://krishnaivf.com/",
+    "checkedAt": "2026-11-15"
+  }
+}

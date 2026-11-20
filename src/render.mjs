@@ -9,7 +9,7 @@
 //   3. If a narrative override references an unknown fact token the render throws.
 import fs from "node:fs";
 import path from "node:path";
-import { ROOT, escapeHtml, fmtInt, round, adTechLabel } from "./util.mjs";
+import { ROOT, escapeHtml, fmtInt, round, adTechLabel, audienceOf } from "./util.mjs";
 
 const STYLES = fs.readFileSync(path.join(ROOT, "src", "styles.css"), "utf8");
 const FONTS = fs.readFileSync(path.join(ROOT, "src", "fonts.css"), "utf8");
@@ -94,7 +94,7 @@ function defaultCoverStats(facts, findings) {
   const first = findings.all[0] || { title: "" };
   const third = m.visibleForms === 0 && facts.http.contactShortcode
     ? { n: "1", unit: "", label: "Broken enquiry form. Your Contact page prints raw code where the form should load." }
-    : { n: String(m.h1Count), unit: "", label: "Competing H1 headings on one page, so neither a patient nor a crawler knows the topic." };
+    : { n: String(m.h1Count), unit: "", label: "Competing H1 headings on one page, so neither a visitor nor a crawler knows the topic." };
   return [
     { n: String(m.perfMobile), unit: "/ 100", label: `Mobile performance score. Google calls below 50 “poor”.` },
     { n: secNum(m.lcpMs), unit: "s", label: `Until your main image appears on a phone. Google’s target is 2.5 s.` },
@@ -160,6 +160,14 @@ ${s.costs
 function defaultSummary(facts, findings) {
   const m = facts.metric;
   const h = facts.http;
+  const v = audienceOf(facts.business);
+  // Name only the problems this site actually has.
+  const issues = [
+    h.contactShortcode ? "a broken contact form" : null,
+    m.visibleForms === 0 ? (v.health ? "a missing booking flow" : "no enquiry form on the homepage") : null,
+    "unoptimised images and leftover scripts",
+  ].filter(Boolean);
+  const issueText = issues.length > 1 ? `${issues.slice(0, -1).join(", ")} and ${issues[issues.length - 1]}` : issues[0];
   const costs = findings.all.slice(0, 3).map(f => ({ title: f.title + ".", body: f.why }));
   const good = [];
   if (m.words > 300) good.push(`${fmtInt(m.words)} words of real content`);
@@ -172,9 +180,9 @@ function defaultSummary(facts, findings) {
     lede: `We ran the same tests Google runs, on the same page a visitor sees when they search for your service on a phone. ${findings.all.length} things stood out — ${findings.all.filter(f => f.severity === "Critical").length} of them are losing you enquiries today.`,
     costs,
     working: `Credit where it is due: ${good.length ? good.join(", ") : "the pages do load"}. The foundations are there — the plumbing is not.`,
-    verdict: `Most of the problems below are not design problems. They are a broken form, a missing booking flow, unoptimised images and leftover scripts. The urgent ones are fixed in about a week, without changing how the site looks.`,
+    verdict: `Most of the problems below are not design problems. They are ${issueText}. The urgent ones are fixed in about a week, without changing how the site looks.`,
     bill: h.adTech?.length
-      ? `Your pages load ${e(h.adTech.map(adTechLabel).join(", "))} alongside analytics. That is a paid-traffic setup — and if you are buying clicks, you are paying to send them to pages that cannot take a booking. That is not a speed problem. That is the funnel.`
+      ? `Your pages load ${e(h.adTech.map(adTechLabel).join(", "))} alongside analytics. That is a paid-traffic setup — and if you are buying clicks, you are paying to send them to pages that cannot take ${v.noun}. That is not a speed problem. That is the funnel.`
       : null,
   };
 }
@@ -225,7 +233,7 @@ ${rows
       </svg>
       <div class="txt">
         <h3>Overall: ${overall} / 100 — we call ${facts.scoring?.healthyOverall || 70}+ healthy.</h3>
-        <p>Weighted by what actually produces a booking, not by how the site looks in a photo. Conversion and speed are usually the two cheapest things on this list to fix, and together they are 55% of the score.</p>
+        <p>Weighted by what actually produces ${audienceOf(facts.business).noun}, not by how the site looks in a photo. Conversion and speed are usually the two cheapest things on this list to fix, and together they are 55% of the score.</p>
       </div>
     </div>
 
@@ -476,7 +484,7 @@ ${plan
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:5mm;margin-top:6mm">
       <div class="band">
         <h3>Weeks 1–2: the rescue</h3>
-        <p>${a.phases?.rescue || "The first half of the list. Same design, same content, same brand. The site simply starts working — the form renders, the buttons book, the page loads in under three seconds."}</p>
+        <p>${a.phases?.rescue || `The first half of the list. Same design, same content, same brand. The site simply starts working — ${facts.http.contactShortcode ? "the form renders, " : ""}the ${audienceOf(facts.business).health ? "booking" : "call and enquiry"} buttons work, the page loads in under three seconds.`}</p>
       </div>
       <div class="card">
         <h3>Weeks 3–4: the rebuild</h3>
@@ -495,9 +503,10 @@ ${plan
 
 function defaultPlan(facts, findings) {
   const m = facts.metric;
+  const v = audienceOf(facts.business);
   return [
-    { id: "01", change: "Contact form rebuilt", today: facts.http.contactShortcode ? "Prints raw shortcode; collects nothing" : "Form present but untracked", target: "Working form + thank-you page, tracked", effort: "<b>1 hour</b>" },
-    { id: "02", change: "Booking path", today: m.visibleForms === 0 ? "No form on the homepage" : "Form exists, not prominent", target: "Book block above fold + sticky call bar", effort: "<b>½ day</b>" },
+    { id: "01", change: "Contact form rebuilt", today: facts.http.contactShortcode ? "Prints raw shortcode; collects nothing" : m.visibleForms === 0 ? "No form to capture enquiries" : "Form present but untracked", target: "Working form + thank-you page, tracked", effort: "<b>1 hour</b>" },
+    { id: "02", change: v.health ? "Booking path" : "Enquiry path", today: m.visibleForms === 0 ? "No form on the homepage" : "Form exists, not prominent", target: v.health ? "Book block above fold + sticky call bar" : "Enquiry block above fold + sticky call bar", effort: "<b>½ day</b>" },
     { id: "03", change: "Server &amp; caching", today: `${m.ttfb} response`, target: "<b>Under 500 ms</b>", effort: "1 day" },
     { id: "04", change: "Images", today: `${fmtInt(m.oversizedImgsKb)} KiB oversized, no next-gen format`, target: "<b>LCP under 2.5 s</b>", effort: "1 day" },
     { id: "05", change: "Scripts &amp; tracking", today: `${m.tbt} blocking, ${m.thirdPartyCookies} cookies`, target: "<b>Under 200 ms</b>, one analytics tool", effort: "½ day" },
@@ -510,11 +519,12 @@ function defaultPlan(facts, findings) {
 // ---------------------------------------------------------------- 9. DIRECTION
 function pageDirection(a, facts) {
   const demo = a.demo;
+  const v = audienceOf(facts.business);
   return `<section class="page">
   <div class="pad">
     ${top(facts, a.demo ? "Direction &amp; investment" : "Direction")}
     <div class="eyebrow">Where this goes</div>
-    <h2 class="t">One screen, one decision: <em>call or book.</em></h2>
+    <h2 class="t">One screen, one decision: <em>call or ${v.health ? "book" : "enquire"}.</em></h2>
 
     <div style="display:flex;gap:8mm;margin-top:6mm;align-items:flex-start">
       ${demo ? `<div style="flex:0 0 45mm">
@@ -529,7 +539,7 @@ function pageDirection(a, facts) {
         <div class="eyebrow mut">What changes on the first screen</div>
         <div class="numlist" style="margin-top:2mm">
           <div class="it"><div class="n">1</div><div class="b"><b>One sentence that says what you do and where.</b><p>Replacing competing slogans with one headline a visitor can repeat to someone else.</p></div></div>
-          <div class="it"><div class="n">2</div><div class="b"><b>Two buttons, both real.</b><p>“Book” opens the form; “Call” dials the number. No dead links, no theme demo paths.</p></div></div>
+          <div class="it"><div class="n">2</div><div class="b"><b>Two buttons, both real.</b><p>“${v.cta}” opens the form; “Call” dials the number. No dead links, no theme demo paths.</p></div></div>
           <div class="it"><div class="n">3</div><div class="b"><b>Proof, not adjectives.</b><p>Locations, credentials, services, published hours — the facts that make a stranger trust you.</p></div></div>
           <div class="it"><div class="n">4</div><div class="b"><b>Everything above 800 px.</b><p>No scrolling required to find the phone number, the location or the button.</p></div></div>
         </div>
@@ -546,7 +556,7 @@ function pageDirection(a, facts) {
         <div class="ds">Items 01–05 of the plan</div>
         <ul>
           <li>Contact form rebuilt &amp; tracked</li>
-          <li>Booking buttons + sticky call bar</li>
+          <li>${v.health ? "Booking" : "Enquiry"} buttons + sticky call bar</li>
           <li>Speed work: server, images, scripts</li>
           <li>Schema &amp; local SEO fields</li>
         </ul>
@@ -608,14 +618,14 @@ function pageNextSteps(a, facts) {
       <div class="step">
         <div class="n">3</div>
         <h4>Week one: it works</h4>
-        <p>The form renders, the booking path is live, the page is under three seconds. In week two we re-run this exact audit and send the before/after — the same numbers, on a page that performs.</p>
+        <p>${facts.http.contactShortcode ? "The form renders, the" : "The"} ${audienceOf(facts.business).path} is live, the page is under three seconds. In week two we re-run this exact audit and send the before/after — the same numbers, on a page that performs.</p>
       </div>
     </div>
 
     <div class="cta">
       <div class="l">
         <div class="k">Reply to this audit — or call</div>
-        <div class="h">Let’s fix the ${facts.http.contactShortcode ? "form" : "booking path"} first.<br>It takes ${facts.http.contactShortcode ? "an hour" : "half a day"}.</div>
+        <div class="h">Let’s fix the ${facts.http.contactShortcode ? "form" : audienceOf(facts.business).path} first.<br>It takes ${facts.http.contactShortcode ? "an hour" : "half a day"}.</div>
       </div>
       <div class="r">
         <div class="ph">${e(facts.agency.phone || "")}</div>
@@ -681,7 +691,7 @@ export function renderReport(audit) {
     pageSummary(audit, facts),
     pageScorecard(audit, facts),
     pagePatientView(audit, facts),
-    pageFindings(audit, facts, findings.page1, 5, "Findings 01–03", audit.headings?.page5 || `Six findings. ${findings.all.filter(f => f.severity === "Critical").length} of them are <em>costing you bookings right now.</em>`, subject),
+    pageFindings(audit, facts, findings.page1, 5, "Findings 01–03", audit.headings?.page5 || `Six findings. ${findings.all.filter(f => f.severity === "Critical").length} of them are <em>costing you ${audienceOf(facts.business).nounPl} right now.</em>`, subject),
     pageFindings(audit, facts, findings.page2, 6, "Findings 04–06", audit.headings?.page6 || `The quieter problems — <em>the ones that cap your growth.</em>`, subject),
     pageBenchmark(audit, facts),
     pagePlan(audit, facts),
@@ -693,7 +703,7 @@ export function renderReport(audit) {
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>${e(facts.agency.name)} — Website & Patient-Conversion Audit — ${e(facts.business.name)}</title>
+<title>${e(facts.agency.name)} — Website & ${audienceOf(facts.business).health ? "Patient" : "Customer"}-Conversion Audit — ${e(facts.business.name)}</title>
 <style>${FONTS}</style>
 <style>${STYLES}</style>
 </head>

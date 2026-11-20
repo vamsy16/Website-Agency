@@ -1,0 +1,150 @@
+{
+  "ref": "SP-AUD-2026-11-15-RSP",
+  "domain": "relianceretail.com",
+  "verifiedAt": "2026-11-15T12:08:49.559Z",
+  "live": false,
+  "fixture": false,
+  "ok": true,
+  "blockers": 0,
+  "warnings": 0,
+  "checks": [
+    {
+      "id": "provenance.file",
+      "ok": true,
+      "detail": "raw measurement: data/raw/reliance-smart-point/2026-11-15T12-07-48-498Z.json",
+      "severity": "ok"
+    },
+    {
+      "id": "provenance.age",
+      "ok": true,
+      "detail": "measured 0 h ago (limit 72 h, on 15 November 2026)",
+      "severity": "ok"
+    },
+    {
+      "id": "provenance.url",
+      "ok": true,
+      "detail": "raw measurement is for https://relianceretail.com/reliance-smart.html",
+      "severity": "ok"
+    },
+    {
+      "id": "provenance.status",
+      "ok": true,
+      "detail": "homepage returned HTTP 200",
+      "severity": "ok"
+    },
+    {
+      "id": "provenance.tool",
+      "ok": true,
+      "detail": "Lighthouse 12.8.2; screenshots: 8",
+      "severity": "ok"
+    },
+    {
+      "id": "provenance.ist",
+      "ok": true,
+      "detail": "measurement timestamp: 15/11/2026, 5:37:48 pm",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.speed",
+      "ok": true,
+      "detail": "report prints 6, rubric computes 6",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.mobile",
+      "ok": true,
+      "detail": "report prints 9, rubric computes 9",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.conversion",
+      "ok": true,
+      "detail": "report prints 8, rubric computes 8",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.design",
+      "ok": true,
+      "detail": "report prints 8, rubric computes 8",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.seo",
+      "ok": true,
+      "detail": "report prints 7, rubric computes 7",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.overall",
+      "ok": true,
+      "detail": "report prints 75, rubric computes 75",
+      "severity": "ok"
+    },
+    {
+      "id": "facts.consistent",
+      "ok": true,
+      "detail": "every printed metric equals the raw measurement",
+      "severity": "ok"
+    },
+    {
+      "id": "findings.evidence",
+      "ok": true,
+      "detail": "5 findings, every evidence field present in the measurement",
+      "severity": "ok"
+    },
+    {
+      "id": "numbers.traceable",
+      "ok": true,
+      "detail": "all 73 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "severity": "ok"
+    },
+    {
+      "id": "report.date",
+      "ok": true,
+      "detail": "report states 15 November 2026",
+      "severity": "ok"
+    },
+    {
+      "id": "report.ref",
+      "ok": true,
+      "detail": "audit reference SP-AUD-2026-11-15-RSP printed",
+      "severity": "ok"
+    },
+    {
+      "id": "report.hash",
+      "ok": true,
+      "detail": "report HTML unchanged since QA",
+      "severity": "ok"
+    },
+    {
+      "id": "screenshots.real",
+      "ok": true,
+      "detail": "8 screenshots, all non-blank",
+      "severity": "ok"
+    },
+    {
+      "id": "pdf.pages",
+      "ok": true,
+      "detail": "PDF has 10 pages",
+      "severity": "ok"
+    },
+    {
+      "id": "pdf.format",
+      "ok": true,
+      "detail": "A4 media box",
+      "severity": "ok"
+    },
+    {
+      "id": "pdf.size",
+      "ok": true,
+      "detail": "2.94 MB",
+      "severity": "ok"
+    },
+    {
+      "id": "pdf.header",
+      "ok": true,
+      "detail": "valid PDF header",
+      "severity": "ok"
+    }
+  ]
+}

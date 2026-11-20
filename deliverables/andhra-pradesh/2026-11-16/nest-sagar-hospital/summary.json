@@ -1,0 +1,25 @@
+{
+  "name": "NEST Sagar Hospital",
+  "domain": "nesthospital.in",
+  "city": null,
+  "state": "Andhra Pradesh",
+  "email": "support@nesthospital.in",
+  "phone": "0883 - 2433833, 2433834",
+  "ref": "SP-AUD-2026-11-16-NSH",
+  "date": "2026-11-16",
+  "overall": 78,
+  "scores": {
+    "speed": 5,
+    "mobile": 7,
+    "conversion": 10,
+    "design": 10,
+    "seo": 9,
+    "overall": 78
+  },
+  "pdf": "Smart-Pursuit-Audit-NEST-Sagar-Hospital.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://www.nesthospital.in/",
+    "checkedAt": "2026-11-16"
+  }
+}

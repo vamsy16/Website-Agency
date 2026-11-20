@@ -1,0 +1,25 @@
+{
+  "name": "Reliance Smart Point",
+  "domain": "relianceretail.com",
+  "city": null,
+  "state": "Andhra Pradesh",
+  "email": "customerservice@ril.com",
+  "phone": null,
+  "ref": "SP-AUD-2026-11-15-RSP",
+  "date": "2026-11-15",
+  "overall": 75,
+  "scores": {
+    "speed": 6,
+    "mobile": 9,
+    "conversion": 8,
+    "design": 8,
+    "seo": 7,
+    "overall": 75
+  },
+  "pdf": "Smart-Pursuit-Audit-Reliance-Smart-Point.pdf",
+  "emailCheck": {
+    "status": "wrong target",
+    "note": "Reliance Retail corporate customer-service address; national chain",
+    "checkedAt": "2026-11-15"
+  }
+}

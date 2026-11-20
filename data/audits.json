@@ -1,5 +1,798 @@
 {
   "version": 1,
-  "updatedAt": null,
-  "audits": []
+  "updatedAt": "2026-11-16T01:03:21.467Z",
+  "audits": [
+    {
+      "domain": "krishnadental.in",
+      "name": "Krishna Multispeciality Dental Clinic",
+      "ref": "SP-AUD-2026-11-15-KMD",
+      "generatedAt": "2026-11-15T12:32:57.284Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 10,
+        "mobile": 5,
+        "conversion": 7,
+        "design": 10,
+        "seo": 10,
+        "overall": 83
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1933614,
+      "files": {
+        "pdf": "reports/krishna-multispeciality-dental-clinic/Smart-Pursuit-Audit-Krishna-Multispeciality-Dental-Clinic.pdf",
+        "audit": "reports/krishna-multispeciality-dental-clinic/audit.json",
+        "html": "reports/krishna-multispeciality-dental-clinic/report.html"
+      },
+      "fingerprint": "4d60b6e767d10f42"
+    },
+    {
+      "domain": "milknmore.org",
+      "name": "Milk n More",
+      "ref": "SP-AUD-2026-11-15-MNM",
+      "generatedAt": "2026-11-15T12:32:15.009Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 4,
+        "mobile": 7,
+        "conversion": 8,
+        "design": 10,
+        "seo": 9,
+        "overall": 70
+      },
+      "pdfPages": 10,
+      "pdfBytes": 4655223,
+      "files": {
+        "pdf": "reports/milk-n-more/Smart-Pursuit-Audit-Milk-n-More.pdf",
+        "audit": "reports/milk-n-more/audit.json",
+        "html": "reports/milk-n-more/report.html"
+      },
+      "fingerprint": "64486094b35255e3"
+    },
+    {
+      "domain": "hanumanshillrock.com",
+      "name": "Hanuman's Hill Rock Cafe & Restaurant",
+      "ref": "SP-AUD-2026-11-15-HHR",
+      "generatedAt": "2026-11-15T12:33:44.609Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 9,
+        "mobile": 8,
+        "conversion": 8,
+        "design": 10,
+        "seo": 9,
+        "overall": 87
+      },
+      "pdfPages": 10,
+      "pdfBytes": 3744796,
+      "files": {
+        "pdf": "reports/hanuman-s-hill-rock-cafe-and-restaurant/Smart-Pursuit-Audit-Hanuman-s-Hill-Rock-Cafe-Restaurant.pdf",
+        "audit": "reports/hanuman-s-hill-rock-cafe-and-restaurant/audit.json",
+        "html": "reports/hanuman-s-hill-rock-cafe-and-restaurant/report.html"
+      },
+      "fingerprint": "4f65aa5e43f192fa"
+    },
+    {
+      "domain": "gynecologistvizag.com",
+      "name": "Dr. Ramya Sadaram",
+      "ref": "SP-AUD-2026-11-15-DRS",
+      "generatedAt": "2026-11-15T12:54:29.435Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 7,
+        "mobile": 6,
+        "conversion": 10,
+        "design": 8,
+        "seo": 9,
+        "overall": 79
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1374424,
+      "files": {
+        "pdf": "reports/dr-ramya-sadaram/Smart-Pursuit-Audit-Dr.-Ramya-Sadaram.pdf",
+        "audit": "reports/dr-ramya-sadaram/audit.json",
+        "html": "reports/dr-ramya-sadaram/report.html"
+      },
+      "fingerprint": "d781e5597e7476ce"
+    },
+    {
+      "domain": "swechaap.org",
+      "name": "Swecha Andhra Pradesh",
+      "ref": "SP-AUD-2026-11-15-SAP",
+      "generatedAt": "2026-11-15T12:05:57.311Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 4,
+        "mobile": 8,
+        "conversion": 7,
+        "design": 8,
+        "seo": 6,
+        "overall": 64
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2628043,
+      "files": {
+        "pdf": "reports/swecha-andhra-pradesh/Smart-Pursuit-Audit-Swecha-Andhra-Pradesh.pdf",
+        "audit": "reports/swecha-andhra-pradesh/audit.json",
+        "html": "reports/swecha-andhra-pradesh/report.html"
+      },
+      "fingerprint": "74d7f1fada5e0979"
+    },
+    {
+      "domain": "khushishoppingmall.in",
+      "name": "Khushi Shopping Mall",
+      "ref": "SP-AUD-2026-11-15-KSM",
+      "generatedAt": "2026-11-15T12:46:58.149Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 6,
+        "mobile": 8,
+        "conversion": 8,
+        "design": 10,
+        "seo": 9,
+        "overall": 78
+      },
+      "pdfPages": 10,
+      "pdfBytes": 3181268,
+      "files": {
+        "pdf": "reports/khushi-shopping-mall/Smart-Pursuit-Audit-Khushi-Shopping-Mall.pdf",
+        "audit": "reports/khushi-shopping-mall/audit.json",
+        "html": "reports/khushi-shopping-mall/report.html"
+      },
+      "fingerprint": "74e66eb6f83824dc"
+    },
+    {
+      "domain": "relianceretail.com",
+      "name": "Reliance Smart Point",
+      "ref": "SP-AUD-2026-11-15-RSP",
+      "generatedAt": "2026-11-15T12:08:49.559Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 6,
+        "mobile": 9,
+        "conversion": 8,
+        "design": 8,
+        "seo": 7,
+        "overall": 75
+      },
+      "pdfPages": 10,
+      "pdfBytes": 3080085,
+      "files": {
+        "pdf": "reports/reliance-smart-point/Smart-Pursuit-Audit-Reliance-Smart-Point.pdf",
+        "audit": "reports/reliance-smart-point/audit.json",
+        "html": "reports/reliance-smart-point/report.html"
+      },
+      "fingerprint": "9a10a1c7f6c43342"
+    },
+    {
+      "domain": "rise-world.com",
+      "name": "Research Industrial Systems Engineering (RISE) India Ventures Pvt Ltd.",
+      "ref": "SP-AUD-2026-11-15-RIS",
+      "generatedAt": "2026-11-15T12:10:17.242Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 4,
+        "mobile": 6,
+        "conversion": 8,
+        "design": 8,
+        "seo": 9,
+        "overall": 65
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1214609,
+      "files": {
+        "pdf": "reports/research-industrial-systems-engineering-rise-india-ventures-/Smart-Pursuit-Audit-Research-Industrial-Systems-Engineering-RISE-India-Ventures-Pvt-Ltd.pdf",
+        "audit": "reports/research-industrial-systems-engineering-rise-india-ventures-/audit.json",
+        "html": "reports/research-industrial-systems-engineering-rise-india-ventures-/report.html"
+      },
+      "fingerprint": "7bd2521d4166f613"
+    },
+    {
+      "domain": "epgc.in",
+      "name": "East Point Golf Course",
+      "ref": "SP-AUD-2026-11-15-EPG",
+      "generatedAt": "2026-11-15T12:11:13.712Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 7,
+        "mobile": 9,
+        "conversion": 8,
+        "design": 10,
+        "seo": 8,
+        "overall": 82
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2847851,
+      "files": {
+        "pdf": "reports/east-point-golf-course/Smart-Pursuit-Audit-East-Point-Golf-Course.pdf",
+        "audit": "reports/east-point-golf-course/audit.json",
+        "html": "reports/east-point-golf-course/report.html"
+      },
+      "fingerprint": "0c5709a1ce772b9c"
+    },
+    {
+      "domain": "indianredcross-eg.org",
+      "name": "Indian Red Cross Society Blood Bank - Kakinada",
+      "ref": "SP-AUD-2026-11-15-IRC",
+      "generatedAt": "2026-11-15T12:13:48.037Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 3,
+        "mobile": 8,
+        "conversion": 8,
+        "design": 10,
+        "seo": 8,
+        "overall": 68
+      },
+      "pdfPages": 10,
+      "pdfBytes": 3282738,
+      "files": {
+        "pdf": "reports/indian-red-cross-society-blood-bank-kakinada/Smart-Pursuit-Audit-Indian-Red-Cross-Society-Blood-Bank-Kakinada.pdf",
+        "audit": "reports/indian-red-cross-society-blood-bank-kakinada/audit.json",
+        "html": "reports/indian-red-cross-society-blood-bank-kakinada/report.html"
+      },
+      "fingerprint": "50c86ce6bb09b35c"
+    },
+    {
+      "domain": "majjiexportimport.linker.store",
+      "name": "Majji Export Import",
+      "ref": "SP-AUD-2026-11-15-MEI",
+      "generatedAt": "2026-11-15T12:35:56.727Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 9,
+        "conversion": 10,
+        "design": 10,
+        "seo": 8,
+        "overall": 81
+      },
+      "pdfPages": 10,
+      "pdfBytes": 3809577,
+      "files": {
+        "pdf": "reports/majji-export-import/Smart-Pursuit-Audit-Majji-Export-Import.pdf",
+        "audit": "reports/majji-export-import/audit.json",
+        "html": "reports/majji-export-import/report.html"
+      },
+      "fingerprint": "e441cf678db72efd"
+    },
+    {
+      "domain": "itchotels.com",
+      "name": "Hotel Sree Kanya INN",
+      "ref": "SP-AUD-2026-11-15-HSK",
+      "generatedAt": "2026-11-15T12:37:32.667Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 2,
+        "mobile": 7,
+        "conversion": 8,
+        "design": 8,
+        "seo": 6,
+        "overall": 58
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2288656,
+      "files": {
+        "pdf": "reports/hotel-sree-kanya-inn/Smart-Pursuit-Audit-Hotel-Sree-Kanya-INN.pdf",
+        "audit": "reports/hotel-sree-kanya-inn/audit.json",
+        "html": "reports/hotel-sree-kanya-inn/report.html"
+      },
+      "fingerprint": "4060aaac31cc9b6a"
+    },
+    {
+      "domain": "krishnaivf.com",
+      "name": "Krishna Hospital",
+      "ref": "SP-AUD-2026-11-15-KH",
+      "generatedAt": "2026-11-15T12:38:46.999Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 6,
+        "conversion": 7,
+        "design": 8,
+        "seo": 10,
+        "overall": 67
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1668955,
+      "files": {
+        "pdf": "reports/krishna-hospital/Smart-Pursuit-Audit-Krishna-Hospital.pdf",
+        "audit": "reports/krishna-hospital/audit.json",
+        "html": "reports/krishna-hospital/report.html"
+      },
+      "fingerprint": "27b04abee70d61ec"
+    },
+    {
+      "domain": "srisaipvrhospitals.in",
+      "name": "Sri Sai P.V.R. Hospitals",
+      "ref": "SP-AUD-2026-11-15-SSP",
+      "generatedAt": "2026-11-15T12:39:57.261Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 4,
+        "mobile": 8,
+        "conversion": 7,
+        "design": 6,
+        "seo": 9,
+        "overall": 64
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2317534,
+      "files": {
+        "pdf": "reports/sri-sai-p-v-r-hospitals/Smart-Pursuit-Audit-Sri-Sai-P.V.R.-Hospitals.pdf",
+        "audit": "reports/sri-sai-p-v-r-hospitals/audit.json",
+        "html": "reports/sri-sai-p-v-r-hospitals/report.html"
+      },
+      "fingerprint": "ff903d48c1231c03"
+    },
+    {
+      "domain": "orangetravels.in",
+      "name": "Orange Tours & Travels",
+      "ref": "SP-AUD-2026-11-15-OT&",
+      "generatedAt": "2026-11-15T12:41:27.029Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 4,
+        "mobile": 7,
+        "conversion": 10,
+        "design": 9,
+        "seo": 8,
+        "overall": 72
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2241143,
+      "files": {
+        "pdf": "reports/orange-tours-and-travels/Smart-Pursuit-Audit-Orange-Tours-Travels.pdf",
+        "audit": "reports/orange-tours-and-travels/audit.json",
+        "html": "reports/orange-tours-and-travels/report.html"
+      },
+      "fingerprint": "7bbed64b4aeb11c5"
+    },
+    {
+      "domain": "srmt.com",
+      "name": "Sri Ramadas Motor Transport Ltd",
+      "ref": "SP-AUD-2026-11-15-SRM",
+      "generatedAt": "2026-11-15T12:50:19.269Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 4,
+        "mobile": 8,
+        "conversion": 8,
+        "design": 10,
+        "seo": 8,
+        "overall": 71
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2684161,
+      "files": {
+        "pdf": "reports/sri-ramadas-motor-transport-ltd/Smart-Pursuit-Audit-Sri-Ramadas-Motor-Transport-Ltd.pdf",
+        "audit": "reports/sri-ramadas-motor-transport-ltd/audit.json",
+        "html": "reports/sri-ramadas-motor-transport-ltd/report.html"
+      },
+      "fingerprint": "cfbe0b63bcde1441"
+    },
+    {
+      "domain": "drandalslakshmifertilityclinic.com",
+      "name": "Lakshmi Fertility Research and Laparoscopic Surgical Center",
+      "ref": "SP-AUD-2026-11-15-LFR",
+      "generatedAt": "2026-11-15T13:10:24.842Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 2,
+        "mobile": 5,
+        "conversion": 10,
+        "design": 10,
+        "seo": 9,
+        "overall": 65
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2123532,
+      "files": {
+        "pdf": "reports/lakshmi-fertility-research-and-laparoscopic-surgical-center/Smart-Pursuit-Audit-Lakshmi-Fertility-Research-and-Laparoscopic-Surgical-Center.pdf",
+        "audit": "reports/lakshmi-fertility-research-and-laparoscopic-surgical-center/audit.json",
+        "html": "reports/lakshmi-fertility-research-and-laparoscopic-surgical-center/report.html"
+      },
+      "fingerprint": "c35081fd5405adc5"
+    },
+    {
+      "domain": "sriramachandrahospital.com",
+      "name": "Sri Ramachandra Children and Dental Hospital",
+      "ref": "SP-AUD-2026-11-15-SRC",
+      "generatedAt": "2026-11-15T13:11:43.347Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 3,
+        "mobile": 7,
+        "conversion": 8,
+        "design": 10,
+        "seo": 9,
+        "overall": 67
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2385524,
+      "files": {
+        "pdf": "reports/sri-ramachandra-children-and-dental-hospital/Smart-Pursuit-Audit-Sri-Ramachandra-Children-and-Dental-Hospital.pdf",
+        "audit": "reports/sri-ramachandra-children-and-dental-hospital/audit.json",
+        "html": "reports/sri-ramachandra-children-and-dental-hospital/report.html"
+      },
+      "fingerprint": "5511ccfbefdb44c9"
+    },
+    {
+      "domain": "anoos.com",
+      "name": "Anoos Beauty Clinic",
+      "ref": "SP-AUD-2026-11-15-ABC",
+      "generatedAt": "2026-11-15T13:15:24.449Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 2,
+        "mobile": 8,
+        "conversion": 10,
+        "design": 6,
+        "seo": 8,
+        "overall": 64
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1972609,
+      "files": {
+        "pdf": "reports/anoos-beauty-clinic/Smart-Pursuit-Audit-Anoos-Beauty-Clinic.pdf",
+        "audit": "reports/anoos-beauty-clinic/audit.json",
+        "html": "reports/anoos-beauty-clinic/report.html"
+      },
+      "fingerprint": "b53ee04c9c9d7f58"
+    },
+    {
+      "domain": "winsmiths.com",
+      "name": "Winsmiths",
+      "ref": "SP-AUD-2026-11-15-W",
+      "generatedAt": "2026-11-15T13:17:49.430Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 7,
+        "conversion": 8,
+        "design": 10,
+        "seo": 8,
+        "overall": 72
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2595274,
+      "files": {
+        "pdf": "reports/winsmiths/Smart-Pursuit-Audit-Winsmiths.pdf",
+        "audit": "reports/winsmiths/audit.json",
+        "html": "reports/winsmiths/report.html"
+      },
+      "fingerprint": "f79a3beeb436ba88"
+    },
+    {
+      "domain": "vizagwaterworld.com",
+      "name": "Vizag Water World",
+      "ref": "SP-AUD-2026-11-15-VWW",
+      "generatedAt": "2026-11-15T13:22:18.929Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 8,
+        "conversion": 8,
+        "design": 10,
+        "seo": 8,
+        "overall": 74
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2975439,
+      "files": {
+        "pdf": "reports/vizag-water-world/Smart-Pursuit-Audit-Vizag-Water-World.pdf",
+        "audit": "reports/vizag-water-world/audit.json",
+        "html": "reports/vizag-water-world/report.html"
+      },
+      "fingerprint": "a28228dd881e0491"
+    },
+    {
+      "domain": "goldenglobeoverseas.com",
+      "name": "Golden Globe Overseas Consultants",
+      "ref": "SP-AUD-2026-11-15-GGO",
+      "generatedAt": "2026-11-15T13:24:15.360Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 6,
+        "conversion": 7,
+        "design": 9,
+        "seo": 9,
+        "overall": 67
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1331995,
+      "files": {
+        "pdf": "reports/golden-globe-overseas-consultants/Smart-Pursuit-Audit-Golden-Globe-Overseas-Consultants.pdf",
+        "audit": "reports/golden-globe-overseas-consultants/audit.json",
+        "html": "reports/golden-globe-overseas-consultants/report.html"
+      },
+      "fingerprint": "0664ef753323218a"
+    },
+    {
+      "domain": "rkhospital.co.in",
+      "name": "R K Hospital",
+      "ref": "SP-AUD-2026-11-16-RKH",
+      "generatedAt": "2026-11-16T00:28:26.144Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 2,
+        "mobile": 4,
+        "conversion": 8,
+        "design": 8,
+        "seo": 9,
+        "overall": 55
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1735990,
+      "files": {
+        "pdf": "reports/r-k-hospital/Smart-Pursuit-Audit-R-K-Hospital.pdf",
+        "audit": "reports/r-k-hospital/audit.json",
+        "html": "reports/r-k-hospital/report.html"
+      },
+      "fingerprint": "626982249909b86f"
+    },
+    {
+      "domain": "praveenhospitals.com",
+      "name": "Praveen  Hospital",
+      "ref": "SP-AUD-2026-11-16-PH",
+      "generatedAt": "2026-11-16T00:30:35.797Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 7,
+        "conversion": 8,
+        "design": 8,
+        "seo": 8,
+        "overall": 69
+      },
+      "pdfPages": 10,
+      "pdfBytes": 3196800,
+      "files": {
+        "pdf": "reports/praveen-hospital/Smart-Pursuit-Audit-Praveen-Hospital.pdf",
+        "audit": "reports/praveen-hospital/audit.json",
+        "html": "reports/praveen-hospital/report.html"
+      },
+      "fingerprint": "a35a9f88717be937"
+    },
+    {
+      "domain": "raghuramhospitals.com",
+      "name": "Raghuram Children Hospital",
+      "ref": "SP-AUD-2026-11-16-RCH",
+      "generatedAt": "2026-11-16T00:31:36.918Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 6,
+        "mobile": 7,
+        "conversion": 10,
+        "design": 10,
+        "seo": 10,
+        "overall": 82
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2289971,
+      "files": {
+        "pdf": "reports/raghuram-children-hospital/Smart-Pursuit-Audit-Raghuram-Children-Hospital.pdf",
+        "audit": "reports/raghuram-children-hospital/audit.json",
+        "html": "reports/raghuram-children-hospital/report.html"
+      },
+      "fingerprint": "57d1977a1e180b57"
+    },
+    {
+      "domain": "bluefoxrestaurant.com",
+      "name": "Blue Fox",
+      "ref": "SP-AUD-2026-11-16-BF",
+      "generatedAt": "2026-11-16T00:32:54.202Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 6,
+        "mobile": 8,
+        "conversion": 8,
+        "design": 8,
+        "seo": 8,
+        "overall": 74
+      },
+      "pdfPages": 10,
+      "pdfBytes": 6737760,
+      "files": {
+        "pdf": "reports/blue-fox/Smart-Pursuit-Audit-Blue-Fox.pdf",
+        "audit": "reports/blue-fox/audit.json",
+        "html": "reports/blue-fox/report.html"
+      },
+      "fingerprint": "2ea427f1270c40fe"
+    },
+    {
+      "domain": "spencers.in",
+      "name": "Spencer's",
+      "ref": "SP-AUD-2026-11-16-S",
+      "generatedAt": "2026-11-16T00:34:00.047Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 8,
+        "conversion": 8,
+        "design": 10,
+        "seo": 9,
+        "overall": 75
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1462275,
+      "files": {
+        "pdf": "reports/spencer-s/Smart-Pursuit-Audit-Spencer-s.pdf",
+        "audit": "reports/spencer-s/audit.json",
+        "html": "reports/spencer-s/report.html"
+      },
+      "fingerprint": "d860cc0d20022248"
+    },
+    {
+      "domain": "karumurihospital.com",
+      "name": "Karumuri Super Speciality Hospital Pvt Ltd",
+      "ref": "SP-AUD-2026-11-16-KSS",
+      "generatedAt": "2026-11-16T00:40:42.736Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 8,
+        "conversion": 8,
+        "design": 10,
+        "seo": 9,
+        "overall": 75
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2256111,
+      "files": {
+        "pdf": "reports/karumuri-super-speciality-hospital-pvt-ltd/Smart-Pursuit-Audit-Karumuri-Super-Speciality-Hospital-Pvt-Ltd.pdf",
+        "audit": "reports/karumuri-super-speciality-hospital-pvt-ltd/audit.json",
+        "html": "reports/karumuri-super-speciality-hospital-pvt-ltd/report.html"
+      },
+      "fingerprint": "c82fc5319d86abbb"
+    },
+    {
+      "domain": "nesthospital.in",
+      "name": "NEST Sagar Hospital",
+      "ref": "SP-AUD-2026-11-16-NSH",
+      "generatedAt": "2026-11-16T00:52:05.157Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 7,
+        "conversion": 10,
+        "design": 10,
+        "seo": 9,
+        "overall": 78
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1854718,
+      "files": {
+        "pdf": "reports/nest-sagar-hospital/Smart-Pursuit-Audit-NEST-Sagar-Hospital.pdf",
+        "audit": "reports/nest-sagar-hospital/audit.json",
+        "html": "reports/nest-sagar-hospital/report.html"
+      },
+      "fingerprint": "3051a49eeb57c2ba"
+    },
+    {
+      "domain": "sandhyaeyehospitals.com",
+      "name": "Sandhya Hi-Tech Vision Care Center",
+      "ref": "SP-AUD-2026-11-16-SHT",
+      "generatedAt": "2026-11-16T00:53:42.072Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 4,
+        "mobile": 4,
+        "conversion": 7,
+        "design": 9,
+        "seo": 9,
+        "overall": 60
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2601820,
+      "files": {
+        "pdf": "reports/sandhya-hi-tech-vision-care-center/Smart-Pursuit-Audit-Sandhya-Hi-Tech-Vision-Care-Center.pdf",
+        "audit": "reports/sandhya-hi-tech-vision-care-center/audit.json",
+        "html": "reports/sandhya-hi-tech-vision-care-center/report.html"
+      },
+      "fingerprint": "977a671b6f202a6b"
+    },
+    {
+      "domain": "jnananandaeyehospital.co.in",
+      "name": "Jnanananda Eye Hospital",
+      "ref": "SP-AUD-2026-11-16-JEH",
+      "generatedAt": "2026-11-16T00:59:24.058Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 4,
+        "mobile": 8,
+        "conversion": 7,
+        "design": 7,
+        "seo": 9,
+        "overall": 65
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2301049,
+      "files": {
+        "pdf": "reports/jnanananda-eye-hospital/Smart-Pursuit-Audit-Jnanananda-Eye-Hospital.pdf",
+        "audit": "reports/jnanananda-eye-hospital/audit.json",
+        "html": "reports/jnanananda-eye-hospital/report.html"
+      },
+      "fingerprint": "2419293a5020f3d6"
+    },
+    {
+      "domain": "bhimavaramhospital.com",
+      "name": "Bhimavaram Hospitals",
+      "ref": "SP-AUD-2026-11-16-BH",
+      "generatedAt": "2026-11-16T01:01:15.870Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 9,
+        "mobile": 8,
+        "conversion": 8,
+        "design": 10,
+        "seo": 9,
+        "overall": 87
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1692766,
+      "files": {
+        "pdf": "reports/bhimavaram-hospitals/Smart-Pursuit-Audit-Bhimavaram-Hospitals.pdf",
+        "audit": "reports/bhimavaram-hospitals/audit.json",
+        "html": "reports/bhimavaram-hospitals/report.html"
+      },
+      "fingerprint": "f6fa7258a59b0498"
+    },
+    {
+      "domain": "bhalajigroup.com",
+      "name": "SREE BHALAJI INDUSTRIES PRIVATE LIMITED",
+      "ref": "SP-AUD-2026-11-16-SBI",
+      "generatedAt": "2026-11-16T01:03:21.467Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 7,
+        "conversion": 8,
+        "design": 8,
+        "seo": 7,
+        "overall": 68
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2034420,
+      "files": {
+        "pdf": "reports/sree-bhalaji-industries-private-limited/Smart-Pursuit-Audit-SREE-BHALAJI-INDUSTRIES-PRIVATE-LIMITED.pdf",
+        "audit": "reports/sree-bhalaji-industries-private-limited/audit.json",
+        "html": "reports/sree-bhalaji-industries-private-limited/report.html"
+      },
+      "fingerprint": "8e3e97ab50439255"
+    }
+  ]
 }
