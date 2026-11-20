@@ -1,0 +1,76 @@
+{
+  "business": "Iris International Dental Care",
+  "domain": "irisinternationaldentalcare.com",
+  "ref": "SP-AUD-2026-11-20-IID",
+  "createdAt": "2026-11-20T02:52:58.554Z",
+  "sendDate": "2026-11-20",
+  "cadenceDays": [
+    3,
+    3,
+    3
+  ],
+  "to": "irisinternationaldentalcare@gmail.com",
+  "status": "draft",
+  "neverSendAutomatically": true,
+  "note": "Dates shift if the operator sends email 1 on a different day — recompute with `sequence --send-date YYYY-MM-DD`.",
+  "emails": [
+    {
+      "step": 1,
+      "id": "first",
+      "purpose": "deliver the audit, earn a reply",
+      "attachments": [
+        "reports/iris-international-dental-care/Smart-Pursuit-Audit-Iris-International-Dental-Care.pdf"
+      ],
+      "subject": "Iris International Dental Care — what I found testing your website",
+      "words": 130,
+      "scheduledFor": "2026-11-20",
+      "scheduledForLong": "20 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/iris-international-dental-care/email-1-first.md"
+    },
+    {
+      "step": 2,
+      "id": "followup-1",
+      "purpose": "turn the top measured finding into a money argument",
+      "attachments": [],
+      "subject": "Re: Iris International Dental Care — what I found testing your website",
+      "words": 114,
+      "scheduledFor": "2026-11-23",
+      "scheduledForLong": "23 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/iris-international-dental-care/email-2-followup-1.md"
+    },
+    {
+      "step": 3,
+      "id": "followup-2",
+      "purpose": "show the outcome, make the next step concrete",
+      "attachments": [],
+      "subject": "Re: Iris International Dental Care — what a fixed version looks like",
+      "words": 121,
+      "scheduledFor": "2026-11-26",
+      "scheduledForLong": "26 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/iris-international-dental-care/email-3-followup-2.md"
+    },
+    {
+      "step": 4,
+      "id": "followup-3-final",
+      "purpose": "final mail, leave the door open, no pressure",
+      "attachments": [],
+      "subject": "Closing the loop — Iris International Dental Care",
+      "words": 98,
+      "scheduledFor": "2026-11-29",
+      "scheduledForLong": "29 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/iris-international-dental-care/email-4-followup-3-final.md"
+    }
+  ]
+}

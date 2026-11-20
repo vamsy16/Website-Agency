@@ -1,0 +1,25 @@
+{
+  "name": "HR Dental Hospital",
+  "domain": "hrdentalhospital.com",
+  "city": "Tirupati",
+  "state": "Andhra Pradesh",
+  "email": "hrdentalhospital23@gmail.com",
+  "phone": "+91 73824 20960",
+  "ref": "SP-AUD-2026-11-20-HDH",
+  "date": "2026-11-20",
+  "overall": 67,
+  "scores": {
+    "speed": 3,
+    "mobile": 6,
+    "conversion": 10,
+    "design": 8,
+    "seo": 9,
+    "overall": 67
+  },
+  "pdf": "Smart-Pursuit-Audit-HR-Dental-Hospital.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://www.hrdentalhospital.com/",
+    "checkedAt": "2026-11-20"
+  }
+}

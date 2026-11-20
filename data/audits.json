@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-16T01:03:21.467Z",
+  "updatedAt": "2026-11-20T02:55:06.995Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -793,6 +793,102 @@
         "html": "reports/sree-bhalaji-industries-private-limited/report.html"
       },
       "fingerprint": "8e3e97ab50439255"
+    },
+    {
+      "domain": "hrdentalhospital.com",
+      "name": "HR Dental Hospital",
+      "ref": "SP-AUD-2026-11-20-HDH",
+      "generatedAt": "2026-11-20T02:50:00.195Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 3,
+        "mobile": 6,
+        "conversion": 10,
+        "design": 8,
+        "seo": 9,
+        "overall": 67
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1876750,
+      "files": {
+        "pdf": "reports/hr-dental-hospital/Smart-Pursuit-Audit-HR-Dental-Hospital.pdf",
+        "audit": "reports/hr-dental-hospital/audit.json",
+        "html": "reports/hr-dental-hospital/report.html"
+      },
+      "fingerprint": "2be4fbf5789ad8b5"
+    },
+    {
+      "domain": "irisinternationaldentalcare.com",
+      "name": "Iris International Dental Care",
+      "ref": "SP-AUD-2026-11-20-IID",
+      "generatedAt": "2026-11-20T02:52:58.546Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 2,
+        "mobile": 4,
+        "conversion": 10,
+        "design": 10,
+        "seo": 9,
+        "overall": 63
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2787551,
+      "files": {
+        "pdf": "reports/iris-international-dental-care/Smart-Pursuit-Audit-Iris-International-Dental-Care.pdf",
+        "audit": "reports/iris-international-dental-care/audit.json",
+        "html": "reports/iris-international-dental-care/report.html"
+      },
+      "fingerprint": "f22106b2d5883b3b"
+    },
+    {
+      "domain": "jamilidentalcare.in",
+      "name": "Jamili Dental Care",
+      "ref": "SP-AUD-2026-11-20-JDC",
+      "generatedAt": "2026-11-20T02:54:01.119Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 6,
+        "conversion": 7,
+        "design": 10,
+        "seo": 8,
+        "overall": 68
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2716544,
+      "files": {
+        "pdf": "reports/jamili-dental-care/Smart-Pursuit-Audit-Jamili-Dental-Care.pdf",
+        "audit": "reports/jamili-dental-care/audit.json",
+        "html": "reports/jamili-dental-care/report.html"
+      },
+      "fingerprint": "75fca2356de357c4"
+    },
+    {
+      "domain": "drsushmadental.com",
+      "name": "Dr. Sushma Dental",
+      "ref": "SP-AUD-2026-11-20-DSD",
+      "generatedAt": "2026-11-20T02:55:06.994Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 2,
+        "mobile": 8,
+        "conversion": 10,
+        "design": 8,
+        "seo": 9,
+        "overall": 68
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2029365,
+      "files": {
+        "pdf": "reports/dr-sushma-dental/Smart-Pursuit-Audit-Dr.-Sushma-Dental.pdf",
+        "audit": "reports/dr-sushma-dental/audit.json",
+        "html": "reports/dr-sushma-dental/report.html"
+      },
+      "fingerprint": "a0832b7a2827e139"
     }
   ]
 }

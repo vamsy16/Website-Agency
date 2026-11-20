@@ -1,0 +1,25 @@
+{
+  "name": "Jamili Dental Care",
+  "domain": "jamilidentalcare.in",
+  "city": "Guntur",
+  "state": "Andhra Pradesh",
+  "email": "jamilidentalcare@gmail.com",
+  "phone": "+91 78158 30543",
+  "ref": "SP-AUD-2026-11-20-JDC",
+  "date": "2026-11-20",
+  "overall": 68,
+  "scores": {
+    "speed": 5,
+    "mobile": 6,
+    "conversion": 7,
+    "design": 10,
+    "seo": 8,
+    "overall": 68
+  },
+  "pdf": "Smart-Pursuit-Audit-Jamili-Dental-Care.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://www.jamilidentalcare.in/",
+    "checkedAt": "2026-11-20"
+  }
+}
