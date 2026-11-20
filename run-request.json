@@ -1,8 +1,10 @@
 {
   "state": "Andhra Pradesh",
-  "max": 15,
+  "max": 7,
   "target": 5,
-  "leadsLimit": 200,
+  "leadsLimit": 7,
   "niches": [],
-  "requestedAt": "2026-11-16T03:00:00Z"
+  "csv": "data/ap-websearch-leads.csv",
+  "csvOnly": true,
+  "requestedAt": "2026-11-20T02:55:00Z"
 }

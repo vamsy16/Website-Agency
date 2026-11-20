@@ -15,7 +15,7 @@ import {
 } from "./util.mjs";
 import { loadSettings, resolveState } from "./config.mjs";
 import { checkAudit, recordAudit, statusSummary, pendingLeads, updateLead } from "./dedupe.mjs";
-import { fetchLeads, OSM_ATTRIBUTION, overpassEndpoints, stateBbox } from "./leads.mjs";
+import { fetchLeads, readCsv, OSM_ATTRIBUTION, overpassEndpoints, stateBbox } from "./leads.mjs";
 import { resolveBrowser, describeBrowser, BrowserError } from "./browser.mjs";
 import { measureSite } from "./measure.mjs";
 import { computeScores, buildFacts, deriveFindings, deriveAlsoItems } from "./findings.mjs";
@@ -654,6 +654,10 @@ async function cmdRun() {
     screenRecheckDays,
     filterProspects,
   });
+  if (hasFlag(argv, "--csv-only") && csv && csv !== true) {
+    const csvDomains = new Set(readCsv(csv, state).map(c => domainOf(c.website || "")).filter(Boolean));
+    pending.leads = pending.leads.filter(l => csvDomains.has(l.domain));
+  }
   summary.queue = pending.leads.map(l => ({ name: l.name, domain: l.domain, city: l.city }));
   summary.skippedByRegistry = pending.skipped;
   summary.notProspects = pending.notProspects || [];
