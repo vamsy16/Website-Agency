@@ -19,7 +19,8 @@
     "selftest": "node src/cli.mjs selftest",
     "class-diff": "node tools/class-diff.mjs",
     "decode": "node tools/decode-b64.mjs",
-    "encode": "node tools/encode-b64.mjs"
+    "encode": "node tools/encode-b64.mjs",
+    "plan": "node tools/render-plan.mjs"
   },
   "dependencies": {
     "lighthouse": "^12.8.2",
