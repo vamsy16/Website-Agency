@@ -58,6 +58,66 @@
       "pipelineAudit": "failed-layout-QA",
       "approved": false,
       "reason": "Layout QA failed; no accepted audit PDF."
+    },
+    {
+      "domain": "akiraeyehospital.in",
+      "approved": false,
+      "reason": "New batch: awaiting live email/location confirmation and independent post-audit PDF review. Not approved merely because automated verification passes."
+    },
+    {
+      "domain": "modernretinacentre.com",
+      "approved": false,
+      "reason": "New batch: awaiting live email/location confirmation and independent post-audit PDF review. Not approved merely because automated verification passes."
+    },
+    {
+      "domain": "meenakshieyehospital.com",
+      "approved": false,
+      "reason": "New batch: awaiting live email/location confirmation and independent post-audit PDF review. Not approved merely because automated verification passes."
+    },
+    {
+      "domain": "padmavathihospital.org",
+      "approved": false,
+      "reason": "New batch: awaiting live email/location confirmation and independent post-audit PDF review. Not approved merely because automated verification passes."
+    },
+    {
+      "domain": "adityanursinghome.com",
+      "approved": false,
+      "reason": "New batch: awaiting live email/location confirmation and independent post-audit PDF review. Not approved merely because automated verification passes."
+    },
+    {
+      "domain": "amruthahearthospital.co.in",
+      "approved": false,
+      "reason": "New batch: awaiting live email/location confirmation and independent post-audit PDF review. Not approved merely because automated verification passes."
+    },
+    {
+      "domain": "joyhospital.in",
+      "approved": false,
+      "reason": "New batch: awaiting live email/location confirmation and independent post-audit PDF review. Not approved merely because automated verification passes."
+    },
+    {
+      "domain": "ravichaitanyahospitals.com",
+      "approved": false,
+      "reason": "New batch: awaiting live email/location confirmation and independent post-audit PDF review. Not approved merely because automated verification passes."
+    },
+    {
+      "domain": "vijayaicuandmultispecialityhospital.com",
+      "approved": false,
+      "reason": "New batch: awaiting live email/location confirmation and independent post-audit PDF review. Not approved merely because automated verification passes."
+    },
+    {
+      "domain": "saitowers.com",
+      "approved": false,
+      "reason": "New batch: awaiting live email/location confirmation and independent post-audit PDF review. Not approved merely because automated verification passes."
+    },
+    {
+      "domain": "pepkan.com",
+      "approved": false,
+      "reason": "New batch: awaiting live email/location confirmation and independent post-audit PDF review. Not approved merely because automated verification passes."
+    },
+    {
+      "domain": "vijayamedicalcentre.in",
+      "approved": false,
+      "reason": "New batch: awaiting live email/location confirmation and independent post-audit PDF review. Not approved merely because automated verification passes."
     }
   ],
   "withheldOtherDomains": [
