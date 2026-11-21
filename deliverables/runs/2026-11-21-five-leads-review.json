@@ -122,27 +122,27 @@
     {
       "domain": "srinavathainteriordesign.com",
       "approved": false,
-      "reason": "Full ten-page reference-format audit requested; awaiting fresh measurements, layout/verification gates and independent post-run PDF review."
+      "reason": "Ten-page PDF generated in run 44927438741; layout and automated verification passed. Independent PDF review still finds unsupported visitor/scroll claims and labels detected fields as working forms. Review-only, not client-approved."
     },
     {
       "domain": "dreamnestinteriors.co.in",
       "approved": false,
-      "reason": "Full ten-page reference-format audit requested; awaiting fresh measurements, layout/verification gates and independent post-run PDF review."
+      "reason": "Ten-page PDF generated in run 44927438741; layout and automated verification passed. Independent PDF review still finds unsupported visitor/scroll claims and labels detected fields as working forms. Review-only, not client-approved."
     },
     {
       "domain": "imageartphotographyvizag.com",
       "approved": false,
-      "reason": "Full ten-page reference-format audit requested; awaiting fresh measurements, layout/verification gates and independent post-run PDF review."
+      "reason": "Run 44927438741 blocked by provenance.tool: Lighthouse document request returned HTTP 403. No accepted full technical audit."
     },
     {
       "domain": "seveninteriors.in",
       "approved": false,
-      "reason": "Full ten-page reference-format audit requested; awaiting fresh measurements, layout/verification gates and independent post-run PDF review."
+      "reason": "Run 44927438741 blocked by provenance.tool: Lighthouse document request returned HTTP 403. No accepted full technical audit."
     },
     {
       "domain": "metro-interiors.ueniweb.com",
       "approved": false,
-      "reason": "Full ten-page reference-format audit requested; awaiting fresh measurements, layout/verification gates and independent post-run PDF review."
+      "reason": "Ten-page PDF generated in run 44927438741; layout and automated verification passed. Homepage text retrieval includes an enquiry form, but lab extraction reports none. Resolve this discrepancy; form delivery untested. Review-only."
     }
   ],
   "withheldOtherDomains": [
