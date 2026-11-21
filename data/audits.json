@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-21T09:48:05.491Z",
+  "updatedAt": "2026-11-21T14:04:59.382Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -1105,6 +1105,30 @@
         "html": "reports/subbayya-gari-hotel/report.html"
       },
       "fingerprint": "0e5d91b3f20f91de"
+    },
+    {
+      "domain": "tulasimultispecialityhospital.com",
+      "name": "Tulasi Multi Speciality Hospital",
+      "ref": "SP-AUD-2026-11-21-TMS",
+      "generatedAt": "2026-11-21T14:04:59.382Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 7,
+        "conversion": 10,
+        "design": 9,
+        "seo": 9,
+        "overall": 77
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1305451,
+      "files": {
+        "pdf": "reports/tulasi-multi-speciality-hospital/Smart-Pursuit-Audit-Tulasi-Multi-Speciality-Hospital.pdf",
+        "audit": "reports/tulasi-multi-speciality-hospital/audit.json",
+        "html": "reports/tulasi-multi-speciality-hospital/report.html"
+      },
+      "fingerprint": "4703b0520f2ebdfc"
     }
   ]
 }
