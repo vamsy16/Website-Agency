@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-20T03:04:11.963Z",
+  "updatedAt": "2026-11-21T09:33:59.291Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -913,6 +913,126 @@
         "html": "reports/ms-dental-hospital/report.html"
       },
       "fingerprint": "5790de5474c0dbfd"
+    },
+    {
+      "domain": "sugunadental.com",
+      "name": "Suguna Dental",
+      "ref": "SP-AUD-2026-11-21-SD",
+      "generatedAt": "2026-11-21T09:14:40.229Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 3,
+        "mobile": 4,
+        "conversion": 10,
+        "design": 6,
+        "seo": 10,
+        "overall": 61
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2221685,
+      "files": {
+        "pdf": "reports/suguna-dental/Smart-Pursuit-Audit-Suguna-Dental.pdf",
+        "audit": "reports/suguna-dental/audit.json",
+        "html": "reports/suguna-dental/report.html"
+      },
+      "fingerprint": "7e74913ac9993e57"
+    },
+    {
+      "domain": "indianterrain.com",
+      "name": "Indian Terrian",
+      "ref": "SP-AUD-2026-11-21-IT",
+      "generatedAt": "2026-11-21T09:21:35.173Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 2,
+        "mobile": 6,
+        "conversion": 10,
+        "design": 6,
+        "seo": 8,
+        "overall": 60
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2330914,
+      "files": {
+        "pdf": "reports/indian-terrian/Smart-Pursuit-Audit-Indian-Terrian.pdf",
+        "audit": "reports/indian-terrian/audit.json",
+        "html": "reports/indian-terrian/report.html"
+      },
+      "fingerprint": "a7fcbaaae46a42a0"
+    },
+    {
+      "domain": "creativedreamz.in",
+      "name": "Creative Dreamz",
+      "ref": "SP-AUD-2026-11-21-CD",
+      "generatedAt": "2026-11-21T09:24:06.372Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 7,
+        "mobile": 6,
+        "conversion": 7,
+        "design": 9,
+        "seo": 9,
+        "overall": 73
+      },
+      "pdfPages": 10,
+      "pdfBytes": 3708330,
+      "files": {
+        "pdf": "reports/creative-dreamz/Smart-Pursuit-Audit-Creative-Dreamz.pdf",
+        "audit": "reports/creative-dreamz/audit.json",
+        "html": "reports/creative-dreamz/report.html"
+      },
+      "fingerprint": "f3275222f9213339"
+    },
+    {
+      "domain": "antaryamindia.org",
+      "name": "Project Antaryami",
+      "ref": "SP-AUD-2026-11-21-PA",
+      "generatedAt": "2026-11-21T09:25:34.638Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 6,
+        "mobile": 10,
+        "conversion": 8,
+        "design": 9,
+        "seo": 8,
+        "overall": 80
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1252547,
+      "files": {
+        "pdf": "reports/project-antaryami/Smart-Pursuit-Audit-Project-Antaryami.pdf",
+        "audit": "reports/project-antaryami/audit.json",
+        "html": "reports/project-antaryami/report.html"
+      },
+      "fingerprint": "a9b65f4248312888"
+    },
+    {
+      "domain": "rrdurbar.com",
+      "name": "RR Durbar",
+      "ref": "SP-AUD-2026-11-21-RD",
+      "generatedAt": "2026-11-21T09:33:59.291Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 3,
+        "mobile": 5,
+        "conversion": 7,
+        "design": 6,
+        "seo": 10,
+        "overall": 56
+      },
+      "pdfPages": 10,
+      "pdfBytes": 3271273,
+      "files": {
+        "pdf": "reports/rr-durbar/Smart-Pursuit-Audit-RR-Durbar.pdf",
+        "audit": "reports/rr-durbar/audit.json",
+        "html": "reports/rr-durbar/report.html"
+      },
+      "fingerprint": "73e64a62422285f5"
     }
   ]
 }

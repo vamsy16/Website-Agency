@@ -1,0 +1,25 @@
+{
+  "name": "Indian Terrian",
+  "domain": "indianterrain.com",
+  "city": null,
+  "state": "Andhra Pradesh",
+  "email": "support@indianterrain.com",
+  "phone": null,
+  "ref": "SP-AUD-2026-11-21-IT",
+  "date": "2026-11-21",
+  "overall": 60,
+  "scores": {
+    "speed": 2,
+    "mobile": 6,
+    "conversion": 10,
+    "design": 6,
+    "seo": 8,
+    "overall": 60
+  },
+  "pdf": "Smart-Pursuit-Audit-Indian-Terrian.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://indianterrain.com/",
+    "checkedAt": "2026-11-21"
+  }
+}

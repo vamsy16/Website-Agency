@@ -1,0 +1,25 @@
+{
+  "name": "Creative Dreamz",
+  "domain": "creativedreamz.in",
+  "city": "Visakhapatnam.",
+  "state": "Andhra Pradesh",
+  "email": "creativedreamz1@gmail.com",
+  "phone": "09493395333",
+  "ref": "SP-AUD-2026-11-21-CD",
+  "date": "2026-11-21",
+  "overall": 73,
+  "scores": {
+    "speed": 7,
+    "mobile": 6,
+    "conversion": 7,
+    "design": 9,
+    "seo": 9,
+    "overall": 73
+  },
+  "pdf": "Smart-Pursuit-Audit-Creative-Dreamz.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://creativedreamz.in/",
+    "checkedAt": "2026-11-21"
+  }
+}
