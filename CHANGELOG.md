@@ -206,3 +206,5 @@ pages, 0 mm overflow, 23 verify checks; `class-diff` PASS; daily-run integration
 - Correct misleading cover H1/performance labels and unsupported enquiry-loss/delivery claims without changing score arithmetic or frozen styles. Add a fail-closed copy-honesty verifier check.
 - CSV-only runs filter requested domains before applying the screen cap, preserving all registry duplicate/cooldown/prospect gates.
 - Request exactly the five newly researched AP businesses in the full Anoos-reference format. Reports remain held until post-run review; qualitative reviews are not technical audits.
+
+- Diagnose run 44925860790: all five rejected because empty second findings page reduced the document to nine pages. Preserve ten pages with an explicit evidence-limits page; no fabricated findings or relaxed QA. Remove further unsupported summary/plan assertions and label effort estimates.

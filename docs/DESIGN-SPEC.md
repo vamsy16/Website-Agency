@@ -298,3 +298,5 @@ embedded as base64 (~425 KB vs ~58 KB). The PDF size is dominated by screenshots
 ## Wording correction — 21 November 2026
 
 The Anoos Beauty Clinic delivered PDF is the operator-selected ten-page visual reference for the new five-lead batch. Structure, typography, styles and ten-page requirement are unchanged. Cover labels now describe actual heading counts and Lighthouse lab results without implying poor performance for all scores. Remove unsupported enquiry-loss and guaranteed delivery/performance claims. Layout and verifier checks remain mandatory; failed output is not a re-baselined deliverable.
+
+When fewer than four supported findings exist, page 6 is an evidence-limits page in the existing page/card styles. Do not drop the page or fabricate six findings. No CSS or rubric change; fresh ten-page QA is mandatory.

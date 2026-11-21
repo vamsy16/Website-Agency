@@ -122,7 +122,7 @@ function pageSummary(a, facts) {
 
     <div style="display:grid;grid-template-columns:1.15fr 1fr;gap:8mm;margin-top:1mm">
       <div>
-        <div class="eyebrow mut">Three things this is costing you</div>
+        <div class="eyebrow mut">Prioritised observations</div>
         <div class="numlist">
 ${s.costs
   .slice(0, 3)
@@ -176,14 +176,12 @@ function defaultSummary(facts, findings) {
   if (m.schemaTypes?.length) good.push(`${m.schemaTypes[0]} structured data`);
   if (facts.http?.canonical) good.push("a canonical tag");
   return {
-    title: `Your website is the first thing a new customer meets.<br>Right now it is also the <em>slowest</em> part of the visit.`,
+    title: `Your website, measured.<br>Review the evidence <em>before deciding what to change.</em>`,
     lede: `We ran the same tests Google runs, on the same page a visitor sees when they search for your service on a phone. ${findings.all.length} findings were identified. Their effect on enquiries has not been measured.`,
     costs,
-    working: `Credit where it is due: ${good.length ? good.join(", ") : "the pages do load"}. The foundations are there — the plumbing is not.`,
-    verdict: `Most of the problems below are not design problems. They are ${issueText}. The urgent ones are fixed in about a week, without changing how the site looks.`,
-    bill: h.adTech?.length
-      ? `Your pages load ${e(h.adTech.map(adTechLabel).join(", "))} alongside analytics. That is a paid-traffic setup — and if you are buying clicks, you are paying to send them to pages that cannot take ${v.noun}. That is not a speed problem. That is the funnel.`
-      : null,
+    working: `Credit where it is due: ${good.length ? good.join(", ") : "the pages do load"}. These are observed features, not proof of overall site quality.`,
+    verdict: `Prioritise the supported findings below. Confirm their relevance and agree a scope before estimating delivery or deciding on a redesign.`,
+    bill: h.adTech?.length ? `Tracking-related scripts detected: ${e(h.adTech.map(adTechLabel).join(", "))}. Script presence alone does not establish active paid campaigns or advertising spend.` : null,
   };
 }
 
@@ -318,7 +316,12 @@ function pctPos(ms, max = 20000, minPct = 2, maxPct = 99) {
 
 // ---------------------------------------------------------------- 5-6. FINDINGS
 function pageFindings(a, facts, list, pageNo, right, heading, subject) {
-  if (!list.length) return "";
+  if (!list.length) return `<section class="page"><div class="pad">
+    ${top(facts, right)}<div class="eyebrow">Evidence limits</div>
+    <h2 class="t">No additional supported findings.</h2>
+    <p class="lede">The test produced ${a.findings.all.length} findings, presented on the preceding page. Additional issues have not been invented to fill this report.</p>
+    <div class="card"><h3>What this does not establish</h3><p>A limited automated test is not a security, accessibility or complete functional certification. Enquiry delivery and business outcomes have not been measured.</p></div>
+    ${footer(facts, pageNo)}</div></section>`;
   return `<section class="page">
   <div class="pad">
     ${top(facts, right)}
@@ -337,7 +340,7 @@ ${list
             <p>${f.measured}</p>
           </div>
           <div>
-            <div class="k">Why it costs you ${e(subject)}</div>
+            <div class="k">Why review this</div>
             <p>${f.why}</p>
           </div>
           <div>
@@ -505,14 +508,14 @@ function defaultPlan(facts, findings) {
   const m = facts.metric;
   const v = audienceOf(facts.business);
   return [
-    { id: "01", change: "Contact form rebuilt", today: facts.http.contactShortcode ? "Prints raw shortcode; collects nothing" : m.visibleForms === 0 ? "No form to capture enquiries" : "Form present but untracked", target: "Working form + thank-you page, tracked", effort: "<b>1 hour</b>" },
-    { id: "02", change: v.health ? "Booking path" : "Enquiry path", today: m.visibleForms === 0 ? "No form on the homepage" : "Form exists, not prominent", target: v.health ? "Book block above fold + sticky call bar" : "Enquiry block above fold + sticky call bar", effort: "<b>½ day</b>" },
+    { id: "01", change: "Contact form rebuilt", today: facts.http.contactShortcode ? "Prints raw shortcode; collects nothing" : m.visibleForms === 0 ? "No form to capture enquiries" : "Form fields detected; delivery untested", target: "Working form + thank-you page, tracked", effort: "<b>1 hour</b>" },
+    { id: "02", change: v.health ? "Booking path" : "Enquiry path", today: m.visibleForms === 0 ? "No form on the homepage" : "Form fields detected", target: v.health ? "Book block above fold + sticky call bar" : "Enquiry block above fold + sticky call bar", effort: "<b>½ day</b>" },
     { id: "03", change: "Server &amp; caching", today: `${m.ttfb} response`, target: "<b>Under 500 ms</b>", effort: "1 day" },
-    { id: "04", change: "Images", today: `${fmtInt(m.oversizedImgsKb)} KiB oversized, no next-gen format`, target: "<b>LCP under 2.5 s</b>", effort: "1 day" },
+    { id: "04", change: "Images", today: `${fmtInt(m.oversizedImgsKb)} KiB potential image savings`, target: "<b>LCP under 2.5 s</b>", effort: "1 day" },
     { id: "05", change: "Scripts &amp; tracking", today: `${m.tbt} blocking, ${m.thirdPartyCookies} cookies`, target: "<b>Under 200 ms</b>, one analytics tool", effort: "½ day" },
     { id: "06", change: "Headline &amp; structure", today: `${m.h1Count} H1s, ${m.sections} sections`, target: "1 H1, 5 sections, services visible", effort: "2 days" },
-    { id: "07", change: "Local SEO &amp; schema", today: "Structured data incomplete", target: "LocalBusiness + locations, hours, area", effort: "1 day" },
-    { id: "08", change: "Measurement", today: "No conversion tracking", target: "Form + call + WhatsApp events", effort: "½ day" },
+    { id: "07", change: "Local SEO &amp; schema", today: `${(facts.http.schemaTypes || []).length} schema types detected`, target: "LocalBusiness + locations, hours, area", effort: "1 day" },
+    { id: "08", change: "Measurement", today: "Conversion events not tested", target: "Form + call + WhatsApp events", effort: "½ day" },
   ];
 }
 
@@ -638,7 +641,7 @@ function pageNextSteps(a, facts) {
       <div>
         <div class="eyebrow mut">Kept honest</div>
         <p style="font-size:8.2pt;color:var(--ink2);line-height:1.5">
-          Every number in this report was measured on <b>${e(facts.date.long)}</b> against the public site — no estimates, no stock benchmarks, no invented statistics. Nothing here is a guarantee of revenue; it is a description of what the page does today and what it should do.
+          Measurements are from <b>${e(facts.date.long)}</b>. Scores use the agency rubric. Targets are labelled goals; effort is an estimate, not a measurement. Enquiry or revenue effects have not been measured. No outcome is guaranteed.
         </p>
         <p style="font-size:8.2pt;color:var(--ink2);line-height:1.5;margin-top:2.4mm">
           ${a.demo ? "A working rebuild of the homepage is already running — ask for the link and open it on your own phone. " : ""}If you would rather hand this to your own developer, keep it: the audit is yours. ${e(facts.outreach?.optOutLine || "If you would rather not hear from us again, reply “no thanks” and we will not follow up.")}
@@ -691,8 +694,8 @@ export function renderReport(audit) {
     pageSummary(audit, facts),
     pageScorecard(audit, facts),
     pagePatientView(audit, facts),
-    pageFindings(audit, facts, findings.page1, 5, "Findings 01–03", audit.headings?.page5 || `Six findings. ${findings.all.filter(f => f.severity === "Critical").length} of them are <em>costing you ${audienceOf(facts.business).nounPl} right now.</em>`, subject),
-    pageFindings(audit, facts, findings.page2, 6, "Findings 04–06", audit.headings?.page6 || `The quieter problems — <em>the ones that cap your growth.</em>`, subject),
+    pageFindings(audit, facts, findings.page1, 5, "Findings 01–03", audit.headings?.page5 || `${findings.all.length} measured findings. <em>Review the supporting evidence.</em>`, subject),
+    pageFindings(audit, facts, findings.page2, 6, "Findings 04–06", audit.headings?.page6 || `Further findings — <em>where supported by the test.</em>`, subject),
     pageBenchmark(audit, facts),
     pagePlan(audit, facts),
     pageDirection(audit, facts),
