@@ -6,6 +6,7 @@
 | --- | --- | --- |
 | `Smart_Pursuit_School_Admissions_Growth_Strategy.pdf` | 12 | **The client-facing edition.** Cover, opportunity, parent behaviour, positioning, growth system, advertising, content, conversion, 90-day roadmap, measurement, partnership, next step. One message per page. |
 | `SCHOOL-ADMISSIONS-GROWTH-STRATEGY.pdf` | 38 | **The research foundation.** Full source register, competitor matrix, channel specifications, budget models, 23 sections of working detail. Used internally and as a leave-behind. |
+| `Smart_Pursuit_School_Automation_AI_Transformation_Blueprint.pdf` | 35 | **The automation & AI blueprint.** Exhaustive department-by-department process analysis (A–T): process inventory, problem register, automation opportunity register, AI assistance register, AI agent catalogue, workflow blueprints, technology architecture, problem→solution→value, impact/ROI estimates, risk register, 8-band prioritisation matrix, implementation roadmap, DPDP privacy framework, discovery questionnaire and final recommendations. No page limit; length set by the number of distinct opportunities. |
 
 The 12-page edition is distilled from the 38-page one: same insights, no methodology, no
 research explanations, no jargon. It carries a KEY TAKEAWAY strip on every page so it can be
@@ -23,6 +24,7 @@ budget models and a measurement framework.
 npm install                     # pdfkit is a dependency
 npm run strategy                # 38-page research blueprint
 npm run strategy:client         # 12-page client edition
+npm run automation              # 35-page automation & AI transformation blueprint
 ```
 
 The build is two-pass: pass one records the page each section starts on, pass two writes those

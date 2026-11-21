@@ -3,6 +3,20 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## 1.6.0 — 21 November 2026
+
+**New deliverable: exhaustive school automation & AI transformation blueprint.**
+
+- `deliverables/2026-11-vizianagaram-school-admissions/Smart_Pursuit_School_Automation_AI_Transformation_Blueprint.pdf` — a 35-page (no page limit), department-by-department automation and AI study for a prospective school client in Vizianagaram, Andhra Pradesh, built by `npm run automation`.
+- `build-automation-blueprint.mjs` — flow-based pdfkit renderer: cover, contents, 19 sections, discovery questionnaire and appendices; two-pass build with an authoritative page counter and `Page X of N` footers on every page; zero blank pages; `PAGE COUNT MISMATCH` eliminated.
+- `const OPPORTUNITIES` — ~60 opportunities across 13 departments (admissions, finance & fees, academics, HR, parent communication, school office, IT, transport, facilities, library, events, compliance, safety), each with a unique ID (ADM-, FIN-, ACD-, HR-, PAR-, OPS-, IT-, TRN-, FAC-, LIB-, EVT-, COMP-, SAF-) and the full field set: process, user, problem, root cause, solution, category, workflow, trigger, input, output, technology, integrations, human approval, risk, effort, impact, KPI, dependencies, priority, evidence tag.
+- Sections 6–8 registers (automation, AI assistance, AI agent), sections 9–10 workflows and architecture, sections 11–15 value analysis, impact estimates, risk register, 8-band prioritisation matrix ("not recommended at present" included) and a multi-phase implementation roadmap extending beyond 90 days.
+- Section 16 DPDP Act 2023 / Rules 2025 privacy framework: child = under 18, verifiable parental consent (Section 9(1) / Rule 10), no detrimental or targeted-ad processing of children (Section 9(3)), narrow Fourth Schedule exemptions only, Section 8 safeguards, 72-hour breach reporting, erasure when purpose served, main duties commence 13 May 2027, penalties up to ₹250 crore / ₹200 crore.
+- Section 17 Smart Pursuit implementation approach; section 19 final recommendations; Appendix D discovery questionnaire (20 questions per process).
+- Evidence rule applied throughout: every finding classified as verified school-specific fact / publicly available evidence / industry-based operational hypothesis / opportunity requiring management validation; no school-specific fact, budget, result or testimonial is invented.
+- No images or video: type, colour blocks, rules and vector diagrams only. No stock photography.
+- `package.json` — new `automation` script (`node deliverables/.../build-automation-blueprint.mjs`).
+
 ## 1.5.0 — 21 November 2026
 
 **A second deliverable type: the strategy blueprint.**
