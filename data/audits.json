@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-21T14:04:59.382Z",
+  "updatedAt": "2026-11-21T16:17:41.360Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -1129,6 +1129,30 @@
         "html": "reports/tulasi-multi-speciality-hospital/report.html"
       },
       "fingerprint": "4703b0520f2ebdfc"
+    },
+    {
+      "domain": "amruthahearthospital.co.in",
+      "name": "Amrutha Heart Hospital",
+      "ref": "SP-AUD-2026-11-21-AHH",
+      "generatedAt": "2026-11-21T16:17:41.360Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 4,
+        "conversion": 8,
+        "design": 8,
+        "seo": 8,
+        "overall": 63
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1552525,
+      "files": {
+        "pdf": "reports/amrutha-heart-hospital/Smart-Pursuit-Audit-Amrutha-Heart-Hospital.pdf",
+        "audit": "reports/amrutha-heart-hospital/audit.json",
+        "html": "reports/amrutha-heart-hospital/report.html"
+      },
+      "fingerprint": "c9c967408227a2a7"
     }
   ]
 }
