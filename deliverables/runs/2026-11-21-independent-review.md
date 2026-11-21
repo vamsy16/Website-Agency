@@ -1,5 +1,7 @@
 # Andhra Pradesh — independent review (21 November 2026)
 
+**Superseded status:** see [five-lead status](2026-11-21-five-leads-status.md). Replacement runs are complete; five published-email contacts identified, but all reports remain unapproved after deeper review.
+
 ## Scope and current status
 
 Requested: five new, email-only Andhra Pradesh prospects, duplicate-checked against the repository, followed by an independent second review. **Not yet complete: two retained, three replacements requested.**

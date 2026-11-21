@@ -1,0 +1,83 @@
+{
+  "state": "Andhra Pradesh",
+  "reviewDate": "2026-11-21",
+  "requested": 5,
+  "status": "incomplete-audits-held",
+  "dedupeAuthority": [
+    "data/leads.json",
+    "data/audits.json"
+  ],
+  "neverSendAutomatically": true,
+  "leads": [
+    {
+      "domain": "sugunadental.com",
+      "name": "Suguna Dental",
+      "location": "Nellore",
+      "email": "contact@sugunadental.com",
+      "source": "https://sugunadental.com/contact-us/",
+      "pipelineAudit": "passed",
+      "approved": false,
+      "reason": "Independent PDF review: single H1 described as competing headings; report copy requires correction and re-verification."
+    },
+    {
+      "domain": "creativedreamz.in",
+      "name": "Creative Dreamz",
+      "location": "Serves Andhra Pradesh; physical base not independently established",
+      "email": "creativedreamz1@gmail.com",
+      "source": "https://creativedreamz.in/",
+      "pipelineAudit": "passed",
+      "approved": false,
+      "reason": "Independent PDF review: 83/100 performance score paired with poor-score copy; single H1 described as competing; unsupported customer-behaviour claims."
+    },
+    {
+      "domain": "tulasimultispecialityhospital.com",
+      "name": "Tulasi Multi Speciality Hospital",
+      "location": "Guntur",
+      "email": "tulasihospitalguntur@gmail.com",
+      "source": "https://tulasimultispecialityhospital.com/contact-book-hospital-appointment-guntur.html",
+      "pipelineAudit": "passed",
+      "approved": false,
+      "reason": "Published contact-page Gmail differs from audit recipient info@tulasimultispecialityhospital.com, which independent page extraction did not confirm; full report-copy review outstanding."
+    },
+    {
+      "domain": "itechupvc.com",
+      "name": "iTech uPVC Designers",
+      "location": "Kanuru, Vijayawada",
+      "email": "itechupvcdesigners@gmail.com",
+      "source": "https://www.itechupvc.com/contact",
+      "pipelineAudit": "failed-layout-QA",
+      "approved": false,
+      "reason": "Layout QA failed; no accepted audit PDF."
+    },
+    {
+      "domain": "happydentalhealthcare.com",
+      "name": "Happy Dental Health Care",
+      "location": "Governor Peta, Vijayawada",
+      "email": "happydentalhealthcare@gmail.com",
+      "source": "https://www.happydentalhealthcare.com/",
+      "pipelineAudit": "failed-layout-QA",
+      "approved": false,
+      "reason": "Layout QA failed; no accepted audit PDF."
+    }
+  ],
+  "withheldOtherDomains": [
+    "indianterrain.com",
+    "rrdurbar.com",
+    "antaryamindia.org",
+    "ultratechcement.com",
+    "subbayyagarihotel.in",
+    "srinidhirestaurant.com"
+  ],
+  "limits": "Published emails are not mailbox-deliverability checks. No contacts or audit measurements were fabricated. Pipeline verification is not independent raw-metric recalculation. No Gmail drafts created and nothing sent.",
+  "registryCheck": {
+    "leads": 234,
+    "audits": 47,
+    "duplicateGroups": {
+      "domains": [],
+      "emails": [],
+      "phones": [],
+      "namesCities": [],
+      "auditDomains": []
+    }
+  }
+}

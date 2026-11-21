@@ -5,6 +5,8 @@ if the reason is not obvious.
 
 ## Review — 21 November 2026
 
+- Deliverables index now fails closed on the independent-review manifest: automated gate success cannot mark held reports sendable. Five live email contacts documented, with explicit PDF-copy/recipient holds and layout-QA failures.
+
 - Replacement review also excludes UltraTech Cement and Subbayya Gari Hotel under the chain policy; target only existing repository candidates for the next replacement run. Srinidhi held pending independent email confirmation.
 
 - Independent live-site review excludes Indian Terrain and RR Durbar (chains), and Project Antaryami (virtual-assistant franchise network). Their audit history is retained; they must not count toward the five local prospects.
