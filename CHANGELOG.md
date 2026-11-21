@@ -3,6 +3,10 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## Review — 21 November 2026
+
+- Independent live-site review excludes Indian Terrain and RR Durbar (chains), and Project Antaryami (virtual-assistant franchise network). Their audit history is retained; they must not count toward the five local prospects.
+
 ## 1.4.0 — 15 November 2026
 
 **Confirmed emails only, real prospects only, honest wording.**
