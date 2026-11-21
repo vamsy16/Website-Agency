@@ -125,7 +125,7 @@ const bullets = (doc, items, opts = {}) => {
   needSpace(doc, hTotal + 4);
   const start = cursor;
   measured.forEach(({ t, h }) => {
-    doc.fillColor(markerColor).font('Helvetica-Bold').fontSize(size).text(marker, M, cursor, { width: 14 });
+    tickMark(doc, M + 4, cursor, { size, color: markerColor });
     doc.fillColor(color).font('Helvetica').fontSize(size).text(t, M + 18, cursor, { width: width - 18, lineGap: lead - 1 });
     cursor = doc.y + gap;
   });
@@ -180,6 +180,17 @@ const arrow = (doc, x1, y1, x2, y2, opts = {}) => {
     doc.fillColor(color)
       .moveTo(x2 - dx * head, y2 - head / 2).lineTo(x2, y2).lineTo(x2 - dx * head, y2 + head / 2).fill();
   }
+};
+
+// Draw a vector checkmark (tick) so it renders crisply instead of the
+// literal "[tick]" text (WinAnsi/Helvetica has no ✓ glyph).
+const tickMark = (doc, x, y, { size = 8, color = C.ok, lw = 1.6 } = {}) => {
+  // checkmark: start upper-left -> down to vertex -> up to upper-right
+  doc.strokeColor(color).lineWidth(lw).lineCap('round').lineJoin('round')
+    .moveTo(x, y + size * 0.25)
+    .lineTo(x + size * 0.3, y + size * 0.85)
+    .lineTo(x + size * 0.75, y + size * 0.05)
+    .stroke();
 };
 
 const vflowHeight = (doc, steps, { boxW = CW - 120, boxH = 26, gap = 10, tSize = 8.2 } = {}) => {
@@ -387,7 +398,7 @@ const solutionCard = (doc, it) => {
   panel(doc, cursor, CW, valuePanelH, { accentLeft: true, accentColor: C.ok });
   let vy = cursor + 10;
   it.value.forEach((v, i) => {
-    doc.fillColor(C.ok).font('Helvetica-Bold').fontSize(8.6).text('[tick]', M + 14, vy, { width: 14 });
+    tickMark(doc, M + 14, vy, { size: 8.6, color: C.ok });
     doc.fillColor(C.body).font('Helvetica').fontSize(8.6).text(s(v), M + 30, vy, { width: pw - 20, lineGap: 1.25 });
     vy += itemHs[i] + 6;
   });
