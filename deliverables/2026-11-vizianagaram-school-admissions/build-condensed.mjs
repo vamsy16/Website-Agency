@@ -144,6 +144,8 @@ function panel(x, y, w, h, { fill = C.panel, accentTop = false } = {}) {
 
 function cards(items, { x = M, y, cols = 3, cardW, cardH = 78, gap = 10, titleSize = 10.2, bodySize = 8.6 } = {}) {
   const w = cardW || (CW - gap * (cols - 1)) / cols;
+  const titleLead = 1.2;
+  const bodyLead = 2.4;
   let cy = y;
   items.forEach((it, i) => {
     const col = i % cols;
@@ -151,22 +153,32 @@ function cards(items, { x = M, y, cols = 3, cardW, cardH = 78, gap = 10, titleSi
     if (col === 0 && row > 0) cy += cardH + gap;
     const cx = x + col * (w + gap);
     panel(cx, cy, w, cardH, { accentTop: true });
+
+    // Measure the headline with the same width and leading it will be drawn at,
+    // then place the body below it. Never advance by a fixed number: a quoted
+    // headline wraps to two or three lines and used to collide with the body.
+    const tx = it.num ? cx + 30 : cx + 12;
+    const tw = w - (it.num ? 42 : 24);
     let ty = cy + 13;
+    const titleH = doc.font('Helvetica-Bold').fontSize(titleSize)
+      .heightOfString(s(it.title), { width: tw, lineGap: titleLead });
+
     if (it.num) {
       doc.fillColor(C.accent).font('Helvetica-Bold').fontSize(7).text(s(it.num), cx + 12, ty, { width: 20 });
-      doc.fillColor(C.white).font('Helvetica-Bold').fontSize(titleSize)
-        .text(s(it.title), cx + 30, ty - 1, { width: w - 42, lineGap: 1.2 });
-      ty += 12;
-    } else {
-      doc.fillColor(C.white).font('Helvetica-Bold').fontSize(titleSize)
-        .text(s(it.title), cx + 12, ty, { width: w - 24, lineGap: 1.2 });
-      ty += doc.heightOfString(s(it.title), { width: w - 24, fontSize: titleSize }) + 4;
+      ty -= 1;
     }
+    doc.fillColor(C.white).font('Helvetica-Bold').fontSize(titleSize)
+      .text(s(it.title), tx, ty, { width: tw, lineGap: titleLead });
+    ty += titleH + 5;
+
     if (it.body) {
+      const bodyH = doc.font('Helvetica').fontSize(bodySize)
+        .heightOfString(s(it.body), { width: w - 24, lineGap: bodyLead });
+      if (ty + bodyH > cy + cardH - 6) {
+        notes.push(`p${pageNo}: card "${it.title}" body overruns panel by ${Math.round(ty + bodyH - (cy + cardH - 6))}pt`);
+      }
       doc.fillColor(C.muted).font('Helvetica').fontSize(bodySize)
-        .text(s(it.body), cx + 12, ty, { width: w - 24, lineGap: 2.4 });
-      const bh = doc.heightOfString(s(it.body), { width: w - 24, fontSize: bodySize, lineGap: 2.4 });
-      if (ty + bh > cy + cardH - 6) notes.push(`p${pageNo}: card "${it.title}" may overflow its panel`);
+        .text(s(it.body), cx + 12, ty, { width: w - 24, lineGap: bodyLead });
     }
   });
   const rows = Math.ceil(items.length / cols);
@@ -389,10 +401,10 @@ startPage();
     { num: '02', title: 'Confidence', body: 'Spoken English and overall development, evidenced by student speech and weekly activity - not by a slogan.' },
     { num: '03', title: 'Transparency', body: 'The school that publishes fees, results, safety and admission steps. The strongest and hardest to copy.' },
     { num: '04', title: 'Convenience', body: 'Proximity and transport done well: route-level information for the families who actually commute.' },
-  ], { y, cols: 2, cardH: 112, titleSize: 11, bodySize: 8.8 });
+  ], { y, cols: 2, cardH: 84, titleSize: 11, bodySize: 8.8 });
   y += 6;
 
-  y = para('Choose one direction and lead with it for a full season. A school that claims four things is remembered for none of them; a school that proves one thing becomes the answer a parent gives when a neighbour asks where to admit their child. The remaining directions become supporting proof, not competing headlines.', { y, size: 9.4 });
+  y = para('Choose one direction and lead with it for a full season. A school that claims four things is remembered for none of them; a school that proves one thing becomes the answer a parent gives when a neighbour asks where to admit their child. The remaining directions become supporting proof, not competing headlines. Whichever direction is chosen, it must be provable in a single campus visit: a claim a parent cannot check in ten minutes will not survive the counselling conversation.', { y, size: 9.4 });
   y += 2;
 
   y = callout(y, {
@@ -497,7 +509,7 @@ startPage();
     { num: 'A', title: '"Ask us the fee. We will tell you today."', body: 'Google search ad. Lands on a page with fees published. CTA: See fees and book a visit.' },
     { num: 'B', title: '"See a class in session, not a presentation."', body: 'Meta reel, 20 seconds of real classroom. CTA: Book a Saturday campus visit.' },
     { num: 'C', title: '"Meet the teacher who will teach your child."', body: 'Meta reel with a named teacher. CTA: Message us on WhatsApp.' },
-  ], { y, cols: 3, cardH: 110, titleSize: 9, bodySize: 8 });
+  ], { y, cols: 3, cardH: 100, titleSize: 9, bodySize: 8 });
 
   y = callout(y + 2, {
     tone: 'warn',
