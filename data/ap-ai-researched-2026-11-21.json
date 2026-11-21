@@ -1,0 +1,122 @@
+{
+  "state": "Andhra Pradesh",
+  "reviewedOn": "2026-11-21",
+  "method": "AI-assisted search discovery followed by direct retrieval and evidence review of business-owned websites. Not Lighthouse audits or visual browser tests.",
+  "leads": [
+    {
+      "name": "Sri Navatha Interior Designs",
+      "website": "https://srinavathainteriordesign.com/",
+      "city": "Vijayawada",
+      "state": "Andhra Pradesh",
+      "country": "India",
+      "email": "srinavathainteriordesign@gmail.com",
+      "phone": "+91 9701636998",
+      "additionalPhones": [
+        "+91 9248113699"
+      ],
+      "address": "Opp SBI Bank, Penamaluru, Vijayawada",
+      "sourceUrl": "https://srinavathainteriordesign.com/contact/",
+      "source": "website-research",
+      "category": "craft=interior_decorator",
+      "evidence": "Contact page publishes email, both phones and Penamaluru address. Homepage also publishes the same email and describes interior design and marble-sheet services.",
+      "observedIssue": "Homepage contains a visible stock-photo filename with 'unsplash'; imagery provenance should be clarified, not assumed to be completed client work.",
+      "recommendation": "Separate completed-project case studies from inspiration imagery and describe project scope and location.",
+      "secondReview": "Homepage and contact-page email match; address supports Vijayawada. No form submission, speed test, physical visit or image-authenticity determination performed."
+    },
+    {
+      "name": "DreamNest Interiors",
+      "website": "https://dreamnestinteriors.co.in/",
+      "city": "Vijayawada",
+      "state": "Andhra Pradesh",
+      "country": "India",
+      "email": "sales@dreamnestinteriors.co.in",
+      "phone": "+91 9063435479",
+      "additionalPhones": [
+        "+91 8886798908"
+      ],
+      "address": "13-580/1, 1st floor, above Federal Bank, Tulasi Nagar, Kanuru, Vijayawada 520007",
+      "sourceUrl": "https://dreamnestinteriors.co.in/contact-us.php",
+      "source": "website-research",
+      "category": "shop=interior_decoration",
+      "evidence": "Contact page names Dreamnest Interiors - Vijayawada and explicitly publishes the Kanuru showroom address, sales email and two phones.",
+      "observedIssue": "Extracted form text includes a maths CAPTCHA prompt and 'Incorrect answer, please try again.' This alone does not establish a broken form or visible error on initial load.",
+      "recommendation": "Check initial CAPTCHA/error-state behaviour in a browser before making any defect claim; tailor enquiries to the listed interior products.",
+      "secondReview": "Exact email is a mailto on the same page as the local address. This is a branded-products showroom; dealer/franchise ownership and website decision-maker are not independently established."
+    },
+    {
+      "name": "ImageArt Photography Vizag",
+      "website": "https://imageartphotographyvizag.com/",
+      "city": "Visakhapatnam",
+      "state": "Andhra Pradesh",
+      "country": "India",
+      "email": "imageartphotographyvizag@gmail.com",
+      "phone": "08919298239",
+      "additionalPhones": [],
+      "address": "50-13-17, Near Durga Ganapathi Temple Backside, Seethammapeta Main Road, Visakhapatnam, Andhra Pradesh 530016",
+      "sourceUrl": "https://imageartphotographyvizag.com/",
+      "source": "website-research",
+      "category": "craft=photographer",
+      "evidence": "Homepage publishes studio address, email and phone beside its enquiry form; describes wedding, baby, product and corporate shoots.",
+      "observedIssue": "The Baby Photo shoots section repeats pre-wedding description text, and the published email hyperlink targets the homepage fragment rather than mailto.",
+      "recommendation": "Replace mismatched baby-shoot copy and make the email link open an email client. Verify changes in a browser.",
+      "secondReview": "Email and full AP address appear together in the contact section. Phone retained exactly as published; no unsupported country-code conversion or mailbox verification."
+    },
+    {
+      "name": "Seven Interiors",
+      "website": "https://www.seveninteriors.in/",
+      "city": "Vijayawada",
+      "state": "Andhra Pradesh",
+      "country": "India",
+      "email": "sevengroup789@gmail.com",
+      "phone": "+91 9849333755",
+      "additionalPhones": [
+        "+91 8977385999"
+      ],
+      "address": "Plot no 44, High School Road, Rajula Bazar, Ramavarapadu, Vijayawada, Andhra Pradesh 521108",
+      "sourceUrl": "https://www.seveninteriors.in/contact-us/",
+      "source": "website-research",
+      "category": "craft=interior_decorator",
+      "evidence": "Homepage and contact page publish the same email and phones. Contact page provides full Vijayawada address and describes doors, plywood and interior services.",
+      "observedIssue": "Extracted contact page contains a literal chat-widget fragment ending in 'WhatsApp Messageundefined'. Rendering visibility has not been established.",
+      "recommendation": "Test the WhatsApp widget on mobile before calling it broken; clean up any confirmed exposed script text.",
+      "secondReview": "Email/phones cross-match two own-site pages; full AP address confirmed. No assertion of current bookings, sales performance or ownership independence."
+    },
+    {
+      "name": "Metro Interiors",
+      "website": "https://metro-interiors.ueniweb.com/",
+      "city": "Guntur",
+      "state": "Andhra Pradesh",
+      "country": "India",
+      "email": "munnachinna206@gmail.com",
+      "phone": "+91 8074933736",
+      "additionalPhones": [],
+      "address": "Shop No 21, BR Stadium Complex, Guntur, Andhra Pradesh 522001",
+      "sourceUrl": "https://metro-interiors.ueniweb.com/",
+      "source": "website-research",
+      "category": "craft=interior_decorator",
+      "evidence": "Business-specific hosted site publishes email, phone, Guntur address and interior services. This is a hosted UENI business website, not an independently registered custom domain.",
+      "observedIssue": "Visible review dates in the retrieved page are from 2020 and 2021; that does not prove inactivity or lack of newer work.",
+      "recommendation": "Ask whether recent completed-project examples are available; discuss a custom-domain portfolio only if the business wants one.",
+      "secondReview": "Email is a mailto in the contact section alongside full AP address. Current physical operation and recent project activity remain unverified; old reviews are not treated as proof of closure."
+    }
+  ],
+  "limits": "Confirmed publication of contact details and AP location claims on currently retrievable sites, not mailbox deliverability, physical operation, ownership, budgets or buying intent. Suggestions are AI interpretations, not measured conversion losses. No scores, Lighthouse claims, broken-form claims, PDFs, email drafts or sends generated. Unreachable candidates were excluded.",
+  "duplicateReview": {
+    "authority": [
+      "data/leads.json",
+      "data/audits.json"
+    ],
+    "baselineLeads": 234,
+    "baselineAudits": 48,
+    "passed": true,
+    "checks": [
+      "domain",
+      "email",
+      "last-ten-digit phone (including candidate alternate phones)",
+      "name plus city",
+      "existing audit domain",
+      "within-batch uniqueness"
+    ],
+    "gmailUsed": false
+  }
+}
