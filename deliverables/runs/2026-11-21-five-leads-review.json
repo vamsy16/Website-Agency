@@ -118,6 +118,31 @@
       "domain": "vijayamedicalcentre.in",
       "approved": false,
       "reason": "New batch: awaiting live email/location confirmation and independent post-audit PDF review. Not approved merely because automated verification passes."
+    },
+    {
+      "domain": "srinavathainteriordesign.com",
+      "approved": false,
+      "reason": "Full ten-page reference-format audit requested; awaiting fresh measurements, layout/verification gates and independent post-run PDF review."
+    },
+    {
+      "domain": "dreamnestinteriors.co.in",
+      "approved": false,
+      "reason": "Full ten-page reference-format audit requested; awaiting fresh measurements, layout/verification gates and independent post-run PDF review."
+    },
+    {
+      "domain": "imageartphotographyvizag.com",
+      "approved": false,
+      "reason": "Full ten-page reference-format audit requested; awaiting fresh measurements, layout/verification gates and independent post-run PDF review."
+    },
+    {
+      "domain": "seveninteriors.in",
+      "approved": false,
+      "reason": "Full ten-page reference-format audit requested; awaiting fresh measurements, layout/verification gates and independent post-run PDF review."
+    },
+    {
+      "domain": "metro-interiors.ueniweb.com",
+      "approved": false,
+      "reason": "Full ten-page reference-format audit requested; awaiting fresh measurements, layout/verification gates and independent post-run PDF review."
     }
   ],
   "withheldOtherDomains": [

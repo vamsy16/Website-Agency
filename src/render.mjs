@@ -94,10 +94,10 @@ function defaultCoverStats(facts, findings) {
   const first = findings.all[0] || { title: "" };
   const third = m.visibleForms === 0 && facts.http.contactShortcode
     ? { n: "1", unit: "", label: "Broken enquiry form. Your Contact page prints raw code where the form should load." }
-    : { n: String(m.h1Count), unit: "", label: "Competing H1 headings on one page, so neither a visitor nor a crawler knows the topic." };
+    : { n: String(m.h1Count), unit: "", label: m.h1Count > 1 ? "H1 headings detected on the homepage. Review whether the page has a clear primary topic." : m.h1Count === 1 ? "H1 heading detected on the homepage." : "H1 headings detected on the homepage; review the document outline." };
   return [
-    { n: String(m.perfMobile), unit: "/ 100", label: `Mobile performance score. Google calls below 50 “poor”.` },
-    { n: secNum(m.lcpMs), unit: "s", label: `Until your main image appears on a phone. Google’s target is 2.5 s.` },
+    { n: String(m.perfMobile), unit: "/ 100", label: `Lighthouse mobile performance score in this test run.` },
+    { n: secNum(m.lcpMs), unit: "s", label: `Largest Contentful Paint in the mobile lab test. Good LCP target: 2.5 s or less.` },
     third,
   ];
 }
@@ -177,7 +177,7 @@ function defaultSummary(facts, findings) {
   if (facts.http?.canonical) good.push("a canonical tag");
   return {
     title: `Your website is the first thing a new customer meets.<br>Right now it is also the <em>slowest</em> part of the visit.`,
-    lede: `We ran the same tests Google runs, on the same page a visitor sees when they search for your service on a phone. ${findings.all.length} things stood out — ${findings.all.filter(f => f.severity === "Critical").length} of them are losing you enquiries today.`,
+    lede: `We ran the same tests Google runs, on the same page a visitor sees when they search for your service on a phone. ${findings.all.length} findings were identified. Their effect on enquiries has not been measured.`,
     costs,
     working: `Credit where it is due: ${good.length ? good.join(", ") : "the pages do load"}. The foundations are there — the plumbing is not.`,
     verdict: `Most of the problems below are not design problems. They are ${issueText}. The urgent ones are fixed in about a week, without changing how the site looks.`,
@@ -484,11 +484,11 @@ ${plan
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:5mm;margin-top:6mm">
       <div class="band">
         <h3>Weeks 1–2: the rescue</h3>
-        <p>${a.phases?.rescue || `The first half of the list. Same design, same content, same brand. The site simply starts working — ${facts.http.contactShortcode ? "the form renders, " : ""}the ${audienceOf(facts.business).health ? "booking" : "call and enquiry"} buttons work, the page loads in under three seconds.`}</p>
+        <p>${a.phases?.rescue || `The first half of the list. Same design, same content, same brand. Prioritise the measured issues, test the enquiry controls, and re-measure after changes. Timing and results depend on the agreed scope.`}</p>
       </div>
       <div class="card">
         <h3>Weeks 3–4: the rebuild</h3>
-        <p>${a.phases?.rebuild || "The second half. A mobile-first homepage built around one action, service pages that rank, location pages for local search, and analytics that show which page produced which phone call."}</p>
+        <p>${a.phases?.rebuild || "The second half. A mobile-first homepage built around one action, service pages with clear content, location pages for local search, and analytics that show which page produced which phone call."}</p>
       </div>
     </div>
 
@@ -617,15 +617,15 @@ function pageNextSteps(a, facts) {
       </div>
       <div class="step">
         <div class="n">3</div>
-        <h4>Week one: it works</h4>
-        <p>${facts.http.contactShortcode ? "The form renders, the" : "The"} ${audienceOf(facts.business).path} is live, the page is under three seconds. In week two we re-run this exact audit and send the before/after — the same numbers, on a page that performs.</p>
+        <h4>Implement and re-test</h4>
+        <p>Agree a scope and schedule, implement the changes, then repeat the measurements. Performance and enquiry improvements are not guaranteed.</p>
       </div>
     </div>
 
     <div class="cta">
       <div class="l">
         <div class="k">Reply to this audit — or call</div>
-        <div class="h">Let’s fix the ${facts.http.contactShortcode ? "form" : audienceOf(facts.business).path} first.<br>It takes ${facts.http.contactShortcode ? "an hour" : "half a day"}.</div>
+        <div class="h">Let’s review the measured findings.<br>Scope and timing agreed before work.</div>
       </div>
       <div class="r">
         <div class="ph">${e(facts.agency.phone || "")}</div>

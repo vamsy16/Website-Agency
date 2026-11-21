@@ -107,7 +107,9 @@ jobs:
         if: always()
         env:
           DELIVERABLES_BRANCH: ${{ env.ARENA_BRANCH }}
-        run: node tools/publish-deliverables.mjs
+        run: |
+          node tools/publish-deliverables.mjs
+          node tools/publish-layout-checks.mjs
 
       - name: Plain-text run summary (counts + audited/failed businesses only)
         if: always()

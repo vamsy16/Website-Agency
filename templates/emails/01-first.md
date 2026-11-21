@@ -16,7 +16,7 @@ Two things stood out:
 1. {{finding.1.short}}
 2. {{finding.2.short}}
 
-The full report has the measurements, screenshots and an eight-item fix list in payback order. No estimates — every figure was taken from your live site.
+The report includes test measurements, screenshots and suggested fixes. Recommendations and effort estimates are distinguished from measured results.
 
 Worth 15 minutes this week?
 

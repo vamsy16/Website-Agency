@@ -646,7 +646,8 @@ async function cmdRun() {
     // Only narrow by niche when the operator asked for specific ones. A broad
     // lead has no niche, and filtering on the default list would silently drop it.
     niches,
-    limit: siteScreen ? maxScreens : max,
+    // Apply CSV membership before the screen cap; all registry gates still run.
+    limit: hasFlag(argv, "--csv-only") && csv && csv !== true ? Number.MAX_SAFE_INTEGER : (siteScreen ? maxScreens : max),
     cooldownDays,
     maxAttempts,
     requireEmail,
@@ -656,7 +657,7 @@ async function cmdRun() {
   });
   if (hasFlag(argv, "--csv-only") && csv && csv !== true) {
     const csvDomains = new Set(readCsv(csv, state).map(c => domainOf(c.website || "")).filter(Boolean));
-    pending.leads = pending.leads.filter(l => csvDomains.has(l.domain));
+    pending.leads = pending.leads.filter(l => csvDomains.has(l.domain)).slice(0, siteScreen ? maxScreens : max);
   }
   summary.queue = pending.leads.map(l => ({ name: l.name, domain: l.domain, city: l.city }));
   summary.skippedByRegistry = pending.skipped;

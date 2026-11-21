@@ -200,3 +200,9 @@ pages, 0 mm overflow, 23 verify checks; `class-diff` PASS; daily-run integration
   domains collapse, an unreachable site becomes `audit-failed` (not `audited`),
   no audit row is written, audited leads are not re-queued, and a lead that has
   used its attempts is left alone.
+
+## Reference-format rerun — 21 November 2026
+
+- Correct misleading cover H1/performance labels and unsupported enquiry-loss/delivery claims without changing score arithmetic or frozen styles. Add a fail-closed copy-honesty verifier check.
+- CSV-only runs filter requested domains before applying the screen cap, preserving all registry duplicate/cooldown/prospect gates.
+- Request exactly the five newly researched AP businesses in the full Anoos-reference format. Reports remain held until post-run review; qualitative reviews are not technical audits.

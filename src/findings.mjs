@@ -320,11 +320,11 @@ export function deriveFindings(raw, facts, business) {
     candidates.push({
       severity: "Critical",
       tone: "crit",
-      title: v.health ? `There is no way to book an appointment from the homepage` : `There is no enquiry form on the homepage`,
+      title: v.health ? `No appointment form fields were detected on the homepage` : `There is no enquiry form on the homepage`,
       measured: `Zero form fields on the home page. The page has <b>${m.telLinks}</b> click-to-call links and <b>${m.whatsapp}</b> WhatsApp capture element${m.whatsapp === 1 ? "" : "s"}.`,
       why: v.health
-        ? `WhatsApp suits a patient who is already sure. It loses the one who is comparing three clinics at 11 pm and does not want to start a conversation to ask a price. Every additional step is a decision to leave.`
-        : `A phone call or WhatsApp suits a customer who is already sure. It loses the one who is ${v.comparing} at 11 pm and does not want to start a conversation just to ask a price. Every additional step is a decision to leave.`,
+        ? `A patient may prefer a written appointment request. Check whether a separate booking page or another suitable contact route already meets that need. No lost appointments were measured.`
+        : `Visitors may prefer different contact routes. Check existing phone, WhatsApp and separate contact-page options before deciding whether a homepage form is useful. No lost enquiries were measured.`,
       fix: v.health
         ? `A booking block above the fold, a sticky “Call / Book” bar on mobile, and a working form that emails the business.`
         : `An enquiry block above the fold, a sticky “Call / WhatsApp” bar on mobile, and a working form that emails the business.`,

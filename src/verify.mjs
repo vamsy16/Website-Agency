@@ -149,6 +149,10 @@ export async function verifyAudit({ auditPath, live = false, fixture = false }) 
   if (htmlPath && fs.existsSync(htmlPath)) {
     const html = fs.readFileSync(htmlPath, "utf8");
     const text = visibleText(html);
+    const copyErrors = [];
+    if (Number(audit.facts?.metric?.h1Count) <= 1 && /Competing H1 headings/i.test(text)) copyErrors.push("single or missing H1 labelled competing");
+    if (/are losing you enquiries today|It takes half a day|will not start a call or a chat/i.test(text)) copyErrors.push("unsupported outcome or delivery claim");
+    add("copy.honesty", copyErrors.length === 0, copyErrors.join("; ") || "known unsupported narrative claims absent");
     const allowed = new Set(STRUCTURAL);
     flattenNumbers(audit.facts, allowed);
     flattenNumbers(audit.scores, allowed);
