@@ -1,0 +1,25 @@
+{
+  "name": "Srinidhi Veg & Non-Veg Family Restaurant",
+  "domain": "srinidhirestaurant.com",
+  "city": "Tenali",
+  "state": "Andhra Pradesh",
+  "email": "support@srinidhirestaurant.com",
+  "phone": "+91 81219 36569",
+  "ref": "SP-AUD-2026-11-21-SV&",
+  "date": "2026-11-21",
+  "overall": 72,
+  "scores": {
+    "speed": 3,
+    "mobile": 8,
+    "conversion": 10,
+    "design": 8,
+    "seo": 10,
+    "overall": 72
+  },
+  "pdf": "Smart-Pursuit-Audit-Srinidhi-Veg-Non-Veg-Family-Restaurant.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://srinidhirestaurant.com/",
+    "checkedAt": "2026-11-21"
+  }
+}

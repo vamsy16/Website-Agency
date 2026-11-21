@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-21T09:33:59.291Z",
+  "updatedAt": "2026-11-21T09:48:05.491Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -1033,6 +1033,78 @@
         "html": "reports/rr-durbar/report.html"
       },
       "fingerprint": "73e64a62422285f5"
+    },
+    {
+      "domain": "ultratechcement.com",
+      "name": "Ultratech Cement Limited",
+      "ref": "SP-AUD-2026-11-21-UCL",
+      "generatedAt": "2026-11-21T09:43:44.290Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 2,
+        "mobile": 8,
+        "conversion": 7,
+        "design": 8,
+        "seo": 7,
+        "overall": 59
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2730514,
+      "files": {
+        "pdf": "reports/ultratech-cement-limited/Smart-Pursuit-Audit-Ultratech-Cement-Limited.pdf",
+        "audit": "reports/ultratech-cement-limited/audit.json",
+        "html": "reports/ultratech-cement-limited/report.html"
+      },
+      "fingerprint": "865497c38b939fa6"
+    },
+    {
+      "domain": "srinidhirestaurant.com",
+      "name": "Srinidhi Veg & Non-Veg Family Restaurant",
+      "ref": "SP-AUD-2026-11-21-SV&",
+      "generatedAt": "2026-11-21T09:45:10.569Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 3,
+        "mobile": 8,
+        "conversion": 10,
+        "design": 8,
+        "seo": 10,
+        "overall": 72
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2046614,
+      "files": {
+        "pdf": "reports/srinidhi-veg-and-non-veg-family-restaurant/Smart-Pursuit-Audit-Srinidhi-Veg-Non-Veg-Family-Restaurant.pdf",
+        "audit": "reports/srinidhi-veg-and-non-veg-family-restaurant/audit.json",
+        "html": "reports/srinidhi-veg-and-non-veg-family-restaurant/report.html"
+      },
+      "fingerprint": "dc0e43122f5360aa"
+    },
+    {
+      "domain": "subbayyagarihotel.in",
+      "name": "Subbayya Gari Hotel",
+      "ref": "SP-AUD-2026-11-21-SGH",
+      "generatedAt": "2026-11-21T09:48:05.491Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 3,
+        "mobile": 6,
+        "conversion": 10,
+        "design": 10,
+        "seo": 8,
+        "overall": 69
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1559804,
+      "files": {
+        "pdf": "reports/subbayya-gari-hotel/Smart-Pursuit-Audit-Subbayya-Gari-Hotel.pdf",
+        "audit": "reports/subbayya-gari-hotel/audit.json",
+        "html": "reports/subbayya-gari-hotel/report.html"
+      },
+      "fingerprint": "0e5d91b3f20f91de"
     }
   ]
 }
