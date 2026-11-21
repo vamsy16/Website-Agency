@@ -3,6 +3,20 @@
 Only audits that passed every third-eye check (`verify.json` → `ok: true`) are
 listed here. Email drafts are drafts — nothing is sent automatically.
 
+## Strategy blueprints (not audits)
+
+These are pre-audit strategy documents for a named market. They carry no
+measurements of a prospect's site, so they are not listed in the audit table below.
+
+| Date | Market | Client | Pages | Document |
+|---|---|---|---|---|
+| 2026-11-21 | Vizianagaram, Andhra Pradesh | Prospective school (identity pending discovery) | 38 | [School Admissions Growth Strategy](https://github.com/vamsy16/Website-Agency/blob/arena/353d62eb-website-agency/deliverables/2026-11-vizianagaram-school-admissions/SCHOOL-ADMISSIONS-GROWTH-STRATEGY.pdf) · [source notes](2026-11-vizianagaram-school-admissions/README.md) |
+
+Rebuild with `npm run strategy`. Sources and verification status are Section 23 of the PDF
+and the folder README.
+
+---
+
 **Send?** is ✅ only when the business is a real prospect (not a chain, public body,
 nonprofit or IT firm) **and** its email is published on its own website.
 

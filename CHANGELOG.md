@@ -3,6 +3,30 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## 1.5.0 — 21 November 2026
+
+**A second deliverable type: the strategy blueprint.**
+
+- `deliverables/2026-11-vizianagaram-school-admissions/` — a 38-page client-facing
+  "School Admissions Growth Strategy" for a prospective school client in Vizianagaram,
+  built by `npm run strategy`. This is the document that precedes an audit: market
+  research, competitor intelligence, parent behaviour, channel plans, a 90-day roadmap,
+  budget models and a measurement framework. Audits stay as they were; nothing in
+  `src/` changed and `npm run selftest` still reproduces 3/4/2/6/5 -> 36.
+- Renderer is `pdfkit`, not Chromium: the build machine has no browser, no system fonts
+  and no pango/cairo, so HTML-to-PDF is unavailable. It also removes the browser from the
+  dependency path of a document that must build on any operator machine. `sanitise()`
+  converts characters outside WinAnsi (the rupee sign, arrows) to text rather than
+  emitting blank glyphs — this is why the PDF says `INR 25,000` and not `₹25,000`.
+- Two-pass build: pass one records section start pages, pass two writes them into the
+  table of contents. Every build reports `overflows` (any block ending below the bottom
+  margin) and `warnings`; both must be empty before the PDF is delivered.
+- Content rule applied throughout: no school-specific fact is invented. Anything about the
+  client school is labelled "requires confirmation", competitor claims are tagged verified
+  vs interpretation, and no competitor is described as running ads or as having poor
+  teaching without direct evidence. Fee figures from directories are flagged as
+  third-party and internally inconsistent (one school appears at both 44,000 and 53,500).
+
 ## 1.4.0 — 15 November 2026
 
 **Confirmed emails only, real prospects only, honest wording.**
