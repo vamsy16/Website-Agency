@@ -90,10 +90,25 @@ any guarantee of admissions or rankings. None can be verified from outside, so n
 | 1 | Cover |
 | 2 | Contents |
 | 3 | 01 Executive summary |
-| 4–6 | 02 Context, 03 Market |
-| 7–10 | 04 Competitors, 05 Parent behaviour |
-| 11–16 | 06 Positioning, 07 Audit, 08 System, 09 Google Ads |
-| 17–23 | 10 Meta, 11 Organic + 30-day calendar, 12 Local SEO, 13 Website |
-| 24–30 | 14 WhatsApp, 15 Offline, 16 Campaign, 17 Roadmap, 18 Budget |
-| 31–35 | 19 KPI, 20 Engagement, 21 Why now, 22 Next step |
-| 36–37 | 23 Sources and limitations |
+| 4 | 02 Business context |
+| 5-6 | 03 Market |
+| 7-8 | 04 Competitor intelligence |
+| 9-10 | 05 Parent behaviour |
+| 11 | 06 Positioning |
+| 12-13 | 07 Digital audit |
+| 14 | 08 The admissions system |
+| 15-16 | 09 Google Ads |
+| 17-18 | 10 Meta Ads |
+| 19-20 | 11 Organic social + 30-day calendar |
+| 21 | 12 Local SEO |
+| 22-23 | 13 Website and landing page |
+| 24-25 | 14 WhatsApp lead management |
+| 26 | 15 Offline integration |
+| 27 | 16 Campaign |
+| 28-29 | 17 90-day roadmap |
+| 30 | 18 Budget and forecast |
+| 31-32 | 19 Measurement |
+| 33 | 20 Engagement |
+| 34 | 21 Why now |
+| 35-36 | 22 Next step |
+| 37-38 | 23 Sources and limitations |
