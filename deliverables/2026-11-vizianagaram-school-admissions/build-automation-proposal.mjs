@@ -4,22 +4,27 @@ import fs from 'fs';
 // ============================================================
 // Smart Pursuit — School Automation & AI Solutions Proposal
 // Visual, premium, client-facing business transformation proposal
+// Layout discipline: explicit y-cursor, measure-before-draw,
+// needSpace bounds check before every block. No overlapping.
 // ============================================================
 
 const PAGE = { w: 595.28, h: 841.89 }; // A4 portrait
 const M = 46;
 const CW = PAGE.w - 2 * M;
+const CONTENT_TOP = 90;
+const PAGE_BOTTOM = PAGE.h - 50;
 
 const C = {
-  primary: '#0A0A0A',
-  secondary: '#111111',
-  panel: '#F2F2F4',
-  white: '#FFFFFF',
-  body: '#1A1A1A',
-  muted: '#6B6B72',
-  accent: '#7C3AED',
-  accentSoft: '#EDE9FE',
-  line: '#D9D9DE',
+  bg: '#0A0A0A',      // primary — background
+  panel: '#111111',   // secondary — panels
+  panel2: '#16161a',  // slightly lighter panel
+  white: '#FFFFFF',   // text (headings)
+  body: '#E8E8EC',    // body text (near-white)
+  muted: '#A1A1AA',   // secondary text
+  dim: '#6B6B72',     // dim text
+  accent: '#7C3AED',  // accent
+  accentSoft: '#A78BFA',
+  line: '#242428',    // hairlines
   ok: '#15803d',
   warn: '#B45309',
 };
@@ -35,16 +40,11 @@ const s = (t) => String(t)
   .replace(/…/g, '...').replace(/•/g, '-')
   .replace(/×/g, 'x').replace(/·/g, '.')
   .replace(/®/g, '(R)')
-  .replace(/✓/g, '[tick]')
-  .replace(/✔/g, '[tick]');
+  .replace(/✓/g, '[tick]').replace(/✔/g, '[tick]');
 
 let pageCounter = 1;
 let totalPages = 0;
-
-// ---------- explicit cursor (fully controlled by us) ----------
 let cursor = 0;
-const CONTENT_TOP = 110;
-const PAGE_BOTTOM = PAGE.h - 50;
 
 const makeDoc = () => new PDFKit({
   size: 'A4',
@@ -66,14 +66,15 @@ const collect = (doc) => new Promise((resolve) => {
 const addPage = (doc) => {
   doc.addPage();
   pageCounter += 1;
-  doc.fillColor(C.white).rect(0, 0, PAGE.w, PAGE.h).fill();
+  doc.fillColor(C.bg).rect(0, 0, PAGE.w, PAGE.h).fill();
+  doc.fillColor(C.accent).rect(0, 0, PAGE.w, 2).fill();
   footer(doc, pageCounter, totalPages);
   cursor = CONTENT_TOP;
 };
 
 const footer = (doc, pageNo, total) => {
   const y = PAGE.h - 30;
-  doc.strokeColor(C.line).lineWidth(0.6).moveTo(M, y).lineTo(PAGE.w - M, y).stroke();
+  doc.strokeColor(C.line).lineWidth(0.5).moveTo(M, y).lineTo(PAGE.w - M, y).stroke();
   doc.fillColor(C.muted).font('Helvetica').fontSize(7)
     .text(s('Smart Pursuit  |  School Automation & AI Solutions Proposal'), M, y + 6, { width: CW / 2, characterSpacing: 0 });
   doc.fillColor(C.muted).font('Helvetica').fontSize(7)
@@ -89,22 +90,35 @@ const needSpace = (doc, h) => {
 const hOf = (doc, text, { width, size = 9, lead = 1.3 } = {}) =>
   doc.heightOfString(s(text), { width, fontSize: size, lineGap: lead - 1 });
 
-// ---------- typography ----------
-const bodyText = (doc, text, { size = 9.6, color = C.body, width = CW, lead = 1.45, bold = false } = {}) => {
+// ---------- typography helpers (cursor managed) ----------
+const bodyText = (doc, text, opts = {}) => {
+  const { size = 9.6, color = C.body, width = CW, lead = 1.45, bold = false, align = 'left', x = M, gap = 6 } = opts;
   const h = hOf(doc, text, { width, size, lead });
-  needSpace(doc, h + 6);
+  needSpace(doc, h + gap);
   const y = cursor;
   doc.fillColor(color).font(bold ? 'Helvetica-Bold' : 'Helvetica').fontSize(size);
-  doc.text(s(text), M, y, { width, lineGap: lead - 1, characterSpacing: 0 });
-  cursor = y + h + 6;
+  doc.text(s(text), x, y, { width, lineGap: lead - 1, characterSpacing: 0, align });
+  // Advance by the ACTUAL rendered position (doc.y) so wrapped paragraphs never
+  // collide with the block that follows, even if heightOfString under-measures.
+  cursor = doc.y + gap;
   return cursor;
 };
 
-const bullets = (doc, items, { size = 9, gap = 6, color = C.body, marker = '[tick]', markerColor = C.accent, width = CW } = {}) => {
+const sectionLabel = (doc, text, { color = C.accent, size = 8, gap = 16, charSpace = 1.4 } = {}) => {
+  needSpace(doc, size + gap);
+  const y = cursor;
+  doc.fillColor(color).font('Helvetica-Bold').fontSize(size)
+    .text(s(text).toUpperCase(), M, y, { characterSpacing: charSpace });
+  cursor = y + size + gap;
+  return cursor;
+};
+
+const bullets = (doc, items, opts = {}) => {
+  const { size = 9, gap = 6, color = C.body, marker = '[tick]', markerColor = C.accent, width = CW, lead = 1.3 } = opts;
   let hTotal = 0;
   const measured = items.map((it) => {
     const t = s(it);
-    const h = hOf(doc, t, { width: width - 22, size });
+    const h = hOf(doc, t, { width: width - 22, size, lead });
     hTotal += h + gap;
     return { t, h };
   });
@@ -112,121 +126,83 @@ const bullets = (doc, items, { size = 9, gap = 6, color = C.body, marker = '[tic
   const start = cursor;
   measured.forEach(({ t, h }) => {
     doc.fillColor(markerColor).font('Helvetica-Bold').fontSize(size).text(marker, M, cursor, { width: 14 });
-    doc.fillColor(color).font('Helvetica').fontSize(size).text(t, M + 18, cursor, { width: width - 18, lineGap: 1.3 });
-    cursor = cursor + h + gap;
+    doc.fillColor(color).font('Helvetica').fontSize(size).text(t, M + 18, cursor, { width: width - 18, lineGap: lead - 1 });
+    cursor = doc.y + gap;
   });
-  cursor = start + hTotal + 4;
+  // If no items, cursor stays at start; otherwise it was advanced by doc.y in the loop.
   return cursor;
 };
 
-// ---------- cards ----------
-const problemCard = (doc, text, { w = CW } = {}) => {
-  const h = hOf(doc, text, { width: w - 26, size: 9.2 }) + 22;
-  needSpace(doc, h + 10);
-  const y = cursor;
-  doc.fillColor(C.panel).rect(M, y, w, h).fill();
-  doc.fillColor(C.accent).rect(M, y, 4, h).fill();
-  doc.fillColor(C.body).font('Helvetica-Bold').fontSize(7.6)
-    .text('PROBLEM', M + 14, y + 10, { characterSpacing: 1.4 });
-  doc.fillColor(C.body).font('Helvetica').fontSize(9.2)
-    .text(s(text), M + 14, y + 22, { width: w - 28, lineGap: 1.35 });
-  cursor = y + h + 10;
-  return cursor;
+// ---------- panels ----------
+const panel = (doc, y, w, h, { x = M, fill = C.panel, accentLeft = false, accentColor = C.accent } = {}) => {
+  doc.fillColor(fill).roundedRect(x, y, w, h, 7).fill();
+  if (accentLeft) doc.fillColor(accentColor).rect(x, y, 4, h).fill();
+  return y + h;
 };
 
-const solutionCard = (doc, title, text, { w = CW } = {}) => {
-  const th = hOf(doc, title, { width: w - 26, size: 11, lead: 1.2 }) + 6;
-  const sh = hOf(doc, text, { width: w - 26, size: 9 }) + 14;
-  const h = Math.max(th + sh + 26, 64);
-  needSpace(doc, h + 10);
-  const y = cursor;
-  doc.fillColor(C.white).rect(M, y, w, h).fill();
-  doc.strokeColor(C.line).lineWidth(0.8).rect(M, y, w, h).stroke();
-  doc.fillColor(C.accent).rect(M, y, 4, h).fill();
-  doc.fillColor(C.primary).font('Helvetica-Bold').fontSize(11)
-    .text(s(title), M + 14, y + 12, { width: w - 28, lineGap: 1.2 });
-  doc.fillColor(C.muted).font('Helvetica').fontSize(8.4)
-    .text(s(text), M + 14, y + 12 + th + 4, { width: w - 28, lineGap: 1.3 });
-  cursor = y + h + 10;
-  return cursor;
-};
-
-const valueCard = (doc, items, { w = CW, title = 'VALUE TO THE SCHOOL' } = {}) => {
-  const th = hOf(doc, title, { width: w - 26, size: 8, lead: 1.2 }) + 6;
-  let cy = 0;
-  const itemHs = items.map((it) => hOf(doc, it, { width: w - 42, size: 8.8 }));
-  let hh = 0;
-  itemHs.forEach((x) => { hh += x + 5; });
-  const h = th + hh + 12;
-  needSpace(doc, h + 8);
-  const y = cursor;
-  doc.fillColor(C.white).rect(M, y, w, h).fill();
-  doc.strokeColor(C.line).lineWidth(0.8).rect(M, y, w, h).stroke();
-  doc.fillColor(C.accent).rect(M, y, 4, h).fill();
-  doc.fillColor(C.primary).font('Helvetica-Bold').fontSize(8)
-    .text(s(title).toUpperCase(), M + 14, y + 10, { characterSpacing: 1.4 });
-  cy = y + th + 8;
-  items.forEach((it, i) => {
-    doc.fillColor(C.accent).font('Helvetica-Bold').fontSize(8.8).text('[tick]', M + 14, cy, { width: 14 });
-    doc.fillColor(C.body).font('Helvetica').fontSize(8.8).text(s(it), M + 18, cy, { width: w - 42, lineGap: 1.25 });
-    cy = cy + itemHs[i] + 5;
-  });
-  cursor = y + h + 8;
-  return cursor;
-};
-
+// ---------- section band ----------
 const sectionBand = (doc, num, title, subtitle) => {
-  needSpace(doc, 100);
+  needSpace(doc, 90);
   const bh = 64;
   const y = cursor;
-  doc.fillColor(C.primary).rect(M, y, CW, bh).fill();
+  doc.fillColor(C.bg).rect(M, y, CW, bh).fill();
   doc.fillColor(C.accent).rect(M, y, 6, bh).fill();
-  doc.fillColor(C.white).font('Helvetica-Bold').fontSize(15)
+  doc.fillColor(C.white).font('Helvetica-Bold').fontSize(14)
     .text(s(`${num}.  ${title}`), M + 18, y + 12, { width: CW - 36 });
-  doc.fillColor(C.accentSoft).font('Helvetica').fontSize(8.6)
-    .text(s(subtitle), M + 18, y + 12 + 18, { width: CW - 36 });
+  doc.fillColor(C.accentSoft).font('Helvetica').fontSize(8.4)
+    .text(s(subtitle), M + 18, y + 12 + 19, { width: CW - 36, lineGap: 1.2 });
   cursor = y + bh + 16;
   return cursor;
 };
 
 // ---------- diagrams ----------
-const box = (doc, x, y, w, h, { fill = C.white, stroke = C.line, radius = 8, text, tColor = C.body, tSize = 8.6, bold = false } = {}) => {
+const box = (doc, x, y, w, h, opts = {}) => {
+  const { fill = C.panel, stroke = C.line, radius = 7, text, tColor = C.body, tSize = 8.6, bold = false } = opts;
   doc.fillColor(fill).roundedRect(x, y, w, h, radius).fill();
-  if (stroke) { doc.strokeColor(stroke).lineWidth(0.8).roundedRect(x, y, w, h, radius).stroke(); }
+  if (stroke) doc.strokeColor(stroke).lineWidth(0.8).roundedRect(x, y, w, h, radius).stroke();
   if (text) {
     doc.fillColor(tColor).font(bold ? 'Helvetica-Bold' : 'Helvetica').fontSize(tSize);
-    doc.text(s(text), x + 8, y + h / 2 - tSize / 2 - 2, { width: w - 16, align: 'center', lineGap: 1 });
+    doc.text(s(text), x + 8, y + h / 2 - tSize / 2 - 2, { width: w - 16, align: 'center', lineGap: 1, characterSpacing: 0 });
   }
 };
 
-const arrow = (doc, x1, y1, x2, y2, { color = C.muted, lw = 1.2 } = {}) => {
+const arrow = (doc, x1, y1, x2, y2, opts = {}) => {
+  const { color = C.muted, lw = 1.2 } = opts;
   doc.strokeColor(color).lineWidth(lw).lineCap('round')
     .moveTo(x1, y1).lineTo(x2, y2).stroke();
-  const head = 6;
+  const head = 5;
   if (x1 === x2) {
     const dy = y2 > y1 ? 1 : -1;
     doc.fillColor(color)
-      .moveTo(x1 - head / 2, y2 - dy * head).lineTo(x1, y2).lineTo(x1 + head / 2, y2 - dy * head)
-      .fill();
+      .moveTo(x1 - head / 2, y2 - dy * head).lineTo(x1, y2).lineTo(x1 + head / 2, y2 - dy * head).fill();
   } else {
     const dx = x2 > x1 ? 1 : -1;
     doc.fillColor(color)
-      .moveTo(x2 - dx * head, y2 - head / 2).lineTo(x2, y2).lineTo(x2 - dx * head, y2 + head / 2)
-      .fill();
+      .moveTo(x2 - dx * head, y2 - head / 2).lineTo(x2, y2).lineTo(x2 - dx * head, y2 + head / 2).fill();
   }
 };
 
-const vflow = (doc, x, y, steps, { boxW = CW - 40, boxH = 30, gap = 14, tSize = 8.8 } = {}) => {
+const vflowHeight = (doc, steps, { boxW = CW - 120, boxH = 26, gap = 10, tSize = 8.2 } = {}) => {
+  let h = 0;
+  steps.forEach((s) => {
+    h += Math.max(boxH, hOf(doc, null == s ? '' : s, { width: boxW - 16, size: tSize, lead: 1.1 }) + 12) + gap;
+  });
+  return h - gap;
+};
+
+const vflow = (doc, x, y, steps, opts = {}) => {
+  const { boxW = CW - 120, boxH = 26, gap = 10, tSize = 8.2 } = opts;
   let cy = y;
   steps.forEach((step, i) => {
     const h = Math.max(boxH, hOf(doc, step, { width: boxW - 16, size: tSize, lead: 1.1 }) + 12);
-    box(doc, x, cy, boxW, h, { fill: C.white, stroke: C.line, text: step, tSize });
+    box(doc, x, cy, boxW, h, { fill: C.panel2, stroke: C.line, text: step, tColor: C.body, tSize });
     if (i < steps.length - 1) {
       arrow(doc, x + boxW / 2, cy + h, x + boxW / 2, cy + h + gap, { color: C.accent, lw: 1.4 });
     }
     cy = cy + h + gap;
   });
-  return cy - gap;
+  cursor = cy - gap;
+  return cursor;
 };
 
 // ============================================================
@@ -343,40 +319,171 @@ const build = async () => {
   process.stdout.write('BUILD DONE ' + OUT.split('/').pop() + ' pages=' + pageCounter + ' bytes=' + stats.size + ' kb=' + Math.round(stats.size / 1024) + '\n');
 };
 
+// ---------- solution card (PROBLEM -> SOLUTION -> HOW IT WORKS -> VALUE) ----------
+const solutionCard = (doc, it) => {
+  const pw = CW - 28;
+  const labelSize = 7.8;
+  const bodySize = 9;
+
+  // 1) measure every part
+  const ph = hOf(doc, it.problem, { width: pw, size: bodySize }) + 16;
+  const sh = hOf(doc, it.solution, { width: pw, size: bodySize }) + 16;
+  const fh = vflowHeight(doc, it.steps, { boxW: CW - 120, boxH: 26, gap: 10, tSize: 8.2 });
+  const vh = hOf(doc, 'VALUE TO THE SCHOOL', { width: pw, size: 8 }) + 12;
+  const itemHs = it.value.map((v) => hOf(doc, v, { width: pw - 20, size: 8.6 }));
+  let vItemsH = 0;
+  itemHs.forEach((x) => { vItemsH += x + 6; });
+  const valuePanelH = vh + vItemsH;
+  const sourceH = hOf(doc, `Source opportunities: ${it.ids.join(', ')}`, { width: CW, size: 7.4 }) + 4;
+
+  // header(44) + gap(12) + problem label(12) + panel + gap(10) + solution label(12) + panel + gap(10) + howworks label(14) + flow + gap(10) + value label(12) + panel + gap(10) + source + gap(16)
+  const cardH = 44 + 12
+    + 12 + ph + 10
+    + 12 + sh + 10
+    + 14 + fh + 10
+    + 12 + valuePanelH + 10
+    + sourceH + 16;
+
+  needSpace(doc, cardH);
+  const y0 = cursor;
+
+  // header bar: title on line 1, opportunity IDs on line 2 (both full width, no side-by-side squeeze)
+  doc.fillColor(C.accent).rect(M, cursor, CW, 44).fill();
+  doc.fillColor(C.white).font('Helvetica-Bold').fontSize(11.5)
+    .text(s(it.title), M + 14, cursor + 8, { width: CW - 28 });
+  doc.fillColor(C.muted).font('Helvetica-Bold').fontSize(7.4)
+    .text(s(it.ids.join(', ')), M + 14, cursor + 24, { width: CW - 28 });
+  cursor = y0 + 44 + 12;
+
+  // PROBLEM
+  doc.fillColor(C.accent).font('Helvetica-Bold').fontSize(labelSize)
+    .text('PROBLEM', M, cursor, { characterSpacing: 1.4 });
+  cursor += 12;
+  panel(doc, cursor, CW, ph, { accentLeft: true, accentColor: C.accent });
+  doc.fillColor(C.body).font('Helvetica').fontSize(bodySize)
+    .text(s(it.problem), M + 14, cursor + 8, { width: pw, lineGap: 1.3 });
+  cursor = cursor + ph + 10;
+
+  // SOLUTION
+  doc.fillColor(C.white).font('Helvetica-Bold').fontSize(labelSize)
+    .text('SOLUTION', M, cursor, { characterSpacing: 1.4 });
+  cursor += 12;
+  panel(doc, cursor, CW, sh, { accentLeft: true, accentColor: C.white });
+  doc.fillColor(C.body).font('Helvetica').fontSize(bodySize)
+    .text(s(it.solution), M + 14, cursor + 8, { width: pw, lineGap: 1.3 });
+  cursor = cursor + sh + 10;
+
+  // HOW IT WORKS
+  doc.fillColor(C.accentSoft).font('Helvetica-Bold').fontSize(labelSize)
+    .text('HOW IT WORKS', M, cursor, { characterSpacing: 1.4 });
+  cursor += 14;
+  vflow(doc, M + 40, cursor, it.steps, { boxW: CW - 120, boxH: 26, gap: 10, tSize: 8.2 });
+  cursor += 10;
+
+  // VALUE
+  doc.fillColor(C.ok).font('Helvetica-Bold').fontSize(labelSize)
+    .text('VALUE TO THE SCHOOL', M, cursor, { characterSpacing: 1.4 });
+  cursor += 12;
+  panel(doc, cursor, CW, valuePanelH, { accentLeft: true, accentColor: C.ok });
+  let vy = cursor + 10;
+  it.value.forEach((v, i) => {
+    doc.fillColor(C.ok).font('Helvetica-Bold').fontSize(8.6).text('[tick]', M + 14, vy, { width: 14 });
+    doc.fillColor(C.body).font('Helvetica').fontSize(8.6).text(s(v), M + 30, vy, { width: pw - 20, lineGap: 1.25 });
+    vy += itemHs[i] + 6;
+  });
+  cursor = cursor + valuePanelH + 10;
+
+  // source line
+  doc.fillColor(C.dim).font('Helvetica').fontSize(7.4)
+    .text(s(`Source opportunities: ${it.ids.join(', ')}`), M, cursor, { width: CW });
+  cursor = cursor + sourceH + 16;
+  return cursor;
+};
+
+// ---------- before/after panel pair ----------
+const beforeAfterPair = (doc, b, bi) => {
+  const h = 250;
+  const w = (CW - 20) / 2;
+  const x0 = M + bi * (w + 20);
+  needSpace(doc, h + 20);
+  const y0 = cursor;
+
+  doc.fillColor(C.panel).roundedRect(x0, cursor, w, h, 7).fill();
+  doc.fillColor(C.warn).roundedRect(x0, cursor, w, 32, 7).fill();
+  doc.fillColor(C.white).font('Helvetica-Bold').fontSize(9.6)
+    .text(s(b.title + '  \u2014  Before'), x0 + 14, cursor + 8, { width: w - 28 });
+  let yy = cursor + 40;
+  b.before.forEach((s) => {
+    doc.fillColor(C.body).font('Helvetica').fontSize(8.4).text(s, x0 + 14, yy, { width: w - 28 });
+    arrow(doc, x0 + w - 20, yy + 6, x0 + w - 8, yy + 6, { color: C.warn, lw: 0.8 });
+    yy = yy + 15;
+  });
+  doc.fillColor(C.accent).roundedRect(x0, cursor + h - 32, w, 32, 7).fill();
+  doc.fillColor(C.white).font('Helvetica-Bold').fontSize(9.6)
+    .text(s(b.title + '  \u2014  After'), x0 + 14, cursor + h - 24, { width: w - 28 });
+  yy = cursor + h - 32 + 24;
+  b.after.forEach((s, si) => {
+    doc.fillColor(C.body).font('Helvetica').fontSize(8.4).text(s, x0 + 14, yy, { width: w - 28 });
+    if (si < b.after.length - 1) arrow(doc, x0 + w - 20, yy + 6, x0 + w - 8, yy + 6, { color: C.accent, lw: 0.8 });
+    yy = yy + 15;
+  });
+  cursor = y0 + h + 20;
+  return cursor;
+};
+
+// ---------- agent card ----------
+const agentCard = (doc, ag) => {
+  const h = 100;
+  needSpace(doc, h + 14);
+  const y = cursor;
+  doc.fillColor(C.panel).roundedRect(M, y, CW, h, 8).fill();
+  doc.fillColor(C.accent).rect(M, y, 4, h).fill();
+  doc.fillColor(C.white).font('Helvetica-Bold').fontSize(11).text(s(ag.name), M + 16, y + 10, { width: CW - 200 });
+  doc.fillColor(C.muted).font('Helvetica').fontSize(8).text(s(`For: ${ag.users}`), PAGE.w - M - 120, y + 11, { width: 106, align: 'right' });
+  doc.fillColor(C.body).font('Helvetica').fontSize(8.8).text(s(ag.purpose), M + 16, y + 30, { width: CW - 32 });
+  doc.fillColor(C.muted).font('Helvetica').fontSize(7.6).text(s('Guardrails: ' + ag.limits), M + 16, y + 50, { width: CW - 32 });
+  doc.fillColor(C.ok).font('Helvetica-Bold').fontSize(7.6).text(s('Outcome: ' + ag.outcome), M + 16, y + 66, { width: CW - 32 });
+  cursor = y + h + 14;
+  return cursor;
+};
+
 function renderContent(doc) {
   // ---------- PAGE 1: COVER ----------
-  doc.fillColor(C.primary).rect(0, 0, PAGE.w, PAGE.h).fill();
+  doc.fillColor(C.bg).rect(0, 0, PAGE.w, PAGE.h).fill();
   doc.fillColor(C.accent).rect(0, 0, PAGE.w, 10).fill();
   cursor = 150;
-  doc.fillColor(C.white).font('Helvetica-Bold').fontSize(30)
-    .text(s('School Automation & AI'), M, cursor, { width: CW, align: 'center' });
-  cursor = cursor + 40;
-  doc.fillColor(C.white).font('Helvetica-Bold').fontSize(30)
-    .text(s('Solutions Proposal'), M, cursor, { width: CW, align: 'center' });
+  doc.fillColor(C.accentSoft).font('Helvetica-Bold').fontSize(8.4)
+    .text('SMART PURSUIT', M, cursor, { characterSpacing: 3.2 });
   cursor = cursor + 26;
+  doc.fillColor(C.white).font('Helvetica-Bold').fontSize(32)
+    .text('School Automation & AI', M, cursor, { width: CW, align: 'center' });
+  cursor = cursor + 52;
+  doc.fillColor(C.white).font('Helvetica-Bold').fontSize(32)
+    .text('Solutions Proposal', M, cursor, { width: CW, align: 'center' });
+  cursor = cursor + 36;
   doc.fillColor(C.accentSoft).font('Helvetica').fontSize(13)
-    .text(s('A visual business transformation proposal for school operations'), M, cursor, { width: CW, align: 'center' });
-  cursor = cursor + 30;
+    .text('A visual business transformation proposal for school operations', M, cursor, { width: CW, align: 'center' });
+  cursor = cursor + 34;
   doc.fillColor(C.muted).font('Helvetica').fontSize(10)
-    .text(s('Prepared by Smart Pursuit   \u2022   For School Management'), M, cursor, { width: CW, align: 'center' });
+    .text('Prepared by Smart Pursuit   \u2022   For School Management', M, cursor, { width: CW, align: 'center' });
   cursor = cursor + 20;
   doc.fillColor(C.muted).font('Helvetica').fontSize(10)
-    .text(s('Vizianagaram, Andhra Pradesh   \u2022   November 2026'), M, cursor, { width: CW, align: 'center' });
+    .text('Vizianagaram, Andhra Pradesh   \u2022   November 2026', M, cursor, { width: CW, align: 'center' });
   const pillars = [
     ['Problem', 'What the school faces today'],
     ['Solution', 'What Smart Pursuit implements'],
     ['How it works', 'Simple workflow, step by step'],
     ['Value', 'Benefits the school receives'],
   ];
-  const pw = (CW - 3 * 16) / 4;
+  const pw4 = (CW - 3 * 16) / 4;
   pillars.forEach((p, i) => {
-    const x = M + i * (pw + 16);
-    const py = 440;
-    doc.fillColor(C.secondary).roundedRect(x, py, pw, 70, 8).fill();
+    const x = M + i * (pw4 + 16);
+    const py = 450;
+    doc.fillColor(C.panel).roundedRect(x, py, pw4, 70, 8).fill();
     doc.fillColor(C.accent).font('Helvetica-Bold').fontSize(11)
-      .text(s(p[0]), x, py + 12, { width: pw, align: 'center' });
+      .text(s(p[0]), x, py + 12, { width: pw4, align: 'center' });
     doc.fillColor(C.white).font('Helvetica').fontSize(8.2)
-      .text(s(p[1]), x + 6, py + 32, { width: pw - 12, align: 'center', lineGap: 1.1 });
+      .text(s(p[1]), x + 6, py + 32, { width: pw4 - 12, align: 'center', lineGap: 1.1 });
   });
   cursor = 740;
   doc.fillColor(C.muted).font('Helvetica').fontSize(8)
@@ -388,16 +495,10 @@ function renderContent(doc) {
   addPage(doc);
 
   // ---------- PAGE 2: EXECUTIVE OVERVIEW ----------
-  doc.fillColor(C.accent).font('Helvetica-Bold').fontSize(8)
-    .text('SECTION 1', M, 34, { characterSpacing: 2 });
-  doc.fillColor(C.primary).font('Helvetica-Bold').fontSize(22)
-    .text('Executive Overview', M, 54, { width: CW });
-  doc.strokeColor(C.accent).lineWidth(1.5).moveTo(M, 92).lineTo(M + 120, 92).stroke();
-  cursor = 108;
-  cursor = bodyText(doc, 'A school runs on many connected processes admissions, fees, academics, attendance, transport, compliance and more. Most still run on paper, phone calls and memory. This proposal shows how Smart Pursuit can turn those everyday processes into simple, automated workflows with AI assistance where it helps, and human oversight where it matters.', { size: 10.5 });
-  cursor = cursor + 4;
-  cursor = bodyText(doc, 'Each solution in this document follows the same simple structure: the problem it solves, what we propose, how it works step by step, and the value it brings. No technical jargon. No guaranteed outcomes everything is validated with you before anything is built.', { size: 10.5 });
-  cursor = cursor + 8;
+  cursor = sectionBand(doc, 1, 'Executive Overview', 'Why automation, why now, what changes');
+  cursor = bodyText(doc, 'A school runs on many connected processes: admissions, fees, academics, attendance, transport, compliance and more. Most still run on paper, phone calls and memory. This proposal shows how Smart Pursuit turns those everyday processes into simple, automated workflows, with AI assistance where it helps and human oversight where it matters.', { size: 10.5 });
+  cursor = bodyText(doc, 'Each solution follows the same structure: the problem it solves, what we propose, how it works step by step, and the value it brings. No technical jargon. No guaranteed outcomes \u2014 everything is validated with you before anything is built.', { size: 10.5 });
+  cursor = cursor + 6;
   cursor = sectionBand(doc, 1, 'What changes for the school', 'Current to proposed');
   const shifts = [
     ['Enquiries on paper and memory', 'Every enquiry captured, assigned and tracked'],
@@ -411,24 +512,24 @@ function renderContent(doc) {
     const x = M + (i % 2) * (sw + 16);
     const yy = cursor + Math.floor(i / 2) * 50;
     doc.fillColor(C.panel).roundedRect(x, yy, sw, 40, 6).fill();
-    doc.fillColor(C.primary).font('Helvetica-Bold').fontSize(8.6).text(s(row[0]), x + 12, yy + 8, { width: sw - 24 });
-    doc.fillColor(C.ok).font('Helvetica-Bold').fontSize(8.6).text(s(row[1]), x + 12, yy + 24, { width: sw - 24 });
+    doc.fillColor(C.accentSoft).font('Helvetica-Bold').fontSize(8.4).text(s(row[0]), x + 12, yy + 8, { width: sw - 24 });
+    doc.fillColor(C.ok).font('Helvetica-Bold').fontSize(8.4).text(s(row[1]), x + 12, yy + 24, { width: sw - 24 });
   });
   cursor = cursor + Math.ceil(shifts.length / 2) * 50 + 14;
-  cursor = bodyText(doc, 'Opportunities are preserved in full none are discarded. Related items are grouped into clear solution categories across admissions, finance, academics, operations, HR, transport, facilities, compliance and IT.', { size: 9.6, color: C.muted });
+  cursor = bodyText(doc, 'No opportunity is discarded. Related items are grouped into clear solution categories across admissions, parent communication, administration, finance, academics, HR, transport, facilities, library, events, IT, compliance and safety.', { size: 9.6, color: C.muted });
   addPage(doc);
 
   // ---------- PAGE 3: ECOSYSTEM ----------
   cursor = sectionBand(doc, 2, 'Complete School Automation Ecosystem', 'One connected system for the whole school');
   cursor = bodyText(doc, 'One connected system. Parents, teachers and staff reach the school through WhatsApp, the website or a portal. An automation engine and AI assistants handle routine work, feeding accurate data into the systems each department uses. Sensitive decisions and student data always stay with authorised staff.', { size: 10 });
-  cursor = cursor + 8;
+  cursor = cursor + 10;
   const ex = M + 40;
   const topY = cursor;
   const users = ['Parents', 'Teachers', 'Staff'];
   const bw = 78, bh = 34, ugap = 24;
   users.forEach((u, i) => {
     const x = ex + i * (bw + ugap);
-    box(doc, x, topY, bw, bh, { fill: C.white, stroke: C.accent, text: u, tColor: C.accent, tSize: 10, bold: true });
+    box(doc, x, topY, bw, bh, { fill: C.panel2, stroke: C.accent, text: u, tColor: C.accent, tSize: 10, bold: true });
   });
   const cy2 = topY + bh + 26;
   const channels = ['WhatsApp', 'Website / Portal', 'Email'];
@@ -440,7 +541,7 @@ function renderContent(doc) {
     arrow(doc, ex + i * (bw + ugap) + bw / 2, topY + bh, ex + i * (bw + ugap) + bw / 2, cy2, { color: C.accent, lw: 1.2 });
   });
   const cy3 = cy2 + bh + 26;
-  box(doc, ex, cy3, bw, bh, { fill: C.primary, stroke: C.primary, text: 'Automation Engine', tColor: C.white, tSize: 9, bold: true });
+  box(doc, ex, cy3, bw, bh, { fill: C.bg, stroke: C.accent, text: 'Automation Engine', tColor: C.accent, tSize: 9, bold: true });
   box(doc, ex + (bw + ugap), cy3, bw, bh, { fill: C.accent, stroke: C.accent, text: 'AI Assistants', tColor: C.white, tSize: 9, bold: true });
   arrow(doc, ex + bw / 2, cy2 + bh, ex + bw / 2, cy3, { color: C.primary, lw: 1.2 });
   arrow(doc, ex + bw + ugap + bw / 2, cy2 + bh, ex + bw + ugap + bw / 2, cy3, { color: C.accent, lw: 1.2 });
@@ -453,39 +554,18 @@ function renderContent(doc) {
     box(doc, x, yy, sw2, bh, { fill: C.panel, stroke: C.line, text: c, tColor: C.body, tSize: 8.2 });
     arrow(doc, ex + bw / 2, cy3 + bh, x + sw2 / 2, yy, { color: C.muted, lw: 1 });
   });
-  cursor = cy4 + bh + 30;
-  cursor = bodyText(doc, 'Approved information flows between systems. Access is role-based parents see their own child\u2019s data, staff see what they need, and management sees dashboards. Nothing is built until discovery confirms what you already have.', { size: 9, color: C.muted });
+  cursor = cy4 + 2 * bh + 14 + 30;
+  cursor = bodyText(doc, 'Approved information flows between systems. Access is role-based \u2014 parents see their own child\u2019s data, staff see what they need, and management sees dashboards. Nothing is built until discovery confirms what you already have.', { size: 9, color: C.muted });
   addPage(doc);
 
   // ---------- SOLUTION CATEGORIES ----------
   let solNum = 3;
   SOLUTIONS.forEach((cat) => {
-    cursor = sectionBand(doc, solNum, cat.cat, cat.items.map((it) => it.title).join(' \u2022 '));
-    cursor = bodyText(doc, 'Related opportunities are grouped into one solution card. Each card states the problem, the proposed solution, how it works step by step, and the value to the school. Opportunity IDs are shown for traceability to the source register.', { size: 8.6, color: C.muted });
+    cursor = sectionBand(doc, solNum, cat.cat, cat.items.map((it) => it.title).join('  \u2022  '));
+    cursor = bodyText(doc, 'Each card states the problem, the proposed solution, how it works step by step, and the value to the school. Opportunity IDs are shown for traceability to the source register.', { size: 8.6, color: C.muted });
     cursor = cursor + 8;
     cat.items.forEach((it) => {
-      const ph = hOf(doc, it.problem, { width: CW - 28, size: 9.2 }) + 32;
-      const sh = hOf(doc, it.solution, { width: CW - 28, size: 9 }) + 16;
-      const fh = vflowHeight(doc, it.steps, { boxW: CW - 120, boxH: 26, gap: 10, tSize: 8.2 });
-      const vh = valueHeight(doc, it.value, { w: CW - 28, size: 8.6 }) + 24;
-      const cardH = 30 + ph + sh + 16 + fh + vh + 60;
-      if (cursor + cardH + 30 > PAGE_BOTTOM) { addPage(doc); cursor = CONTENT_TOP; }
-      doc.fillColor(C.primary).rect(M, cursor, CW, 30).fill();
-      doc.fillColor(C.accent).font('Helvetica-Bold').fontSize(12)
-        .text(s(it.title), M + 14, cursor + 7, { width: CW - 200 });
-      doc.fillColor(C.accentSoft).font('Helvetica-Bold').fontSize(7.6)
-        .text(s(it.ids.join(', ')), PAGE.w - M - 120, cursor + 8, { width: 106, align: 'right' });
-      let cy = cursor + 36;
-      cy = problemCard(doc, it.problem, { w: CW });
-      cy = solutionCard(doc, 'Proposed solution', it.solution, { w: CW });
-      doc.fillColor(C.primary).font('Helvetica-Bold').fontSize(8.4)
-        .text('HOW IT WORKS', M, cy + 2, { characterSpacing: 1.4 });
-      cy = cy + 16;
-      cy = vflow(doc, M + 40, cy, it.steps, { boxW: CW - 120, boxH: 26, gap: 10, tSize: 8.2 });
-      cy = valueCard(doc, it.value, { w: CW, title: 'Value to the school' });
-      doc.fillColor(C.muted).font('Helvetica').fontSize(7.4)
-        .text(s(`Source opportunities: ${it.ids.join(', ')}`), M, cy + 2, { width: CW });
-      cursor = cy + 20;
+      cursor = solutionCard(doc, it);
     });
     solNum++;
     addPage(doc);
@@ -496,20 +576,7 @@ function renderContent(doc) {
   cursor = bodyText(doc, 'AI agents are semi-autonomous helpers: they handle a conversation or task end to end and escalate to a person when they cannot proceed. Every agent has defined permissions, approved knowledge sources and clear escalation rules. No agent decides student outcomes.', { size: 10 });
   cursor = cursor + 8;
   AGENTS.forEach((ag) => {
-    const h = 96;
-    if (cursor + h + 40 > PAGE_BOTTOM) { addPage(doc); cursor = CONTENT_TOP; }
-    const y = cursor;
-    doc.fillColor(C.panel).roundedRect(M, y, CW, h, 8).fill();
-    doc.fillColor(C.accent).rect(M, y, 4, h).fill();
-    doc.fillColor(C.primary).font('Helvetica-Bold').fontSize(11).text(s(ag.name), M + 16, y + 10, { width: CW - 200 });
-    doc.fillColor(C.muted).font('Helvetica').fontSize(8).text(s(`For: ${ag.users}`), PAGE.w - M - 120, y + 11, { width: 106, align: 'right' });
-    doc.fillColor(C.body).font('Helvetica').fontSize(8.8)
-      .text(s(ag.purpose), M + 16, y + 30, { width: CW - 32 });
-    doc.fillColor(C.muted).font('Helvetica').fontSize(7.6)
-      .text(s('Guardrails: ' + ag.limits), M + 16, y + 50, { width: CW - 32 });
-    doc.fillColor(C.ok).font('Helvetica-Bold').fontSize(7.6)
-      .text(s('Outcome: ' + ag.outcome), M + 16, y + 64, { width: CW - 32 });
-    cursor = y + h + 14;
+    cursor = agentCard(doc, ag);
   });
   cursor = cursor + 6;
   cursor = bodyText(doc, 'Agent interaction: Parent or staff asks a question \u2192 AI retrieves approved information from the knowledge base \u2192 AI answers or escalates to the responsible staff member \u2192 Staff member resolves and the agent logs the outcome.', { size: 8.8, color: C.muted });
@@ -518,35 +585,14 @@ function renderContent(doc) {
 
   // ---------- BEFORE AND AFTER ----------
   cursor = sectionBand(doc, solNum, 'Before and After', 'Illustrative current-state examples');
-  cursor = bodyText(doc, 'Illustrative current-state examples only confirmed with you during discovery. Each shows how a routine process changes with automation.', { size: 9, color: C.muted });
+  cursor = bodyText(doc, 'Illustrative current-state examples only \u2014 confirmed with you during discovery. Each shows how a routine process changes with automation.', { size: 9, color: C.muted });
   cursor = cursor + 8;
   const ba = [
     { title: 'Admission Enquiry', before: ['Parent calls', 'Staff answers', 'Details written on paper', 'Follow-up by memory', 'Possible missed enquiry'], after: ['Parent enquiry (any channel)', 'Captured in central database', 'Auto-assigned to counsellor', 'Reminder before follow-up', 'Tracked outcome'] },
     { title: 'Fee Collection', before: ['Fee due', 'Reminder by hand', 'Receipt written manually', 'Reconciliation takes days'], after: ['Due date reached', 'Automated reminder sent', 'Digital receipt on payment', 'Bank matched to ledger daily'] },
   ];
   ba.forEach((b, bi) => {
-    const h = 260;
-    if (cursor + h + 30 > PAGE_BOTTOM) { addPage(doc); cursor = CONTENT_TOP; }
-    const x0 = M + bi * ((CW - 20) / 2);
-    const w = (CW - 20) / 2;
-    doc.fillColor(C.panel).roundedRect(x0, cursor, w, h, 8).fill();
-    doc.fillColor(C.warn).roundedRect(x0, cursor, w, 34, 8).fill();
-    doc.fillColor(C.white).font('Helvetica-Bold').fontSize(10).text(s(b.title + '  \u2014  Before'), x0 + 14, cursor + 8, { width: w - 28 });
-    let yy = cursor + 42;
-    b.before.forEach((s) => {
-      doc.fillColor(C.body).font('Helvetica').fontSize(8.6).text(s, x0 + 14, yy, { width: w - 28 });
-      arrow(doc, x0 + w - 22, yy + 6, x0 + w - 10, yy + 6, { color: C.warn, lw: 0.8 });
-      yy = yy + 16;
-    });
-    doc.fillColor(C.accent).roundedRect(x0, cursor + h - 34, w, 34, 8).fill();
-    doc.fillColor(C.white).font('Helvetica-Bold').fontSize(10).text(s(b.title + '  \u2014  After'), x0 + 14, cursor + h - 26, { width: w - 28 });
-    yy = cursor + h - 34 + 14;
-    b.after.forEach((s, si) => {
-      doc.fillColor(C.body).font('Helvetica').fontSize(8.6).text(s, x0 + 14, yy, { width: w - 28 });
-      if (si < b.after.length - 1) arrow(doc, x0 + w - 22, yy + 6, x0 + w - 10, yy + 6, { color: C.accent, lw: 0.8 });
-      yy = yy + 16;
-    });
-    cursor = cursor + h + 20;
+    cursor = beforeAfterPair(doc, b, bi);
   });
   solNum++;
   addPage(doc);
@@ -567,7 +613,7 @@ function renderContent(doc) {
     'Verifiable parental consent under DPDP',
     'Safer transport and incident handling',
   ];
-  cursor = bullets(doc, values, { size: 9.6, gap: 7, width: CW });
+  cursor = bullets(doc, values, { size: 9.6, gap: 8, width: CW });
   cursor = cursor + 10;
   cursor = bodyText(doc, 'No savings, admission uplift or cost-reduction figure is promised. All benefits are estimates pending discovery data on task volumes, staff time and current cost.', { size: 8.6, color: C.muted });
   solNum++;
@@ -585,17 +631,17 @@ function renderContent(doc) {
     ['Phase 5', 'Optimise', 'Measure KPIs, expand workflows and refine with school data. Ongoing review.', 'Ongoing'],
   ];
   const rw = (CW - 4 * 16) / 5;
-  const rh = 150;
+  const rh = 170;
   phases.forEach((p, i) => {
     const x = M + i * (rw + 16);
-    doc.fillColor(C.white).roundedRect(x, cursor, rw, rh, 8).fill();
-    doc.strokeColor(C.line).lineWidth(0.8).roundedRect(x, cursor, rw, rh, 8).stroke();
-    doc.fillColor(C.accent).rect(x, cursor, rw, 6).fill();
-    doc.fillColor(C.accent).font('Helvetica-Bold').fontSize(10).text(s(p[0]), x + 14, cursor + 14, { width: rw - 28 });
-    doc.fillColor(C.primary).font('Helvetica-Bold').fontSize(10.5).text(s(p[1]), x + 14, cursor + 34, { width: rw - 28 });
-    doc.fillColor(C.body).font('Helvetica').fontSize(8.2).text(s(p[2]), x + 14, cursor + 52, { width: rw - 28, lineGap: 1.25 });
-    doc.fillColor(C.muted).font('Helvetica-Bold').fontSize(8).text(s(p[3]), x + 14, cursor + 116, { width: rw - 28 });
-    if (i < phases.length - 1) arrow(doc, x + rw + 4, cursor + rh / 2, x + rw + 12, cursor + rh / 2, { color: C.muted, lw: 1.2 });
+    const top = cursor;
+    doc.fillColor(C.panel).roundedRect(x, top, rw, rh, 8).fill();
+    doc.fillColor(C.accent).rect(x, top, rw, 6).fill();
+    doc.fillColor(C.accentSoft).font('Helvetica-Bold').fontSize(9).text(s(p[0]), x + 14, top + 12, { width: rw - 28, characterSpacing: 0.8 });
+    doc.fillColor(C.white).font('Helvetica-Bold').fontSize(9.6).text(s(p[1]), x + 14, top + 30, { width: rw - 28, lineGap: 1.2 });
+    doc.fillColor(C.body).font('Helvetica').fontSize(7.6).text(s(p[2]), x + 14, top + 60, { width: rw - 28, lineGap: 1.3 });
+    doc.fillColor(C.muted).font('Helvetica-Bold').fontSize(8).text(s(p[3]), x + 14, top + 140, { width: rw - 28 });
+    if (i < phases.length - 1) arrow(doc, x + rw + 4, top + rh / 2, x + rw + 12, top + rh / 2, { color: C.muted, lw: 1.2 });
   });
   cursor = cursor + rh + 30;
   cursor = bodyText(doc, 'Scope, timeline and commercials are agreed at discovery. Every account (domain, website, enquiry records) remains in the school\u2019s name.', { size: 9, color: C.muted });
@@ -604,7 +650,7 @@ function renderContent(doc) {
 
   // ---------- PARTNERSHIP & NEXT STEPS ----------
   cursor = sectionBand(doc, solNum, 'Smart Pursuit Partnership & Next Steps', 'Scope and commercials agreed at discovery');
-  cursor = bodyText(doc, 'Smart Pursuit works as your implementation partner. Scope and commercials are set at discovery no price list is included in this proposal.', { size: 10 });
+  cursor = bodyText(doc, 'Smart Pursuit works as your implementation partner. Scope and commercials are set at discovery \u2014 no price list is included in this proposal.', { size: 10 });
   cursor = cursor + 10;
   const roles = [
     ['Smart Pursuit', 'Run discovery, configure automation, train staff, run pilots, monitor KPIs.'],
@@ -614,7 +660,7 @@ function renderContent(doc) {
     const h = 70;
     doc.fillColor(C.panel).roundedRect(M, cursor, CW, h, 8).fill();
     doc.fillColor(C.accent).rect(M, cursor, 4, h).fill();
-    doc.fillColor(C.primary).font('Helvetica-Bold').fontSize(11).text(s(r[0]), M + 16, cursor + 12, { width: CW - 32 });
+    doc.fillColor(C.white).font('Helvetica-Bold').fontSize(11).text(s(r[0]), M + 16, cursor + 12, { width: CW - 32 });
     doc.fillColor(C.body).font('Helvetica').fontSize(9).text(s(r[1]), M + 16, cursor + 34, { width: CW - 32, lineGap: 1.3 });
     cursor = cursor + h + 12;
   });
@@ -625,14 +671,15 @@ function renderContent(doc) {
     'Start with quick wins: central enquiry capture, follow-up scheduling, visit booking, seat availability, leave approvals and certificate generation.',
     'Establish the DPDP consent foundation before any system touches student or parent data.',
     'Introduce AI assistance only with human review, and AI agents only with clear escalation to staff.',
-  ], { size: 9.2, gap: 6, width: CW });
+  ], { size: 9.2, gap: 7, width: CW });
   cursor = cursor + 10;
-  doc.fillColor(C.primary).rect(M, cursor, CW, 56).fill();
+  doc.fillColor(C.accent).rect(M, cursor, CW, 80).fill();
   doc.fillColor(C.white).font('Helvetica-Bold').fontSize(10)
-    .text('Every school has something valuable to offer. Our goal is to help the right parents discover it, trust it and experience it.', M + 16, cursor + 12, { width: CW - 32 });
+    .text('Every school has something valuable to offer. Our goal is to help the right parents discover it, trust it and experience it.', M + 16, cursor + 12, { width: CW - 32, lineGap: 2 });
+  const quoteEnd = doc.y;
   doc.fillColor(C.muted).font('Helvetica').fontSize(8.2)
-    .text('Let\u2019s build a system that turns visibility into enquiries and enquiries into admissions.', M + 16, cursor + 30, { width: CW - 32 });
-  cursor = cursor + 70;
+    .text('Let\u2019s build a system that turns visibility into enquiries and enquiries into admissions.', M + 16, quoteEnd + 12, { width: CW - 32 });
+  cursor = quoteEnd + 30;
 
   // ---------- RESPONSIBLE AI ----------
   cursor = cursor + 8;
@@ -646,23 +693,8 @@ function renderContent(doc) {
     'Important actions require appropriate human approval.',
     'AI responses can be escalated to a person when uncertain.',
   ];
-  cursor = bullets(doc, rai, { size: 8.8, gap: 5, width: CW, markerColor: C.ok, marker: '[tick]' });
+  cursor = bullets(doc, rai, { size: 8.8, gap: 6, width: CW, markerColor: C.ok, marker: '[tick]' });
   addPage(doc);
-}
-
-function vflowHeight(doc, steps, o) {
-  let h = 0;
-  steps.forEach((s) => {
-    h += Math.max(o.boxH, hOf(doc, s, { width: o.boxW - 16, size: o.tSize, lead: 1.1 }) + 12) + o.gap;
-  });
-  return h - o.gap;
-}
-function valueHeight(doc, items, o) {
-  let h = 0;
-  items.forEach((it) => {
-    h += hOf(doc, it, { width: o.w - 42, size: o.size }) + 5;
-  });
-  return h;
 }
 
 build().then(() => process.stdout.write('BUILD DONE\n')).catch((err) => { console.error('BUILD ERROR', err); process.exit(1); });
