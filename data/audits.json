@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-21T16:17:41.360Z",
+  "updatedAt": "2026-11-21T17:14:41.110Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -1153,6 +1153,78 @@
         "html": "reports/amrutha-heart-hospital/report.html"
       },
       "fingerprint": "c9c967408227a2a7"
+    },
+    {
+      "domain": "srinavathainteriordesign.com",
+      "name": "Sri Navatha Interior Designs",
+      "ref": "SP-AUD-2026-11-21-SNI",
+      "generatedAt": "2026-11-21T17:07:20.670Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 4,
+        "mobile": 7,
+        "conversion": 10,
+        "design": 10,
+        "seo": 8,
+        "overall": 74
+      },
+      "pdfPages": 10,
+      "pdfBytes": 3419901,
+      "files": {
+        "pdf": "reports/sri-navatha-interior-designs/Smart-Pursuit-Audit-Sri-Navatha-Interior-Designs.pdf",
+        "audit": "reports/sri-navatha-interior-designs/audit.json",
+        "html": "reports/sri-navatha-interior-designs/report.html"
+      },
+      "fingerprint": "9c64fcff7fc85554"
+    },
+    {
+      "domain": "dreamnestinteriors.co.in",
+      "name": "DreamNest Interiors",
+      "ref": "SP-AUD-2026-11-21-DI",
+      "generatedAt": "2026-11-21T17:12:30.311Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 3,
+        "mobile": 5,
+        "conversion": 10,
+        "design": 10,
+        "seo": 9,
+        "overall": 68
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2696351,
+      "files": {
+        "pdf": "reports/dreamnest-interiors/Smart-Pursuit-Audit-DreamNest-Interiors.pdf",
+        "audit": "reports/dreamnest-interiors/audit.json",
+        "html": "reports/dreamnest-interiors/report.html"
+      },
+      "fingerprint": "5df8ba8d4d146515"
+    },
+    {
+      "domain": "metro-interiors.ueniweb.com",
+      "name": "Metro Interiors",
+      "ref": "SP-AUD-2026-11-21-MI",
+      "generatedAt": "2026-11-21T17:14:41.110Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 3,
+        "mobile": 8,
+        "conversion": 8,
+        "design": 9,
+        "seo": 9,
+        "overall": 68
+      },
+      "pdfPages": 10,
+      "pdfBytes": 3613889,
+      "files": {
+        "pdf": "reports/metro-interiors/Smart-Pursuit-Audit-Metro-Interiors.pdf",
+        "audit": "reports/metro-interiors/audit.json",
+        "html": "reports/metro-interiors/report.html"
+      },
+      "fingerprint": "42fc33bc08b2c4e8"
     }
   ]
 }

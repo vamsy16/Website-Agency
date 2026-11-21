@@ -1,0 +1,25 @@
+{
+  "name": "DreamNest Interiors",
+  "domain": "dreamnestinteriors.co.in",
+  "city": "Vijayawada",
+  "state": "Andhra Pradesh",
+  "email": "sales@dreamnestinteriors.co.in",
+  "phone": "+91 9063435479",
+  "ref": "SP-AUD-2026-11-21-DI",
+  "date": "2026-11-21",
+  "overall": 68,
+  "scores": {
+    "speed": 3,
+    "mobile": 5,
+    "conversion": 10,
+    "design": 10,
+    "seo": 9,
+    "overall": 68
+  },
+  "pdf": "Smart-Pursuit-Audit-DreamNest-Interiors.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://dreamnestinteriors.co.in/",
+    "checkedAt": "2026-11-21"
+  }
+}
