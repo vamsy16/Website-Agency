@@ -5,6 +5,8 @@ if the reason is not obvious.
 
 ## Review — 21 November 2026
 
+- Replacement review also excludes UltraTech Cement and Subbayya Gari Hotel under the chain policy; target only existing repository candidates for the next replacement run. Srinidhi held pending independent email confirmation.
+
 - Independent live-site review excludes Indian Terrain and RR Durbar (chains), and Project Antaryami (virtual-assistant franchise network). Their audit history is retained; they must not count toward the five local prospects.
 
 ## 1.4.0 — 15 November 2026

@@ -1,8 +1,10 @@
 {
   "state": "Andhra Pradesh",
-  "max": 20,
+  "max": 6,
   "target": 3,
   "leadsLimit": 200,
   "niches": [],
-  "requestedAt": "2026-11-21T09:36:45.158931+00:00"
+  "requestedAt": "2026-11-21T13:58:07.869147+00:00",
+  "csv": "data/ap-reviewed-replacements.csv",
+  "csvOnly": true
 }
