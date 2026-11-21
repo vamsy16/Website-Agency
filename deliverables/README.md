@@ -10,7 +10,8 @@ measurements of a prospect's site, so they are not listed in the audit table bel
 
 | Date | Market | Client | Pages | Document |
 |---|---|---|---|---|
-| 2026-11-21 | Vizianagaram, Andhra Pradesh | Prospective school (identity pending discovery) | 38 | [School Admissions Growth Strategy](https://github.com/vamsy16/Website-Agency/blob/arena/353d62eb-website-agency/deliverables/2026-11-vizianagaram-school-admissions/SCHOOL-ADMISSIONS-GROWTH-STRATEGY.pdf) · [source notes](2026-11-vizianagaram-school-admissions/README.md) |
+| 2026-11-21 | Vizianagaram, Andhra Pradesh | Prospective school (identity pending discovery) | 12 | [Client edition](https://github.com/vamsy16/Website-Agency/blob/arena/353d62eb-website-agency/deliverables/2026-11-vizianagaram-school-admissions/Smart_Pursuit_School_Admissions_Growth_Strategy.pdf) |
+| 2026-11-21 | Vizianagaram, Andhra Pradesh | Prospective school (identity pending discovery) | 38 | [Research blueprint](https://github.com/vamsy16/Website-Agency/blob/arena/353d62eb-website-agency/deliverables/2026-11-vizianagaram-school-admissions/SCHOOL-ADMISSIONS-GROWTH-STRATEGY.pdf) · [source notes](2026-11-vizianagaram-school-admissions/README.md) |
 
 Rebuild with `npm run strategy`. Sources and verification status are Section 23 of the PDF
 and the folder README.

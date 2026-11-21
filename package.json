@@ -21,7 +21,8 @@
     "decode": "node tools/decode-b64.mjs",
     "encode": "node tools/encode-b64.mjs",
     "plan": "node tools/render-plan.mjs",
-    "strategy": "node deliverables/2026-11-vizianagaram-school-admissions/index.mjs"
+    "strategy": "node deliverables/2026-11-vizianagaram-school-admissions/index.mjs",
+    "strategy:client": "node deliverables/2026-11-vizianagaram-school-admissions/build-condensed.mjs"
   },
   "dependencies": {
     "lighthouse": "^12.8.2",

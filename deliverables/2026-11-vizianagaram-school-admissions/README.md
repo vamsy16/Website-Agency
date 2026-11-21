@@ -1,7 +1,15 @@
 # School Admissions Growth Strategy — Vizianagaram
 
-**Deliverable:** `SCHOOL-ADMISSIONS-GROWTH-STRATEGY.pdf` — 38 pages, dark editorial layout,
-prepared for a prospective school client in Vizianagaram, Andhra Pradesh. November 2026.
+**Two deliverables, same market, different jobs:**
+
+| File | Pages | Who it is for |
+| --- | --- | --- |
+| `Smart_Pursuit_School_Admissions_Growth_Strategy.pdf` | 12 | **The client-facing edition.** Cover, opportunity, parent behaviour, positioning, growth system, advertising, content, conversion, 90-day roadmap, measurement, partnership, next step. One message per page. |
+| `SCHOOL-ADMISSIONS-GROWTH-STRATEGY.pdf` | 38 | **The research foundation.** Full source register, competitor matrix, channel specifications, budget models, 23 sections of working detail. Used internally and as a leave-behind. |
+
+The 12-page edition is distilled from the 38-page one: same insights, no methodology, no
+research explanations, no jargon. It carries a KEY TAKEAWAY strip on every page so it can be
+read in one sitting.
 
 This is **not** a website audit. It is the strategy document that precedes an audit: local
 market research, competitor intelligence, parent behaviour, channel plans, a 90-day roadmap,
@@ -12,9 +20,9 @@ budget models and a measurement framework.
 ## Rebuild
 
 ```bash
-npm install                                  # pdfkit is a dependency
-node deliverables/2026-11-vizianagaram-school-admissions/index.mjs
-# or: npm run strategy
+npm install                     # pdfkit is a dependency
+npm run strategy                # 38-page research blueprint
+npm run strategy:client         # 12-page client edition
 ```
 
 The build is two-pass: pass one records the page each section starts on, pass two writes those
@@ -28,6 +36,7 @@ Files:
 | `build.mjs` | Renderer: A4 dark layout kit (section bands, tables, bars, funnel, roadmap, KPI tiles) |
 | `content-a.mjs` | Sections 01–11: executive summary, context, market, competitors, parents, positioning, audit, system, Google, Meta, organic |
 | `content-b.mjs` | Sections 12–23: local SEO, website, WhatsApp, offline, campaign, roadmap, budget, KPI, partnership, why-now, next step, sources |
+| `build-condensed.mjs` | The 12-page client edition. Composed page by page (never flowed), so the page count cannot drift; reports page fill and any footer collision |
 
 ### Why pdfkit and not HTML → Chromium
 

@@ -21,6 +21,11 @@ if the reason is not obvious.
 - Two-pass build: pass one records section start pages, pass two writes them into the
   table of contents. Every build reports `overflows` (any block ending below the bottom
   margin) and `warnings`; both must be empty before the PDF is delivered.
+- `build-condensed.mjs` — the 12-page client edition (`npm run strategy:client`), composed
+  page by page rather than flowed, so page count cannot drift. Every page carries one message
+  and a bottom-anchored KEY TAKEAWAY strip; the build reports page fill and any collision with
+  the footer. No photography is used in either edition — the argument against stock classrooms
+  is easier to make with type, panels and vector diagrams than with borrowed images.
 - Content rule applied throughout: no school-specific fact is invented. Anything about the
   client school is labelled "requires confirmation", competitor claims are tagged verified
   vs interpretation, and no competitor is described as running ads or as having poor
