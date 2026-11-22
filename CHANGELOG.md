@@ -3,6 +3,10 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## Review — 22 November 2026
+
+- Five Andhra Pradesh audits approved after re-audit with 1.4.1 (runs 45016840158, 45018491348): MK Dental, Prathik Dental and Implant Centre, The Dental Studio, Kalyani Dental Clinic, Praveen Dental Care. Verify 25/25, 10 pages, 0 mm; every page re-read and every recipient address seen on the clinic's own site. See `deliverables/runs/2026-11-22-independent-review.md`. Run request disabled; nothing sent.
+
 ## 1.4.1 — 22 November 2026
 
 **Independent review of the five Andhra Pradesh audits (run 45012283217): say only what was measured.**
