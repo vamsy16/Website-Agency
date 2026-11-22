@@ -396,7 +396,7 @@ export function deriveFindings(raw, facts, business) {
         : [cookies > 0 ? `${cookies} third-party cookie${cookies === 1 ? "" : "s"}` : null, errs > 0 ? `${errs} console ${errWord}` : null].filter(Boolean).join(" and ") + " on the homepage",
       measured: [
         thirdParty
-          ? `${m.thirdPartyRequests} third-party request${m.thirdPartyRequests === 1 ? "" : "s"} from ${m.thirdPartyDomains.length} external domain${m.thirdPartyDomains.length === 1 ? "" : "s"}${m.thirdPartyDomains.length ? ` (${m.thirdPartyDomains.slice(0, 6).join(", ")})` : ""}.`
+          ? `${m.thirdPartyRequests} third-party request${m.thirdPartyRequests === 1 ? "" : "s"} from ${m.thirdPartyDomains.length} external domain${m.thirdPartyDomains.length === 1 ? "" : "s"}${m.thirdPartyDomains.length ? ` (${m.thirdPartyDomains.length > 6 ? "including " : ""}${m.thirdPartyDomains.slice(0, 6).join(", ")})` : ""}.`
           : `No third-party requests were recorded.`,
         cookies > 0 ? `<b>${cookies} third-party cookie${cookies === 1 ? "" : "s"}</b>.` : null,
         m.blockingMs > 0 ? `Long tasks blocked the main thread for <b>${fmtInt(m.blockingMs)} ms</b> in the browser pass.` : null,
@@ -481,7 +481,7 @@ export function deriveAlsoItems(raw, facts, printed = []) {
   }
   if (m.readMore > 2) items.push(`${m.readMore} links say only “Read More” — no keyword, no context`);
   if (m.deadLinks > 0) items.push(`${m.deadLinks} link${m.deadLinks === 1 ? "" : "s"} point to <span class="mono">#</span> or <span class="mono">javascript:void(0)</span>`);
-  if (m.imagesNoAlt > 0) items.push(`${m.imagesNoAlt} images have no alt text`);
+  if (m.imagesNoAlt > 0) items.push(`${m.imagesNoAlt} image${m.imagesNoAlt === 1 ? " has" : "s have"} no alt text`);
   if (!covered.has("http.sitemapStatus") && h.sitemapStatus && !h.sitemapLooksValid && !(h.robotsSitemaps || []).length) {
     items.push(h.sitemapStatus === 404 || h.sitemapStatus === 410
       ? `No sitemap at <span class="mono">/sitemap.xml</span> (HTTP ${h.sitemapStatus})`

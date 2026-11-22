@@ -116,7 +116,7 @@ function pageSummary(a, facts) {
     <div class="kpis">
       <div class="kpi ${m.perfMobile < 50 ? "bad" : "warn"}"><div class="n">${m.perfMobile}<small>/100</small></div><div class="l">Mobile performance<br>Lighthouse, simulated 4G</div></div>
       <div class="kpi ${m.lcpMs > 4000 ? "bad" : "warn"}"><div class="n">${secNum(m.lcpMs)}<small>s</small></div><div class="l">Largest content appears<br>Google target: 2.5 s</div></div>
-      <div class="kpi ${m.ttiMs > 5000 ? "warn" : "good"}"><div class="n">${round((m.ttiMs || 0) / 1000, 1)}<small>s</small></div><div class="l">Until the page is usable<br>(time to interactive)</div></div>
+      <div class="kpi ${m.ttiMs > 5000 ? "warn" : "good"}"><div class="n">${secNum(m.ttiMs)}<small>s</small></div><div class="l">Until the page is usable<br>(time to interactive)</div></div>
       <div class="kpi bad"><div class="n">${m.visibleForms === 0 ? "0" : m.visibleForms}</div><div class="l">${m.visibleForms === 1 ? "Form" : "Forms"} with fields detected on homepage<br>${m.visibleForms === 0 ? (facts.http.contactShortcode ? "Contact page prints raw code" : "Other contact routes may exist") : "Delivery not tested"}</div></div>
     </div>
 
@@ -192,7 +192,7 @@ function pageScorecard(a, facts) {
     ["Speed", s.speed, `Mobile ${facts.metric.perfMobile}/100 · LCP ${facts.metric.lcp} · TBT ${facts.metric.tbt} · ${facts.metric.requests} requests · ${facts.metric.bytes} · server response ${facts.metric.ttfb}`, 30],
     ["Mobile experience", s.mobile, `≈${Math.round(facts.metric.screens)} screens tall · ${facts.metric.smallTapTargets} tap targets under 40 px${Number(facts.metric.minFontPx) > 0 ? ` · body text down to ${facts.metric.minFontPx} px` : ""} · ${facts.metric.h1Count > 0 ? `first H1 starts ${fmtInt(facts.metric.headlineOffsetPx)} px down` : "no H1 headline found"}`, 20],
     ["Conversion", s.conversion, `${facts.metric.visibleForms === 0 ? "No visible form on the home page" : `${facts.metric.visibleForms} visible form(s)`} · ${facts.http.contactShortcode ? "Contact page prints raw code" : "Contact page reachable"} · ${facts.metric.telLinks} click-to-call link(s) · ${facts.metric.whatsapp} WhatsApp element(s)`, 25],
-    ["Design &amp; clarity", s.design, `${facts.metric.sections > 0 ? `${facts.metric.sections} stacked sections · ` : ""}${fmtInt(facts.metric.domNodes)} DOM nodes · ${facts.metric.imagesNoAlt} images without alt text`, 15],
+    ["Design &amp; clarity", s.design, `${facts.metric.sections > 0 ? `${facts.metric.sections} stacked sections · ` : ""}${fmtInt(facts.metric.domNodes)} DOM nodes · ${facts.metric.imagesNoAlt} image${facts.metric.imagesNoAlt === 1 ? "" : "s"} without alt text`, 15],
     ["SEO", s.seo, `Lighthouse SEO ${facts.metric.seo}/100 · ${facts.metric.h1Count} H1 heading${facts.metric.h1Count === 1 ? "" : "s"} · structured data ${schemaState(facts.http)} · ${facts.metric.readMore} “Read More” links`, 10],
   ];
   const cls = n => (n <= 3 ? "red" : n <= 6 ? "amber" : ""); // >= 7: default bar colour (no "green" rule exists)
@@ -436,10 +436,14 @@ function pageBenchmark(a, facts) {
         .join("\n")
     : "";
 
+  // Every row of this table is the client's own number, so the competitor-table
+  // "you" class (whose CSS appends " — you") is not used; an LCP over target keeps
+  // the same coral emphasis inline.
+  const lcpHl = Number(m.lcpMs) > 2500 ? ' style="background:var(--coral-soft);color:#8A2B14;font-weight:700"' : "";
   const targets = `<table class="tbl" style="margin-top:8mm">
       <thead><tr><th>Metric (mobile, simulated 4G)</th><th>Today</th><th>Target</th><th>Why that target</th></tr></thead>
       <tbody>
-        <tr class="you"><td>Largest Contentful Paint</td><td${Number(m.lcpMs) > 2500 ? ' class="bad"' : ""}>${m.lcp}</td><td>under 2.5 s</td><td>Google’s “good” threshold</td></tr>
+        <tr><td${lcpHl}>Largest Contentful Paint</td><td${lcpHl}>${m.lcp}</td><td${lcpHl}>under 2.5 s</td><td${lcpHl}>Google’s “good” threshold</td></tr>
         <tr><td>Total Blocking Time</td><td${Number(m.tbtMs) > 200 ? ' class="bad"' : ""}>${m.tbt}</td><td>under 200 ms</td><td>Google’s “good” threshold</td></tr>
         <tr><td>Server response</td><td${Number(m.ttfbMs) > 500 ? ' class="bad"' : ""}>${m.ttfb}</td><td>under 500 ms</td><td>caching and a CDN</td></tr>
         <tr><td>Page weight</td><td>${m.bytes}</td><td>under 1.6 MB</td><td>compressed, correctly sized images</td></tr>
@@ -645,7 +649,7 @@ function pageDirection(a, facts) {
         <div class="pr" style="font-family:'Inter';font-size:11pt;font-weight:700;line-height:1.25;letter-spacing:-.02em">Keep the design.<br>Make it work.</div>
         <div class="ds">Items 01–05 of the plan</div>
         <ul>
-          <li>${facts.http.contactShortcode ? "Contact form rebuilt" : m.visibleForms === 0 ? "Contact form added" : "Contact form tested"} &amp; tracked</li>
+          <li>${facts.http.contactShortcode ? "Contact form rebuilt" : m.visibleForms === 0 ? `Homepage ${v.health ? "booking" : "enquiry"} form added` : "Contact form tested"} &amp; tracked</li>
           <li>${v.health ? "Booking" : "Enquiry"} buttons + sticky call bar</li>
           <li>${speedWork(m)}</li>
           <li>Schema &amp; local SEO fields</li>
