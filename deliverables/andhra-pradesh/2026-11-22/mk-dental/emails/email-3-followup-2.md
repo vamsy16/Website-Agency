@@ -1,7 +1,7 @@
 <!-- DRAFT — not sent. Sent by the operator only. -->
 
 **To:** mkdentalortho@gmail.com
-**Subject:** Re: MK Dental — what a fixed version looks like
+**Subject:** Re: MK Dental — the next step, if useful
 **Send:** 28 November 2026
 **Attachments:** none
 
@@ -9,7 +9,7 @@
 
 Hi there,
 
-One more thing that might be more useful than the report.
+A short note in case the audit is still in your inbox.
 
 The report includes the measured results and suggested next steps. Targets are reference points; effort estimates require developer confirmation.
 

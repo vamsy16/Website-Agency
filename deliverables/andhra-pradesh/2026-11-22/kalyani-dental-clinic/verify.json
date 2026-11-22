@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-22-KDC",
   "domain": "kalyanidentalclinics.com",
-  "verifiedAt": "2026-11-22T10:43:37.247Z",
+  "verifiedAt": "2026-11-22T11:34:28.944Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/kalyani-dental-clinic/2026-11-22T10-42-40-534Z.json",
+      "detail": "raw measurement: data/raw/kalyani-dental-clinic/2026-11-22T11-33-31-867Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 22/11/2026, 4:12:40 pm",
+      "detail": "measurement timestamp: 22/11/2026, 5:03:31 pm",
       "severity": "ok"
     },
     {
@@ -87,9 +87,15 @@
       "severity": "ok"
     },
     {
+      "id": "facts.firstParty",
+      "ok": true,
+      "detail": "the site's own host is not counted as third party",
+      "severity": "ok"
+    },
+    {
       "id": "findings.evidence",
       "ok": true,
-      "detail": "5 findings, every evidence field present in the measurement",
+      "detail": "4 findings, every evidence field present in the measurement",
       "severity": "ok"
     },
     {
@@ -101,7 +107,7 @@
     {
       "id": "numbers.traceable",
       "ok": true,
-      "detail": "all 75 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "detail": "all 74 distinct numbers in the report trace to the measurement, the rubric or a stated target",
       "severity": "ok"
     },
     {
@@ -143,7 +149,7 @@
     {
       "id": "pdf.size",
       "ok": true,
-      "detail": "1.93 MB",
+      "detail": "1.90 MB",
       "severity": "ok"
     },
     {

@@ -13,7 +13,7 @@ Following up once, briefly.
 
 The audit describes observations from one test run. Their effect on enquiries or revenue has not been measured.
 
-None of this needs a new design. The fix list in the audit is in the order that pays back fastest, and the first item takes half a day.
+The first finding in the audit has an estimated effort of half a day. Whoever maintains the site should confirm that estimate before anything is scheduled.
 
 The 10-page audit in my last email has the evidence. Happy to walk through it on a call, or to send it to whoever looks after the site.
 

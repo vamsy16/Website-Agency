@@ -13,7 +13,7 @@ I ran a live website audit of prathikdental.com and put the results in the attac
 
 Two things stood out:
 
-1. A 54/100 mobile score and a 21.0 s LCP. Google’s thresholds are 2.5 s for LCP and 200 ms for TBT.
+1. A 52/100 mobile score and a 20.8 s LCP. Google’s thresholds are 2.5 s for LCP and 200 ms for TBT.
 2. 23 screen heights of homepage content. A long page can require more navigation.
 
 The report includes test measurements, screenshots and suggested fixes. Recommendations and effort estimates are distinguished from measured results.

@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-22-PDC",
   "domain": "praveendental.in",
-  "verifiedAt": "2026-11-22T10:45:42.846Z",
+  "verifiedAt": "2026-11-22T11:35:51.858Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/praveen-dental-care/2026-11-22T10-44-24-893Z.json",
+      "detail": "raw measurement: data/raw/praveen-dental-care/2026-11-22T11-34-32-710Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 22/11/2026, 4:14:24 pm",
+      "detail": "measurement timestamp: 22/11/2026, 5:04:32 pm",
       "severity": "ok"
     },
     {
@@ -84,6 +84,12 @@
       "id": "facts.consistent",
       "ok": true,
       "detail": "every printed metric equals the raw measurement",
+      "severity": "ok"
+    },
+    {
+      "id": "facts.firstParty",
+      "ok": true,
+      "detail": "the site's own host is not counted as third party",
       "severity": "ok"
     },
     {

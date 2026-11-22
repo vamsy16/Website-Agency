@@ -1,7 +1,7 @@
 <!-- DRAFT — not sent. Sent by the operator only. -->
 
 **To:** kalyanispecialitydental16@gmail.com
-**Subject:** Re: Kalyani Dental Clinic — what a fixed version looks like
+**Subject:** Re: Kalyani Dental Clinic — the next step, if useful
 **Send:** 28 November 2026
 **Attachments:** none
 
@@ -9,7 +9,7 @@
 
 Hi there,
 
-One more thing that might be more useful than the report.
+A short note in case the audit is still in your inbox.
 
 The report includes the measured results and suggested next steps. Targets are reference points; effort estimates require developer confirmation.
 

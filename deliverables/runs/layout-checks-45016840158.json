@@ -1,0 +1,447 @@
+[
+  {
+    "slug": "kalyani-dental-clinic",
+    "layout": {
+      "ok": true,
+      "failures": [],
+      "pageCount": 10,
+      "worstOverflowMm": 0,
+      "pages": [
+        {
+          "page": 1,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 2,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 3,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 4,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 3
+        },
+        {
+          "page": 5,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 6,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 7,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 8,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 9,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 10,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        }
+      ],
+      "fontsLoaded": [
+        {
+          "name": "Instrument Serif",
+          "loaded": true
+        },
+        {
+          "name": "Inter",
+          "loaded": true
+        }
+      ],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "checkedAt": "2026-11-22T11:34:26.961Z"
+    },
+    "verification": {
+      "ok": true,
+      "blockers": 0,
+      "failedChecks": []
+    }
+  },
+  {
+    "slug": "mk-dental",
+    "layout": {
+      "ok": true,
+      "failures": [],
+      "pageCount": 10,
+      "worstOverflowMm": 0,
+      "pages": [
+        {
+          "page": 1,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 2,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 3,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 4,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 3
+        },
+        {
+          "page": 5,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 6,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 7,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 8,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 9,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 10,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        }
+      ],
+      "fontsLoaded": [
+        {
+          "name": "Instrument Serif",
+          "loaded": true
+        },
+        {
+          "name": "Inter",
+          "loaded": true
+        }
+      ],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "checkedAt": "2026-11-22T11:26:40.563Z"
+    },
+    "verification": {
+      "ok": true,
+      "blockers": 0,
+      "failedChecks": []
+    }
+  },
+  {
+    "slug": "prathik-dental-and-implant-centre",
+    "layout": {
+      "ok": true,
+      "failures": [],
+      "pageCount": 10,
+      "worstOverflowMm": 0,
+      "pages": [
+        {
+          "page": 1,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 2,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 3,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 4,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 3
+        },
+        {
+          "page": 5,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 6,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 7,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 8,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 9,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 10,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        }
+      ],
+      "fontsLoaded": [
+        {
+          "name": "Instrument Serif",
+          "loaded": true
+        },
+        {
+          "name": "Inter",
+          "loaded": true
+        }
+      ],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "checkedAt": "2026-11-22T11:27:56.880Z"
+    },
+    "verification": {
+      "ok": true,
+      "blockers": 0,
+      "failedChecks": []
+    }
+  },
+  {
+    "slug": "praveen-dental-care",
+    "layout": {
+      "ok": true,
+      "failures": [],
+      "pageCount": 10,
+      "worstOverflowMm": 0,
+      "pages": [
+        {
+          "page": 1,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 2,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 3,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 4,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 3
+        },
+        {
+          "page": 5,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 6,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 7,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 8,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 9,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 10,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        }
+      ],
+      "fontsLoaded": [
+        {
+          "name": "Instrument Serif",
+          "loaded": true
+        },
+        {
+          "name": "Inter",
+          "loaded": true
+        }
+      ],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "checkedAt": "2026-11-22T11:35:49.949Z"
+    },
+    "verification": {
+      "ok": true,
+      "blockers": 0,
+      "failedChecks": []
+    }
+  },
+  {
+    "slug": "the-dental-studio",
+    "layout": {
+      "ok": true,
+      "failures": [],
+      "pageCount": 10,
+      "worstOverflowMm": 0,
+      "pages": [
+        {
+          "page": 1,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 2,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 3,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 4,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 3
+        },
+        {
+          "page": 5,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 6,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 7,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 8,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 9,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 10,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        }
+      ],
+      "fontsLoaded": [
+        {
+          "name": "Instrument Serif",
+          "loaded": true
+        },
+        {
+          "name": "Inter",
+          "loaded": true
+        }
+      ],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "checkedAt": "2026-11-22T11:33:24.038Z"
+    },
+    "verification": {
+      "ok": true,
+      "blockers": 0,
+      "failedChecks": []
+    }
+  }
+]

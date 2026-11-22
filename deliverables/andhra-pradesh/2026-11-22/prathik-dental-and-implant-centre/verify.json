@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-22-PDA",
   "domain": "prathikdental.com",
-  "verifiedAt": "2026-11-22T10:36:07.786Z",
+  "verifiedAt": "2026-11-22T11:27:58.771Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/prathik-dental-and-implant-centre/2026-11-22T10-35-01-076Z.json",
+      "detail": "raw measurement: data/raw/prathik-dental-and-implant-centre/2026-11-22T11-26-44-993Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 22/11/2026, 4:05:01 pm",
+      "detail": "measurement timestamp: 22/11/2026, 4:56:45 pm",
       "severity": "ok"
     },
     {
@@ -87,6 +87,12 @@
       "severity": "ok"
     },
     {
+      "id": "facts.firstParty",
+      "ok": true,
+      "detail": "the site's own host is not counted as third party",
+      "severity": "ok"
+    },
+    {
       "id": "findings.evidence",
       "ok": true,
       "detail": "4 findings, every evidence field present in the measurement",
@@ -101,7 +107,7 @@
     {
       "id": "numbers.traceable",
       "ok": true,
-      "detail": "all 78 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "detail": "all 77 distinct numbers in the report trace to the measurement, the rubric or a stated target",
       "severity": "ok"
     },
     {
