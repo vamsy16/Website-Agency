@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-22-MD",
   "domain": "mkdentals.com",
-  "verifiedAt": "2026-11-22T11:26:42.407Z",
+  "verifiedAt": "2026-11-22T11:46:41.655Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/mk-dental/2026-11-22T11-25-47-607Z.json",
+      "detail": "raw measurement: data/raw/mk-dental/2026-11-22T11-45-51-181Z.json",
       "severity": "ok"
     },
     {
@@ -41,13 +41,13 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 22/11/2026, 4:55:47 pm",
+      "detail": "measurement timestamp: 22/11/2026, 5:15:51 pm",
       "severity": "ok"
     },
     {
       "id": "scores.speed",
       "ok": true,
-      "detail": "report prints 5, rubric computes 5",
+      "detail": "report prints 3, rubric computes 3",
       "severity": "ok"
     },
     {
@@ -77,7 +77,7 @@
     {
       "id": "scores.overall",
       "ok": true,
-      "detail": "report prints 80, rubric computes 80",
+      "detail": "report prints 74, rubric computes 74",
       "severity": "ok"
     },
     {
@@ -107,7 +107,7 @@
     {
       "id": "numbers.traceable",
       "ok": true,
-      "detail": "all 72 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "detail": "all 76 distinct numbers in the report trace to the measurement, the rubric or a stated target",
       "severity": "ok"
     },
     {

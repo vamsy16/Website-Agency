@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-22-TDS",
   "domain": "thedentalstudiovizag.com",
-  "verifiedAt": "2026-11-22T11:33:25.917Z",
+  "verifiedAt": "2026-11-22T11:53:10.458Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/the-dental-studio/2026-11-22T11-28-02-878Z.json",
+      "detail": "raw measurement: data/raw/the-dental-studio/2026-11-22T11-47-55-873Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 22/11/2026, 4:58:02 pm",
+      "detail": "measurement timestamp: 22/11/2026, 5:17:55 pm",
       "severity": "ok"
     },
     {
@@ -107,7 +107,7 @@
     {
       "id": "numbers.traceable",
       "ok": true,
-      "detail": "all 81 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "detail": "all 77 distinct numbers in the report trace to the measurement, the rubric or a stated target",
       "severity": "ok"
     },
     {

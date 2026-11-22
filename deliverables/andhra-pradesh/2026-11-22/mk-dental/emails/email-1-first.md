@@ -13,7 +13,7 @@ I ran a live website audit of mkdentals.com and put the results in the attached 
 
 Two things stood out:
 
-1. A 55/100 mobile score and an 11.6 s LCP. Google’s thresholds are 2.5 s for LCP and 200 ms for TBT.
+1. A 47/100 mobile score and a 9.4 s LCP. Google’s thresholds are 2.5 s for LCP and 200 ms for TBT.
 2. 10 screen heights of homepage content. A long page can require more navigation.
 
 The report includes test measurements, screenshots and suggested fixes. Recommendations and effort estimates are distinguished from measured results.

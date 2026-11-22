@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-22-PDA",
   "domain": "prathikdental.com",
-  "verifiedAt": "2026-11-22T11:27:58.771Z",
+  "verifiedAt": "2026-11-22T11:47:52.304Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/prathik-dental-and-implant-centre/2026-11-22T11-26-44-993Z.json",
+      "detail": "raw measurement: data/raw/prathik-dental-and-implant-centre/2026-11-22T11-46-43-831Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 22/11/2026, 4:56:45 pm",
+      "detail": "measurement timestamp: 22/11/2026, 5:16:43 pm",
       "severity": "ok"
     },
     {
@@ -149,7 +149,7 @@
     {
       "id": "pdf.size",
       "ok": true,
-      "detail": "1.96 MB",
+      "detail": "1.95 MB",
       "severity": "ok"
     },
     {
