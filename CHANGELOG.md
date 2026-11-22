@@ -3,6 +3,17 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## 1.4.1 — 22 November 2026
+
+**Independent review of the five Andhra Pradesh audits (run 45012283217): say only what was measured.**
+
+- `measure.mjs` — first party is the site's own host with or without `www.`, its subdomains and the host the page landed on. The origin-prefix test counted 67 of 71 requests as third-party after a www → bare redirect and listed the clinic's own domain as "external". Cookies use the same dot-bounded rule. `robots.txt` `Sitemap:` lines are recorded.
+- `findings.mjs` — a metric inside its threshold is never "over" it ("6.4× and 0.6× over" for a 117 ms TBT); the speed fix lists only measured opportunities (no CDN for a 201 ms server, no plugins on a non-WordPress site; page weight judged against the 1.6 MB target on page 07); the console finding no longer says "Remove the retargeting pixels" unless ad code was seen, and blocking time is no longer attributed to third parties; a 404 at `/sitemap.xml` reads "No XML sitemap", and no finding is made when robots.txt declares one; zero section counts and TTFB decimals are not printed; "also on the list" no longer repeats a printed finding. Rubric unchanged (selftest 36).
+- `render.mjs` — removed unmeasured copy ("doing damage you can see in enquiry numbers", "first paint — still looks empty", "pays back fastest", "usually the two cheapest things… to fix", "Contrast and labelling issues", "competing slogans", "theme demo paths"); a page with no H1 says so instead of "headline starts 0 px down"; plan rows whose target is already met say "Already under…" / "Little to gain here" instead of selling the work, and an existing form is "tested", not "rebuilt"; the Rescue speed line names only parts that miss their target; benchmark cells are red only when over target; KPI reads "Forms with fields".
+- `render.mjs` layout — the page-8 pull quote, the page-10 sign-off and the page-2 band no longer print over the footer; page-4 timeline labels no longer overlap (dots at their true time; FCP/TTFB no longer pinned at 4.4 s / 1.6 s); "20 s" no longer wraps; score bars ≥ 7 drop the unstyled `green` class (class-diff).
+- `verify.mjs` — new blocker `facts.firstParty`; `copy.honesty` also rejects the phrases above, "0.x× over", threshold contradictions, an H1 position with no H1, competing headlines with ≤ 1 H1, ad mentions without ad code and "third-party code blocked".
+- Emails — step 2 no longer says "None of this needs a new design… pays back fastest" (it asks the developer to confirm the effort); step 3's subject no longer promises "what a fixed version looks like" (no fixed version is sent). `sequence.mjs` bans both phrases.
+
 ## Review — 21 November 2026
 
 - Deliverables index now fails closed on the independent-review manifest: automated gate success cannot mark held reports sendable. Five live email contacts documented, with explicit PDF-copy/recipient holds and layout-QA failures.

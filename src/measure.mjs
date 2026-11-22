@@ -250,6 +250,20 @@ export async function measureSite(website, opts = {}) {
   const rawDir = ensureDir(path.join(ROOT, "data", "raw", slugName));
   const shotDir = ensureDir(path.join(rawDir, `shots-${stamp}`));
   const base = new URL(website);
+  // First party = the site's own host, with or without "www." and on either
+  // scheme. A plain origin prefix test counted every request as third-party
+  // when the site redirected www -> bare domain or https -> http, and the
+  // report then listed the business's own domain as an external one.
+  const siteHost = h => String(h || "").toLowerCase().replace(/^www\./, "");
+  const ownHosts = new Set([siteHost(base.hostname)]);
+  const isFirstParty = url => {
+    try {
+      const h = siteHost(new URL(url).hostname);
+      return [...ownHosts].some(o => h === o || h.endsWith(`.${o}`));
+    } catch {
+      return false;
+    }
+  };
 
   log("measure", `browser: ${describeBrowser(resolved)}`);
   const browser = await chromium.launch(launchOptions(resolved));
@@ -300,7 +314,7 @@ export async function measureSite(website, opts = {}) {
           status: res.status(),
           bytes: sizes ? sizes.responseBodySize + sizes.responseHeadersSize : 0,
           fromCache: !!(sizes && sizes.responseBodySize === 0),
-          thirdParty: !res.url().startsWith(base.origin),
+          thirdParty: !isFirstParty(res.url()),
           contentType: headers["content-type"] || null,
         });
       } catch {}
@@ -341,10 +355,17 @@ export async function measureSite(website, opts = {}) {
         };
       });
 
+      // The page may have landed on a different host than the one requested
+      // (www -> bare domain). That host is first party too.
+      try { ownHosts.add(siteHost(new URL(mobile.url()).hostname)); } catch {}
+      for (const r of requests) r.thirdParty = !isFirstParty(r.url);
+
+      // A cookie is first party when its domain is one of the site's own hosts,
+      // a subdomain of one, or the parent domain of one (dot-bounded matches).
       const cookies = await mobileCtx.cookies();
       const thirdPartyCookies = cookies.filter(c => {
-        const d = c.domain.replace(/^\./, "");
-        return !base.hostname.endsWith(d) && !d.endsWith(base.hostname);
+        const d = siteHost(String(c.domain || "").replace(/^\./, ""));
+        return ![...ownHosts].some(o => o === d || o.endsWith(`.${d}`) || d.endsWith(`.${o}`));
       });
 
       const totalBytes = requests.reduce((a, r) => a + (r.bytes || 0), 0);
@@ -526,6 +547,11 @@ export async function checkHttp(website, settings) {
     }
     if (p === "/robots.txt") {
       info.disallowAll = /^\s*user-agent:\s*\*/im.test(r.bodyStart) && /^\s*disallow:\s*\/\s*$/im.test(r.bodyStart);
+      // A sitemap declared here may live somewhere other than /sitemap.xml;
+      // without this, a 404 at /sitemap.xml would be reported as "no sitemap".
+      info.sitemaps = r.status === 200 && !/<html[\s>]/i.test(r.bodyStart)
+        ? [...r.bodyStart.matchAll(/^\s*sitemap:\s*(\S+)/gim)].map(x => x[1].slice(0, 300)).slice(0, 5)
+        : [];
     }
     if (p === "/wp-json/") {
       info.isWordpressApi = /"namespaces"|"routes"|wp\/v2/i.test(r.bodyStart);

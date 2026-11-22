@@ -2,7 +2,7 @@
 //
 //   email 1  at sendDate              - audit PDF attached
 //   email 2  sendDate + 3 days        - the money argument
-//   email 3  sendDate + 6 days        - what a fixed version looks like
+//   email 3  sendDate + 6 days        - the next step, if useful
 //   email 4  sendDate + 9 days        - final, closes the loop
 //
 // Dates are computed from the day the operator actually sends email 1, not from
@@ -33,6 +33,8 @@ const BANNED = [
   /guarantee/i, /risk[- ]free/i, /act now/i, /limited time/i, /100% (success|results)/i,
   /make you (rich|money fast)/i, /no risk/i, /instantly/i, /revolutionary/i, /world[- ]class/i,
   /best in the world/i, /exclusive offer/i,
+  // Unmeasured claims removed after the 22 November 2026 independent review.
+  /pays back fastest/i, /needs a new design/i, /fixed version looks like/i,
 ];
 
 function countWords(text) {

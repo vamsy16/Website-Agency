@@ -4,11 +4,17 @@
   "target": 5,
   "leadsLimit": 14,
   "niches": [],
-  "requestedAt": "2026-11-22T10:50:00Z",
+  "requestedAt": "2026-11-22T11:22:00Z",
   "csv": "data/ap-websearch-2026-11-22.csv",
   "csvOnly": true,
-  "repairOnly": false,
-  "reaudit": [],
-  "reauditReason": "",
+  "repairOnly": true,
+  "reaudit": [
+    "mkdentals.com",
+    "prathikdental.com",
+    "thedentalstudiovizag.com",
+    "kalyanidentalclinics.com",
+    "praveendental.in"
+  ],
+  "reauditReason": "independent review 2026-11-22: copy + first-party measurement fixes (1.4.1)",
   "disabled": false
 }

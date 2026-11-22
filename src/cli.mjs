@@ -110,7 +110,10 @@ function buildScreens(raw, assetsDir, auditInputs) {
         name: "screen-1",
         sourceFile: first.file,
         label: "Screen 1",
-        caption: `The first thing a visitor sees at 390 px. The first H1 begins ${fmtInt(raw.mobile?.dom?.headlineOffsetPx || 0)} px down.`,
+        // With no H1 the offset is a placeholder 0, not a measurement.
+        caption: Number(raw.mobile?.dom?.h1Count) > 0
+          ? `The first thing a visitor sees at 390 px. The first H1 begins ${fmtInt(raw.mobile?.dom?.headlineOffsetPx || 0)} px down.`
+          : `The first thing a visitor sees at 390 px. No H1 headline was found on the page.`,
       });
     }
     const mid = byName["screen-7"] || byName["sec2"] || byName["mobile-full"];
@@ -118,8 +121,15 @@ function buildScreens(raw, assetsDir, auditInputs) {
       list.push({
         name: mid.name,
         sourceFile: mid.file,
-        label: mid.name === "screen-7" ? "Screen 7" : "Further down",
-        caption: `Still scrolling. ${raw.mobile?.dom?.sections || 0} sections in total; the address, hours and a way to book sit below this point.`,
+        label: mid.name !== "screen-7" ? "Further down" : Number(raw.mobile?.dom?.screens) >= 7 ? "Screen 7" : "Last screen",
+        // Where the address, hours or booking controls sit was never measured,
+        // so the caption does not say.
+        // measure.mjs clamps the screen-7 shot to the last screen on short pages.
+        caption: mid.name !== "screen-7"
+          ? `Further down the same page. Check how far down the address, hours and a way to book appear.`
+          : Number(raw.mobile?.dom?.screens) >= 7
+            ? `Still scrolling: screen 7 of about ${Math.round(Number(raw.mobile?.dom?.screens))}. Check how far down the address, hours and a way to book appear.`
+            : `Still scrolling: the last screen of about ${Math.round(Number(raw.mobile?.dom?.screens) || 0)}. Check how far down the address, hours and a way to book appear.`,
       });
     }
     const desk = byName["desktop-fold"];
@@ -254,7 +264,7 @@ async function runAudit({
   const scoring = computeScores(raw, settings);
   const facts = buildFacts(raw, scoring, business, settings);
   const findings = deriveFindings(raw, facts, business);
-  const also = deriveAlsoItems(raw, facts);
+  const also = deriveAlsoItems(raw, facts, [...findings.page1, ...findings.page2]);
 
   if (!findings.page1.length) throw new AuditError("failed", "No defensible findings were produced from the measurement. Refusing to render a report with nothing to say.");
 

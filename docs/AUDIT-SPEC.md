@@ -47,13 +47,14 @@ A raw measurement is only valid if it contains:
 | `measuredAtIst` | human-readable timestamp actually shown on page 10 |
 | `mobile.status` | HTTP status of the homepage at 390 px |
 | `mobile.dom` | DOM facts: headings, sections, forms, tap targets, fonts, schema |
-| `mobile.requests` | count, total bytes, third-party origins |
+| `mobile.requests` | count, total bytes, third-party origins (first party = the site's own host with or without `www.`, its subdomains, and the host the page finally landed on) |
 | `mobile.cookies.thirdParty` | third-party cookies set on load |
 | `mobile.consoleErrors` | uncaught console errors captured during load |
-| `mobile.blockingMs` | main-thread time consumed by third-party code |
+| `mobile.blockingMs` | main-thread long-task time beyond 50 ms per task, all scripts — **not** attributed to third parties |
 | `http.meta` | WordPress/theme/plugins, analytics, ad-tech, `og:site_name` |
 | `http["/contact/"]` | status + the raw shortcode text if one is printed |
 | `http["/sitemap.xml"]` | status + whether the body is a real `<urlset>` |
+| `http["/robots.txt"]` | `disallowAll`, plus `sitemaps[]` declared there (a declared sitemap suppresses the `/sitemap.xml` finding) |
 | `lighthouse.mobile` | version, category scores, every metric the report quotes |
 | `lighthouse.desktop` | version, scores, metrics |
 | `screenshots[]` | file path + pixel stats (mean, sd, white %, colourful %) |
@@ -175,7 +176,9 @@ against `audit.facts` and rejects a finding whose evidence is missing or `—`.
 
 **Page 6 also carries "Also on the list"** — up to six smaller, individually
 measurable items (alt text, dead `#` links, `og:site_name`, sitemap, tap targets,
-schema gaps). Each is generated from a measurement, never written by hand.
+schema gaps). Each is generated from a measurement, never written by hand. An
+item already printed as a finding on page 5 or 6 (same evidence path) is not
+repeated there.
 
 ### Do not claim
 
@@ -183,7 +186,12 @@ schema gaps). Each is generated from a measurement, never written by hand.
 - that a fix will increase revenue — only state the engineering target;
 - a ranking position, a traffic number, or a conversion rate you did not measure;
 - a medical, legal or financial outcome;
-- that the site is "the worst" or "the best".
+- that the site is "the worst" or "the best";
+- an effect or a cost you did not measure — "pays back fastest", "cheapest to
+  fix", "doing damage you can see in enquiry numbers", "still looks empty";
+- that a metric inside Google's threshold is "over" it, a headline position on a
+  page with no H1, competing headlines on a page with one, or advertising code
+  that was not observed (HTML markers or ad-serving request hosts).
 
 ---
 
@@ -231,6 +239,8 @@ before the PDF is accepted. It writes `verify.json` next to the audit.
 | `provenance.ist` | no human-readable timestamp is recorded |
 | `scores.*` | a printed area score differs from the rubric |
 | `facts.consistent` | any printed metric differs from the raw measurement |
+| `facts.firstParty` | the business's own host (with or without `www.`, or a subdomain) is listed as a third-party domain |
+| `copy.honesty` | the report prints a known unsupported claim (see "Do not claim"), a "0.x× over" contradiction, or blocking time attributed to third parties |
 | `findings.evidence` | a finding depends on a fact that is missing, empty or `—` |
 | `numbers.traceable` | the report prints a number that is not in the measurement, the rubric or Google's stated targets |
 | `report.date` | the report does not state the measurement date |

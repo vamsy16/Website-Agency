@@ -18,7 +18,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { ROOT, readJSON, writeJSON, ensureDir, longDate, isoDate, log, round } from "./util.mjs";
-import { computeScores, buildFacts, deriveFindings, REFERENCE_SCORES } from "./findings.mjs";
+import { computeScores, buildFacts, deriveFindings, adSignals, REFERENCE_SCORES } from "./findings.mjs";
 import { inspectPdf } from "./pdf.mjs";
 import { checkHttp } from "./measure.mjs";
 
@@ -124,6 +124,18 @@ export async function verifyAudit({ auditPath, live = false, fixture = false }) 
     add("facts.consistent", diffs.length === 0, diffs.length ? `${diffs.length} fact(s) differ: ${diffs.slice(0, 4).join("; ")}` : "every printed metric equals the raw measurement");
   }
 
+  // ---------- first-party hosts ----------
+  // The business's own host (with or without www, any subdomain) must never be
+  // reported as an external domain.
+  if (audit.facts?.metric) {
+    const own = String(audit.business?.domain || "").toLowerCase().replace(/^www\./, "");
+    const listed = (audit.facts.metric.thirdPartyDomains || []).filter(d => {
+      const h = String(d).toLowerCase().replace(/^www\./, "");
+      return own && (h === own || h.endsWith(`.${own}`));
+    });
+    add("facts.firstParty", listed.length === 0, listed.length ? `the site's own host is counted as third party: ${listed.join(", ")}` : "the site's own host is not counted as third party");
+  }
+
   // ---------- findings evidence ----------
   if (raw && audit.findings) {
     const all = [...(audit.findings.page1 || []), ...(audit.findings.page2 || [])];
@@ -152,6 +164,17 @@ export async function verifyAudit({ auditPath, live = false, fixture = false }) 
     const copyErrors = [];
     if (Number(audit.facts?.metric?.h1Count) <= 1 && /Competing H1 headings/i.test(text)) copyErrors.push("single or missing H1 labelled competing");
     if (/are losing you enquiries today|It takes half a day|will not start a call or a chat/i.test(text)) copyErrors.push("unsupported outcome or delivery claim");
+    // Added after the 22 November 2026 independent review: sentences that read
+    // as measured but were never measured, or that contradict the measurement.
+    const fm = audit.facts?.metric || {};
+    if (/still looks empty|doing damage you can see|pays back fastest|sit below this point|needs a new design|cheapest thing|Contrast and labelling issues|theme demo paths/i.test(text)) copyErrors.push("unmeasured narrative claim");
+    if (Number(fm.h1Count) <= 1 && /competing slogans|competing H1/i.test(text)) copyErrors.push("competing headlines claimed for a page with at most one H1");
+    if (/\b0\.\d+×[^.;]{0,40}\bover\b/.test(text)) copyErrors.push("a metric inside its threshold described as over it");
+    if (Number(fm.tbtMs) <= 200 && /\bTBT (?:is )?[\d.]+× its threshold/.test(text)) copyErrors.push("TBT inside 200 ms described as over the threshold");
+    if (Number(fm.lcpMs) <= 2500 && /\bLCP (?:is )?[\d.]+× its threshold/.test(text)) copyErrors.push("LCP inside 2.5 s described as over the threshold");
+    if (!(Number(fm.h1Count) > 0) && /first H1 begins|first H1 starts|headline starts/i.test(text)) copyErrors.push("headline position quoted for a page with no H1");
+    if (/retargeting|advertising tag/i.test(text) && !adSignals(audit.facts || {}).length) copyErrors.push("advertising code mentioned but none was observed");
+    if (/third-party code blocked/i.test(text)) copyErrors.push("main-thread blocking attributed to third parties without attribution data");
     add("copy.honesty", copyErrors.length === 0, copyErrors.join("; ") || "known unsupported narrative claims absent");
     const allowed = new Set(STRUCTURAL);
     flattenNumbers(audit.facts, allowed);

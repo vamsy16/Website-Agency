@@ -1,15 +1,15 @@
 ---
 id: followup-2
-subject: "Re: {{business.shortName}} — what a fixed version looks like"
+subject: "Re: {{business.shortName}} — the next step, if useful"
 dayOffset: 6
-purpose: show the outcome, make the next step concrete
+purpose: make the next step concrete without promising an outcome
 attachments: none
 wordTarget: 90
 ---
 
 Hi {{contactFirstName}},
 
-One more thing that might be more useful than the report.
+A short note in case the audit is still in your inbox.
 
 {{outcomeLine}}
 

@@ -1,0 +1,42 @@
+{
+  "state": "Andhra Pradesh",
+  "reviewDate": "2026-11-22",
+  "run": "45012283217",
+  "requested": 5,
+  "status": "held-pending-reaudit",
+  "dedupeAuthority": [
+    "data/leads.json",
+    "data/audits.json",
+    "git history of this repository"
+  ],
+  "neverSendAutomatically": true,
+  "businessChecks": "All five confirmed as real, independent local dental clinics in Andhra Pradesh; each To: address is published on the clinic's own website (see 2026-11-22-independent-review.md).",
+  "leads": [
+    {
+      "domain": "mkdentals.com",
+      "approved": false,
+      "reason": "Held: the 22 Nov PDF contains claims the measurement does not support. PDF prints 'first H1 begins 0 px down' / 'headline starts 0 px down' on a page with no H1; own host counted as third party in the raw data; template claims (TTFB decimals, 'still looks empty', 'pays back fastest', 'Contact form rebuilt'). Re-audit requested with the corrected renderer (1.4.1); approve only after the regenerated PDF and drafts are re-read."
+    },
+    {
+      "domain": "prathikdental.com",
+      "approved": false,
+      "reason": "Held: the 22 Nov PDF contains claims the measurement does not support. Finding 03 says 'Remove the retargeting pixels' and 'third-party code blocked the main thread' with 0 third-party requests recorded; prints '0 stacked sections'; plan rows sell server/image work whose target is already met. Re-audit requested with the corrected renderer (1.4.1); approve only after the regenerated PDF and drafts are re-read."
+    },
+    {
+      "domain": "thedentalstudiovizag.com",
+      "approved": false,
+      "reason": "Held: the 22 Nov PDF contains claims the measurement does not support. Its own host is listed as an 'external domain' and 67 of 71 requests are counted as third-party (www -> bare redirect broke the origin test). Re-audit requested with the corrected renderer (1.4.1); approve only after the regenerated PDF and drafts are re-read."
+    },
+    {
+      "domain": "kalyanidentalclinics.com",
+      "approved": false,
+      "reason": "Held: the 22 Nov PDF contains claims the measurement does not support. '6.4x and 0.6x over' although TBT 117 ms is inside 200 ms; a 404 at /sitemap.xml described as 'returns a web page'; retargeting fix with no ad code observed. Re-audit requested with the corrected renderer (1.4.1); approve only after the regenerated PDF and drafts are re-read."
+    },
+    {
+      "domain": "praveendental.in",
+      "approved": false,
+      "reason": "Held: the 22 Nov PDF contains claims the measurement does not support. Template claims shared by all five: TTFB decimals, 'doing damage you can see in enquiry numbers', 'first paint - still looks empty', 'pays back fastest', benchmark cells red within target, plan rows selling work already within target. Re-audit requested with the corrected renderer (1.4.1); approve only after the regenerated PDF and drafts are re-read."
+    }
+  ],
+  "withheldOtherDomains": []
+}

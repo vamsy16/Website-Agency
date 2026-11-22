@@ -135,6 +135,9 @@ Smart Pursuit · Website & conversion audit · EXAMPLE DENTAL CO   05 / 10
 - 6.4 pt `--mut`; business name in `<b>` `--ink2`.
 - Page number tabular, `letter-spacing:.12em`, always `NN / 10`.
 - Hairline `--line2` above, 2.4 mm padding.
+- The footer is absolute at `bottom:8mm`. A block pushed to the bottom of a page
+  with `margin-top:auto` (page 2 band, page 8 pull quote, page 10 sign-off)
+  keeps 16 mm below it, so it never prints over the footer.
 - The label after the agency name comes from `config/settings.json` →
   `agency.auditLabel`. Set it per niche: "conversion" for a plumber is not the
   same sentence as "patient-conversion" for a clinic. Never hard-code it.
@@ -186,7 +189,7 @@ class that has no rule — `qa.mjs` does not catch this, but the structural diff
 | Score bar | `.bar` + `.red` / `.amber` | 20 × 1.9 mm track; fill is the score |
 | Overall gauge | `.gauge` | 26 mm SVG ring; arc colour follows the overall band |
 | Phone frame | `.phone .frame` | 45 × 97 mm, 0.6 mm dark border, 4.6 mm radius, notch |
-| Timeline | `.tl` | 34 mm tall; axis at 16 mm; markers coral/teal/amber |
+| Timeline | `.tl` | 34 mm tall; axis at 16 mm; markers coral/teal/amber. Each dot sits at its measured time (only values past 20 s are pinned to the right end); a label that would overlap a neighbour moves below the axis — `timelineLayout()` in `render.mjs` |
 | Finding | `.find` / `.find.med` | 0.9 mm left rule coral/amber; tag + 3-column row |
 | Competitor table | `table.tbl` | client row `.you` gets `--coral-soft` and "— you" |
 | Plan table | `table.plan` | 5 columns; effort right-aligned, bold target |
