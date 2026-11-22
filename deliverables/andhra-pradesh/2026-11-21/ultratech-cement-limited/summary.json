@@ -1,0 +1,25 @@
+{
+  "name": "Ultratech Cement Limited",
+  "domain": "ultratechcement.com",
+  "city": "Tadipatri",
+  "state": "Andhra Pradesh",
+  "email": "ultratech.communication@adityabirla.com",
+  "phone": null,
+  "ref": "SP-AUD-2026-11-21-UCL",
+  "date": "2026-11-21",
+  "overall": 59,
+  "scores": {
+    "speed": 2,
+    "mobile": 8,
+    "conversion": 7,
+    "design": 8,
+    "seo": 7,
+    "overall": 59
+  },
+  "pdf": "Smart-Pursuit-Audit-Ultratech-Cement-Limited.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://www.ultratechcement.com/contactus",
+    "checkedAt": "2026-11-21"
+  }
+}

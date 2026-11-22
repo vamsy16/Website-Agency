@@ -1,0 +1,25 @@
+{
+  "name": "RR Durbar",
+  "domain": "rrdurbar.com",
+  "city": "Vijayawada",
+  "state": "Andhra Pradesh",
+  "email": "orders@rrdurbar.com",
+  "phone": "+91 8712 11 00 11",
+  "ref": "SP-AUD-2026-11-21-RD",
+  "date": "2026-11-21",
+  "overall": 56,
+  "scores": {
+    "speed": 3,
+    "mobile": 5,
+    "conversion": 7,
+    "design": 6,
+    "seo": 10,
+    "overall": 56
+  },
+  "pdf": "Smart-Pursuit-Audit-RR-Durbar.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://www.rrdurbar.com/",
+    "checkedAt": "2026-11-21"
+  }
+}

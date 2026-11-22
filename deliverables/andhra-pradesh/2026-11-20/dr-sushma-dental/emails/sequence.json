@@ -1,0 +1,76 @@
+{
+  "business": "Dr. Sushma Dental",
+  "domain": "drsushmadental.com",
+  "ref": "SP-AUD-2026-11-20-DSD",
+  "createdAt": "2026-11-20T02:55:07.000Z",
+  "sendDate": "2026-11-20",
+  "cadenceDays": [
+    3,
+    3,
+    3
+  ],
+  "to": "drsushmadental@gmail.com",
+  "status": "draft",
+  "neverSendAutomatically": true,
+  "note": "Dates shift if the operator sends email 1 on a different day — recompute with `sequence --send-date YYYY-MM-DD`.",
+  "emails": [
+    {
+      "step": 1,
+      "id": "first",
+      "purpose": "deliver the audit, earn a reply",
+      "attachments": [
+        "reports/dr-sushma-dental/Smart-Pursuit-Audit-Dr.-Sushma-Dental.pdf"
+      ],
+      "subject": "Dr. Sushma Dental — what I found testing drsushmadental.com",
+      "words": 130,
+      "scheduledFor": "2026-11-20",
+      "scheduledForLong": "20 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/dr-sushma-dental/email-1-first.md"
+    },
+    {
+      "step": 2,
+      "id": "followup-1",
+      "purpose": "turn the top measured finding into a money argument",
+      "attachments": [],
+      "subject": "Re: Dr. Sushma Dental — what I found testing drsushmadental.com",
+      "words": 114,
+      "scheduledFor": "2026-11-23",
+      "scheduledForLong": "23 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/dr-sushma-dental/email-2-followup-1.md"
+    },
+    {
+      "step": 3,
+      "id": "followup-2",
+      "purpose": "show the outcome, make the next step concrete",
+      "attachments": [],
+      "subject": "Re: Dr. Sushma Dental — what a fixed version looks like",
+      "words": 121,
+      "scheduledFor": "2026-11-26",
+      "scheduledForLong": "26 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/dr-sushma-dental/email-3-followup-2.md"
+    },
+    {
+      "step": 4,
+      "id": "followup-3-final",
+      "purpose": "final mail, leave the door open, no pressure",
+      "attachments": [],
+      "subject": "Closing the loop — Dr. Sushma Dental",
+      "words": 98,
+      "scheduledFor": "2026-11-29",
+      "scheduledForLong": "29 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/dr-sushma-dental/email-4-followup-3-final.md"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "Project Antaryami",
+  "domain": "antaryamindia.org",
+  "city": "Kovvur",
+  "state": "Andhra Pradesh",
+  "email": "antaryamindia@gmail.com",
+  "phone": "+919291345135",
+  "ref": "SP-AUD-2026-11-21-PA",
+  "date": "2026-11-21",
+  "overall": 80,
+  "scores": {
+    "speed": 6,
+    "mobile": 10,
+    "conversion": 8,
+    "design": 9,
+    "seo": 8,
+    "overall": 80
+  },
+  "pdf": "Smart-Pursuit-Audit-Project-Antaryami.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://www.antaryamindia.org/contact",
+    "checkedAt": "2026-11-21"
+  }
+}

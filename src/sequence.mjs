@@ -92,7 +92,7 @@ export function buildSequence(audit, { sendDate = isoDate(new Date()), cadenceDa
     // Out of the report's context, the first "why" sentence of the form finding
     // reads as a fragment. Say the consequence instead.
     if (/no way to book|no enquiry form/i.test(plainTitle)) {
-      return `${plainTitle}. ${v.health ? "A patient comparing clinics at 11 pm" : "A customer comparing options at 11 pm"} will not start a call or a chat just to ask a question.`;
+      return `${plainTitle}. Check whether another contact route already meets your visitors’ needs.`;
     }
     const why = String(f.why || "").replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
     const firstSentence = why.split(/(?<=\.)\s/)[0] || why;
@@ -102,13 +102,8 @@ export function buildSequence(audit, { sendDate = isoDate(new Date()), cadenceDa
 
   // Every sentence here must be true for THIS site: built only from what was measured.
   const lcpSlow = Number.isFinite(m.lcpMs) && m.lcpMs > 4000;
-  const moneyLine = facts.http.adTech?.length
-    ? `Your pages load ${facts.http.adTech.slice(0, 3).map(adTechLabel).join(", ")}, so some of these visits are paid for. Every visitor who leaves before the page appears${lcpSlow ? ` (${m.lcp} on a phone today)` : ""}, or cannot find a quick way to get in touch, is money already spent.`
-    : lcpSlow
-      ? `Your homepage takes ${m.lcp} to show its main content on a phone. Google’s target is 2.5 s, and a good share of visitors leave before then.`
-      : `The quickest win in the audit is the first item: ${String(finding1.title || "").replace(/<[^>]+>/g, "").trim()}.`;
-
-  const outcomeLine = `Your mobile performance score is ${m.perfMobile}/100. The eight items on page 8 of the audit are the route to 90+, in the order that pays back fastest, and none of them require a new design.`;
+  const moneyLine = `The audit describes observations from one test run. Their effect on enquiries or revenue has not been measured.`;
+  const outcomeLine = `The report includes the measured results and suggested next steps. Targets are reference points; effort estimates require developer confirmation.`;
 
   const mailFacts = {
     business: {

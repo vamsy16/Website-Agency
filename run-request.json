@@ -1,8 +1,12 @@
 {
   "state": "Andhra Pradesh",
-  "max": 15,
+  "max": 5,
   "target": 5,
   "leadsLimit": 200,
   "niches": [],
-  "requestedAt": "2026-11-16T03:00:00Z"
+  "requestedAt": "2026-11-21-attachment-repair-1",
+  "repairOnly": true,
+  "reaudit": [],
+  "reauditReason": "Cancelled by operator; associated leads removed.",
+  "disabled": true
 }

@@ -3,6 +3,14 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## Review — 21 November 2026
+
+- Deliverables index now fails closed on the independent-review manifest: automated gate success cannot mark held reports sendable. Five live email contacts documented, with explicit PDF-copy/recipient holds and layout-QA failures.
+
+- Replacement review also excludes UltraTech Cement and Subbayya Gari Hotel under the chain policy; target only existing repository candidates for the next replacement run. Srinidhi held pending independent email confirmation.
+
+- Independent live-site review excludes Indian Terrain and RR Durbar (chains), and Project Antaryami (virtual-assistant franchise network). Their audit history is retained; they must not count toward the five local prospects.
+
 ## 1.4.0 — 15 November 2026
 
 **Confirmed emails only, real prospects only, honest wording.**
@@ -192,3 +200,21 @@ pages, 0 mm overflow, 23 verify checks; `class-diff` PASS; daily-run integration
   domains collapse, an unreachable site becomes `audit-failed` (not `audited`),
   no audit row is written, audited leads are not re-queued, and a lead that has
   used its attempts is left alone.
+
+## Reference-format rerun — 21 November 2026
+
+- Correct misleading cover H1/performance labels and unsupported enquiry-loss/delivery claims without changing score arithmetic or frozen styles. Add a fail-closed copy-honesty verifier check.
+- CSV-only runs filter requested domains before applying the screen cap, preserving all registry duplicate/cooldown/prospect gates.
+- Request exactly the five newly researched AP businesses in the full Anoos-reference format. Reports remain held until post-run review; qualitative reviews are not technical audits.
+
+- Diagnose run 44925860790: all five rejected because empty second findings page reduced the document to nine pages. Preserve ten pages with an explicit evidence-limits page; no fabricated findings or relaxed QA. Remove further unsupported summary/plan assertions and label effort estimates.
+
+## Attachment repair — 21 November 2026
+
+- Correct unsupported form, visitor-device, scrolling and LCP narrative without changing scoring or style assets. Remove the negated guarantee wording that unintentionally triggers draft spam review.
+- Add explicit repair-only workflow mode to remeasure the eleven existing draft businesses, with no unrelated sourcing and no automatic sending. Existing audit review holds remain.
+
+## Operator cleanup
+
+- Permanently removed the eleven cancelled Gmail drafts and deleted their active lead/audit registry rows, research, PDFs, email sequences and dedicated encrypted repair archives at the operator’s explicit request. This is an intentional exception to the normal append-only registry convention; unrelated records remain.
+- Disabled the abandoned run request behind a workflow preflight gate. Existing Git history and unrelated historical archives are not rewritten.

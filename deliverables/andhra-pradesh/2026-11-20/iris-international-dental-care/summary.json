@@ -1,0 +1,25 @@
+{
+  "name": "Iris International Dental Care",
+  "domain": "irisinternationaldentalcare.com",
+  "city": "Visakhapatnam",
+  "state": "Andhra Pradesh",
+  "email": "irisinternationaldentalcare@gmail.com",
+  "phone": "+91 81217 55558",
+  "ref": "SP-AUD-2026-11-20-IID",
+  "date": "2026-11-20",
+  "overall": 63,
+  "scores": {
+    "speed": 2,
+    "mobile": 4,
+    "conversion": 10,
+    "design": 10,
+    "seo": 9,
+    "overall": 63
+  },
+  "pdf": "Smart-Pursuit-Audit-Iris-International-Dental-Care.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://irisinternationaldentalcare.com/contact-us/",
+    "checkedAt": "2026-11-20"
+  }
+}

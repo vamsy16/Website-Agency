@@ -20,7 +20,7 @@ name: Agency Run
 
 on:
   push:
-    branches: [arena/841dee38-website-agency]
+    branches: [arena/c9db4150-website-agency]
     paths: [run-request.json]
   workflow_dispatch:
 
@@ -32,10 +32,24 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  ARENA_BRANCH: arena/841dee38-website-agency
+  ARENA_BRANCH: arena/c9db4150-website-agency
 
 jobs:
+  request-gate:
+    runs-on: ubuntu-latest
+    outputs:
+      enabled: ${{ steps.gate.outputs.enabled }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.ARENA_BRANCH }}
+      - id: gate
+        name: Respect cancelled run requests
+        run: |
+          echo "enabled=$(jq -r '(.disabled // false) | not' run-request.json)" >> "$GITHUB_OUTPUT"
   run:
+    needs: request-gate
+    if: needs.request-gate.outputs.enabled == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
@@ -65,6 +79,9 @@ jobs:
           echo "niches=$(jq -r '(.niches // []) | join(",")' run-request.json)" >> "$GITHUB_OUTPUT"
           echo "sendDate=$(jq -r '.sendDate // ""' run-request.json)" >> "$GITHUB_OUTPUT"
           echo "target=$(jq -r '.target // ""' run-request.json)" >> "$GITHUB_OUTPUT"
+          echo "csv=$(jq -r '.csv // ""' run-request.json)" >> "$GITHUB_OUTPUT"
+          echo "csvOnly=$(jq -r '.csvOnly // false' run-request.json)" >> "$GITHUB_OUTPUT"
+          echo "repairOnly=$(jq -r '.repairOnly // false' run-request.json)" >> "$GITHUB_OUTPUT"
           echo "reaudit=$(jq -r '(.reaudit // []) | join(",")' run-request.json)" >> "$GITHUB_OUTPUT"
           echo "reauditReason=$(jq -r '.reauditReason // "operator request"' run-request.json)" >> "$GITHUB_OUTPUT"
 
@@ -85,21 +102,30 @@ jobs:
         run: node src/cli.mjs reaudit --domain "$DOMAINS" --reason "$REASON" 2>&1 | tee reaudit.log || true
 
       - name: Daily run
+        if: steps.req.outputs.repairOnly != 'true'
         env:
           STATE: ${{ steps.req.outputs.state }}
           MAX: ${{ steps.req.outputs.max }}
           LIMIT: ${{ steps.req.outputs.leadsLimit }}
           NICHES: ${{ steps.req.outputs.niches }}
           TARGET: ${{ steps.req.outputs.target }}
+          CSV: ${{ steps.req.outputs.csv }}
+          CSV_ONLY: ${{ steps.req.outputs.csvOnly }}
         run: |
           args=(--state "$STATE" --max "$MAX" --leads-limit "$LIMIT")
           if [ -n "$NICHES" ]; then args+=(--niches "$NICHES"); fi
           if [ -n "$TARGET" ]; then args+=(--target "$TARGET"); fi
+          if [ -n "$CSV" ]; then args+=(--csv "$CSV"); fi
+          if [ "$CSV_ONLY" = "true" ]; then args+=(--csv-only); fi
           npm run run -- "${args[@]}" 2>&1 | tee run.log
 
       - name: Publish verified audits to deliverables/
         if: always()
-        run: node tools/publish-deliverables.mjs
+        env:
+          DELIVERABLES_BRANCH: ${{ env.ARENA_BRANCH }}
+        run: |
+          node tools/publish-deliverables.mjs
+          node tools/publish-layout-checks.mjs
 
       - name: Plain-text run summary (counts + audited/failed businesses only)
         if: always()

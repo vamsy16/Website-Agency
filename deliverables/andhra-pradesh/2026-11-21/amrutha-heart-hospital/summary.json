@@ -1,0 +1,25 @@
+{
+  "name": "Amrutha Heart Hospital",
+  "domain": "amruthahearthospital.co.in",
+  "city": null,
+  "state": "Andhra Pradesh",
+  "email": "support@amruthahearthospital.co.in",
+  "phone": "8592234419",
+  "ref": "SP-AUD-2026-11-21-AHH",
+  "date": "2026-11-21",
+  "overall": 63,
+  "scores": {
+    "speed": 5,
+    "mobile": 4,
+    "conversion": 8,
+    "design": 8,
+    "seo": 8,
+    "overall": 63
+  },
+  "pdf": "Smart-Pursuit-Audit-Amrutha-Heart-Hospital.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on http://amruthahearthospital.co.in/",
+    "checkedAt": "2026-11-21"
+  }
+}

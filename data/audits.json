@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-16T01:03:21.467Z",
+  "updatedAt": "2026-11-22T09:43:08.978Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -793,6 +793,294 @@
         "html": "reports/sree-bhalaji-industries-private-limited/report.html"
       },
       "fingerprint": "8e3e97ab50439255"
+    },
+    {
+      "domain": "hrdentalhospital.com",
+      "name": "HR Dental Hospital",
+      "ref": "SP-AUD-2026-11-20-HDH",
+      "generatedAt": "2026-11-20T02:50:00.195Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 3,
+        "mobile": 6,
+        "conversion": 10,
+        "design": 8,
+        "seo": 9,
+        "overall": 67
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1876750,
+      "files": {
+        "pdf": "reports/hr-dental-hospital/Smart-Pursuit-Audit-HR-Dental-Hospital.pdf",
+        "audit": "reports/hr-dental-hospital/audit.json",
+        "html": "reports/hr-dental-hospital/report.html"
+      },
+      "fingerprint": "2be4fbf5789ad8b5"
+    },
+    {
+      "domain": "irisinternationaldentalcare.com",
+      "name": "Iris International Dental Care",
+      "ref": "SP-AUD-2026-11-20-IID",
+      "generatedAt": "2026-11-20T02:52:58.546Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 2,
+        "mobile": 4,
+        "conversion": 10,
+        "design": 10,
+        "seo": 9,
+        "overall": 63
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2787551,
+      "files": {
+        "pdf": "reports/iris-international-dental-care/Smart-Pursuit-Audit-Iris-International-Dental-Care.pdf",
+        "audit": "reports/iris-international-dental-care/audit.json",
+        "html": "reports/iris-international-dental-care/report.html"
+      },
+      "fingerprint": "f22106b2d5883b3b"
+    },
+    {
+      "domain": "jamilidentalcare.in",
+      "name": "Jamili Dental Care",
+      "ref": "SP-AUD-2026-11-20-JDC",
+      "generatedAt": "2026-11-20T02:54:01.119Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 6,
+        "conversion": 7,
+        "design": 10,
+        "seo": 8,
+        "overall": 68
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2716544,
+      "files": {
+        "pdf": "reports/jamili-dental-care/Smart-Pursuit-Audit-Jamili-Dental-Care.pdf",
+        "audit": "reports/jamili-dental-care/audit.json",
+        "html": "reports/jamili-dental-care/report.html"
+      },
+      "fingerprint": "75fca2356de357c4"
+    },
+    {
+      "domain": "drsushmadental.com",
+      "name": "Dr. Sushma Dental",
+      "ref": "SP-AUD-2026-11-20-DSD",
+      "generatedAt": "2026-11-20T02:55:06.994Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 2,
+        "mobile": 8,
+        "conversion": 10,
+        "design": 8,
+        "seo": 9,
+        "overall": 68
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2029365,
+      "files": {
+        "pdf": "reports/dr-sushma-dental/Smart-Pursuit-Audit-Dr.-Sushma-Dental.pdf",
+        "audit": "reports/dr-sushma-dental/audit.json",
+        "html": "reports/dr-sushma-dental/report.html"
+      },
+      "fingerprint": "a0832b7a2827e139"
+    },
+    {
+      "domain": "msdentalhospital.in",
+      "name": "MS Dental Hospital",
+      "ref": "SP-AUD-2026-11-20-MDH",
+      "generatedAt": "2026-11-20T03:04:11.963Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 4,
+        "mobile": 6,
+        "conversion": 8,
+        "design": 10,
+        "seo": 9,
+        "overall": 68
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1753804,
+      "files": {
+        "pdf": "reports/ms-dental-hospital/Smart-Pursuit-Audit-MS-Dental-Hospital.pdf",
+        "audit": "reports/ms-dental-hospital/audit.json",
+        "html": "reports/ms-dental-hospital/report.html"
+      },
+      "fingerprint": "5790de5474c0dbfd"
+    },
+    {
+      "domain": "indianterrain.com",
+      "name": "Indian Terrian",
+      "ref": "SP-AUD-2026-11-21-IT",
+      "generatedAt": "2026-11-21T09:21:35.173Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 2,
+        "mobile": 6,
+        "conversion": 10,
+        "design": 6,
+        "seo": 8,
+        "overall": 60
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2330914,
+      "files": {
+        "pdf": "reports/indian-terrian/Smart-Pursuit-Audit-Indian-Terrian.pdf",
+        "audit": "reports/indian-terrian/audit.json",
+        "html": "reports/indian-terrian/report.html"
+      },
+      "fingerprint": "a7fcbaaae46a42a0"
+    },
+    {
+      "domain": "antaryamindia.org",
+      "name": "Project Antaryami",
+      "ref": "SP-AUD-2026-11-21-PA",
+      "generatedAt": "2026-11-21T09:25:34.638Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 6,
+        "mobile": 10,
+        "conversion": 8,
+        "design": 9,
+        "seo": 8,
+        "overall": 80
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1252547,
+      "files": {
+        "pdf": "reports/project-antaryami/Smart-Pursuit-Audit-Project-Antaryami.pdf",
+        "audit": "reports/project-antaryami/audit.json",
+        "html": "reports/project-antaryami/report.html"
+      },
+      "fingerprint": "a9b65f4248312888"
+    },
+    {
+      "domain": "rrdurbar.com",
+      "name": "RR Durbar",
+      "ref": "SP-AUD-2026-11-21-RD",
+      "generatedAt": "2026-11-21T09:33:59.291Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 3,
+        "mobile": 5,
+        "conversion": 7,
+        "design": 6,
+        "seo": 10,
+        "overall": 56
+      },
+      "pdfPages": 10,
+      "pdfBytes": 3271273,
+      "files": {
+        "pdf": "reports/rr-durbar/Smart-Pursuit-Audit-RR-Durbar.pdf",
+        "audit": "reports/rr-durbar/audit.json",
+        "html": "reports/rr-durbar/report.html"
+      },
+      "fingerprint": "73e64a62422285f5"
+    },
+    {
+      "domain": "ultratechcement.com",
+      "name": "Ultratech Cement Limited",
+      "ref": "SP-AUD-2026-11-21-UCL",
+      "generatedAt": "2026-11-21T09:43:44.290Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 2,
+        "mobile": 8,
+        "conversion": 7,
+        "design": 8,
+        "seo": 7,
+        "overall": 59
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2730514,
+      "files": {
+        "pdf": "reports/ultratech-cement-limited/Smart-Pursuit-Audit-Ultratech-Cement-Limited.pdf",
+        "audit": "reports/ultratech-cement-limited/audit.json",
+        "html": "reports/ultratech-cement-limited/report.html"
+      },
+      "fingerprint": "865497c38b939fa6"
+    },
+    {
+      "domain": "srinidhirestaurant.com",
+      "name": "Srinidhi Veg & Non-Veg Family Restaurant",
+      "ref": "SP-AUD-2026-11-21-SV&",
+      "generatedAt": "2026-11-21T09:45:10.569Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 3,
+        "mobile": 8,
+        "conversion": 10,
+        "design": 8,
+        "seo": 10,
+        "overall": 72
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2046614,
+      "files": {
+        "pdf": "reports/srinidhi-veg-and-non-veg-family-restaurant/Smart-Pursuit-Audit-Srinidhi-Veg-Non-Veg-Family-Restaurant.pdf",
+        "audit": "reports/srinidhi-veg-and-non-veg-family-restaurant/audit.json",
+        "html": "reports/srinidhi-veg-and-non-veg-family-restaurant/report.html"
+      },
+      "fingerprint": "dc0e43122f5360aa"
+    },
+    {
+      "domain": "subbayyagarihotel.in",
+      "name": "Subbayya Gari Hotel",
+      "ref": "SP-AUD-2026-11-21-SGH",
+      "generatedAt": "2026-11-21T09:48:05.491Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 3,
+        "mobile": 6,
+        "conversion": 10,
+        "design": 10,
+        "seo": 8,
+        "overall": 69
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1559804,
+      "files": {
+        "pdf": "reports/subbayya-gari-hotel/Smart-Pursuit-Audit-Subbayya-Gari-Hotel.pdf",
+        "audit": "reports/subbayya-gari-hotel/audit.json",
+        "html": "reports/subbayya-gari-hotel/report.html"
+      },
+      "fingerprint": "0e5d91b3f20f91de"
+    },
+    {
+      "domain": "amruthahearthospital.co.in",
+      "name": "Amrutha Heart Hospital",
+      "ref": "SP-AUD-2026-11-21-AHH",
+      "generatedAt": "2026-11-21T16:17:41.360Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 4,
+        "conversion": 8,
+        "design": 8,
+        "seo": 8,
+        "overall": 63
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1552525,
+      "files": {
+        "pdf": "reports/amrutha-heart-hospital/Smart-Pursuit-Audit-Amrutha-Heart-Hospital.pdf",
+        "audit": "reports/amrutha-heart-hospital/audit.json",
+        "html": "reports/amrutha-heart-hospital/report.html"
+      },
+      "fingerprint": "c9c967408227a2a7"
     }
   ]
 }

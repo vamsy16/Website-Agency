@@ -1,0 +1,76 @@
+{
+  "business": "Indian Terrian",
+  "domain": "indianterrain.com",
+  "ref": "SP-AUD-2026-11-21-IT",
+  "createdAt": "2026-11-21T09:21:35.180Z",
+  "sendDate": "2026-11-21",
+  "cadenceDays": [
+    3,
+    3,
+    3
+  ],
+  "to": "support@indianterrain.com",
+  "status": "draft",
+  "neverSendAutomatically": true,
+  "note": "Dates shift if the operator sends email 1 on a different day — recompute with `sequence --send-date YYYY-MM-DD`.",
+  "emails": [
+    {
+      "step": 1,
+      "id": "first",
+      "purpose": "deliver the audit, earn a reply",
+      "attachments": [
+        "reports/indian-terrian/Smart-Pursuit-Audit-Indian-Terrian.pdf"
+      ],
+      "subject": "Indian Terrian — what I found testing indianterrain.com",
+      "words": 130,
+      "scheduledFor": "2026-11-21",
+      "scheduledForLong": "21 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/indian-terrian/email-1-first.md"
+    },
+    {
+      "step": 2,
+      "id": "followup-1",
+      "purpose": "turn the top measured finding into a money argument",
+      "attachments": [],
+      "subject": "Re: Indian Terrian — what I found testing indianterrain.com",
+      "words": 114,
+      "scheduledFor": "2026-11-24",
+      "scheduledForLong": "24 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/indian-terrian/email-2-followup-1.md"
+    },
+    {
+      "step": 3,
+      "id": "followup-2",
+      "purpose": "show the outcome, make the next step concrete",
+      "attachments": [],
+      "subject": "Re: Indian Terrian — what a fixed version looks like",
+      "words": 121,
+      "scheduledFor": "2026-11-27",
+      "scheduledForLong": "27 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/indian-terrian/email-3-followup-2.md"
+    },
+    {
+      "step": 4,
+      "id": "followup-3-final",
+      "purpose": "final mail, leave the door open, no pressure",
+      "attachments": [],
+      "subject": "Closing the loop — Indian Terrian",
+      "words": 98,
+      "scheduledFor": "2026-11-30",
+      "scheduledForLong": "30 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/indian-terrian/email-4-followup-3-final.md"
+    }
+  ]
+}

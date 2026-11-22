@@ -1,0 +1,25 @@
+{
+  "name": "Subbayya Gari Hotel",
+  "domain": "subbayyagarihotel.in",
+  "city": null,
+  "state": "Andhra Pradesh",
+  "email": "info@subbayyagarihotel.in",
+  "phone": "+91 81799 93485",
+  "ref": "SP-AUD-2026-11-21-SGH",
+  "date": "2026-11-21",
+  "overall": 69,
+  "scores": {
+    "speed": 3,
+    "mobile": 6,
+    "conversion": 10,
+    "design": 10,
+    "seo": 8,
+    "overall": 69
+  },
+  "pdf": "Smart-Pursuit-Audit-Subbayya-Gari-Hotel.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://subbayyagarihotel.in/",
+    "checkedAt": "2026-11-21"
+  }
+}

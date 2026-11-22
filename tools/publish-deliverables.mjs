@@ -17,7 +17,7 @@ const REPORTS = path.join(ROOT, "reports");
 const OUTREACH = path.join(ROOT, "outreach");
 const OUT = path.join(ROOT, "deliverables");
 const REPO = process.env.GITHUB_REPOSITORY || "vamsy16/Website-Agency";
-const BRANCH = process.env.DELIVERABLES_BRANCH || "arena/841dee38-website-agency";
+const BRANCH = process.env.DELIVERABLES_BRANCH || "arena/c9db4150-website-agency";
 
 const slugify = s => String(s || "unknown").toLowerCase().normalize("NFKD")
   .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
@@ -91,7 +91,13 @@ const walk = d => {
 walk(OUT);
 rows.sort((a, b) => (b.date || "").localeCompare(a.date || "") || (a.overall ?? 0) - (b.overall ?? 0));
 
+// Independent review is an additional fail-closed gate, not an override of verify.json.
+const independentReviewFile = path.join(OUT, "runs", "2026-11-21-five-leads-review.json");
+const independentReview = fs.existsSync(independentReviewFile) ? readJSON(independentReviewFile) : null;
 function verdictFor(r) {
+  const review = independentReview?.leads?.find(l => l.domain === r.domain);
+  if (review && review.approved !== true) return "❌ hold — independent review; see runs/2026-11-21-five-leads-review.json";
+  if (independentReview?.withheldOtherDomains?.includes(r.domain)) return "❌ hold — excluded by independent review";
   const lead = LEADS.find(l => l.domain === r.domain);
   const np = lead ? notAProspect(lead) : null;
   if (np) return `❌ no — ${np.kind}: ${np.reason}`;

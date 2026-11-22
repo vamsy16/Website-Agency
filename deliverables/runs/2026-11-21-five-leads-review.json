@@ -1,0 +1,93 @@
+{
+  "state": "Andhra Pradesh",
+  "reviewDate": "2026-11-21",
+  "requested": 5,
+  "status": "incomplete-audits-held",
+  "dedupeAuthority": [
+    "data/leads.json",
+    "data/audits.json"
+  ],
+  "neverSendAutomatically": true,
+  "leads": [
+    {
+      "domain": "akiraeyehospital.in",
+      "approved": false,
+      "reason": "New batch: awaiting live email/location confirmation and independent post-audit PDF review. Not approved merely because automated verification passes."
+    },
+    {
+      "domain": "modernretinacentre.com",
+      "approved": false,
+      "reason": "New batch: awaiting live email/location confirmation and independent post-audit PDF review. Not approved merely because automated verification passes."
+    },
+    {
+      "domain": "meenakshieyehospital.com",
+      "approved": false,
+      "reason": "New batch: awaiting live email/location confirmation and independent post-audit PDF review. Not approved merely because automated verification passes."
+    },
+    {
+      "domain": "padmavathihospital.org",
+      "approved": false,
+      "reason": "New batch: awaiting live email/location confirmation and independent post-audit PDF review. Not approved merely because automated verification passes."
+    },
+    {
+      "domain": "adityanursinghome.com",
+      "approved": false,
+      "reason": "New batch: awaiting live email/location confirmation and independent post-audit PDF review. Not approved merely because automated verification passes."
+    },
+    {
+      "domain": "amruthahearthospital.co.in",
+      "approved": false,
+      "reason": "New batch: awaiting live email/location confirmation and independent post-audit PDF review. Not approved merely because automated verification passes."
+    },
+    {
+      "domain": "joyhospital.in",
+      "approved": false,
+      "reason": "New batch: awaiting live email/location confirmation and independent post-audit PDF review. Not approved merely because automated verification passes."
+    },
+    {
+      "domain": "ravichaitanyahospitals.com",
+      "approved": false,
+      "reason": "New batch: awaiting live email/location confirmation and independent post-audit PDF review. Not approved merely because automated verification passes."
+    },
+    {
+      "domain": "vijayaicuandmultispecialityhospital.com",
+      "approved": false,
+      "reason": "New batch: awaiting live email/location confirmation and independent post-audit PDF review. Not approved merely because automated verification passes."
+    },
+    {
+      "domain": "saitowers.com",
+      "approved": false,
+      "reason": "New batch: awaiting live email/location confirmation and independent post-audit PDF review. Not approved merely because automated verification passes."
+    },
+    {
+      "domain": "pepkan.com",
+      "approved": false,
+      "reason": "New batch: awaiting live email/location confirmation and independent post-audit PDF review. Not approved merely because automated verification passes."
+    },
+    {
+      "domain": "vijayamedicalcentre.in",
+      "approved": false,
+      "reason": "New batch: awaiting live email/location confirmation and independent post-audit PDF review. Not approved merely because automated verification passes."
+    }
+  ],
+  "withheldOtherDomains": [
+    "indianterrain.com",
+    "rrdurbar.com",
+    "antaryamindia.org",
+    "ultratechcement.com",
+    "subbayyagarihotel.in",
+    "srinidhirestaurant.com"
+  ],
+  "limits": "Published emails are not mailbox-deliverability checks. No contacts or audit measurements were fabricated. Pipeline verification is not independent raw-metric recalculation. No Gmail drafts created and nothing sent.",
+  "registryCheck": {
+    "leads": 234,
+    "audits": 47,
+    "duplicateGroups": {
+      "domains": [],
+      "emails": [],
+      "phones": [],
+      "namesCities": [],
+      "auditDomains": []
+    }
+  }
+}

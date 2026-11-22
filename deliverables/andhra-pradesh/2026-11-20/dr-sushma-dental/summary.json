@@ -1,0 +1,25 @@
+{
+  "name": "Dr. Sushma Dental",
+  "domain": "drsushmadental.com",
+  "city": "Vijayawada",
+  "state": "Andhra Pradesh",
+  "email": "drsushmadental@gmail.com",
+  "phone": "+91 73996 69977",
+  "ref": "SP-AUD-2026-11-20-DSD",
+  "date": "2026-11-20",
+  "overall": 68,
+  "scores": {
+    "speed": 2,
+    "mobile": 8,
+    "conversion": 10,
+    "design": 8,
+    "seo": 9,
+    "overall": 68
+  },
+  "pdf": "Smart-Pursuit-Audit-Dr.-Sushma-Dental.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://www.drsushmadental.com/",
+    "checkedAt": "2026-11-20"
+  }
+}

@@ -94,10 +94,10 @@ function defaultCoverStats(facts, findings) {
   const first = findings.all[0] || { title: "" };
   const third = m.visibleForms === 0 && facts.http.contactShortcode
     ? { n: "1", unit: "", label: "Broken enquiry form. Your Contact page prints raw code where the form should load." }
-    : { n: String(m.h1Count), unit: "", label: "Competing H1 headings on one page, so neither a visitor nor a crawler knows the topic." };
+    : { n: String(m.h1Count), unit: "", label: m.h1Count > 1 ? "H1 headings detected on the homepage. Review whether the page has a clear primary topic." : m.h1Count === 1 ? "H1 heading detected on the homepage." : "H1 headings detected on the homepage; review the document outline." };
   return [
-    { n: String(m.perfMobile), unit: "/ 100", label: `Mobile performance score. Google calls below 50 “poor”.` },
-    { n: secNum(m.lcpMs), unit: "s", label: `Until your main image appears on a phone. Google’s target is 2.5 s.` },
+    { n: String(m.perfMobile), unit: "/ 100", label: `Lighthouse mobile performance score in this test run.` },
+    { n: secNum(m.lcpMs), unit: "s", label: `Largest Contentful Paint in the mobile lab test. Good LCP target: 2.5 s or less.` },
     third,
   ];
 }
@@ -115,14 +115,14 @@ function pageSummary(a, facts) {
 
     <div class="kpis">
       <div class="kpi ${m.perfMobile < 50 ? "bad" : "warn"}"><div class="n">${m.perfMobile}<small>/100</small></div><div class="l">Mobile performance<br>Lighthouse, simulated 4G</div></div>
-      <div class="kpi ${m.lcpMs > 4000 ? "bad" : "warn"}"><div class="n">${secNum(m.lcpMs)}<small>s</small></div><div class="l">Main image appears<br>Google target: 2.5 s</div></div>
+      <div class="kpi ${m.lcpMs > 4000 ? "bad" : "warn"}"><div class="n">${secNum(m.lcpMs)}<small>s</small></div><div class="l">Largest content appears<br>Google target: 2.5 s</div></div>
       <div class="kpi ${m.ttiMs > 5000 ? "warn" : "good"}"><div class="n">${round((m.ttiMs || 0) / 1000, 1)}<small>s</small></div><div class="l">Until the page is usable<br>(time to interactive)</div></div>
-      <div class="kpi bad"><div class="n">${m.visibleForms === 0 ? "0" : m.visibleForms}</div><div class="l">Working forms on the home page<br>${m.visibleForms === 0 ? (facts.http.contactShortcode ? "Contact page prints raw code" : "No capture route") : "Measured live"}</div></div>
+      <div class="kpi bad"><div class="n">${m.visibleForms === 0 ? "0" : m.visibleForms}</div><div class="l">Form fields detected on homepage<br>${m.visibleForms === 0 ? (facts.http.contactShortcode ? "Contact page prints raw code" : "Other contact routes may exist") : "Delivery not tested"}</div></div>
     </div>
 
     <div style="display:grid;grid-template-columns:1.15fr 1fr;gap:8mm;margin-top:1mm">
       <div>
-        <div class="eyebrow mut">Three things this is costing you</div>
+        <div class="eyebrow mut">Prioritised observations</div>
         <div class="numlist">
 ${s.costs
   .slice(0, 3)
@@ -176,14 +176,12 @@ function defaultSummary(facts, findings) {
   if (m.schemaTypes?.length) good.push(`${m.schemaTypes[0]} structured data`);
   if (facts.http?.canonical) good.push("a canonical tag");
   return {
-    title: `Your website is the first thing a new customer meets.<br>Right now it is also the <em>slowest</em> part of the visit.`,
-    lede: `We ran the same tests Google runs, on the same page a visitor sees when they search for your service on a phone. ${findings.all.length} things stood out — ${findings.all.filter(f => f.severity === "Critical").length} of them are losing you enquiries today.`,
+    title: `Your website, measured.<br>Review the evidence <em>before deciding what to change.</em>`,
+    lede: `We ran the same tests Google runs, on the same page a visitor sees when they search for your service on a phone. ${findings.all.length} findings were identified. Their effect on enquiries has not been measured.`,
     costs,
-    working: `Credit where it is due: ${good.length ? good.join(", ") : "the pages do load"}. The foundations are there — the plumbing is not.`,
-    verdict: `Most of the problems below are not design problems. They are ${issueText}. The urgent ones are fixed in about a week, without changing how the site looks.`,
-    bill: h.adTech?.length
-      ? `Your pages load ${e(h.adTech.map(adTechLabel).join(", "))} alongside analytics. That is a paid-traffic setup — and if you are buying clicks, you are paying to send them to pages that cannot take ${v.noun}. That is not a speed problem. That is the funnel.`
-      : null,
+    working: `Credit where it is due: ${good.length ? good.join(", ") : "the pages do load"}. These are observed features, not proof of overall site quality.`,
+    verdict: `Prioritise the supported findings below. Confirm their relevance and agree a scope before estimating delivery or deciding on a redesign.`,
+    bill: h.adTech?.length ? `Tracking-related scripts detected: ${e(h.adTech.map(adTechLabel).join(", "))}. Script presence alone does not establish active paid campaigns or advertising spend.` : null,
   };
 }
 
@@ -239,7 +237,7 @@ ${rows
 
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3.4mm;margin-top:5mm">
       <div class="card"><div class="eyebrow mut" style="margin-bottom:1.4mm">Mobile</div><div style="font-family:'Instrument Serif',serif;font-size:19pt;line-height:1">${facts.metric.perfMobile}<span style="font-size:9pt;color:var(--mut)">/100</span></div><p class="small" style="margin-top:1.4mm">Lighthouse performance, 4× CPU slowdown, Slow 4G</p></div>
-      <div class="card"><div class="eyebrow mut" style="margin-bottom:1.4mm">Desktop</div><div style="font-family:'Instrument Serif',serif;font-size:19pt;line-height:1">${facts.metric.perfDesktop}<span style="font-size:9pt;color:var(--mut)">/100</span></div><p class="small" style="margin-top:1.4mm">Same page on a laptop — this is why nobody noticed</p></div>
+      <div class="card"><div class="eyebrow mut" style="margin-bottom:1.4mm">Desktop</div><div style="font-family:'Instrument Serif',serif;font-size:19pt;line-height:1">${facts.metric.perfDesktop}<span style="font-size:9pt;color:var(--mut)">/100</span></div><p class="small" style="margin-top:1.4mm">Same page under the desktop test profile</p></div>
       <div class="card"><div class="eyebrow mut" style="margin-bottom:1.4mm">Accessibility</div><div style="font-family:'Instrument Serif',serif;font-size:19pt;line-height:1">${facts.metric.accessibility}<span style="font-size:9pt;color:var(--mut)">/100</span></div><p class="small" style="margin-top:1.4mm">Contrast and labelling issues on interactive elements</p></div>
     </div>
 
@@ -271,7 +269,7 @@ ${phones
   .join("\n")}
       ${laptop ? `<div class="phone">
         <div class="frame" style="height:97mm;background:#fff;border-color:#0D2321"><img src="${e(laptop.src)}" alt="" style="object-position:left top;object-fit:cover"></div>
-        <div class="cap"><b>The same site on a laptop</b>It holds up — ${m.perfDesktop}/100. This is why the problem has gone unnoticed. Your visitors are not on a laptop.</div>
+        <div class="cap"><b>The same site on a laptop</b>Desktop performance score: ${m.perfDesktop}/100. Actual visitor device mix was not measured.</div>
       </div>` : ""}
       <div style="flex:1;padding-left:2mm">
         <div class="eyebrow mut">Also measured</div>
@@ -296,11 +294,11 @@ ${phones
 
         <div class="m ok" style="left:${pctPos(m.ttfbMs, 20000, 2, 8)}%"><div class="v">${m.ttfb}</div><div class="d">server responds</div><div class="dot"></div></div>
         <div class="m warn" style="left:${pctPos(m.fcpMs, 20000, 2, 22)}%"><div class="v">${m.fcp}</div><div class="d">first paint —<br>still looks empty</div><div class="dot"></div></div>
-        <div class="m slow" style="left:${pctPos(m.lcpMs, 20000, 2, 96)}%"><div class="v">${m.lcp}</div><div class="d">main image appears<br>(LCP)</div><div class="dot"></div></div>
+        <div class="m slow" style="left:${pctPos(m.lcpMs, 20000, 2, 96)}%"><div class="v">${m.lcp}</div><div class="d">largest content appears<br>(LCP)</div><div class="dot"></div></div>
         <div class="m slow" style="left:${pctPos(m.ttiMs, 20000, 2, 99)}%"><div class="v">${m.tti}</div><div class="d">page becomes<br>interactive</div><div class="dot"></div></div>
       </div>
       <div class="band" style="margin-top:2mm;display:flex;justify-content:space-between;align-items:center;gap:6mm">
-        <p style="flex:1"><b>Google’s definition of “good” is 2.5 s.</b> Your main image arrives at ${m.lcp} — ${m.lcpOver}× over the line. On office wifi it feels fine. On a phone on mobile data, it does not.</p>
+        <p style="flex:1"><b>Google’s definition of “good” is 2.5 s.</b> The largest content element rendered at ${m.lcp} in this lab run (${m.lcpOver}× the target). Real-user experience may differ.</p>
       </div>
     </div>
 
@@ -318,7 +316,12 @@ function pctPos(ms, max = 20000, minPct = 2, maxPct = 99) {
 
 // ---------------------------------------------------------------- 5-6. FINDINGS
 function pageFindings(a, facts, list, pageNo, right, heading, subject) {
-  if (!list.length) return "";
+  if (!list.length) return `<section class="page"><div class="pad">
+    ${top(facts, right)}<div class="eyebrow">Evidence limits</div>
+    <h2 class="t">No additional supported findings.</h2>
+    <p class="lede">The test produced ${a.findings.all.length} findings, presented on the preceding page. Additional issues have not been invented to fill this report.</p>
+    <div class="card"><h3>What this does not establish</h3><p>A limited automated test is not a security, accessibility or complete functional certification. Enquiry delivery and business outcomes have not been measured.</p></div>
+    ${footer(facts, pageNo)}</div></section>`;
   return `<section class="page">
   <div class="pad">
     ${top(facts, right)}
@@ -337,7 +340,7 @@ ${list
             <p>${f.measured}</p>
           </div>
           <div>
-            <div class="k">Why it costs you ${e(subject)}</div>
+            <div class="k">Why review this</div>
             <p>${f.why}</p>
           </div>
           <div>
@@ -434,8 +437,8 @@ ${tableRows}
     <div class="band" style="margin-top:6mm">
       <h3>${analyse ? "The opening is bigger than the gap" : "Where the gain is"}</h3>
       <p>${analyse
-        ? `Nobody in this category has solved this. Get the server to respond in under 500 ms and the main image to appear under 2.5 s, and the site is measurably faster than every competitor tested. That is not a slogan; it is a number that can go on the homepage and a signal Google reads on every visit.`
-        : `LCP is ${m.lcp} against a 2.5 s target, and blocking time is ${m.tbt} against 200 ms. Both are delivery problems — hosting, caching, image sizes and scripts — not design problems. They are also the cheapest items in this report to fix.`}</p>
+        ? `The table compares only the sites tested in this run. Use the measured gaps to prioritise investigation; improvements require a new test before making comparative claims.`
+        : `LCP is ${m.lcp} against a 2.5 s target, and blocking time is ${m.tbt} against 200 ms. Investigate hosting, caching, images and scripts before selecting fixes. Implementation cost and results have not been measured.`}</p>
     </div>
 
     ${analyse ? `<div style="display:grid;grid-template-columns:1fr 1fr;gap:5mm;margin-top:6mm">
@@ -484,11 +487,11 @@ ${plan
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:5mm;margin-top:6mm">
       <div class="band">
         <h3>Weeks 1–2: the rescue</h3>
-        <p>${a.phases?.rescue || `The first half of the list. Same design, same content, same brand. The site simply starts working — ${facts.http.contactShortcode ? "the form renders, " : ""}the ${audienceOf(facts.business).health ? "booking" : "call and enquiry"} buttons work, the page loads in under three seconds.`}</p>
+        <p>${a.phases?.rescue || `The first half of the list. Same design, same content, same brand. Prioritise the measured issues, test the enquiry controls, and re-measure after changes. Timing and results depend on the agreed scope.`}</p>
       </div>
       <div class="card">
         <h3>Weeks 3–4: the rebuild</h3>
-        <p>${a.phases?.rebuild || "The second half. A mobile-first homepage built around one action, service pages that rank, location pages for local search, and analytics that show which page produced which phone call."}</p>
+        <p>${a.phases?.rebuild || "The second half. A mobile-first homepage built around one action, service pages with clear content, location pages for local search, and analytics that show which page produced which phone call."}</p>
       </div>
     </div>
 
@@ -505,14 +508,14 @@ function defaultPlan(facts, findings) {
   const m = facts.metric;
   const v = audienceOf(facts.business);
   return [
-    { id: "01", change: "Contact form rebuilt", today: facts.http.contactShortcode ? "Prints raw shortcode; collects nothing" : m.visibleForms === 0 ? "No form to capture enquiries" : "Form present but untracked", target: "Working form + thank-you page, tracked", effort: "<b>1 hour</b>" },
-    { id: "02", change: v.health ? "Booking path" : "Enquiry path", today: m.visibleForms === 0 ? "No form on the homepage" : "Form exists, not prominent", target: v.health ? "Book block above fold + sticky call bar" : "Enquiry block above fold + sticky call bar", effort: "<b>½ day</b>" },
+    { id: "01", change: "Contact form rebuilt", today: facts.http.contactShortcode ? "Prints raw shortcode; collects nothing" : m.visibleForms === 0 ? "No fields detected; check other routes" : "Form fields detected; delivery untested", target: "Working form + thank-you page, tracked", effort: "<b>1 hour</b>" },
+    { id: "02", change: v.health ? "Booking path" : "Enquiry path", today: m.visibleForms === 0 ? "No form on the homepage" : "Form fields detected", target: v.health ? "Book block above fold + sticky call bar" : "Enquiry block above fold + sticky call bar", effort: "<b>½ day</b>" },
     { id: "03", change: "Server &amp; caching", today: `${m.ttfb} response`, target: "<b>Under 500 ms</b>", effort: "1 day" },
-    { id: "04", change: "Images", today: `${fmtInt(m.oversizedImgsKb)} KiB oversized, no next-gen format`, target: "<b>LCP under 2.5 s</b>", effort: "1 day" },
+    { id: "04", change: "Images", today: `${fmtInt(m.oversizedImgsKb)} KiB potential image savings`, target: "<b>LCP under 2.5 s</b>", effort: "1 day" },
     { id: "05", change: "Scripts &amp; tracking", today: `${m.tbt} blocking, ${m.thirdPartyCookies} cookies`, target: "<b>Under 200 ms</b>, one analytics tool", effort: "½ day" },
     { id: "06", change: "Headline &amp; structure", today: `${m.h1Count} H1s, ${m.sections} sections`, target: "1 H1, 5 sections, services visible", effort: "2 days" },
-    { id: "07", change: "Local SEO &amp; schema", today: "Structured data incomplete", target: "LocalBusiness + locations, hours, area", effort: "1 day" },
-    { id: "08", change: "Measurement", today: "No conversion tracking", target: "Form + call + WhatsApp events", effort: "½ day" },
+    { id: "07", change: "Local SEO &amp; schema", today: `${(facts.http.schemaTypes || []).length} schema types detected`, target: "LocalBusiness + locations, hours, area", effort: "1 day" },
+    { id: "08", change: "Measurement", today: "Conversion events not tested", target: "Form + call + WhatsApp events", effort: "½ day" },
   ];
 }
 
@@ -617,15 +620,15 @@ function pageNextSteps(a, facts) {
       </div>
       <div class="step">
         <div class="n">3</div>
-        <h4>Week one: it works</h4>
-        <p>${facts.http.contactShortcode ? "The form renders, the" : "The"} ${audienceOf(facts.business).path} is live, the page is under three seconds. In week two we re-run this exact audit and send the before/after — the same numbers, on a page that performs.</p>
+        <h4>Implement and re-test</h4>
+        <p>Agree a scope and schedule, implement the changes, then repeat the measurements. Performance and enquiry improvements are not guaranteed.</p>
       </div>
     </div>
 
     <div class="cta">
       <div class="l">
         <div class="k">Reply to this audit — or call</div>
-        <div class="h">Let’s fix the ${facts.http.contactShortcode ? "form" : audienceOf(facts.business).path} first.<br>It takes ${facts.http.contactShortcode ? "an hour" : "half a day"}.</div>
+        <div class="h">Let’s review the measured findings.<br>Scope and timing agreed before work.</div>
       </div>
       <div class="r">
         <div class="ph">${e(facts.agency.phone || "")}</div>
@@ -638,7 +641,7 @@ function pageNextSteps(a, facts) {
       <div>
         <div class="eyebrow mut">Kept honest</div>
         <p style="font-size:8.2pt;color:var(--ink2);line-height:1.5">
-          Every number in this report was measured on <b>${e(facts.date.long)}</b> against the public site — no estimates, no stock benchmarks, no invented statistics. Nothing here is a guarantee of revenue; it is a description of what the page does today and what it should do.
+          Measurements are from <b>${e(facts.date.long)}</b>. Scores use the agency rubric. Targets are labelled goals; effort is an estimate, not a measurement. Enquiry or revenue effects have not been measured. No outcome is guaranteed.
         </p>
         <p style="font-size:8.2pt;color:var(--ink2);line-height:1.5;margin-top:2.4mm">
           ${a.demo ? "A working rebuild of the homepage is already running — ask for the link and open it on your own phone. " : ""}If you would rather hand this to your own developer, keep it: the audit is yours. ${e(facts.outreach?.optOutLine || "If you would rather not hear from us again, reply “no thanks” and we will not follow up.")}
@@ -691,8 +694,8 @@ export function renderReport(audit) {
     pageSummary(audit, facts),
     pageScorecard(audit, facts),
     pagePatientView(audit, facts),
-    pageFindings(audit, facts, findings.page1, 5, "Findings 01–03", audit.headings?.page5 || `Six findings. ${findings.all.filter(f => f.severity === "Critical").length} of them are <em>costing you ${audienceOf(facts.business).nounPl} right now.</em>`, subject),
-    pageFindings(audit, facts, findings.page2, 6, "Findings 04–06", audit.headings?.page6 || `The quieter problems — <em>the ones that cap your growth.</em>`, subject),
+    pageFindings(audit, facts, findings.page1, 5, "Findings 01–03", audit.headings?.page5 || `${findings.all.length} measured findings. <em>Review the supporting evidence.</em>`, subject),
+    pageFindings(audit, facts, findings.page2, 6, "Findings 04–06", audit.headings?.page6 || `Further findings — <em>where supported by the test.</em>`, subject),
     pageBenchmark(audit, facts),
     pagePlan(audit, facts),
     pageDirection(audit, facts),

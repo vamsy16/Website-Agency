@@ -320,11 +320,11 @@ export function deriveFindings(raw, facts, business) {
     candidates.push({
       severity: "Critical",
       tone: "crit",
-      title: v.health ? `There is no way to book an appointment from the homepage` : `There is no enquiry form on the homepage`,
+      title: v.health ? `No appointment form fields were detected on the homepage` : `No enquiry form fields were detected on the homepage`,
       measured: `Zero form fields on the home page. The page has <b>${m.telLinks}</b> click-to-call links and <b>${m.whatsapp}</b> WhatsApp capture element${m.whatsapp === 1 ? "" : "s"}.`,
       why: v.health
-        ? `WhatsApp suits a patient who is already sure. It loses the one who is comparing three clinics at 11 pm and does not want to start a conversation to ask a price. Every additional step is a decision to leave.`
-        : `A phone call or WhatsApp suits a customer who is already sure. It loses the one who is ${v.comparing} at 11 pm and does not want to start a conversation just to ask a price. Every additional step is a decision to leave.`,
+        ? `A patient may prefer a written appointment request. Check whether a separate booking page or another suitable contact route already meets that need. No lost appointments were measured.`
+        : `Visitors may prefer different contact routes. Check existing phone, WhatsApp and separate contact-page options before deciding whether a homepage form is useful. No lost enquiries were measured.`,
       fix: v.health
         ? `A booking block above the fold, a sticky “Call / Book” bar on mobile, and a working form that emails the business.`
         : `An enquiry block above the fold, a sticky “Call / WhatsApp” bar on mobile, and a working form that emails the business.`,
@@ -337,7 +337,7 @@ export function deriveFindings(raw, facts, business) {
     candidates.push({
       severity: "High",
       tone: "med",
-      title: `A ${m.perfMobile}/100 mobile score and ${/^(8|1[18](?![\d]))/.test(String(m.lcp)) ? "an" : "a"} ${m.lcp} main image`,
+      title: `A ${m.perfMobile}/100 mobile score and ${/^(8|1[18](?![\d]))/.test(String(m.lcp)) ? "an" : "a"} ${m.lcp} LCP`,
       measured: `LCP <b>${m.lcp}</b> · TBT <b>${m.tbt}</b> · ${m.requests} requests · <b>${m.bytes}</b> · ${fmtInt(m.unusedJsKb)} KiB unused JavaScript · ${fmtInt(m.oversizedImgsKb)} KiB of oversized images · render-blocking CSS/JS costing ${fmtInt(m.renderBlockingMs)} ms.`,
       why: `Google’s thresholds are 2.5 s for LCP and 200 ms for TBT. This page is ${m.lcpOver}× and ${m.tbtOver}× over. Page experience is a documented ranking input.`,
       fix: `Server-side caching plus a CDN, images re-encoded at the size they are displayed, non-critical scripts deferred, unused plugins removed.`,
@@ -365,9 +365,9 @@ export function deriveFindings(raw, facts, business) {
     candidates.push({
       severity: "Medium",
       tone: "med",
-      title: `${Math.round(m.screens)} screens of scrolling, with the useful details at the bottom`,
-      measured: `${fmtInt(m.pageHeightPx)} px tall at 390 px wide. ${m.sections} sections, ${m.images} images, ${m.words} words. Opening hours, addresses and pricing are not in the first two screens.`,
-      why: `A visitor has four questions — what, where, when, how much. All four are answered late or not at all. Length is not the problem; the order is.`,
+      title: `${Math.round(m.screens)} screen heights of homepage content`,
+      measured: `${fmtInt(m.pageHeightPx)} px tall at 390 px wide. ${m.sections} sections, ${m.images} images, ${m.words} words. These dimensions alone do not establish where contact details appear.`,
+      why: `A long page can require more navigation. Review the captured screens to check whether key service and contact information is easy to find; no scrolling behaviour was measured.`,
       fix: `Five sections on the homepage: offer, proof, services, location and hours, book. Move the rest to dedicated pages.`,
       effort: "included in a rebuild",
       evidence: ["metric.sections", "metric.screens", "metric.pageHeightPx"],
@@ -410,7 +410,7 @@ export function deriveFindings(raw, facts, business) {
       tone: "med",
       title: `${m.smallTapTargets} tap targets smaller than a fingertip`,
       measured: `${m.smallTapTargets} of ${m.tapTargets} interactive elements are under 40 px tall or 24 px wide. Smallest body text: <b>${m.minFontPx} px</b>.`,
-      why: `Most of this traffic is a thumb on a phone. A link the thumb misses is a visit that ends.`,
+      why: `Small controls can be difficult to select on touchscreens. No visitor device mix, mis-taps or abandoned visits were measured.`,
       fix: `Minimum 44 px hit areas on every link and button, 16 px body text.`,
       effort: "2 hours",
       evidence: ["metric.smallTapTargets", "metric.minFontPx"],

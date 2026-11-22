@@ -55,7 +55,7 @@ const CHAIN_NAME = [
 ];
 // Names that are a chain only when they are the whole name ("More", not "More Than Coffee").
 const CHAIN_EXACT = ["more", "trends", "max", "zudio", "lic"];
-const CHAIN_DOMAIN = /(^|\.)(itchotels\.com|fortunehotels\.in|sarovarhotels\.com|tajhotels\.com|oyorooms\.com|renault\.co\.in|licindia\.in|moreretail\.in|hyderabadhouse\.com|thechocolateroomindia\.com|pennacement\.com|kia\.com|toyotabharat\.com|mahindra\.com|nissan\.in|skoda-auto\.co\.in|volkswagen\.co\.in|mgmotor\.co\.in|heromotocorp\.com|bajajauto\.com|tvsmotor\.com|royalenfield\.com|yamaha-motor-india\.com|airtel\.in|jio\.com|relianceretail\.com|ril\.com|jiomart\.com|tatamotors\.com|hdfclife\.com|hdfcbank\.com|ramrajcotton\.in|tumbledry\.in|preethi\.in|apollohospitals\.com|apollopharmacy\.in|medplusmart\.com|kfc\.co\.in|dominos\.co\.in|marutisuzuki\.com|hyundai\.com|hondacarindia\.com|tanishq\.co\.in|titan\.co\.in|lenskart\.com|decathlon\.in|ikea\.com|bata\.com|croma\.com|spencers\.in|anoos\.com)$/i;
+const CHAIN_DOMAIN = /(^|\.)(indianterrain\.com|rrdurbar\.com|ultratechcement\.com|subbayyagarihotel\.in|itchotels\.com|fortunehotels\.in|sarovarhotels\.com|tajhotels\.com|oyorooms\.com|renault\.co\.in|licindia\.in|moreretail\.in|hyderabadhouse\.com|thechocolateroomindia\.com|pennacement\.com|kia\.com|toyotabharat\.com|mahindra\.com|nissan\.in|skoda-auto\.co\.in|volkswagen\.co\.in|mgmotor\.co\.in|heromotocorp\.com|bajajauto\.com|tvsmotor\.com|royalenfield\.com|yamaha-motor-india\.com|airtel\.in|jio\.com|relianceretail\.com|ril\.com|jiomart\.com|tatamotors\.com|hdfclife\.com|hdfcbank\.com|ramrajcotton\.in|tumbledry\.in|preethi\.in|apollohospitals\.com|apollopharmacy\.in|medplusmart\.com|kfc\.co\.in|dominos\.co\.in|marutisuzuki\.com|hyundai\.com|hondacarindia\.com|tanishq\.co\.in|titan\.co\.in|lenskart\.com|decathlon\.in|ikea\.com|bata\.com|croma\.com|spencers\.in|anoos\.com)$/i;
 // "branch.example.com", "stores.example.com": a store locator, not the business's own site.
 const LOCATOR_SUBDOMAIN = /^(branch|branches|stores?|locations?|outlets?|dealers?|local|showrooms?)\./i;
 
@@ -81,6 +81,10 @@ export function notAProspect(lead) {
 
   if (PUBLIC_CATEGORY.test(cat) || PUBLIC_NAME.test(name) || PUBLIC_DOMAIN.test(domain)) {
     return { kind: "public", reason: "government, education or public body" };
+  }
+  // Independent review: own site describes a virtual-assistant franchise network.
+  if (domain === "antaryamindia.org") {
+    return { kind: "tech", reason: "virtual-assistant service / franchise network, not a local website prospect" };
   }
   // A website that is a deep page on someone else's site (itchotels.com/in/en/fortune-inn-…)
   // means the business does not own a site — head office does.
