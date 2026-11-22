@@ -756,4 +756,6 @@ The system is built to make lawful outreach the easy path.
 
 ### Attachment repair runs
 
-Set `repairOnly: true` and list existing domains in `run-request.json.reaudit` for an operator-requested live audit repair. This uses the existing explicit re-audit path with a recorded reason; it does not reset retry counters or run unrelated lead sourcing. Screening, layout and third-eye verification remain mandatory. Existing review holds remain until new PDF review; first-contact Gmail drafts must not be called ready until the matching PDF is attached and read back. The Aadithya draft needs a fresh website-audit body, not an old ad-report placeholder.
+Set `repairOnly: true` and list existing domains in `run-request.json.reaudit` for an operator-requested live audit repair. This uses the existing explicit re-audit path with a recorded reason; it does not reset retry counters or run unrelated lead sourcing. Screening, layout and third-eye verification remain mandatory. Existing review holds remain until new PDF review; first-contact Gmail drafts must not be called ready until the matching PDF is attached and read back.
+
+Set `disabled: true` in `run-request.json` to cancel the current request. The workflow checks this before installing audit tools or contacting prospect websites. Re-enable only for an explicit new operator request.

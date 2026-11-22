@@ -35,7 +35,21 @@ env:
   ARENA_BRANCH: arena/c9db4150-website-agency
 
 jobs:
+  request-gate:
+    runs-on: ubuntu-latest
+    outputs:
+      enabled: ${{ steps.gate.outputs.enabled }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.ARENA_BRANCH }}
+      - id: gate
+        name: Respect cancelled run requests
+        run: |
+          echo "enabled=$(jq -r '(.disabled // false) | not' run-request.json)" >> "$GITHUB_OUTPUT"
   run:
+    needs: request-gate
+    if: needs.request-gate.outputs.enabled == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:

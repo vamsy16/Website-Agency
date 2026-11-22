@@ -213,3 +213,8 @@ pages, 0 mm overflow, 23 verify checks; `class-diff` PASS; daily-run integration
 
 - Correct unsupported form, visitor-device, scrolling and LCP narrative without changing scoring or style assets. Remove the negated guarantee wording that unintentionally triggers draft spam review.
 - Add explicit repair-only workflow mode to remeasure the eleven existing draft businesses, with no unrelated sourcing and no automatic sending. Existing audit review holds remain.
+
+## Operator cleanup
+
+- Permanently removed the eleven cancelled Gmail drafts and deleted their active lead/audit registry rows, research, PDFs, email sequences and dedicated encrypted repair archives at the operator’s explicit request. This is an intentional exception to the normal append-only registry convention; unrelated records remain.
+- Disabled the abandoned run request behind a workflow preflight gate. Existing Git history and unrelated historical archives are not rewritten.
