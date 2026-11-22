@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-21T17:14:41.110Z",
+  "updatedAt": "2026-11-22T09:43:08.978Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -1225,6 +1225,198 @@
         "html": "reports/metro-interiors/report.html"
       },
       "fingerprint": "42fc33bc08b2c4e8"
+    },
+    {
+      "domain": "sugunadental.com",
+      "name": "Suguna Dental",
+      "ref": "SP-AUD-2026-11-22-SD",
+      "generatedAt": "2026-11-22T09:28:19.133Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 3,
+        "mobile": 4,
+        "conversion": 10,
+        "design": 6,
+        "seo": 10,
+        "overall": 61
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2229052,
+      "files": {
+        "pdf": "reports/suguna-dental/Smart-Pursuit-Audit-Suguna-Dental.pdf",
+        "audit": "reports/suguna-dental/audit.json",
+        "html": "reports/suguna-dental/report.html"
+      },
+      "fingerprint": "a5aeba530ef24c1a"
+    },
+    {
+      "domain": "creativedreamz.in",
+      "name": "Creative Dreamz",
+      "ref": "SP-AUD-2026-11-22-CD",
+      "generatedAt": "2026-11-22T09:29:15.933Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 7,
+        "mobile": 6,
+        "conversion": 7,
+        "design": 9,
+        "seo": 9,
+        "overall": 73
+      },
+      "pdfPages": 10,
+      "pdfBytes": 3707405,
+      "files": {
+        "pdf": "reports/creative-dreamz/Smart-Pursuit-Audit-Creative-Dreamz.pdf",
+        "audit": "reports/creative-dreamz/audit.json",
+        "html": "reports/creative-dreamz/report.html"
+      },
+      "fingerprint": "a6b10c4ea8a9ad21"
+    },
+    {
+      "domain": "tulasimultispecialityhospital.com",
+      "name": "Tulasi Multi Speciality Hospital",
+      "ref": "SP-AUD-2026-11-22-TMS",
+      "generatedAt": "2026-11-22T09:30:26.055Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 7,
+        "conversion": 10,
+        "design": 9,
+        "seo": 9,
+        "overall": 77
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1301997,
+      "files": {
+        "pdf": "reports/tulasi-multi-speciality-hospital/Smart-Pursuit-Audit-Tulasi-Multi-Speciality-Hospital.pdf",
+        "audit": "reports/tulasi-multi-speciality-hospital/audit.json",
+        "html": "reports/tulasi-multi-speciality-hospital/report.html"
+      },
+      "fingerprint": "2e9781d73f9d6a8e"
+    },
+    {
+      "domain": "itechupvc.com",
+      "name": "iTech uPVC Designers",
+      "ref": "SP-AUD-2026-11-22-IUD",
+      "generatedAt": "2026-11-22T09:31:13.186Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 10,
+        "mobile": 5,
+        "conversion": 7,
+        "design": 10,
+        "seo": 10,
+        "overall": 83
+      },
+      "pdfPages": 10,
+      "pdfBytes": 3716160,
+      "files": {
+        "pdf": "reports/itech-upvc-designers/Smart-Pursuit-Audit-iTech-uPVC-Designers.pdf",
+        "audit": "reports/itech-upvc-designers/audit.json",
+        "html": "reports/itech-upvc-designers/report.html"
+      },
+      "fingerprint": "d7834759c9fc7b20"
+    },
+    {
+      "domain": "happydentalhealthcare.com",
+      "name": "Happy Dental Health Care",
+      "ref": "SP-AUD-2026-11-22-HDH",
+      "generatedAt": "2026-11-22T09:32:33.041Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 4,
+        "conversion": 10,
+        "design": 10,
+        "seo": 10,
+        "overall": 73
+      },
+      "pdfPages": 10,
+      "pdfBytes": 3054294,
+      "files": {
+        "pdf": "reports/happy-dental-health-care/Smart-Pursuit-Audit-Happy-Dental-Health-Care.pdf",
+        "audit": "reports/happy-dental-health-care/audit.json",
+        "html": "reports/happy-dental-health-care/report.html"
+      },
+      "fingerprint": "8a81e687cb033268"
+    },
+    {
+      "domain": "srinavathainteriordesign.com",
+      "name": "Sri Navatha Interior Designs",
+      "ref": "SP-AUD-2026-11-22-SNI",
+      "generatedAt": "2026-11-22T09:37:27.799Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 4,
+        "mobile": 7,
+        "conversion": 10,
+        "design": 10,
+        "seo": 8,
+        "overall": 74
+      },
+      "pdfPages": 10,
+      "pdfBytes": 3425916,
+      "files": {
+        "pdf": "reports/sri-navatha-interior-designs/Smart-Pursuit-Audit-Sri-Navatha-Interior-Designs.pdf",
+        "audit": "reports/sri-navatha-interior-designs/audit.json",
+        "html": "reports/sri-navatha-interior-designs/report.html"
+      },
+      "fingerprint": "bb3cf4e9716b1650"
+    },
+    {
+      "domain": "dreamnestinteriors.co.in",
+      "name": "DreamNest Interiors",
+      "ref": "SP-AUD-2026-11-22-DI",
+      "generatedAt": "2026-11-22T09:42:26.379Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 3,
+        "mobile": 5,
+        "conversion": 10,
+        "design": 10,
+        "seo": 9,
+        "overall": 68
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2697672,
+      "files": {
+        "pdf": "reports/dreamnest-interiors/Smart-Pursuit-Audit-DreamNest-Interiors.pdf",
+        "audit": "reports/dreamnest-interiors/audit.json",
+        "html": "reports/dreamnest-interiors/report.html"
+      },
+      "fingerprint": "ca48df22866f58d6"
+    },
+    {
+      "domain": "metro-interiors.ueniweb.com",
+      "name": "Metro Interiors",
+      "ref": "SP-AUD-2026-11-22-MI",
+      "generatedAt": "2026-11-22T09:43:08.978Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 3,
+        "mobile": 8,
+        "conversion": 8,
+        "design": 9,
+        "seo": 9,
+        "overall": 68
+      },
+      "pdfPages": 10,
+      "pdfBytes": 3623442,
+      "files": {
+        "pdf": "reports/metro-interiors/Smart-Pursuit-Audit-Metro-Interiors.pdf",
+        "audit": "reports/metro-interiors/audit.json",
+        "html": "reports/metro-interiors/report.html"
+      },
+      "fingerprint": "e8a3cc9c5639d717"
     }
   ]
 }

@@ -1,0 +1,25 @@
+{
+  "name": "Happy Dental Health Care",
+  "domain": "happydentalhealthcare.com",
+  "city": "Vijayawada",
+  "state": "Andhra Pradesh",
+  "email": "happydentalhealthcare@gmail.com",
+  "phone": "+91 90597 68696",
+  "ref": "SP-AUD-2026-11-22-HDH",
+  "date": "2026-11-22",
+  "overall": 73,
+  "scores": {
+    "speed": 5,
+    "mobile": 4,
+    "conversion": 10,
+    "design": 10,
+    "seo": 10,
+    "overall": 73
+  },
+  "pdf": "Smart-Pursuit-Audit-Happy-Dental-Health-Care.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://www.happydentalhealthcare.com/",
+    "checkedAt": "2026-11-22"
+  }
+}

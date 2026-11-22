@@ -1,0 +1,25 @@
+{
+  "name": "Tulasi Multi Speciality Hospital",
+  "domain": "tulasimultispecialityhospital.com",
+  "city": "Guntur",
+  "state": "Andhra Pradesh",
+  "email": "info@tulasimultispecialityhospital.com",
+  "phone": "0863 2323235, 93901 77999",
+  "ref": "SP-AUD-2026-11-22-TMS",
+  "date": "2026-11-22",
+  "overall": 77,
+  "scores": {
+    "speed": 5,
+    "mobile": 7,
+    "conversion": 10,
+    "design": 9,
+    "seo": 9,
+    "overall": 77
+  },
+  "pdf": "Smart-Pursuit-Audit-Tulasi-Multi-Speciality-Hospital.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://tulasimultispecialityhospital.com/about-best-hospital-in-guntur.html",
+    "checkedAt": "2026-11-22"
+  }
+}
