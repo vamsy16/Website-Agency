@@ -4,7 +4,22 @@
   "target": 5,
   "leadsLimit": 200,
   "niches": [],
-  "requestedAt": "2026-11-21T16:58:07.954160+00:00",
+  "requestedAt": "2026-11-21-attachment-repair-1",
   "csv": "deliverables/runs/2026-11-21-ai-new-five-leads.csv",
-  "csvOnly": true
+  "csvOnly": true,
+  "repairOnly": true,
+  "reaudit": [
+    "sugunadental.com",
+    "creativedreamz.in",
+    "tulasimultispecialityhospital.com",
+    "itechupvc.com",
+    "happydentalhealthcare.com",
+    "srinavathainteriordesign.com",
+    "dreamnestinteriors.co.in",
+    "metro-interiors.ueniweb.com",
+    "imageartphotographyvizag.com",
+    "seveninteriors.in",
+    "aadithyasolarenergies.com"
+  ],
+  "reauditReason": "Operator explicitly requested fresh live audits and corrected first-contact emails with matching PDF attachments. Preserve review holds until new reports pass review; no automatic sending."
 }

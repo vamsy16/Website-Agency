@@ -115,9 +115,9 @@ function pageSummary(a, facts) {
 
     <div class="kpis">
       <div class="kpi ${m.perfMobile < 50 ? "bad" : "warn"}"><div class="n">${m.perfMobile}<small>/100</small></div><div class="l">Mobile performance<br>Lighthouse, simulated 4G</div></div>
-      <div class="kpi ${m.lcpMs > 4000 ? "bad" : "warn"}"><div class="n">${secNum(m.lcpMs)}<small>s</small></div><div class="l">Main image appears<br>Google target: 2.5 s</div></div>
+      <div class="kpi ${m.lcpMs > 4000 ? "bad" : "warn"}"><div class="n">${secNum(m.lcpMs)}<small>s</small></div><div class="l">Largest content appears<br>Google target: 2.5 s</div></div>
       <div class="kpi ${m.ttiMs > 5000 ? "warn" : "good"}"><div class="n">${round((m.ttiMs || 0) / 1000, 1)}<small>s</small></div><div class="l">Until the page is usable<br>(time to interactive)</div></div>
-      <div class="kpi bad"><div class="n">${m.visibleForms === 0 ? "0" : m.visibleForms}</div><div class="l">Working forms on the home page<br>${m.visibleForms === 0 ? (facts.http.contactShortcode ? "Contact page prints raw code" : "No capture route") : "Measured live"}</div></div>
+      <div class="kpi bad"><div class="n">${m.visibleForms === 0 ? "0" : m.visibleForms}</div><div class="l">Form fields detected on homepage<br>${m.visibleForms === 0 ? (facts.http.contactShortcode ? "Contact page prints raw code" : "Other contact routes may exist") : "Delivery not tested"}</div></div>
     </div>
 
     <div style="display:grid;grid-template-columns:1.15fr 1fr;gap:8mm;margin-top:1mm">
@@ -237,7 +237,7 @@ ${rows
 
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3.4mm;margin-top:5mm">
       <div class="card"><div class="eyebrow mut" style="margin-bottom:1.4mm">Mobile</div><div style="font-family:'Instrument Serif',serif;font-size:19pt;line-height:1">${facts.metric.perfMobile}<span style="font-size:9pt;color:var(--mut)">/100</span></div><p class="small" style="margin-top:1.4mm">Lighthouse performance, 4× CPU slowdown, Slow 4G</p></div>
-      <div class="card"><div class="eyebrow mut" style="margin-bottom:1.4mm">Desktop</div><div style="font-family:'Instrument Serif',serif;font-size:19pt;line-height:1">${facts.metric.perfDesktop}<span style="font-size:9pt;color:var(--mut)">/100</span></div><p class="small" style="margin-top:1.4mm">Same page on a laptop — this is why nobody noticed</p></div>
+      <div class="card"><div class="eyebrow mut" style="margin-bottom:1.4mm">Desktop</div><div style="font-family:'Instrument Serif',serif;font-size:19pt;line-height:1">${facts.metric.perfDesktop}<span style="font-size:9pt;color:var(--mut)">/100</span></div><p class="small" style="margin-top:1.4mm">Same page under the desktop test profile</p></div>
       <div class="card"><div class="eyebrow mut" style="margin-bottom:1.4mm">Accessibility</div><div style="font-family:'Instrument Serif',serif;font-size:19pt;line-height:1">${facts.metric.accessibility}<span style="font-size:9pt;color:var(--mut)">/100</span></div><p class="small" style="margin-top:1.4mm">Contrast and labelling issues on interactive elements</p></div>
     </div>
 
@@ -269,7 +269,7 @@ ${phones
   .join("\n")}
       ${laptop ? `<div class="phone">
         <div class="frame" style="height:97mm;background:#fff;border-color:#0D2321"><img src="${e(laptop.src)}" alt="" style="object-position:left top;object-fit:cover"></div>
-        <div class="cap"><b>The same site on a laptop</b>It holds up — ${m.perfDesktop}/100. This is why the problem has gone unnoticed. Your visitors are not on a laptop.</div>
+        <div class="cap"><b>The same site on a laptop</b>Desktop performance score: ${m.perfDesktop}/100. Actual visitor device mix was not measured.</div>
       </div>` : ""}
       <div style="flex:1;padding-left:2mm">
         <div class="eyebrow mut">Also measured</div>
@@ -294,11 +294,11 @@ ${phones
 
         <div class="m ok" style="left:${pctPos(m.ttfbMs, 20000, 2, 8)}%"><div class="v">${m.ttfb}</div><div class="d">server responds</div><div class="dot"></div></div>
         <div class="m warn" style="left:${pctPos(m.fcpMs, 20000, 2, 22)}%"><div class="v">${m.fcp}</div><div class="d">first paint —<br>still looks empty</div><div class="dot"></div></div>
-        <div class="m slow" style="left:${pctPos(m.lcpMs, 20000, 2, 96)}%"><div class="v">${m.lcp}</div><div class="d">main image appears<br>(LCP)</div><div class="dot"></div></div>
+        <div class="m slow" style="left:${pctPos(m.lcpMs, 20000, 2, 96)}%"><div class="v">${m.lcp}</div><div class="d">largest content appears<br>(LCP)</div><div class="dot"></div></div>
         <div class="m slow" style="left:${pctPos(m.ttiMs, 20000, 2, 99)}%"><div class="v">${m.tti}</div><div class="d">page becomes<br>interactive</div><div class="dot"></div></div>
       </div>
       <div class="band" style="margin-top:2mm;display:flex;justify-content:space-between;align-items:center;gap:6mm">
-        <p style="flex:1"><b>Google’s definition of “good” is 2.5 s.</b> Your main image arrives at ${m.lcp} — ${m.lcpOver}× over the line. On office wifi it feels fine. On a phone on mobile data, it does not.</p>
+        <p style="flex:1"><b>Google’s definition of “good” is 2.5 s.</b> The largest content element rendered at ${m.lcp} in this lab run (${m.lcpOver}× the target). Real-user experience may differ.</p>
       </div>
     </div>
 
@@ -437,8 +437,8 @@ ${tableRows}
     <div class="band" style="margin-top:6mm">
       <h3>${analyse ? "The opening is bigger than the gap" : "Where the gain is"}</h3>
       <p>${analyse
-        ? `Nobody in this category has solved this. Get the server to respond in under 500 ms and the main image to appear under 2.5 s, and the site is measurably faster than every competitor tested. That is not a slogan; it is a number that can go on the homepage and a signal Google reads on every visit.`
-        : `LCP is ${m.lcp} against a 2.5 s target, and blocking time is ${m.tbt} against 200 ms. Both are delivery problems — hosting, caching, image sizes and scripts — not design problems. They are also the cheapest items in this report to fix.`}</p>
+        ? `The table compares only the sites tested in this run. Use the measured gaps to prioritise investigation; improvements require a new test before making comparative claims.`
+        : `LCP is ${m.lcp} against a 2.5 s target, and blocking time is ${m.tbt} against 200 ms. Investigate hosting, caching, images and scripts before selecting fixes. Implementation cost and results have not been measured.`}</p>
     </div>
 
     ${analyse ? `<div style="display:grid;grid-template-columns:1fr 1fr;gap:5mm;margin-top:6mm">
@@ -508,7 +508,7 @@ function defaultPlan(facts, findings) {
   const m = facts.metric;
   const v = audienceOf(facts.business);
   return [
-    { id: "01", change: "Contact form rebuilt", today: facts.http.contactShortcode ? "Prints raw shortcode; collects nothing" : m.visibleForms === 0 ? "No form to capture enquiries" : "Form fields detected; delivery untested", target: "Working form + thank-you page, tracked", effort: "<b>1 hour</b>" },
+    { id: "01", change: "Contact form rebuilt", today: facts.http.contactShortcode ? "Prints raw shortcode; collects nothing" : m.visibleForms === 0 ? "No fields detected; check other routes" : "Form fields detected; delivery untested", target: "Working form + thank-you page, tracked", effort: "<b>1 hour</b>" },
     { id: "02", change: v.health ? "Booking path" : "Enquiry path", today: m.visibleForms === 0 ? "No form on the homepage" : "Form fields detected", target: v.health ? "Book block above fold + sticky call bar" : "Enquiry block above fold + sticky call bar", effort: "<b>½ day</b>" },
     { id: "03", change: "Server &amp; caching", today: `${m.ttfb} response`, target: "<b>Under 500 ms</b>", effort: "1 day" },
     { id: "04", change: "Images", today: `${fmtInt(m.oversizedImgsKb)} KiB potential image savings`, target: "<b>LCP under 2.5 s</b>", effort: "1 day" },

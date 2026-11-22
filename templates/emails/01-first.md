@@ -9,7 +9,7 @@ wordTarget: 120
 
 Hi {{contactFirstName}},
 
-I ran the same tests Google runs on {{business.domain}} and put the results in the attached audit ({{pdfPages}} pages, all numbers measured {{audit.dateLong}}).
+I ran a live website audit of {{business.domain}} and put the results in the attached audit ({{pdfPages}} pages, all numbers measured {{audit.dateLong}}).
 
 Two things stood out:
 

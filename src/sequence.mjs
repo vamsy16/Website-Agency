@@ -103,7 +103,7 @@ export function buildSequence(audit, { sendDate = isoDate(new Date()), cadenceDa
   // Every sentence here must be true for THIS site: built only from what was measured.
   const lcpSlow = Number.isFinite(m.lcpMs) && m.lcpMs > 4000;
   const moneyLine = `The audit describes observations from one test run. Their effect on enquiries or revenue has not been measured.`;
-  const outcomeLine = `The report includes the measured results and suggested next steps. Targets and effort estimates are not guaranteed outcomes.`;
+  const outcomeLine = `The report includes the measured results and suggested next steps. Targets are reference points; effort estimates require developer confirmation.`;
 
   const mailFacts = {
     business: {

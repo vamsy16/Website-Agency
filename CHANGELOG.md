@@ -208,3 +208,8 @@ pages, 0 mm overflow, 23 verify checks; `class-diff` PASS; daily-run integration
 - Request exactly the five newly researched AP businesses in the full Anoos-reference format. Reports remain held until post-run review; qualitative reviews are not technical audits.
 
 - Diagnose run 44925860790: all five rejected because empty second findings page reduced the document to nine pages. Preserve ten pages with an explicit evidence-limits page; no fabricated findings or relaxed QA. Remove further unsupported summary/plan assertions and label effort estimates.
+
+## Attachment repair — 21 November 2026
+
+- Correct unsupported form, visitor-device, scrolling and LCP narrative without changing scoring or style assets. Remove the negated guarantee wording that unintentionally triggers draft spam review.
+- Add explicit repair-only workflow mode to remeasure the eleven existing draft businesses, with no unrelated sourcing and no automatic sending. Existing audit review holds remain.

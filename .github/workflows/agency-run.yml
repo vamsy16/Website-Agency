@@ -67,6 +67,7 @@ jobs:
           echo "target=$(jq -r '.target // ""' run-request.json)" >> "$GITHUB_OUTPUT"
           echo "csv=$(jq -r '.csv // ""' run-request.json)" >> "$GITHUB_OUTPUT"
           echo "csvOnly=$(jq -r '.csvOnly // false' run-request.json)" >> "$GITHUB_OUTPUT"
+          echo "repairOnly=$(jq -r '.repairOnly // false' run-request.json)" >> "$GITHUB_OUTPUT"
           echo "reaudit=$(jq -r '(.reaudit // []) | join(",")' run-request.json)" >> "$GITHUB_OUTPUT"
           echo "reauditReason=$(jq -r '.reauditReason // "operator request"' run-request.json)" >> "$GITHUB_OUTPUT"
 
@@ -87,6 +88,7 @@ jobs:
         run: node src/cli.mjs reaudit --domain "$DOMAINS" --reason "$REASON" 2>&1 | tee reaudit.log || true
 
       - name: Daily run
+        if: steps.req.outputs.repairOnly != 'true'
         env:
           STATE: ${{ steps.req.outputs.state }}
           MAX: ${{ steps.req.outputs.max }}

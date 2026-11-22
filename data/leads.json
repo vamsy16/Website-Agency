@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-21T17:14:41.124Z",
+  "updatedAt": "2026-11-22T09:21:41.303Z",
   "leads": [
     {
       "id": "nikithahospital.com",
@@ -8828,6 +8828,28 @@
       },
       "lastAuditRef": "SP-AUD-2026-11-21-MI",
       "lastAuditPdf": "reports/metro-interiors/Smart-Pursuit-Audit-Metro-Interiors.pdf"
+    },
+    {
+      "id": "aadithyasolarenergies.com",
+      "key": "d:aadithyasolarenergies.com",
+      "name": "Aadithya Solar Energies",
+      "website": "https://aadithyasolarenergies.com/",
+      "domain": "aadithyasolarenergies.com",
+      "phone": null,
+      "email": "info@aadithyasolarenergies.com",
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "country": "India",
+      "niche": null,
+      "nicheLabel": null,
+      "category": null,
+      "address": null,
+      "source": "operator-request",
+      "sourceUrl": "https://aadithyasolarenergies.com/",
+      "status": "new",
+      "firstSeenAt": "2026-11-22T09:21:41.302Z",
+      "lastSeenAt": "2026-11-22T09:21:41.302Z",
+      "timesSeen": 1
     }
   ]
 }
