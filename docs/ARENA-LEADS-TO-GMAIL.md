@@ -136,16 +136,21 @@ For each accepted audit with a verified public email and no suppression:
    support. Check the file size against the tool's limits first. If attachment
    upload fails, report the draft as incomplete; never substitute a local path or
    pretend the PDF is attached.
-3. Create three separate follow-up Gmail drafts, unless a matching step already
-   exists. Do not claim an unsent initial email has been delivered.
-4. Read the created drafts back and verify recipient, subject, body, planned date,
-   outreach step, and the initial PDF attachment.
+3. Do not create follow-up Gmail drafts. Only the first email goes into Gmail.
+   The follow-ups are sent 3, 6 and 9 days after it, and only if there is no
+   reply: put those dates in the first draft's operator note (below) and in
+   `gmail-drafts.json`. Draft a follow-up only when the operator asks for it on
+   or after its date, after checking the thread for a reply or opt-out. Do not
+   claim an unsent initial email has been delivered.
+4. Read the created draft back and verify recipient, subject, body, planned
+   dates, and the PDF attachment.
 
 At the top of each Gmail draft include an operator-only note:
 
 ```text
 OPERATOR NOTE — [business domain] / [audit reference] / step [1-4].
 Planned date: YYYY-MM-DD. Remove this note before sending.
+Follow-ups, only if there is no reply (every 3 days): step 2 on YYYY-MM-DD, step 3 on YYYY-MM-DD, step 4 on YYYY-MM-DD.
 ```
 
 Keep the note separate from the recipient-facing message. Save returned Gmail
