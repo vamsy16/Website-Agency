@@ -1,0 +1,76 @@
+{
+  "business": "Prathik Dental and Implant Centre",
+  "domain": "prathikdental.com",
+  "ref": "SP-AUD-2026-11-22-PDA",
+  "createdAt": "2026-11-22T10:36:07.794Z",
+  "sendDate": "2026-11-22",
+  "cadenceDays": [
+    3,
+    3,
+    3
+  ],
+  "to": "karthik@prathikdental.com",
+  "status": "draft",
+  "neverSendAutomatically": true,
+  "note": "Dates shift if the operator sends email 1 on a different day — recompute with `sequence --send-date YYYY-MM-DD`.",
+  "emails": [
+    {
+      "step": 1,
+      "id": "first",
+      "purpose": "deliver the audit, earn a reply",
+      "attachments": [
+        "reports/prathik-dental-and-implant-centre/Smart-Pursuit-Audit-Prathik-Dental-and-Implant-Centre.pdf"
+      ],
+      "subject": "Prathik Dental and Implant Centre — what I found testing prathikdental.com",
+      "words": 113,
+      "scheduledFor": "2026-11-22",
+      "scheduledForLong": "22 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/prathik-dental-and-implant-centre/email-1-first.md"
+    },
+    {
+      "step": 2,
+      "id": "followup-1",
+      "purpose": "turn the top measured finding into a money argument",
+      "attachments": [],
+      "subject": "Re: Prathik Dental and Implant Centre — what I found testing prathikdental.com",
+      "words": 105,
+      "scheduledFor": "2026-11-25",
+      "scheduledForLong": "25 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/prathik-dental-and-implant-centre/email-2-followup-1.md"
+    },
+    {
+      "step": 3,
+      "id": "followup-2",
+      "purpose": "show the outcome, make the next step concrete",
+      "attachments": [],
+      "subject": "Re: Prathik Dental and Implant Centre — what a fixed version looks like",
+      "words": 105,
+      "scheduledFor": "2026-11-28",
+      "scheduledForLong": "28 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/prathik-dental-and-implant-centre/email-3-followup-2.md"
+    },
+    {
+      "step": 4,
+      "id": "followup-3-final",
+      "purpose": "final mail, leave the door open, no pressure",
+      "attachments": [],
+      "subject": "Closing the loop — Prathik Dental and Implant Centre",
+      "words": 98,
+      "scheduledFor": "2026-12-01",
+      "scheduledForLong": "1 December 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/prathik-dental-and-implant-centre/email-4-followup-3-final.md"
+    }
+  ]
+}
