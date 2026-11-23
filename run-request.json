@@ -1,20 +1,12 @@
 {
   "state": "Andhra Pradesh",
-  "max": 14,
+  "max": 16,
   "target": 5,
-  "leadsLimit": 14,
+  "leadsLimit": 16,
   "niches": [],
-  "requestedAt": "2026-11-22T11:52:00Z",
-  "csv": "data/ap-websearch-2026-11-22.csv",
+  "requestedAt": "2026-11-23T01:34:00Z",
+  "csv": "data/ap-websearch-2026-11-23.csv",
   "csvOnly": true,
-  "repairOnly": true,
-  "reaudit": [
-    "mkdentals.com",
-    "prathikdental.com",
-    "thedentalstudiovizag.com",
-    "kalyanidentalclinics.com",
-    "praveendental.in"
-  ],
-  "reauditReason": "independent review 2026-11-22 pass 2: page-7 label, domain list wording, Rescue wording, plurals (1.4.1)",
-  "disabled": true
+  "repairOnly": false,
+  "note": "Operator request 2026-11-23: five new Andhra Pradesh leads with an email published on their own site. 16 pre-vetted businesses, none in the repository (domain, root domain, email, phone, name, fuzzy name, git history). Stop after 5 verified audits."
 }
