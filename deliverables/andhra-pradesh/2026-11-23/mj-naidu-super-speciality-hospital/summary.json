@@ -1,0 +1,25 @@
+{
+  "name": "MJ Naidu Super Speciality Hospital",
+  "domain": "mjnaiduhospitals.com",
+  "city": "Vijayawada",
+  "state": "Andhra Pradesh",
+  "email": "mjnaiduhospitals@gmail.com",
+  "phone": "+91 93466 66788",
+  "ref": "SP-AUD-2026-11-23-MNS",
+  "date": "2026-11-23",
+  "overall": 56,
+  "scores": {
+    "speed": 2,
+    "mobile": 5,
+    "conversion": 8,
+    "design": 8,
+    "seo": 8,
+    "overall": 56
+  },
+  "pdf": "Smart-Pursuit-Audit-MJ-Naidu-Super-Speciality-Hospital.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://mjnaiduhospitals.com/",
+    "checkedAt": "2026-11-23"
+  }
+}

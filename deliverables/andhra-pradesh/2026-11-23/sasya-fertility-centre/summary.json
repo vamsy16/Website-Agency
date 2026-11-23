@@ -1,0 +1,25 @@
+{
+  "name": "Sasya Fertility Centre",
+  "domain": "sasyafertilitycenter.com",
+  "city": "Guntur",
+  "state": "Andhra Pradesh",
+  "email": "sasyafertilitycenter@gmail.com",
+  "phone": "+91 863 221 1115",
+  "ref": "SP-AUD-2026-11-23-SFC",
+  "date": "2026-11-23",
+  "overall": 75,
+  "scores": {
+    "speed": 5,
+    "mobile": 5,
+    "conversion": 10,
+    "design": 10,
+    "seo": 10,
+    "overall": 75
+  },
+  "pdf": "Smart-Pursuit-Audit-Sasya-Fertility-Centre.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://www.sasyafertilitycenter.com/",
+    "checkedAt": "2026-11-23"
+  }
+}

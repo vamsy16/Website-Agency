@@ -1,0 +1,25 @@
+{
+  "name": "Ravi Dental Care and Implant Center",
+  "domain": "ravidentalcare.in",
+  "city": "Vijayawada",
+  "state": "Andhra Pradesh",
+  "email": "ravidentalcareandimplantcentre@gmail.com",
+  "phone": "+91 93473 63515",
+  "ref": "SP-AUD-2026-11-23-RDC",
+  "date": "2026-11-23",
+  "overall": 72,
+  "scores": {
+    "speed": 4,
+    "mobile": 7,
+    "conversion": 10,
+    "design": 8,
+    "seo": 9,
+    "overall": 72
+  },
+  "pdf": "Smart-Pursuit-Audit-Ravi-Dental-Care-and-Implant-Center.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://ravidentalcare.in/",
+    "checkedAt": "2026-11-23"
+  }
+}

@@ -1,0 +1,543 @@
+[
+  {
+    "slug": "dr-siri-s-speciality-skin-and-hair-clinic",
+    "layout": {
+      "ok": true,
+      "failures": [],
+      "pageCount": 10,
+      "worstOverflowMm": 0,
+      "pages": [
+        {
+          "page": 1,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 2,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 3,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 4,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 3
+        },
+        {
+          "page": 5,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 6,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 7,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 8,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 9,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 10,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        }
+      ],
+      "fontsLoaded": [
+        {
+          "name": "Instrument Serif",
+          "loaded": true
+        },
+        {
+          "name": "Inter",
+          "loaded": true
+        }
+      ],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "checkedAt": "2026-11-23T01:41:55.042Z"
+    },
+    "verification": {
+      "ok": false,
+      "blockers": 1,
+      "failedChecks": [
+        {
+          "id": "screenshots.real",
+          "ok": false,
+          "detail": "desktop-fold: 100% white (looks blank); desktop-fold: pixel spread 3 (looks flat)",
+          "severity": "blocker"
+        }
+      ]
+    }
+  },
+  {
+    "slug": "dr-swetha-sajja-eye-hospital",
+    "layout": {
+      "ok": true,
+      "failures": [],
+      "pageCount": 10,
+      "worstOverflowMm": 0,
+      "pages": [
+        {
+          "page": 1,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 2,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 3,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 4,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 3
+        },
+        {
+          "page": 5,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 6,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 7,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 8,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 9,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 10,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        }
+      ],
+      "fontsLoaded": [
+        {
+          "name": "Instrument Serif",
+          "loaded": true
+        },
+        {
+          "name": "Inter",
+          "loaded": true
+        }
+      ],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "checkedAt": "2026-11-23T01:42:39.863Z"
+    },
+    "verification": {
+      "ok": true,
+      "blockers": 0,
+      "failedChecks": []
+    }
+  },
+  {
+    "slug": "mj-naidu-super-speciality-hospital",
+    "layout": {
+      "ok": true,
+      "failures": [],
+      "pageCount": 10,
+      "worstOverflowMm": 0,
+      "pages": [
+        {
+          "page": 1,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 2,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 3,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 4,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 3
+        },
+        {
+          "page": 5,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 6,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 7,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 8,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 9,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 10,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        }
+      ],
+      "fontsLoaded": [
+        {
+          "name": "Instrument Serif",
+          "loaded": true
+        },
+        {
+          "name": "Inter",
+          "loaded": true
+        }
+      ],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "checkedAt": "2026-11-23T01:44:05.734Z"
+    },
+    "verification": {
+      "ok": true,
+      "blockers": 0,
+      "failedChecks": []
+    }
+  },
+  {
+    "slug": "ravi-dental-care-and-implant-center",
+    "layout": {
+      "ok": true,
+      "failures": [],
+      "pageCount": 10,
+      "worstOverflowMm": 0,
+      "pages": [
+        {
+          "page": 1,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 2,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 3,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 4,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 3
+        },
+        {
+          "page": 5,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 6,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 7,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 8,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 9,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 10,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        }
+      ],
+      "fontsLoaded": [
+        {
+          "name": "Instrument Serif",
+          "loaded": true
+        },
+        {
+          "name": "Inter",
+          "loaded": true
+        }
+      ],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "checkedAt": "2026-11-23T01:46:39.674Z"
+    },
+    "verification": {
+      "ok": true,
+      "blockers": 0,
+      "failedChecks": []
+    }
+  },
+  {
+    "slug": "sasya-fertility-centre",
+    "layout": {
+      "ok": true,
+      "failures": [],
+      "pageCount": 10,
+      "worstOverflowMm": 0,
+      "pages": [
+        {
+          "page": 1,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 2,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 3,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 4,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 3
+        },
+        {
+          "page": 5,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 6,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 7,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 8,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 9,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 10,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        }
+      ],
+      "fontsLoaded": [
+        {
+          "name": "Instrument Serif",
+          "loaded": true
+        },
+        {
+          "name": "Inter",
+          "loaded": true
+        }
+      ],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "checkedAt": "2026-11-23T01:45:27.503Z"
+    },
+    "verification": {
+      "ok": true,
+      "blockers": 0,
+      "failedChecks": []
+    }
+  },
+  {
+    "slug": "smart-care-dental-hospital",
+    "layout": {
+      "ok": true,
+      "failures": [],
+      "pageCount": 10,
+      "worstOverflowMm": 0,
+      "pages": [
+        {
+          "page": 1,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 2,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 3,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 4,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 3
+        },
+        {
+          "page": 5,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 6,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 7,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 8,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 9,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 10,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        }
+      ],
+      "fontsLoaded": [
+        {
+          "name": "Instrument Serif",
+          "loaded": true
+        },
+        {
+          "name": "Inter",
+          "loaded": true
+        }
+      ],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "checkedAt": "2026-11-23T01:40:48.534Z"
+    },
+    "verification": {
+      "ok": true,
+      "blockers": 0,
+      "failedChecks": []
+    }
+  }
+]
