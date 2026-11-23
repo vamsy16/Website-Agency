@@ -1,41 +1,47 @@
 {
   "state": "Andhra Pradesh",
   "reviewDate": "2026-11-23",
-  "run": "45095333140",
+  "run": "45097578295",
+  "runs": {
+    "45095333140": "initial run on 16 CSV leads (target 5): 6 attempted, 5 passed verify, 1 failed (screenshots.real), 10 not attempted once the target was reached. All 5 PDFs held by this review (pass 1).",
+    "45097578295": "re-audit of the 5 with renderer 1.4.2. Verify 25/25, layout 10 pages / 0 mm. Smart Care, MJ Naidu, Sasya and Ravi Dental read clean: these are their published files. Dr Swetha Sajja held for one residual ('1 finding ... Their effect').",
+    "45098947793": "re-audit of drswethasajja.com with 1.4.2 pass 2. Copy correct, verify 25/25, but Lighthouse mobile 62 (LCP 7.6 s, render-blocking 4,033 ms) against 88 and 90 in the two earlier runs.",
+    "45099748499": "reproducibility re-audit of drswethasajja.com, accepted whatever it measured: mobile 87, LCP 3.6 s, verify 25/25, 10 pages / 0 mm. This is its published file."
+  },
   "requested": 5,
-  "status": "four-reviewed-one-held-pending-reaudit",
+  "status": "approved-after-reaudit",
   "dedupeAuthority": [
     "data/leads.json",
     "data/audits.json",
     "git history of this repository"
   ],
   "neverSendAutomatically": true,
-  "businessChecks": "All five confirmed as real, independent local healthcare businesses in Andhra Pradesh; each To: address is published on the business's own website (see 2026-11-23-independent-review.md once approved).",
+  "businessChecks": "All five confirmed as real, independent local healthcare businesses in Andhra Pradesh; each To: address is published on the business's own website (see 2026-11-23-independent-review.md).",
   "leads": [
     {
       "domain": "smartcaredentalhospital.com",
-      "approved": false,
-      "reason": "Held: page 3 prints 'Contact page reachable' although /contact/ redirects to the homepage (the site has no separate contact page); plan row 06 targets '5 sections' for a 4-section page; page 07 attributes the 500 ms / 1.6 MB / 50-request engineering targets to Google. Re-audit requested with renderer 1.4.2; approve only after the regenerated PDF and drafts are re-read."
+      "approved": true,
+      "reason": "Approved after re-audit 45097578295: verify 25/25, 10-page A4, 0 mm overflow, every page re-read. Smart Care Dental Hospital, Sarai Angadi Centre, Podalakur Road, Dargamitta, Nellore (Drs V Lakshmibhai BDS, G Srinivasa Ganapathi BDS, N Venkatesh MDS, V Ramesh MDS; Justdial: 16 years in healthcare); smartcaredentalhospital@gmail.com published on https://smartcaredentalhospital.com/. 'Contact page reachable' no longer printed (/contact/ redirects to the homepage). 85/100, 3 supported findings."
     },
     {
       "domain": "drswethasajja.com",
-      "approved": false,
-      "reason": "Held: copy is now correct (run 45098947793), but its Lighthouse result swung from 88 and 90 (LCP 3.4 s and 3.2 s) in the two earlier runs to 62 (LCP 7.6 s, FCP 5.0 s, render-blocking 4,033 ms). A reproducibility re-audit was requested before a headline number goes to the prospect; that run is accepted whatever it measures."
+      "approved": true,
+      "reason": "Approved after reproducibility re-audit 45099748499: verify 25/25, 10-page A4, 0 mm overflow, every page re-read. Dr Swetha Sajja Eye Hospital, Buddhudu Hospital, Lakshmivarapupeta, Seshayya Metta, Rajamahendravaram 533104 (Dr Swetha Sajja, MS Ophthalmology); sunetraeyecare2020@gmail.com published on https://www.drswethasajja.com/. Email 1 reads 'One thing stood out'; page 2 reads '1 finding was identified. Its effect...'. Lighthouse mobile 88, 90, 62, 87 across four runs; the published run (87, LCP 3.6 s) matches three of the four. 81/100, 1 supported finding (page 6 states no further findings were invented)."
     },
     {
       "domain": "mjnaiduhospitals.com",
-      "approved": false,
-      "reason": "Held: '1 link point to #', '1 schema types detected', '1 “Read More” links', TBT printed as '992.5 ms', 'unused plugins removed' (plugin use was not measured), engineering targets attributed to Google. Re-audit requested with renderer 1.4.2."
+      "approved": true,
+      "reason": "Approved after re-audit 45097578295: verify 25/25, 10-page A4, 0 mm overflow, every page re-read. MJ Naidu Super Speciality Hospital, 29-13-84 Bramaihyaa Naidu Street, Suryarao Peta, Vijayawada 520002 (founded 1986 by Dr M J Naidu, MS Ortho AIIMS); mjnaiduhospitals@gmail.com (and info@mjnaiduhospitals.com) published on https://mjnaiduhospitals.com/contact-us/. Singular counts, whole-ms TBT and 'plugins reviewed' wording confirmed; /contact/ resolves to its real contact page. 56/100, 4 supported findings."
     },
     {
       "domain": "sasyafertilitycenter.com",
-      "approved": false,
-      "reason": "Held: 'Contact page reachable' although /contact/ is not a page; TBT printed as '128.5 ms'; plan row 06 and page 07 wording as above. Re-audit requested with renderer 1.4.2."
+      "approved": true,
+      "reason": "Approved after re-audit 45097578295: verify 25/25, 10-page A4, 0 mm overflow, every page re-read. Sasya Fertility Centre, Seelam Vari Street, beside Vijaya Talkies Road, Kothapeta, Guntur 522001 (Dr Sindhu Kosaraju, MS OBG, Fellow in Reproductive Medicine); sasyafertilitycenter@gmail.com published on https://www.sasyafertilitycenter.com/. 'Contact page reachable' no longer printed (/contact/ is not a page). 75/100, 3 supported findings."
     },
     {
       "domain": "ravidentalcare.in",
-      "approved": false,
-      "reason": "Held: finding 04 prints 'Smallest body text: 0 px' (a font-size:0 wrapper, not visible text; it also cost the mobile score a font penalty); plan row 06 tells a 2-section page to grow to '5 sections'; 'unused plugins removed' was not measured. Re-audit requested with renderer 1.4.2 (measurement fix)."
+      "approved": true,
+      "reason": "Approved after re-audit 45097578295: verify 25/25, 10-page A4, 0 mm overflow, every page re-read. Ravi Dental Care and Implant Center, 29-19-46 Dornakal Road, Suryaraopet, Vijayawada 520002 (Dr Anne Ravikanth, MDS); ravidentalcareandimplantcentre@gmail.com published on https://ravidentalcare.in/contact-us/. The 0 px font artifact is gone (smallest body text now measured at 14 px; mobile 7 -> 8); plan row 06 targets one H1 and 6 screens or fewer. 74/100, 4 supported findings."
     }
   ],
   "notPublished": [
@@ -43,6 +49,18 @@
       "domain": "drsiriskinclinic.com",
       "reason": "Run 45095333140: verify failed screenshots.real (blank or flat capture). Not published; not retried."
     }
+  ],
+  "notAttempted": [
+    "ayushdentalcare.com",
+    "vignataivfcenter.com",
+    "shravanienthospital.com",
+    "neurologistinkurnool.com",
+    "deepthifertility.com",
+    "saibhaskarhospital.com",
+    "simhapuridental.com",
+    "madhudentalclinic.com",
+    "fortunedentalclinics.com",
+    "viswanadhahospital.com"
   ],
   "withheldOtherDomains": []
 }
