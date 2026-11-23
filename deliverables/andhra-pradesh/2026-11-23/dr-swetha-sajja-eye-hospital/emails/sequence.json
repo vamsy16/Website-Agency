@@ -2,7 +2,7 @@
   "business": "Dr Swetha Sajja Eye Hospital",
   "domain": "drswethasajja.com",
   "ref": "SP-AUD-2026-11-23-DSS",
-  "createdAt": "2026-11-23T02:05:46.796Z",
+  "createdAt": "2026-11-23T02:19:42.100Z",
   "sendDate": "2026-11-23",
   "cadenceDays": [
     3,
@@ -22,7 +22,7 @@
         "reports/dr-swetha-sajja-eye-hospital/Smart-Pursuit-Audit-Dr-Swetha-Sajja-Eye-Hospital.pdf"
       ],
       "subject": "Dr Swetha Sajja Eye Hospital — what I found testing drswethasajja.com",
-      "words": 93,
+      "words": 116,
       "scheduledFor": "2026-11-23",
       "scheduledForLong": "23 November 2026",
       "status": "draft",
@@ -36,7 +36,7 @@
       "purpose": "turn the top measured finding into a money argument",
       "attachments": [],
       "subject": "Re: Dr Swetha Sajja Eye Hospital — what I found testing drswethasajja.com",
-      "words": 100,
+      "words": 102,
       "scheduledFor": "2026-11-26",
       "scheduledForLong": "26 November 2026",
       "status": "draft",
