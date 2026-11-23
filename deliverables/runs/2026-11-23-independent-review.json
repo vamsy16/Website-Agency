@@ -20,7 +20,7 @@
     {
       "domain": "drswethasajja.com",
       "approved": false,
-      "reason": "Held after re-audit 45097578295: every earlier defect is gone (email 1 now reads 'One thing stood out', singular counts, no contact-page claim), but page 2 reads '1 finding was identified. Their effect on enquiries…'. Second re-audit requested with the corrected pronoun; approve only after the regenerated PDF is re-read."
+      "reason": "Held: copy is now correct (run 45098947793), but its Lighthouse result swung from 88 and 90 (LCP 3.4 s and 3.2 s) in the two earlier runs to 62 (LCP 7.6 s, FCP 5.0 s, render-blocking 4,033 ms). A reproducibility re-audit was requested before a headline number goes to the prospect; that run is accepted whatever it measures."
     },
     {
       "domain": "mjnaiduhospitals.com",

@@ -4,12 +4,12 @@
   "target": 5,
   "leadsLimit": 16,
   "niches": [],
-  "requestedAt": "2026-11-23T02:13:00Z",
+  "requestedAt": "2026-11-23T02:21:00Z",
   "csv": "data/ap-websearch-2026-11-23.csv",
   "csvOnly": true,
   "repairOnly": true,
   "reaudit": [
     "drswethasajja.com"
   ],
-  "reauditReason": "independent review 2026-11-23 pass 2: single-finding pronoun ('Its effect') and singular counts (1.4.2)"
+  "reauditReason": "independent review 2026-11-23 pass 3: reproducibility check - mobile performance 88/90 in runs 45095333140 and 45097578295 but 62 (LCP 7.6 s, render-blocking 4,033 ms) in run 45098947793; the next run is accepted whatever it measures"
 }
