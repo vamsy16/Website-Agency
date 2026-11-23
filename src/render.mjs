@@ -16,6 +16,8 @@ const FONTS = fs.readFileSync(path.join(ROOT, "src", "fonts.css"), "utf8");
 
 const secNum = ms => (Number.isFinite(ms) ? (ms / 1000).toFixed(1) : "—");
 const e = escapeHtml;
+/** "1 finding", "3 findings" — a count is never printed with the wrong noun form. */
+const countOf = (n, word) => `${n} ${word}${Number(n) === 1 ? "" : "s"}`;
 
 // The audit's own name, e.g. "Website & conversion audit". Configured, because
 // a dental practice and a plumber are not audited for the same thing.
@@ -177,7 +179,7 @@ function defaultSummary(facts, findings) {
   if (facts.http?.canonical) good.push("a canonical tag");
   return {
     title: `Your website, measured.<br>Review the evidence <em>before deciding what to change.</em>`,
-    lede: `We ran the same tests Google runs, on the same page a visitor sees when they search for your service on a phone. ${findings.all.length} findings were identified. Their effect on enquiries has not been measured.`,
+    lede: `We ran the same tests Google runs, on the same page a visitor sees when they search for your service on a phone. ${countOf(findings.all.length, "finding")} ${findings.all.length === 1 ? "was" : "were"} identified. Their effect on enquiries has not been measured.`,
     costs,
     working: `Credit where it is due: ${good.length ? good.join(", ") : "the pages do load"}. These are observed features, not proof of overall site quality.`,
     verdict: `Prioritise the supported findings below. Confirm their relevance and agree a scope before estimating delivery or deciding on a redesign.`,
@@ -191,9 +193,10 @@ function pageScorecard(a, facts) {
   const rows = [
     ["Speed", s.speed, `Mobile ${facts.metric.perfMobile}/100 · LCP ${facts.metric.lcp} · TBT ${facts.metric.tbt} · ${facts.metric.requests} requests · ${facts.metric.bytes} · server response ${facts.metric.ttfb}`, 30],
     ["Mobile experience", s.mobile, `≈${Math.round(facts.metric.screens)} screens tall · ${facts.metric.smallTapTargets} tap targets under 40 px${Number(facts.metric.minFontPx) > 0 ? ` · body text down to ${facts.metric.minFontPx} px` : ""} · ${facts.metric.h1Count > 0 ? `first H1 starts ${fmtInt(facts.metric.headlineOffsetPx)} px down` : "no H1 headline found"}`, 20],
-    ["Conversion", s.conversion, `${facts.metric.visibleForms === 0 ? "No visible form on the home page" : `${facts.metric.visibleForms} visible form(s)`} · ${facts.http.contactShortcode ? "Contact page prints raw code" : "Contact page reachable"} · ${facts.metric.telLinks} click-to-call link(s) · ${facts.metric.whatsapp} WhatsApp element(s)`, 25],
+    // "Contact page reachable" only when the /contact/ probe found a page that is not the homepage.
+    ["Conversion", s.conversion, `${facts.metric.visibleForms === 0 ? "No visible form on the home page" : `${facts.metric.visibleForms} visible form(s)`} · ${facts.http.contactShortcode ? "Contact page prints raw code · " : facts.http.contactReachable ? "Contact page reachable · " : ""}${facts.metric.telLinks} click-to-call link(s) · ${facts.metric.whatsapp} WhatsApp element(s)`, 25],
     ["Design &amp; clarity", s.design, `${facts.metric.sections > 0 ? `${facts.metric.sections} stacked sections · ` : ""}${fmtInt(facts.metric.domNodes)} DOM nodes · ${facts.metric.imagesNoAlt} image${facts.metric.imagesNoAlt === 1 ? "" : "s"} without alt text`, 15],
-    ["SEO", s.seo, `Lighthouse SEO ${facts.metric.seo}/100 · ${facts.metric.h1Count} H1 heading${facts.metric.h1Count === 1 ? "" : "s"} · structured data ${schemaState(facts.http)} · ${facts.metric.readMore} “Read More” links`, 10],
+    ["SEO", s.seo, `Lighthouse SEO ${facts.metric.seo}/100 · ${facts.metric.h1Count} H1 heading${facts.metric.h1Count === 1 ? "" : "s"} · structured data ${schemaState(facts.http)} · ${facts.metric.readMore} “Read More” link${facts.metric.readMore === 1 ? "" : "s"}`, 10],
   ];
   const cls = n => (n <= 3 ? "red" : n <= 6 ? "amber" : ""); // >= 7: default bar colour (no "green" rule exists)
   const overall = s.overall;
@@ -358,7 +361,7 @@ function pageFindings(a, facts, list, pageNo, right, heading, subject) {
   if (!list.length) return `<section class="page"><div class="pad">
     ${top(facts, right)}<div class="eyebrow">Evidence limits</div>
     <h2 class="t">No additional supported findings.</h2>
-    <p class="lede">The test produced ${a.findings.all.length} findings, presented on the preceding page. Additional issues have not been invented to fill this report.</p>
+    <p class="lede">The test produced ${countOf(a.findings.all.length, "finding")}, presented on the preceding page. Additional issues have not been invented to fill this report.</p>
     <div class="card"><h3>What this does not establish</h3><p>A limited automated test is not a security, accessibility or complete functional certification. Enquiry delivery and business outcomes have not been measured.</p></div>
     ${footer(facts, pageNo)}</div></section>`;
   return `<section class="page">
@@ -445,9 +448,9 @@ function pageBenchmark(a, facts) {
       <tbody>
         <tr><td${lcpHl}>Largest Contentful Paint</td><td${lcpHl}>${m.lcp}</td><td${lcpHl}>under 2.5 s</td><td${lcpHl}>Google’s “good” threshold</td></tr>
         <tr><td>Total Blocking Time</td><td${Number(m.tbtMs) > 200 ? ' class="bad"' : ""}>${m.tbt}</td><td>under 200 ms</td><td>Google’s “good” threshold</td></tr>
-        <tr><td>Server response</td><td${Number(m.ttfbMs) > 500 ? ' class="bad"' : ""}>${m.ttfb}</td><td>under 500 ms</td><td>caching and a CDN</td></tr>
-        <tr><td>Page weight</td><td>${m.bytes}</td><td>under 1.6 MB</td><td>compressed, correctly sized images</td></tr>
-        <tr><td>Requests</td><td>${m.requests}</td><td>under 50</td><td>fewer third-party scripts</td></tr>
+        <tr><td>Server response</td><td${Number(m.ttfbMs) > 500 ? ' class="bad"' : ""}>${m.ttfb}</td><td>under 500 ms</td><td>our engineering target</td></tr>
+        <tr><td>Page weight</td><td${Number(m.bytesKb) > 1600 ? ' class="bad"' : ""}>${m.bytes}</td><td>under 1.6 MB</td><td>our engineering target</td></tr>
+        <tr><td>Requests</td><td${Number(m.requests) > 50 ? ' class="bad"' : ""}>${m.requests}</td><td>under 50</td><td>our engineering target</td></tr>
       </tbody>
     </table>`;
 
@@ -455,10 +458,10 @@ function pageBenchmark(a, facts) {
   <div class="pad">
     ${top(facts, "Benchmark")}
     <div class="eyebrow">How you compare</div>
-    <h2 class="t">${analyse ? "The sites outranking you are <em>bigger — not faster.</em>" : "The targets are public. <em>The gap is measurable.</em>"}</h2>
+    <h2 class="t">${analyse ? "The sites outranking you are <em>bigger — not faster.</em>" : "The targets are stated. <em>The gap is measurable.</em>"}</h2>
     <p class="lede" style="max-width:165mm">${analyse
       ? `We ran the identical test on ${rows.length} competitor${rows.length === 1 ? "" : "s"} in your category. Every number below came from the same tool, on the same day, with the same throttling.`
-      : "No competitor benchmark was measured for this audit, so nothing is claimed about them. What follows are Google’s published thresholds against your measured numbers — you can verify every one of them yourself."}</p>
+      : "No competitor benchmark was measured for this audit, so nothing is claimed about them. What follows are your measured numbers against Google’s published “good” thresholds for LCP and blocking time, and against our own engineering targets for the other three rows."}</p>
 
     ${analyse ? `<table class="tbl" style="margin-top:8mm">
       <thead>
@@ -497,7 +500,7 @@ ${tableRows}
 
     <div class="small" style="margin-top:5mm;color:var(--mut)">${analyse
       ? `Same Lighthouse ${a.lighthouseVersion || "12.x"} run, same day, same throttling profile. Public pages only. Full JSON for every test available on request.`
-      : `Source: Google Lighthouse ${a.lighthouseVersion || "12.x"} performance thresholds. Public page only, no access to analytics. Full JSON available on request.`}</div>
+      : `Source: Google’s LCP and TBT thresholds, measured with Lighthouse ${a.lighthouseVersion || "12.x"}; the other targets are ${e(facts.agency.name || "Smart Pursuit")}’s. Public page only, no access to analytics. Full JSON available on request.`}</div>
 
     ${footer(facts, 7)}
   </div>
@@ -568,10 +571,28 @@ function defaultPlan(facts, findings) {
     blockingOk
       ? { id: "05", change: "Scripts &amp; tracking", today: `${m.tbt} blocking, ${cookies}`, target: "Already under 200 ms", effort: "—" }
       : { id: "05", change: "Scripts &amp; tracking", today: `${m.tbt} blocking, ${cookies}`, target: "<b>Under 200 ms</b>, only scripts in use", effort: "½ day" },
-    { id: "06", change: "Headline &amp; structure", today: `${m.h1Count} H1${m.h1Count === 1 ? "" : "s"}${m.sections > 0 ? `, ${m.sections} sections` : ""}`, target: "1 H1, 5 sections, services visible", effort: "2 days" },
-    { id: "07", change: "Local SEO &amp; schema", today: `${(facts.http.schemaTypes || []).length} schema types detected`, target: "LocalBusiness + locations, hours, area", effort: "1 day" },
+    headlineRow(m),
+    { id: "07", change: "Local SEO &amp; schema", today: `${countOf((facts.http.schemaTypes || []).length, "schema type")} detected`, target: "LocalBusiness + locations, hours, area", effort: "1 day" },
     { id: "08", change: "Measurement", today: "Conversion events not tested", target: "Form + call + WhatsApp events", effort: "½ day" },
   ];
+}
+
+/**
+ * Plan row 06, sold only where the measurement shows a gap: one H1, and a
+ * homepage of 6 screens or fewer (the rubric's own threshold). The old fixed
+ * target "1 H1, 5 sections" told a 2-section page to add sections.
+ */
+function headlineRow(m) {
+  const h1 = `${m.h1Count} H1${m.h1Count === 1 ? "" : "s"}`;
+  const screens = Number(m.screens);
+  const today = Number.isFinite(screens) && screens > 0 ? `${h1}, ≈${Math.round(screens)} screens` : h1;
+  const h1Ok = m.h1Count === 1;
+  const lengthOk = !(screens > 6);
+  const row = (target, effort) => ({ id: "06", change: "Headline &amp; structure", today, target, effort });
+  if (h1Ok && lengthOk) return row("Already 1 H1, 6 screens or fewer", "—");
+  if (h1Ok) return row("<b>6 screens or fewer</b>, services visible", "2 days");
+  if (lengthOk) return row("<b>1 H1</b> naming the service and city", "1 hour");
+  return row("<b>1 H1, 6 screens or fewer</b>, services visible", "2 days");
 }
 
 /** The Rescue speed line: only the parts whose plan target is not yet met (same thresholds as page 08). */
@@ -785,7 +806,7 @@ export function renderReport(audit) {
     pageSummary(audit, facts),
     pageScorecard(audit, facts),
     pagePatientView(audit, facts),
-    pageFindings(audit, facts, findings.page1, 5, "Findings 01–03", audit.headings?.page5 || `${findings.all.length} measured findings. <em>Review the supporting evidence.</em>`, subject),
+    pageFindings(audit, facts, findings.page1, 5, "Findings 01–03", audit.headings?.page5 || `${findings.all.length} measured finding${findings.all.length === 1 ? "" : "s"}. <em>Review the supporting evidence.</em>`, subject),
     pageFindings(audit, facts, findings.page2, 6, "Findings 04–06", audit.headings?.page6 || `Further findings — <em>where supported by the test.</em>`, subject),
     pageBenchmark(audit, facts),
     pagePlan(audit, facts),

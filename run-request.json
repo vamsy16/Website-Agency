@@ -4,9 +4,16 @@
   "target": 5,
   "leadsLimit": 16,
   "niches": [],
-  "requestedAt": "2026-11-23T01:34:00Z",
+  "requestedAt": "2026-11-23T01:59:00Z",
   "csv": "data/ap-websearch-2026-11-23.csv",
   "csvOnly": true,
-  "repairOnly": false,
-  "note": "Operator request 2026-11-23: five new Andhra Pradesh leads with an email published on their own site. 16 pre-vetted businesses, none in the repository (domain, root domain, email, phone, name, fuzzy name, git history). Stop after 5 verified audits."
+  "repairOnly": true,
+  "reaudit": [
+    "smartcaredentalhospital.com",
+    "drswethasajja.com",
+    "mjnaiduhospitals.com",
+    "sasyafertilitycenter.com",
+    "ravidentalcare.in"
+  ],
+  "reauditReason": "independent review 2026-11-23: contact-page claim measured, 0 px font, singular counts, one-finding email 1, plan row 06, page-07 target attribution (1.4.2)"
 }

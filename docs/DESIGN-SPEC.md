@@ -166,7 +166,7 @@ The renderer builds these in this exact order. Page numbers are fixed.
 | 4 | `pagePatientView` | top bar; title; **two phone frames 45 × 97 mm** + one laptop screenshot; page-height facts; 0–20 s load timeline with coral/amber/teal markers |
 | 5 | `pageFindings` 01–03 | top bar; title; three `.find` blocks: severity tag, title, three columns — *What we measured* / *Why it costs you `<subject>`* / *The fix* |
 | 6 | `pageFindings` 04–06 | same, plus **"Also on the list"** — up to six one-line measured items |
-| 7 | `pageBenchmark` | top bar; measured competitor table **or** Google-target table; "where the gap is" cards; source line |
+| 7 | `pageBenchmark` | top bar; measured competitor table **or** targets table (Google's LCP/TBT thresholds plus labelled engineering targets); "where the gap is" cards; source line |
 | 8 | `pagePlan` | top bar; **8-row plan table** (# / change / today / target / effort); two phase cards (rescue, rebuild); closing pull quote |
 | 9 | `pageDirection` | top bar; first-screen principles (4 numbered items); optional demo phone frame; three plan cards — Rescue / Rebuild (navy, recommended) / Care; **no prices** |
 | 10 | `pageNextSteps` | top bar; three-step process; navy CTA with phone + email; method box; "kept honest" paragraph; audit reference; footer |
@@ -227,7 +227,7 @@ class that has no rule — `qa.mjs` does not catch this, but the structural diff
 
 | Missing input | Design response |
 | --- | --- |
-| no competitor benchmark | page 7 becomes the Google-target table, with an honest line saying no competitor was measured |
+| no competitor benchmark | page 7 becomes the targets table — Google's LCP/TBT thresholds and the agency's labelled engineering targets — with an honest line saying no competitor was measured |
 | no demo screenshot | page 9 drops the phone column, the four principles take the full width |
 | no shortcode leak | page 6 "also on the list" loses that item; the cover third stat falls back to the H1 count |
 | no schema | the schema line is omitted, never printed as "none found" |

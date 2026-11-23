@@ -19,7 +19,8 @@ numbers taken from their own live site, on a stated date, using a named tool.
    and it is the same date the raw file records.
 4. **Competitor numbers are only printed if they were measured** with the same
    tool, on the same day, with the same throttling. Otherwise the report prints
-   Google's published targets instead of a comparison.
+   Google's published LCP and TBT thresholds, plus engineering targets that are
+   labelled as the agency's own, instead of a comparison.
 5. **Do not invent** testimonials, client logos, patient counts, revenue,
    conversion rates, treatment prices, review scores or staff names.
 6. **The demo is opt-in.** A rebuilt page may be shown only if it exists and was

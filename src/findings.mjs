@@ -194,7 +194,10 @@ export function buildFacts(raw, scoring, business, settings = {}) {
       fcpMs: lhm.fcpMs ?? null,
       fcp: Number.isFinite(lhm.fcpMs) ? fmtSec(lhm.fcpMs) : "—",
       tbtMs: tbt ?? null,
-      tbt: Number.isFinite(tbt) ? `${fmtInt(tbt)} ms` : "—",
+      // Lighthouse reports blocking time with decimals ("992.5 ms"). Whole
+      // milliseconds, unless rounding would land on the 200 ms threshold and
+      // hide which side of it the measurement fell.
+      tbt: Number.isFinite(tbt) ? `${fmtInt(Math.round(tbt) === 200 && tbt !== 200 ? round(tbt, 1) : Math.round(tbt))} ms` : "—",
       tbtOver: ratio(tbt, 200),
       ttiMs: lhm.ttiMs ?? null,
       tti: Number.isFinite(lhm.ttiMs) ? fmtSec(lhm.ttiMs) : "—",
@@ -246,6 +249,9 @@ export function buildFacts(raw, scoring, business, settings = {}) {
     http: {
       status: raw.http?.homepage?.status ?? 0,
       contactStatus: contact.status ?? 0,
+      // Only a /contact/ probe that answered 200 with a page other than the
+      // homepage counts as a reachable contact page (independent review, 23 Nov).
+      contactReachable: contactPageReachable(contact, raw.http?.homepage || {}, meta),
       contactShortcode: contact.shortcode || m.shortcodeLeak || null,
       sitemapStatus: sitemap.status ?? 0,
       sitemapLooksValid: !!sitemap.looksLikeSitemap,
@@ -290,6 +296,26 @@ export function buildFacts(raw, scoring, business, settings = {}) {
   };
 
   return facts;
+}
+
+/**
+ * The /contact/ probe proves a contact page only when it answered 200 with a
+ * page that is not the homepage. A redirect to "/" or a catch-all route that
+ * serves the homepage again (same title, same size) is not a contact page, so
+ * the report must not call it one.
+ */
+function contactPageReachable(contact = {}, home = {}, meta = {}) {
+  if (contact.status !== 200) return false;
+  const norm = u => {
+    try {
+      const x = new URL(u);
+      return `${x.hostname.replace(/^www\./, "")}${x.pathname.replace(/\/+$/, "")}`.toLowerCase();
+    } catch { return String(u || "").toLowerCase(); }
+  };
+  if (contact.finalUrl && home.finalUrl && norm(contact.finalUrl) === norm(home.finalUrl)) return false;
+  const sameTitle = !!contact.titleMatch && !!meta.titleTag && String(contact.titleMatch).trim() === String(meta.titleTag).trim();
+  const sameSize = Number.isFinite(contact.bytes) && Number.isFinite(home.bytes) && Math.abs(contact.bytes - home.bytes) <= Math.max(64, home.bytes * 0.01);
+  return !(sameTitle && sameSize);
 }
 
 const SEVERITY_ORDER = { Critical: 0, High: 1, Medium: 2 };
@@ -445,11 +471,13 @@ export function deriveFindings(raw, facts, business) {
       severity: "Medium",
       tone: "med",
       title: `${m.smallTapTargets} tap targets smaller than a fingertip`,
-      measured: `${m.smallTapTargets} of ${m.tapTargets} interactive elements are under 40 px tall or 24 px wide. Smallest body text: <b>${m.minFontPx} px</b>.`,
+      // A smallest font of 0 px (or none measured) is not a reading anyone can
+      // act on, so the sentence is left out rather than printed as "0 px".
+      measured: `${m.smallTapTargets} of ${m.tapTargets} interactive elements are under 40 px tall or 24 px wide.${Number(m.minFontPx) > 0 ? ` Smallest body text: <b>${m.minFontPx} px</b>.` : ""}`,
       why: `Small controls can be difficult to select on touchscreens. No visitor device mix, mis-taps or abandoned visits were measured.`,
-      fix: `Minimum 44 px hit areas on every link and button, 16 px body text.`,
+      fix: `Minimum 44 px hit areas on every link and button${Number(m.minFontPx) > 0 && Number(m.minFontPx) < 16 ? ", 16 px body text" : ""}.`,
       effort: "2 hours",
-      evidence: ["metric.smallTapTargets", "metric.minFontPx"],
+      evidence: ["metric.smallTapTargets", ...(Number(m.minFontPx) > 0 ? ["metric.minFontPx"] : [])],
     });
   }
 
@@ -480,7 +508,7 @@ export function deriveAlsoItems(raw, facts, printed = []) {
     items.push(`<span class="mono">og:site_name</span> reads “${escapeText(h.ogSiteName)}”, not the business name`);
   }
   if (m.readMore > 2) items.push(`${m.readMore} links say only “Read More” — no keyword, no context`);
-  if (m.deadLinks > 0) items.push(`${m.deadLinks} link${m.deadLinks === 1 ? "" : "s"} point to <span class="mono">#</span> or <span class="mono">javascript:void(0)</span>`);
+  if (m.deadLinks > 0) items.push(`${m.deadLinks} ${m.deadLinks === 1 ? "link points" : "links point"} to <span class="mono">#</span> or <span class="mono">javascript:void(0)</span>`);
   if (m.imagesNoAlt > 0) items.push(`${m.imagesNoAlt} image${m.imagesNoAlt === 1 ? " has" : "s have"} no alt text`);
   if (!covered.has("http.sitemapStatus") && h.sitemapStatus && !h.sitemapLooksValid && !(h.robotsSitemaps || []).length) {
     items.push(h.sitemapStatus === 404 || h.sitemapStatus === 410
@@ -522,7 +550,8 @@ export function speedFix(m, h = {}) {
   if (Number(m.oversizedImgsKb) >= 100) parts.push("images re-encoded at the size they are displayed");
   if (Number(m.bytesKb) > 1600) parts.push(`the ${m.bytes} page weight cut, largest files first`); // page-07 target: under 1.6 MB
   if (Number(m.renderBlockingMs) >= 300 || Number(m.unusedJsKb) >= 100) parts.push("non-critical CSS and scripts deferred");
-  if (h.wordpress && (h.wpPlugins || []).length) parts.push("unused plugins removed");
+  // Plugin asset paths are measured; whether any plugin is unused is not.
+  if (h.wordpress && (h.wpPlugins || []).length) parts.push("plugins reviewed and any unused ones removed");
   if (!parts.length) return "Trace the element Lighthouse reports as the largest content and remove what delays it.";
   return sentence(parts);
 }

@@ -175,6 +175,13 @@ export async function verifyAudit({ auditPath, live = false, fixture = false }) 
     if (!(Number(fm.h1Count) > 0) && /first H1 begins|first H1 starts|headline starts/i.test(text)) copyErrors.push("headline position quoted for a page with no H1");
     if (/retargeting|advertising tag/i.test(text) && !adSignals(audit.facts || {}).length) copyErrors.push("advertising code mentioned but none was observed");
     if (/third-party code blocked/i.test(text)) copyErrors.push("main-thread blocking attributed to third parties without attribution data");
+    // Added after the 23 November 2026 independent review.
+    if (/\b1 (?:measured )?findings\b/.test(text)) copyErrors.push("a single finding described in the plural");
+    if (/\b1 link point to\b/.test(text)) copyErrors.push("\"1 link point to\"");
+    if (/Smallest body text:\s*0 px/i.test(text)) copyErrors.push("a 0 px font reported as body text");
+    if (/Contact page reachable/i.test(text) && !audit.facts?.http?.contactReachable) copyErrors.push("contact page called reachable without a measured contact page");
+    if (/unused plugins removed/i.test(text)) copyErrors.push("plugins assumed unused without measurement");
+    if (/Google’s published thresholds against your measured numbers/i.test(text)) copyErrors.push("engineering targets attributed to Google");
     add("copy.honesty", copyErrors.length === 0, copyErrors.join("; ") || "known unsupported narrative claims absent");
     const allowed = new Set(STRUCTURAL);
     flattenNumbers(audit.facts, allowed);

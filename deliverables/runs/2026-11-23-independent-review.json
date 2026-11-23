@@ -1,0 +1,48 @@
+{
+  "state": "Andhra Pradesh",
+  "reviewDate": "2026-11-23",
+  "run": "45095333140",
+  "requested": 5,
+  "status": "held-pending-reaudit",
+  "dedupeAuthority": [
+    "data/leads.json",
+    "data/audits.json",
+    "git history of this repository"
+  ],
+  "neverSendAutomatically": true,
+  "businessChecks": "All five confirmed as real, independent local healthcare businesses in Andhra Pradesh; each To: address is published on the business's own website (see 2026-11-23-independent-review.md once approved).",
+  "leads": [
+    {
+      "domain": "smartcaredentalhospital.com",
+      "approved": false,
+      "reason": "Held: page 3 prints 'Contact page reachable' although /contact/ redirects to the homepage (the site has no separate contact page); plan row 06 targets '5 sections' for a 4-section page; page 07 attributes the 500 ms / 1.6 MB / 50-request engineering targets to Google. Re-audit requested with renderer 1.4.2; approve only after the regenerated PDF and drafts are re-read."
+    },
+    {
+      "domain": "drswethasajja.com",
+      "approved": false,
+      "reason": "Held: email 1 lists 'Two things stood out' with an empty second item ('2. .') because the audit has one finding; the PDF says '1 findings were identified', '1 measured findings', 'The test produced 1 findings'; 'Contact page reachable' although /contact/ is not a page (the contact page is contact.html). Re-audit requested with renderer 1.4.2."
+    },
+    {
+      "domain": "mjnaiduhospitals.com",
+      "approved": false,
+      "reason": "Held: '1 link point to #', '1 schema types detected', '1 \u201cRead More\u201d links', TBT printed as '992.5 ms', 'unused plugins removed' (plugin use was not measured), engineering targets attributed to Google. Re-audit requested with renderer 1.4.2."
+    },
+    {
+      "domain": "sasyafertilitycenter.com",
+      "approved": false,
+      "reason": "Held: 'Contact page reachable' although /contact/ is not a page; TBT printed as '128.5 ms'; plan row 06 and page 07 wording as above. Re-audit requested with renderer 1.4.2."
+    },
+    {
+      "domain": "ravidentalcare.in",
+      "approved": false,
+      "reason": "Held: finding 04 prints 'Smallest body text: 0 px' (a font-size:0 wrapper, not visible text; it also cost the mobile score a font penalty); plan row 06 tells a 2-section page to grow to '5 sections'; 'unused plugins removed' was not measured. Re-audit requested with renderer 1.4.2 (measurement fix)."
+    }
+  ],
+  "notPublished": [
+    {
+      "domain": "drsiriskinclinic.com",
+      "reason": "Run 45095333140: verify failed screenshots.real (blank or flat capture). Not published; not retried."
+    }
+  ],
+  "withheldOtherDomains": []
+}

@@ -100,12 +100,16 @@ function collectDom() {
     return r.height < 40 || r.width < 24;
   });
 
-  // Smallest font actually rendered on body text.
-  const textEls = q("p, li, span, div, a").filter(el => visible(el) && (el.innerText || "").trim().length > 25);
+  // Smallest font actually rendered on body text. Only an element that holds
+  // text itself counts: a wrapper whose own font-size is 0 (a common
+  // inline-block spacing trick) or differs from its children renders no text at
+  // that size. Counting wrappers printed "Smallest body text: 0 px" (23 Nov review).
+  const ownText = el => [...el.childNodes].some(n => n.nodeType === 3 && n.textContent.trim().length > 0);
+  const textEls = q("p, li, span, div, a").filter(el => visible(el) && (el.innerText || "").trim().length > 25 && ownText(el));
   let minFont = null;
   for (const el of textEls.slice(0, 800)) {
     const fs = parseFloat(getComputedStyle(el).fontSize);
-    if (!Number.isFinite(fs)) continue;
+    if (!Number.isFinite(fs) || fs <= 0) continue;
     if (minFont === null || fs < minFont) minFont = fs;
   }
 
