@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-23-RDC",
   "domain": "ravidentalcare.in",
-  "verifiedAt": "2026-11-23T01:46:41.584Z",
+  "verifiedAt": "2026-11-23T02:09:28.564Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/ravi-dental-care-and-implant-center/2026-11-23T01-45-32-129Z.json",
+      "detail": "raw measurement: data/raw/ravi-dental-care-and-implant-center/2026-11-23T02-08-21-914Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 23/11/2026, 7:15:32 am",
+      "detail": "measurement timestamp: 23/11/2026, 7:38:22 am",
       "severity": "ok"
     },
     {
@@ -53,7 +53,7 @@
     {
       "id": "scores.mobile",
       "ok": true,
-      "detail": "report prints 7, rubric computes 7",
+      "detail": "report prints 8, rubric computes 8",
       "severity": "ok"
     },
     {
@@ -77,7 +77,7 @@
     {
       "id": "scores.overall",
       "ok": true,
-      "detail": "report prints 72, rubric computes 72",
+      "detail": "report prints 74, rubric computes 74",
       "severity": "ok"
     },
     {
@@ -107,7 +107,7 @@
     {
       "id": "numbers.traceable",
       "ok": true,
-      "detail": "all 75 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "detail": "all 78 distinct numbers in the report trace to the measurement, the rubric or a stated target",
       "severity": "ok"
     },
     {
@@ -149,7 +149,7 @@
     {
       "id": "pdf.size",
       "ok": true,
-      "detail": "1.30 MB",
+      "detail": "1.31 MB",
       "severity": "ok"
     },
     {

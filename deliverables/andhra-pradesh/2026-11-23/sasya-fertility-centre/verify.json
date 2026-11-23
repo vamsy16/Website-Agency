@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-23-SFC",
   "domain": "sasyafertilitycenter.com",
-  "verifiedAt": "2026-11-23T01:45:29.409Z",
+  "verifiedAt": "2026-11-23T02:08:19.011Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/sasya-fertility-centre/2026-11-23T01-44-10-133Z.json",
+      "detail": "raw measurement: data/raw/sasya-fertility-centre/2026-11-23T02-07-16-886Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 23/11/2026, 7:14:10 am",
+      "detail": "measurement timestamp: 23/11/2026, 7:37:16 am",
       "severity": "ok"
     },
     {
@@ -107,7 +107,7 @@
     {
       "id": "numbers.traceable",
       "ok": true,
-      "detail": "all 73 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "detail": "all 74 distinct numbers in the report trace to the measurement, the rubric or a stated target",
       "severity": "ok"
     },
     {
@@ -149,7 +149,7 @@
     {
       "id": "pdf.size",
       "ok": true,
-      "detail": "2.41 MB",
+      "detail": "2.42 MB",
       "severity": "ok"
     },
     {

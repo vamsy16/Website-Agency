@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T01:46:41.584Z",
+  "updatedAt": "2026-11-23T02:09:28.565Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -1206,55 +1206,55 @@
       "domain": "smartcaredentalhospital.com",
       "name": "Smart Care Dental Hospital",
       "ref": "SP-AUD-2026-11-23-SCD",
-      "generatedAt": "2026-11-23T01:40:50.332Z",
+      "generatedAt": "2026-11-23T02:05:02.048Z",
       "status": "complete",
       "mode": "live",
       "scores": {
-        "speed": 8,
+        "speed": 9,
         "mobile": 8,
         "conversion": 7,
         "design": 10,
         "seo": 9,
-        "overall": 82
+        "overall": 85
       },
       "pdfPages": 10,
-      "pdfBytes": 1005964,
+      "pdfBytes": 1015564,
       "files": {
         "pdf": "reports/smart-care-dental-hospital/Smart-Pursuit-Audit-Smart-Care-Dental-Hospital.pdf",
         "audit": "reports/smart-care-dental-hospital/audit.json",
         "html": "reports/smart-care-dental-hospital/report.html"
       },
-      "fingerprint": "552a0ae071073cc8"
+      "fingerprint": "2b9e63b124cfa329"
     },
     {
       "domain": "drswethasajja.com",
       "name": "Dr Swetha Sajja Eye Hospital",
       "ref": "SP-AUD-2026-11-23-DSS",
-      "generatedAt": "2026-11-23T01:42:41.746Z",
+      "generatedAt": "2026-11-23T02:05:46.784Z",
       "status": "complete",
       "mode": "live",
       "scores": {
-        "speed": 7,
-        "mobile": 5,
+        "speed": 8,
+        "mobile": 6,
         "conversion": 10,
         "design": 10,
         "seo": 8,
-        "overall": 79
+        "overall": 84
       },
       "pdfPages": 10,
-      "pdfBytes": 2557684,
+      "pdfBytes": 2564536,
       "files": {
         "pdf": "reports/dr-swetha-sajja-eye-hospital/Smart-Pursuit-Audit-Dr-Swetha-Sajja-Eye-Hospital.pdf",
         "audit": "reports/dr-swetha-sajja-eye-hospital/audit.json",
         "html": "reports/dr-swetha-sajja-eye-hospital/report.html"
       },
-      "fingerprint": "8b1eda49a5b33da5"
+      "fingerprint": "3ec2579eea77626d"
     },
     {
       "domain": "mjnaiduhospitals.com",
       "name": "MJ Naidu Super Speciality Hospital",
       "ref": "SP-AUD-2026-11-23-MNS",
-      "generatedAt": "2026-11-23T01:44:07.642Z",
+      "generatedAt": "2026-11-23T02:07:14.385Z",
       "status": "complete",
       "mode": "live",
       "scores": {
@@ -1266,7 +1266,7 @@
         "overall": 56
       },
       "pdfPages": 10,
-      "pdfBytes": 2588822,
+      "pdfBytes": 2595376,
       "files": {
         "pdf": "reports/mj-naidu-super-speciality-hospital/Smart-Pursuit-Audit-MJ-Naidu-Super-Speciality-Hospital.pdf",
         "audit": "reports/mj-naidu-super-speciality-hospital/audit.json",
@@ -1278,7 +1278,7 @@
       "domain": "sasyafertilitycenter.com",
       "name": "Sasya Fertility Centre",
       "ref": "SP-AUD-2026-11-23-SFC",
-      "generatedAt": "2026-11-23T01:45:29.409Z",
+      "generatedAt": "2026-11-23T02:08:19.012Z",
       "status": "complete",
       "mode": "live",
       "scores": {
@@ -1290,7 +1290,7 @@
         "overall": 75
       },
       "pdfPages": 10,
-      "pdfBytes": 2529733,
+      "pdfBytes": 2536206,
       "files": {
         "pdf": "reports/sasya-fertility-centre/Smart-Pursuit-Audit-Sasya-Fertility-Centre.pdf",
         "audit": "reports/sasya-fertility-centre/audit.json",
@@ -1302,25 +1302,25 @@
       "domain": "ravidentalcare.in",
       "name": "Ravi Dental Care and Implant Center",
       "ref": "SP-AUD-2026-11-23-RDC",
-      "generatedAt": "2026-11-23T01:46:41.584Z",
+      "generatedAt": "2026-11-23T02:09:28.565Z",
       "status": "complete",
       "mode": "live",
       "scores": {
         "speed": 4,
-        "mobile": 7,
+        "mobile": 8,
         "conversion": 10,
         "design": 8,
         "seo": 9,
-        "overall": 72
+        "overall": 74
       },
       "pdfPages": 10,
-      "pdfBytes": 1366558,
+      "pdfBytes": 1370235,
       "files": {
         "pdf": "reports/ravi-dental-care-and-implant-center/Smart-Pursuit-Audit-Ravi-Dental-Care-and-Implant-Center.pdf",
         "audit": "reports/ravi-dental-care-and-implant-center/audit.json",
         "html": "reports/ravi-dental-care-and-implant-center/report.html"
       },
-      "fingerprint": "2ea27b357d3e236c"
+      "fingerprint": "1a7e855a2769dc0e"
     }
   ]
 }

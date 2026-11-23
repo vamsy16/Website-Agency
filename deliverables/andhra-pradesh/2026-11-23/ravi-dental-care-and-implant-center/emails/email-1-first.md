@@ -13,7 +13,7 @@ I ran a live website audit of ravidentalcare.in and put the results in the attac
 
 Two things stood out:
 
-1. A 65/100 mobile score and an 18.3 s LCP. Google’s thresholds are 2.5 s for LCP and 200 ms for TBT.
+1. A 64/100 mobile score and an 18.7 s LCP. Google’s thresholds are 2.5 s for LCP and 200 ms for TBT.
 2. 12 screen heights of homepage content. A long page can require more navigation.
 
 The report includes test measurements, screenshots and suggested fixes. Recommendations and effort estimates are distinguished from measured results.

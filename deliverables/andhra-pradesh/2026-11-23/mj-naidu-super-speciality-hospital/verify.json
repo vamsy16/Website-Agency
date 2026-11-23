@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-23-MNS",
   "domain": "mjnaiduhospitals.com",
-  "verifiedAt": "2026-11-23T01:44:07.642Z",
+  "verifiedAt": "2026-11-23T02:07:14.384Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/mj-naidu-super-speciality-hospital/2026-11-23T01-42-45-842Z.json",
+      "detail": "raw measurement: data/raw/mj-naidu-super-speciality-hospital/2026-11-23T02-05-51-432Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 23/11/2026, 7:12:45 am",
+      "detail": "measurement timestamp: 23/11/2026, 7:35:51 am",
       "severity": "ok"
     },
     {
@@ -107,7 +107,7 @@
     {
       "id": "numbers.traceable",
       "ok": true,
-      "detail": "all 78 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "detail": "all 80 distinct numbers in the report trace to the measurement, the rubric or a stated target",
       "severity": "ok"
     },
     {
@@ -149,7 +149,7 @@
     {
       "id": "pdf.size",
       "ok": true,
-      "detail": "2.47 MB",
+      "detail": "2.48 MB",
       "severity": "ok"
     },
     {

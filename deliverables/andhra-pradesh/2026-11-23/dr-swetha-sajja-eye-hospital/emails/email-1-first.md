@@ -11,10 +11,7 @@ Hi there,
 
 I ran a live website audit of drswethasajja.com and put the results in the attached audit (10 pages, all numbers measured 23 November 2026).
 
-Two things stood out:
-
-1. 26 tap targets smaller than a fingertip. Small controls can be difficult to select on touchscreens.
-2. .
+One thing stood out: 26 tap targets smaller than a fingertip. Small controls can be difficult to select on touchscreens.
 
 The report includes test measurements, screenshots and suggested fixes. Recommendations and effort estimates are distinguished from measured results.
 
