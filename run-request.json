@@ -4,16 +4,12 @@
   "target": 5,
   "leadsLimit": 16,
   "niches": [],
-  "requestedAt": "2026-11-23T01:59:00Z",
+  "requestedAt": "2026-11-23T02:13:00Z",
   "csv": "data/ap-websearch-2026-11-23.csv",
   "csvOnly": true,
   "repairOnly": true,
   "reaudit": [
-    "smartcaredentalhospital.com",
-    "drswethasajja.com",
-    "mjnaiduhospitals.com",
-    "sasyafertilitycenter.com",
-    "ravidentalcare.in"
+    "drswethasajja.com"
   ],
-  "reauditReason": "independent review 2026-11-23: contact-page claim measured, 0 px font, singular counts, one-finding email 1, plan row 06, page-07 target attribution (1.4.2)"
+  "reauditReason": "independent review 2026-11-23 pass 2: single-finding pronoun ('Its effect') and singular counts (1.4.2)"
 }

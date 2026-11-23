@@ -3,7 +3,7 @@
   "reviewDate": "2026-11-23",
   "run": "45095333140",
   "requested": 5,
-  "status": "held-pending-reaudit",
+  "status": "four-reviewed-one-held-pending-reaudit",
   "dedupeAuthority": [
     "data/leads.json",
     "data/audits.json",
@@ -20,12 +20,12 @@
     {
       "domain": "drswethasajja.com",
       "approved": false,
-      "reason": "Held: email 1 lists 'Two things stood out' with an empty second item ('2. .') because the audit has one finding; the PDF says '1 findings were identified', '1 measured findings', 'The test produced 1 findings'; 'Contact page reachable' although /contact/ is not a page (the contact page is contact.html). Re-audit requested with renderer 1.4.2."
+      "reason": "Held after re-audit 45097578295: every earlier defect is gone (email 1 now reads 'One thing stood out', singular counts, no contact-page claim), but page 2 reads '1 finding was identified. Their effect on enquiries…'. Second re-audit requested with the corrected pronoun; approve only after the regenerated PDF is re-read."
     },
     {
       "domain": "mjnaiduhospitals.com",
       "approved": false,
-      "reason": "Held: '1 link point to #', '1 schema types detected', '1 \u201cRead More\u201d links', TBT printed as '992.5 ms', 'unused plugins removed' (plugin use was not measured), engineering targets attributed to Google. Re-audit requested with renderer 1.4.2."
+      "reason": "Held: '1 link point to #', '1 schema types detected', '1 “Read More” links', TBT printed as '992.5 ms', 'unused plugins removed' (plugin use was not measured), engineering targets attributed to Google. Re-audit requested with renderer 1.4.2."
     },
     {
       "domain": "sasyafertilitycenter.com",

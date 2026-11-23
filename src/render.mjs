@@ -179,7 +179,7 @@ function defaultSummary(facts, findings) {
   if (facts.http?.canonical) good.push("a canonical tag");
   return {
     title: `Your website, measured.<br>Review the evidence <em>before deciding what to change.</em>`,
-    lede: `We ran the same tests Google runs, on the same page a visitor sees when they search for your service on a phone. ${countOf(findings.all.length, "finding")} ${findings.all.length === 1 ? "was" : "were"} identified. Their effect on enquiries has not been measured.`,
+    lede: `We ran the same tests Google runs, on the same page a visitor sees when they search for your service on a phone. ${countOf(findings.all.length, "finding")} ${findings.all.length === 1 ? "was" : "were"} identified. ${findings.all.length === 1 ? "Its" : "Their"} effect on enquiries has not been measured.`,
     costs,
     working: `Credit where it is due: ${good.length ? good.join(", ") : "the pages do load"}. These are observed features, not proof of overall site quality.`,
     verdict: `Prioritise the supported findings below. Confirm their relevance and agree a scope before estimating delivery or deciding on a redesign.`,
@@ -192,10 +192,10 @@ function pageScorecard(a, facts) {
   const s = facts.scores;
   const rows = [
     ["Speed", s.speed, `Mobile ${facts.metric.perfMobile}/100 · LCP ${facts.metric.lcp} · TBT ${facts.metric.tbt} · ${facts.metric.requests} requests · ${facts.metric.bytes} · server response ${facts.metric.ttfb}`, 30],
-    ["Mobile experience", s.mobile, `≈${Math.round(facts.metric.screens)} screens tall · ${facts.metric.smallTapTargets} tap targets under 40 px${Number(facts.metric.minFontPx) > 0 ? ` · body text down to ${facts.metric.minFontPx} px` : ""} · ${facts.metric.h1Count > 0 ? `first H1 starts ${fmtInt(facts.metric.headlineOffsetPx)} px down` : "no H1 headline found"}`, 20],
+    ["Mobile experience", s.mobile, `≈${countOf(Math.round(facts.metric.screens), "screen")} tall · ${countOf(facts.metric.smallTapTargets, "tap target")} under 40 px${Number(facts.metric.minFontPx) > 0 ? ` · body text down to ${facts.metric.minFontPx} px` : ""} · ${facts.metric.h1Count > 0 ? `first H1 starts ${fmtInt(facts.metric.headlineOffsetPx)} px down` : "no H1 headline found"}`, 20],
     // "Contact page reachable" only when the /contact/ probe found a page that is not the homepage.
     ["Conversion", s.conversion, `${facts.metric.visibleForms === 0 ? "No visible form on the home page" : `${facts.metric.visibleForms} visible form(s)`} · ${facts.http.contactShortcode ? "Contact page prints raw code · " : facts.http.contactReachable ? "Contact page reachable · " : ""}${facts.metric.telLinks} click-to-call link(s) · ${facts.metric.whatsapp} WhatsApp element(s)`, 25],
-    ["Design &amp; clarity", s.design, `${facts.metric.sections > 0 ? `${facts.metric.sections} stacked sections · ` : ""}${fmtInt(facts.metric.domNodes)} DOM nodes · ${facts.metric.imagesNoAlt} image${facts.metric.imagesNoAlt === 1 ? "" : "s"} without alt text`, 15],
+    ["Design &amp; clarity", s.design, `${facts.metric.sections > 0 ? `${facts.metric.sections} stacked section${facts.metric.sections === 1 ? "" : "s"} · ` : ""}${fmtInt(facts.metric.domNodes)} DOM nodes · ${facts.metric.imagesNoAlt} image${facts.metric.imagesNoAlt === 1 ? "" : "s"} without alt text`, 15],
     ["SEO", s.seo, `Lighthouse SEO ${facts.metric.seo}/100 · ${facts.metric.h1Count} H1 heading${facts.metric.h1Count === 1 ? "" : "s"} · structured data ${schemaState(facts.http)} · ${facts.metric.readMore} “Read More” link${facts.metric.readMore === 1 ? "" : "s"}`, 10],
   ];
   const cls = n => (n <= 3 ? "red" : n <= 6 ? "amber" : ""); // >= 7: default bar colour (no "green" rule exists)
@@ -277,11 +277,11 @@ ${phones
       <div style="flex:1;padding-left:2mm">
         <div class="eyebrow mut">Also measured</div>
         <div style="display:flex;flex-direction:column;gap:3.4mm;margin-top:1mm">
-          <div><div style="font-family:'Instrument Serif',serif;font-size:17pt;line-height:1">${fmtInt(m.pageHeightPx)}<span style="font-size:8pt;color:var(--mut)"> px</span></div><div class="small">page height — about ${Math.round(m.screens)} phone screens</div></div>
+          <div><div style="font-family:'Instrument Serif',serif;font-size:17pt;line-height:1">${fmtInt(m.pageHeightPx)}<span style="font-size:8pt;color:var(--mut)"> px</span></div><div class="small">page height — about ${Math.round(m.screens)} phone screen${Math.round(m.screens) === 1 ? "" : "s"}</div></div>
           ${m.sections > 0
-            ? `<div><div style="font-family:'Instrument Serif',serif;font-size:17pt;line-height:1">${m.sections}</div><div class="small">stacked sections on one page</div></div>`
+            ? `<div><div style="font-family:'Instrument Serif',serif;font-size:17pt;line-height:1">${m.sections}</div><div class="small">stacked section${m.sections === 1 ? "" : "s"} on one page</div></div>`
             : `<div><div style="font-family:'Instrument Serif',serif;font-size:17pt;line-height:1">${fmtInt(m.words)}</div><div class="small">words of text on the homepage</div></div>`}
-          <div><div style="font-family:'Instrument Serif',serif;font-size:17pt;line-height:1">${m.images}</div><div class="small">images, ${fmtInt(m.oversizedImgsKb)} KiB of them oversized</div></div>
+          <div><div style="font-family:'Instrument Serif',serif;font-size:17pt;line-height:1">${m.images}</div><div class="small">image${m.images === 1 ? "" : "s"}, ${fmtInt(m.oversizedImgsKb)} KiB of ${m.images === 1 ? "it" : "them"} oversized</div></div>
           <div><div style="font-family:'Instrument Serif',serif;font-size:17pt;line-height:1">${m.telLinks}</div><div class="small">click-to-call link${m.telLinks === 1 ? "" : "s"} on the whole page</div></div>
         </div>
       </div>
@@ -585,7 +585,7 @@ function defaultPlan(facts, findings) {
 function headlineRow(m) {
   const h1 = `${m.h1Count} H1${m.h1Count === 1 ? "" : "s"}`;
   const screens = Number(m.screens);
-  const today = Number.isFinite(screens) && screens > 0 ? `${h1}, ≈${Math.round(screens)} screens` : h1;
+  const today = Number.isFinite(screens) && screens > 0 ? `${h1}, ≈${countOf(Math.round(screens), "screen")}` : h1;
   const h1Ok = m.h1Count === 1;
   const lengthOk = !(screens > 6);
   const row = (target, effort) => ({ id: "06", change: "Headline &amp; structure", today, target, effort });

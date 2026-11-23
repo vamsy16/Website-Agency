@@ -351,7 +351,7 @@ export function deriveFindings(raw, facts, business) {
       severity: "Critical",
       tone: "crit",
       title: v.health ? `No appointment form fields were detected on the homepage` : `No enquiry form fields were detected on the homepage`,
-      measured: `Zero form fields on the home page. The page has <b>${m.telLinks}</b> click-to-call links and <b>${m.whatsapp}</b> WhatsApp capture element${m.whatsapp === 1 ? "" : "s"}.`,
+      measured: `Zero form fields on the home page. The page has <b>${m.telLinks}</b> click-to-call link${m.telLinks === 1 ? "" : "s"} and <b>${m.whatsapp}</b> WhatsApp capture element${m.whatsapp === 1 ? "" : "s"}.`,
       why: v.health
         ? `A patient may prefer a written appointment request. Check whether a separate booking page or another suitable contact route already meets that need. No lost appointments were measured.`
         : `Visitors may prefer different contact routes. Check existing phone, WhatsApp and separate contact-page options before deciding whether a homepage form is useful. No lost enquiries were measured.`,
@@ -396,7 +396,7 @@ export function deriveFindings(raw, facts, business) {
       severity: "Medium",
       tone: "med",
       title: `${Math.round(m.screens)} screen heights of homepage content`,
-      measured: `${fmtInt(m.pageHeightPx)} px tall at 390 px wide. ${m.sections ? `${m.sections} sections, ` : ""}${m.images} images, ${fmtInt(m.words)} words. These dimensions alone do not establish where contact details appear.`,
+      measured: `${fmtInt(m.pageHeightPx)} px tall at 390 px wide. ${m.sections ? `${m.sections} section${m.sections === 1 ? "" : "s"}, ` : ""}${m.images} image${m.images === 1 ? "" : "s"}, ${fmtInt(m.words)} words. These dimensions alone do not establish where contact details appear.`,
       why: `A long page can require more navigation. Review the captured screens to check whether key service and contact information is easy to find; no scrolling behaviour was measured.`,
       fix: `Five sections on the homepage: offer, proof, services, location and hours, book. Move the rest to dedicated pages.`,
       effort: "included in a rebuild",
