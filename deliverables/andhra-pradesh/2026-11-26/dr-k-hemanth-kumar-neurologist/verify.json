@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-26-DKH",
   "domain": "neurologistinkurnool.com",
-  "verifiedAt": "2026-11-26T12:10:12.597Z",
+  "verifiedAt": "2026-11-26T12:38:44.790Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/dr-k-hemanth-kumar-neurologist/2026-11-26T12-05-25-343Z.json",
+      "detail": "raw measurement: data/raw/dr-k-hemanth-kumar-neurologist/2026-11-26T12-33-58-834Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 26/11/2026, 5:35:25 pm",
+      "detail": "measurement timestamp: 26/11/2026, 6:03:59 pm",
       "severity": "ok"
     },
     {
@@ -107,7 +107,7 @@
     {
       "id": "numbers.traceable",
       "ok": true,
-      "detail": "all 74 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "detail": "all 72 distinct numbers in the report trace to the measurement, the rubric or a stated target",
       "severity": "ok"
     },
     {
@@ -149,7 +149,7 @@
     {
       "id": "pdf.size",
       "ok": true,
-      "detail": "2.00 MB",
+      "detail": "1.65 MB",
       "severity": "ok"
     },
     {

@@ -11,7 +11,7 @@ Hi there,
 
 This is my last note on this — I do not want to fill your inbox.
 
-The audit stands on its own: 10 pages, measured on 26 November 2026, ref SP-AUD-2026-11-26-VF&. Keep it, use it, or pass it to your developer.
+The audit stands on its own: 10 pages, measured on 26 November 2026, ref SP-AUD-2026-11-26-VFI. Keep it, use it, or pass it to your developer.
 
 If the timing is wrong rather than the idea, just reply “later” and I will check back in a few months. If it is not for you, no reply needed at all.
 

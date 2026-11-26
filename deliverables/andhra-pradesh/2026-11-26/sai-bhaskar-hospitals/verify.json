@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-26-SBH",
   "domain": "saibhaskarhospital.com",
-  "verifiedAt": "2026-11-26T12:17:01.711Z",
+  "verifiedAt": "2026-11-26T12:51:05.237Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/sai-bhaskar-hospitals/2026-11-26T12-15-26-087Z.json",
+      "detail": "raw measurement: data/raw/sai-bhaskar-hospitals/2026-11-26T12-49-31-001Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 26/11/2026, 5:45:26 pm",
+      "detail": "measurement timestamp: 26/11/2026, 6:19:31 pm",
       "severity": "ok"
     },
     {
@@ -149,7 +149,7 @@
     {
       "id": "pdf.size",
       "ok": true,
-      "detail": "2.49 MB",
+      "detail": "2.50 MB",
       "severity": "ok"
     },
     {

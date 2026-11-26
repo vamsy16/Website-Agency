@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-26-DFC",
   "domain": "deepthifertility.com",
-  "verifiedAt": "2026-11-26T12:15:24.508Z",
+  "verifiedAt": "2026-11-26T12:49:29.605Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/deepthi-fertility-centre/2026-11-26T12-10-14-849Z.json",
+      "detail": "raw measurement: data/raw/deepthi-fertility-centre/2026-11-26T12-44-21-642Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 26/11/2026, 5:40:14 pm",
+      "detail": "measurement timestamp: 26/11/2026, 6:14:21 pm",
       "severity": "ok"
     },
     {
@@ -107,7 +107,7 @@
     {
       "id": "numbers.traceable",
       "ok": true,
-      "detail": "all 76 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "detail": "all 75 distinct numbers in the report trace to the measurement, the rubric or a stated target",
       "severity": "ok"
     },
     {
@@ -149,7 +149,7 @@
     {
       "id": "pdf.size",
       "ok": true,
-      "detail": "1.05 MB",
+      "detail": "1.04 MB",
       "severity": "ok"
     },
     {
