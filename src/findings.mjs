@@ -439,8 +439,9 @@ export function deriveFindings(raw, facts, business) {
     const cookies = m.thirdPartyCookies;
     const ads = adSignals(facts);
     const thirdParty = m.thirdPartyRequests > 0;
-    const outside = (m.thirdPartyDomains || []).filter(d => !builderHost(d));
-    const domainLabel = d => builderHost(d) ? `${d}, ${builderHost(d)}’s site-builder file server` : d;
+    const gen = facts.http?.generator;
+    const outside = (m.thirdPartyDomains || []).filter(d => !builderHost(d, gen));
+    const domainLabel = d => builderHost(d, gen) ? `${d}, the file server of ${builderHost(d, gen)}’s site builder, which this page is built on` : d;
     candidates.push({
       severity: "Medium",
       tone: "med",
@@ -604,16 +605,19 @@ export function speedFix(m, h = {}) {
  * shares nothing with a new company (26 Nov review: GoDaddy's img1.wsimg.com
  * was described as "another company" on GoDaddy-built sites).
  */
+// Applies only when the page itself is built on that builder, read from its
+// meta generator: a WordPress site that loads one GoDaddy image does share the
+// visit with GoDaddy (Deepthi, 26 Nov review).
 const BUILDER_HOSTS = [
-  [/(^|\.)wsimg\.com$/, "GoDaddy"],
-  [/(^|\.)(wixstatic|parastorage)\.com$/, "Wix"],
-  [/(^|\.)(squarespace|squarespace-cdn)\.com$/, "Squarespace"],
-  [/(^|\.)(zyrosite|zyro)\.com$/, "Hostinger"],
-  [/(^|\.)(editmysite|weebly)\.com$/, "Square Online"],
-  [/(^|\.)(shopify|shopifycdn)\.com$/, "Shopify"],
+  [/(^|\.)wsimg\.com$/, "GoDaddy", /go ?daddy|starfield/i],
+  [/(^|\.)(wixstatic|parastorage)\.com$/, "Wix", /\bwix\b/i],
+  [/(^|\.)(squarespace|squarespace-cdn)\.com$/, "Squarespace", /squarespace/i],
+  [/(^|\.)(zyrosite|zyro)\.com$/, "Hostinger", /zyro|hostinger/i],
+  [/(^|\.)(editmysite|weebly)\.com$/, "Square Online", /weebly|square online/i],
+  [/(^|\.)(shopify|shopifycdn)\.com$/, "Shopify", /shopify/i],
 ];
-export function builderHost(host) {
-  for (const [re, name] of BUILDER_HOSTS) if (re.test(String(host || ""))) return name;
+export function builderHost(host, generator) {
+  for (const [re, name, gen] of BUILDER_HOSTS) if (re.test(String(host || "")) && gen.test(String(generator || ""))) return name;
   return null;
 }
 

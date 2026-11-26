@@ -96,14 +96,24 @@ async function frameRoutes(page) {
         return s.visibility !== "hidden" && s.display !== "none" && Number(s.opacity) > 0 && s.position !== "fixed";
       });
       if (!box || box.width < 120 || box.height < 40 || !shown) continue;
-      const r = await f.evaluate(() => {
-        const hrefs = [...document.querySelectorAll("a[href]")].map(a => (a.getAttribute("href") || "").trim().toLowerCase());
-        return {
-          tel: hrefs.filter(h => h.startsWith("tel:")).length,
-          mail: hrefs.filter(h => h.startsWith("mailto:")).length,
-          whatsapp: hrefs.filter(h => /wa\.me|whatsapp/.test(h)).length,
-        };
+      const count = hrefs => ({
+        tel: hrefs.filter(h => h.startsWith("tel:")).length,
+        mail: hrefs.filter(h => h.startsWith("mailto:")).length,
+        whatsapp: hrefs.filter(h => /wa\.me|whatsapp/.test(h)).length,
       });
+      let r = null;
+      try {
+        // A frame without scripts may never answer; give it 3 s.
+        const hrefs = await Promise.race([
+          f.evaluate(() => [...document.querySelectorAll("a[href]")].map(a => (a.getAttribute("href") || "").trim().toLowerCase())),
+          new Promise((_, rej) => setTimeout(() => rej(new Error("frame timeout")), 3000)),
+        ]);
+        r = count(hrefs);
+      } catch {
+        // Fallback: read the frame's inline document from its srcdoc attribute.
+        const srcdoc = await el.evaluate(e => e.getAttribute("srcdoc") || "");
+        r = count([...srcdoc.matchAll(/href\s*=\s*["']\s*([^"']+)/gi)].map(x => x[1].trim().toLowerCase()));
+      }
       if (r.tel || r.mail || r.whatsapp) out.frames++;
       out.tel += r.tel; out.mail += r.mail; out.whatsapp += r.whatsapp;
     } catch {}
