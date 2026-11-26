@@ -1,16 +1,12 @@
 {
   "state": "Andhra Pradesh",
-  "max": 16,
+  "max": 10,
   "target": 5,
-  "leadsLimit": 16,
+  "leadsLimit": 10,
   "niches": [],
-  "requestedAt": "2026-11-23T02:21:00Z",
-  "csv": "data/ap-websearch-2026-11-23.csv",
+  "requestedAt": "2026-11-26T11:52:41Z",
+  "csv": "data/ap-websearch-2026-11-26.csv",
   "csvOnly": true,
-  "repairOnly": true,
-  "reaudit": [
-    "drswethasajja.com"
-  ],
-  "reauditReason": "independent review 2026-11-23 pass 3: reproducibility check - mobile performance 88/90 in runs 45095333140 and 45097578295 but 62 (LCP 7.6 s, render-blocking 4,033 ms) in run 45098947793; the next run is accepted whatever it measures",
-  "disabled": true
+  "repairOnly": false,
+  "disabled": false
 }
