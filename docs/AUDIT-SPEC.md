@@ -198,7 +198,9 @@ repeated there.
 - that links to `#` or `javascript:void(0)` are "dead" — some open menus or
   slides; call them placeholder links;
 - that a site needs a sticky call bar when it already keeps call or WhatsApp
-  buttons on screen.
+  buttons on screen;
+- that a headline is seen in the first screen when it sits in a hidden,
+  transparent or off-screen slide.
 
 Counts of contact routes, headings and words are the larger of two passes: at
 load and after the full-page and scrolled screenshots.

@@ -96,7 +96,7 @@ function defaultCoverStats(facts, findings) {
   const first = findings.all[0] || { title: "" };
   const third = m.visibleForms === 0 && facts.http.contactShortcode
     ? { n: "1", unit: "", label: "Broken enquiry form. Your Contact page prints raw code where the form should load." }
-    : { n: String(m.h1Count), unit: "", label: m.h1Count > 1 ? "H1 headings detected on the homepage. Review whether the page has a clear primary topic." : m.h1Count === 1 ? "H1 heading detected on the homepage." : Number(m.h1Hidden) > 0 ? (Number(m.h1CountDesktop) > 0 ? `H1 headings visible on the 390 px phone view; the desktop layout shows ${m.h1CountDesktop}.` : `H1 headings visible on the 390 px phone view; the markup has ${m.h1Hidden} that ${m.h1Hidden === 1 ? "was" : "were"} not shown.`) : "H1 headings detected on the homepage; review the document outline." };
+    : { n: String(m.h1Count), unit: "", label: m.h1Count > 1 ? (Number(m.h1Hidden) > 0 ? `H1 headings visible at 390 px (${m.h1Hidden} more hidden in the markup). Review whether the page has a clear primary topic.` : "H1 headings detected on the homepage. Review whether the page has a clear primary topic.") : m.h1Count === 1 ? (Number(m.h1Hidden) > 0 ? `H1 heading visible at 390 px (${m.h1Hidden} more hidden in the markup).` : "H1 heading detected on the homepage.") : Number(m.h1Hidden) > 0 ? (Number(m.h1CountDesktop) > 0 ? `H1 headings visible on the 390 px phone view; the desktop layout shows ${m.h1CountDesktop}.` : `H1 headings visible on the 390 px phone view; the markup has ${m.h1Hidden} that ${m.h1Hidden === 1 ? "was" : "were"} not shown.`) : "H1 headings detected on the homepage; review the document outline." };
   return [
     { n: String(m.perfMobile), unit: "/ 100", label: `Lighthouse mobile performance score in this test run.` },
     { n: secNum(m.lcpMs), unit: "s", label: `Largest Contentful Paint in the mobile lab test. Good LCP target: 2.5 s or less.` },
@@ -173,7 +173,8 @@ function defaultSummary(facts, findings) {
   const costs = findings.all.slice(0, 3).map(f => ({ title: f.title + ".", body: f.why }));
   const good = [];
   if (m.words > 300) good.push(`${fmtInt(m.words)} words of real content`);
-  if (m.images > 10) good.push(`${m.images} images`);
+  // Not credited when the same images need the re-encoding fix (speedFix's 100 KiB threshold).
+  if (m.images > 10 && Number(m.oversizedImgsKb ?? 0) < 100) good.push(`${m.images} images`);
   if (h.analytics) good.push("Google Analytics present");
   if (m.schemaTypes?.length) good.push(`${m.schemaTypes[0]} structured data`);
   if (facts.http?.canonical) good.push("a canonical tag");

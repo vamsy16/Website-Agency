@@ -404,7 +404,7 @@ export function deriveFindings(raw, facts, business) {
       severity: "High",
       tone: "med",
       title: `${m.h1Count} H1 headings competing for one page`,
-      measured: `${Number(m.h1Hidden) > 0 ? `At 390 px the homepage shows <b>${m.h1Count} × H1</b> and ${m.h2Count} × H2; the markup holds ${m.h1Hidden} more H1${m.h1Hidden === 1 ? "" : "s"} that ${m.h1Hidden === 1 ? "was" : "were"} not visible when the page loaded.` : `The homepage carries <b>${m.h1Count} × H1</b> and ${m.h2Count} × H2.`} Headline blocks seen in the first screen: ${(raw.mobile?.dom?.firstScreenClaims || []).slice(0, 3).map(c => `“${c}”`).join(" · ") || "—"}.`,
+      measured: `${Number(m.h1Hidden) > 0 ? `At 390 px the homepage shows <b>${m.h1Count} × H1</b> and ${m.h2Count} × H2; the markup holds ${m.h1Hidden} more H1${m.h1Hidden === 1 ? "" : "s"} that ${m.h1Hidden === 1 ? "was" : "were"} not visible when the page loaded.` : `The homepage carries <b>${m.h1Count} × H1</b> and ${m.h2Count} × H2.`}${(raw.mobile?.dom?.firstScreenClaims || []).length ? ` Headline blocks seen in the first screen: ${(raw.mobile?.dom?.firstScreenClaims || []).slice(0, 3).map(c => `“${c}”`).join(" · ")}.` : ""}`,
       why: `One page, one H1 — that is how a search engine reads the topic and how a person reads the offer. Several slogans mean the reader does the work of deciding what the business actually does, and the crawler gets no clear signal.`,
       fix: v.health
         ? `One H1 naming the service and the city, then H2s for treatments, locations and doctors.`

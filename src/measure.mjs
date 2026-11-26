@@ -123,11 +123,25 @@ function collectDom() {
 
   // Where does the first real headline start?
   const headlineOffset = h1s.length ? Math.round(q("h1").filter(visible)[0].getBoundingClientRect().top + window.scrollY) : 0;
+  // Stricter than visible(), for what a visitor sees in the first screen: also
+  // rejects an element inside a transparent ancestor (an inactive fade slide)
+  // or outside the viewport's width (an inactive sliding slide). Hidden slide
+  // titles had been quoted as "headline blocks seen in the first screen"
+  // (26 Nov review).
+  const seen = el => {
+    if (!visible(el)) return false;
+    const r = el.getBoundingClientRect();
+    if (r.right <= 0 || r.left >= vw) return false;
+    if (typeof el.checkVisibility === "function" &&
+        !el.checkVisibility({ checkOpacity: true, opacityProperty: true, checkVisibilityCSS: true, visibilityProperty: true })) return false;
+    return true;
+  };
   // How many competing headline-sized blocks sit in the first screen?
   const firstScreenClaims = q("h1, h2, [class*=title], [class*=headline], [class*=hero]")
     .filter(el => {
       const r = el.getBoundingClientRect();
       if (r.top > vh || r.bottom < 0) return false;
+      if (!seen(el)) return false;
       const fs = parseFloat(getComputedStyle(el).fontSize);
       const t = (el.innerText || "").trim();
       return fs >= 24 && t.length > 8 && t.length < 160 && el.children.length < 4;
