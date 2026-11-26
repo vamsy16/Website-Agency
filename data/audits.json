@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-26T13:13:10.322Z",
+  "updatedAt": "2026-11-26T13:31:47.425Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -1374,7 +1374,7 @@
       "domain": "neurologistinkurnool.com",
       "name": "Dr. K. Hemanth Kumar Neurologist",
       "ref": "SP-AUD-2026-11-26-DKH",
-      "generatedAt": "2026-11-26T12:38:44.791Z",
+      "generatedAt": "2026-11-26T13:23:55.121Z",
       "status": "complete",
       "mode": "live",
       "scores": {
@@ -1386,7 +1386,7 @@
         "overall": 72
       },
       "pdfPages": 10,
-      "pdfBytes": 1731881,
+      "pdfBytes": 2088073,
       "files": {
         "pdf": "reports/dr-k-hemanth-kumar-neurologist/Smart-Pursuit-Audit-Dr.-K.-Hemanth-Kumar-Neurologist.pdf",
         "audit": "reports/dr-k-hemanth-kumar-neurologist/audit.json",
@@ -1398,7 +1398,7 @@
       "domain": "deepthifertility.com",
       "name": "Deepthi Fertility Centre",
       "ref": "SP-AUD-2026-11-26-DFC",
-      "generatedAt": "2026-11-26T13:11:39.706Z",
+      "generatedAt": "2026-11-26T13:30:09.257Z",
       "status": "complete",
       "mode": "live",
       "scores": {
@@ -1410,7 +1410,7 @@
         "overall": 76
       },
       "pdfPages": 10,
-      "pdfBytes": 1093982,
+      "pdfBytes": 1092375,
       "files": {
         "pdf": "reports/deepthi-fertility-centre/Smart-Pursuit-Audit-Deepthi-Fertility-Centre.pdf",
         "audit": "reports/deepthi-fertility-centre/audit.json",
@@ -1422,49 +1422,49 @@
       "domain": "saibhaskarhospital.com",
       "name": "Sai Bhaskar Hospitals",
       "ref": "SP-AUD-2026-11-26-SBH",
-      "generatedAt": "2026-11-26T13:13:10.322Z",
+      "generatedAt": "2026-11-26T13:31:47.425Z",
       "status": "complete",
       "mode": "live",
       "scores": {
         "speed": 3,
         "mobile": 7,
         "conversion": 8,
-        "design": 7,
+        "design": 8,
         "seo": 7,
-        "overall": 61
+        "overall": 62
       },
       "pdfPages": 10,
-      "pdfBytes": 2605355,
+      "pdfBytes": 2616840,
       "files": {
         "pdf": "reports/sai-bhaskar-hospitals/Smart-Pursuit-Audit-Sai-Bhaskar-Hospitals.pdf",
         "audit": "reports/sai-bhaskar-hospitals/audit.json",
         "html": "reports/sai-bhaskar-hospitals/report.html"
       },
-      "fingerprint": "b25979eb1e84f608"
+      "fingerprint": "29b80e38a9661b5a"
     },
     {
       "domain": "vignataivfcenter.com",
       "name": "Vignata Fertility & IVF Center",
       "ref": "SP-AUD-2026-11-26-VFI",
-      "generatedAt": "2026-11-26T13:06:43.314Z",
+      "generatedAt": "2026-11-26T13:24:47.625Z",
       "status": "complete",
       "mode": "live",
       "scores": {
-        "speed": 5,
+        "speed": 3,
         "mobile": 6,
         "conversion": 7,
-        "design": 9,
+        "design": 10,
         "seo": 8,
-        "overall": 66
+        "overall": 61
       },
       "pdfPages": 10,
-      "pdfBytes": 2676869,
+      "pdfBytes": 2742144,
       "files": {
         "pdf": "reports/vignata-fertility-and-ivf-center/Smart-Pursuit-Audit-Vignata-Fertility-IVF-Center.pdf",
         "audit": "reports/vignata-fertility-and-ivf-center/audit.json",
         "html": "reports/vignata-fertility-and-ivf-center/report.html"
       },
-      "fingerprint": "094dece7014297d6"
+      "fingerprint": "5726a688cd3eb7a4"
     }
   ]
 }

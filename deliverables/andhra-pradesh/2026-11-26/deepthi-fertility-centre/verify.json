@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-26-DFC",
   "domain": "deepthifertility.com",
-  "verifiedAt": "2026-11-26T13:11:39.706Z",
+  "verifiedAt": "2026-11-26T13:30:09.256Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/deepthi-fertility-centre/2026-11-26T13-06-43-690Z.json",
+      "detail": "raw measurement: data/raw/deepthi-fertility-centre/2026-11-26T13-24-59-420Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 26/11/2026, 6:36:43 pm",
+      "detail": "measurement timestamp: 26/11/2026, 6:54:59 pm",
       "severity": "ok"
     },
     {

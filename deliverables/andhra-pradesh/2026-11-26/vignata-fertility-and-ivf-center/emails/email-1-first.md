@@ -14,7 +14,7 @@ I ran a live website audit of vignataivfcenter.com and put the results in the at
 Two things stood out:
 
 1. No appointment form fields were detected on the homepage. A patient may prefer a written appointment request.
-2. A 59/100 mobile score and a 15.9 s LCP. Google’s thresholds are 2.5 s for LCP and 200 ms for TBT.
+2. A 47/100 mobile score and a 9.1 s LCP. Google’s thresholds are 2.5 s for LCP and 200 ms for TBT.
 
 The report includes test measurements, screenshots and suggested fixes. Recommendations and effort estimates are distinguished from measured results.
 
