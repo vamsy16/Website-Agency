@@ -1,0 +1,25 @@
+{
+  "name": "Dr. K. Hemanth Kumar Neurologist",
+  "domain": "neurologistinkurnool.com",
+  "city": "Kurnool",
+  "state": "Andhra Pradesh",
+  "email": "drhemanthneuro@gmail.com",
+  "phone": "+91 94410 94410",
+  "ref": "SP-AUD-2026-11-26-DKH",
+  "date": "2026-11-26",
+  "overall": 72,
+  "scores": {
+    "speed": 5,
+    "mobile": 8,
+    "conversion": 8,
+    "design": 8,
+    "seo": 9,
+    "overall": 72
+  },
+  "pdf": "Smart-Pursuit-Audit-Dr.-K.-Hemanth-Kumar-Neurologist.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://neurologistinkurnool.com/",
+    "checkedAt": "2026-11-26"
+  }
+}

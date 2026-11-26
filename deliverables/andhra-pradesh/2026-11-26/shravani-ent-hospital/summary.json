@@ -1,0 +1,25 @@
+{
+  "name": "Shravani ENT Hospital",
+  "domain": "shravanienthospital.com",
+  "city": "Kakinada",
+  "state": "Andhra Pradesh",
+  "email": "shravanienthospital@gmail.com",
+  "phone": null,
+  "ref": "SP-AUD-2026-11-26-SEH",
+  "date": "2026-11-26",
+  "overall": 70,
+  "scores": {
+    "speed": 4,
+    "mobile": 7,
+    "conversion": 8,
+    "design": 10,
+    "seo": 9,
+    "overall": 70
+  },
+  "pdf": "Smart-Pursuit-Audit-Shravani-ENT-Hospital.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://shravanienthospital.com/",
+    "checkedAt": "2026-11-26"
+  }
+}

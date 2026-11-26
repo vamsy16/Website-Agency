@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T02:27:33.198Z",
+  "updatedAt": "2026-11-26T12:17:01.713Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -1321,6 +1321,126 @@
         "html": "reports/ravi-dental-care-and-implant-center/report.html"
       },
       "fingerprint": "1a7e855a2769dc0e"
+    },
+    {
+      "domain": "vignataivfcenter.com",
+      "name": "Vignata Fertility & IVF Center",
+      "ref": "SP-AUD-2026-11-26-VF&",
+      "generatedAt": "2026-11-26T12:00:39.018Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 3,
+        "mobile": 6,
+        "conversion": 7,
+        "design": 9,
+        "seo": 8,
+        "overall": 60
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2741739,
+      "files": {
+        "pdf": "reports/vignata-fertility-and-ivf-center/Smart-Pursuit-Audit-Vignata-Fertility-IVF-Center.pdf",
+        "audit": "reports/vignata-fertility-and-ivf-center/audit.json",
+        "html": "reports/vignata-fertility-and-ivf-center/report.html"
+      },
+      "fingerprint": "71c84a8544919fe0"
+    },
+    {
+      "domain": "shravanienthospital.com",
+      "name": "Shravani ENT Hospital",
+      "ref": "SP-AUD-2026-11-26-SEH",
+      "generatedAt": "2026-11-26T12:05:24.656Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 4,
+        "mobile": 7,
+        "conversion": 8,
+        "design": 10,
+        "seo": 9,
+        "overall": 70
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1573956,
+      "files": {
+        "pdf": "reports/shravani-ent-hospital/Smart-Pursuit-Audit-Shravani-ENT-Hospital.pdf",
+        "audit": "reports/shravani-ent-hospital/audit.json",
+        "html": "reports/shravani-ent-hospital/report.html"
+      },
+      "fingerprint": "182e539e829b1be6"
+    },
+    {
+      "domain": "neurologistinkurnool.com",
+      "name": "Dr. K. Hemanth Kumar Neurologist",
+      "ref": "SP-AUD-2026-11-26-DKH",
+      "generatedAt": "2026-11-26T12:10:12.598Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 8,
+        "conversion": 8,
+        "design": 8,
+        "seo": 9,
+        "overall": 72
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2092058,
+      "files": {
+        "pdf": "reports/dr-k-hemanth-kumar-neurologist/Smart-Pursuit-Audit-Dr.-K.-Hemanth-Kumar-Neurologist.pdf",
+        "audit": "reports/dr-k-hemanth-kumar-neurologist/audit.json",
+        "html": "reports/dr-k-hemanth-kumar-neurologist/report.html"
+      },
+      "fingerprint": "8a77bf15a254e024"
+    },
+    {
+      "domain": "deepthifertility.com",
+      "name": "Deepthi Fertility Centre",
+      "ref": "SP-AUD-2026-11-26-DFC",
+      "generatedAt": "2026-11-26T12:15:24.509Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 7,
+        "conversion": 10,
+        "design": 10,
+        "seo": 7,
+        "overall": 76
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1100806,
+      "files": {
+        "pdf": "reports/deepthi-fertility-centre/Smart-Pursuit-Audit-Deepthi-Fertility-Centre.pdf",
+        "audit": "reports/deepthi-fertility-centre/audit.json",
+        "html": "reports/deepthi-fertility-centre/report.html"
+      },
+      "fingerprint": "791331de22a5514a"
+    },
+    {
+      "domain": "saibhaskarhospital.com",
+      "name": "Sai Bhaskar Hospitals",
+      "ref": "SP-AUD-2026-11-26-SBH",
+      "generatedAt": "2026-11-26T12:17:01.712Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 3,
+        "mobile": 7,
+        "conversion": 8,
+        "design": 7,
+        "seo": 7,
+        "overall": 61
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2608417,
+      "files": {
+        "pdf": "reports/sai-bhaskar-hospitals/Smart-Pursuit-Audit-Sai-Bhaskar-Hospitals.pdf",
+        "audit": "reports/sai-bhaskar-hospitals/audit.json",
+        "html": "reports/sai-bhaskar-hospitals/report.html"
+      },
+      "fingerprint": "b25979eb1e84f608"
     }
   ]
 }

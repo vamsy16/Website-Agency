@@ -1,0 +1,25 @@
+{
+  "name": "Vignata Fertility & IVF Center",
+  "domain": "vignataivfcenter.com",
+  "city": "Guntur",
+  "state": "Andhra Pradesh",
+  "email": "vignatafertilityandivfcentre@gmail.com",
+  "phone": "+91 93465 28327",
+  "ref": "SP-AUD-2026-11-26-VF&",
+  "date": "2026-11-26",
+  "overall": 60,
+  "scores": {
+    "speed": 3,
+    "mobile": 6,
+    "conversion": 7,
+    "design": 9,
+    "seo": 8,
+    "overall": 60
+  },
+  "pdf": "Smart-Pursuit-Audit-Vignata-Fertility-IVF-Center.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://vignataivfcenter.com/",
+    "checkedAt": "2026-11-26"
+  }
+}
