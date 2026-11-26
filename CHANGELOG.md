@@ -3,6 +3,10 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## Process — 26 November 2026
+
+- `docs/ARENA-LEADS-TO-GMAIL.md` — Gmail drafts no longer carry an operator note. Drafts can be sent unedited, so a draft holds only the recipient-facing email; follow-up dates stay in `gmail-drafts.json`, `sequence.json` and the report. A follow-up is drafted on request as a reply in the same thread, its dates moved if the first email went out late.
+
 ## Review — 23 November 2026
 
 - Five new Andhra Pradesh audits approved after re-audit with 1.4.2 (runs 45095333140, 45097578295, 45098947793, 45099748499): Smart Care Dental Hospital (Nellore), Dr Swetha Sajja Eye Hospital (Rajahmundry), MJ Naidu Super Speciality Hospital (Vijayawada), Sasya Fertility Centre (Guntur), Ravi Dental Care and Implant Center (Vijayawada). Verify 25/25, 10 pages, 0 mm; every page re-read; every recipient address seen on the business's own site; repository-only dedupe across all branches and history. Dr Swetha Sajja was re-measured once more after a Lighthouse swing (88, 90, 62, 87); the reproducibility run was accepted before its result was known. See `deliverables/runs/2026-11-23-independent-review.md`. Run request disabled; nothing sent.

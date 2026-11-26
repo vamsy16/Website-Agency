@@ -138,31 +138,30 @@ For each accepted audit with a verified public email and no suppression:
    pretend the PDF is attached.
 3. Do not create follow-up Gmail drafts. Only the first email goes into Gmail.
    The follow-ups are sent 3, 6 and 9 days after it, and only if there is no
-   reply: put those dates in the first draft's operator note (below) and in
-   `gmail-drafts.json`. Draft a follow-up only when the operator asks for it on
-   or after its date, after checking the thread for a reply or opt-out. Do not
-   claim an unsent initial email has been delivered.
-4. Read the created draft back and verify recipient, subject, body, planned
-   dates, and the PDF attachment.
+   reply: record those dates in `gmail-drafts.json` and in the report to the
+   operator. Draft a follow-up only when the operator asks for it on or after
+   its date, after checking the thread for a reply or opt-out, as a reply in the
+   same thread. If the first email went out later than planned, move every
+   follow-up date by the same number of days. Do not claim an unsent initial
+   email has been delivered.
+4. Read the created draft back and verify recipient, subject, body and the PDF
+   attachment, and that the body is only the recipient-facing email.
 
-At the top of each Gmail draft include an operator-only note:
+Every Gmail draft must be ready to send exactly as it is. Drafts may be sent
+unedited, in bulk or by a tool, so anything in a draft can reach the prospect.
+Put nothing in a draft that the recipient should not read: no operator notes,
+planned dates, repository or file links, or reminders to edit before sending.
+Keep those details in `gmail-drafts.json`, `sequence.json` and the report.
 
-```text
-OPERATOR NOTE — [business domain] / [audit reference] / step [1-4].
-Planned date: YYYY-MM-DD. Remove this note before sending.
-Follow-ups, only if there is no reply (every 3 days): step 2 on YYYY-MM-DD, step 3 on YYYY-MM-DD, step 4 on YYYY-MM-DD.
-```
-
-Keep the note separate from the recipient-facing message. Save returned Gmail
-draft IDs, recipients, email sources, steps, and planned dates in
+Save returned Gmail draft IDs, recipients, email sources, steps, and planned dates in
 `outreach/<business>/gmail-drafts.json`, alongside the existing `sequence.json`.
 Preserve `status: "draft"` and `neverSendAutomatically: true`. These files contain
 prospect data and must remain git-ignored.
 
 Never call `send_draft`, `send_message`, or any other send operation. Do not create
 scheduled sends or calendar reminders. The available Gmail draft tools create
-drafts; a planned date in a note is **not** a scheduled email and will not trigger
-automatically. A human must review, remove operator notes, and decide what to send.
+drafts; a planned date is **not** a scheduled email and will not trigger
+automatically. A human reviews the drafts and decides what to send and when.
 
 ### 7. Record results and report honestly
 
