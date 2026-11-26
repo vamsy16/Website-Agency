@@ -4,15 +4,13 @@
   "target": 5,
   "leadsLimit": 10,
   "niches": [],
-  "requestedAt": "2026-11-26T13:41:10Z",
+  "requestedAt": "2026-11-26T14:15:50Z",
   "csv": "data/ap-websearch-2026-11-26.csv",
   "csvOnly": true,
   "repairOnly": true,
   "disabled": false,
   "reaudit": [
-    "neurologistinkurnool.com",
-    "deepthifertility.com",
-    "shravanienthospital.com"
+    "neurologistinkurnool.com"
   ],
-  "reauditReason": "1.4.4 review (26 Nov): call links in embedded frames (Dr K Hemanth Kumar), site-builder label only on builder-built pages (Deepthi), desktop screenshot waits for images (GoDaddy-built Dr K Hemanth Kumar and Shravani)"
+  "reauditReason": "1.4.4 review (26 Nov) for Dr K Hemanth Kumar: laptop crop placed over the desktop headline (the left strip of its centred GoDaddy layout showed only the hero's blurred background fill)"
 }

@@ -171,6 +171,19 @@ function collectDom() {
 
   // Where does the first real headline start?
   const headlineOffset = h1s.length ? Math.round(q("h1").filter(visible)[0].getBoundingClientRect().top + window.scrollY) : 0;
+  // Where the first visible H1's text sits across the page: the text itself,
+  // not its full-width block, so the report's laptop crop can be placed over
+  // the headline (26 Nov review: the left strip of a centred GoDaddy layout was
+  // only the hero's blurred background fill).
+  let headlineText = null;
+  if (h1s.length) {
+    try {
+      const range = document.createRange();
+      range.selectNodeContents(q("h1").filter(visible)[0]);
+      const b = range.getBoundingClientRect();
+      if (b.width > 0) headlineText = { left: Math.round(b.left + window.scrollX), width: Math.round(b.width), top: Math.round(b.top + window.scrollY) };
+    } catch {}
+  }
   // Stricter than visible(), for what a visitor sees in the first screen: also
   // rejects an element inside a transparent ancestor (an inactive fade slide)
   // or outside the viewport's width (an inactive sliding slide). Hidden slide
@@ -288,6 +301,7 @@ function collectDom() {
     h2Count: h2s.length,
     h2s: h2s.slice(0, 12),
     headlineOffsetPx: headlineOffset,
+    headlineTextBox: headlineText,
     firstScreenClaims: [...new Set(firstScreenClaims)].slice(0, 8),
     images: imgs.length,
     imagesNoAlt: imgsNoAlt.length,
@@ -582,8 +596,7 @@ export async function measureSite(website, opts = {}) {
       const r = await desk.goto(website, { waitUntil: "load", timeout: 90000 });
       deskStatus = r.status();
       await desk.waitForTimeout(1500);
-      // Let lazy images replace their blurred placeholders before the capture:
-      // a laptop screenshot was taken while the page was still a blur (26 Nov).
+      // Let lazy images and late requests finish before the capture.
       await desk.waitForLoadState("networkidle", { timeout: 10000 }).catch(() => {});
       await desk.waitForFunction(() => [...document.images]
         .filter(i => { const r = i.getBoundingClientRect(); return r.width > 0 && r.top < innerHeight && r.bottom > 0; })

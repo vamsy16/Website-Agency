@@ -96,6 +96,24 @@ async function cmdLeads() {
  * (the name inside the assets folder). Live runs fall back to the screenshots
  * captured by measure.mjs.
  */
+/**
+ * Horizontal position (CSS object-position, %) of the laptop crop. The report
+ * shows a 45 x 97 mm strip of the 1440 x 900 desktop screenshot; it starts at
+ * the left edge unless the first visible H1 sits in the first desktop screen
+ * further right, in which case the strip is placed over the headline text
+ * (centred on it when it fits, else starting just before it).
+ */
+function laptopCropX(raw) {
+  const box = raw.desktop?.dom?.headlineTextBox;
+  const vp = raw.desktop?.dom?.viewport || {};
+  const vw = Number(vp.width) || 1440, vh = Number(vp.height) || 900;
+  const stripW = vh * (45 / 97); // source pixels visible in the frame (object-fit: cover)
+  if (!box || !(box.width > 0) || !(box.top < vh) || vw <= stripW) return 0;
+  const left = box.width <= stripW - 48 ? box.left + box.width / 2 - stripW / 2 : box.left - 24;
+  const clamped = Math.max(0, Math.min(vw - stripW, left));
+  return Math.round((clamped / (vw - stripW)) * 1000) / 10;
+}
+
 function buildScreens(raw, assetsDir, auditInputs) {
   const list = [];
   if (Array.isArray(auditInputs.screens) && auditInputs.screens.length) {
@@ -135,7 +153,7 @@ function buildScreens(raw, assetsDir, auditInputs) {
       });
     }
     const desk = byName["desktop-fold"];
-    if (desk) list.push({ name: "desktop-fold", sourceFile: desk.file, label: "The same site on a laptop" });
+    if (desk) list.push({ name: "desktop-fold", sourceFile: desk.file, label: "The same site on a laptop", posX: laptopCropX(raw) });
   }
 
   const screens = [];
@@ -146,7 +164,7 @@ function buildScreens(raw, assetsDir, auditInputs) {
     }
     const name = path.basename(source);
     fs.copyFileSync(source, path.join(assetsDir, name));
-    screens.push({ name: s.name, file: name, src: `assets/${name}`, label: s.label, caption: s.caption });
+    screens.push({ name: s.name, file: name, src: `assets/${name}`, label: s.label, caption: s.caption, ...(Number.isFinite(s.posX) ? { posX: s.posX } : {}) });
   }
   return screens;
 }
