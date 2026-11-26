@@ -586,6 +586,10 @@ export function speedFix(m, h = {}) {
   // render-blocking the supported change is the unused JavaScript.
   if (Number(m.renderBlockingMs) >= 300) parts.push("non-critical CSS and scripts deferred");
   else if (Number(m.unusedJsKb) >= 100) parts.push(`the ${fmtInt(m.unusedJsKb)} KiB of unused JavaScript trimmed and the rest deferred`);
+  // Blocking time over Google's 200 ms with neither of the above: the fix had
+  // covered only images while the finding cited blocking time (26 Nov review).
+  // Which scripts cause it is not measured, so they are traced first.
+  else if (Number(m.tbtMs) > 200) parts.push(`the scripts behind the ${m.tbt || `${fmtInt(m.tbtMs)} ms`} of blocking time traced, then deferred or removed`);
   // Plugin asset paths are measured; whether any plugin is unused is not.
   if (h.wordpress && (h.wpPlugins || []).length) parts.push("plugins reviewed and any unused ones removed");
   if (!parts.length) return "Trace the element Lighthouse reports as the largest content and remove what delays it.";
