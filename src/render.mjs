@@ -241,7 +241,7 @@ ${rows
 
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3.4mm;margin-top:5mm">
       <div class="card"><div class="eyebrow mut" style="margin-bottom:1.4mm">Mobile</div><div style="font-family:'Instrument Serif',serif;font-size:19pt;line-height:1">${facts.metric.perfMobile}<span style="font-size:9pt;color:var(--mut)">/100</span></div><p class="small" style="margin-top:1.4mm">Lighthouse performance, 4× CPU slowdown, Slow 4G</p></div>
-      <div class="card"><div class="eyebrow mut" style="margin-bottom:1.4mm">Desktop</div><div style="font-family:'Instrument Serif',serif;font-size:19pt;line-height:1">${facts.metric.perfDesktop}<span style="font-size:9pt;color:var(--mut)">/100</span></div><p class="small" style="margin-top:1.4mm">Same page under the desktop test profile</p></div>
+      <div class="card"><div class="eyebrow mut" style="margin-bottom:1.4mm">Desktop</div><div style="font-family:'Instrument Serif',serif;font-size:19pt;line-height:1">${Number.isFinite(Number(facts.metric.perfDesktop)) && facts.metric.perfDesktop !== "—" ? `${facts.metric.perfDesktop}<span style="font-size:9pt;color:var(--mut)">/100</span>` : "—"}</div><p class="small" style="margin-top:1.4mm">${Number.isFinite(Number(facts.metric.perfDesktop)) && facts.metric.perfDesktop !== "—" ? "Same page under the desktop test profile" : "The desktop test did not complete in this run"}</p></div>
       <div class="card"><div class="eyebrow mut" style="margin-bottom:1.4mm">Accessibility</div><div style="font-family:'Instrument Serif',serif;font-size:19pt;line-height:1">${facts.metric.accessibility}<span style="font-size:9pt;color:var(--mut)">/100</span></div><p class="small" style="margin-top:1.4mm">Lighthouse accessibility score for the same page</p></div>
     </div>
 
@@ -273,7 +273,7 @@ ${phones
   .join("\n")}
       ${laptop ? `<div class="phone">
         <div class="frame" style="height:97mm;background:#fff;border-color:#0D2321"><img src="${e(laptop.src)}" alt="" style="object-position:left top;object-fit:cover"></div>
-        <div class="cap"><b>The same site on a laptop</b>Desktop performance score: ${m.perfDesktop}/100. Actual visitor device mix was not measured.</div>
+        <div class="cap"><b>The same site on a laptop</b>${Number.isFinite(Number(m.perfDesktop)) && m.perfDesktop !== "—" ? `Desktop performance score: ${m.perfDesktop}/100.` : "The desktop performance test did not complete in this run."} Actual visitor device mix was not measured.</div>
       </div>` : ""}
       <div style="flex:1;padding-left:2mm">
         <div class="eyebrow mut">Also measured</div>

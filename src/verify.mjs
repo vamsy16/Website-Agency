@@ -170,6 +170,7 @@ export async function verifyAudit({ auditPath, live = false, fixture = false }) 
     if (/still looks empty|doing damage you can see|pays back fastest|sit below this point|needs a new design|cheapest thing|Contrast and labelling issues|theme demo paths/i.test(text)) copyErrors.push("unmeasured narrative claim");
     if (Number(fm.h1Count) <= 1 && /competing slogans|competing H1/i.test(text)) copyErrors.push("competing headlines claimed for a page with at most one H1");
     if (/\b0\.\d+×[^.;]{0,40}\bover\b/.test(text)) copyErrors.push("a metric inside its threshold described as over it");
+    if (/—\s*\/\s*100/.test(text)) copyErrors.push("a missing score printed as —/100");
     if (Number(fm.tbtMs) <= 200 && /\bTBT (?:is )?[\d.]+× its threshold/.test(text)) copyErrors.push("TBT inside 200 ms described as over the threshold");
     if (Number(fm.lcpMs) <= 2500 && /\bLCP (?:is )?[\d.]+× its threshold/.test(text)) copyErrors.push("LCP inside 2.5 s described as over the threshold");
     if (!(Number(fm.h1Count) > 0) && /first H1 begins|first H1 starts|headline starts/i.test(text)) copyErrors.push("headline position quoted for a page with no H1");
@@ -202,7 +203,7 @@ export async function verifyAudit({ auditPath, live = false, fixture = false }) 
       const differs = fm.telLinksDesktop !== null && fm.telLinksDesktop !== undefined && Number(fm.telLinksDesktop) !== Number(fm.telLinks);
       const said = /on the desktop layout/.test(text);
       add("facts.viewport", !differs || said,
-        `click-to-call links: ${a.telLinks ?? "?"} at load, ${s.telLinks ?? "?"} after scrolling, printed ${fm.telLinks}, desktop ${fm.telLinksDesktop ?? "?"}${differs ? (said ? " (difference stated)" : " (difference not stated)") : ""}; WhatsApp ${a.whatsapp ?? "?"}/${s.whatsapp ?? "?"}; forms ${a.visibleForms ?? "?"}/${s.visibleForms ?? "?"}; visible H1 ${a.h1Count ?? "?"}/${s.h1Count ?? "?"}, hidden ${fm.h1Hidden ?? "?"}, desktop ${fm.h1CountDesktop ?? "?"}; words ${a.words ?? "?"}/${s.words ?? "?"}`);
+        `click-to-call links: ${a.telLinks ?? "?"} at load, ${s.telLinks ?? "?"} after scrolling, ${dom.inFrames?.tel ?? 0} in embedded frames, printed ${fm.telLinks}, desktop ${fm.telLinksDesktop ?? "?"}${differs ? (said ? " (difference stated)" : " (difference not stated)") : ""}; WhatsApp ${a.whatsapp ?? "?"}/${s.whatsapp ?? "?"}; forms ${a.visibleForms ?? "?"}/${s.visibleForms ?? "?"}; visible H1 ${a.h1Count ?? "?"}/${s.h1Count ?? "?"}, hidden ${fm.h1Hidden ?? "?"}, desktop ${fm.h1CountDesktop ?? "?"}; words ${a.words ?? "?"}/${s.words ?? "?"}`);
     }
     const allowed = new Set(STRUCTURAL);
     flattenNumbers(audit.facts, allowed);

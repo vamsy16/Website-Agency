@@ -4,13 +4,13 @@
   "target": 5,
   "leadsLimit": 10,
   "niches": [],
-  "requestedAt": "2026-11-26T13:33:17Z",
+  "requestedAt": "2026-11-26T13:36:47Z",
   "csv": "data/ap-websearch-2026-11-26.csv",
   "csvOnly": true,
   "repairOnly": true,
   "disabled": false,
   "reaudit": [
-    "shravanienthospital.com"
+    "neurologistinkurnool.com"
   ],
-  "reauditReason": "1.4.4 review fixes (26 Nov) for Shravani ENT: its re-audit screen hit network errors in runs 45824308238 and 45825535687 (site up from outside GitHub); retried with the screen's new network retry"
+  "reauditReason": "1.4.4 review (26 Nov) for Dr K Hemanth Kumar: call links inside embedded frames counted (live page shows five, measured one); missing desktop score no longer printed as \u2014/100; desktop screenshot waits for images"
 }

@@ -203,7 +203,9 @@ repeated there.
   transparent or off-screen slide.
 
 Counts of contact routes, headings and words are the larger of two passes: at
-load and after the full-page and scrolled screenshots.
+load and after the full-page and scrolled screenshots. Call, email and WhatsApp
+links inside embedded frames that are shown on the page (not fixed widgets) are
+added to both the 390 px and the desktop count.
 
 ---
 

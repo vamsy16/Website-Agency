@@ -76,6 +76,41 @@ const INIT_SCRIPT = () => {
 };
 
 /** Everything we can learn from the DOM at one viewport. */
+/**
+ * Contact links inside embedded frames. A site builder's custom-HTML block is
+ * drawn in an <iframe>: a visitor sees and taps its links, but the page's own
+ * document does not contain them. Dr K Hemanth Kumar's homepage shows five
+ * call links, four of them in such a block, and was measured at one
+ * (26 Nov review). Counts frames whose <iframe> is shown, at least 120 x 40 px
+ * and not fixed to the screen (chat widgets are, and stay closed).
+ */
+async function frameRoutes(page) {
+  const out = { frames: 0, tel: 0, mail: 0, whatsapp: 0 };
+  for (const f of page.frames()) {
+    if (f === page.mainFrame()) continue;
+    try {
+      const el = await f.frameElement();
+      const box = await el.boundingBox();
+      const shown = await el.evaluate(e => {
+        const s = getComputedStyle(e);
+        return s.visibility !== "hidden" && s.display !== "none" && Number(s.opacity) > 0 && s.position !== "fixed";
+      });
+      if (!box || box.width < 120 || box.height < 40 || !shown) continue;
+      const r = await f.evaluate(() => {
+        const hrefs = [...document.querySelectorAll("a[href]")].map(a => (a.getAttribute("href") || "").trim().toLowerCase());
+        return {
+          tel: hrefs.filter(h => h.startsWith("tel:")).length,
+          mail: hrefs.filter(h => h.startsWith("mailto:")).length,
+          whatsapp: hrefs.filter(h => /wa\.me|whatsapp/.test(h)).length,
+        };
+      });
+      if (r.tel || r.mail || r.whatsapp) out.frames++;
+      out.tel += r.tel; out.mail += r.mail; out.whatsapp += r.whatsapp;
+    } catch {}
+  }
+  return out;
+}
+
 function collectDom() {
   const de = document.documentElement;
   const vh = window.innerHeight;
@@ -153,8 +188,9 @@ function collectDom() {
   const brokenImgs = imgs.filter(i => i.complete && i.naturalWidth === 0);
 
   const anchors = q("a[href]");
-  const telLinks = anchors.filter(a => (a.getAttribute("href") || "").startsWith("tel:"));
-  const mailLinks = anchors.filter(a => (a.getAttribute("href") || "").startsWith("mailto:"));
+  const hrefOf = a => (a.getAttribute("href") || "").trim().toLowerCase();
+  const telLinks = anchors.filter(a => hrefOf(a).startsWith("tel:"));
+  const mailLinks = anchors.filter(a => hrefOf(a).startsWith("mailto:"));
   const whatsapp = q("a[href*='wa.me'], a[href*='whatsapp'], [class*=whatsapp], iframe[src*='whatsapp']");
   // Call and WhatsApp links that stay on screen (inside a fixed or sticky
   // element: a floating button or bar). The no-form fix told a site that
@@ -489,6 +525,9 @@ export async function measureSite(website, opts = {}) {
         if ((after.visibleForms ?? 0) > (dom.visibleForms ?? 0)) Object.assign(dom, { visibleForms: after.visibleForms, forms: after.forms, hasBookingForm: after.hasBookingForm });
         if ((after.h1Count ?? 0) > (dom.h1Count ?? 0)) Object.assign(dom, { h1Count: after.h1Count, h1s: after.h1s, headlineOffsetPx: after.headlineOffsetPx });
         dom.h1Hidden = Math.min(dom.h1Hidden ?? 0, after.h1Hidden ?? 0);
+        const fr = await frameRoutes(mobile);
+        dom.inFrames = fr;
+        dom.telLinks += fr.tel; dom.mailLinks = (dom.mailLinks ?? 0) + fr.mail; dom.whatsapp += fr.whatsapp;
         result.evidence.visibleForms = dom.visibleForms;
         result.evidence.h1s = dom.h1s;
       } catch {}
@@ -530,7 +569,19 @@ export async function measureSite(website, opts = {}) {
       const r = await desk.goto(website, { waitUntil: "load", timeout: 90000 });
       deskStatus = r.status();
       await desk.waitForTimeout(1500);
+      // Let lazy images replace their blurred placeholders before the capture:
+      // a laptop screenshot was taken while the page was still a blur (26 Nov).
+      await desk.waitForLoadState("networkidle", { timeout: 10000 }).catch(() => {});
+      await desk.waitForFunction(() => [...document.images]
+        .filter(i => { const r = i.getBoundingClientRect(); return r.width > 0 && r.top < innerHeight && r.bottom > 0; })
+        .every(i => i.complete && i.naturalWidth > 0), null, { timeout: 8000 }).catch(() => {});
+      await desk.waitForTimeout(1000);
       const dom = await desk.evaluate(collectDom);
+      try {
+        const fr = await frameRoutes(desk);
+        dom.inFrames = fr;
+        dom.telLinks += fr.tel; dom.mailLinks = (dom.mailLinks ?? 0) + fr.mail; dom.whatsapp += fr.whatsapp;
+      } catch {}
       result.desktop = { status: deskStatus, dom, pageErrors: deskErrors };
       const file = path.join(shotDir, "desktop-fold.png");
       await desk.screenshot({ path: file });
