@@ -4,9 +4,17 @@
   "target": 5,
   "leadsLimit": 10,
   "niches": [],
-  "requestedAt": "2026-11-26T11:52:41Z",
+  "requestedAt": "2026-11-26T12:28:48Z",
   "csv": "data/ap-websearch-2026-11-26.csv",
   "csvOnly": true,
-  "repairOnly": false,
-  "disabled": false
+  "repairOnly": true,
+  "disabled": false,
+  "reaudit": [
+    "neurologistinkurnool.com",
+    "vignataivfcenter.com",
+    "shravanienthospital.com",
+    "deepthifertility.com",
+    "saibhaskarhospital.com"
+  ],
+  "reauditReason": "1.4.3 independent-review fixes (26 Nov): letters-only audit ref, hidden-H1 wording, no zero-cost evidence, schema and placeholder-link wording"
 }

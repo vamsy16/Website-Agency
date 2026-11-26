@@ -113,7 +113,9 @@ function buildScreens(raw, assetsDir, auditInputs) {
         // With no H1 the offset is a placeholder 0, not a measurement.
         caption: Number(raw.mobile?.dom?.h1Count) > 0
           ? `The first thing a visitor sees at 390 px. The first H1 begins ${fmtInt(raw.mobile?.dom?.headlineOffsetPx || 0)} px down.`
-          : `The first thing a visitor sees at 390 px. No H1 headline was found on the page.`,
+          : Number(raw.mobile?.dom?.h1Hidden) > 0
+            ? `The first thing a visitor sees at 390 px. No H1 is visible at this width.`
+            : `The first thing a visitor sees at 390 px. No H1 headline was found on the page.`,
       });
     }
     const mid = byName["screen-7"] || byName["sec2"] || byName["mobile-full"];

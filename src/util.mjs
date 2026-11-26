@@ -117,11 +117,16 @@ export function longDate(input) {
   return `${d.getUTCDate()} ${MONTHS[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
 }
 
-/** 2026-11-08 -> "SP-AUD-2026-11-08-GDC" */
+/**
+ * 2026-11-08 -> "SP-AUD-2026-11-08-GDC". Initials come from letters and digits
+ * only: "Vignata Fertility & IVF Center" printed "SP-AUD-2026-11-26-VF&" on a
+ * client PDF (26 Nov review); it is now "VFI".
+ */
 export function auditRef(prefix, date, name) {
   const initials = String(name)
     .replace(/[\u2122\u00ae]/g, "")
     .split(/[\s-]+/)
+    .map(w => w.replace(/[^\p{L}\p{N}]/gu, ""))
     .filter(Boolean)
     .map(w => w[0].toUpperCase())
     .join("")

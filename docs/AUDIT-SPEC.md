@@ -192,7 +192,11 @@ repeated there.
   fix", "doing damage you can see in enquiry numbers", "still looks empty";
 - that a metric inside Google's threshold is "over" it, a headline position on a
   page with no H1, competing headlines on a page with one, or advertising code
-  that was not observed (HTML markers or ad-serving request hosts).
+  that was not observed (HTML markers or ad-serving request hosts);
+- that a page has no H1 when its markup has one that is hidden at 390 px — say
+  how many are visible at that width and how many more the markup holds;
+- that links to `#` or `javascript:void(0)` are "dead" — some open menus or
+  slides; call them placeholder links.
 
 ---
 
@@ -241,11 +245,11 @@ before the PDF is accepted. It writes `verify.json` next to the audit.
 | `scores.*` | a printed area score differs from the rubric |
 | `facts.consistent` | any printed metric differs from the raw measurement |
 | `facts.firstParty` | the business's own host (with or without `www.`, or a subdomain) is listed as a third-party domain |
-| `copy.honesty` | the report prints a known unsupported claim (see "Do not claim"), a "0.x× over" contradiction, or blocking time attributed to third parties |
+| `copy.honesty` | the report prints a known unsupported claim (see "Do not claim"), a "0.x× over" contradiction, blocking time attributed to third parties, a zero cost or a sub-50 ms blocking total listed as evidence, "Only 0", a page-type schema (WebPage, WebSite…) said to be missing business fields, links to `#` called "dead", or an H1 that exists in the markup but is hidden at 390 px reported as missing |
 | `findings.evidence` | a finding depends on a fact that is missing, empty or `—` |
 | `numbers.traceable` | the report prints a number that is not in the measurement, the rubric or Google's stated targets |
 | `report.date` | the report does not state the measurement date |
-| `report.ref` | the audit reference is not printed |
+| `report.ref` | the audit reference is not printed, or has characters other than letters and digits |
 | `report.hash` | report.html changed after QA |
 | `screenshots.real` | a screenshot is missing, >94% white, or has pixel spread < 12 |
 | `pdf.pages` | the PDF is not exactly 10 pages |

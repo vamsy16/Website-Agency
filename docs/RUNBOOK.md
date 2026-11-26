@@ -352,7 +352,7 @@ A lead is worth an audit when **all** of these are true:
 - [ ] the business clearly makes money (established clinic, firm, contractor);
 - [ ] the site loads and returns HTTP 200;
 - [ ] the site has at least one measurable defect (slow, no form, tiny text,
-      competing headlines, dead links);
+      competing headlines, placeholder links);
 - [ ] the business publishes a contact route you may use;
 - [ ] you have not audited this domain inside the cooldown window.
 

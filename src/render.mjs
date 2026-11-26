@@ -96,7 +96,7 @@ function defaultCoverStats(facts, findings) {
   const first = findings.all[0] || { title: "" };
   const third = m.visibleForms === 0 && facts.http.contactShortcode
     ? { n: "1", unit: "", label: "Broken enquiry form. Your Contact page prints raw code where the form should load." }
-    : { n: String(m.h1Count), unit: "", label: m.h1Count > 1 ? "H1 headings detected on the homepage. Review whether the page has a clear primary topic." : m.h1Count === 1 ? "H1 heading detected on the homepage." : "H1 headings detected on the homepage; review the document outline." };
+    : { n: String(m.h1Count), unit: "", label: m.h1Count > 1 ? "H1 headings detected on the homepage. Review whether the page has a clear primary topic." : m.h1Count === 1 ? "H1 heading detected on the homepage." : Number(m.h1Hidden) > 0 ? `H1 headings visible on the 390 px phone view; the markup has ${m.h1Hidden} that ${m.h1Hidden === 1 ? "was" : "were"} not shown.` : "H1 headings detected on the homepage; review the document outline." };
   return [
     { n: String(m.perfMobile), unit: "/ 100", label: `Lighthouse mobile performance score in this test run.` },
     { n: secNum(m.lcpMs), unit: "s", label: `Largest Contentful Paint in the mobile lab test. Good LCP target: 2.5 s or less.` },
@@ -192,11 +192,11 @@ function pageScorecard(a, facts) {
   const s = facts.scores;
   const rows = [
     ["Speed", s.speed, `Mobile ${facts.metric.perfMobile}/100 · LCP ${facts.metric.lcp} · TBT ${facts.metric.tbt} · ${facts.metric.requests} requests · ${facts.metric.bytes} · server response ${facts.metric.ttfb}`, 30],
-    ["Mobile experience", s.mobile, `≈${countOf(Math.round(facts.metric.screens), "screen")} tall · ${countOf(facts.metric.smallTapTargets, "tap target")} under 40 px${Number(facts.metric.minFontPx) > 0 ? ` · body text down to ${facts.metric.minFontPx} px` : ""} · ${facts.metric.h1Count > 0 ? `first H1 starts ${fmtInt(facts.metric.headlineOffsetPx)} px down` : "no H1 headline found"}`, 20],
+    ["Mobile experience", s.mobile, `≈${countOf(Math.round(facts.metric.screens), "screen")} tall · ${countOf(facts.metric.smallTapTargets, "tap target")} under 40 px${Number(facts.metric.minFontPx) > 0 ? ` · body text down to ${facts.metric.minFontPx} px` : ""} · ${facts.metric.h1Count > 0 ? `first H1 starts ${fmtInt(facts.metric.headlineOffsetPx)} px down` : Number(facts.metric.h1Hidden) > 0 ? "no H1 visible at 390 px" : "no H1 headline found"}`, 20],
     // "Contact page reachable" only when the /contact/ probe found a page that is not the homepage.
     ["Conversion", s.conversion, `${facts.metric.visibleForms === 0 ? "No visible form on the home page" : `${facts.metric.visibleForms} visible form(s)`} · ${facts.http.contactShortcode ? "Contact page prints raw code · " : facts.http.contactReachable ? "Contact page reachable · " : ""}${facts.metric.telLinks} click-to-call link(s) · ${facts.metric.whatsapp} WhatsApp element(s)`, 25],
     ["Design &amp; clarity", s.design, `${facts.metric.sections > 0 ? `${facts.metric.sections} stacked section${facts.metric.sections === 1 ? "" : "s"} · ` : ""}${fmtInt(facts.metric.domNodes)} DOM nodes · ${facts.metric.imagesNoAlt} image${facts.metric.imagesNoAlt === 1 ? "" : "s"} without alt text`, 15],
-    ["SEO", s.seo, `Lighthouse SEO ${facts.metric.seo}/100 · ${facts.metric.h1Count} H1 heading${facts.metric.h1Count === 1 ? "" : "s"} · structured data ${schemaState(facts.http)} · ${facts.metric.readMore} “Read More” link${facts.metric.readMore === 1 ? "" : "s"}`, 10],
+    ["SEO", s.seo, `Lighthouse SEO ${facts.metric.seo}/100 · ${facts.metric.h1Count} ${Number(facts.metric.h1Hidden) > 0 ? "visible " : ""}H1 heading${facts.metric.h1Count === 1 ? "" : "s"}${Number(facts.metric.h1Hidden) > 0 ? ` (${facts.metric.h1Hidden} hidden)` : ""} · structured data ${schemaState(facts.http)} · ${facts.metric.readMore} “Read More” link${facts.metric.readMore === 1 ? "" : "s"}`, 10],
   ];
   const cls = n => (n <= 3 ? "red" : n <= 6 ? "amber" : ""); // >= 7: default bar colour (no "green" rule exists)
   const overall = s.overall;
@@ -583,7 +583,7 @@ function defaultPlan(facts, findings) {
  * target "1 H1, 5 sections" told a 2-section page to add sections.
  */
 function headlineRow(m) {
-  const h1 = `${m.h1Count} H1${m.h1Count === 1 ? "" : "s"}`;
+  const h1 = `${m.h1Count} ${Number(m.h1Hidden) > 0 ? "visible " : ""}H1${m.h1Count === 1 ? "" : "s"}`;
   const screens = Number(m.screens);
   const today = Number.isFinite(screens) && screens > 0 ? `${h1}, ≈${countOf(Math.round(screens), "screen")}` : h1;
   const h1Ok = m.h1Count === 1;
@@ -653,8 +653,8 @@ function pageDirection(a, facts) {
       <div style="flex:1">
         <div class="eyebrow mut">What changes on the first screen</div>
         <div class="numlist" style="margin-top:2mm">
-          <div class="it"><div class="n">1</div><div class="b"><b>One sentence that says what you do and where.</b><p>${m.h1Count > 1 ? `Replacing the ${m.h1Count} competing H1 headings with one headline` : m.h1Count === 0 ? "No H1 headline was found; one headline" : "One headline"} a visitor can repeat to someone else.</p></div></div>
-          <div class="it"><div class="n">2</div><div class="b"><b>Two buttons, both real.</b><p>“${v.cta}” opens the form; “Call” dials the number. ${m.deadLinks > 0 ? `No dead links (${m.deadLinks} found on this page).` : "Every link checked before launch."}</p></div></div>
+          <div class="it"><div class="n">1</div><div class="b"><b>One sentence that says what you do and where.</b><p>${m.h1Count > 1 ? `Replacing the ${m.h1Count} competing H1 headings with one headline` : m.h1Count === 0 ? (Number(m.h1Hidden) > 0 ? "No H1 is visible on the phone view; one headline" : "No H1 headline was found; one headline") : "One headline"} a visitor can repeat to someone else.</p></div></div>
+          <div class="it"><div class="n">2</div><div class="b"><b>Two buttons, both real.</b><p>“${v.cta}” opens the form; “Call” dials the number. ${m.deadLinks > 0 ? `No placeholder links (${m.deadLinks} on this page point to # or javascript:void(0)).` : "Every link checked before launch."}</p></div></div>
           <div class="it"><div class="n">3</div><div class="b"><b>Proof, not adjectives.</b><p>Locations, credentials, services, published hours — the facts that make a stranger trust you.</p></div></div>
           <div class="it"><div class="n">4</div><div class="b"><b>Everything above 800 px.</b><p>No scrolling required to find the phone number, the location or the button.</p></div></div>
         </div>

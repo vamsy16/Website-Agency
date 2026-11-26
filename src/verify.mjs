@@ -183,6 +183,14 @@ export async function verifyAudit({ auditPath, live = false, fixture = false }) 
     if (/Contact page reachable/i.test(text) && !audit.facts?.http?.contactReachable) copyErrors.push("contact page called reachable without a measured contact page");
     if (/unused plugins removed/i.test(text)) copyErrors.push("plugins assumed unused without measurement");
     if (/Google’s published thresholds against your measured numbers/i.test(text)) copyErrors.push("engineering targets attributed to Google");
+    // Added after the 26 November 2026 independent review.
+    if (/costing 0 ms|\b0 KiB (?:unused JavaScript|of oversized images)/.test(text)) copyErrors.push("a zero cost listed as evidence");
+    if (/\bOnly 0\b/.test(text)) copyErrors.push("\"Only 0\" wording");
+    const longTask = text.match(/Long tasks blocked the main thread for ([\d,]+) ms/);
+    if (longTask && Number(longTask[1].replace(/,/g, "")) < 50) copyErrors.push("a blocking total under one long task (50 ms) listed as evidence");
+    if (/\b(?:WebPage|WebSite|BreadcrumbList|ImageObject|ItemList|FAQPage|Article|BlogPosting) structured data is missing/.test(text)) copyErrors.push("a schema type that cannot hold business fields described as missing them");
+    if (/No dead links/i.test(text)) copyErrors.push("links to # called dead without testing them");
+    if (Number(fm.h1Count) === 0 && Number(fm.h1Hidden) > 0 && /H1 headings detected on the homepage|no H1 headline found|No H1 headline was found/i.test(text)) copyErrors.push("an H1 present in the markup but hidden at 390 px reported as missing");
     add("copy.honesty", copyErrors.length === 0, copyErrors.join("; ") || "known unsupported narrative claims absent");
     const allowed = new Set(STRUCTURAL);
     flattenNumbers(audit.facts, allowed);
@@ -212,7 +220,10 @@ export async function verifyAudit({ auditPath, live = false, fixture = false }) 
 
     // The report must state the measurement date it actually used.
     add("report.date", text.includes(longDate(isoDate(audit.date.iso))), `report states ${longDate(isoDate(audit.date.iso))}`);
-    add("report.ref", text.includes(audit.ref), `audit reference ${audit.ref} printed`);
+    // The reference must be printed and made of letters and digits only:
+    // "SP-AUD-2026-11-26-VF&" reached a client PDF (26 Nov review).
+    const refOk = /^[A-Z]+-[A-Z]+-\d{4}-\d{2}-\d{2}-[A-Z0-9]{1,3}$/.test(String(audit.ref || ""));
+    add("report.ref", text.includes(audit.ref) && refOk, refOk ? `audit reference ${audit.ref} printed` : `audit reference "${audit.ref}" has characters other than letters and digits`);
 
     // Optionally confirm the rendered HTML still matches what was QA'd.
     if (audit.provenance?.htmlHash) {

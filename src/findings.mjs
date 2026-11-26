@@ -219,6 +219,9 @@ export function buildFacts(raw, scoring, business, settings = {}) {
       images: m.images ?? 0,
       imagesNoAlt: m.imagesNoAlt ?? 0,
       h1Count: m.h1Count ?? 0,
+      // In the markup but not visible at 390 px; and the desktop pass's count.
+      h1Hidden: m.h1Hidden ?? 0,
+      h1CountDesktop: raw.desktop?.dom?.h1Count ?? null,
       h2Count: m.h2Count ?? 0,
       tapTargets: m.tapTargets ?? 0,
       smallTapTargets: m.smallTapTargets ?? 0,
@@ -368,7 +371,14 @@ export function deriveFindings(raw, facts, business) {
       severity: "High",
       tone: "med",
       title: `A ${m.perfMobile}/100 mobile score and ${/^(8|1[18](?![\d]))/.test(String(m.lcp)) ? "an" : "a"} ${m.lcp} LCP`,
-      measured: `LCP <b>${m.lcp}</b> · TBT <b>${m.tbt}</b> · ${m.requests} requests · <b>${m.bytes}</b> · ${fmtInt(m.unusedJsKb)} KiB unused JavaScript · ${fmtInt(m.oversizedImgsKb)} KiB of oversized images · render-blocking CSS/JS costing ${fmtInt(m.renderBlockingMs)} ms.`,
+      // Only costs that exist are listed: "render-blocking CSS/JS costing
+      // 0 ms" was printed as evidence on a High finding (26 Nov review).
+      measured: [
+        `LCP <b>${m.lcp}</b>`, `TBT <b>${m.tbt}</b>`, `${m.requests} requests`, `<b>${m.bytes}</b>`,
+        Number(m.unusedJsKb) > 0 ? `${fmtInt(m.unusedJsKb)} KiB unused JavaScript` : null,
+        Number(m.oversizedImgsKb) > 0 ? `${fmtInt(m.oversizedImgsKb)} KiB of oversized images` : null,
+        Number(m.renderBlockingMs) > 0 ? `render-blocking CSS/JS costing ${fmtInt(m.renderBlockingMs)} ms` : null,
+      ].filter(Boolean).join(" · ") + ".",
       why: `Google’s thresholds are 2.5 s for LCP and 200 ms for TBT. ${speedGap(m)} Page experience is a documented ranking input.`,
       fix: speedFix(m, h),
       effort: "2–3 days, no redesign",
@@ -381,7 +391,7 @@ export function deriveFindings(raw, facts, business) {
       severity: "High",
       tone: "med",
       title: `${m.h1Count} H1 headings competing for one page`,
-      measured: `The homepage carries <b>${m.h1Count} × H1</b> and ${m.h2Count} × H2. Headline blocks seen in the first screen: ${(raw.mobile?.dom?.firstScreenClaims || []).slice(0, 3).map(c => `“${c}”`).join(" · ") || "—"}.`,
+      measured: `${Number(m.h1Hidden) > 0 ? `At 390 px the homepage shows <b>${m.h1Count} × H1</b> and ${m.h2Count} × H2; the markup holds ${m.h1Hidden} more H1${m.h1Hidden === 1 ? "" : "s"} that ${m.h1Hidden === 1 ? "was" : "were"} not visible when the page loaded.` : `The homepage carries <b>${m.h1Count} × H1</b> and ${m.h2Count} × H2.`} Headline blocks seen in the first screen: ${(raw.mobile?.dom?.firstScreenClaims || []).slice(0, 3).map(c => `“${c}”`).join(" · ") || "—"}.`,
       why: `One page, one H1 — that is how a search engine reads the topic and how a person reads the offer. Several slogans mean the reader does the work of deciding what the business actually does, and the crawler gets no clear signal.`,
       fix: v.health
         ? `One H1 naming the service and the city, then H2s for treatments, locations and doctors.`
@@ -425,7 +435,7 @@ export function deriveFindings(raw, facts, business) {
           ? `${m.thirdPartyRequests} third-party request${m.thirdPartyRequests === 1 ? "" : "s"} from ${m.thirdPartyDomains.length} external domain${m.thirdPartyDomains.length === 1 ? "" : "s"}${m.thirdPartyDomains.length ? ` (${m.thirdPartyDomains.length > 6 ? "including " : ""}${m.thirdPartyDomains.slice(0, 6).join(", ")})` : ""}.`
           : `No third-party requests were recorded.`,
         cookies > 0 ? `<b>${cookies} third-party cookie${cookies === 1 ? "" : "s"}</b>.` : null,
-        m.blockingMs > 0 ? `Long tasks blocked the main thread for <b>${fmtInt(m.blockingMs)} ms</b> in the browser pass.` : null,
+        m.blockingMs >= 50 ? `Long tasks blocked the main thread for <b>${fmtInt(m.blockingMs)} ms</b> in the browser pass.` : null,
         errs > 0 ? `${errs} ${errWord} in the browser console on load.` : null,
       ].filter(Boolean).join(" "),
       why: [
@@ -502,7 +512,12 @@ export function deriveAlsoItems(raw, facts, printed = []) {
   const items = [];
   if (h.schemaTypes?.length && (!h.schemaHasPhone || !h.schemaHasAddress)) {
     const missing = [!h.schemaHasPhone ? "telephone" : null, !h.schemaHasAddress ? "address" : null].filter(Boolean).join(" and ");
-    items.push(`<b>${escapeText(h.schemaTypes[0])}</b> structured data is missing ${missing}`);
+    // "WebPage structured data is missing telephone and address" (26 Nov
+    // review) asked a type that cannot hold those fields to hold them.
+    const biz = h.schemaTypes.find(t => BUSINESS_SCHEMA.test(t));
+    items.push(biz
+      ? `<b>${escapeText(biz)}</b> structured data is missing ${missing}`
+      : `Structured data (${h.schemaTypes.slice(0, 3).map(escapeText).join(", ")}) has no business entry with ${missing}`);
   }
   if (h.ogSiteName && facts.business.name && !h.ogSiteName.toLowerCase().includes(facts.business.name.toLowerCase().split(" ")[0])) {
     items.push(`<span class="mono">og:site_name</span> reads “${escapeText(h.ogSiteName)}”, not the business name`);
@@ -515,12 +530,15 @@ export function deriveAlsoItems(raw, facts, printed = []) {
       ? `No sitemap at <span class="mono">/sitemap.xml</span> (HTTP ${h.sitemapStatus})`
       : `<span class="mono">/sitemap.xml</span> returns a web page, not a sitemap`);
   }
-  if (m.h2Count < 3) items.push(`Only ${m.h2Count} H2 heading${m.h2Count === 1 ? "" : "s"} for ${fmtInt(m.words)} words of content`);
+  if (m.h2Count < 3) items.push(`${m.h2Count === 0 ? "No H2 headings" : `Only ${m.h2Count} H2 heading${m.h2Count === 1 ? "" : "s"}`} for ${fmtInt(m.words)} words of content`);
   if (!covered.has("metric.smallTapTargets") && m.smallTapTargets > 0) items.push(`${m.smallTapTargets} tap targets are under 40 px`);
   if (m.overflowX > 0) items.push(`The layout overflows the viewport by ${m.overflowX} px`);
   if (h.wordpress) items.push(`Built on WordPress${h.wpTheme ? ` (${escapeText(h.wpTheme)} theme)` : ""}${h.wpPlugins?.length ? ` with ${h.wpPlugins.length} plugin asset paths` : ""}`);
   return items.slice(0, 6);
 }
+
+/** schema.org types that can carry a business telephone and address. */
+const BUSINESS_SCHEMA = /LocalBusiness|Organi[sz]ation|Corporation|Clinic|Dentist|Physician|Hospital|Medical|Pharmacy|Optician|Store|Restaurant|Hotel|Lodging|FoodEstablishment|ProfessionalService|HealthAndBeauty|Place/i;
 
 function escapeText(str) {
   return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -549,7 +567,10 @@ export function speedFix(m, h = {}) {
   if (Number(m.ttfbMs) > 600) parts.push("server-side caching plus a CDN");
   if (Number(m.oversizedImgsKb) >= 100) parts.push("images re-encoded at the size they are displayed");
   if (Number(m.bytesKb) > 1600) parts.push(`the ${m.bytes} page weight cut, largest files first`); // page-07 target: under 1.6 MB
-  if (Number(m.renderBlockingMs) >= 300 || Number(m.unusedJsKb) >= 100) parts.push("non-critical CSS and scripts deferred");
+  // CSS is deferred only when render-blocking time was measured; with 0 ms
+  // render-blocking the supported change is the unused JavaScript.
+  if (Number(m.renderBlockingMs) >= 300) parts.push("non-critical CSS and scripts deferred");
+  else if (Number(m.unusedJsKb) >= 100) parts.push(`the ${fmtInt(m.unusedJsKb)} KiB of unused JavaScript trimmed and the rest deferred`);
   // Plugin asset paths are measured; whether any plugin is unused is not.
   if (h.wordpress && (h.wpPlugins || []).length) parts.push("plugins reviewed and any unused ones removed");
   if (!parts.length) return "Trace the element Lighthouse reports as the largest content and remove what delays it.";

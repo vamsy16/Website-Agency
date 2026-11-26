@@ -3,6 +3,15 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## 1.4.3 — 26 November 2026
+
+**Independent review of the five Andhra Pradesh audits from run 45814540402: every sentence true for the site it describes.**
+
+- `util.mjs` — audit references use letters and digits only. "Vignata Fertility & IVF Center" printed `SP-AUD-2026-11-26-VF&` on page 10; it is now `VFI`. Other references are unchanged.
+- `measure.mjs` — counts the H1s that are in the markup but not visible at 390 px (`h1Hidden`; a desktop-only block, an inactive slide, or content not shown at load). Only visible H1s were counted, so a page whose single H1 is not shown on the phone layout was reported on six pages as having "0 H1 headings detected on the homepage". The rubric still uses the visible count (selftest 36).
+- `findings.mjs` / `render.mjs` / `cli.mjs` — with a hidden H1 the report says "0 H1 headings visible on the 390 px phone view; the markup has 1 that was not shown", "no H1 visible at 390 px", "0 visible H1 headings (1 hidden)"; the multiple-H1 finding says how many H1s show at 390 px and how many more the markup holds. The speed finding lists only costs that exist ("render-blocking CSS/JS costing 0 ms" was printed as evidence) and defers CSS only when render-blocking time was measured, otherwise naming the unused JavaScript; "Long tasks blocked the main thread for 1 ms" is no longer printed (a long task is 50 ms or more); "Only 0 H2 headings" reads "No H2 headings"; telephone and address are asked of a business type (LocalBusiness, Organization, Dentist…), not "WebPage structured data"; "No dead links (12 found)" reads "No placeholder links (12 on this page point to # or javascript:void(0))", because some `#` links open menus or slides.
+- `verify.mjs` — `report.ref` rejects a reference with anything but letters and digits; `copy.honesty` rejects a zero cost or a sub-50 ms blocking total listed as evidence, "Only 0", a page-type schema said to be missing business fields, `#` links called dead, and a hidden H1 reported as missing.
+
 ## Process — 26 November 2026
 
 - `tools/followups.mjs` — follow-up dates come from what was actually sent: each email is due 3 days after the previous one's `sentAt` (IST), and a step after one not yet sent is projected from its due date or today, whichever is later. It records sends and stops (bounce, reply, opt-out) from a JSON file, keeps each draft's `**Send:**` line in step, refuses a step marked sent ahead of an unsent one, and `--selftest` checks the rule (13 checks).

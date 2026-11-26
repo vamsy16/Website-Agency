@@ -114,6 +114,11 @@ function collectDom() {
   }
 
   const h1s = q("h1").filter(visible).map(h => (h.innerText || "").replace(/\s+/g, " ").trim()).filter(Boolean);
+  // H1s that exist in the markup but are not visible at this viewport (a
+  // desktop-only block, an inactive slide, or content not yet revealed at
+  // load). Counting only visible ones printed "0 H1 headings detected on the
+  // homepage" for a page whose markup has one (26 Nov review).
+  const h1Hidden = q("h1").filter(h => !visible(h) && (h.textContent || "").trim()).length;
   const h2s = q("h2").filter(visible).map(h => (h.innerText || "").replace(/\s+/g, " ").trim()).filter(Boolean);
 
   // Where does the first real headline start?
@@ -203,6 +208,7 @@ function collectDom() {
     textChars: text.length,
     sections: bigSections.length,
     h1Count: h1s.length,
+    h1Hidden,
     h1s: h1s.slice(0, 12),
     h2Count: h2s.length,
     h2s: h2s.slice(0, 12),
