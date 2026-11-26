@@ -164,6 +164,11 @@ export function buildFacts(raw, scoring, business, settings = {}) {
   const dateIso = raw.measuredAt ? isoDate(raw.measuredAt) : isoDate(new Date());
 
   const ratio = (value, target) => (Number.isFinite(value) && target ? (value / target).toFixed(1) : "—");
+  // Page-4 timeline ticks: 0–20 s, or the slowest marker rounded up to a
+  // multiple of 20 s, so no dot is drawn away from its measured time (a 37.4 s
+  // LCP had been pinned at the 20 s end; 26 Nov review).
+  const slowest = Math.max(0, ...[ttfb, lhm.fcpMs, lcp, lhm.ttiMs].filter(Number.isFinite));
+  const spanS = slowest <= 20000 ? 20 : Math.ceil(slowest / 20000) * 20;
 
   const facts = {
     business: {
@@ -200,6 +205,7 @@ export function buildFacts(raw, scoring, business, settings = {}) {
       tbt: Number.isFinite(tbt) ? `${fmtInt(Math.round(tbt) === 200 && tbt !== 200 ? round(tbt, 1) : Math.round(tbt))} ms` : "—",
       tbtOver: ratio(tbt, 200),
       ttiMs: lhm.ttiMs ?? null,
+      timelineTicksS: [0, spanS / 4, spanS / 2, (spanS * 3) / 4, spanS],
       tti: Number.isFinite(lhm.ttiMs) ? fmtSec(lhm.ttiMs) : "—",
       ttfbMs: ttfb ?? null,
       // Lighthouse reports server response with sub-millisecond decimals;

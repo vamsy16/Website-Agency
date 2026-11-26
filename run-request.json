@@ -4,7 +4,7 @@
   "target": 5,
   "leadsLimit": 10,
   "niches": [],
-  "requestedAt": "2026-11-26T12:56:12Z",
+  "requestedAt": "2026-11-26T13:04:01Z",
   "csv": "data/ap-websearch-2026-11-26.csv",
   "csvOnly": true,
   "repairOnly": true,
@@ -16,5 +16,5 @@
     "deepthifertility.com",
     "saibhaskarhospital.com"
   ],
-  "reauditReason": "1.4.4 review fixes (26 Nov): post-scroll route counts, sticky-button-aware fix, desktop counts stated, score and plan column spacing"
+  "reauditReason": "1.4.4 review fixes (26 Nov): post-scroll route counts, sticky-button-aware fix, desktop counts stated, timeline axis for loads over 20 s, score and plan column spacing"
 }

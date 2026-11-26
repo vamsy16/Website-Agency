@@ -288,14 +288,14 @@ ${phones
     </div>
 
     <div style="margin-top:9mm">
-      <div class="eyebrow mut">The first 20 seconds, measured</div>
+      <div class="eyebrow mut">The first ${timelineTicks(m)[4]} seconds, measured</div>
       <div class="tl">
         <div class="axis"></div>
         <div class="tick" style="left:0"></div><div class="lbl" style="left:0;transform:none">0 s</div>
-        <div class="tick" style="left:25%"></div><div class="lbl" style="left:25%">5 s</div>
-        <div class="tick" style="left:50%"></div><div class="lbl" style="left:50%">10 s</div>
-        <div class="tick" style="left:75%"></div><div class="lbl" style="left:75%">15 s</div>
-        <div class="tick" style="left:100%"></div><div class="lbl" style="left:100%;white-space:nowrap">20 s</div>
+        <div class="tick" style="left:25%"></div><div class="lbl" style="left:25%">${timelineTicks(m)[1]} s</div>
+        <div class="tick" style="left:50%"></div><div class="lbl" style="left:50%">${timelineTicks(m)[2]} s</div>
+        <div class="tick" style="left:75%"></div><div class="lbl" style="left:75%">${timelineTicks(m)[3]} s</div>
+        <div class="tick" style="left:100%"></div><div class="lbl" style="left:100%;white-space:nowrap">${timelineTicks(m)[4]} s</div>
 
         ${timelineMarkers(m)}
       </div>
@@ -312,17 +312,19 @@ ${phones
 /** Maps a duration to a position on the 0–20 s timeline, clamped inside the axis. */
 /**
  * The four load markers on the page-4 timeline. Every dot sits at its measured
- * time on the 0–20 s axis; only a value beyond 20 s is pinned to the right end
- * (LCP at 96 %, time to interactive at 99 %, so the two stay distinct). A label that would print on top of a neighbour's label moves below the
+ * time. The axis is 0–20 s, or longer when a marker is slower (see
+ * facts.metric.timelineTicksS), so no dot is pinned away from its time; the
+ * right-end caps (LCP 96 %, TTI 99 %) only keep two end markers distinct. A label that would print on top of a neighbour's label moves below the
  * axis (or, if both rows are crowded, slides right until it is clear), so two
  * labels never overlap. Markers with room keep the original markup unchanged.
  */
 export function timelineLayout(m) {
+  const span = timelineTicks(m)[4] * 1000;
   const marks = [
-    { cls: "ok", pos: pctPos(m.ttfbMs, 20000, 2, 95), v: m.ttfb, d: "server responds" },
-    { cls: "warn", pos: pctPos(m.fcpMs, 20000, 2, 95), v: m.fcp, d: "first content<br>appears (FCP)" },
-    { cls: "slow", pos: pctPos(m.lcpMs, 20000, 2, 96), v: m.lcp, d: "largest content appears<br>(LCP)" },
-    { cls: "slow", pos: pctPos(m.ttiMs, 20000, 2, 99), v: m.tti, d: "page becomes<br>interactive" },
+    { cls: "ok", pos: pctPos(m.ttfbMs, span, 2, 95), v: m.ttfb, d: "server responds" },
+    { cls: "warn", pos: pctPos(m.fcpMs, span, 2, 95), v: m.fcp, d: "first content<br>appears (FCP)" },
+    { cls: "slow", pos: pctPos(m.lcpMs, span, 2, 96), v: m.lcp, d: "largest content appears<br>(LCP)" },
+    { cls: "slow", pos: pctPos(m.ttiMs, span, 2, 99), v: m.tti, d: "page becomes<br>interactive" },
   ];
   const GAP = 12; // % of the axis, about 21 mm: clears the widest pair of labels
   const last = { top: -Infinity, below: -Infinity };
@@ -348,6 +350,11 @@ function timelineMarkers(m) {
     const label = `<div class="m ${k.cls}" style="left:${k.labelPos}%;top:${k.row === "below" ? "22mm" : "0"}"><div class="v">${k.v}</div><div class="d">${k.d}</div></div>`;
     return `${dot}\n        ${label}`;
   }).join("\n        ");
+}
+
+/** Axis ticks in seconds (from the facts); older audits without them keep 0–20 s. */
+function timelineTicks(m) {
+  return Array.isArray(m.timelineTicksS) && m.timelineTicksS.length === 5 ? m.timelineTicksS : [0, 5, 10, 15, 20];
 }
 
 function pctPos(ms, max = 20000, minPct = 2, maxPct = 99) {
