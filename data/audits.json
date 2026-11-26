@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-26T13:31:47.425Z",
+  "updatedAt": "2026-11-26T13:47:45.867Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -1350,25 +1350,25 @@
       "domain": "shravanienthospital.com",
       "name": "Shravani ENT Hospital",
       "ref": "SP-AUD-2026-11-26-SEH",
-      "generatedAt": "2026-11-26T12:44:20.355Z",
+      "generatedAt": "2026-11-26T13:47:45.867Z",
       "status": "complete",
       "mode": "live",
       "scores": {
-        "speed": 4,
+        "speed": 5,
         "mobile": 7,
         "conversion": 8,
         "design": 10,
         "seo": 9,
-        "overall": 70
+        "overall": 73
       },
       "pdfPages": 10,
-      "pdfBytes": 1577501,
+      "pdfBytes": 1578002,
       "files": {
         "pdf": "reports/shravani-ent-hospital/Smart-Pursuit-Audit-Shravani-ENT-Hospital.pdf",
         "audit": "reports/shravani-ent-hospital/audit.json",
         "html": "reports/shravani-ent-hospital/report.html"
       },
-      "fingerprint": "182e539e829b1be6"
+      "fingerprint": "2e20ba2836db990b"
     },
     {
       "domain": "neurologistinkurnool.com",
