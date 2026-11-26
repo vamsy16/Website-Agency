@@ -439,6 +439,8 @@ export function deriveFindings(raw, facts, business) {
     const cookies = m.thirdPartyCookies;
     const ads = adSignals(facts);
     const thirdParty = m.thirdPartyRequests > 0;
+    const outside = (m.thirdPartyDomains || []).filter(d => !builderHost(d));
+    const domainLabel = d => builderHost(d) ? `${d}, ${builderHost(d)}’s site-builder file server` : d;
     candidates.push({
       severity: "Medium",
       tone: "med",
@@ -447,7 +449,7 @@ export function deriveFindings(raw, facts, business) {
         : [cookies > 0 ? `${cookies} third-party cookie${cookies === 1 ? "" : "s"}` : null, errs > 0 ? `${errs} console ${errWord}` : null].filter(Boolean).join(" and ") + " on the homepage",
       measured: [
         thirdParty
-          ? `${m.thirdPartyRequests} third-party request${m.thirdPartyRequests === 1 ? "" : "s"} from ${m.thirdPartyDomains.length} external domain${m.thirdPartyDomains.length === 1 ? "" : "s"}${m.thirdPartyDomains.length ? ` (${m.thirdPartyDomains.length > 6 ? "including " : ""}${m.thirdPartyDomains.slice(0, 6).join(", ")})` : ""}.`
+          ? `${m.thirdPartyRequests} third-party request${m.thirdPartyRequests === 1 ? "" : "s"} from ${m.thirdPartyDomains.length} external domain${m.thirdPartyDomains.length === 1 ? "" : "s"}${m.thirdPartyDomains.length ? ` (${m.thirdPartyDomains.length > 6 ? "including " : ""}${m.thirdPartyDomains.slice(0, 6).map(domainLabel).join("; ")})` : ""}.`
           : `No third-party requests were recorded.`,
         cookies > 0 ? `<b>${cookies} third-party cookie${cookies === 1 ? "" : "s"}</b>.` : null,
         m.blockingMs >= 50 ? `Long tasks blocked the main thread for <b>${fmtInt(m.blockingMs)} ms</b> in the browser pass.` : null,
@@ -457,8 +459,8 @@ export function deriveFindings(raw, facts, business) {
         errs > 0 ? `Console errors can come from a failed file request or a script fault, and some stop a button, menu or form from working. Which controls, if any, are affected was not tested.` : null,
         cookies > 5
           ? `Ad and analytics pixels add weight to every visit${v.health ? ", and on a healthcare page they are a trust and data-protection question" : " and raise privacy questions for the visitor"}.`
-          : thirdParty
-            ? (v.health ? `On a healthcare page, each third-party request also shares visitor details, such as the IP address, with another company.` : `Each third-party request adds weight and shares visitor details with another company.`)
+          : thirdParty && outside.length
+            ? (v.health ? `On a healthcare page, each request to an outside service (${outside.slice(0, 3).join(", ")}${outside.length > 3 ? " and others" : ""}) also shares visitor details, such as the IP address, with that company.` : `Each request to an outside service adds weight and shares visitor details with that company.`)
             : null,
       ].filter(Boolean).join(" "),
       fix: sentence([
@@ -594,6 +596,25 @@ export function speedFix(m, h = {}) {
   if (h.wordpress && (h.wpPlugins || []).length) parts.push("plugins reviewed and any unused ones removed");
   if (!parts.length) return "Trace the element Lighthouse reports as the largest content and remove what delays it.";
   return sentence(parts);
+}
+
+/**
+ * File servers of the site builder a page is built on. They are a different
+ * domain, but the same company already serves the page, so a request to them
+ * shares nothing with a new company (26 Nov review: GoDaddy's img1.wsimg.com
+ * was described as "another company" on GoDaddy-built sites).
+ */
+const BUILDER_HOSTS = [
+  [/(^|\.)wsimg\.com$/, "GoDaddy"],
+  [/(^|\.)(wixstatic|parastorage)\.com$/, "Wix"],
+  [/(^|\.)(squarespace|squarespace-cdn)\.com$/, "Squarespace"],
+  [/(^|\.)(zyrosite|zyro)\.com$/, "Hostinger"],
+  [/(^|\.)(editmysite|weebly)\.com$/, "Square Online"],
+  [/(^|\.)(shopify|shopifycdn)\.com$/, "Shopify"],
+];
+export function builderHost(host) {
+  for (const [re, name] of BUILDER_HOSTS) if (re.test(String(host || ""))) return name;
+  return null;
 }
 
 /** Third-party hosts that serve advertising or retargeting code. */
