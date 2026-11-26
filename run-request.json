@@ -4,7 +4,7 @@
   "target": 5,
   "leadsLimit": 10,
   "niches": [],
-  "requestedAt": "2026-11-26T12:28:48Z",
+  "requestedAt": "2026-11-26T12:56:12Z",
   "csv": "data/ap-websearch-2026-11-26.csv",
   "csvOnly": true,
   "repairOnly": true,
@@ -16,5 +16,5 @@
     "deepthifertility.com",
     "saibhaskarhospital.com"
   ],
-  "reauditReason": "1.4.3 independent-review fixes (26 Nov): letters-only audit ref, hidden-H1 wording, no zero-cost evidence, schema and placeholder-link wording"
+  "reauditReason": "1.4.4 review fixes (26 Nov): post-scroll route counts, sticky-button-aware fix, desktop counts stated, score and plan column spacing"
 }

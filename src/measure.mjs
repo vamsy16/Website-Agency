@@ -142,6 +142,18 @@ function collectDom() {
   const telLinks = anchors.filter(a => (a.getAttribute("href") || "").startsWith("tel:"));
   const mailLinks = anchors.filter(a => (a.getAttribute("href") || "").startsWith("mailto:"));
   const whatsapp = q("a[href*='wa.me'], a[href*='whatsapp'], [class*=whatsapp], iframe[src*='whatsapp']");
+  // Call and WhatsApp links that stay on screen (inside a fixed or sticky
+  // element: a floating button or bar). The no-form fix told a site that
+  // already had a sticky call bar to add one (26 Nov review).
+  const onScreen = el => {
+    for (let e = el; e && e !== document.documentElement; e = e.parentElement) {
+      const p = getComputedStyle(e).position;
+      if (p === "fixed" || p === "sticky") return true;
+    }
+    return false;
+  };
+  const stickyTel = telLinks.filter(a => visible(a) && onScreen(a)).length;
+  const stickyWhatsapp = q("a[href*='wa.me'], a[href*='whatsapp']").filter(a => visible(a) && onScreen(a)).length;
   const readMore = anchors.filter(a => /^read\s*more$/i.test((a.innerText || "").trim()));
   const deadLinks = anchors.filter(a => {
     const h = (a.getAttribute("href") || "").trim();
@@ -227,6 +239,8 @@ function collectDom() {
     telLinks: telLinks.length,
     mailLinks: mailLinks.length,
     whatsapp: whatsapp.length,
+    stickyTel,
+    stickyWhatsapp,
     readMoreLinks: readMore.length,
     deadLinks: deadLinks.length,
     forms,
@@ -445,6 +459,25 @@ export async function measureSite(website, opts = {}) {
         await shot(`screen-${n}`);
       }
       await mobile.evaluate(() => window.scrollTo(0, 0));
+
+      // Count contact routes, headings and text again after the full-page and
+      // scrolled screenshots: content rendered on scroll (lazy sections,
+      // reveal animations) is missing from the count taken at load. A page
+      // measured at "1 click-to-call link on the whole page" showed a visitor
+      // five (26 Nov review). Each count is the larger of the two passes, and
+      // both passes are kept for the verifier.
+      try {
+        const after = await mobile.evaluate(collectDom);
+        const pick = d => ({ telLinks: d.telLinks, whatsapp: d.whatsapp, visibleForms: d.visibleForms, h1Count: d.h1Count, h1Hidden: d.h1Hidden, h2Count: d.h2Count, words: d.words });
+        dom.atLoad = pick(dom);
+        dom.afterScroll = pick(after);
+        for (const k of ["telLinks", "mailLinks", "whatsapp", "stickyTel", "stickyWhatsapp", "h2Count", "words"]) dom[k] = Math.max(dom[k] ?? 0, after[k] ?? 0);
+        if ((after.visibleForms ?? 0) > (dom.visibleForms ?? 0)) Object.assign(dom, { visibleForms: after.visibleForms, forms: after.forms, hasBookingForm: after.hasBookingForm });
+        if ((after.h1Count ?? 0) > (dom.h1Count ?? 0)) Object.assign(dom, { h1Count: after.h1Count, h1s: after.h1s, headlineOffsetPx: after.headlineOffsetPx });
+        dom.h1Hidden = Math.min(dom.h1Hidden ?? 0, after.h1Hidden ?? 0);
+        result.evidence.visibleForms = dom.visibleForms;
+        result.evidence.h1s = dom.h1s;
+      } catch {}
 
       // Section crops, largest first, max 8
       const sectionBoxes = await mobile.evaluate(() => {

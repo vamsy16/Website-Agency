@@ -7,7 +7,7 @@
 //
 // No constant in here is a judgement about a business. Each penalty is attached
 // to one measured threshold from config/settings.json.
-import { clamp, round, fmtInt, fmtBytesKB, fmtSec, fmtCls, longDate, isoDate, audienceOf, adTechLabel } from "./util.mjs";
+import { clamp, round, fmtInt, fmtBytesKB, fmtSec, fmtCls, longDate, isoDate, audienceOf, adTechLabel, stickyRoutes, telDiffers } from "./util.mjs";
 
 const PENALTY = {
   // speed
@@ -228,6 +228,11 @@ export function buildFacts(raw, scoring, business, settings = {}) {
       minFontPx: m.minFontPx ?? "—",
       headlineOffsetPx: m.headlineOffsetPx ?? 0,
       telLinks: m.telLinks ?? 0,
+      // The desktop pass's count; printed beside the 390 px count when they differ.
+      telLinksDesktop: raw.desktop?.dom?.telLinks ?? null,
+      // Call / WhatsApp links inside a fixed or sticky element at 390 px.
+      stickyTel: m.stickyTel ?? 0,
+      stickyWhatsapp: m.stickyWhatsapp ?? 0,
       whatsapp: m.whatsapp ?? 0,
       readMore: m.readMoreLinks ?? 0,
       deadLinks: m.deadLinks ?? 0,
@@ -354,13 +359,15 @@ export function deriveFindings(raw, facts, business) {
       severity: "Critical",
       tone: "crit",
       title: v.health ? `No appointment form fields were detected on the homepage` : `No enquiry form fields were detected on the homepage`,
-      measured: `Zero form fields on the home page. The page has <b>${m.telLinks}</b> click-to-call link${m.telLinks === 1 ? "" : "s"} and <b>${m.whatsapp}</b> WhatsApp capture element${m.whatsapp === 1 ? "" : "s"}.`,
+      measured: `Zero form fields on the home page. The page has <b>${m.telLinks}</b> click-to-call link${m.telLinks === 1 ? "" : "s"}${telDiffers(m) ? ` at 390 px (${m.telLinksDesktop} on the desktop layout)` : ""} and <b>${m.whatsapp}</b> WhatsApp capture element${m.whatsapp === 1 ? "" : "s"}.`,
       why: v.health
         ? `A patient may prefer a written appointment request. Check whether a separate booking page or another suitable contact route already meets that need. No lost appointments were measured.`
         : `Visitors may prefer different contact routes. Check existing phone, WhatsApp and separate contact-page options before deciding whether a homepage form is useful. No lost enquiries were measured.`,
-      fix: v.health
-        ? `A booking block above the fold, a sticky “Call / Book” bar on mobile, and a working form that emails the business.`
-        : `An enquiry block above the fold, a sticky “Call / WhatsApp” bar on mobile, and a working form that emails the business.`,
+      fix: stickyRoutes(m)
+        ? `${v.health ? "A booking" : "An enquiry"} block above the fold and a working form that emails the business, linked from the always-visible ${stickyRoutes(m)} the page already has.`
+        : v.health
+          ? `A booking block above the fold, a sticky “Call / Book” bar on mobile, and a working form that emails the business.`
+          : `An enquiry block above the fold, a sticky “Call / WhatsApp” bar on mobile, and a working form that emails the business.`,
       effort: "half a day",
       evidence: ["metric.visibleForms", "metric.telLinks", "metric.whatsapp"],
     });
@@ -408,7 +415,9 @@ export function deriveFindings(raw, facts, business) {
       title: `${Math.round(m.screens)} screen heights of homepage content`,
       measured: `${fmtInt(m.pageHeightPx)} px tall at 390 px wide. ${m.sections ? `${m.sections} section${m.sections === 1 ? "" : "s"}, ` : ""}${m.images} image${m.images === 1 ? "" : "s"}, ${fmtInt(m.words)} words. These dimensions alone do not establish where contact details appear.`,
       why: `A long page can require more navigation. Review the captured screens to check whether key service and contact information is easy to find; no scrolling behaviour was measured.`,
-      fix: `Five sections on the homepage: offer, proof, services, location and hours, book. Move the rest to dedicated pages.`,
+      // The rubric's own threshold (6 screens), as in plan row 06. "Five
+      // sections" was prescribed to a page measured at 3 sections (26 Nov).
+      fix: `A homepage of 6 screens or fewer: offer, proof, services, location and hours, book. Move the rest to dedicated pages.`,
       effort: "included in a rebuild",
       evidence: ["metric.sections", "metric.screens", "metric.pageHeightPx"],
     });

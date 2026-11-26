@@ -190,8 +190,20 @@ export async function verifyAudit({ auditPath, live = false, fixture = false }) 
     if (longTask && Number(longTask[1].replace(/,/g, "")) < 50) copyErrors.push("a blocking total under one long task (50 ms) listed as evidence");
     if (/\b(?:WebPage|WebSite|BreadcrumbList|ImageObject|ItemList|FAQPage|Article|BlogPosting) structured data is missing/.test(text)) copyErrors.push("a schema type that cannot hold business fields described as missing them");
     if (/No dead links/i.test(text)) copyErrors.push("links to # called dead without testing them");
+    if ((Number(fm.stickyTel) > 0 || Number(fm.stickyWhatsapp) > 0) && /sticky “Call \/ (?:Book|WhatsApp)” bar|sticky call bar/i.test(text)) copyErrors.push("a sticky call bar recommended to a page that already keeps call or WhatsApp buttons on screen");
     if (Number(fm.h1Count) === 0 && Number(fm.h1Hidden) > 0 && /H1 headings detected on the homepage|no H1 headline found|No H1 headline was found/i.test(text)) copyErrors.push("an H1 present in the markup but hidden at 390 px reported as missing");
     add("copy.honesty", copyErrors.length === 0, copyErrors.join("; ") || "known unsupported narrative claims absent");
+    // Counts that depend on the viewport or on scrolling must say so. The
+    // detail records both passes and the desktop count (26 Nov review: a page
+    // measured at one click-to-call link showed a visitor five).
+    {
+      const dom = raw?.mobile?.dom || {};
+      const a = dom.atLoad || {}, s = dom.afterScroll || {};
+      const differs = fm.telLinksDesktop !== null && fm.telLinksDesktop !== undefined && Number(fm.telLinksDesktop) !== Number(fm.telLinks);
+      const said = /on the desktop layout/.test(text);
+      add("facts.viewport", !differs || said,
+        `click-to-call links: ${a.telLinks ?? "?"} at load, ${s.telLinks ?? "?"} after scrolling, printed ${fm.telLinks}, desktop ${fm.telLinksDesktop ?? "?"}${differs ? (said ? " (difference stated)" : " (difference not stated)") : ""}; WhatsApp ${a.whatsapp ?? "?"}/${s.whatsapp ?? "?"}; forms ${a.visibleForms ?? "?"}/${s.visibleForms ?? "?"}; visible H1 ${a.h1Count ?? "?"}/${s.h1Count ?? "?"}, hidden ${fm.h1Hidden ?? "?"}, desktop ${fm.h1CountDesktop ?? "?"}; words ${a.words ?? "?"}/${s.words ?? "?"}`);
+    }
     const allowed = new Set(STRUCTURAL);
     flattenNumbers(audit.facts, allowed);
     flattenNumbers(audit.scores, allowed);

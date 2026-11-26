@@ -196,7 +196,12 @@ repeated there.
 - that a page has no H1 when its markup has one that is hidden at 390 px — say
   how many are visible at that width and how many more the markup holds;
 - that links to `#` or `javascript:void(0)` are "dead" — some open menus or
-  slides; call them placeholder links.
+  slides; call them placeholder links;
+- that a site needs a sticky call bar when it already keeps call or WhatsApp
+  buttons on screen.
+
+Counts of contact routes, headings and words are the larger of two passes: at
+load and after the full-page and scrolled screenshots.
 
 ---
 
@@ -246,6 +251,7 @@ before the PDF is accepted. It writes `verify.json` next to the audit.
 | `facts.consistent` | any printed metric differs from the raw measurement |
 | `facts.firstParty` | the business's own host (with or without `www.`, or a subdomain) is listed as a third-party domain |
 | `copy.honesty` | the report prints a known unsupported claim (see "Do not claim"), a "0.x× over" contradiction, blocking time attributed to third parties, a zero cost or a sub-50 ms blocking total listed as evidence, "Only 0", a page-type schema (WebPage, WebSite…) said to be missing business fields, links to `#` called "dead", or an H1 that exists in the markup but is hidden at 390 px reported as missing |
+| `facts.viewport` | the click-to-call count differs between 390 px and the desktop layout and the report does not say so (the detail records the count at load, after scrolling and on desktop) |
 | `findings.evidence` | a finding depends on a fact that is missing, empty or `—` |
 | `numbers.traceable` | the report prints a number that is not in the measurement, the rubric or Google's stated targets |
 | `report.date` | the report does not state the measurement date |

@@ -9,7 +9,7 @@
 //   3. If a narrative override references an unknown fact token the render throws.
 import fs from "node:fs";
 import path from "node:path";
-import { ROOT, escapeHtml, fmtInt, round, adTechLabel, audienceOf } from "./util.mjs";
+import { ROOT, escapeHtml, fmtInt, round, adTechLabel, audienceOf, stickyRoutes, telDiffers } from "./util.mjs";
 
 const STYLES = fs.readFileSync(path.join(ROOT, "src", "styles.css"), "utf8");
 const FONTS = fs.readFileSync(path.join(ROOT, "src", "fonts.css"), "utf8");
@@ -96,7 +96,7 @@ function defaultCoverStats(facts, findings) {
   const first = findings.all[0] || { title: "" };
   const third = m.visibleForms === 0 && facts.http.contactShortcode
     ? { n: "1", unit: "", label: "Broken enquiry form. Your Contact page prints raw code where the form should load." }
-    : { n: String(m.h1Count), unit: "", label: m.h1Count > 1 ? "H1 headings detected on the homepage. Review whether the page has a clear primary topic." : m.h1Count === 1 ? "H1 heading detected on the homepage." : Number(m.h1Hidden) > 0 ? `H1 headings visible on the 390 px phone view; the markup has ${m.h1Hidden} that ${m.h1Hidden === 1 ? "was" : "were"} not shown.` : "H1 headings detected on the homepage; review the document outline." };
+    : { n: String(m.h1Count), unit: "", label: m.h1Count > 1 ? "H1 headings detected on the homepage. Review whether the page has a clear primary topic." : m.h1Count === 1 ? "H1 heading detected on the homepage." : Number(m.h1Hidden) > 0 ? (Number(m.h1CountDesktop) > 0 ? `H1 headings visible on the 390 px phone view; the desktop layout shows ${m.h1CountDesktop}.` : `H1 headings visible on the 390 px phone view; the markup has ${m.h1Hidden} that ${m.h1Hidden === 1 ? "was" : "were"} not shown.`) : "H1 headings detected on the homepage; review the document outline." };
   return [
     { n: String(m.perfMobile), unit: "/ 100", label: `Lighthouse mobile performance score in this test run.` },
     { n: secNum(m.lcpMs), unit: "s", label: `Largest Contentful Paint in the mobile lab test. Good LCP target: 2.5 s or less.` },
@@ -194,7 +194,7 @@ function pageScorecard(a, facts) {
     ["Speed", s.speed, `Mobile ${facts.metric.perfMobile}/100 · LCP ${facts.metric.lcp} · TBT ${facts.metric.tbt} · ${facts.metric.requests} requests · ${facts.metric.bytes} · server response ${facts.metric.ttfb}`, 30],
     ["Mobile experience", s.mobile, `≈${countOf(Math.round(facts.metric.screens), "screen")} tall · ${countOf(facts.metric.smallTapTargets, "tap target")} under 40 px${Number(facts.metric.minFontPx) > 0 ? ` · body text down to ${facts.metric.minFontPx} px` : ""} · ${facts.metric.h1Count > 0 ? `first H1 starts ${fmtInt(facts.metric.headlineOffsetPx)} px down` : Number(facts.metric.h1Hidden) > 0 ? "no H1 visible at 390 px" : "no H1 headline found"}`, 20],
     // "Contact page reachable" only when the /contact/ probe found a page that is not the homepage.
-    ["Conversion", s.conversion, `${facts.metric.visibleForms === 0 ? "No visible form on the home page" : `${facts.metric.visibleForms} visible form(s)`} · ${facts.http.contactShortcode ? "Contact page prints raw code · " : facts.http.contactReachable ? "Contact page reachable · " : ""}${facts.metric.telLinks} click-to-call link(s) · ${facts.metric.whatsapp} WhatsApp element(s)`, 25],
+    ["Conversion", s.conversion, `${facts.metric.visibleForms === 0 ? "No visible form on the home page" : countOf(facts.metric.visibleForms, "visible form")} · ${facts.http.contactShortcode ? "Contact page prints raw code · " : facts.http.contactReachable ? "Contact page reachable · " : ""}${countOf(facts.metric.telLinks, "click-to-call link")}${telDiffers(facts.metric) ? ` (${facts.metric.telLinksDesktop} on the desktop layout)` : ""} · ${countOf(facts.metric.whatsapp, "WhatsApp element")}`, 25],
     ["Design &amp; clarity", s.design, `${facts.metric.sections > 0 ? `${facts.metric.sections} stacked section${facts.metric.sections === 1 ? "" : "s"} · ` : ""}${fmtInt(facts.metric.domNodes)} DOM nodes · ${facts.metric.imagesNoAlt} image${facts.metric.imagesNoAlt === 1 ? "" : "s"} without alt text`, 15],
     ["SEO", s.seo, `Lighthouse SEO ${facts.metric.seo}/100 · ${facts.metric.h1Count} ${Number(facts.metric.h1Hidden) > 0 ? "visible " : ""}H1 heading${facts.metric.h1Count === 1 ? "" : "s"}${Number(facts.metric.h1Hidden) > 0 ? ` (${facts.metric.h1Hidden} hidden)` : ""} · structured data ${schemaState(facts.http)} · ${facts.metric.readMore} “Read More” link${facts.metric.readMore === 1 ? "" : "s"}`, 10],
   ];
@@ -282,7 +282,7 @@ ${phones
             ? `<div><div style="font-family:'Instrument Serif',serif;font-size:17pt;line-height:1">${m.sections}</div><div class="small">stacked section${m.sections === 1 ? "" : "s"} on one page</div></div>`
             : `<div><div style="font-family:'Instrument Serif',serif;font-size:17pt;line-height:1">${fmtInt(m.words)}</div><div class="small">words of text on the homepage</div></div>`}
           <div><div style="font-family:'Instrument Serif',serif;font-size:17pt;line-height:1">${m.images}</div><div class="small">image${m.images === 1 ? "" : "s"}, ${fmtInt(m.oversizedImgsKb)} KiB of ${m.images === 1 ? "it" : "them"} oversized</div></div>
-          <div><div style="font-family:'Instrument Serif',serif;font-size:17pt;line-height:1">${m.telLinks}</div><div class="small">click-to-call link${m.telLinks === 1 ? "" : "s"} on the whole page</div></div>
+          <div><div style="font-family:'Instrument Serif',serif;font-size:17pt;line-height:1">${m.telLinks}</div><div class="small">click-to-call link${m.telLinks === 1 ? "" : "s"}${telDiffers(m) ? ` at 390 px; ${m.telLinksDesktop} on the desktop layout` : " on the whole page"}</div></div>
         </div>
       </div>
     </div>
@@ -560,7 +560,7 @@ function defaultPlan(facts, findings) {
   return [
     // A form that exists is tested, not "rebuilt": its delivery was never measured.
     { id: "01", change: facts.http.contactShortcode ? "Contact form rebuilt" : m.visibleForms === 0 ? "Contact form" : "Contact form tested", today: facts.http.contactShortcode ? "Prints raw shortcode; collects nothing" : m.visibleForms === 0 ? "No fields detected; check other routes" : "Form fields detected; delivery untested", target: m.visibleForms > 0 && !facts.http.contactShortcode ? "Test enquiry delivered + thank-you page, tracked" : "Working form + thank-you page, tracked", effort: "<b>1 hour</b>" },
-    { id: "02", change: v.health ? "Booking path" : "Enquiry path", today: m.visibleForms === 0 ? "No form on the homepage" : "Form fields detected", target: v.health ? "Book block above fold + sticky call bar" : "Enquiry block above fold + sticky call bar", effort: "<b>½ day</b>" },
+    { id: "02", change: v.health ? "Booking path" : "Enquiry path", today: m.visibleForms === 0 ? "No form on the homepage" : "Form fields detected", target: stickyRoutes(m) ? `${v.health ? "Book" : "Enquiry"} block above fold, linked from the existing ${stickyRoutes(m)}` : v.health ? "Book block above fold + sticky call bar" : "Enquiry block above fold + sticky call bar", effort: "<b>½ day</b>" },
     // Rows whose target the site already meets say so instead of selling work.
     serverOk
       ? { id: "03", change: "Server &amp; caching", today: `${m.ttfb} response`, target: "Already under 500 ms", effort: "—" }
@@ -671,7 +671,7 @@ function pageDirection(a, facts) {
         <div class="ds">Items 01–05 of the plan</div>
         <ul>
           <li>${facts.http.contactShortcode ? "Contact form rebuilt" : m.visibleForms === 0 ? `Homepage ${v.health ? "booking" : "enquiry"} form added` : "Contact form tested"} &amp; tracked</li>
-          <li>${v.health ? "Booking" : "Enquiry"} buttons + sticky call bar</li>
+          <li>${stickyRoutes(m) ? `${v.health ? "Booking" : "Enquiry"} block, linked from the existing ${stickyRoutes(m)}` : `${v.health ? "Booking" : "Enquiry"} buttons + sticky call bar`}</li>
           <li>${speedWork(m)}</li>
           <li>Schema &amp; local SEO fields</li>
         </ul>

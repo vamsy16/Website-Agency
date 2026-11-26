@@ -101,7 +101,7 @@
   table.scores th{font-size:6.4pt;letter-spacing:.13em;text-transform:uppercase;color:var(--mut);font-weight:700;text-align:left;padding:0 0 2.2mm;border-bottom:.3mm solid var(--line)}
   table.scores td{padding:3.4mm 0;border-bottom:.3mm solid var(--line2);vertical-align:middle;font-size:8.2pt;color:var(--ink2)}
   table.scores td.area{font-weight:700;color:var(--ink);font-size:9pt;width:34mm}
-  table.scores td.sc{width:26mm}
+  table.scores td.sc{width:29mm;padding-right:3mm;white-space:nowrap}
   table.scores .bar{height:1.9mm;border-radius:1mm;background:#EDF1F0;overflow:hidden;width:20mm;display:inline-block;vertical-align:middle;margin-right:2mm}
   table.scores .bar i{display:block;height:100%;background:var(--brand)}
   table.scores .bar.red i{background:var(--coral)}
@@ -166,7 +166,7 @@
   table.plan th{font-size:6.2pt;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);font-weight:700;text-align:left;padding:0 0 2.2mm;border-bottom:.35mm solid var(--line)}
   table.plan td{padding:2.5mm 0;border-bottom:.3mm solid var(--line2);font-size:7.9pt;color:var(--ink2);vertical-align:top}
   table.plan td.i{width:6mm;color:var(--mut);font-variant-numeric:tabular-nums}
-  table.plan td.w{width:19mm;font-weight:600;color:var(--ink)}
+  table.plan td.w{width:22mm;padding-right:2.5mm;font-weight:600;color:var(--ink)}
   table.plan td:nth-child(3){width:38mm}
   table.plan td.t{width:30mm;text-align:right;font-variant-numeric:tabular-nums}
   table.plan td.t b{color:var(--brand-dark)}

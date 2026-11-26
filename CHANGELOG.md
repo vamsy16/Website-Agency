@@ -3,6 +3,15 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## 1.4.4 — 26 November 2026
+
+**Second pass of the 26 November review, after reading every page of the 1.4.3 re-audit (run 45820025821) and comparing it with the live sites.**
+
+- `measure.mjs` — contact routes, headings and words are counted again after the full-page and scrolled screenshots, and the larger count is kept: content rendered on scroll was missing from the count taken at load. Dr K Hemanth Kumar's homepage was reported with "1 click-to-call link on the whole page" while the live page shows five call links. Both passes are kept in the raw file. Also records call and WhatsApp links inside a fixed or sticky element (`stickyTel`, `stickyWhatsapp`).
+- `findings.mjs` / `render.mjs` — the no-form fix no longer tells a site that already keeps call or WhatsApp buttons on screen to add "a sticky Call / Book bar" (Vignata has one); it links the new booking form from the existing buttons, and plan row 02 and the Rescue column say the same. When the desktop pass counts a different number of click-to-call links, the report prints both ("1 click-to-call link at 390 px (5 on the desktop layout)"); a hidden H1 that the desktop layout shows is reported as such. The long-page finding targets "a homepage of 6 screens or fewer" (the rubric's threshold, as in plan row 06) instead of "five sections", which had been prescribed to a page measured at 3 sections. The scorecard's conversion row uses real plurals ("2 click-to-call links", not "link(s)").
+- `styles.css` — the scorecard's score column has room for a two-digit score: "10" ran into its evidence and read as "103 stacked sections" on every report with a 10/10 area; the plan table's change column no longer runs "Measurement" into "Conversion events not tested".
+- `verify.mjs` — new check `facts.viewport`: a click-to-call count that differs between 390 px and the desktop layout must be stated as such; its detail records both mobile passes and the desktop count. `copy.honesty` rejects a sticky call bar recommended to a page that already keeps call or WhatsApp buttons on screen.
+
 ## 1.4.3 — 26 November 2026
 
 **Independent review of the five Andhra Pradesh audits from run 45814540402: every sentence true for the site it describes.**
