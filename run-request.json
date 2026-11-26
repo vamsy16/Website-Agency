@@ -8,9 +8,6 @@
   "csv": "data/ap-websearch-2026-11-26.csv",
   "csvOnly": true,
   "repairOnly": true,
-  "disabled": false,
-  "reaudit": [
-    "neurologistinkurnool.com"
-  ],
-  "reauditReason": "1.4.4 review (26 Nov) for Dr K Hemanth Kumar: laptop crop placed over the desktop headline (the left strip of its centred GoDaddy layout showed only the hero's blurred background fill)"
+  "disabled": true,
+  "reaudit": []
 }

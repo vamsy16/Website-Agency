@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-26T14:26:16.887Z",
+  "updatedAt": "2026-11-26T14:27:17.438Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -1321,30 +1321,6 @@
         "html": "reports/ravi-dental-care-and-implant-center/report.html"
       },
       "fingerprint": "1a7e855a2769dc0e"
-    },
-    {
-      "domain": "vignataivfcenter.com",
-      "name": "Vignata Fertility & IVF Center",
-      "ref": "SP-AUD-2026-11-26-VF&",
-      "generatedAt": "2026-11-26T12:00:39.018Z",
-      "status": "complete",
-      "mode": "live",
-      "scores": {
-        "speed": 3,
-        "mobile": 6,
-        "conversion": 7,
-        "design": 9,
-        "seo": 8,
-        "overall": 60
-      },
-      "pdfPages": 10,
-      "pdfBytes": 2741739,
-      "files": {
-        "pdf": "reports/vignata-fertility-and-ivf-center/Smart-Pursuit-Audit-Vignata-Fertility-IVF-Center.pdf",
-        "audit": "reports/vignata-fertility-and-ivf-center/audit.json",
-        "html": "reports/vignata-fertility-and-ivf-center/report.html"
-      },
-      "fingerprint": "71c84a8544919fe0"
     },
     {
       "domain": "shravanienthospital.com",

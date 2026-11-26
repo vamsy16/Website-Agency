@@ -1,0 +1,63 @@
+{
+ "state": "Andhra Pradesh",
+ "reviewDate": "2026-11-26",
+ "run": "45837237021",
+ "runs": {
+  "45814540402": "First run on data/ap-websearch-2026-11-26.csv (10 vetted leads left over from 23 November, target 5): 6 attempted, 5 passed verify, Ayush Dental Care failed screenshots.real, 4 not attempted once the target was reached. All 5 PDFs held by this review (pass 1).",
+  "45820025821": "Re-audit of the 5 with 1.4.3. Verify 25/25 for all five; all held for the pass-2 defects.",
+  "45824308238": "Re-audit with the first part of 1.4.4 (cce7c89). Vignata, Deepthi and Sai Bhaskar re-audited (26/26); Dr K Hemanth Kumar blocked by verify (Lighthouse PROTOCOL_TIMEOUT, provenance.tool) and Shravani unreachable (ECONNRESET), previous audits kept. Superseded.",
+  "45825535687": "Re-audit of the 5 with the 1.4.4 fixes through c36f6bf. Vignata and Sai Bhaskar read clean: these are their published files. Dr K Hemanth Kumar and Deepthi held (pass 3); Shravani's screen timed out, previous audit kept.",
+  "45830272690": "Re-audit of Shravani ENT after adding a network retry to the screen: verify 26/26. Superseded by run 45831617819.",
+  "45831617819": "Re-audit of Dr K Hemanth Kumar, Deepthi and Shravani with the pass-3 fixes: verify 26/26 each; Dr K Hemanth Kumar's call links 5 (1 in the page, 4 in an embedded frame). Deepthi and Shravani read clean: these are their published files. Dr K Hemanth Kumar held for the laptop crop (pass 4).",
+  "45837237021": "Re-audit of Dr K Hemanth Kumar with the laptop strip placed over the desktop headline: verify 26/26, 10 pages, 0 mm; the strip shows the hero, headline and navigation. This is its published file."
+ },
+ "requested": 5,
+ "status": "approved-after-reaudit",
+ "dedupeAuthority": [
+  "data/leads.json",
+  "data/audits.json",
+  "git history of this repository"
+ ],
+ "neverSendAutomatically": true,
+ "businessChecks": "All five confirmed as real, independent local healthcare businesses in Andhra Pradesh; each To: address is published on the business's own website and was read there by this review; doctors, addresses and phone numbers cross-checked against the live sites and public listings (Justdial, inkakinada, Practo, APMC registration where available).",
+ "leads": [
+  {
+   "domain": "vignataivfcenter.com",
+   "approved": true,
+   "reason": "Approved after re-audit 45825535687: verify 26/26, 10-page A4, 0 mm overflow, every page re-read. Vignata Fertility & IVF Center (Guntur). Janardani Hospital, Gowrishankar Theatre Road, Kothapet, Guntur 522001; +91 93465 28327; Dr Vignata Nutalapati, MBBS, MS (OBGY), FRM; vignatafertilityandivfcentre@gmail.com published on https://vignataivfcenter.com/ (footer) and its contact page. 61/100, 4 supported findings; email 1 quotes the PDF's numbers."
+  },
+  {
+   "domain": "shravanienthospital.com",
+   "approved": true,
+   "reason": "Approved after re-audit 45831617819: verify 26/26, 10-page A4, 0 mm overflow, every page re-read. Shravani ENT Hospital (Kakinada). Jawahar Street, Salipeta, near TTD Kalyana Mandapam, Kakinada; Justdial and inkakinada list Dr S Veer Reddy, MS (DLO), Door No 21-1-29, Jawahar Street, Kakinada 533001; shravanienthospital@gmail.com published on https://shravanienthospital.com/ (the site publishes no phone number). 73/100, 4 supported findings; email 1 quotes the PDF's numbers."
+  },
+  {
+   "domain": "neurologistinkurnool.com",
+   "approved": true,
+   "reason": "Approved after re-audit 45837237021: verify 26/26, 10-page A4, 0 mm overflow, every page re-read. Dr K Hemanth Kumar, neurologist (Kurnool). Consultant neurologist at Kurnool Heart & Multispeciality Hospital, KC Canal Road, A Camp, Kurnool, and in Adoni; 94410 94410 and 94943 19319; Practo: MBBS, MD, DM (Neurology), registration verified; drhemanthneuro@gmail.com published on https://neurologistinkurnool.com/ (homepage FAQ and the contact page). 72/100, 4 supported findings; email 1 quotes the PDF's numbers."
+  },
+  {
+   "domain": "deepthifertility.com",
+   "approved": true,
+   "reason": "Approved after re-audit 45831617819: verify 26/26, 10-page A4, 0 mm overflow, every page re-read. Deepthi Fertility Centre (Nellore). Sreehari Nagar, Mini Bypass Road, opposite the TDP office, Nellore 524003; 79972 79952; Dr N Sudeepthi, MBBS, MS (OBG), FNB (Reproductive Medicine), Dr B Suneetha, Dr Cornelius J; deepthifertilitycentre@gmail.com published on https://deepthifertility.com/about-us/ and the team page (drawn by script; the pipeline's browser screen confirmed it). 76/100, 4 supported findings; email 1 quotes the PDF's numbers."
+  },
+  {
+   "domain": "saibhaskarhospital.com",
+   "approved": true,
+   "reason": "Approved after re-audit 45825535687: verify 26/26, 10-page A4, 0 mm overflow, every page re-read. Sai Bhaskar Hospitals (Guntur). 6/2 Arundelpet, Guntur 522002; 91123 22266 and 1800-123-41730; Dr Busireddy Narendra Reddy, MS, DNB, MCh (Ortho), APMC registration 71859; a second branch in Vijayawada; bmrhospitalsguntur@gmail.com published on https://saibhaskarhospital.com/contact.html. 62/100, 5 supported findings; email 1 quotes the PDF's numbers."
+  }
+ ],
+ "notPublished": [
+  {
+   "domain": "ayushdentalcare.com",
+   "reason": "Run 45814540402: verify failed screenshots.real (blank or flat capture). Not published; not retried. Its address, ayushdental@gmail.com, was published on its site."
+  }
+ ],
+ "notAttempted": [
+  "simhapuridental.com",
+  "madhudentalclinic.com",
+  "fortunedentalclinics.com",
+  "viswanadhahospital.com"
+ ],
+ "withheldOtherDomains": []
+}

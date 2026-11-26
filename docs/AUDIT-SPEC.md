@@ -200,7 +200,14 @@ repeated there.
 - that a site needs a sticky call bar when it already keeps call or WhatsApp
   buttons on screen;
 - that a headline is seen in the first screen when it sits in a hidden,
-  transparent or off-screen slide.
+  transparent or off-screen slide;
+- a section count as the target ("five sections") for a page measured with
+  fewer — the target is the rubric's own "6 screens or fewer";
+- that requests to a site builder's own file server share visitor details with
+  "another company" when the page is built on that builder (read from its meta
+  generator) — on any other site that server is an outside service;
+- a score that was not measured: when a test does not complete, say so rather
+  than printing "—/100".
 
 Counts of contact routes, headings and words are the larger of two passes: at
 load and after the full-page and scrolled screenshots. Call, email and WhatsApp
@@ -254,7 +261,7 @@ before the PDF is accepted. It writes `verify.json` next to the audit.
 | `scores.*` | a printed area score differs from the rubric |
 | `facts.consistent` | any printed metric differs from the raw measurement |
 | `facts.firstParty` | the business's own host (with or without `www.`, or a subdomain) is listed as a third-party domain |
-| `copy.honesty` | the report prints a known unsupported claim (see "Do not claim"), a "0.x× over" contradiction, blocking time attributed to third parties, a zero cost or a sub-50 ms blocking total listed as evidence, "Only 0", a page-type schema (WebPage, WebSite…) said to be missing business fields, links to `#` called "dead", or an H1 that exists in the markup but is hidden at 390 px reported as missing |
+| `copy.honesty` | the report prints a known unsupported claim (see "Do not claim"), a "0.x× over" contradiction, blocking time attributed to third parties, a zero cost or a sub-50 ms blocking total listed as evidence, "Only 0", a page-type schema (WebPage, WebSite…) said to be missing business fields, links to `#` called "dead", an H1 that exists in the markup but is hidden at 390 px reported as missing, a sticky call bar recommended to a page that already keeps call or WhatsApp buttons on screen, or a missing score printed as "—/100" |
 | `facts.viewport` | the click-to-call count differs between 390 px and the desktop layout and the report does not say so (the detail records the count at load, after scrolling and on desktop) |
 | `findings.evidence` | a finding depends on a fact that is missing, empty or `—` |
 | `numbers.traceable` | the report prints a number that is not in the measurement, the rubric or Google's stated targets |

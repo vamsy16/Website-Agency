@@ -3,6 +3,12 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## Review — 26 November 2026
+
+- Five new Andhra Pradesh audits approved after re-audit with 1.4.3 and 1.4.4 (runs 45814540402, 45820025821, 45824308238, 45825535687, 45830272690, 45831617819, 45837237021): Vignata Fertility & IVF Center (Guntur), Shravani ENT Hospital (Kakinada), Dr K Hemanth Kumar, neurologist (Kurnool), Deepthi Fertility Centre (Nellore) and Sai Bhaskar Hospitals (Guntur). Each To: address was read on the business's own website, the duplicate check used only this repository, every audit passed verify 26/26, and every final page was re-read. Record: `deliverables/runs/2026-11-26-independent-review.md`. Nothing was sent.
+- Ayush Dental Care failed `screenshots.real` and is not published. Simhapuri Dental, Madhu Dental, Fortune Dental and Viswanadha Hospital were not attempted and stay `new`.
+- `data/audits.json`: the stale Vignata row ("VF&", 60/100) is removed. `run-request.json` is disabled.
+
 ## 1.4.4 — 26 November 2026
 
 **Second pass of the 26 November review, after reading every page of the 1.4.3 re-audit (run 45820025821) and comparing it with the live sites.**
