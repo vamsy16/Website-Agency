@@ -5,6 +5,9 @@ if the reason is not obvious.
 
 ## Process — 26 November 2026
 
+- `tools/followups.mjs` — follow-up dates come from what was actually sent: each email is due 3 days after the previous one's `sentAt` (IST), and a step after one not yet sent is projected from its due date or today, whichever is later. It records sends and stops (bounce, reply, opt-out) from a JSON file, keeps each draft's `**Send:**` line in step, refuses a step marked sent ahead of an unsent one, and `--selftest` checks the rule (13 checks).
+- Sends recorded from Gmail's Sent copies for the 40 Andhra Pradesh sequences that have been emailed (64 emails, 16–26 November), with their follow-up dates recomputed. The five that bounced (Sree Bhalaji, NEST Sagar, Bhimavaram, Karumuri, Blue Fox) are stopped. The other 14 sequences have not been emailed and are unchanged.
+
 - `docs/ARENA-LEADS-TO-GMAIL.md` — Gmail drafts no longer carry an operator note. Drafts can be sent unedited, so a draft holds only the recipient-facing email; follow-up dates stay in `gmail-drafts.json`, `sequence.json` and the report. A follow-up is drafted on request as a reply in the same thread, its dates moved if the first email went out late.
 
 ## Review — 23 November 2026

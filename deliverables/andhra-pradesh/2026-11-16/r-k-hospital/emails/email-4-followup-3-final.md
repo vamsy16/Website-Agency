@@ -2,7 +2,7 @@
 
 **To:** rkhospital.gajuwaka@gmail.com
 **Subject:** Closing the loop — R K Hospital
-**Send:** 25 November 2026
+**Send:** 26 November 2026
 **Attachments:** none
 
 ---

@@ -2,7 +2,7 @@
 
 **To:** joinstitute@yahoo.co.in
 **Subject:** Closing the loop — Jnanananda Eye Hospital
-**Send:** 25 November 2026
+**Send:** 26 November 2026
 **Attachments:** none
 
 ---

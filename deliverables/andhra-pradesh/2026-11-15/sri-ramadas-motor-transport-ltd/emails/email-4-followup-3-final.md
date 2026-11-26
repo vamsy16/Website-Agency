@@ -2,7 +2,7 @@
 
 **To:** ho@srmt.com
 **Subject:** Closing the loop — Sri Ramadas Motor Transport
-**Send:** 24 November 2026
+**Send:** 2 December 2026
 **Attachments:** none
 
 ---

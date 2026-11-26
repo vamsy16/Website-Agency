@@ -141,9 +141,12 @@ For each accepted audit with a verified public email and no suppression:
    reply: record those dates in `gmail-drafts.json` and in the report to the
    operator. Draft a follow-up only when the operator asks for it on or after
    its date, after checking the thread for a reply or opt-out, as a reply in the
-   same thread. If the first email went out later than planned, move every
-   follow-up date by the same number of days. Do not claim an unsent initial
-   email has been delivered.
+   same thread. Each follow-up is due 3 days after the previous email actually
+   went out: before reporting dues or drafting, record every send in Gmail's
+   Sent folder in the deliverable's `sequence.json` (`sentAt` = the Sent copy's
+   time, IST) with `node tools/followups.mjs --record <file>`, record bounces,
+   replies and opt-outs as stops, and take the dates from its output. Do not
+   claim an unsent initial email has been delivered.
 4. Read the created draft back and verify recipient, subject, body and the PDF
    attachment, and that the body is only the recipient-facing email.
 

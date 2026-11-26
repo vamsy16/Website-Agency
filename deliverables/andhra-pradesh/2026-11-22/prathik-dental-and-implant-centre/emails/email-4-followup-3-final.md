@@ -2,7 +2,7 @@
 
 **To:** karthik@prathikdental.com
 **Subject:** Closing the loop — Prathik Dental and Implant Centre
-**Send:** 1 December 2026
+**Send:** 2 December 2026
 **Attachments:** none
 
 ---

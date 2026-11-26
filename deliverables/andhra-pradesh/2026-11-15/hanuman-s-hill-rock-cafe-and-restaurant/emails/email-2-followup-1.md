@@ -2,7 +2,7 @@
 
 **To:** welcome@hanumanshillrock.com
 **Subject:** Re: Hanuman's Hill Rock Cafe & Restaurant — what I found testing hanumanshillrock.com
-**Send:** 18 November 2026
+**Send:** 24 November 2026
 **Attachments:** none
 
 ---

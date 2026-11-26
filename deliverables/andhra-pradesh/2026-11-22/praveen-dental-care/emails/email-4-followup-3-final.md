@@ -2,7 +2,7 @@
 
 **To:** info@praveendental.in
 **Subject:** Closing the loop — Praveen Dental Care
-**Send:** 1 December 2026
+**Send:** 2 December 2026
 **Attachments:** none
 
 ---

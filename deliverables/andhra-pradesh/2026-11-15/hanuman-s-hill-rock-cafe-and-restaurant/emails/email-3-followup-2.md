@@ -2,7 +2,7 @@
 
 **To:** welcome@hanumanshillrock.com
 **Subject:** Re: Hanuman's Hill Rock Cafe & Restaurant — what a fixed version looks like
-**Send:** 21 November 2026
+**Send:** 29 November 2026
 **Attachments:** none
 
 ---

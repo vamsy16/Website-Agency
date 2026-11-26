@@ -2,7 +2,7 @@
 
 **To:** thedentalstudiovizag@gmail.com
 **Subject:** The Dental Studio — what I found testing thedentalstudiovizag.com
-**Send:** 22 November 2026
+**Send:** 23 November 2026
 **Attachments:** reports/the-dental-studio/Smart-Pursuit-Audit-The-Dental-Studio.pdf
 
 ---

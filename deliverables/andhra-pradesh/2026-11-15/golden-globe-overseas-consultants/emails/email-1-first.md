@@ -2,7 +2,7 @@
 
 **To:** info@goldenglobeoverseas.com
 **Subject:** Golden Globe Overseas Consultants — what I found testing goldenglobeoverseas.com
-**Send:** 15 November 2026
+**Send:** 16 November 2026
 **Attachments:** reports/golden-globe-overseas-consultants/Smart-Pursuit-Audit-Golden-Globe-Overseas-Consultants.pdf
 
 ---

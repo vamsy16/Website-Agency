@@ -2,7 +2,7 @@
 
 **To:** andalbskr@gmail.com
 **Subject:** Re: Lakshmi Fertility Research — what a fixed version looks like
-**Send:** 21 November 2026
+**Send:** 23 November 2026
 **Attachments:** none
 
 ---

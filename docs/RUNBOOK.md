@@ -590,6 +590,12 @@ For each email:
 }
 ```
 
+Then run `node tools/followups.mjs --apply` (or `--record sends.json` for many
+at once). It recomputes every follow-up date from what was actually sent — each
+email is due 3 days after the previous one's `sentAt` — and lists what is due,
+overdue and upcoming. A bounce, reply or opt-out stops the sequence: record it
+as a stop and its remaining emails are cancelled.
+
 Respect the daily cap in `settings.json` (20). Fewer, better emails beat volume.
 
 ### Cadence

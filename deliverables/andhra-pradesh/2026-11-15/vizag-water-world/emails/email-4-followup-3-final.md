@@ -2,7 +2,7 @@
 
 **To:** vizagwaterworld@gmail.com
 **Subject:** Closing the loop — Vizag Water World
-**Send:** 24 November 2026
+**Send:** 26 November 2026
 **Attachments:** none
 
 ---

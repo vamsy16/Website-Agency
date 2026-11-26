@@ -2,7 +2,7 @@
 
 **To:** vidya@krishnadental.in
 **Subject:** Krishna Multispeciality Dental Clinic — what I found testing krishnadental.in
-**Send:** 15 November 2026
+**Send:** 21 November 2026
 **Attachments:** reports/krishna-multispeciality-dental-clinic/Smart-Pursuit-Audit-Krishna-Multispeciality-Dental-Clinic.pdf
 
 ---

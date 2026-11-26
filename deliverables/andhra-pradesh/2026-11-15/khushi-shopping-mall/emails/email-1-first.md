@@ -2,7 +2,7 @@
 
 **To:** khushishoppingmall@gmail.com
 **Subject:** Khushi Shopping Mall — what I found testing khushishoppingmall.in
-**Send:** 15 November 2026
+**Send:** 16 November 2026
 **Attachments:** reports/khushi-shopping-mall/Smart-Pursuit-Audit-Khushi-Shopping-Mall.pdf
 
 ---

@@ -2,7 +2,7 @@
 
 **To:** welcome@hanumanshillrock.com
 **Subject:** Hanuman's Hill Rock Cafe & Restaurant — what I found testing hanumanshillrock.com
-**Send:** 15 November 2026
+**Send:** 21 November 2026
 **Attachments:** reports/hanuman-s-hill-rock-cafe-and-restaurant/Smart-Pursuit-Audit-Hanuman-s-Hill-Rock-Cafe-Restaurant.pdf
 
 ---

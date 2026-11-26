@@ -10,9 +10,9 @@
     3
   ],
   "to": "ravidentalcareandimplantcentre@gmail.com",
-  "status": "draft",
+  "status": "active",
   "neverSendAutomatically": true,
-  "note": "Dates shift if the operator sends email 1 on a different day — recompute with `sequence --send-date YYYY-MM-DD`.",
+  "note": "Dates follow what was actually sent: each email is due cadenceDays after the previous one went out (sentAt, IST), and only if there is no reply. A step after one not yet sent assumes that one goes out on its due date or today, whichever is later. Recompute with `node tools/followups.mjs --apply`.",
   "emails": [
     {
       "step": 1,
@@ -25,9 +25,9 @@
       "words": 113,
       "scheduledFor": "2026-11-23",
       "scheduledForLong": "23 November 2026",
-      "status": "draft",
-      "approvedBy": null,
-      "sentAt": null,
+      "status": "sent",
+      "approvedBy": "operator",
+      "sentAt": "2026-11-23T08:47:00+05:30",
       "file": "outreach/ravi-dental-care-and-implant-center/email-1-first.md"
     },
     {

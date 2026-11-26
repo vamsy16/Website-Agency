@@ -2,7 +2,7 @@
 
 **To:** kalyanispecialitydental16@gmail.com
 **Subject:** Kalyani Dental Clinic — what I found testing kalyanidentalclinics.com
-**Send:** 22 November 2026
+**Send:** 23 November 2026
 **Attachments:** reports/kalyani-dental-clinic/Smart-Pursuit-Audit-Kalyani-Dental-Clinic.pdf
 
 ---

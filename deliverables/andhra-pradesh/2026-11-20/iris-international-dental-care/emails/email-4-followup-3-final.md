@@ -2,7 +2,7 @@
 
 **To:** irisinternationaldentalcare@gmail.com
 **Subject:** Closing the loop — Iris International Dental Care
-**Send:** 29 November 2026
+**Send:** 2 December 2026
 **Attachments:** none
 
 ---
