@@ -93,7 +93,10 @@ async function frameRoutes(page) {
       const box = await el.boundingBox();
       const shown = await el.evaluate(e => {
         const s = getComputedStyle(e);
-        return s.visibility !== "hidden" && s.display !== "none" && Number(s.opacity) > 0 && s.position !== "fixed";
+        if (s.visibility === "hidden" || s.display === "none" || Number(s.opacity) === 0) return false;
+        // Chat and consent widgets sit in fixed containers and stay closed.
+        for (let n = e; n && n.nodeType === 1; n = n.parentElement) if (getComputedStyle(n).position === "fixed") return false;
+        return true;
       });
       if (!box || box.width < 120 || box.height < 40 || !shown) continue;
       const count = hrefs => ({
