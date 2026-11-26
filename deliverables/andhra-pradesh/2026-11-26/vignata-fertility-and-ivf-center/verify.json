@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-26-VFI",
   "domain": "vignataivfcenter.com",
-  "verifiedAt": "2026-11-26T12:39:37.569Z",
+  "verifiedAt": "2026-11-26T13:06:43.313Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/vignata-fertility-and-ivf-center/2026-11-26T12-38-45-212Z.json",
+      "detail": "raw measurement: data/raw/vignata-fertility-and-ivf-center/2026-11-26T13-05-57-339Z.json",
       "severity": "ok"
     },
     {
@@ -41,13 +41,13 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 26/11/2026, 6:08:45 pm",
+      "detail": "measurement timestamp: 26/11/2026, 6:35:57 pm",
       "severity": "ok"
     },
     {
       "id": "scores.speed",
       "ok": true,
-      "detail": "report prints 4, rubric computes 4",
+      "detail": "report prints 5, rubric computes 5",
       "severity": "ok"
     },
     {
@@ -77,7 +77,7 @@
     {
       "id": "scores.overall",
       "ok": true,
-      "detail": "report prints 63, rubric computes 63",
+      "detail": "report prints 66, rubric computes 66",
       "severity": "ok"
     },
     {
@@ -102,6 +102,12 @@
       "id": "copy.honesty",
       "ok": true,
       "detail": "known unsupported narrative claims absent",
+      "severity": "ok"
+    },
+    {
+      "id": "facts.viewport",
+      "ok": true,
+      "detail": "click-to-call links: 2 at load, 2 after scrolling, printed 2, desktop 2; WhatsApp 2/2; forms 0/0; visible H1 0/0, hidden 1, desktop 0; words 1122/1124",
       "severity": "ok"
     },
     {
@@ -149,7 +155,7 @@
     {
       "id": "pdf.size",
       "ok": true,
-      "detail": "2.61 MB",
+      "detail": "2.55 MB",
       "severity": "ok"
     },
     {

@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-26-SBH",
   "domain": "saibhaskarhospital.com",
-  "verifiedAt": "2026-11-26T12:51:05.237Z",
+  "verifiedAt": "2026-11-26T13:13:10.321Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/sai-bhaskar-hospitals/2026-11-26T12-49-31-001Z.json",
+      "detail": "raw measurement: data/raw/sai-bhaskar-hospitals/2026-11-26T13-11-41-499Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 26/11/2026, 6:19:31 pm",
+      "detail": "measurement timestamp: 26/11/2026, 6:41:41 pm",
       "severity": "ok"
     },
     {
@@ -105,6 +105,12 @@
       "severity": "ok"
     },
     {
+      "id": "facts.viewport",
+      "ok": true,
+      "detail": "click-to-call links: 6 at load, 6 after scrolling, printed 6, desktop 6; WhatsApp 0/0; forms 0/0; visible H1 2/2, hidden 8, desktop 2; words 329/756",
+      "severity": "ok"
+    },
+    {
       "id": "numbers.traceable",
       "ok": true,
       "detail": "all 79 distinct numbers in the report trace to the measurement, the rubric or a stated target",
@@ -149,7 +155,7 @@
     {
       "id": "pdf.size",
       "ok": true,
-      "detail": "2.50 MB",
+      "detail": "2.48 MB",
       "severity": "ok"
     },
     {

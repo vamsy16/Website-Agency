@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-26T12:51:05.239Z",
+  "updatedAt": "2026-11-26T13:13:10.322Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -1398,7 +1398,7 @@
       "domain": "deepthifertility.com",
       "name": "Deepthi Fertility Centre",
       "ref": "SP-AUD-2026-11-26-DFC",
-      "generatedAt": "2026-11-26T12:49:29.606Z",
+      "generatedAt": "2026-11-26T13:11:39.706Z",
       "status": "complete",
       "mode": "live",
       "scores": {
@@ -1410,7 +1410,7 @@
         "overall": 76
       },
       "pdfPages": 10,
-      "pdfBytes": 1093747,
+      "pdfBytes": 1093982,
       "files": {
         "pdf": "reports/deepthi-fertility-centre/Smart-Pursuit-Audit-Deepthi-Fertility-Centre.pdf",
         "audit": "reports/deepthi-fertility-centre/audit.json",
@@ -1422,7 +1422,7 @@
       "domain": "saibhaskarhospital.com",
       "name": "Sai Bhaskar Hospitals",
       "ref": "SP-AUD-2026-11-26-SBH",
-      "generatedAt": "2026-11-26T12:51:05.238Z",
+      "generatedAt": "2026-11-26T13:13:10.322Z",
       "status": "complete",
       "mode": "live",
       "scores": {
@@ -1434,7 +1434,7 @@
         "overall": 61
       },
       "pdfPages": 10,
-      "pdfBytes": 2616874,
+      "pdfBytes": 2605355,
       "files": {
         "pdf": "reports/sai-bhaskar-hospitals/Smart-Pursuit-Audit-Sai-Bhaskar-Hospitals.pdf",
         "audit": "reports/sai-bhaskar-hospitals/audit.json",
@@ -1446,25 +1446,25 @@
       "domain": "vignataivfcenter.com",
       "name": "Vignata Fertility & IVF Center",
       "ref": "SP-AUD-2026-11-26-VFI",
-      "generatedAt": "2026-11-26T12:39:37.571Z",
+      "generatedAt": "2026-11-26T13:06:43.314Z",
       "status": "complete",
       "mode": "live",
       "scores": {
-        "speed": 4,
+        "speed": 5,
         "mobile": 6,
         "conversion": 7,
         "design": 9,
         "seo": 8,
-        "overall": 63
+        "overall": 66
       },
       "pdfPages": 10,
-      "pdfBytes": 2741793,
+      "pdfBytes": 2676869,
       "files": {
         "pdf": "reports/vignata-fertility-and-ivf-center/Smart-Pursuit-Audit-Vignata-Fertility-IVF-Center.pdf",
         "audit": "reports/vignata-fertility-and-ivf-center/audit.json",
         "html": "reports/vignata-fertility-and-ivf-center/report.html"
       },
-      "fingerprint": "060785dda06a39c8"
+      "fingerprint": "094dece7014297d6"
     }
   ]
 }
