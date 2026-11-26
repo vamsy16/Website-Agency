@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-26T14:08:32.531Z",
+  "updatedAt": "2026-11-26T14:26:16.887Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -1374,7 +1374,7 @@
       "domain": "neurologistinkurnool.com",
       "name": "Dr. K. Hemanth Kumar Neurologist",
       "ref": "SP-AUD-2026-11-26-DKH",
-      "generatedAt": "2026-11-26T13:58:18.006Z",
+      "generatedAt": "2026-11-26T14:26:16.887Z",
       "status": "complete",
       "mode": "live",
       "scores": {
@@ -1386,7 +1386,7 @@
         "overall": 72
       },
       "pdfPages": 10,
-      "pdfBytes": 2085878,
+      "pdfBytes": 1844594,
       "files": {
         "pdf": "reports/dr-k-hemanth-kumar-neurologist/Smart-Pursuit-Audit-Dr.-K.-Hemanth-Kumar-Neurologist.pdf",
         "audit": "reports/dr-k-hemanth-kumar-neurologist/audit.json",
