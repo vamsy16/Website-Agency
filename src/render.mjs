@@ -725,7 +725,7 @@ function pageNextSteps(a, facts) {
     ${top(facts, "Next steps")}
     <div class="eyebrow">What happens next</div>
     <h2 class="t">Fifteen minutes is enough to <em>decide.</em></h2>
-    <p class="lede" style="max-width:160mm">You have the numbers. What you probably do not have is time — which is exactly why this is worth an hour of it. Here is the whole process.</p>
+    <p class="lede" style="max-width:160mm">You have the numbers. What you probably do not have is time — which is why the first step takes fifteen minutes. Here is the whole process.</p>
 
     <div class="steps">
       <div class="step">

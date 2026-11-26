@@ -498,7 +498,7 @@ export function deriveFindings(raw, facts, business) {
       title: `${m.smallTapTargets} tap targets smaller than a fingertip`,
       // A smallest font of 0 px (or none measured) is not a reading anyone can
       // act on, so the sentence is left out rather than printed as "0 px".
-      measured: `${m.smallTapTargets} of ${m.tapTargets} interactive elements are under 40 px tall or 24 px wide.${Number(m.minFontPx) > 0 ? ` Smallest body text: <b>${m.minFontPx} px</b>.` : ""}`,
+      measured: `${m.smallTapTargets} of the ${m.tapTargets} interactive elements visible when the page loaded are under 40 px tall or 24 px wide.${Number(m.minFontPx) > 0 ? ` Smallest body text: <b>${m.minFontPx} px</b>.` : ""}`,
       why: `Small controls can be difficult to select on touchscreens. No visitor device mix, mis-taps or abandoned visits were measured.`,
       fix: `Minimum 44 px hit areas on every link and button${Number(m.minFontPx) > 0 && Number(m.minFontPx) < 16 ? ", 16 px body text" : ""}.`,
       effort: "2 hours",
