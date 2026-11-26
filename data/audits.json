@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-26T13:47:45.867Z",
+  "updatedAt": "2026-11-26T14:08:32.531Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -1350,7 +1350,7 @@
       "domain": "shravanienthospital.com",
       "name": "Shravani ENT Hospital",
       "ref": "SP-AUD-2026-11-26-SEH",
-      "generatedAt": "2026-11-26T13:47:45.867Z",
+      "generatedAt": "2026-11-26T14:08:32.531Z",
       "status": "complete",
       "mode": "live",
       "scores": {
@@ -1362,7 +1362,7 @@
         "overall": 73
       },
       "pdfPages": 10,
-      "pdfBytes": 1578002,
+      "pdfBytes": 1571307,
       "files": {
         "pdf": "reports/shravani-ent-hospital/Smart-Pursuit-Audit-Shravani-ENT-Hospital.pdf",
         "audit": "reports/shravani-ent-hospital/audit.json",
@@ -1374,7 +1374,7 @@
       "domain": "neurologistinkurnool.com",
       "name": "Dr. K. Hemanth Kumar Neurologist",
       "ref": "SP-AUD-2026-11-26-DKH",
-      "generatedAt": "2026-11-26T13:23:55.121Z",
+      "generatedAt": "2026-11-26T13:58:18.006Z",
       "status": "complete",
       "mode": "live",
       "scores": {
@@ -1386,7 +1386,7 @@
         "overall": 72
       },
       "pdfPages": 10,
-      "pdfBytes": 2088073,
+      "pdfBytes": 2085878,
       "files": {
         "pdf": "reports/dr-k-hemanth-kumar-neurologist/Smart-Pursuit-Audit-Dr.-K.-Hemanth-Kumar-Neurologist.pdf",
         "audit": "reports/dr-k-hemanth-kumar-neurologist/audit.json",
@@ -1398,7 +1398,7 @@
       "domain": "deepthifertility.com",
       "name": "Deepthi Fertility Centre",
       "ref": "SP-AUD-2026-11-26-DFC",
-      "generatedAt": "2026-11-26T13:30:09.257Z",
+      "generatedAt": "2026-11-26T14:03:38.098Z",
       "status": "complete",
       "mode": "live",
       "scores": {
@@ -1410,7 +1410,7 @@
         "overall": 76
       },
       "pdfPages": 10,
-      "pdfBytes": 1092375,
+      "pdfBytes": 1094199,
       "files": {
         "pdf": "reports/deepthi-fertility-centre/Smart-Pursuit-Audit-Deepthi-Fertility-Centre.pdf",
         "audit": "reports/deepthi-fertility-centre/audit.json",

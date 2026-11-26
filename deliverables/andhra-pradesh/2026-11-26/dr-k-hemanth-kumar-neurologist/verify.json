@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-26-DKH",
   "domain": "neurologistinkurnool.com",
-  "verifiedAt": "2026-11-26T13:23:55.120Z",
+  "verifiedAt": "2026-11-26T13:58:18.005Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/dr-k-hemanth-kumar-neurologist/2026-11-26T13-18-33-984Z.json",
+      "detail": "raw measurement: data/raw/dr-k-hemanth-kumar-neurologist/2026-11-26T13-53-20-569Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 26/11/2026, 6:48:34 pm",
+      "detail": "measurement timestamp: 26/11/2026, 7:23:20 pm",
       "severity": "ok"
     },
     {
@@ -107,13 +107,13 @@
     {
       "id": "facts.viewport",
       "ok": true,
-      "detail": "click-to-call links: 1 at load, 1 after scrolling, printed 1, desktop 1; WhatsApp 0/0; forms 0/0; visible H1 1/1, hidden 0, desktop 1; words 267/290",
+      "detail": "click-to-call links: 1 at load, 1 after scrolling, 4 in embedded frames, printed 5, desktop 5; WhatsApp 0/0; forms 0/0; visible H1 1/1, hidden 0, desktop 1; words 267/290",
       "severity": "ok"
     },
     {
       "id": "numbers.traceable",
       "ok": true,
-      "detail": "all 72 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "detail": "all 74 distinct numbers in the report trace to the measurement, the rubric or a stated target",
       "severity": "ok"
     },
     {

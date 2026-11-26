@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-26-SEH",
   "domain": "shravanienthospital.com",
-  "verifiedAt": "2026-11-26T13:47:45.867Z",
+  "verifiedAt": "2026-11-26T14:08:32.531Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/shravani-ent-hospital/2026-11-26T13-43-06-280Z.json",
+      "detail": "raw measurement: data/raw/shravani-ent-hospital/2026-11-26T14-03-38-602Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 26/11/2026, 7:13:06 pm",
+      "detail": "measurement timestamp: 26/11/2026, 7:33:38 pm",
       "severity": "ok"
     },
     {
@@ -107,7 +107,7 @@
     {
       "id": "facts.viewport",
       "ok": true,
-      "detail": "click-to-call links: 0 at load, 0 after scrolling, printed 0, desktop 0; WhatsApp 0/0; forms 0/0; visible H1 1/1, hidden 0, desktop 1; words 141/143",
+      "detail": "click-to-call links: 0 at load, 0 after scrolling, 0 in embedded frames, printed 0, desktop 0; WhatsApp 0/0; forms 0/0; visible H1 1/1, hidden 0, desktop 1; words 141/143",
       "severity": "ok"
     },
     {
