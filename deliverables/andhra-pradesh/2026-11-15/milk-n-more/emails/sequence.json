@@ -39,9 +39,9 @@
       "words": 113,
       "scheduledFor": "2026-11-18",
       "scheduledForLong": "18 November 2026",
-      "status": "draft",
-      "approvedBy": null,
-      "sentAt": null,
+      "status": "sent",
+      "approvedBy": "operator",
+      "sentAt": "2026-11-26T16:50:00+05:30",
       "file": "outreach/milk-n-more/email-2-followup-1.md"
     },
     {

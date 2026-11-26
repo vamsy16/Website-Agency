@@ -39,9 +39,9 @@
       "words": 108,
       "scheduledFor": "2026-11-18",
       "scheduledForLong": "18 November 2026",
-      "status": "draft",
-      "approvedBy": null,
-      "sentAt": null,
+      "status": "sent",
+      "approvedBy": "operator",
+      "sentAt": "2026-11-26T16:40:31+05:30",
       "file": "outreach/dr-ramya-sadaram/email-2-followup-1.md"
     },
     {
