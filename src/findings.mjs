@@ -556,7 +556,7 @@ export function deriveAlsoItems(raw, facts, printed = []) {
   }
   if (m.h2Count < 3) items.push(`${m.h2Count === 0 ? "No H2 headings" : `Only ${m.h2Count} H2 heading${m.h2Count === 1 ? "" : "s"}`} for ${fmtInt(m.words)} words of content`);
   if (!covered.has("metric.smallTapTargets") && m.smallTapTargets > 0) items.push(`${m.smallTapTargets} tap targets are under 40 px`);
-  if (m.overflowX > 0) items.push(`The layout overflows the viewport by ${m.overflowX} px`);
+  if (m.overflowX > 0) items.push(`The layout overflows the viewport by ${fmtInt(m.overflowX)} px`);
   if (h.wordpress) items.push(`Built on WordPress${h.wpTheme ? ` (${escapeText(h.wpTheme)} theme)` : ""}${h.wpPlugins?.length ? ` with ${h.wpPlugins.length} plugin asset paths` : ""}`);
   return items.slice(0, 6);
 }

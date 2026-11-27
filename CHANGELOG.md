@@ -12,7 +12,14 @@ From the 27 November independent review (Andhra Pradesh, run 45982415490).
 - Screens are captured after finite animations finish (up to 3 s): AA Hospitals' screen 7 caught its counters mid-roll, digits overlapping.
 - **A storage bucket named for the business is first party** (`isOwnStorageHost`, `src/util.mjs`): Dr. Padmavathi Dental's own media bucket on S3 was counted as one of "6 external domains" sharing visitor data. `facts.firstParty` checks it too.
 - An array `@type` ("Person,Organization") is printed as the business type alone ("Organization structured data is missing telephone and address"); `copy.honesty` blocks a comma-joined type.
-- `tools/review-pdfs.py`: flags a screen count that disagrees with the page height, "the last screen of about N" for N ≥ 7, a comma-joined schema type and the business's own bucket listed as external; a two-letter audit reference ("SF" for Skin First) is no longer reported as malformed; verify warnings are listed for a look instead of failing the scan.
+- The sideways-overflow item prints its width with a thousands separator ("1,176 px"; AA Hospitals was the first above 999 px).
+- `tools/review-pdfs.py`: flags a screen count that disagrees with the page height, "the last screen of about N" for N ≥ 7, a comma-joined schema type and the business's own bucket listed as external; a two-letter audit reference ("SF" for Skin First) is no longer reported as malformed; asks for a look at a four-digit number without a separator; verify warnings are listed for a look instead of failing the scan.
+
+## Review — 27 November 2026
+
+- Five new Andhra Pradesh audits approved (runs 45982415490 and 45987926898): AA Hospitals (Eluru, 79), Desai Eye Care (Nellore, 74), Dr. Padmavathi Dental Hospital & Implant Centre (Kakinada, 74), Leelavathi Advanced Skin & Laser Centre (Guntur, 71) and Skin First (Vijayawada, 65). Sourced fresh, read on each own site, checked against the full history of every branch, and none behind the Hostinger CDN. `deliverables/runs/2026-11-27-independent-review.{md,json}`.
+- The third-eye review held the first run and re-audited three of the five with 1.4.6 (screen count, own storage bucket, schema type wording). Venkateswara Eye Hospital (timed out) and Vijaya Hospital (HTTP 403) were screened out without an audit; Kamakshi Hospital was not attempted. All three stay `new`.
+- Seven scheduled mails recorded from Gmail's Sent folder (`deliverables/runs/sends-2026-11-27b.json`); follow-up dates recalculated. The workflow now triggers on `arena/65e78ab2-website-agency`. `run-request.json` is disabled. No Gmail drafts: the operator reviews the PDFs first.
 
 ## Handoff — 27 November 2026
 

@@ -46,6 +46,7 @@ PATTERNS = [
     # Two-word names legitimately give two initials ("Skin First" -> SF); the defect
     # this catches is a stray symbol such as "SP-AUD-2026-11-26-VF&".
     ("bad-ref", r"SP-AUD-\d{4}-\d{2}-\d{2}-(?![A-Z0-9]{1,3}(?:\s|$))[^\s]{1,6}", "defect", 'a malformed audit reference'),
+    ("unformatted-number", r"\b\d{4,} (?:px|ms|KiB)\b", "check", 'a four-digit number printed without a thousands separator ("1176 px")'),
     ("schema-comma", r"\b[A-Z][A-Za-z]+,[A-Z][A-Za-z]+ structured data", "defect", 'an array schema type printed comma-joined ("Person,Organization")'),
     ("zero-cost", r"\bcosting [01] ms\b|\b[01] ms of (?:render-)?blocking", "defect", 'a zero cost listed as evidence'),
     ("zero-h1", r"\b0 H1\b", "h1", 'hidden H1s reported as "0 H1"'),
