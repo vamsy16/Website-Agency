@@ -3,6 +3,16 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## Handoff — 27 November 2026
+
+**Everything in GitHub, merged into `main`** (operator: "keep everything in GitHub, so that if I run this repo in another agent nothing is missed").
+
+- `docs/STATE.md` — new: read-first handoff with the standing instructions, every batch, follow-ups due, scheduled mail, open questions, incidents, how to run and record things, and how to survive a sandbox reset. `AGENTS.md` points to it.
+- 30 sends recorded from Gmail's Sent folder (`deliverables/runs/sends-2026-11-27.json`): step 4 for the ten 16 November leads (complete), step 2 for nine 22/23 November leads and eleven 21 November leads. No replies or bounces since 25 November.
+- `outreach/` is no longer git-ignored; the Gmail draft records for the five 26 November audits are committed. The Gmail guide (§4, §6) says so.
+- `tools/review-pdfs.py` — new: the third-eye scan used in the 26 November review, rebuilt as a tracked tool after the scratch copy was lost in a sandbox reset (page count, verify, known defect patterns, email-1 numbers in the PDF, email-body hygiene, optional page renders).
+- School strategy deliverables carried over from the unmerged branch `arena/353d62eb-website-agency` (entry below, by date), with their `npm run strategy` / `strategy:client` / `automation` scripts. `pdfkit` stays out of `package.json` so the audit workflow's install does not change.
+
 ## Outreach — 27 November 2026
 
 - Step-1 Gmail drafts for the five 26 November audits, created in smartpursuit3@gmail.com at the operator's request after they reviewed the PDFs, each with its approved PDF attached. A Gmail search found no earlier mail or drafts for these recipients; each draft was read back. Draft IDs are recorded on step 1 of each `sequence.json` (`gmailDraft`), because the git-ignored `outreach/` copies were lost in a sandbox reset. No follow-up drafts; nothing sent.
@@ -85,6 +95,53 @@ if the reason is not obvious.
 - Second read of the regenerated PDFs (run 45016840158): the page-07 targets table no longer labels the LCP row "— you" (the competitor-table class appends that text; every row there is the client's own number); a list of more than six third-party domains reads "including …"; the Rescue line says "Homepage booking form added" when only the homepage was measured (a contact page may already have a form); "1 image has no alt text"; the time-to-interactive tile uses one decimal like the LCP tile.
 - `verify.mjs` — new blocker `facts.firstParty`; `copy.honesty` also rejects the phrases above, "0.x× over", threshold contradictions, an H1 position with no H1, competing headlines with ≤ 1 H1, ad mentions without ad code and "third-party code blocked".
 - Emails — step 2 no longer says "None of this needs a new design… pays back fastest" (it asks the developer to confirm the effort); step 3's subject no longer promises "what a fixed version looks like" (no fixed version is sent). `sequence.mjs` bans both phrases.
+
+## School strategy deliverables — 21 November 2026
+
+Carried over on 27 November 2026 from branch `arena/353d62eb-website-agency`, which was never merged, so that `main` holds every deliverable. That branch numbered these entries 1.5.0 and 1.6.0; the audit tool's own versions continued at 1.4.x here. `pdfkit` is not added to `package.json` (see the folder's README).
+
+### Automation & AI blueprint (1.6.0 on that branch)
+
+**New deliverable: exhaustive school automation & AI transformation blueprint.**
+
+- `deliverables/2026-11-vizianagaram-school-admissions/Smart_Pursuit_School_Automation_AI_Transformation_Blueprint.pdf` — a 35-page (no page limit), department-by-department automation and AI study for a prospective school client in Vizianagaram, Andhra Pradesh, built by `npm run automation`.
+- `build-automation-blueprint.mjs` — flow-based pdfkit renderer: cover, contents, 19 sections, discovery questionnaire and appendices; two-pass build with an authoritative page counter and `Page X of N` footers on every page; zero blank pages; `PAGE COUNT MISMATCH` eliminated.
+- `const OPPORTUNITIES` — ~60 opportunities across 13 departments (admissions, finance & fees, academics, HR, parent communication, school office, IT, transport, facilities, library, events, compliance, safety), each with a unique ID (ADM-, FIN-, ACD-, HR-, PAR-, OPS-, IT-, TRN-, FAC-, LIB-, EVT-, COMP-, SAF-) and the full field set: process, user, problem, root cause, solution, category, workflow, trigger, input, output, technology, integrations, human approval, risk, effort, impact, KPI, dependencies, priority, evidence tag.
+- Sections 6–8 registers (automation, AI assistance, AI agent), sections 9–10 workflows and architecture, sections 11–15 value analysis, impact estimates, risk register, 8-band prioritisation matrix ("not recommended at present" included) and a multi-phase implementation roadmap extending beyond 90 days.
+- Section 16 DPDP Act 2023 / Rules 2025 privacy framework: child = under 18, verifiable parental consent (Section 9(1) / Rule 10), no detrimental or targeted-ad processing of children (Section 9(3)), narrow Fourth Schedule exemptions only, Section 8 safeguards, 72-hour breach reporting, erasure when purpose served, main duties commence 13 May 2027, penalties up to ₹250 crore / ₹200 crore.
+- Section 17 Smart Pursuit implementation approach; section 19 final recommendations; Appendix D discovery questionnaire (20 questions per process).
+- Evidence rule applied throughout: every finding classified as verified school-specific fact / publicly available evidence / industry-based operational hypothesis / opportunity requiring management validation; no school-specific fact, budget, result or testimonial is invented.
+- No images or video: type, colour blocks, rules and vector diagrams only. No stock photography.
+- `package.json` — new `automation` script (`node deliverables/.../build-automation-blueprint.mjs`).
+
+### Strategy blueprint (1.5.0 on that branch)
+
+**A second deliverable type: the strategy blueprint.**
+
+- `deliverables/2026-11-vizianagaram-school-admissions/` — a 38-page client-facing
+  "School Admissions Growth Strategy" for a prospective school client in Vizianagaram,
+  built by `npm run strategy`. This is the document that precedes an audit: market
+  research, competitor intelligence, parent behaviour, channel plans, a 90-day roadmap,
+  budget models and a measurement framework. Audits stay as they were; nothing in
+  `src/` changed and `npm run selftest` still reproduces 3/4/2/6/5 -> 36.
+- Renderer is `pdfkit`, not Chromium: the build machine has no browser, no system fonts
+  and no pango/cairo, so HTML-to-PDF is unavailable. It also removes the browser from the
+  dependency path of a document that must build on any operator machine. `sanitise()`
+  converts characters outside WinAnsi (the rupee sign, arrows) to text rather than
+  emitting blank glyphs — this is why the PDF says `INR 25,000` and not `₹25,000`.
+- Two-pass build: pass one records section start pages, pass two writes them into the
+  table of contents. Every build reports `overflows` (any block ending below the bottom
+  margin) and `warnings`; both must be empty before the PDF is delivered.
+- `build-condensed.mjs` — the 12-page client edition (`npm run strategy:client`), composed
+  page by page rather than flowed, so page count cannot drift. Every page carries one message
+  and a bottom-anchored KEY TAKEAWAY strip; the build reports page fill and any collision with
+  the footer. No photography is used in either edition — the argument against stock classrooms
+  is easier to make with type, panels and vector diagrams than with borrowed images.
+- Content rule applied throughout: no school-specific fact is invented. Anything about the
+  client school is labelled "requires confirmation", competitor claims are tagged verified
+  vs interpretation, and no competitor is described as running ads or as having poor
+  teaching without direct evidence. Fee figures from directories are flagged as
+  third-party and internally inconsistent (one school appears at both 44,000 and 53,500).
 
 ## Review — 21 November 2026
 

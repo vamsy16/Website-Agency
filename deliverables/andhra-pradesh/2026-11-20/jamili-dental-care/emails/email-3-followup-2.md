@@ -2,7 +2,7 @@
 
 **To:** jamilidentalcare@gmail.com
 **Subject:** Re: Jamili Dental Care — what a fixed version looks like
-**Send:** 29 November 2026
+**Send:** 30 November 2026
 **Attachments:** none
 
 ---

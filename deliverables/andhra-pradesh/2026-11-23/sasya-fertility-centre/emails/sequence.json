@@ -39,9 +39,9 @@
       "words": 102,
       "scheduledFor": "2026-11-26",
       "scheduledForLong": "26 November 2026",
-      "status": "draft",
-      "approvedBy": null,
-      "sentAt": null,
+      "status": "sent",
+      "approvedBy": "operator",
+      "sentAt": "2026-11-26T17:27:00+05:30",
       "file": "outreach/sasya-fertility-centre/email-2-followup-1.md"
     },
     {

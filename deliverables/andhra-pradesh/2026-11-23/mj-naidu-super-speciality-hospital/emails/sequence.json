@@ -39,9 +39,9 @@
       "words": 101,
       "scheduledFor": "2026-11-26",
       "scheduledForLong": "26 November 2026",
-      "status": "draft",
-      "approvedBy": null,
-      "sentAt": null,
+      "status": "sent",
+      "approvedBy": "operator",
+      "sentAt": "2026-11-26T17:52:00+05:30",
       "file": "outreach/mj-naidu-super-speciality-hospital/email-2-followup-1.md"
     },
     {

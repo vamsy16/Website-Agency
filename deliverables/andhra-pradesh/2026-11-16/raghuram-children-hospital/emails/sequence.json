@@ -10,7 +10,7 @@
     3
   ],
   "to": "info@raghuramhospitals.com",
-  "status": "active",
+  "status": "complete",
   "neverSendAutomatically": true,
   "note": "Dates follow what was actually sent: each email is due cadenceDays after the previous one went out (sentAt, IST), and only if there is no reply. A step after one not yet sent assumes that one goes out on its due date or today, whichever is later. Recompute with `node tools/followups.mjs --apply`.",
   "emails": [
@@ -67,9 +67,9 @@
       "words": 98,
       "scheduledFor": "2026-11-26",
       "scheduledForLong": "26 November 2026",
-      "status": "draft",
-      "approvedBy": null,
-      "sentAt": null,
+      "status": "sent",
+      "approvedBy": "operator",
+      "sentAt": "2026-11-26T20:17:00+05:30",
       "file": "outreach/raghuram-children-hospital/email-4-followup-3-final.md"
     }
   ]

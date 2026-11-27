@@ -16,7 +16,8 @@ reports/
 
 # Lead batches can contain contact data; the registry is data/leads.json.
 data/batch-*.json
-outreach/
+# outreach/ (Gmail draft records) is committed: the operator asked on 27 November
+# 2026 to keep everything in GitHub so that another agent misses nothing.
 
 # A daily run report names the prospects it audited and why some were skipped.
 data/run-*.json

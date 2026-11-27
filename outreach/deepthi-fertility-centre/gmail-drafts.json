@@ -1,0 +1,34 @@
+{
+  "business": "Deepthi Fertility Centre",
+  "domain": "deepthifertility.com",
+  "ref": "SP-AUD-2026-11-26-DFC",
+  "to": "deepthifertilitycentre@gmail.com",
+  "emailSource": "openstreetmap, confirmed on site",
+  "emailFoundOn": "https://deepthifertility.com/",
+  "mailbox": "smartpursuit3@gmail.com",
+  "status": "draft",
+  "neverSendAutomatically": true,
+  "drafts": [
+    {
+      "step": 1,
+      "draftId": "r1491296914832377525",
+      "createdAt": "2026-11-27T12:47:05+05:30",
+      "subject": "Deepthi Fertility Centre — what I found testing deepthifertility.com",
+      "attachment": {
+        "filename": "Smart-Pursuit-Audit-Deepthi-Fertility-Centre.pdf",
+        "bytes": 1094199
+      },
+      "verified": "read back 2026-11-27: recipient, subject, body and attachment size match; body is only the recipient-facing email"
+    }
+  ],
+  "followUps": {
+    "rule": "Not drafted. Each is due 3 days after the previous email is actually sent, only if there is no reply; draft only when the operator asks, as a reply in this thread.",
+    "ifEmail1SentOn": "2026-11-27",
+    "plannedDates": {
+      "step2": "2026-11-30",
+      "step3": "2026-12-03",
+      "step4": "2026-12-06"
+    }
+  },
+  "sequence": "deliverables/andhra-pradesh/2026-11-26/deepthi-fertility-centre/emails/sequence.json"
+}

@@ -39,9 +39,9 @@
       "words": 100,
       "scheduledFor": "2026-11-26",
       "scheduledForLong": "26 November 2026",
-      "status": "draft",
-      "approvedBy": null,
-      "sentAt": null,
+      "status": "sent",
+      "approvedBy": "operator",
+      "sentAt": "2026-11-26T17:16:00+05:30",
       "file": "outreach/dr-swetha-sajja-eye-hospital/email-2-followup-1.md"
     },
     {

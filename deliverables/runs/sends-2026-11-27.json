@@ -1,0 +1,157 @@
+{
+ "source": "Gmail Sent folder (smartpursuit3@gmail.com): list_messages in:sent after:2026/11/25 at 13:5x IST and in:sent after:2026/11/27 at 14:04 IST, 27 Nov 2026; sentAt = the Sent copy's internal_date in IST",
+ "note": "Already recorded before this file: Dr Ramya 16:40, Milk n More 16:50, Smart Care 17:03 (26 Nov). Scheduled in Gmail but not yet sent at 14:04 IST, so not recorded here: step 2 for HR Dental (14:12) and Dr Sushma (14:27); step 1 for the five 26 November audits (Vignata 14:59, Sai Bhaskar 15:13, Dr K Hemanth Kumar 15:25, Shravani 15:38, Deepthi 15:51 IST).",
+ "sends": [
+  {
+   "sequence": "2026-11-20/jamili-dental-care",
+   "step": 2,
+   "sentAt": "2026-11-27T13:45:32+05:30"
+  },
+  {
+   "sequence": "2026-11-15/krishna-multispeciality-dental-clinic",
+   "step": 2,
+   "sentAt": "2026-11-26T22:24:00+05:30"
+  },
+  {
+   "sequence": "2026-11-15/majji-export-import",
+   "step": 2,
+   "sentAt": "2026-11-26T22:13:00+05:30"
+  },
+  {
+   "sequence": "2026-11-20/ms-dental-hospital",
+   "step": 2,
+   "sentAt": "2026-11-26T22:01:00+05:30"
+  },
+  {
+   "sequence": "2026-11-20/iris-international-dental-care",
+   "step": 2,
+   "sentAt": "2026-11-26T21:49:00+05:30"
+  },
+  {
+   "sequence": "2026-11-15/sri-ramadas-motor-transport-ltd",
+   "step": 2,
+   "sentAt": "2026-11-26T21:37:00+05:30"
+  },
+  {
+   "sequence": "2026-11-15/hanuman-s-hill-rock-cafe-and-restaurant",
+   "step": 2,
+   "sentAt": "2026-11-26T21:25:00+05:30"
+  },
+  {
+   "sequence": "2026-11-15/sri-sai-p-v-r-hospitals",
+   "step": 2,
+   "sentAt": "2026-11-26T21:13:00+05:30"
+  },
+  {
+   "sequence": "2026-11-15/krishna-hospital",
+   "step": 2,
+   "sentAt": "2026-11-26T21:02:00+05:30"
+  },
+  {
+   "sequence": "2026-11-15/orange-tours-and-travels",
+   "step": 2,
+   "sentAt": "2026-11-26T20:52:00+05:30"
+  },
+  {
+   "sequence": "2026-11-16/sandhya-hi-tech-vision-care-center",
+   "step": 4,
+   "sentAt": "2026-11-26T20:41:00+05:30"
+  },
+  {
+   "sequence": "2026-11-16/jnanananda-eye-hospital",
+   "step": 4,
+   "sentAt": "2026-11-26T20:30:00+05:30"
+  },
+  {
+   "sequence": "2026-11-16/raghuram-children-hospital",
+   "step": 4,
+   "sentAt": "2026-11-26T20:17:00+05:30"
+  },
+  {
+   "sequence": "2026-11-16/praveen-hospital",
+   "step": 4,
+   "sentAt": "2026-11-26T20:04:00+05:30"
+  },
+  {
+   "sequence": "2026-11-16/r-k-hospital",
+   "step": 4,
+   "sentAt": "2026-11-26T19:58:00+05:30"
+  },
+  {
+   "sequence": "2026-11-15/khushi-shopping-mall",
+   "step": 4,
+   "sentAt": "2026-11-26T19:46:00+05:30"
+  },
+  {
+   "sequence": "2026-11-15/lakshmi-fertility-research-and-laparoscopic-surgical-center",
+   "step": 4,
+   "sentAt": "2026-11-26T19:35:00+05:30"
+  },
+  {
+   "sequence": "2026-11-15/golden-globe-overseas-consultants",
+   "step": 4,
+   "sentAt": "2026-11-26T19:24:00+05:30"
+  },
+  {
+   "sequence": "2026-11-15/vizag-water-world",
+   "step": 4,
+   "sentAt": "2026-11-26T19:12:00+05:30"
+  },
+  {
+   "sequence": "2026-11-15/winsmiths",
+   "step": 4,
+   "sentAt": "2026-11-26T19:00:00+05:30"
+  },
+  {
+   "sequence": "2026-11-22/mk-dental",
+   "step": 2,
+   "sentAt": "2026-11-26T18:48:00+05:30"
+  },
+  {
+   "sequence": "2026-11-22/prathik-dental-and-implant-centre",
+   "step": 2,
+   "sentAt": "2026-11-26T18:36:00+05:30"
+  },
+  {
+   "sequence": "2026-11-22/the-dental-studio",
+   "step": 2,
+   "sentAt": "2026-11-26T18:25:00+05:30"
+  },
+  {
+   "sequence": "2026-11-22/kalyani-dental-clinic",
+   "step": 2,
+   "sentAt": "2026-11-26T18:14:00+05:30"
+  },
+  {
+   "sequence": "2026-11-22/praveen-dental-care",
+   "step": 2,
+   "sentAt": "2026-11-26T18:02:00+05:30"
+  },
+  {
+   "sequence": "2026-11-23/mj-naidu-super-speciality-hospital",
+   "step": 2,
+   "sentAt": "2026-11-26T17:52:00+05:30"
+  },
+  {
+   "sequence": "2026-11-23/ravi-dental-care-and-implant-center",
+   "step": 2,
+   "sentAt": "2026-11-26T17:40:00+05:30"
+  },
+  {
+   "sequence": "2026-11-23/sasya-fertility-centre",
+   "step": 2,
+   "sentAt": "2026-11-26T17:27:00+05:30"
+  },
+  {
+   "sequence": "2026-11-23/dr-swetha-sajja-eye-hospital",
+   "step": 2,
+   "sentAt": "2026-11-26T17:16:00+05:30"
+  },
+  {
+   "sequence": "2026-11-15/sri-ramachandra-children-and-dental-hospital",
+   "step": 2,
+   "sentAt": "2026-11-27T13:58:00+05:30"
+  }
+ ],
+ "stops": []
+}

@@ -1,0 +1,34 @@
+{
+  "business": "Dr. K. Hemanth Kumar Neurologist",
+  "domain": "neurologistinkurnool.com",
+  "ref": "SP-AUD-2026-11-26-DKH",
+  "to": "drhemanthneuro@gmail.com",
+  "emailSource": "openstreetmap, confirmed on site",
+  "emailFoundOn": "https://neurologistinkurnool.com/",
+  "mailbox": "smartpursuit3@gmail.com",
+  "status": "draft",
+  "neverSendAutomatically": true,
+  "drafts": [
+    {
+      "step": 1,
+      "draftId": "r8424871383291899874",
+      "createdAt": "2026-11-27T12:46:57+05:30",
+      "subject": "Dr. K. Hemanth Kumar Neurologist — what I found testing your website",
+      "attachment": {
+        "filename": "Smart-Pursuit-Audit-Dr.-K.-Hemanth-Kumar-Neurologist.pdf",
+        "bytes": 1844594
+      },
+      "verified": "read back 2026-11-27: recipient, subject, body and attachment size match; body is only the recipient-facing email"
+    }
+  ],
+  "followUps": {
+    "rule": "Not drafted. Each is due 3 days after the previous email is actually sent, only if there is no reply; draft only when the operator asks, as a reply in this thread.",
+    "ifEmail1SentOn": "2026-11-27",
+    "plannedDates": {
+      "step2": "2026-11-30",
+      "step3": "2026-12-03",
+      "step4": "2026-12-06"
+    }
+  },
+  "sequence": "deliverables/andhra-pradesh/2026-11-26/dr-k-hemanth-kumar-neurologist/emails/sequence.json"
+}
