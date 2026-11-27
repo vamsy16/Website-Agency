@@ -2,7 +2,7 @@
 
 **To:** bmrhospitalsguntur@gmail.com
 **Subject:** Sai Bhaskar Hospitals — what I found testing saibhaskarhospital.com
-**Send:** 26 November 2026
+**Send:** 27 November 2026
 **Attachments:** reports/sai-bhaskar-hospitals/Smart-Pursuit-Audit-Sai-Bhaskar-Hospitals.pdf
 
 ---

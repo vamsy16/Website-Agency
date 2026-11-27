@@ -2,7 +2,7 @@
 
 **To:** deepthifertilitycentre@gmail.com
 **Subject:** Closing the loop — Deepthi Fertility Centre
-**Send:** 5 December 2026
+**Send:** 6 December 2026
 **Attachments:** none
 
 ---

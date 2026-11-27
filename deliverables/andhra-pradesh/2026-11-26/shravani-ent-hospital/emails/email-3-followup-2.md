@@ -2,7 +2,7 @@
 
 **To:** shravanienthospital@gmail.com
 **Subject:** Re: Shravani ENT Hospital — the next step, if useful
-**Send:** 2 December 2026
+**Send:** 3 December 2026
 **Attachments:** none
 
 ---

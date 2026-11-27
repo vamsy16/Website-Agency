@@ -2,7 +2,7 @@
 
 **To:** vignatafertilityandivfcentre@gmail.com
 **Subject:** Vignata Fertility & IVF Center — what I found testing vignataivfcenter.com
-**Send:** 26 November 2026
+**Send:** 27 November 2026
 **Attachments:** reports/vignata-fertility-and-ivf-center/Smart-Pursuit-Audit-Vignata-Fertility-IVF-Center.pdf
 
 ---

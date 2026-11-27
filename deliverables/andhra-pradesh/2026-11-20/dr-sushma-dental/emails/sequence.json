@@ -39,9 +39,9 @@
       "words": 114,
       "scheduledFor": "2026-11-24",
       "scheduledForLong": "24 November 2026",
-      "status": "draft",
-      "approvedBy": null,
-      "sentAt": null,
+      "status": "sent",
+      "approvedBy": "operator",
+      "sentAt": "2026-11-27T14:27:00+05:30",
       "file": "outreach/dr-sushma-dental/email-2-followup-1.md"
     },
     {

@@ -2,7 +2,7 @@
 
 **To:** vignatafertilityandivfcentre@gmail.com
 **Subject:** Closing the loop — Vignata Fertility & IVF Center
-**Send:** 5 December 2026
+**Send:** 6 December 2026
 **Attachments:** none
 
 ---

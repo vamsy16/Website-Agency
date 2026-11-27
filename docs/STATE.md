@@ -1,7 +1,17 @@
 # STATE — read this first
 
-_Handoff for the next agent. Last updated 27 November 2026, 14:05 IST by the Arena agent on branch
-`arena/d4c9edee-website-agency`, which is merged into `main`._
+_Handoff for the next agent. Last updated 27 November 2026, 16:05 IST by the Arena agent on branch
+`arena/65e78ab2-website-agency` (cut from `main` at 6f073e9)._
+
+> **In flight (27 Nov 16:05 IST):** an Andhra Pradesh run for 5 new leads from
+> `data/ap-websearch-2026-11-27.csv` (8 vetted, non-Hostinger businesses; see
+> `deliverables/runs/2026-11-27-independent-review.json`, which **holds all 8**
+> with `approved: false` until the third-eye review is done). The workflow now
+> triggers on `arena/65e78ab2-website-agency`. If this session ended before the
+> review: read every page of every new PDF against the live site, re-audit until
+> clean, then set `approved: true` per lead and push the approval pattern
+> (`disabled: true, repairOnly: true, reaudit: []`). The operator reviews PDF links
+> before any Gmail draft is made.
 
 This repository is the single source of truth for the agency's work. Everything
 needed to continue is committed here; nothing lives only in a chat or a sandbox.

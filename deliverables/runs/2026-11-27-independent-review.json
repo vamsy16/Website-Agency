@@ -1,0 +1,60 @@
+{
+  "state": "Andhra Pradesh",
+  "reviewDate": "2026-11-27",
+  "run": null,
+  "runs": {},
+  "requested": 5,
+  "status": "pending-independent-review",
+  "dedupeAuthority": [
+    "data/leads.json",
+    "data/audits.json",
+    "git history of every branch of this repository"
+  ],
+  "neverSendAutomatically": true,
+  "businessChecks": "Pre-run vetting (27 Nov 2026): each business's own live site was read; the To: address is published there as text; each is an independent local healthcare business in Andhra Pradesh; none matches any domain, email, phone or name+city ever recorded in this repository (all branches, full history). Hostinger-CDN sites are excluded from this queue (they cause most ERRORED_DOCUMENT_REQUEST / NO_FCP failures).",
+  "leads": [
+    {
+      "domain": "veyehospital.com",
+      "approved": false,
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Venkateswara Eye Hospital (Ongole); venkateswaraeyehospitalongole@gmail.com read on https://veyehospital.com/."
+    },
+    {
+      "domain": "vijayahospitalvzm.com",
+      "approved": false,
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Vijaya Hospital (Vizianagaram); drudayakumar65@gmail.com read on https://vijayahospitalvzm.com/."
+    },
+    {
+      "domain": "desaieyecare.in",
+      "approved": false,
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Desai Eye Care (Nellore); desaieyecares@gmail.com read on https://desaieyecare.in/."
+    },
+    {
+      "domain": "padmavathisdental.com",
+      "approved": false,
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Dr. Padmavathi Dental Hospital & Implant Centre (Kakinada); dr.padmavathi25@gmail.com read on https://padmavathisdental.com/."
+    },
+    {
+      "domain": "aahospitals.in",
+      "approved": false,
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. AA Hospitals (Eluru); anila.amudalapalli@gmail.com read on https://aahospitals.in/."
+    },
+    {
+      "domain": "leelavathiadvancedskinandlasercentre.in",
+      "approved": false,
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Leelavathi Advanced Skin & Laser Centre (Guntur); leelavathiskincentre@gmail.com read on https://www.leelavathiadvancedskinandlasercentre.in/."
+    },
+    {
+      "domain": "skinfirst.in",
+      "approved": false,
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Skin First (Vijayawada); skinfirstk@gmail.com read on https://www.skinfirst.in/."
+    },
+    {
+      "domain": "kamakshihospital.com",
+      "approved": false,
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Kamakshi Hospital (Tirupati); kamakshihospitaltpt2022@gmail.com read on https://www.kamakshihospital.com/."
+    }
+  ],
+  "notPublished": [],
+  "notAttempted": [],
+  "withheldOtherDomains": []
+}

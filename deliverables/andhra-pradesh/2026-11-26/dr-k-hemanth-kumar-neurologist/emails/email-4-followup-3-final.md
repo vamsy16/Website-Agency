@@ -2,7 +2,7 @@
 
 **To:** drhemanthneuro@gmail.com
 **Subject:** Closing the loop — Dr. K. Hemanth Kumar Neurologist
-**Send:** 5 December 2026
+**Send:** 6 December 2026
 **Attachments:** none
 
 ---
