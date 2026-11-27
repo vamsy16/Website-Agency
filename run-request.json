@@ -1,12 +1,13 @@
 {
   "state": "Andhra Pradesh",
-  "max": 5,
+  "max": 10,
   "target": 5,
-  "leadsLimit": 200,
+  "leadsLimit": 10,
   "niches": [],
-  "requestedAt": "2026-11-21-attachment-repair-1",
+  "requestedAt": "2026-11-26T14:15:50Z",
+  "csv": "data/ap-websearch-2026-11-26.csv",
+  "csvOnly": true,
   "repairOnly": true,
-  "reaudit": [],
-  "reauditReason": "Cancelled by operator; associated leads removed.",
-  "disabled": true
+  "disabled": true,
+  "reaudit": []
 }

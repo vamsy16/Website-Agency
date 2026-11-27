@@ -1,0 +1,84 @@
+{
+  "business": "Dr. K. Hemanth Kumar Neurologist",
+  "domain": "neurologistinkurnool.com",
+  "ref": "SP-AUD-2026-11-26-DKH",
+  "createdAt": "2026-11-26T14:26:16.895Z",
+  "sendDate": "2026-11-26",
+  "cadenceDays": [
+    3,
+    3,
+    3
+  ],
+  "to": "drhemanthneuro@gmail.com",
+  "status": "draft",
+  "neverSendAutomatically": true,
+  "note": "Dates shift if the operator sends email 1 on a different day — recompute with `sequence --send-date YYYY-MM-DD`.",
+  "emails": [
+    {
+      "step": 1,
+      "id": "first",
+      "purpose": "deliver the audit, earn a reply",
+      "attachments": [
+        "reports/dr-k-hemanth-kumar-neurologist/Smart-Pursuit-Audit-Dr.-K.-Hemanth-Kumar-Neurologist.pdf"
+      ],
+      "subject": "Dr. K. Hemanth Kumar Neurologist — what I found testing your website",
+      "words": 117,
+      "scheduledFor": "2026-11-26",
+      "scheduledForLong": "26 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "gmailDraft": {
+        "mailbox": "smartpursuit3@gmail.com",
+        "draftId": "r8424871383291899874",
+        "createdAt": "2026-11-27T12:46:57+05:30",
+        "attachment": "Smart-Pursuit-Audit-Dr.-K.-Hemanth-Kumar-Neurologist.pdf",
+        "attachmentBytes": 1844594,
+        "verified": "read back 2026-11-27: recipient, subject, body and attachment size match; body is only the recipient-facing email"
+      },
+      "file": "outreach/dr-k-hemanth-kumar-neurologist/email-1-first.md"
+    },
+    {
+      "step": 2,
+      "id": "followup-1",
+      "purpose": "turn the top measured finding into a money argument",
+      "attachments": [],
+      "subject": "Re: Dr. K. Hemanth Kumar Neurologist — what I found testing your website",
+      "words": 101,
+      "scheduledFor": "2026-11-29",
+      "scheduledForLong": "29 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/dr-k-hemanth-kumar-neurologist/email-2-followup-1.md"
+    },
+    {
+      "step": 3,
+      "id": "followup-2",
+      "purpose": "make the next step concrete without promising an outcome",
+      "attachments": [],
+      "subject": "Re: Dr. K. Hemanth Kumar Neurologist — the next step, if useful",
+      "words": 106,
+      "scheduledFor": "2026-12-02",
+      "scheduledForLong": "2 December 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/dr-k-hemanth-kumar-neurologist/email-3-followup-2.md"
+    },
+    {
+      "step": 4,
+      "id": "followup-3-final",
+      "purpose": "final mail, leave the door open, no pressure",
+      "attachments": [],
+      "subject": "Closing the loop — Dr. K. Hemanth Kumar Neurologist",
+      "words": 98,
+      "scheduledFor": "2026-12-05",
+      "scheduledForLong": "5 December 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/dr-k-hemanth-kumar-neurologist/email-4-followup-3-final.md"
+    }
+  ]
+}

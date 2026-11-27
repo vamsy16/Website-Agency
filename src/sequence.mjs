@@ -2,7 +2,7 @@
 //
 //   email 1  at sendDate              - audit PDF attached
 //   email 2  sendDate + 3 days        - the money argument
-//   email 3  sendDate + 6 days        - what a fixed version looks like
+//   email 3  sendDate + 6 days        - the next step, if useful
 //   email 4  sendDate + 9 days        - final, closes the loop
 //
 // Dates are computed from the day the operator actually sends email 1, not from
@@ -33,6 +33,8 @@ const BANNED = [
   /guarantee/i, /risk[- ]free/i, /act now/i, /limited time/i, /100% (success|results)/i,
   /make you (rich|money fast)/i, /no risk/i, /instantly/i, /revolutionary/i, /world[- ]class/i,
   /best in the world/i, /exclusive offer/i,
+  // Unmeasured claims removed after the 22 November 2026 independent review.
+  /pays back fastest/i, /needs a new design/i, /fixed version looks like/i,
 ];
 
 function countWords(text) {
@@ -100,6 +102,15 @@ export function buildSequence(audit, { sendDate = isoDate(new Date()), cadenceDa
     return `${title}. ${firstSentence}`.replace(/\s+/g, " ").trim();
   };
 
+  // Email 1 names only the findings the audit printed. A one-finding audit says
+  // "one thing", never a numbered list with an empty second item (23 Nov review).
+  const findingLines = [finding1, finding2].filter(f => f && String(f.title || "").trim()).map(short);
+  const findingsBlock = findingLines.length >= 2
+    ? `Two things stood out:\n\n1. ${findingLines[0]}\n2. ${findingLines[1]}`
+    : findingLines.length === 1
+      ? `One thing stood out: ${findingLines[0]}`
+      : `The measured results are in the attached audit.`;
+
   // Every sentence here must be true for THIS site: built only from what was measured.
   const lcpSlow = Number.isFinite(m.lcpMs) && m.lcpMs > 4000;
   const moneyLine = `The audit describes observations from one test run. Their effect on enquiries or revenue has not been measured.`;
@@ -128,6 +139,7 @@ export function buildSequence(audit, { sendDate = isoDate(new Date()), cadenceDa
       1: { short: short(finding1), effort: finding1.effort || "about an hour" },
       2: { short: short(finding2) },
     },
+    findingsBlock,
     moneyLine,
     outcomeLine,
     optOut: cfg.outreach.optOutLine,
@@ -151,6 +163,8 @@ export function buildSequence(audit, { sendDate = isoDate(new Date()), cadenceDa
     for (const re of BANNED) if (re.test(body) || re.test(subject)) problems.push(`${tpl.file}: banned phrase ${re}`);
     if (subject.length > 90) problems.push(`${tpl.file}: subject is ${subject.length} characters`);
     if (/<<|>>|\{\{/.test(body)) problems.push(`${tpl.file}: unresolved placeholder`);
+    // A list item with nothing in it ("2. .") means a finding was missing.
+    if (/^\s*\d+\.\s*\.?\s*$/m.test(body)) problems.push(`${tpl.file}: empty list item`);
 
     const date = addDays(sendDate, offsetFor(i));
     emails.push({

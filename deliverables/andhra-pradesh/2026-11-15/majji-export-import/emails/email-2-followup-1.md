@@ -2,7 +2,7 @@
 
 **To:** majjiexportimport@gmail.com
 **Subject:** Re: Majji Export Import — what I found testing majjiexportimport.linker.store
-**Send:** 18 November 2026
+**Send:** 24 November 2026
 **Attachments:** none
 
 ---

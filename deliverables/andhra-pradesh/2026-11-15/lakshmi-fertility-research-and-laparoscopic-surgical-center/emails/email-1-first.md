@@ -2,7 +2,7 @@
 
 **To:** andalbskr@gmail.com
 **Subject:** Lakshmi Fertility Research — what I found testing your website
-**Send:** 15 November 2026
+**Send:** 16 November 2026
 **Attachments:** reports/lakshmi-fertility-research-and-laparoscopic-surgical-center/Smart-Pursuit-Audit-Lakshmi-Fertility-Research-and-Laparoscopic-Surgical-Center.pdf
 
 ---

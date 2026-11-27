@@ -117,11 +117,16 @@ export function longDate(input) {
   return `${d.getUTCDate()} ${MONTHS[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
 }
 
-/** 2026-11-08 -> "SP-AUD-2026-11-08-GDC" */
+/**
+ * 2026-11-08 -> "SP-AUD-2026-11-08-GDC". Initials come from letters and digits
+ * only: "Vignata Fertility & IVF Center" printed "SP-AUD-2026-11-26-VF&" on a
+ * client PDF (26 Nov review); it is now "VFI".
+ */
 export function auditRef(prefix, date, name) {
   const initials = String(name)
     .replace(/[\u2122\u00ae]/g, "")
     .split(/[\s-]+/)
+    .map(w => w.replace(/[^\p{L}\p{N}]/gu, ""))
     .filter(Boolean)
     .map(w => w[0].toUpperCase())
     .join("")
@@ -254,4 +259,20 @@ export function audienceOf(b = {}) {
   return health
     ? { health: true, person: "patient", act: "book", noun: "a booking", nounPl: "bookings", path: "booking path", cta: "Book", comparing: "comparing three clinics" }
     : { health: false, person: "customer", act: "get in touch", noun: "an enquiry", nounPl: "enquiries", path: "enquiry path", cta: "Enquire", comparing: "comparing three options" };
+}
+
+/**
+ * The call / WhatsApp buttons that stay on screen at 390 px, in words ("call
+ * and WhatsApp buttons", "call button"), or "" when there are none.
+ */
+export function stickyRoutes(m) {
+  const tel = Number(m.stickyTel) > 0, wa = Number(m.stickyWhatsapp) > 0;
+  if (!tel && !wa) return "";
+  const n = (Number(m.stickyTel) || 0) + (Number(m.stickyWhatsapp) || 0);
+  return `${[tel ? "call" : null, wa ? "WhatsApp" : null].filter(Boolean).join(" and ")} button${n === 1 ? "" : "s"}`;
+}
+
+/** The desktop layout has a different number of click-to-call links than 390 px. */
+export function telDiffers(m) {
+  return m.telLinksDesktop !== null && m.telLinksDesktop !== undefined && Number(m.telLinksDesktop) !== Number(m.telLinks);
 }

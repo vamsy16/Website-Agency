@@ -1,0 +1,162 @@
+{
+  "ref": "SP-AUD-2026-11-23-MNS",
+  "domain": "mjnaiduhospitals.com",
+  "verifiedAt": "2026-11-23T02:07:14.384Z",
+  "live": false,
+  "fixture": false,
+  "ok": true,
+  "blockers": 0,
+  "warnings": 0,
+  "checks": [
+    {
+      "id": "provenance.file",
+      "ok": true,
+      "detail": "raw measurement: data/raw/mj-naidu-super-speciality-hospital/2026-11-23T02-05-51-432Z.json",
+      "severity": "ok"
+    },
+    {
+      "id": "provenance.age",
+      "ok": true,
+      "detail": "measured 0 h ago (limit 72 h, on 23 November 2026)",
+      "severity": "ok"
+    },
+    {
+      "id": "provenance.url",
+      "ok": true,
+      "detail": "raw measurement is for https://mjnaiduhospitals.com/",
+      "severity": "ok"
+    },
+    {
+      "id": "provenance.status",
+      "ok": true,
+      "detail": "homepage returned HTTP 200",
+      "severity": "ok"
+    },
+    {
+      "id": "provenance.tool",
+      "ok": true,
+      "detail": "Lighthouse 12.8.2; screenshots: 8",
+      "severity": "ok"
+    },
+    {
+      "id": "provenance.ist",
+      "ok": true,
+      "detail": "measurement timestamp: 23/11/2026, 7:35:51 am",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.speed",
+      "ok": true,
+      "detail": "report prints 2, rubric computes 2",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.mobile",
+      "ok": true,
+      "detail": "report prints 5, rubric computes 5",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.conversion",
+      "ok": true,
+      "detail": "report prints 8, rubric computes 8",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.design",
+      "ok": true,
+      "detail": "report prints 8, rubric computes 8",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.seo",
+      "ok": true,
+      "detail": "report prints 8, rubric computes 8",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.overall",
+      "ok": true,
+      "detail": "report prints 56, rubric computes 56",
+      "severity": "ok"
+    },
+    {
+      "id": "facts.consistent",
+      "ok": true,
+      "detail": "every printed metric equals the raw measurement",
+      "severity": "ok"
+    },
+    {
+      "id": "facts.firstParty",
+      "ok": true,
+      "detail": "the site's own host is not counted as third party",
+      "severity": "ok"
+    },
+    {
+      "id": "findings.evidence",
+      "ok": true,
+      "detail": "4 findings, every evidence field present in the measurement",
+      "severity": "ok"
+    },
+    {
+      "id": "copy.honesty",
+      "ok": true,
+      "detail": "known unsupported narrative claims absent",
+      "severity": "ok"
+    },
+    {
+      "id": "numbers.traceable",
+      "ok": true,
+      "detail": "all 80 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "severity": "ok"
+    },
+    {
+      "id": "report.date",
+      "ok": true,
+      "detail": "report states 23 November 2026",
+      "severity": "ok"
+    },
+    {
+      "id": "report.ref",
+      "ok": true,
+      "detail": "audit reference SP-AUD-2026-11-23-MNS printed",
+      "severity": "ok"
+    },
+    {
+      "id": "report.hash",
+      "ok": true,
+      "detail": "report HTML unchanged since QA",
+      "severity": "ok"
+    },
+    {
+      "id": "screenshots.real",
+      "ok": true,
+      "detail": "8 screenshots, all non-blank",
+      "severity": "ok"
+    },
+    {
+      "id": "pdf.pages",
+      "ok": true,
+      "detail": "PDF has 10 pages",
+      "severity": "ok"
+    },
+    {
+      "id": "pdf.format",
+      "ok": true,
+      "detail": "A4 media box",
+      "severity": "ok"
+    },
+    {
+      "id": "pdf.size",
+      "ok": true,
+      "detail": "2.48 MB",
+      "severity": "ok"
+    },
+    {
+      "id": "pdf.header",
+      "ok": true,
+      "detail": "valid PDF header",
+      "severity": "ok"
+    }
+  ]
+}

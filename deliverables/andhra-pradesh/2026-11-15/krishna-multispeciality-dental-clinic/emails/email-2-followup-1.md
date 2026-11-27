@@ -2,7 +2,7 @@
 
 **To:** vidya@krishnadental.in
 **Subject:** Re: Krishna Multispeciality Dental Clinic — what I found testing krishnadental.in
-**Send:** 18 November 2026
+**Send:** 24 November 2026
 **Attachments:** none
 
 ---

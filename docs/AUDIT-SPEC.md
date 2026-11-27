@@ -19,7 +19,8 @@ numbers taken from their own live site, on a stated date, using a named tool.
    and it is the same date the raw file records.
 4. **Competitor numbers are only printed if they were measured** with the same
    tool, on the same day, with the same throttling. Otherwise the report prints
-   Google's published targets instead of a comparison.
+   Google's published LCP and TBT thresholds, plus engineering targets that are
+   labelled as the agency's own, instead of a comparison.
 5. **Do not invent** testimonials, client logos, patient counts, revenue,
    conversion rates, treatment prices, review scores or staff names.
 6. **The demo is opt-in.** A rebuilt page may be shown only if it exists and was
@@ -47,13 +48,14 @@ A raw measurement is only valid if it contains:
 | `measuredAtIst` | human-readable timestamp actually shown on page 10 |
 | `mobile.status` | HTTP status of the homepage at 390 px |
 | `mobile.dom` | DOM facts: headings, sections, forms, tap targets, fonts, schema |
-| `mobile.requests` | count, total bytes, third-party origins |
+| `mobile.requests` | count, total bytes, third-party origins (first party = the site's own host with or without `www.`, its subdomains, and the host the page finally landed on) |
 | `mobile.cookies.thirdParty` | third-party cookies set on load |
 | `mobile.consoleErrors` | uncaught console errors captured during load |
-| `mobile.blockingMs` | main-thread time consumed by third-party code |
+| `mobile.blockingMs` | main-thread long-task time beyond 50 ms per task, all scripts — **not** attributed to third parties |
 | `http.meta` | WordPress/theme/plugins, analytics, ad-tech, `og:site_name` |
 | `http["/contact/"]` | status + the raw shortcode text if one is printed |
 | `http["/sitemap.xml"]` | status + whether the body is a real `<urlset>` |
+| `http["/robots.txt"]` | `disallowAll`, plus `sitemaps[]` declared there (a declared sitemap suppresses the `/sitemap.xml` finding) |
 | `lighthouse.mobile` | version, category scores, every metric the report quotes |
 | `lighthouse.desktop` | version, scores, metrics |
 | `screenshots[]` | file path + pixel stats (mean, sd, white %, colourful %) |
@@ -175,7 +177,9 @@ against `audit.facts` and rejects a finding whose evidence is missing or `—`.
 
 **Page 6 also carries "Also on the list"** — up to six smaller, individually
 measurable items (alt text, dead `#` links, `og:site_name`, sitemap, tap targets,
-schema gaps). Each is generated from a measurement, never written by hand.
+schema gaps). Each is generated from a measurement, never written by hand. An
+item already printed as a finding on page 5 or 6 (same evidence path) is not
+repeated there.
 
 ### Do not claim
 
@@ -183,7 +187,32 @@ schema gaps). Each is generated from a measurement, never written by hand.
 - that a fix will increase revenue — only state the engineering target;
 - a ranking position, a traffic number, or a conversion rate you did not measure;
 - a medical, legal or financial outcome;
-- that the site is "the worst" or "the best".
+- that the site is "the worst" or "the best";
+- an effect or a cost you did not measure — "pays back fastest", "cheapest to
+  fix", "doing damage you can see in enquiry numbers", "still looks empty";
+- that a metric inside Google's threshold is "over" it, a headline position on a
+  page with no H1, competing headlines on a page with one, or advertising code
+  that was not observed (HTML markers or ad-serving request hosts);
+- that a page has no H1 when its markup has one that is hidden at 390 px — say
+  how many are visible at that width and how many more the markup holds;
+- that links to `#` or `javascript:void(0)` are "dead" — some open menus or
+  slides; call them placeholder links;
+- that a site needs a sticky call bar when it already keeps call or WhatsApp
+  buttons on screen;
+- that a headline is seen in the first screen when it sits in a hidden,
+  transparent or off-screen slide;
+- a section count as the target ("five sections") for a page measured with
+  fewer — the target is the rubric's own "6 screens or fewer";
+- that requests to a site builder's own file server share visitor details with
+  "another company" when the page is built on that builder (read from its meta
+  generator) — on any other site that server is an outside service;
+- a score that was not measured: when a test does not complete, say so rather
+  than printing "—/100".
+
+Counts of contact routes, headings and words are the larger of two passes: at
+load and after the full-page and scrolled screenshots. Call, email and WhatsApp
+links inside embedded frames that are shown on the page (not fixed widgets) are
+added to both the 390 px and the desktop count.
 
 ---
 
@@ -231,10 +260,13 @@ before the PDF is accepted. It writes `verify.json` next to the audit.
 | `provenance.ist` | no human-readable timestamp is recorded |
 | `scores.*` | a printed area score differs from the rubric |
 | `facts.consistent` | any printed metric differs from the raw measurement |
+| `facts.firstParty` | the business's own host (with or without `www.`, or a subdomain) is listed as a third-party domain |
+| `copy.honesty` | the report prints a known unsupported claim (see "Do not claim"), a "0.x× over" contradiction, blocking time attributed to third parties, a zero cost or a sub-50 ms blocking total listed as evidence, "Only 0", a page-type schema (WebPage, WebSite…) said to be missing business fields, links to `#` called "dead", an H1 that exists in the markup but is hidden at 390 px reported as missing, a sticky call bar recommended to a page that already keeps call or WhatsApp buttons on screen, or a missing score printed as "—/100" |
+| `facts.viewport` | the click-to-call count differs between 390 px and the desktop layout and the report does not say so (the detail records the count at load, after scrolling and on desktop) |
 | `findings.evidence` | a finding depends on a fact that is missing, empty or `—` |
 | `numbers.traceable` | the report prints a number that is not in the measurement, the rubric or Google's stated targets |
 | `report.date` | the report does not state the measurement date |
-| `report.ref` | the audit reference is not printed |
+| `report.ref` | the audit reference is not printed, or has characters other than letters and digits |
 | `report.hash` | report.html changed after QA |
 | `screenshots.real` | a screenshot is missing, >94% white, or has pixel spread < 12 |
 | `pdf.pages` | the PDF is not exactly 10 pages |

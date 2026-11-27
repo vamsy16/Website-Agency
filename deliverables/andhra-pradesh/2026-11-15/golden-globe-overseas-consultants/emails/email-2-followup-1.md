@@ -2,7 +2,7 @@
 
 **To:** info@goldenglobeoverseas.com
 **Subject:** Re: Golden Globe Overseas Consultants — what I found testing goldenglobeoverseas.com
-**Send:** 18 November 2026
+**Send:** 19 November 2026
 **Attachments:** none
 
 ---

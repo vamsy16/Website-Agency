@@ -2,7 +2,7 @@
 
 **To:** care@milknmore.org
 **Subject:** Closing the loop — Milk n More
-**Send:** 24 November 2026
+**Send:** 2 December 2026
 **Attachments:** none
 
 ---

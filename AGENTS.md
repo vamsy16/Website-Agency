@@ -4,6 +4,11 @@ This repo is a production tool. It produces a document that goes to a real
 business owner under the agency's name. Treat every change as if the client will
 read it, because they will.
 
+**Start with `docs/STATE.md`**: the current state of all work (batches, outreach,
+follow-ups due, scheduled mail, open questions), the operator's standing
+instructions and the lessons learned. Update it, commit, push and merge into
+`main` before ending a session, so the next agent misses nothing.
+
 Read `docs/RUNBOOK.md` before running anything. Read `docs/AUDIT-SPEC.md` before
 changing scoring or findings. Read `docs/DESIGN-SPEC.md` before touching the
 renderer.

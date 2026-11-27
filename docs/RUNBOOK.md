@@ -352,7 +352,7 @@ A lead is worth an audit when **all** of these are true:
 - [ ] the business clearly makes money (established clinic, firm, contractor);
 - [ ] the site loads and returns HTTP 200;
 - [ ] the site has at least one measurable defect (slow, no form, tiny text,
-      competing headlines, dead links);
+      competing headlines, placeholder links);
 - [ ] the business publishes a contact route you may use;
 - [ ] you have not audited this domain inside the cooldown window.
 
@@ -531,7 +531,7 @@ Output:
 4 drafts · <Business name>
  1. 10 November 2026   <Business name> — the enquiry form on your site is broken
  2. 13 November 2026   Re: <Business name> — one page is losing the enquiries
- 3. 16 November 2026   Re: <Business name> — what a fixed version looks like
+ 3. 16 November 2026   Re: <Business name> — the next step, if useful
  4. 19 November 2026   Closing the loop — <Business name>
 ```
 
@@ -541,7 +541,7 @@ Files, in `outreach/<slug>/`:
 | --- | --- |
 | `email-1-first.md` | audit delivery; attaches the PDF |
 | `email-2-followup-1.md` | the money argument |
-| `email-3-followup-2.md` | what a fixed version looks like |
+| `email-3-followup-2.md` | the next step, if useful |
 | `email-4-followup-3-final.md` | closure; no pitch |
 | `sequence.json` | schedule, status `draft`, attachment paths, send dates |
 
@@ -590,6 +590,12 @@ For each email:
 }
 ```
 
+Then run `node tools/followups.mjs --apply` (or `--record sends.json` for many
+at once). It recomputes every follow-up date from what was actually sent — each
+email is due 3 days after the previous one's `sentAt` — and lists what is due,
+overdue and upcoming. A bounce, reply or opt-out stops the sequence: record it
+as a stop and its remaining emails are cancelled.
+
 Respect the daily cap in `settings.json` (20). Fewer, better emails beat volume.
 
 ### Cadence
@@ -598,7 +604,7 @@ Respect the daily cap in `settings.json` (20). Fewer, better emails beat volume.
 | --- | --- | --- | --- |
 | 1 | day 0 | the audit + two findings | the PDF |
 | 2 | day 3 | the money argument (ad-tech or load time) | none |
-| 3 | day 6 | what a fixed version looks like | none |
+| 3 | day 6 | the next step, if useful | none |
 | 4 | day 9 | closure, door left open | none |
 
 If the business replies at any point, stop the sequence. A reply is worth more

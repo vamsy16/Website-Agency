@@ -76,6 +76,54 @@ const INIT_SCRIPT = () => {
 };
 
 /** Everything we can learn from the DOM at one viewport. */
+/**
+ * Contact links inside embedded frames. A site builder's custom-HTML block is
+ * drawn in an <iframe>: a visitor sees and taps its links, but the page's own
+ * document does not contain them. Dr K Hemanth Kumar's homepage shows five
+ * call links, four of them in such a block, and was measured at one
+ * (26 Nov review). Counts frames whose <iframe> is shown, at least 120 x 40 px
+ * and not fixed to the screen (chat widgets are, and stay closed).
+ */
+async function frameRoutes(page) {
+  const out = { frames: 0, tel: 0, mail: 0, whatsapp: 0 };
+  for (const f of page.frames()) {
+    if (f === page.mainFrame()) continue;
+    try {
+      const el = await f.frameElement();
+      const box = await el.boundingBox();
+      const shown = await el.evaluate(e => {
+        const s = getComputedStyle(e);
+        if (s.visibility === "hidden" || s.display === "none" || Number(s.opacity) === 0) return false;
+        // Chat and consent widgets sit in fixed containers and stay closed.
+        for (let n = e; n && n.nodeType === 1; n = n.parentElement) if (getComputedStyle(n).position === "fixed") return false;
+        return true;
+      });
+      if (!box || box.width < 120 || box.height < 40 || !shown) continue;
+      const count = hrefs => ({
+        tel: hrefs.filter(h => h.startsWith("tel:")).length,
+        mail: hrefs.filter(h => h.startsWith("mailto:")).length,
+        whatsapp: hrefs.filter(h => /wa\.me|whatsapp/.test(h)).length,
+      });
+      let r = null;
+      try {
+        // A frame without scripts may never answer; give it 3 s.
+        const hrefs = await Promise.race([
+          f.evaluate(() => [...document.querySelectorAll("a[href]")].map(a => (a.getAttribute("href") || "").trim().toLowerCase())),
+          new Promise((_, rej) => setTimeout(() => rej(new Error("frame timeout")), 3000)),
+        ]);
+        r = count(hrefs);
+      } catch {
+        // Fallback: read the frame's inline document from its srcdoc attribute.
+        const srcdoc = await el.evaluate(e => e.getAttribute("srcdoc") || "");
+        r = count([...srcdoc.matchAll(/href\s*=\s*["']\s*([^"']+)/gi)].map(x => x[1].trim().toLowerCase()));
+      }
+      if (r.tel || r.mail || r.whatsapp) out.frames++;
+      out.tel += r.tel; out.mail += r.mail; out.whatsapp += r.whatsapp;
+    } catch {}
+  }
+  return out;
+}
+
 function collectDom() {
   const de = document.documentElement;
   const vh = window.innerHeight;
@@ -100,25 +148,61 @@ function collectDom() {
     return r.height < 40 || r.width < 24;
   });
 
-  // Smallest font actually rendered on body text.
-  const textEls = q("p, li, span, div, a").filter(el => visible(el) && (el.innerText || "").trim().length > 25);
+  // Smallest font actually rendered on body text. Only an element that holds
+  // text itself counts: a wrapper whose own font-size is 0 (a common
+  // inline-block spacing trick) or differs from its children renders no text at
+  // that size. Counting wrappers printed "Smallest body text: 0 px" (23 Nov review).
+  const ownText = el => [...el.childNodes].some(n => n.nodeType === 3 && n.textContent.trim().length > 0);
+  const textEls = q("p, li, span, div, a").filter(el => visible(el) && (el.innerText || "").trim().length > 25 && ownText(el));
   let minFont = null;
   for (const el of textEls.slice(0, 800)) {
     const fs = parseFloat(getComputedStyle(el).fontSize);
-    if (!Number.isFinite(fs)) continue;
+    if (!Number.isFinite(fs) || fs <= 0) continue;
     if (minFont === null || fs < minFont) minFont = fs;
   }
 
   const h1s = q("h1").filter(visible).map(h => (h.innerText || "").replace(/\s+/g, " ").trim()).filter(Boolean);
+  // H1s that exist in the markup but are not visible at this viewport (a
+  // desktop-only block, an inactive slide, or content not yet revealed at
+  // load). Counting only visible ones printed "0 H1 headings detected on the
+  // homepage" for a page whose markup has one (26 Nov review).
+  const h1Hidden = q("h1").filter(h => !visible(h) && (h.textContent || "").trim()).length;
   const h2s = q("h2").filter(visible).map(h => (h.innerText || "").replace(/\s+/g, " ").trim()).filter(Boolean);
 
   // Where does the first real headline start?
   const headlineOffset = h1s.length ? Math.round(q("h1").filter(visible)[0].getBoundingClientRect().top + window.scrollY) : 0;
+  // Where the first visible H1's text sits across the page: the text itself,
+  // not its full-width block, so the report's laptop crop can be placed over
+  // the headline (26 Nov review: the left strip of a centred GoDaddy layout was
+  // only the hero's blurred background fill).
+  let headlineText = null;
+  if (h1s.length) {
+    try {
+      const range = document.createRange();
+      range.selectNodeContents(q("h1").filter(visible)[0]);
+      const b = range.getBoundingClientRect();
+      if (b.width > 0) headlineText = { left: Math.round(b.left + window.scrollX), width: Math.round(b.width), top: Math.round(b.top + window.scrollY) };
+    } catch {}
+  }
+  // Stricter than visible(), for what a visitor sees in the first screen: also
+  // rejects an element inside a transparent ancestor (an inactive fade slide)
+  // or outside the viewport's width (an inactive sliding slide). Hidden slide
+  // titles had been quoted as "headline blocks seen in the first screen"
+  // (26 Nov review).
+  const seen = el => {
+    if (!visible(el)) return false;
+    const r = el.getBoundingClientRect();
+    if (r.right <= 0 || r.left >= vw) return false;
+    if (typeof el.checkVisibility === "function" &&
+        !el.checkVisibility({ checkOpacity: true, opacityProperty: true, checkVisibilityCSS: true, visibilityProperty: true })) return false;
+    return true;
+  };
   // How many competing headline-sized blocks sit in the first screen?
   const firstScreenClaims = q("h1, h2, [class*=title], [class*=headline], [class*=hero]")
     .filter(el => {
       const r = el.getBoundingClientRect();
       if (r.top > vh || r.bottom < 0) return false;
+      if (!seen(el)) return false;
       const fs = parseFloat(getComputedStyle(el).fontSize);
       const t = (el.innerText || "").trim();
       return fs >= 24 && t.length > 8 && t.length < 160 && el.children.length < 4;
@@ -130,9 +214,22 @@ function collectDom() {
   const brokenImgs = imgs.filter(i => i.complete && i.naturalWidth === 0);
 
   const anchors = q("a[href]");
-  const telLinks = anchors.filter(a => (a.getAttribute("href") || "").startsWith("tel:"));
-  const mailLinks = anchors.filter(a => (a.getAttribute("href") || "").startsWith("mailto:"));
+  const hrefOf = a => (a.getAttribute("href") || "").trim().toLowerCase();
+  const telLinks = anchors.filter(a => hrefOf(a).startsWith("tel:"));
+  const mailLinks = anchors.filter(a => hrefOf(a).startsWith("mailto:"));
   const whatsapp = q("a[href*='wa.me'], a[href*='whatsapp'], [class*=whatsapp], iframe[src*='whatsapp']");
+  // Call and WhatsApp links that stay on screen (inside a fixed or sticky
+  // element: a floating button or bar). The no-form fix told a site that
+  // already had a sticky call bar to add one (26 Nov review).
+  const onScreen = el => {
+    for (let e = el; e && e !== document.documentElement; e = e.parentElement) {
+      const p = getComputedStyle(e).position;
+      if (p === "fixed" || p === "sticky") return true;
+    }
+    return false;
+  };
+  const stickyTel = telLinks.filter(a => visible(a) && onScreen(a)).length;
+  const stickyWhatsapp = q("a[href*='wa.me'], a[href*='whatsapp']").filter(a => visible(a) && onScreen(a)).length;
   const readMore = anchors.filter(a => /^read\s*more$/i.test((a.innerText || "").trim()));
   const deadLinks = anchors.filter(a => {
     const h = (a.getAttribute("href") || "").trim();
@@ -199,10 +296,12 @@ function collectDom() {
     textChars: text.length,
     sections: bigSections.length,
     h1Count: h1s.length,
+    h1Hidden,
     h1s: h1s.slice(0, 12),
     h2Count: h2s.length,
     h2s: h2s.slice(0, 12),
     headlineOffsetPx: headlineOffset,
+    headlineTextBox: headlineText,
     firstScreenClaims: [...new Set(firstScreenClaims)].slice(0, 8),
     images: imgs.length,
     imagesNoAlt: imgsNoAlt.length,
@@ -217,6 +316,8 @@ function collectDom() {
     telLinks: telLinks.length,
     mailLinks: mailLinks.length,
     whatsapp: whatsapp.length,
+    stickyTel,
+    stickyWhatsapp,
     readMoreLinks: readMore.length,
     deadLinks: deadLinks.length,
     forms,
@@ -250,6 +351,20 @@ export async function measureSite(website, opts = {}) {
   const rawDir = ensureDir(path.join(ROOT, "data", "raw", slugName));
   const shotDir = ensureDir(path.join(rawDir, `shots-${stamp}`));
   const base = new URL(website);
+  // First party = the site's own host, with or without "www." and on either
+  // scheme. A plain origin prefix test counted every request as third-party
+  // when the site redirected www -> bare domain or https -> http, and the
+  // report then listed the business's own domain as an external one.
+  const siteHost = h => String(h || "").toLowerCase().replace(/^www\./, "");
+  const ownHosts = new Set([siteHost(base.hostname)]);
+  const isFirstParty = url => {
+    try {
+      const h = siteHost(new URL(url).hostname);
+      return [...ownHosts].some(o => h === o || h.endsWith(`.${o}`));
+    } catch {
+      return false;
+    }
+  };
 
   log("measure", `browser: ${describeBrowser(resolved)}`);
   const browser = await chromium.launch(launchOptions(resolved));
@@ -300,7 +415,7 @@ export async function measureSite(website, opts = {}) {
           status: res.status(),
           bytes: sizes ? sizes.responseBodySize + sizes.responseHeadersSize : 0,
           fromCache: !!(sizes && sizes.responseBodySize === 0),
-          thirdParty: !res.url().startsWith(base.origin),
+          thirdParty: !isFirstParty(res.url()),
           contentType: headers["content-type"] || null,
         });
       } catch {}
@@ -341,10 +456,17 @@ export async function measureSite(website, opts = {}) {
         };
       });
 
+      // The page may have landed on a different host than the one requested
+      // (www -> bare domain). That host is first party too.
+      try { ownHosts.add(siteHost(new URL(mobile.url()).hostname)); } catch {}
+      for (const r of requests) r.thirdParty = !isFirstParty(r.url);
+
+      // A cookie is first party when its domain is one of the site's own hosts,
+      // a subdomain of one, or the parent domain of one (dot-bounded matches).
       const cookies = await mobileCtx.cookies();
       const thirdPartyCookies = cookies.filter(c => {
-        const d = c.domain.replace(/^\./, "");
-        return !base.hostname.endsWith(d) && !d.endsWith(base.hostname);
+        const d = siteHost(String(c.domain || "").replace(/^\./, ""));
+        return ![...ownHosts].some(o => o === d || o.endsWith(`.${d}`) || d.endsWith(`.${o}`));
       });
 
       const totalBytes = requests.reduce((a, r) => a + (r.bytes || 0), 0);
@@ -415,6 +537,28 @@ export async function measureSite(website, opts = {}) {
       }
       await mobile.evaluate(() => window.scrollTo(0, 0));
 
+      // Count contact routes, headings and text again after the full-page and
+      // scrolled screenshots: content rendered on scroll (lazy sections,
+      // reveal animations) is missing from the count taken at load. A page
+      // measured at "1 click-to-call link on the whole page" showed a visitor
+      // five (26 Nov review). Each count is the larger of the two passes, and
+      // both passes are kept for the verifier.
+      try {
+        const after = await mobile.evaluate(collectDom);
+        const pick = d => ({ telLinks: d.telLinks, whatsapp: d.whatsapp, visibleForms: d.visibleForms, h1Count: d.h1Count, h1Hidden: d.h1Hidden, h2Count: d.h2Count, words: d.words });
+        dom.atLoad = pick(dom);
+        dom.afterScroll = pick(after);
+        for (const k of ["telLinks", "mailLinks", "whatsapp", "stickyTel", "stickyWhatsapp", "h2Count", "words"]) dom[k] = Math.max(dom[k] ?? 0, after[k] ?? 0);
+        if ((after.visibleForms ?? 0) > (dom.visibleForms ?? 0)) Object.assign(dom, { visibleForms: after.visibleForms, forms: after.forms, hasBookingForm: after.hasBookingForm });
+        if ((after.h1Count ?? 0) > (dom.h1Count ?? 0)) Object.assign(dom, { h1Count: after.h1Count, h1s: after.h1s, headlineOffsetPx: after.headlineOffsetPx });
+        dom.h1Hidden = Math.min(dom.h1Hidden ?? 0, after.h1Hidden ?? 0);
+        const fr = await frameRoutes(mobile);
+        dom.inFrames = fr;
+        dom.telLinks += fr.tel; dom.mailLinks = (dom.mailLinks ?? 0) + fr.mail; dom.whatsapp += fr.whatsapp;
+        result.evidence.visibleForms = dom.visibleForms;
+        result.evidence.h1s = dom.h1s;
+      } catch {}
+
       // Section crops, largest first, max 8
       const sectionBoxes = await mobile.evaluate(() => {
         const els = [...document.querySelectorAll("body section, body > div > section, main > section, body article")];
@@ -452,7 +596,18 @@ export async function measureSite(website, opts = {}) {
       const r = await desk.goto(website, { waitUntil: "load", timeout: 90000 });
       deskStatus = r.status();
       await desk.waitForTimeout(1500);
+      // Let lazy images and late requests finish before the capture.
+      await desk.waitForLoadState("networkidle", { timeout: 10000 }).catch(() => {});
+      await desk.waitForFunction(() => [...document.images]
+        .filter(i => { const r = i.getBoundingClientRect(); return r.width > 0 && r.top < innerHeight && r.bottom > 0; })
+        .every(i => i.complete && i.naturalWidth > 0), null, { timeout: 8000 }).catch(() => {});
+      await desk.waitForTimeout(1000);
       const dom = await desk.evaluate(collectDom);
+      try {
+        const fr = await frameRoutes(desk);
+        dom.inFrames = fr;
+        dom.telLinks += fr.tel; dom.mailLinks = (dom.mailLinks ?? 0) + fr.mail; dom.whatsapp += fr.whatsapp;
+      } catch {}
       result.desktop = { status: deskStatus, dom, pageErrors: deskErrors };
       const file = path.join(shotDir, "desktop-fold.png");
       await desk.screenshot({ path: file });
@@ -526,6 +681,11 @@ export async function checkHttp(website, settings) {
     }
     if (p === "/robots.txt") {
       info.disallowAll = /^\s*user-agent:\s*\*/im.test(r.bodyStart) && /^\s*disallow:\s*\/\s*$/im.test(r.bodyStart);
+      // A sitemap declared here may live somewhere other than /sitemap.xml;
+      // without this, a 404 at /sitemap.xml would be reported as "no sitemap".
+      info.sitemaps = r.status === 200 && !/<html[\s>]/i.test(r.bodyStart)
+        ? [...r.bodyStart.matchAll(/^\s*sitemap:\s*(\S+)/gim)].map(x => x[1].slice(0, 300)).slice(0, 5)
+        : [];
     }
     if (p === "/wp-json/") {
       info.isWordpressApi = /"namespaces"|"routes"|wp\/v2/i.test(r.bodyStart);

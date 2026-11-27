@@ -18,7 +18,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { ROOT, readJSON, writeJSON, ensureDir, longDate, isoDate, log, round } from "./util.mjs";
-import { computeScores, buildFacts, deriveFindings, REFERENCE_SCORES } from "./findings.mjs";
+import { computeScores, buildFacts, deriveFindings, adSignals, REFERENCE_SCORES } from "./findings.mjs";
 import { inspectPdf } from "./pdf.mjs";
 import { checkHttp } from "./measure.mjs";
 
@@ -124,6 +124,18 @@ export async function verifyAudit({ auditPath, live = false, fixture = false }) 
     add("facts.consistent", diffs.length === 0, diffs.length ? `${diffs.length} fact(s) differ: ${diffs.slice(0, 4).join("; ")}` : "every printed metric equals the raw measurement");
   }
 
+  // ---------- first-party hosts ----------
+  // The business's own host (with or without www, any subdomain) must never be
+  // reported as an external domain.
+  if (audit.facts?.metric) {
+    const own = String(audit.business?.domain || "").toLowerCase().replace(/^www\./, "");
+    const listed = (audit.facts.metric.thirdPartyDomains || []).filter(d => {
+      const h = String(d).toLowerCase().replace(/^www\./, "");
+      return own && (h === own || h.endsWith(`.${own}`));
+    });
+    add("facts.firstParty", listed.length === 0, listed.length ? `the site's own host is counted as third party: ${listed.join(", ")}` : "the site's own host is not counted as third party");
+  }
+
   // ---------- findings evidence ----------
   if (raw && audit.findings) {
     const all = [...(audit.findings.page1 || []), ...(audit.findings.page2 || [])];
@@ -152,7 +164,47 @@ export async function verifyAudit({ auditPath, live = false, fixture = false }) 
     const copyErrors = [];
     if (Number(audit.facts?.metric?.h1Count) <= 1 && /Competing H1 headings/i.test(text)) copyErrors.push("single or missing H1 labelled competing");
     if (/are losing you enquiries today|It takes half a day|will not start a call or a chat/i.test(text)) copyErrors.push("unsupported outcome or delivery claim");
+    // Added after the 22 November 2026 independent review: sentences that read
+    // as measured but were never measured, or that contradict the measurement.
+    const fm = audit.facts?.metric || {};
+    if (/still looks empty|doing damage you can see|pays back fastest|sit below this point|needs a new design|cheapest thing|Contrast and labelling issues|theme demo paths/i.test(text)) copyErrors.push("unmeasured narrative claim");
+    if (Number(fm.h1Count) <= 1 && /competing slogans|competing H1/i.test(text)) copyErrors.push("competing headlines claimed for a page with at most one H1");
+    if (/\b0\.\d+×[^.;]{0,40}\bover\b/.test(text)) copyErrors.push("a metric inside its threshold described as over it");
+    if (/—\s*\/\s*100/.test(text)) copyErrors.push("a missing score printed as —/100");
+    if (Number(fm.tbtMs) <= 200 && /\bTBT (?:is )?[\d.]+× its threshold/.test(text)) copyErrors.push("TBT inside 200 ms described as over the threshold");
+    if (Number(fm.lcpMs) <= 2500 && /\bLCP (?:is )?[\d.]+× its threshold/.test(text)) copyErrors.push("LCP inside 2.5 s described as over the threshold");
+    if (!(Number(fm.h1Count) > 0) && /first H1 begins|first H1 starts|headline starts/i.test(text)) copyErrors.push("headline position quoted for a page with no H1");
+    if (/retargeting|advertising tag/i.test(text) && !adSignals(audit.facts || {}).length) copyErrors.push("advertising code mentioned but none was observed");
+    if (/third-party code blocked/i.test(text)) copyErrors.push("main-thread blocking attributed to third parties without attribution data");
+    // Added after the 23 November 2026 independent review.
+    if (/\b1 (?:measured )?findings\b/.test(text)) copyErrors.push("a single finding described in the plural");
+    if (/\b1 finding was identified\. Their\b/.test(text)) copyErrors.push("a single finding referred to as 'their'");
+    if (/\b1 link point to\b/.test(text)) copyErrors.push("\"1 link point to\"");
+    if (/Smallest body text:\s*0 px/i.test(text)) copyErrors.push("a 0 px font reported as body text");
+    if (/Contact page reachable/i.test(text) && !audit.facts?.http?.contactReachable) copyErrors.push("contact page called reachable without a measured contact page");
+    if (/unused plugins removed/i.test(text)) copyErrors.push("plugins assumed unused without measurement");
+    if (/Google’s published thresholds against your measured numbers/i.test(text)) copyErrors.push("engineering targets attributed to Google");
+    // Added after the 26 November 2026 independent review.
+    if (/costing 0 ms|\b0 KiB (?:unused JavaScript|of oversized images)/.test(text)) copyErrors.push("a zero cost listed as evidence");
+    if (/\bOnly 0\b/.test(text)) copyErrors.push("\"Only 0\" wording");
+    const longTask = text.match(/Long tasks blocked the main thread for ([\d,]+) ms/);
+    if (longTask && Number(longTask[1].replace(/,/g, "")) < 50) copyErrors.push("a blocking total under one long task (50 ms) listed as evidence");
+    if (/\b(?:WebPage|WebSite|BreadcrumbList|ImageObject|ItemList|FAQPage|Article|BlogPosting) structured data is missing/.test(text)) copyErrors.push("a schema type that cannot hold business fields described as missing them");
+    if (/No dead links/i.test(text)) copyErrors.push("links to # called dead without testing them");
+    if ((Number(fm.stickyTel) > 0 || Number(fm.stickyWhatsapp) > 0) && /sticky “Call \/ (?:Book|WhatsApp)” bar|sticky call bar/i.test(text)) copyErrors.push("a sticky call bar recommended to a page that already keeps call or WhatsApp buttons on screen");
+    if (Number(fm.h1Count) === 0 && Number(fm.h1Hidden) > 0 && /H1 headings detected on the homepage|no H1 headline found|No H1 headline was found/i.test(text)) copyErrors.push("an H1 present in the markup but hidden at 390 px reported as missing");
     add("copy.honesty", copyErrors.length === 0, copyErrors.join("; ") || "known unsupported narrative claims absent");
+    // Counts that depend on the viewport or on scrolling must say so. The
+    // detail records both passes and the desktop count (26 Nov review: a page
+    // measured at one click-to-call link showed a visitor five).
+    {
+      const dom = raw?.mobile?.dom || {};
+      const a = dom.atLoad || {}, s = dom.afterScroll || {};
+      const differs = fm.telLinksDesktop !== null && fm.telLinksDesktop !== undefined && Number(fm.telLinksDesktop) !== Number(fm.telLinks);
+      const said = /on the desktop layout/.test(text);
+      add("facts.viewport", !differs || said,
+        `click-to-call links: ${a.telLinks ?? "?"} at load, ${s.telLinks ?? "?"} after scrolling, ${dom.inFrames?.tel ?? 0} in embedded frames, printed ${fm.telLinks}, desktop ${fm.telLinksDesktop ?? "?"}${differs ? (said ? " (difference stated)" : " (difference not stated)") : ""}; WhatsApp ${a.whatsapp ?? "?"}/${s.whatsapp ?? "?"}; forms ${a.visibleForms ?? "?"}/${s.visibleForms ?? "?"}; visible H1 ${a.h1Count ?? "?"}/${s.h1Count ?? "?"}, hidden ${fm.h1Hidden ?? "?"}, desktop ${fm.h1CountDesktop ?? "?"}; words ${a.words ?? "?"}/${s.words ?? "?"}`);
+    }
     const allowed = new Set(STRUCTURAL);
     flattenNumbers(audit.facts, allowed);
     flattenNumbers(audit.scores, allowed);
@@ -181,7 +233,10 @@ export async function verifyAudit({ auditPath, live = false, fixture = false }) 
 
     // The report must state the measurement date it actually used.
     add("report.date", text.includes(longDate(isoDate(audit.date.iso))), `report states ${longDate(isoDate(audit.date.iso))}`);
-    add("report.ref", text.includes(audit.ref), `audit reference ${audit.ref} printed`);
+    // The reference must be printed and made of letters and digits only:
+    // "SP-AUD-2026-11-26-VF&" reached a client PDF (26 Nov review).
+    const refOk = /^[A-Z]+-[A-Z]+-\d{4}-\d{2}-\d{2}-[A-Z0-9]{1,3}$/.test(String(audit.ref || ""));
+    add("report.ref", text.includes(audit.ref) && refOk, refOk ? `audit reference ${audit.ref} printed` : `audit reference "${audit.ref}" has characters other than letters and digits`);
 
     // Optionally confirm the rendered HTML still matches what was QA'd.
     if (audit.provenance?.htmlHash) {

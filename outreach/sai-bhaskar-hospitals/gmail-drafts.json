@@ -1,0 +1,34 @@
+{
+  "business": "Sai Bhaskar Hospitals",
+  "domain": "saibhaskarhospital.com",
+  "ref": "SP-AUD-2026-11-26-SBH",
+  "to": "bmrhospitalsguntur@gmail.com",
+  "emailSource": "openstreetmap, confirmed on site",
+  "emailFoundOn": "https://saibhaskarhospital.com/",
+  "mailbox": "smartpursuit3@gmail.com",
+  "status": "draft",
+  "neverSendAutomatically": true,
+  "drafts": [
+    {
+      "step": 1,
+      "draftId": "r-527418152289418357",
+      "createdAt": "2026-11-27T12:46:54+05:30",
+      "subject": "Sai Bhaskar Hospitals — what I found testing saibhaskarhospital.com",
+      "attachment": {
+        "filename": "Smart-Pursuit-Audit-Sai-Bhaskar-Hospitals.pdf",
+        "bytes": 2616840
+      },
+      "verified": "read back 2026-11-27: recipient, subject, body and attachment size match; body is only the recipient-facing email"
+    }
+  ],
+  "followUps": {
+    "rule": "Not drafted. Each is due 3 days after the previous email is actually sent, only if there is no reply; draft only when the operator asks, as a reply in this thread.",
+    "ifEmail1SentOn": "2026-11-27",
+    "plannedDates": {
+      "step2": "2026-11-30",
+      "step3": "2026-12-03",
+      "step4": "2026-12-06"
+    }
+  },
+  "sequence": "deliverables/andhra-pradesh/2026-11-26/sai-bhaskar-hospitals/emails/sequence.json"
+}

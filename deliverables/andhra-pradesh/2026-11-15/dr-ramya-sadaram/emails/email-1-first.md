@@ -2,7 +2,7 @@
 
 **To:** dr.ramya@gynaecspecialist.com
 **Subject:** Dr. Ramya Sadaram — what I found testing gynecologistvizag.com
-**Send:** 15 November 2026
+**Send:** 21 November 2026
 **Attachments:** reports/dr-ramya-sadaram/Smart-Pursuit-Audit-Dr.-Ramya-Sadaram.pdf
 
 ---

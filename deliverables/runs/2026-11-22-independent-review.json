@@ -1,0 +1,73 @@
+{
+  "state": "Andhra Pradesh",
+  "reviewDate": "2026-11-22",
+  "run": "45018491348",
+  "runs": {
+    "45012283217": "initial run on 14 CSV leads (target 5): 11 attempted, 5 passed verify, 5 failed, 1 screened out, 3 not attempted once the target was reached. All 5 PDFs held by this review.",
+    "45016840158": "re-audit of the 5 with renderer 1.4.1 pass 1 (first-party host fix, measured-only copy). Verify 25/25; residual cosmetic copy found on re-read.",
+    "45018491348": "re-audit of the 5 with renderer 1.4.1 pass 2. Verify 25/25, layout 10 pages / 0 mm. These are the published files."
+  },
+  "requested": 5,
+  "status": "approved-after-reaudit",
+  "dedupeAuthority": [
+    "data/leads.json",
+    "data/audits.json",
+    "git history of this repository"
+  ],
+  "neverSendAutomatically": true,
+  "businessChecks": "All five confirmed as real, independent local dental clinics in Andhra Pradesh; each To: address is published on the clinic's own website (see 2026-11-22-independent-review.md).",
+  "leads": [
+    {
+      "domain": "mkdentals.com",
+      "approved": true,
+      "reason": "Approved after re-audit 45018491348: verify 25/25, 10-page A4, 0 mm overflow, every page re-read. MK Dental, G.O.'s Colony, Shanthi Nagar, Kakinada (Drs Kona Minakshamma MDS and Burri Kiran Karthik MDS); mkdentalortho@gmail.com published on https://mkdentals.com/. The earlier '0 px down' H1 claim now reads '0 H1 headings detected'; no own-host third-party count. 74/100, 3 supported findings (page 6 states no further findings were invented)."
+    },
+    {
+      "domain": "prathikdental.com",
+      "approved": true,
+      "reason": "Approved after re-audit 45018491348: verify 25/25, 10-page A4, 0 mm overflow, every page re-read. Prathik Dental and Implant Centre, Sai Nagar, Anantapur (Dr Venkata Karthik K, MDS); karthik@prathikdental.com published on https://prathikdental.com/ and /contact-us/. Retargeting and third-party blocking claims removed (0 third-party requests measured); plan rows only target measured gaps. 69/100, 4 supported findings."
+    },
+    {
+      "domain": "thedentalstudiovizag.com",
+      "approved": true,
+      "reason": "Approved after re-audit 45018491348: verify 25/25, 10-page A4, 0 mm overflow, every page re-read. The Dental Studio, Facor Layout, Waltair Uplands, Siripuram, Visakhapatnam; thedentalstudiovizag@gmail.com published on http://thedentalstudiovizag.com/ and /contact. Own host no longer counted as external; 24 third-party requests from 12 external domains (Google Tag Manager, Analytics, DoubleClick observed). 59/100, 5 supported findings."
+    },
+    {
+      "domain": "kalyanidentalclinics.com",
+      "approved": true,
+      "reason": "Approved after re-audit 45018491348: verify 25/25, 10-page A4, 0 mm overflow, every page re-read. Kalyani Dental Clinic, Krishna Nagar, Guntur (Dr Radhika Kalyani, MDS); kalyanispecialitydental16@gmail.com published on https://www.kalyanidentalclinics.com/. Within-target TBT is no longer described as 'over'; the 404 sitemap and retargeting claims are gone. 78/100, 4 supported findings."
+    },
+    {
+      "domain": "praveendental.in",
+      "approved": true,
+      "reason": "Approved after re-audit 45018491348: verify 25/25, 10-page A4, 0 mm overflow, every page re-read. Praveen Dental Care, Tilak Road, Tirupati (Dr Praveen Kumar); info@praveendental.in published on https://praveendental.in/contact-us.php. Shared template overclaims removed ('doing damage', 'still looks empty', 'pays back fastest', red cells within target). 62/100, 4 supported findings."
+    }
+  ],
+  "notPublished": [
+    {
+      "domain": "kamakshisaidental.com",
+      "reason": "Run 45012283217: Lighthouse NO_FCP, so verify failed provenance.tool. Not published; not retried."
+    },
+    {
+      "domain": "rajudental.in",
+      "reason": "Run 45012283217: Lighthouse ERRORED_DOCUMENT_REQUEST, so verify failed provenance.tool. Not published; not retried."
+    },
+    {
+      "domain": "prasadphysio.com",
+      "reason": "Run 45012283217: ERRORED_DOCUMENT_REQUEST plus failed screenshots.real. Not published; not retried."
+    },
+    {
+      "domain": "vennelahospital.com",
+      "reason": "Run 45012283217: Lighthouse ERRORED_DOCUMENT_REQUEST, so verify failed provenance.tool. Not published; not retried."
+    },
+    {
+      "domain": "stardentalhospital.com",
+      "reason": "Run 45012283217: Lighthouse ERRORED_DOCUMENT_REQUEST, so verify failed provenance.tool. Not published; not retried."
+    },
+    {
+      "domain": "ratankrishnadental.com",
+      "reason": "Run 45012283217: screened out, site did not answer (UND_ERR_CONNECT_TIMEOUT). Not audited."
+    }
+  ],
+  "withheldOtherDomains": []
+}

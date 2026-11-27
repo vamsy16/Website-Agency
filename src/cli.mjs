@@ -96,6 +96,24 @@ async function cmdLeads() {
  * (the name inside the assets folder). Live runs fall back to the screenshots
  * captured by measure.mjs.
  */
+/**
+ * Horizontal position (CSS object-position, %) of the laptop crop. The report
+ * shows a 45 x 97 mm strip of the 1440 x 900 desktop screenshot; it starts at
+ * the left edge unless the first visible H1 sits in the first desktop screen
+ * further right, in which case the strip is placed over the headline text
+ * (centred on it when it fits, else starting just before it).
+ */
+function laptopCropX(raw) {
+  const box = raw.desktop?.dom?.headlineTextBox;
+  const vp = raw.desktop?.dom?.viewport || {};
+  const vw = Number(vp.width) || 1440, vh = Number(vp.height) || 900;
+  const stripW = vh * (45 / 97); // source pixels visible in the frame (object-fit: cover)
+  if (!box || !(box.width > 0) || !(box.top < vh) || vw <= stripW) return 0;
+  const left = box.width <= stripW - 48 ? box.left + box.width / 2 - stripW / 2 : box.left - 24;
+  const clamped = Math.max(0, Math.min(vw - stripW, left));
+  return Math.round((clamped / (vw - stripW)) * 1000) / 10;
+}
+
 function buildScreens(raw, assetsDir, auditInputs) {
   const list = [];
   if (Array.isArray(auditInputs.screens) && auditInputs.screens.length) {
@@ -110,7 +128,12 @@ function buildScreens(raw, assetsDir, auditInputs) {
         name: "screen-1",
         sourceFile: first.file,
         label: "Screen 1",
-        caption: `The first thing a visitor sees at 390 px. The first H1 begins ${fmtInt(raw.mobile?.dom?.headlineOffsetPx || 0)} px down.`,
+        // With no H1 the offset is a placeholder 0, not a measurement.
+        caption: Number(raw.mobile?.dom?.h1Count) > 0
+          ? `The first thing a visitor sees at 390 px. The first H1 begins ${fmtInt(raw.mobile?.dom?.headlineOffsetPx || 0)} px down.`
+          : Number(raw.mobile?.dom?.h1Hidden) > 0
+            ? `The first thing a visitor sees at 390 px. No H1 is visible at this width.`
+            : `The first thing a visitor sees at 390 px. No H1 headline was found on the page.`,
       });
     }
     const mid = byName["screen-7"] || byName["sec2"] || byName["mobile-full"];
@@ -118,12 +141,19 @@ function buildScreens(raw, assetsDir, auditInputs) {
       list.push({
         name: mid.name,
         sourceFile: mid.file,
-        label: mid.name === "screen-7" ? "Screen 7" : "Further down",
-        caption: `Still scrolling. ${raw.mobile?.dom?.sections || 0} sections in total; the address, hours and a way to book sit below this point.`,
+        label: mid.name !== "screen-7" ? "Further down" : Number(raw.mobile?.dom?.screens) >= 7 ? "Screen 7" : "Last screen",
+        // Where the address, hours or booking controls sit was never measured,
+        // so the caption does not say.
+        // measure.mjs clamps the screen-7 shot to the last screen on short pages.
+        caption: mid.name !== "screen-7"
+          ? `Further down the same page. Check how far down the address, hours and a way to book appear.`
+          : Number(raw.mobile?.dom?.screens) >= 7
+            ? `Still scrolling: screen 7 of about ${Math.round(Number(raw.mobile?.dom?.screens))}. Check how far down the address, hours and a way to book appear.`
+            : `Still scrolling: the last screen of about ${Math.round(Number(raw.mobile?.dom?.screens) || 0)}. Check how far down the address, hours and a way to book appear.`,
       });
     }
     const desk = byName["desktop-fold"];
-    if (desk) list.push({ name: "desktop-fold", sourceFile: desk.file, label: "The same site on a laptop" });
+    if (desk) list.push({ name: "desktop-fold", sourceFile: desk.file, label: "The same site on a laptop", posX: laptopCropX(raw) });
   }
 
   const screens = [];
@@ -134,7 +164,7 @@ function buildScreens(raw, assetsDir, auditInputs) {
     }
     const name = path.basename(source);
     fs.copyFileSync(source, path.join(assetsDir, name));
-    screens.push({ name: s.name, file: name, src: `assets/${name}`, label: s.label, caption: s.caption });
+    screens.push({ name: s.name, file: name, src: `assets/${name}`, label: s.label, caption: s.caption, ...(Number.isFinite(s.posX) ? { posX: s.posX } : {}) });
   }
   return screens;
 }
@@ -254,7 +284,7 @@ async function runAudit({
   const scoring = computeScores(raw, settings);
   const facts = buildFacts(raw, scoring, business, settings);
   const findings = deriveFindings(raw, facts, business);
-  const also = deriveAlsoItems(raw, facts);
+  const also = deriveAlsoItems(raw, facts, [...findings.page1, ...findings.page2]);
 
   if (!findings.page1.length) throw new AuditError("failed", "No defensible findings were produced from the measurement. Refusing to render a report with nothing to say.");
 

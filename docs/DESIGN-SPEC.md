@@ -135,6 +135,9 @@ Smart Pursuit · Website & conversion audit · EXAMPLE DENTAL CO   05 / 10
 - 6.4 pt `--mut`; business name in `<b>` `--ink2`.
 - Page number tabular, `letter-spacing:.12em`, always `NN / 10`.
 - Hairline `--line2` above, 2.4 mm padding.
+- The footer is absolute at `bottom:8mm`. A block pushed to the bottom of a page
+  with `margin-top:auto` (page 2 band, page 8 pull quote, page 10 sign-off)
+  keeps 16 mm below it, so it never prints over the footer.
 - The label after the agency name comes from `config/settings.json` →
   `agency.auditLabel`. Set it per niche: "conversion" for a plumber is not the
   same sentence as "patient-conversion" for a clinic. Never hard-code it.
@@ -163,7 +166,7 @@ The renderer builds these in this exact order. Page numbers are fixed.
 | 4 | `pagePatientView` | top bar; title; **two phone frames 45 × 97 mm** + one laptop screenshot; page-height facts; 0–20 s load timeline with coral/amber/teal markers |
 | 5 | `pageFindings` 01–03 | top bar; title; three `.find` blocks: severity tag, title, three columns — *What we measured* / *Why it costs you `<subject>`* / *The fix* |
 | 6 | `pageFindings` 04–06 | same, plus **"Also on the list"** — up to six one-line measured items |
-| 7 | `pageBenchmark` | top bar; measured competitor table **or** Google-target table; "where the gap is" cards; source line |
+| 7 | `pageBenchmark` | top bar; measured competitor table **or** targets table (Google's LCP/TBT thresholds plus labelled engineering targets); "where the gap is" cards; source line |
 | 8 | `pagePlan` | top bar; **8-row plan table** (# / change / today / target / effort); two phase cards (rescue, rebuild); closing pull quote |
 | 9 | `pageDirection` | top bar; first-screen principles (4 numbered items); optional demo phone frame; three plan cards — Rescue / Rebuild (navy, recommended) / Care; **no prices** |
 | 10 | `pageNextSteps` | top bar; three-step process; navy CTA with phone + email; method box; "kept honest" paragraph; audit reference; footer |
@@ -186,7 +189,7 @@ class that has no rule — `qa.mjs` does not catch this, but the structural diff
 | Score bar | `.bar` + `.red` / `.amber` | 20 × 1.9 mm track; fill is the score |
 | Overall gauge | `.gauge` | 26 mm SVG ring; arc colour follows the overall band |
 | Phone frame | `.phone .frame` | 45 × 97 mm, 0.6 mm dark border, 4.6 mm radius, notch |
-| Timeline | `.tl` | 34 mm tall; axis at 16 mm; markers coral/teal/amber |
+| Timeline | `.tl` | 34 mm tall; axis at 16 mm; markers coral/teal/amber. Each dot sits at its measured time (only values past 20 s are pinned to the right end); a label that would overlap a neighbour moves below the axis — `timelineLayout()` in `render.mjs` |
 | Finding | `.find` / `.find.med` | 0.9 mm left rule coral/amber; tag + 3-column row |
 | Competitor table | `table.tbl` | client row `.you` gets `--coral-soft` and "— you" |
 | Plan table | `table.plan` | 5 columns; effort right-aligned, bold target |
@@ -224,7 +227,7 @@ class that has no rule — `qa.mjs` does not catch this, but the structural diff
 
 | Missing input | Design response |
 | --- | --- |
-| no competitor benchmark | page 7 becomes the Google-target table, with an honest line saying no competitor was measured |
+| no competitor benchmark | page 7 becomes the targets table — Google's LCP/TBT thresholds and the agency's labelled engineering targets — with an honest line saying no competitor was measured |
 | no demo screenshot | page 9 drops the phone column, the four principles take the full width |
 | no shortcode leak | page 6 "also on the list" loses that item; the cover third stat falls back to the H1 count |
 | no schema | the schema line is omitted, never printed as "none found" |

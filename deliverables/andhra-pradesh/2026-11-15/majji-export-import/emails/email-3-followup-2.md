@@ -2,7 +2,7 @@
 
 **To:** majjiexportimport@gmail.com
 **Subject:** Re: Majji Export Import — what a fixed version looks like
-**Send:** 21 November 2026
+**Send:** 29 November 2026
 **Attachments:** none
 
 ---

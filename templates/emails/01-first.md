@@ -11,10 +11,7 @@ Hi {{contactFirstName}},
 
 I ran a live website audit of {{business.domain}} and put the results in the attached audit ({{pdfPages}} pages, all numbers measured {{audit.dateLong}}).
 
-Two things stood out:
-
-1. {{finding.1.short}}
-2. {{finding.2.short}}
+{{findingsBlock}}
 
 The report includes test measurements, screenshots and suggested fixes. Recommendations and effort estimates are distinguished from measured results.
 

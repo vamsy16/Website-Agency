@@ -2,7 +2,7 @@
 
 **To:** info@winsmiths.com
 **Subject:** Re: Winsmiths — what a fixed version looks like
-**Send:** 21 November 2026
+**Send:** 23 November 2026
 **Attachments:** none
 
 ---

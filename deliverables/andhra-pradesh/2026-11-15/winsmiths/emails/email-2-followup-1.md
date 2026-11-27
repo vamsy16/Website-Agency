@@ -2,7 +2,7 @@
 
 **To:** info@winsmiths.com
 **Subject:** Re: Winsmiths — what I found testing winsmiths.com
-**Send:** 18 November 2026
+**Send:** 19 November 2026
 **Attachments:** none
 
 ---

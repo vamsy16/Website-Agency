@@ -2,7 +2,7 @@
 
 **To:** info@srisaipvrhospitals.in
 **Subject:** Closing the loop — Sri Sai P.V.R. Hospitals
-**Send:** 24 November 2026
+**Send:** 2 December 2026
 **Attachments:** none
 
 ---

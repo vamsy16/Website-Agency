@@ -10,7 +10,9 @@
     3
   ],
   "to": "info@bhalajigroup.com",
-  "status": "draft",
+  "status": "stopped",
+  "stoppedAt": "2026-11-22T10:51:42+05:30",
+  "stoppedReason": "bounced: info@bhalajigroup.com — address not found (16 November, and again for the 22 November follow-up)",
   "neverSendAutomatically": true,
   "note": "Dates shift if the operator sends email 1 on a different day — recompute with `sequence --send-date YYYY-MM-DD`.",
   "emails": [
@@ -25,9 +27,9 @@
       "words": 137,
       "scheduledFor": "2026-11-16",
       "scheduledForLong": "16 November 2026",
-      "status": "draft",
-      "approvedBy": null,
-      "sentAt": null,
+      "status": "sent",
+      "approvedBy": "operator",
+      "sentAt": "2026-11-16T12:42:53+05:30",
       "file": "outreach/sree-bhalaji-industries-private-limited/email-1-first.md"
     },
     {
@@ -39,9 +41,9 @@
       "words": 113,
       "scheduledFor": "2026-11-19",
       "scheduledForLong": "19 November 2026",
-      "status": "draft",
-      "approvedBy": null,
-      "sentAt": null,
+      "status": "sent",
+      "approvedBy": "operator",
+      "sentAt": "2026-11-22T10:51:00+05:30",
       "file": "outreach/sree-bhalaji-industries-private-limited/email-2-followup-1.md"
     },
     {
@@ -53,7 +55,7 @@
       "words": 121,
       "scheduledFor": "2026-11-22",
       "scheduledForLong": "22 November 2026",
-      "status": "draft",
+      "status": "cancelled",
       "approvedBy": null,
       "sentAt": null,
       "file": "outreach/sree-bhalaji-industries-private-limited/email-3-followup-2.md"
@@ -67,7 +69,7 @@
       "words": 98,
       "scheduledFor": "2026-11-25",
       "scheduledForLong": "25 November 2026",
-      "status": "draft",
+      "status": "cancelled",
       "approvedBy": null,
       "sentAt": null,
       "file": "outreach/sree-bhalaji-industries-private-limited/email-4-followup-3-final.md"

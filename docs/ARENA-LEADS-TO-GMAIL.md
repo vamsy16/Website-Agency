@@ -97,9 +97,10 @@ attach it to Gmail or count it as a completed audit. Fix a genuine data/runtime
 problem and recheck, or move on and record the failure.
 
 Open each accepted PDF with the file-viewer tool. Do not give bare repo-relative
-URLs as though they were public web links. Keep client reports, raw measurements,
-prospect contact data, and outreach content out of Git. Do not push those artifacts
-to GitHub.
+URLs as though they were public web links. Raw measurements stay out of Git; the workflow keeps them encrypted in
+`results/`. Verified audit PDFs, their email drafts, `sequence.json` and the Gmail draft
+records are committed (operator instruction, 27 November 2026: keep everything in
+GitHub). The repository is public, so commit nothing a prospect should not see.
 
 ### 5. Prepare truthful outreach
 
@@ -136,28 +137,41 @@ For each accepted audit with a verified public email and no suppression:
    support. Check the file size against the tool's limits first. If attachment
    upload fails, report the draft as incomplete; never substitute a local path or
    pretend the PDF is attached.
-3. Create three separate follow-up Gmail drafts, unless a matching step already
-   exists. Do not claim an unsent initial email has been delivered.
-4. Read the created drafts back and verify recipient, subject, body, planned date,
-   outreach step, and the initial PDF attachment.
+3. Do not create follow-up Gmail drafts. Only the first email goes into Gmail.
+   The follow-ups are sent 3, 6 and 9 days after it, and only if there is no
+   reply: record those dates in `gmail-drafts.json` and in the report to the
+   operator. Draft a follow-up only when the operator asks for it on or after
+   its date, after checking the thread for a reply or opt-out, as a reply in the
+   same thread. Each follow-up is due 3 days after the previous email actually
+   went out: before reporting dues or drafting, record every send in Gmail's
+   Sent folder in the deliverable's `sequence.json` (`sentAt` = the Sent copy's
+   time, IST) with `node tools/followups.mjs --record <file>`, record bounces,
+   replies and opt-outs as stops, and take the dates from its output. Do not
+   claim an unsent initial email has been delivered.
+4. Read the created draft back and verify recipient, subject, body and the PDF
+   attachment, and that the body is only the recipient-facing email.
 
-At the top of each Gmail draft include an operator-only note:
+Every Gmail draft must be ready to send exactly as it is. Drafts may be sent
+unedited, in bulk or by a tool, so anything in a draft can reach the prospect.
+Put nothing in a draft that the recipient should not read: no operator notes,
+planned dates, repository or file links, or reminders to edit before sending.
+Keep those details in `gmail-drafts.json`, `sequence.json` and the report.
 
-```text
-OPERATOR NOTE — [business domain] / [audit reference] / step [1-4].
-Planned date: YYYY-MM-DD. Remove this note before sending.
-```
-
-Keep the note separate from the recipient-facing message. Save returned Gmail
-draft IDs, recipients, email sources, steps, and planned dates in
+Save returned Gmail draft IDs, recipients, email sources, steps, and planned dates in
 `outreach/<business>/gmail-drafts.json`, alongside the existing `sequence.json`.
 Preserve `status: "draft"` and `neverSendAutomatically: true`. These files contain
-prospect data and must remain git-ignored.
+prospect data. They are committed, like the rest of the work (operator
+instruction, 27 November 2026: keep everything in GitHub so that another agent
+misses nothing). Also record each draft on its step in the deliverable's
+`sequence.json` as `gmailDraft` (mailbox, draft ID, creation time, attachment name
+and size); the next run's duplicate-draft check starts from it. Commit and push
+before the session ends: the sandbox can be reset to an old snapshot, and anything
+not pushed is lost.
 
 Never call `send_draft`, `send_message`, or any other send operation. Do not create
 scheduled sends or calendar reminders. The available Gmail draft tools create
-drafts; a planned date in a note is **not** a scheduled email and will not trigger
-automatically. A human must review, remove operator notes, and decide what to send.
+drafts; a planned date is **not** a scheduled email and will not trigger
+automatically. A human reviews the drafts and decides what to send and when.
 
 ### 7. Record results and report honestly
 

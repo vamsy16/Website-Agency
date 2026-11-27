@@ -1,0 +1,25 @@
+{
+  "name": "Praveen Dental Care",
+  "domain": "praveendental.in",
+  "city": "Tirupati",
+  "state": "Andhra Pradesh",
+  "email": "info@praveendental.in",
+  "phone": "+91 98852 92472",
+  "ref": "SP-AUD-2026-11-22-PDC",
+  "date": "2026-11-22",
+  "overall": 62,
+  "scores": {
+    "speed": 4,
+    "mobile": 6,
+    "conversion": 7,
+    "design": 8,
+    "seo": 8,
+    "overall": 62
+  },
+  "pdf": "Smart-Pursuit-Audit-Praveen-Dental-Care.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://praveendental.in/",
+    "checkedAt": "2026-11-22"
+  }
+}

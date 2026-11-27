@@ -1,0 +1,25 @@
+{
+  "name": "Kalyani Dental Clinic",
+  "domain": "kalyanidentalclinics.com",
+  "city": "Guntur",
+  "state": "Andhra Pradesh",
+  "email": "kalyanispecialitydental16@gmail.com",
+  "phone": "+91 90004 77299",
+  "ref": "SP-AUD-2026-11-22-KDC",
+  "date": "2026-11-22",
+  "overall": 78,
+  "scores": {
+    "speed": 5,
+    "mobile": 7,
+    "conversion": 10,
+    "design": 9,
+    "seo": 10,
+    "overall": 78
+  },
+  "pdf": "Smart-Pursuit-Audit-Kalyani-Dental-Clinic.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://www.kalyanidentalclinics.com/",
+    "checkedAt": "2026-11-22"
+  }
+}

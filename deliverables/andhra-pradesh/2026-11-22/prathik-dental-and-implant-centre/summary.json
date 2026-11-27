@@ -1,0 +1,25 @@
+{
+  "name": "Prathik Dental and Implant Centre",
+  "domain": "prathikdental.com",
+  "city": "Anantapur",
+  "state": "Andhra Pradesh",
+  "email": "karthik@prathikdental.com",
+  "phone": "+91 80967 01596",
+  "ref": "SP-AUD-2026-11-22-PDA",
+  "date": "2026-11-22",
+  "overall": 69,
+  "scores": {
+    "speed": 5,
+    "mobile": 4,
+    "conversion": 10,
+    "design": 8,
+    "seo": 9,
+    "overall": 69
+  },
+  "pdf": "Smart-Pursuit-Audit-Prathik-Dental-and-Implant-Centre.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://prathikdental.com/",
+    "checkedAt": "2026-11-22"
+  }
+}

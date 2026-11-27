@@ -1,0 +1,34 @@
+{
+  "business": "Vignata Fertility & IVF Center",
+  "domain": "vignataivfcenter.com",
+  "ref": "SP-AUD-2026-11-26-VFI",
+  "to": "vignatafertilityandivfcentre@gmail.com",
+  "emailSource": "openstreetmap, confirmed on site",
+  "emailFoundOn": "https://vignataivfcenter.com/",
+  "mailbox": "smartpursuit3@gmail.com",
+  "status": "draft",
+  "neverSendAutomatically": true,
+  "drafts": [
+    {
+      "step": 1,
+      "draftId": "r2592049748550116916",
+      "createdAt": "2026-11-27T12:46:50+05:30",
+      "subject": "Vignata Fertility & IVF Center — what I found testing vignataivfcenter.com",
+      "attachment": {
+        "filename": "Smart-Pursuit-Audit-Vignata-Fertility-IVF-Center.pdf",
+        "bytes": 2742144
+      },
+      "verified": "read back 2026-11-27: recipient, subject, body and attachment size match; body is only the recipient-facing email"
+    }
+  ],
+  "followUps": {
+    "rule": "Not drafted. Each is due 3 days after the previous email is actually sent, only if there is no reply; draft only when the operator asks, as a reply in this thread.",
+    "ifEmail1SentOn": "2026-11-27",
+    "plannedDates": {
+      "step2": "2026-11-30",
+      "step3": "2026-12-03",
+      "step4": "2026-12-06"
+    }
+  },
+  "sequence": "deliverables/andhra-pradesh/2026-11-26/vignata-fertility-and-ivf-center/emails/sequence.json"
+}

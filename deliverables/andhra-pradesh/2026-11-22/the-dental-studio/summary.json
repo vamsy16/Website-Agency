@@ -1,0 +1,25 @@
+{
+  "name": "The Dental Studio",
+  "domain": "thedentalstudiovizag.com",
+  "city": "Visakhapatnam",
+  "state": "Andhra Pradesh",
+  "email": "thedentalstudiovizag@gmail.com",
+  "phone": "+91 63006 00053",
+  "ref": "SP-AUD-2026-11-22-TDS",
+  "date": "2026-11-22",
+  "overall": 59,
+  "scores": {
+    "speed": 3,
+    "mobile": 5,
+    "conversion": 8,
+    "design": 8,
+    "seo": 8,
+    "overall": 59
+  },
+  "pdf": "Smart-Pursuit-Audit-The-Dental-Studio.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on http://thedentalstudiovizag.com/",
+    "checkedAt": "2026-11-22"
+  }
+}

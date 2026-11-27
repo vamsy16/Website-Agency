@@ -92,12 +92,20 @@ walk(OUT);
 rows.sort((a, b) => (b.date || "").localeCompare(a.date || "") || (a.overall ?? 0) - (b.overall ?? 0));
 
 // Independent review is an additional fail-closed gate, not an override of verify.json.
-const independentReviewFile = path.join(OUT, "runs", "2026-11-21-five-leads-review.json");
-const independentReview = fs.existsSync(independentReviewFile) ? readJSON(independentReviewFile) : null;
+// Every dated manifest in deliverables/runs/ counts (YYYY-MM-DD-…review.json). The
+// gate is strictly additive: a hold in ANY manifest holds the domain, and a later
+// approval does not lift an earlier hold — edit that manifest to lift it.
+const RUNS = path.join(OUT, "runs");
+const independentReviews = (fs.existsSync(RUNS) ? fs.readdirSync(RUNS) : [])
+  .filter(f => /^\d{4}-\d{2}-\d{2}-.*review\.json$/.test(f))
+  .sort()
+  .map(f => ({ file: f, ...readJSON(path.join(RUNS, f)) }));
 function verdictFor(r) {
-  const review = independentReview?.leads?.find(l => l.domain === r.domain);
-  if (review && review.approved !== true) return "❌ hold — independent review; see runs/2026-11-21-five-leads-review.json";
-  if (independentReview?.withheldOtherDomains?.includes(r.domain)) return "❌ hold — excluded by independent review";
+  for (const review of independentReviews) {
+    const lead = review.leads?.find(l => l.domain === r.domain);
+    if (lead && lead.approved !== true) return `❌ hold — independent review; see runs/${review.file}`;
+    if (review.withheldOtherDomains?.includes(r.domain)) return `❌ hold — excluded by independent review (runs/${review.file})`;
+  }
   const lead = LEADS.find(l => l.domain === r.domain);
   const np = lead ? notAProspect(lead) : null;
   if (np) return `❌ no — ${np.kind}: ${np.reason}`;

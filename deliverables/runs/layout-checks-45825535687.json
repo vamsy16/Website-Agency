@@ -1,0 +1,358 @@
+[
+  {
+    "slug": "deepthi-fertility-centre",
+    "layout": {
+      "ok": true,
+      "failures": [],
+      "pageCount": 10,
+      "worstOverflowMm": 0,
+      "pages": [
+        {
+          "page": 1,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 2,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 3,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 4,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 3
+        },
+        {
+          "page": 5,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 6,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 7,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 8,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 9,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 10,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        }
+      ],
+      "fontsLoaded": [
+        {
+          "name": "Instrument Serif",
+          "loaded": true
+        },
+        {
+          "name": "Inter",
+          "loaded": true
+        }
+      ],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "checkedAt": "2026-11-26T13:30:07.332Z"
+    },
+    "verification": {
+      "ok": true,
+      "blockers": 0,
+      "failedChecks": []
+    }
+  },
+  {
+    "slug": "dr-k-hemanth-kumar-neurologist",
+    "layout": {
+      "ok": true,
+      "failures": [],
+      "pageCount": 10,
+      "worstOverflowMm": 0,
+      "pages": [
+        {
+          "page": 1,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 2,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 3,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 4,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 3
+        },
+        {
+          "page": 5,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 6,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 7,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 8,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 9,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 10,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        }
+      ],
+      "fontsLoaded": [
+        {
+          "name": "Instrument Serif",
+          "loaded": true
+        },
+        {
+          "name": "Inter",
+          "loaded": true
+        }
+      ],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "checkedAt": "2026-11-26T13:23:53.105Z"
+    },
+    "verification": {
+      "ok": true,
+      "blockers": 0,
+      "failedChecks": []
+    }
+  },
+  {
+    "slug": "sai-bhaskar-hospitals",
+    "layout": {
+      "ok": true,
+      "failures": [],
+      "pageCount": 10,
+      "worstOverflowMm": 0,
+      "pages": [
+        {
+          "page": 1,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 2,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 3,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 4,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 3
+        },
+        {
+          "page": 5,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 6,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 7,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 8,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 9,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 10,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        }
+      ],
+      "fontsLoaded": [
+        {
+          "name": "Instrument Serif",
+          "loaded": true
+        },
+        {
+          "name": "Inter",
+          "loaded": true
+        }
+      ],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "checkedAt": "2026-11-26T13:31:45.283Z"
+    },
+    "verification": {
+      "ok": true,
+      "blockers": 0,
+      "failedChecks": []
+    }
+  },
+  {
+    "slug": "vignata-fertility-and-ivf-center",
+    "layout": {
+      "ok": true,
+      "failures": [],
+      "pageCount": 10,
+      "worstOverflowMm": 0,
+      "pages": [
+        {
+          "page": 1,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 2,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 3,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 4,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 3
+        },
+        {
+          "page": 5,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 6,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 7,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 8,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 9,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 10,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        }
+      ],
+      "fontsLoaded": [
+        {
+          "name": "Instrument Serif",
+          "loaded": true
+        },
+        {
+          "name": "Inter",
+          "loaded": true
+        }
+      ],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "checkedAt": "2026-11-26T13:24:45.481Z"
+    },
+    "verification": {
+      "ok": true,
+      "blockers": 0,
+      "failedChecks": []
+    }
+  }
+]

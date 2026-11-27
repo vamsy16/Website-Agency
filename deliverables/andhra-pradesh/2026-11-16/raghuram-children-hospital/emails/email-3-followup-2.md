@@ -2,7 +2,7 @@
 
 **To:** info@raghuramhospitals.com
 **Subject:** Re: Raghuram Children Hospital — what a fixed version looks like
-**Send:** 22 November 2026
+**Send:** 23 November 2026
 **Attachments:** none
 
 ---

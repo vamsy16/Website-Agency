@@ -2,7 +2,7 @@
 
 **To:** krishnaivf@krishnaivf.com
 **Subject:** Re: Krishna Hospital — what I found testing krishnaivf.com
-**Send:** 18 November 2026
+**Send:** 24 November 2026
 **Attachments:** none
 
 ---

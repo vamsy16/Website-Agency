@@ -172,7 +172,13 @@ export function recordAudit({ website, name, ref, pdfPath, auditPath, reportPath
     files: { pdf: pdfPath, audit: auditPath, html: reportPath },
     fingerprint: hash({ domain, ref, scores }),
   };
-  const idx = db.audits.findIndex(a => a.ref === ref);
+  // Same ref, or the same domain audited on the same date: a same-day re-audit
+  // replaces its row even when the ref's letters changed (1.4.3 corrected
+  // "VF&" to "VFI" and left a second Vignata row; 26 Nov review). An audit on
+  // a later date still gets its own row.
+  const dateOf = r => (String(r || "").match(/\d{4}-\d{2}-\d{2}/) || [])[0] || null;
+  let idx = db.audits.findIndex(a => a.ref === ref);
+  if (idx === -1 && dateOf(ref)) idx = db.audits.findIndex(a => a.domain === domain && dateOf(a.ref) === dateOf(ref));
   if (idx === -1) db.audits.push(row);
   else db.audits[idx] = { ...db.audits[idx], ...row };
   saveAudits(db);

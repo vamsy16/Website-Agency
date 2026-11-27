@@ -208,7 +208,15 @@ export async function screenSite(lead, { maxPages = 4, browser = true } = {}) {
 
 /** Plain HTTP: homepage plus up to three contact/about pages. */
 async function fetchPages(lead, maxPages) {
-  const home = await fetchPage(lead.website);
+  let home = await fetchPage(lead.website);
+  // Network errors (no HTTP status) are retried twice after a pause: a site
+  // that answered the email re-check timed out at the re-audit screen minutes
+  // later, in two runs in a row (Shravani ENT, 26 Nov). HTTP errors are final.
+  for (const waitMs of [15000, 45000]) {
+    if (home.ok || home.status) break;
+    await new Promise(r => setTimeout(r, waitMs));
+    home = await fetchPage(lead.website);
+  }
   if (!home.ok) return { home, pages: [] };
   const pages = [home];
   const links = contactLinks(home.body, home.url);

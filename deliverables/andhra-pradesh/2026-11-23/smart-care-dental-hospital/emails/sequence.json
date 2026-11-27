@@ -1,0 +1,76 @@
+{
+  "business": "Smart Care Dental Hospital",
+  "domain": "smartcaredentalhospital.com",
+  "ref": "SP-AUD-2026-11-23-SCD",
+  "createdAt": "2026-11-23T02:05:02.055Z",
+  "sendDate": "2026-11-23",
+  "cadenceDays": [
+    3,
+    3,
+    3
+  ],
+  "to": "smartcaredentalhospital@gmail.com",
+  "status": "active",
+  "neverSendAutomatically": true,
+  "note": "Dates follow what was actually sent: each email is due cadenceDays after the previous one went out (sentAt, IST), and only if there is no reply. A step after one not yet sent assumes that one goes out on its due date or today, whichever is later. Recompute with `node tools/followups.mjs --apply`.",
+  "emails": [
+    {
+      "step": 1,
+      "id": "first",
+      "purpose": "deliver the audit, earn a reply",
+      "attachments": [
+        "reports/smart-care-dental-hospital/Smart-Pursuit-Audit-Smart-Care-Dental-Hospital.pdf"
+      ],
+      "subject": "Smart Care Dental Hospital — what I found testing smartcaredentalhospital.com",
+      "words": 109,
+      "scheduledFor": "2026-11-23",
+      "scheduledForLong": "23 November 2026",
+      "status": "sent",
+      "approvedBy": "operator",
+      "sentAt": "2026-11-23T08:09:34+05:30",
+      "file": "outreach/smart-care-dental-hospital/email-1-first.md"
+    },
+    {
+      "step": 2,
+      "id": "followup-1",
+      "purpose": "turn the top measured finding into a money argument",
+      "attachments": [],
+      "subject": "Re: Smart Care Dental Hospital — what I found testing smartcaredentalhospital.com",
+      "words": 101,
+      "scheduledFor": "2026-11-26",
+      "scheduledForLong": "26 November 2026",
+      "status": "sent",
+      "approvedBy": "operator",
+      "sentAt": "2026-11-26T17:03:00+05:30",
+      "file": "outreach/smart-care-dental-hospital/email-2-followup-1.md"
+    },
+    {
+      "step": 3,
+      "id": "followup-2",
+      "purpose": "make the next step concrete without promising an outcome",
+      "attachments": [],
+      "subject": "Re: Smart Care Dental Hospital — the next step, if useful",
+      "words": 106,
+      "scheduledFor": "2026-11-29",
+      "scheduledForLong": "29 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/smart-care-dental-hospital/email-3-followup-2.md"
+    },
+    {
+      "step": 4,
+      "id": "followup-3-final",
+      "purpose": "final mail, leave the door open, no pressure",
+      "attachments": [],
+      "subject": "Closing the loop — Smart Care Dental Hospital",
+      "words": 98,
+      "scheduledFor": "2026-12-02",
+      "scheduledForLong": "2 December 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/smart-care-dental-hospital/email-4-followup-3-final.md"
+    }
+  ]
+}

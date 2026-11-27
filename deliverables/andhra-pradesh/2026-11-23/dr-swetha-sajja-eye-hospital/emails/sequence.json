@@ -1,0 +1,76 @@
+{
+  "business": "Dr Swetha Sajja Eye Hospital",
+  "domain": "drswethasajja.com",
+  "ref": "SP-AUD-2026-11-23-DSS",
+  "createdAt": "2026-11-23T02:27:33.210Z",
+  "sendDate": "2026-11-23",
+  "cadenceDays": [
+    3,
+    3,
+    3
+  ],
+  "to": "sunetraeyecare2020@gmail.com",
+  "status": "active",
+  "neverSendAutomatically": true,
+  "note": "Dates follow what was actually sent: each email is due cadenceDays after the previous one went out (sentAt, IST), and only if there is no reply. A step after one not yet sent assumes that one goes out on its due date or today, whichever is later. Recompute with `node tools/followups.mjs --apply`.",
+  "emails": [
+    {
+      "step": 1,
+      "id": "first",
+      "purpose": "deliver the audit, earn a reply",
+      "attachments": [
+        "reports/dr-swetha-sajja-eye-hospital/Smart-Pursuit-Audit-Dr-Swetha-Sajja-Eye-Hospital.pdf"
+      ],
+      "subject": "Dr Swetha Sajja Eye Hospital — what I found testing drswethasajja.com",
+      "words": 93,
+      "scheduledFor": "2026-11-23",
+      "scheduledForLong": "23 November 2026",
+      "status": "sent",
+      "approvedBy": "operator",
+      "sentAt": "2026-11-23T08:21:00+05:30",
+      "file": "outreach/dr-swetha-sajja-eye-hospital/email-1-first.md"
+    },
+    {
+      "step": 2,
+      "id": "followup-1",
+      "purpose": "turn the top measured finding into a money argument",
+      "attachments": [],
+      "subject": "Re: Dr Swetha Sajja Eye Hospital — what I found testing drswethasajja.com",
+      "words": 100,
+      "scheduledFor": "2026-11-26",
+      "scheduledForLong": "26 November 2026",
+      "status": "sent",
+      "approvedBy": "operator",
+      "sentAt": "2026-11-26T17:16:00+05:30",
+      "file": "outreach/dr-swetha-sajja-eye-hospital/email-2-followup-1.md"
+    },
+    {
+      "step": 3,
+      "id": "followup-2",
+      "purpose": "make the next step concrete without promising an outcome",
+      "attachments": [],
+      "subject": "Re: Dr Swetha Sajja Eye Hospital — the next step, if useful",
+      "words": 106,
+      "scheduledFor": "2026-11-29",
+      "scheduledForLong": "29 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/dr-swetha-sajja-eye-hospital/email-3-followup-2.md"
+    },
+    {
+      "step": 4,
+      "id": "followup-3-final",
+      "purpose": "final mail, leave the door open, no pressure",
+      "attachments": [],
+      "subject": "Closing the loop — Dr Swetha Sajja Eye Hospital",
+      "words": 98,
+      "scheduledFor": "2026-12-02",
+      "scheduledForLong": "2 December 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/dr-swetha-sajja-eye-hospital/email-4-followup-3-final.md"
+    }
+  ]
+}

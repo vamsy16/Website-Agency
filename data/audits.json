@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T09:43:08.978Z",
+  "updatedAt": "2026-11-26T14:27:17.438Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -1081,6 +1081,366 @@
         "html": "reports/amrutha-heart-hospital/report.html"
       },
       "fingerprint": "c9c967408227a2a7"
+    },
+    {
+      "domain": "mkdentals.com",
+      "name": "MK Dental",
+      "ref": "SP-AUD-2026-11-22-MD",
+      "generatedAt": "2026-11-22T11:46:41.656Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 3,
+        "mobile": 8,
+        "conversion": 10,
+        "design": 10,
+        "seo": 9,
+        "overall": 74
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1124545,
+      "files": {
+        "pdf": "reports/mk-dental/Smart-Pursuit-Audit-MK-Dental.pdf",
+        "audit": "reports/mk-dental/audit.json",
+        "html": "reports/mk-dental/report.html"
+      },
+      "fingerprint": "84fd224a3ee1fce2"
+    },
+    {
+      "domain": "prathikdental.com",
+      "name": "Prathik Dental and Implant Centre",
+      "ref": "SP-AUD-2026-11-22-PDA",
+      "generatedAt": "2026-11-22T11:47:52.305Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 4,
+        "conversion": 10,
+        "design": 8,
+        "seo": 9,
+        "overall": 69
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2041498,
+      "files": {
+        "pdf": "reports/prathik-dental-and-implant-centre/Smart-Pursuit-Audit-Prathik-Dental-and-Implant-Centre.pdf",
+        "audit": "reports/prathik-dental-and-implant-centre/audit.json",
+        "html": "reports/prathik-dental-and-implant-centre/report.html"
+      },
+      "fingerprint": "630cf7dc21b40625"
+    },
+    {
+      "domain": "thedentalstudiovizag.com",
+      "name": "The Dental Studio",
+      "ref": "SP-AUD-2026-11-22-TDS",
+      "generatedAt": "2026-11-22T11:53:10.459Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 3,
+        "mobile": 5,
+        "conversion": 8,
+        "design": 8,
+        "seo": 8,
+        "overall": 59
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2546180,
+      "files": {
+        "pdf": "reports/the-dental-studio/Smart-Pursuit-Audit-The-Dental-Studio.pdf",
+        "audit": "reports/the-dental-studio/audit.json",
+        "html": "reports/the-dental-studio/report.html"
+      },
+      "fingerprint": "119bb6d43329f4d1"
+    },
+    {
+      "domain": "kalyanidentalclinics.com",
+      "name": "Kalyani Dental Clinic",
+      "ref": "SP-AUD-2026-11-22-KDC",
+      "generatedAt": "2026-11-22T11:54:09.792Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 7,
+        "conversion": 10,
+        "design": 9,
+        "seo": 10,
+        "overall": 78
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1992238,
+      "files": {
+        "pdf": "reports/kalyani-dental-clinic/Smart-Pursuit-Audit-Kalyani-Dental-Clinic.pdf",
+        "audit": "reports/kalyani-dental-clinic/audit.json",
+        "html": "reports/kalyani-dental-clinic/report.html"
+      },
+      "fingerprint": "9e7d6c7a4527fff5"
+    },
+    {
+      "domain": "praveendental.in",
+      "name": "Praveen Dental Care",
+      "ref": "SP-AUD-2026-11-22-PDC",
+      "generatedAt": "2026-11-22T11:55:27.725Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 4,
+        "mobile": 6,
+        "conversion": 7,
+        "design": 8,
+        "seo": 8,
+        "overall": 62
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1907767,
+      "files": {
+        "pdf": "reports/praveen-dental-care/Smart-Pursuit-Audit-Praveen-Dental-Care.pdf",
+        "audit": "reports/praveen-dental-care/audit.json",
+        "html": "reports/praveen-dental-care/report.html"
+      },
+      "fingerprint": "d0647308880a3d01"
+    },
+    {
+      "domain": "smartcaredentalhospital.com",
+      "name": "Smart Care Dental Hospital",
+      "ref": "SP-AUD-2026-11-23-SCD",
+      "generatedAt": "2026-11-23T02:05:02.048Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 9,
+        "mobile": 8,
+        "conversion": 7,
+        "design": 10,
+        "seo": 9,
+        "overall": 85
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1015564,
+      "files": {
+        "pdf": "reports/smart-care-dental-hospital/Smart-Pursuit-Audit-Smart-Care-Dental-Hospital.pdf",
+        "audit": "reports/smart-care-dental-hospital/audit.json",
+        "html": "reports/smart-care-dental-hospital/report.html"
+      },
+      "fingerprint": "2b9e63b124cfa329"
+    },
+    {
+      "domain": "drswethasajja.com",
+      "name": "Dr Swetha Sajja Eye Hospital",
+      "ref": "SP-AUD-2026-11-23-DSS",
+      "generatedAt": "2026-11-23T02:27:33.198Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 7,
+        "mobile": 6,
+        "conversion": 10,
+        "design": 10,
+        "seo": 8,
+        "overall": 81
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2565552,
+      "files": {
+        "pdf": "reports/dr-swetha-sajja-eye-hospital/Smart-Pursuit-Audit-Dr-Swetha-Sajja-Eye-Hospital.pdf",
+        "audit": "reports/dr-swetha-sajja-eye-hospital/audit.json",
+        "html": "reports/dr-swetha-sajja-eye-hospital/report.html"
+      },
+      "fingerprint": "c47650cdd417ff97"
+    },
+    {
+      "domain": "mjnaiduhospitals.com",
+      "name": "MJ Naidu Super Speciality Hospital",
+      "ref": "SP-AUD-2026-11-23-MNS",
+      "generatedAt": "2026-11-23T02:07:14.385Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 2,
+        "mobile": 5,
+        "conversion": 8,
+        "design": 8,
+        "seo": 8,
+        "overall": 56
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2595376,
+      "files": {
+        "pdf": "reports/mj-naidu-super-speciality-hospital/Smart-Pursuit-Audit-MJ-Naidu-Super-Speciality-Hospital.pdf",
+        "audit": "reports/mj-naidu-super-speciality-hospital/audit.json",
+        "html": "reports/mj-naidu-super-speciality-hospital/report.html"
+      },
+      "fingerprint": "dc17977389bae447"
+    },
+    {
+      "domain": "sasyafertilitycenter.com",
+      "name": "Sasya Fertility Centre",
+      "ref": "SP-AUD-2026-11-23-SFC",
+      "generatedAt": "2026-11-23T02:08:19.012Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 5,
+        "conversion": 10,
+        "design": 10,
+        "seo": 10,
+        "overall": 75
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2536206,
+      "files": {
+        "pdf": "reports/sasya-fertility-centre/Smart-Pursuit-Audit-Sasya-Fertility-Centre.pdf",
+        "audit": "reports/sasya-fertility-centre/audit.json",
+        "html": "reports/sasya-fertility-centre/report.html"
+      },
+      "fingerprint": "92a2c657302ab95d"
+    },
+    {
+      "domain": "ravidentalcare.in",
+      "name": "Ravi Dental Care and Implant Center",
+      "ref": "SP-AUD-2026-11-23-RDC",
+      "generatedAt": "2026-11-23T02:09:28.565Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 4,
+        "mobile": 8,
+        "conversion": 10,
+        "design": 8,
+        "seo": 9,
+        "overall": 74
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1370235,
+      "files": {
+        "pdf": "reports/ravi-dental-care-and-implant-center/Smart-Pursuit-Audit-Ravi-Dental-Care-and-Implant-Center.pdf",
+        "audit": "reports/ravi-dental-care-and-implant-center/audit.json",
+        "html": "reports/ravi-dental-care-and-implant-center/report.html"
+      },
+      "fingerprint": "1a7e855a2769dc0e"
+    },
+    {
+      "domain": "shravanienthospital.com",
+      "name": "Shravani ENT Hospital",
+      "ref": "SP-AUD-2026-11-26-SEH",
+      "generatedAt": "2026-11-26T14:08:32.531Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 7,
+        "conversion": 8,
+        "design": 10,
+        "seo": 9,
+        "overall": 73
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1571307,
+      "files": {
+        "pdf": "reports/shravani-ent-hospital/Smart-Pursuit-Audit-Shravani-ENT-Hospital.pdf",
+        "audit": "reports/shravani-ent-hospital/audit.json",
+        "html": "reports/shravani-ent-hospital/report.html"
+      },
+      "fingerprint": "2e20ba2836db990b"
+    },
+    {
+      "domain": "neurologistinkurnool.com",
+      "name": "Dr. K. Hemanth Kumar Neurologist",
+      "ref": "SP-AUD-2026-11-26-DKH",
+      "generatedAt": "2026-11-26T14:26:16.887Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 8,
+        "conversion": 8,
+        "design": 8,
+        "seo": 9,
+        "overall": 72
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1844594,
+      "files": {
+        "pdf": "reports/dr-k-hemanth-kumar-neurologist/Smart-Pursuit-Audit-Dr.-K.-Hemanth-Kumar-Neurologist.pdf",
+        "audit": "reports/dr-k-hemanth-kumar-neurologist/audit.json",
+        "html": "reports/dr-k-hemanth-kumar-neurologist/report.html"
+      },
+      "fingerprint": "8a77bf15a254e024"
+    },
+    {
+      "domain": "deepthifertility.com",
+      "name": "Deepthi Fertility Centre",
+      "ref": "SP-AUD-2026-11-26-DFC",
+      "generatedAt": "2026-11-26T14:03:38.098Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 7,
+        "conversion": 10,
+        "design": 10,
+        "seo": 7,
+        "overall": 76
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1094199,
+      "files": {
+        "pdf": "reports/deepthi-fertility-centre/Smart-Pursuit-Audit-Deepthi-Fertility-Centre.pdf",
+        "audit": "reports/deepthi-fertility-centre/audit.json",
+        "html": "reports/deepthi-fertility-centre/report.html"
+      },
+      "fingerprint": "791331de22a5514a"
+    },
+    {
+      "domain": "saibhaskarhospital.com",
+      "name": "Sai Bhaskar Hospitals",
+      "ref": "SP-AUD-2026-11-26-SBH",
+      "generatedAt": "2026-11-26T13:31:47.425Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 3,
+        "mobile": 7,
+        "conversion": 8,
+        "design": 8,
+        "seo": 7,
+        "overall": 62
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2616840,
+      "files": {
+        "pdf": "reports/sai-bhaskar-hospitals/Smart-Pursuit-Audit-Sai-Bhaskar-Hospitals.pdf",
+        "audit": "reports/sai-bhaskar-hospitals/audit.json",
+        "html": "reports/sai-bhaskar-hospitals/report.html"
+      },
+      "fingerprint": "29b80e38a9661b5a"
+    },
+    {
+      "domain": "vignataivfcenter.com",
+      "name": "Vignata Fertility & IVF Center",
+      "ref": "SP-AUD-2026-11-26-VFI",
+      "generatedAt": "2026-11-26T13:24:47.625Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 3,
+        "mobile": 6,
+        "conversion": 7,
+        "design": 10,
+        "seo": 8,
+        "overall": 61
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2742144,
+      "files": {
+        "pdf": "reports/vignata-fertility-and-ivf-center/Smart-Pursuit-Audit-Vignata-Fertility-IVF-Center.pdf",
+        "audit": "reports/vignata-fertility-and-ivf-center/audit.json",
+        "html": "reports/vignata-fertility-and-ivf-center/report.html"
+      },
+      "fingerprint": "5726a688cd3eb7a4"
     }
   ]
 }

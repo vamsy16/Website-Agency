@@ -3,16 +3,16 @@
   "domain": "drandalslakshmifertilityclinic.com",
   "ref": "SP-AUD-2026-11-15-LFR",
   "createdAt": "2026-11-15T13:25:38.258Z",
-  "sendDate": "2026-11-15",
+  "sendDate": "2026-11-16",
   "cadenceDays": [
     3,
     3,
     3
   ],
   "to": "andalbskr@gmail.com",
-  "status": "draft",
+  "status": "complete",
   "neverSendAutomatically": true,
-  "note": "Dates shift if the operator sends email 1 on a different day — recompute with `sequence --send-date YYYY-MM-DD`.",
+  "note": "Dates follow what was actually sent: each email is due cadenceDays after the previous one went out (sentAt, IST), and only if there is no reply. A step after one not yet sent assumes that one goes out on its due date or today, whichever is later. Recompute with `node tools/followups.mjs --apply`.",
   "emails": [
     {
       "step": 1,
@@ -23,11 +23,11 @@
       ],
       "subject": "Lakshmi Fertility Research — what I found testing your website",
       "words": 130,
-      "scheduledFor": "2026-11-15",
-      "scheduledForLong": "15 November 2026",
-      "status": "draft",
-      "approvedBy": null,
-      "sentAt": null,
+      "scheduledFor": "2026-11-16",
+      "scheduledForLong": "16 November 2026",
+      "status": "sent",
+      "approvedBy": "operator",
+      "sentAt": "2026-11-16T17:56:00+05:30",
       "file": "outreach/lakshmi-fertility-research-and-laparoscopic-surgical-center/email-1-first.md"
     },
     {
@@ -37,11 +37,11 @@
       "attachments": [],
       "subject": "Re: Lakshmi Fertility Research — what I found testing your website",
       "words": 114,
-      "scheduledFor": "2026-11-18",
-      "scheduledForLong": "18 November 2026",
-      "status": "draft",
-      "approvedBy": null,
-      "sentAt": null,
+      "scheduledFor": "2026-11-19",
+      "scheduledForLong": "19 November 2026",
+      "status": "sent",
+      "approvedBy": "operator",
+      "sentAt": "2026-11-20T08:00:06+05:30",
       "file": "outreach/lakshmi-fertility-research-and-laparoscopic-surgical-center/email-2-followup-1.md"
     },
     {
@@ -51,11 +51,11 @@
       "attachments": [],
       "subject": "Re: Lakshmi Fertility Research — what a fixed version looks like",
       "words": 121,
-      "scheduledFor": "2026-11-21",
-      "scheduledForLong": "21 November 2026",
-      "status": "draft",
-      "approvedBy": null,
-      "sentAt": null,
+      "scheduledFor": "2026-11-23",
+      "scheduledForLong": "23 November 2026",
+      "status": "sent",
+      "approvedBy": "operator",
+      "sentAt": "2026-11-23T09:48:00+05:30",
       "file": "outreach/lakshmi-fertility-research-and-laparoscopic-surgical-center/email-3-followup-2.md"
     },
     {
@@ -65,11 +65,11 @@
       "attachments": [],
       "subject": "Closing the loop — Lakshmi Fertility Research",
       "words": 98,
-      "scheduledFor": "2026-11-24",
-      "scheduledForLong": "24 November 2026",
-      "status": "draft",
-      "approvedBy": null,
-      "sentAt": null,
+      "scheduledFor": "2026-11-26",
+      "scheduledForLong": "26 November 2026",
+      "status": "sent",
+      "approvedBy": "operator",
+      "sentAt": "2026-11-26T19:35:00+05:30",
       "file": "outreach/lakshmi-fertility-research-and-laparoscopic-surgical-center/email-4-followup-3-final.md"
     }
   ]

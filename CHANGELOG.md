@@ -3,6 +3,146 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## Handoff — 27 November 2026
+
+**Everything in GitHub, merged into `main`** (operator: "keep everything in GitHub, so that if I run this repo in another agent nothing is missed").
+
+- `docs/STATE.md` — new: read-first handoff with the standing instructions, every batch, follow-ups due, scheduled mail, open questions, incidents, how to run and record things, and how to survive a sandbox reset. `AGENTS.md` points to it.
+- 30 sends recorded from Gmail's Sent folder (`deliverables/runs/sends-2026-11-27.json`): step 4 for the ten 16 November leads (complete), step 2 for nine 22/23 November leads and eleven 21 November leads. No replies or bounces since 25 November.
+- `outreach/` is no longer git-ignored; the Gmail draft records for the five 26 November audits are committed. The Gmail guide (§4, §6) says so.
+- `tools/review-pdfs.py` — new: the third-eye scan used in the 26 November review, rebuilt as a tracked tool after the scratch copy was lost in a sandbox reset (page count, verify, known defect patterns, email-1 numbers in the PDF, email-body hygiene, optional page renders).
+- School strategy deliverables carried over from the unmerged branch `arena/353d62eb-website-agency` (entry below, by date), with their `npm run strategy` / `strategy:client` / `automation` scripts. `pdfkit` stays out of `package.json` so the audit workflow's install does not change.
+
+## Outreach — 27 November 2026
+
+- Step-1 Gmail drafts for the five 26 November audits, created in smartpursuit3@gmail.com at the operator's request after they reviewed the PDFs, each with its approved PDF attached. A Gmail search found no earlier mail or drafts for these recipients; each draft was read back. Draft IDs are recorded on step 1 of each `sequence.json` (`gmailDraft`), because the git-ignored `outreach/` copies were lost in a sandbox reset. No follow-up drafts; nothing sent.
+- `docs/ARENA-LEADS-TO-GMAIL.md` §6: record each draft's ID and creation time in the deliverable's `sequence.json` as well.
+
+## 1.4.5 — 27 November 2026
+
+- `findings.mjs` — the speed finding's title put "A" before every mobile score, so Dr K Hemanth Kumar's report and email 1 read "A 81/100 mobile score". The article now follows the number (8, 11, 18, 80–89 take "an"), as it already did for the LCP. His approved PDF keeps the old wording (pages 2 and 5); his `email-1-first.md` and Gmail draft say "An 81/100".
+
+## Review — 26 November 2026
+
+- Five new Andhra Pradesh audits approved after re-audit with 1.4.3 and 1.4.4 (runs 45814540402, 45820025821, 45824308238, 45825535687, 45830272690, 45831617819, 45837237021): Vignata Fertility & IVF Center (Guntur), Shravani ENT Hospital (Kakinada), Dr K Hemanth Kumar, neurologist (Kurnool), Deepthi Fertility Centre (Nellore) and Sai Bhaskar Hospitals (Guntur). Each To: address was read on the business's own website, the duplicate check used only this repository, every audit passed verify 26/26, and every final page was re-read. Record: `deliverables/runs/2026-11-26-independent-review.md`. Nothing was sent.
+- Ayush Dental Care failed `screenshots.real` and is not published. Simhapuri Dental, Madhu Dental, Fortune Dental and Viswanadha Hospital were not attempted and stay `new`.
+- `data/audits.json`: the stale Vignata row ("VF&", 60/100) is removed. `run-request.json` is disabled.
+
+## 1.4.4 — 26 November 2026
+
+**Second pass of the 26 November review, after reading every page of the 1.4.3 re-audit (run 45820025821) and comparing it with the live sites.**
+
+- `measure.mjs` — contact routes, headings and words are counted again after the full-page and scrolled screenshots, and the larger count is kept: content rendered on scroll was missing from the count taken at load. Dr K Hemanth Kumar's homepage was reported with "1 click-to-call link on the whole page" while the live page shows five call links. Both passes are kept in the raw file. Also records call and WhatsApp links inside a fixed or sticky element (`stickyTel`, `stickyWhatsapp`).
+- `findings.mjs` / `render.mjs` — the no-form fix no longer tells a site that already keeps call or WhatsApp buttons on screen to add "a sticky Call / Book bar" (Vignata has one); it links the new booking form from the existing buttons, and plan row 02 and the Rescue column say the same. When the desktop pass counts a different number of click-to-call links, the report prints both ("1 click-to-call link at 390 px (5 on the desktop layout)"); a hidden H1 that the desktop layout shows is reported as such. The long-page finding targets "a homepage of 6 screens or fewer" (the rubric's threshold, as in plan row 06) instead of "five sections", which had been prescribed to a page measured at 3 sections. The scorecard's conversion row uses real plurals ("2 click-to-call links", not "link(s)").
+- `render.mjs` — the page-4 timeline is 0–20 s, or the slowest marker rounded up to a multiple of 20 s ("The first 60 seconds, measured"); a 37.4 s LCP and a 40.5 s time to interactive had been drawn at the 20 s end of the axis. The ticks are part of the facts, so the verifier traces them.
+- `measure.mjs` — headline blocks "seen in the first screen" must be visible to a visitor: hidden, transparent and off-screen slides no longer count. Sai Bhaskar's report quoted two titles from inactive slides that the first-screen screenshot does not show. The same list sets the rubric's "competing headlines" design penalty, so it now counts only what a visitor sees. When no block qualifies, the sentence is left out instead of printing "—".
+- `render.mjs` — the cover prints "H1 headings visible at 390 px (8 more hidden in the markup)" instead of "detected", as the scorecard and the finding already did. The executive summary's "credit where it is due" no longer credits the number of images when the same images need re-encoding (Sai Bhaskar: "157 images" beside 5,576 KiB of oversized images).
+- `findings.mjs` — the tap-target finding says what was counted: "23 of the 24 interactive elements visible when the page loaded". The same report lists call, "Read More" and placeholder links counted across the whole markup, which read as more links than "24 interactive elements".
+- `findings.mjs` — the speed fix covers blocking time over Google's 200 ms when neither render-blocking CSS nor unused JavaScript is large enough to name: Dr K Hemanth Kumar's fix covered only images while the finding cited blocking time at 2.3× the threshold. The scripts are traced first, since which script blocks is not measured.
+- `findings.mjs` — when the page is built on a site builder (read from its meta generator), that builder's own file server (GoDaddy's `wsimg.com`, Wix, Squarespace, Hostinger, Square Online, Shopify) is labelled as such, and the healthcare privacy sentence names only outside services. On any other site the builder's server stays an outside service (Deepthi, a WordPress site, loads from `img1.wsimg.com`): on GoDaddy-built sites (Dr K Hemanth Kumar, Shravani ENT) every request to `img1.wsimg.com` had been described as sharing visitor details "with another company", though the same company serves the page.
+- `dedupe.mjs` — `recordAudit` also replaces the row of the same domain audited on the same date, not only a row with the same ref: when 1.4.3 corrected Vignata's ref from "VF&" to "VFI", the re-audit appended a second Vignata row to `data/audits.json` (the stale row is removed in the review commit).
+- `prospect.mjs` — the screen's homepage fetch retries a network error (no HTTP status) twice, after 15 s and 45 s. Shravani ENT answered the email re-check and then timed out at the re-audit screen minutes later, in two runs in a row, while the site was up from outside GitHub. HTTP error responses are not retried.
+- `measure.mjs` — call, email and WhatsApp links inside embedded frames are counted, in both passes. A site builder's custom-HTML block is drawn in an `<iframe>` whose links a visitor sees and taps but the page's own document does not contain: Dr K Hemanth Kumar's homepage shows five call links, four of them in such a block, and was still measured at one after the post-scroll recount. Only frames that are shown, at least 120 × 40 px and not fixed to the screen count (chat widgets are fixed and closed). `tel:` and `mailto:` links match regardless of case and spacing. The desktop screenshot also waits for network idle and for on-screen images before the capture.
+- `measure.mjs` / `cli.mjs` / `render.mjs` — the laptop frame on page 4 shows a 45 mm strip of the 1440 px desktop screenshot. It always showed the left edge; it is now placed over the first visible H1 when that headline sits further right in the first desktop screen (centred on it when it fits). Dr K Hemanth Kumar's GoDaddy layout centres its hero, so the left strip showed only the hero's blurred background fill and read as a page that had not loaded. Left-aligned layouts keep the left edge. The H1's text box (not its full-width block) is recorded as `headlineTextBox`.
+- `render.mjs` / `verify.mjs` — when the desktop Lighthouse test does not complete, the report says so instead of printing "—/100"; `copy.honesty` rejects "—/100".
+- `render.mjs` — page 10 no longer says "Fifteen minutes is enough to decide" and then "worth an hour of it"; the first step is the 15-minute call.
+- `styles.css` — the scorecard's score column has room for a two-digit score: "10" ran into its evidence and read as "103 stacked sections" on every report with a 10/10 area; the plan table's change column no longer runs "Measurement" into "Conversion events not tested".
+- `verify.mjs` — new check `facts.viewport`: a click-to-call count that differs between 390 px and the desktop layout must be stated as such; its detail records both mobile passes and the desktop count. `copy.honesty` rejects a sticky call bar recommended to a page that already keeps call or WhatsApp buttons on screen.
+
+## 1.4.3 — 26 November 2026
+
+**Independent review of the five Andhra Pradesh audits from run 45814540402: every sentence true for the site it describes.**
+
+- `util.mjs` — audit references use letters and digits only. "Vignata Fertility & IVF Center" printed `SP-AUD-2026-11-26-VF&` on page 10; it is now `VFI`. Other references are unchanged.
+- `measure.mjs` — counts the H1s that are in the markup but not visible at 390 px (`h1Hidden`; a desktop-only block, an inactive slide, or content not shown at load). Only visible H1s were counted, so a page whose single H1 is not shown on the phone layout was reported on six pages as having "0 H1 headings detected on the homepage". The rubric still uses the visible count (selftest 36).
+- `findings.mjs` / `render.mjs` / `cli.mjs` — with a hidden H1 the report says "0 H1 headings visible on the 390 px phone view; the markup has 1 that was not shown", "no H1 visible at 390 px", "0 visible H1 headings (1 hidden)"; the multiple-H1 finding says how many H1s show at 390 px and how many more the markup holds. The speed finding lists only costs that exist ("render-blocking CSS/JS costing 0 ms" was printed as evidence) and defers CSS only when render-blocking time was measured, otherwise naming the unused JavaScript; "Long tasks blocked the main thread for 1 ms" is no longer printed (a long task is 50 ms or more); "Only 0 H2 headings" reads "No H2 headings"; telephone and address are asked of a business type (LocalBusiness, Organization, Dentist…), not "WebPage structured data"; "No dead links (12 found)" reads "No placeholder links (12 on this page point to # or javascript:void(0))", because some `#` links open menus or slides.
+- `verify.mjs` — `report.ref` rejects a reference with anything but letters and digits; `copy.honesty` rejects a zero cost or a sub-50 ms blocking total listed as evidence, "Only 0", a page-type schema said to be missing business fields, `#` links called dead, and a hidden H1 reported as missing.
+
+## Process — 26 November 2026
+
+- `tools/followups.mjs` — follow-up dates come from what was actually sent: each email is due 3 days after the previous one's `sentAt` (IST), and a step after one not yet sent is projected from its due date or today, whichever is later. It records sends and stops (bounce, reply, opt-out) from a JSON file, keeps each draft's `**Send:**` line in step, refuses a step marked sent ahead of an unsent one, and `--selftest` checks the rule (13 checks).
+- Sends recorded from Gmail's Sent copies for the 40 Andhra Pradesh sequences that have been emailed (64 emails, 16–26 November), with their follow-up dates recomputed. The five that bounced (Sree Bhalaji, NEST Sagar, Bhimavaram, Karumuri, Blue Fox) are stopped. The other 14 sequences have not been emailed and are unchanged.
+
+- `docs/ARENA-LEADS-TO-GMAIL.md` — Gmail drafts no longer carry an operator note. Drafts can be sent unedited, so a draft holds only the recipient-facing email; follow-up dates stay in `gmail-drafts.json`, `sequence.json` and the report. A follow-up is drafted on request as a reply in the same thread, its dates moved if the first email went out late.
+
+## Review — 23 November 2026
+
+- Five new Andhra Pradesh audits approved after re-audit with 1.4.2 (runs 45095333140, 45097578295, 45098947793, 45099748499): Smart Care Dental Hospital (Nellore), Dr Swetha Sajja Eye Hospital (Rajahmundry), MJ Naidu Super Speciality Hospital (Vijayawada), Sasya Fertility Centre (Guntur), Ravi Dental Care and Implant Center (Vijayawada). Verify 25/25, 10 pages, 0 mm; every page re-read; every recipient address seen on the business's own site; repository-only dedupe across all branches and history. Dr Swetha Sajja was re-measured once more after a Lighthouse swing (88, 90, 62, 87); the reproducibility run was accepted before its result was known. See `deliverables/runs/2026-11-23-independent-review.md`. Run request disabled; nothing sent.
+
+## 1.4.2 — 23 November 2026
+
+**Independent review of the five Andhra Pradesh audits from run 45095333140: every sentence true for the site it describes.**
+
+- `measure.mjs` — the smallest body font counts only elements that hold text themselves and never a 0 px size. A `font-size:0` wrapper was printed as "Smallest body text: 0 px" (Ravi Dental) and cost the mobile score a font penalty no visitor sees.
+- `findings.mjs` — "Contact page reachable" is now a measured fact (`http.contactReachable`): the `/contact/` probe answered 200 with a page that is not the homepage. It had been printed for every report, including a `/contact/` that redirected to the homepage and two that returned 404. TBT prints whole milliseconds ("993 ms", not "992.5 ms") except at the 200 ms threshold; "1 link points to"; the tap-target finding omits a 0 px font and recommends 16 px body text only when the measured text is smaller; the speed fix says "plugins reviewed and any unused ones removed" (plugin paths are measured, unused plugins are not). Rubric unchanged (selftest 36).
+- `render.mjs` — singular counts ("1 finding was identified. Its effect…", "1 measured finding", "1 schema type", "1 “Read More” link", and for one screen, tap target, section, image or click-to-call link); plan row 06 no longer tells a 2-section page to grow to "5 sections": it targets one H1 and a homepage of 6 screens or fewer (the rubric's own threshold) and says "Already…" when both are met; the page-07 table attributes only the LCP and TBT thresholds to Google and labels server response, page weight and requests as Smart Pursuit engineering targets (title "The targets are stated"); over-target page weight and requests are highlighted like the other rows.
+- Email 1 — a one-finding audit reads "One thing stood out: …" instead of a numbered list whose second item was empty ("2. ."). `sequence.mjs` refuses an empty list item.
+- `verify.mjs` — `copy.honesty` also rejects a single finding in the plural, "1 link point to", a 0 px body font, "Contact page reachable" without a measured contact page, "unused plugins removed" and engineering targets attributed to Google.
+
+## Review — 22 November 2026
+
+- Five Andhra Pradesh audits approved after re-audit with 1.4.1 (runs 45016840158, 45018491348): MK Dental, Prathik Dental and Implant Centre, The Dental Studio, Kalyani Dental Clinic, Praveen Dental Care. Verify 25/25, 10 pages, 0 mm; every page re-read and every recipient address seen on the clinic's own site. See `deliverables/runs/2026-11-22-independent-review.md`. Run request disabled; nothing sent.
+- `docs/ARENA-LEADS-TO-GMAIL.md` — only the first email is drafted in Gmail (operator instruction): its operator note lists the follow-up dates, every 3 days and only if there is no reply, and a follow-up is drafted only when the operator asks on or after its date. Nothing is scheduled or sent automatically.
+
+## 1.4.1 — 22 November 2026
+
+**Independent review of the five Andhra Pradesh audits (run 45012283217): say only what was measured.**
+
+- `measure.mjs` — first party is the site's own host with or without `www.`, its subdomains and the host the page landed on. The origin-prefix test counted 67 of 71 requests as third-party after a www → bare redirect and listed the clinic's own domain as "external". Cookies use the same dot-bounded rule. `robots.txt` `Sitemap:` lines are recorded.
+- `findings.mjs` — a metric inside its threshold is never "over" it ("6.4× and 0.6× over" for a 117 ms TBT); the speed fix lists only measured opportunities (no CDN for a 201 ms server, no plugins on a non-WordPress site; page weight judged against the 1.6 MB target on page 07); the console finding no longer says "Remove the retargeting pixels" unless ad code was seen, and blocking time is no longer attributed to third parties; a 404 at `/sitemap.xml` reads "No XML sitemap", and no finding is made when robots.txt declares one; zero section counts and TTFB decimals are not printed; "also on the list" no longer repeats a printed finding. Rubric unchanged (selftest 36).
+- `render.mjs` — removed unmeasured copy ("doing damage you can see in enquiry numbers", "first paint — still looks empty", "pays back fastest", "usually the two cheapest things… to fix", "Contrast and labelling issues", "competing slogans", "theme demo paths"); a page with no H1 says so instead of "headline starts 0 px down"; plan rows whose target is already met say "Already under…" / "Little to gain here" instead of selling the work, and an existing form is "tested", not "rebuilt"; the Rescue speed line names only parts that miss their target; benchmark cells are red only when over target; KPI reads "Forms with fields".
+- `render.mjs` layout — the page-8 pull quote, the page-10 sign-off and the page-2 band no longer print over the footer; page-4 timeline labels no longer overlap (dots at their true time; FCP/TTFB no longer pinned at 4.4 s / 1.6 s); "20 s" no longer wraps; score bars ≥ 7 drop the unstyled `green` class (class-diff).
+- Second read of the regenerated PDFs (run 45016840158): the page-07 targets table no longer labels the LCP row "— you" (the competitor-table class appends that text; every row there is the client's own number); a list of more than six third-party domains reads "including …"; the Rescue line says "Homepage booking form added" when only the homepage was measured (a contact page may already have a form); "1 image has no alt text"; the time-to-interactive tile uses one decimal like the LCP tile.
+- `verify.mjs` — new blocker `facts.firstParty`; `copy.honesty` also rejects the phrases above, "0.x× over", threshold contradictions, an H1 position with no H1, competing headlines with ≤ 1 H1, ad mentions without ad code and "third-party code blocked".
+- Emails — step 2 no longer says "None of this needs a new design… pays back fastest" (it asks the developer to confirm the effort); step 3's subject no longer promises "what a fixed version looks like" (no fixed version is sent). `sequence.mjs` bans both phrases.
+
+## School strategy deliverables — 21 November 2026
+
+Carried over on 27 November 2026 from branch `arena/353d62eb-website-agency`, which was never merged, so that `main` holds every deliverable. That branch numbered these entries 1.5.0 and 1.6.0; the audit tool's own versions continued at 1.4.x here. `pdfkit` is not added to `package.json` (see the folder's README).
+
+### Automation & AI blueprint (1.6.0 on that branch)
+
+**New deliverable: exhaustive school automation & AI transformation blueprint.**
+
+- `deliverables/2026-11-vizianagaram-school-admissions/Smart_Pursuit_School_Automation_AI_Transformation_Blueprint.pdf` — a 35-page (no page limit), department-by-department automation and AI study for a prospective school client in Vizianagaram, Andhra Pradesh, built by `npm run automation`.
+- `build-automation-blueprint.mjs` — flow-based pdfkit renderer: cover, contents, 19 sections, discovery questionnaire and appendices; two-pass build with an authoritative page counter and `Page X of N` footers on every page; zero blank pages; `PAGE COUNT MISMATCH` eliminated.
+- `const OPPORTUNITIES` — ~60 opportunities across 13 departments (admissions, finance & fees, academics, HR, parent communication, school office, IT, transport, facilities, library, events, compliance, safety), each with a unique ID (ADM-, FIN-, ACD-, HR-, PAR-, OPS-, IT-, TRN-, FAC-, LIB-, EVT-, COMP-, SAF-) and the full field set: process, user, problem, root cause, solution, category, workflow, trigger, input, output, technology, integrations, human approval, risk, effort, impact, KPI, dependencies, priority, evidence tag.
+- Sections 6–8 registers (automation, AI assistance, AI agent), sections 9–10 workflows and architecture, sections 11–15 value analysis, impact estimates, risk register, 8-band prioritisation matrix ("not recommended at present" included) and a multi-phase implementation roadmap extending beyond 90 days.
+- Section 16 DPDP Act 2023 / Rules 2025 privacy framework: child = under 18, verifiable parental consent (Section 9(1) / Rule 10), no detrimental or targeted-ad processing of children (Section 9(3)), narrow Fourth Schedule exemptions only, Section 8 safeguards, 72-hour breach reporting, erasure when purpose served, main duties commence 13 May 2027, penalties up to ₹250 crore / ₹200 crore.
+- Section 17 Smart Pursuit implementation approach; section 19 final recommendations; Appendix D discovery questionnaire (20 questions per process).
+- Evidence rule applied throughout: every finding classified as verified school-specific fact / publicly available evidence / industry-based operational hypothesis / opportunity requiring management validation; no school-specific fact, budget, result or testimonial is invented.
+- No images or video: type, colour blocks, rules and vector diagrams only. No stock photography.
+- `package.json` — new `automation` script (`node deliverables/.../build-automation-blueprint.mjs`).
+
+### Strategy blueprint (1.5.0 on that branch)
+
+**A second deliverable type: the strategy blueprint.**
+
+- `deliverables/2026-11-vizianagaram-school-admissions/` — a 38-page client-facing
+  "School Admissions Growth Strategy" for a prospective school client in Vizianagaram,
+  built by `npm run strategy`. This is the document that precedes an audit: market
+  research, competitor intelligence, parent behaviour, channel plans, a 90-day roadmap,
+  budget models and a measurement framework. Audits stay as they were; nothing in
+  `src/` changed and `npm run selftest` still reproduces 3/4/2/6/5 -> 36.
+- Renderer is `pdfkit`, not Chromium: the build machine has no browser, no system fonts
+  and no pango/cairo, so HTML-to-PDF is unavailable. It also removes the browser from the
+  dependency path of a document that must build on any operator machine. `sanitise()`
+  converts characters outside WinAnsi (the rupee sign, arrows) to text rather than
+  emitting blank glyphs — this is why the PDF says `INR 25,000` and not `₹25,000`.
+- Two-pass build: pass one records section start pages, pass two writes them into the
+  table of contents. Every build reports `overflows` (any block ending below the bottom
+  margin) and `warnings`; both must be empty before the PDF is delivered.
+- `build-condensed.mjs` — the 12-page client edition (`npm run strategy:client`), composed
+  page by page rather than flowed, so page count cannot drift. Every page carries one message
+  and a bottom-anchored KEY TAKEAWAY strip; the build reports page fill and any collision with
+  the footer. No photography is used in either edition — the argument against stock classrooms
+  is easier to make with type, panels and vector diagrams than with borrowed images.
+- Content rule applied throughout: no school-specific fact is invented. Anything about the
+  client school is labelled "requires confirmation", competitor claims are tagged verified
+  vs interpretation, and no competitor is described as running ads or as having poor
+  teaching without direct evidence. Fee figures from directories are flagged as
+  third-party and internally inconsistent (one school appears at both 44,000 and 53,500).
+
 ## Review — 21 November 2026
 
 - Deliverables index now fails closed on the independent-review manifest: automated gate success cannot mark held reports sendable. Five live email contacts documented, with explicit PDF-copy/recipient holds and layout-QA failures.

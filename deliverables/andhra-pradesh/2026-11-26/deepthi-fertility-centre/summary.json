@@ -1,0 +1,25 @@
+{
+  "name": "Deepthi Fertility Centre",
+  "domain": "deepthifertility.com",
+  "city": "Nellore",
+  "state": "Andhra Pradesh",
+  "email": "deepthifertilitycentre@gmail.com",
+  "phone": "+91 79972 79952",
+  "ref": "SP-AUD-2026-11-26-DFC",
+  "date": "2026-11-26",
+  "overall": 76,
+  "scores": {
+    "speed": 5,
+    "mobile": 7,
+    "conversion": 10,
+    "design": 10,
+    "seo": 7,
+    "overall": 76
+  },
+  "pdf": "Smart-Pursuit-Audit-Deepthi-Fertility-Centre.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://deepthifertility.com/",
+    "checkedAt": "2026-11-26"
+  }
+}

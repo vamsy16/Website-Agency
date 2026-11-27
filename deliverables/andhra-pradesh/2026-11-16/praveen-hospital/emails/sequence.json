@@ -10,9 +10,9 @@
     3
   ],
   "to": "praveencardiaccentre@gmail.com",
-  "status": "draft",
+  "status": "complete",
   "neverSendAutomatically": true,
-  "note": "Dates shift if the operator sends email 1 on a different day — recompute with `sequence --send-date YYYY-MM-DD`.",
+  "note": "Dates follow what was actually sent: each email is due cadenceDays after the previous one went out (sentAt, IST), and only if there is no reply. A step after one not yet sent assumes that one goes out on its due date or today, whichever is later. Recompute with `node tools/followups.mjs --apply`.",
   "emails": [
     {
       "step": 1,
@@ -25,9 +25,9 @@
       "words": 140,
       "scheduledFor": "2026-11-16",
       "scheduledForLong": "16 November 2026",
-      "status": "draft",
-      "approvedBy": null,
-      "sentAt": null,
+      "status": "sent",
+      "approvedBy": "operator",
+      "sentAt": "2026-11-16T16:58:00+05:30",
       "file": "outreach/praveen-hospital/email-1-first.md"
     },
     {
@@ -39,9 +39,9 @@
       "words": 113,
       "scheduledFor": "2026-11-19",
       "scheduledForLong": "19 November 2026",
-      "status": "draft",
-      "approvedBy": null,
-      "sentAt": null,
+      "status": "sent",
+      "approvedBy": "operator",
+      "sentAt": "2026-11-20T08:00:08+05:30",
       "file": "outreach/praveen-hospital/email-2-followup-1.md"
     },
     {
@@ -51,11 +51,11 @@
       "attachments": [],
       "subject": "Re: Praveen Hospital — what a fixed version looks like",
       "words": 121,
-      "scheduledFor": "2026-11-22",
-      "scheduledForLong": "22 November 2026",
-      "status": "draft",
-      "approvedBy": null,
-      "sentAt": null,
+      "scheduledFor": "2026-11-23",
+      "scheduledForLong": "23 November 2026",
+      "status": "sent",
+      "approvedBy": "operator",
+      "sentAt": "2026-11-23T10:25:00+05:30",
       "file": "outreach/praveen-hospital/email-3-followup-2.md"
     },
     {
@@ -65,11 +65,11 @@
       "attachments": [],
       "subject": "Closing the loop — Praveen Hospital",
       "words": 98,
-      "scheduledFor": "2026-11-25",
-      "scheduledForLong": "25 November 2026",
-      "status": "draft",
-      "approvedBy": null,
-      "sentAt": null,
+      "scheduledFor": "2026-11-26",
+      "scheduledForLong": "26 November 2026",
+      "status": "sent",
+      "approvedBy": "operator",
+      "sentAt": "2026-11-26T20:04:00+05:30",
       "file": "outreach/praveen-hospital/email-4-followup-3-final.md"
     }
   ]

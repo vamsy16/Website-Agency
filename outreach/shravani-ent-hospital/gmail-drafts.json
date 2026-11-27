@@ -1,0 +1,34 @@
+{
+  "business": "Shravani ENT Hospital",
+  "domain": "shravanienthospital.com",
+  "ref": "SP-AUD-2026-11-26-SEH",
+  "to": "shravanienthospital@gmail.com",
+  "emailSource": "openstreetmap, confirmed on site",
+  "emailFoundOn": "https://shravanienthospital.com/",
+  "mailbox": "smartpursuit3@gmail.com",
+  "status": "draft",
+  "neverSendAutomatically": true,
+  "drafts": [
+    {
+      "step": 1,
+      "draftId": "r4163938217448806852",
+      "createdAt": "2026-11-27T12:47:01+05:30",
+      "subject": "Shravani ENT Hospital — what I found testing shravanienthospital.com",
+      "attachment": {
+        "filename": "Smart-Pursuit-Audit-Shravani-ENT-Hospital.pdf",
+        "bytes": 1571307
+      },
+      "verified": "read back 2026-11-27: recipient, subject, body and attachment size match; body is only the recipient-facing email"
+    }
+  ],
+  "followUps": {
+    "rule": "Not drafted. Each is due 3 days after the previous email is actually sent, only if there is no reply; draft only when the operator asks, as a reply in this thread.",
+    "ifEmail1SentOn": "2026-11-27",
+    "plannedDates": {
+      "step2": "2026-11-30",
+      "step3": "2026-12-03",
+      "step4": "2026-12-06"
+    }
+  },
+  "sequence": "deliverables/andhra-pradesh/2026-11-26/shravani-ent-hospital/emails/sequence.json"
+}
