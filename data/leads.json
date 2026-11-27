@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-26T14:26:16.889Z",
+  "updatedAt": "2026-11-27T10:46:06.478Z",
   "leads": [
     {
       "id": "nikithahospital.com",
@@ -82,9 +82,9 @@
       "lastAuditPdf": "reports/krishna-multispeciality-dental-clinic/Smart-Pursuit-Audit-Krishna-Multispeciality-Dental-Clinic.pdf",
       "auditAttempts": 1,
       "lastError": null,
-      "updatedAt": "2026-11-26T14:17:33.776Z",
+      "updatedAt": "2026-11-27T10:30:54.423Z",
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:17:33.762Z",
+        "checkedAt": "2026-11-27T10:30:54.410Z",
         "osmEmail": "vidya@krishnadental.in",
         "email": "vidya@krishnadental.in",
         "emailSource": "openstreetmap, confirmed on site",
@@ -143,9 +143,9 @@
       "lastAuditPdf": "reports/milk-n-more/Smart-Pursuit-Audit-Milk-n-More.pdf",
       "auditAttempts": 1,
       "lastError": null,
-      "updatedAt": "2026-11-26T14:17:33.913Z",
+      "updatedAt": "2026-11-27T10:30:54.681Z",
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:17:33.907Z",
+        "checkedAt": "2026-11-27T10:30:54.675Z",
         "osmEmail": "care@milknmore.org",
         "email": "care@milknmore.org",
         "emailSource": "openstreetmap, confirmed on site",
@@ -229,9 +229,9 @@
       "lastAuditPdf": "reports/hanuman-s-hill-rock-cafe-and-restaurant/Smart-Pursuit-Audit-Hanuman-s-Hill-Rock-Cafe-Restaurant.pdf",
       "auditAttempts": 1,
       "lastError": null,
-      "updatedAt": "2026-11-26T14:17:36.003Z",
+      "updatedAt": "2026-11-27T10:30:56.015Z",
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:17:35.997Z",
+        "checkedAt": "2026-11-27T10:30:56.009Z",
         "osmEmail": "welcome@hanumanshillrock.com",
         "email": "welcome@hanumanshillrock.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -290,9 +290,9 @@
       "lastAuditPdf": "reports/dr-ramya-sadaram/Smart-Pursuit-Audit-Dr.-Ramya-Sadaram.pdf",
       "auditAttempts": 1,
       "lastError": null,
-      "updatedAt": "2026-11-26T14:17:49.757Z",
+      "updatedAt": "2026-11-27T10:31:12.444Z",
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:17:49.747Z",
+        "checkedAt": "2026-11-27T10:31:12.435Z",
         "osmEmail": "dr.ramya@gynaecspecialist.com",
         "email": "dr.ramya@gynaecspecialist.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -515,9 +515,9 @@
       "lastAuditPdf": "reports/swecha-andhra-pradesh/Smart-Pursuit-Audit-Swecha-Andhra-Pradesh.pdf",
       "auditAttempts": 1,
       "lastError": null,
-      "updatedAt": "2026-11-26T14:17:57.158Z",
+      "updatedAt": "2026-11-27T10:31:18.772Z",
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:17:57.141Z",
+        "checkedAt": "2026-11-27T10:31:18.757Z",
         "osmEmail": "contactus@swechaap.org",
         "email": null,
         "emailSource": null,
@@ -565,9 +565,9 @@
       "lastAuditPdf": "reports/khushi-shopping-mall/Smart-Pursuit-Audit-Khushi-Shopping-Mall.pdf",
       "auditAttempts": 1,
       "lastError": null,
-      "updatedAt": "2026-11-26T14:18:00.726Z",
+      "updatedAt": "2026-11-27T10:31:22.389Z",
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:18:00.721Z",
+        "checkedAt": "2026-11-27T10:31:22.384Z",
         "osmEmail": "khushishoppingmall@gmail.com",
         "email": "khushishoppingmall@gmail.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -712,7 +712,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:18:05.774Z",
+      "updatedAt": "2026-11-27T10:31:27.439Z",
       "osmEmail": null,
       "emailSource": "own website",
       "emailFoundOn": "https://orangetravels.in/",
@@ -726,7 +726,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:18:05.766Z",
+        "checkedAt": "2026-11-27T10:31:27.432Z",
         "osmEmail": "custcare@orangetravels.in",
         "email": "custcare@orangetravels.in",
         "emailSource": "openstreetmap, confirmed on site",
@@ -882,7 +882,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:18:08.763Z",
+      "updatedAt": "2026-11-27T10:31:30.113Z",
       "osmEmail": null,
       "emailSource": "own website",
       "emailFoundOn": "https://srmt.com/",
@@ -896,7 +896,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:18:08.756Z",
+        "checkedAt": "2026-11-27T10:31:30.106Z",
         "osmEmail": "ho@srmt.com",
         "email": "ho@srmt.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -1035,7 +1035,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:18:15.136Z",
+      "updatedAt": "2026-11-27T10:31:36.378Z",
       "osmEmail": null,
       "emailSource": "own website",
       "emailFoundOn": "https://www.anoos.com/",
@@ -1049,16 +1049,17 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:18:15.134Z",
+        "checkedAt": "2026-11-27T10:31:36.265Z",
         "osmEmail": "customercare@anoos.com",
-        "email": null,
-        "emailSource": null,
-        "foundOn": null,
-        "siteEmails": [],
-        "ok": false,
-        "result": "no-email",
-        "reason": "no email published on the site (OpenStreetMap's customercare@anoos.com is not on it)",
-        "rendered": true,
+        "email": "customercare@anoos.com",
+        "emailSource": "openstreetmap, confirmed on site",
+        "foundOn": "https://www.anoos.com/",
+        "siteEmails": [
+          "customercare@anoos.com",
+          "20customercare@anoos.com"
+        ],
+        "ok": true,
+        "result": "ok",
         "notAProspect": {
           "kind": "chain",
           "reason": "national chain / branch — the website is run by head office"
@@ -1095,9 +1096,9 @@
       "lastAuditPdf": "reports/reliance-smart-point/Smart-Pursuit-Audit-Reliance-Smart-Point.pdf",
       "auditAttempts": 1,
       "lastError": null,
-      "updatedAt": "2026-11-26T14:18:24.212Z",
+      "updatedAt": "2026-11-27T10:31:44.860Z",
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:18:24.208Z",
+        "checkedAt": "2026-11-27T10:31:44.856Z",
         "osmEmail": "customerservice@ril.com",
         "email": "customerservice@ril.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -1176,19 +1177,18 @@
       "lastAuditPdf": "reports/east-point-golf-course/Smart-Pursuit-Audit-East-Point-Golf-Course.pdf",
       "auditAttempts": 1,
       "lastError": null,
-      "updatedAt": "2026-11-26T14:18:27.003Z",
+      "updatedAt": "2026-11-27T10:33:16.377Z",
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:18:26.999Z",
+        "checkedAt": "2026-11-27T10:33:16.375Z",
         "osmEmail": "epgc@epgc.in",
         "email": null,
         "emailSource": null,
         "foundOn": null,
-        "siteEmails": [
-          "epgc@epgc.in"
-        ],
+        "siteEmails": [],
         "ok": false,
-        "result": "nonprofit",
-        "reason": "site describes itself as a nonprofit (\"non-profit\")",
+        "result": "unreachable",
+        "httpStatus": 0,
+        "reason": "site unreachable (UND_ERR_CONNECT_TIMEOUT)",
         "notAProspect": null
       }
     },
@@ -1300,7 +1300,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:18:27.790Z",
+      "updatedAt": "2026-11-27T10:33:16.949Z",
       "osmEmail": null,
       "emailSource": "own website",
       "emailFoundOn": "https://www.winsmiths.com/",
@@ -1314,7 +1314,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:18:27.736Z",
+        "checkedAt": "2026-11-27T10:33:16.891Z",
         "osmEmail": "info@winsmiths.com",
         "email": "info@winsmiths.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -1446,7 +1446,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:18:33.675Z",
+      "updatedAt": "2026-11-27T10:33:19.410Z",
       "osmEmail": null,
       "emailSource": "own website",
       "emailFoundOn": "https://www.vizagwaterworld.com/",
@@ -1460,16 +1460,17 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:18:33.672Z",
+        "checkedAt": "2026-11-27T10:33:19.407Z",
         "osmEmail": "vizagwaterworld@gmail.com",
-        "email": null,
-        "emailSource": null,
-        "foundOn": null,
-        "siteEmails": [],
-        "ok": false,
-        "result": "no-email",
-        "reason": "no email published on the site (OpenStreetMap's vizagwaterworld@gmail.com is not on it)",
-        "rendered": true,
+        "email": "vizagwaterworld@gmail.com",
+        "emailSource": "openstreetmap, confirmed on site",
+        "foundOn": "https://www.vizagwaterworld.com/",
+        "siteEmails": [
+          "vizagwaterworld@gmail.com",
+          "order@printpic.in"
+        ],
+        "ok": true,
+        "result": "ok",
         "notAProspect": null
       }
     },
@@ -1672,9 +1673,9 @@
       "lastAuditPdf": "reports/indian-red-cross-society-blood-bank-kakinada/Smart-Pursuit-Audit-Indian-Red-Cross-Society-Blood-Bank-Kakinada.pdf",
       "auditAttempts": 1,
       "lastError": null,
-      "updatedAt": "2026-11-26T14:18:35.708Z",
+      "updatedAt": "2026-11-27T10:33:21.065Z",
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:18:35.653Z",
+        "checkedAt": "2026-11-27T10:33:21.010Z",
         "osmEmail": "nraopydah@yahoo.co.in",
         "email": "redcrossegrc@yahoo.com",
         "emailSource": "own website (OpenStreetMap had nraopydah@yahoo.co.in, not on the site)",
@@ -1724,7 +1725,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:18:39.996Z",
+      "updatedAt": "2026-11-27T10:33:26.326Z",
       "osmEmail": "info@majjiexportimport.com",
       "emailSource": "own website (OpenStreetMap had info@majjiexportimport.com, not on the site)",
       "emailFoundOn": "https://majjiexportimport.linker.store/",
@@ -1738,7 +1739,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:18:39.967Z",
+        "checkedAt": "2026-11-27T10:33:26.299Z",
         "osmEmail": "majjiexportimport@gmail.com",
         "email": "majjiexportimport@gmail.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -2090,7 +2091,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:18:45.691Z",
+      "updatedAt": "2026-11-27T10:33:29.908Z",
       "osmEmail": "innsreekanya@fortunehotels.in",
       "emailSource": "openstreetmap, confirmed on site",
       "emailFoundOn": "https://www.itchotels.com/in/en/fortuneinnsreekanya-visakhapatnam",
@@ -2104,7 +2105,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:18:45.642Z",
+        "checkedAt": "2026-11-27T10:33:29.860Z",
         "osmEmail": "innsreekanya@fortunehotels.in",
         "email": "innsreekanya@fortunehotels.in",
         "emailSource": "openstreetmap, confirmed on site",
@@ -2347,7 +2348,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:18:49.737Z",
+      "updatedAt": "2026-11-27T10:33:33.453Z",
       "osmEmail": null,
       "emailSource": "own website",
       "emailFoundOn": "https://goldenglobeoverseas.com/",
@@ -2361,7 +2362,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:18:49.724Z",
+        "checkedAt": "2026-11-27T10:33:33.440Z",
         "osmEmail": "info@goldenglobeoverseas.com",
         "email": "info@goldenglobeoverseas.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -2429,7 +2430,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:18:54.505Z",
+      "updatedAt": "2026-11-27T10:33:38.524Z",
       "osmEmail": "krishnaivf@hotmail.com",
       "emailSource": "own website (OpenStreetMap had krishnaivf@hotmail.com, not on the site)",
       "emailFoundOn": "https://krishnaivf.com/",
@@ -2443,7 +2444,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:18:54.441Z",
+        "checkedAt": "2026-11-27T10:33:38.462Z",
         "osmEmail": "krishnaivf@krishnaivf.com",
         "email": "krishnaivf@krishnaivf.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -2657,7 +2658,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:18:58.532Z",
+      "updatedAt": "2026-11-27T10:33:42.953Z",
       "osmEmail": "pvrhospital@gmail.com",
       "emailSource": "own website (OpenStreetMap had pvrhospital@gmail.com, not on the site)",
       "emailFoundOn": "https://srisaipvrhospitals.in/",
@@ -2671,7 +2672,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:18:58.505Z",
+        "checkedAt": "2026-11-27T10:33:42.927Z",
         "osmEmail": "info@srisaipvrhospitals.in",
         "email": "info@srisaipvrhospitals.in",
         "emailSource": "openstreetmap, confirmed on site",
@@ -2778,7 +2779,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:19:01.422Z",
+      "updatedAt": "2026-11-27T10:33:45.583Z",
       "osmEmail": null,
       "emailSource": "own website",
       "emailFoundOn": "https://www.bluefoxrestaurant.com/",
@@ -2792,7 +2793,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:19:01.418Z",
+        "checkedAt": "2026-11-27T10:33:45.580Z",
         "osmEmail": "gm@bluefoxrestaurant.com",
         "email": "gm@bluefoxrestaurant.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -2883,7 +2884,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:19:04.845Z",
+      "updatedAt": "2026-11-27T10:33:48.974Z",
       "osmEmail": null,
       "emailSource": "own website",
       "emailFoundOn": "https://www.spencers.in/",
@@ -2897,7 +2898,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:19:04.832Z",
+        "checkedAt": "2026-11-27T10:33:48.962Z",
         "osmEmail": "customercare@spencers.in",
         "email": "customercare@spencers.in",
         "emailSource": "openstreetmap, confirmed on site",
@@ -3102,7 +3103,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:19:11.140Z",
+      "updatedAt": "2026-11-27T10:33:54.137Z",
       "osmEmail": null,
       "emailSource": "own website",
       "emailFoundOn": "https://bhalajigroup.com/",
@@ -3116,16 +3117,19 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:19:11.138Z",
+        "checkedAt": "2026-11-27T10:33:54.053Z",
         "osmEmail": "info@bhalajigroup.com",
-        "email": null,
-        "emailSource": null,
-        "foundOn": null,
-        "siteEmails": [],
-        "ok": false,
-        "result": "no-email",
-        "reason": "no email published on the site (OpenStreetMap's info@bhalajigroup.com is not on it)",
-        "rendered": true,
+        "email": "info@bhalajigroup.com",
+        "emailSource": "openstreetmap, confirmed on site",
+        "foundOn": "https://bhalajigroup.com/",
+        "siteEmails": [
+          "safestpaints@gmail.com",
+          "info@bhalajigroup.com",
+          "sales@bhalajigroup.com",
+          "drkvr@bhalajigroup.com"
+        ],
+        "ok": true,
+        "result": "ok",
         "notAProspect": null
       }
     },
@@ -3163,7 +3167,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:19:13.718Z",
+      "updatedAt": "2026-11-27T10:33:55.591Z",
       "osmEmail": null,
       "emailSource": "own website",
       "emailFoundOn": "https://indianterrain.com/",
@@ -3177,7 +3181,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:19:13.622Z",
+        "checkedAt": "2026-11-27T10:33:55.497Z",
         "osmEmail": "support@indianterrain.com",
         "email": "support@indianterrain.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -3693,7 +3697,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:19:14.402Z",
+      "updatedAt": "2026-11-27T10:33:56.479Z",
       "osmEmail": null,
       "emailSource": "own website",
       "emailFoundOn": "https://www.antaryamindia.org/contact",
@@ -3707,7 +3711,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:19:14.385Z",
+        "checkedAt": "2026-11-27T10:33:56.463Z",
         "osmEmail": "antaryamindia@gmail.com",
         "email": "antaryamindia@gmail.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -4275,7 +4279,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:19:14.710Z",
+      "updatedAt": "2026-11-27T10:33:56.760Z",
       "osmEmail": null,
       "emailSource": "own website",
       "emailFoundOn": "https://www.rrdurbar.com/",
@@ -4289,7 +4293,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:19:14.689Z",
+        "checkedAt": "2026-11-27T10:33:56.739Z",
         "osmEmail": "orders@rrdurbar.com",
         "email": "orders@rrdurbar.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -4361,7 +4365,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:19:16.310Z",
+      "updatedAt": "2026-11-27T10:33:58.370Z",
       "osmEmail": null,
       "emailSource": "own website",
       "emailFoundOn": "https://www.ultratechcement.com/contactus",
@@ -4375,7 +4379,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:19:16.277Z",
+        "checkedAt": "2026-11-27T10:33:58.334Z",
         "osmEmail": "ultratech.communication@adityabirla.com",
         "email": "ultratech.communication@adityabirla.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -4426,7 +4430,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:19:21.657Z",
+      "updatedAt": "2026-11-27T10:34:10.994Z",
       "osmEmail": "andalbskr@gmail.com",
       "emailSource": "openstreetmap, confirmed on site",
       "emailFoundOn": "https://drandalslakshmifertilityclinic.com/",
@@ -4441,16 +4445,17 @@
       "lastError": null,
       "note": "audit verified; drafts regenerated after subject-length fix",
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:19:21.654Z",
+        "checkedAt": "2026-11-27T10:34:10.926Z",
         "osmEmail": "andalbskr@gmail.com",
-        "email": null,
-        "emailSource": null,
-        "foundOn": null,
-        "siteEmails": [],
-        "ok": false,
-        "result": "no-email",
-        "reason": "no email published on the site (OpenStreetMap's andalbskr@gmail.com is not on it)",
-        "rendered": true,
+        "email": "andalbskr@gmail.com",
+        "emailSource": "openstreetmap, confirmed on site",
+        "foundOn": "https://drandalslakshmifertilityclinic.com/",
+        "siteEmails": [
+          "andalbskr@gmail.com",
+          "example@gmail.com"
+        ],
+        "ok": true,
+        "result": "ok",
         "notAProspect": null
       }
     },
@@ -4820,7 +4825,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:19:27.721Z",
+      "updatedAt": "2026-11-27T10:34:16.225Z",
       "osmEmail": "srcanddh@gmail.com",
       "emailSource": "openstreetmap, confirmed on site",
       "emailFoundOn": "https://sriramachandrahospital.com/",
@@ -4834,7 +4839,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:19:27.679Z",
+        "checkedAt": "2026-11-27T10:34:16.191Z",
         "osmEmail": "srcanddh@gmail.com",
         "email": "srcanddh@gmail.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -5045,7 +5050,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:19:28.991Z",
+      "updatedAt": "2026-11-27T10:34:17.835Z",
       "osmEmail": null,
       "emailSource": "own website",
       "emailFoundOn": "https://srinidhirestaurant.com/",
@@ -5059,7 +5064,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:19:28.973Z",
+        "checkedAt": "2026-11-27T10:34:17.819Z",
         "osmEmail": "support@srinidhirestaurant.com",
         "email": "support@srinidhirestaurant.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -5438,7 +5443,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:19:30.921Z",
+      "updatedAt": "2026-11-27T10:34:19.530Z",
       "osmEmail": null,
       "emailSource": "own website",
       "emailFoundOn": "https://subbayyagarihotel.in/",
@@ -5452,7 +5457,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:19:30.914Z",
+        "checkedAt": "2026-11-27T10:34:19.523Z",
         "osmEmail": "info@subbayyagarihotel.in",
         "email": "info@subbayyagarihotel.in",
         "emailSource": "openstreetmap, confirmed on site",
@@ -5542,7 +5547,7 @@
         "result": "ok",
         "rendered": true
       },
-      "updatedAt": "2026-11-26T14:19:40.478Z",
+      "updatedAt": "2026-11-27T10:34:20.087Z",
       "osmEmail": "rkhospital.gajuwaka@gmail.com",
       "emailSource": "openstreetmap, confirmed on site",
       "emailFoundOn": "https://www.rkhospital.co.in/",
@@ -5556,19 +5561,17 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:19:40.022Z",
+        "checkedAt": "2026-11-27T10:34:19.970Z",
         "osmEmail": "rkhospital.gajuwaka@gmail.com",
         "email": "rkhospital.gajuwaka@gmail.com",
         "emailSource": "openstreetmap, confirmed on site",
-        "foundOn": "https://www.rkhospital.co.in/",
+        "foundOn": "https://www.rkhospital.co.in/contact",
         "siteEmails": [
-          "info@rkhospitals.co.in",
-          "rkhospital@gmail.com",
-          "rkhospital.gajuwaka@gmail.com"
+          "rkhospital.gajuwaka@gmail.com",
+          "rkhospital@gmail.com"
         ],
         "ok": true,
         "result": "ok",
-        "rendered": true,
         "notAProspect": null
       }
     },
@@ -5816,7 +5819,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:19:41.595Z",
+      "updatedAt": "2026-11-27T10:34:21.803Z",
       "osmEmail": "info@praveenhospitals.com",
       "emailSource": "own website (OpenStreetMap had info@praveenhospitals.com, not on the site)",
       "emailFoundOn": "https://praveenhospitals.com/",
@@ -5830,7 +5833,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:19:41.590Z",
+        "checkedAt": "2026-11-27T10:34:21.799Z",
         "osmEmail": "praveencardiaccentre@gmail.com",
         "email": "praveencardiaccentre@gmail.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -5876,7 +5879,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:19:43.861Z",
+      "updatedAt": "2026-11-27T10:34:25.480Z",
       "osmEmail": "rchguntur@gmail.com",
       "emailSource": "own website (OpenStreetMap had rchguntur@gmail.com, not on the site)",
       "emailFoundOn": "http://www.raghuramhospitals.com/",
@@ -5890,7 +5893,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:19:43.856Z",
+        "checkedAt": "2026-11-27T10:34:25.474Z",
         "osmEmail": "info@raghuramhospitals.com",
         "email": "info@raghuramhospitals.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -6028,7 +6031,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:19:45.326Z",
+      "updatedAt": "2026-11-27T10:34:26.440Z",
       "osmEmail": "help@karumurihospital.com",
       "emailSource": "openstreetmap, confirmed on site",
       "emailFoundOn": "https://www.karumurihospital.com/",
@@ -6042,7 +6045,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:19:45.322Z",
+        "checkedAt": "2026-11-27T10:34:26.435Z",
         "osmEmail": "help@karumurihospital.com",
         "email": "help@karumurihospital.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -6194,7 +6197,7 @@
         "result": "ok",
         "rendered": true
       },
-      "updatedAt": "2026-11-26T14:19:56.626Z",
+      "updatedAt": "2026-11-27T10:34:37.598Z",
       "osmEmail": "support@nesthospital.in",
       "emailSource": "openstreetmap, confirmed on site",
       "emailFoundOn": "https://www.nesthospital.in/",
@@ -6208,7 +6211,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:19:56.613Z",
+        "checkedAt": "2026-11-27T10:34:37.589Z",
         "osmEmail": "support@nesthospital.in",
         "email": "support@nesthospital.in",
         "emailSource": "openstreetmap, confirmed on site",
@@ -6290,7 +6293,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:20:06.024Z",
+      "updatedAt": "2026-11-27T10:36:09.119Z",
       "osmEmail": "sandhyaeyehospitals@gmail.com",
       "emailSource": "own website (OpenStreetMap had sandhyaeyehospitals@gmail.com, not on the site)",
       "emailFoundOn": "https://sandhyaeyehospitals.com/",
@@ -6304,16 +6307,16 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:20:05.978Z",
+        "checkedAt": "2026-11-27T10:36:09.117Z",
         "osmEmail": "bhargav@sandhyaeyehospitals.com",
-        "email": "bhargav@sandhyaeyehospitals.com",
-        "emailSource": "openstreetmap, confirmed on site",
-        "foundOn": "https://sandhyaeyehospitals.com/",
-        "siteEmails": [
-          "bhargav@sandhyaeyehospitals.com"
-        ],
-        "ok": true,
-        "result": "ok",
+        "email": null,
+        "emailSource": null,
+        "foundOn": null,
+        "siteEmails": [],
+        "ok": false,
+        "result": "unreachable",
+        "httpStatus": 0,
+        "reason": "site unreachable (UND_ERR_CONNECT_TIMEOUT)",
         "notAProspect": null
       }
     },
@@ -6552,7 +6555,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:20:08.079Z",
+      "updatedAt": "2026-11-27T10:36:10.848Z",
       "osmEmail": "joinstitute@yahoo.co.in",
       "emailSource": "openstreetmap, confirmed on site",
       "emailFoundOn": "https://www.jnananandaeyehospital.co.in/index.html",
@@ -6566,7 +6569,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:20:08.072Z",
+        "checkedAt": "2026-11-27T10:36:10.842Z",
         "osmEmail": "joinstitute@yahoo.co.in",
         "email": "joinstitute@yahoo.co.in",
         "emailSource": "openstreetmap, confirmed on site",
@@ -6768,7 +6771,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:20:09.241Z",
+      "updatedAt": "2026-11-27T10:36:12.367Z",
       "osmEmail": "info@bhimavaramhospitals.com",
       "emailSource": "openstreetmap, confirmed on site",
       "emailFoundOn": "https://www.bhimavaramhospital.com/contactus.htm",
@@ -6782,7 +6785,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:20:09.237Z",
+        "checkedAt": "2026-11-27T10:36:12.362Z",
         "osmEmail": "info@bhimavaramhospitals.com",
         "email": "info@bhimavaramhospitals.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -7468,7 +7471,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:20:11.964Z",
+      "updatedAt": "2026-11-27T10:36:14.683Z",
       "osmEmail": "hrdentalhospital23@gmail.com",
       "emailSource": "openstreetmap, confirmed on site",
       "emailFoundOn": "https://www.hrdentalhospital.com/",
@@ -7482,7 +7485,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:20:11.943Z",
+        "checkedAt": "2026-11-27T10:36:14.668Z",
         "osmEmail": "hrdentalhospital23@gmail.com",
         "email": "hrdentalhospital23@gmail.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -7610,7 +7613,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:20:20.448Z",
+      "updatedAt": "2026-11-27T10:36:23.029Z",
       "osmEmail": "irisinternationaldentalcare@gmail.com",
       "emailSource": "openstreetmap, confirmed on site",
       "emailFoundOn": "https://irisinternationaldentalcare.com/contact-us/",
@@ -7624,7 +7627,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:20:20.396Z",
+        "checkedAt": "2026-11-27T10:36:22.980Z",
         "osmEmail": "irisinternationaldentalcare@gmail.com",
         "email": "irisinternationaldentalcare@gmail.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -7672,7 +7675,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:20:22.802Z",
+      "updatedAt": "2026-11-27T10:36:25.436Z",
       "osmEmail": "jamilidentalcare@gmail.com",
       "emailSource": "openstreetmap, confirmed on site",
       "emailFoundOn": "https://www.jamilidentalcare.in/",
@@ -7686,7 +7689,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:20:22.792Z",
+        "checkedAt": "2026-11-27T10:36:25.427Z",
         "osmEmail": "jamilidentalcare@gmail.com",
         "email": "jamilidentalcare@gmail.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -7733,7 +7736,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:20:24.291Z",
+      "updatedAt": "2026-11-27T10:36:26.804Z",
       "osmEmail": "drsushmadental@gmail.com",
       "emailSource": "openstreetmap, confirmed on site",
       "emailFoundOn": "https://www.drsushmadental.com/",
@@ -7747,7 +7750,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:20:24.279Z",
+        "checkedAt": "2026-11-27T10:36:26.794Z",
         "osmEmail": "drsushmadental@gmail.com",
         "email": "drsushmadental@gmail.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -7793,7 +7796,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:20:27.987Z",
+      "updatedAt": "2026-11-27T10:36:30.390Z",
       "osmEmail": "msdentalhosp@gmail.com",
       "emailSource": "openstreetmap, confirmed on site",
       "emailFoundOn": "https://msdentalhospital.in/",
@@ -7807,7 +7810,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:20:27.974Z",
+        "checkedAt": "2026-11-27T10:36:30.376Z",
         "osmEmail": "msdentalhosp@gmail.com",
         "email": "msdentalhosp@gmail.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -7931,7 +7934,7 @@
         "result": "ok",
         "rendered": true
       },
-      "updatedAt": "2026-11-26T14:20:37.239Z",
+      "updatedAt": "2026-11-27T10:36:39.680Z",
       "osmEmail": null,
       "emailSource": "own website",
       "emailFoundOn": "http://amruthahearthospital.co.in/",
@@ -7945,7 +7948,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:20:37.213Z",
+        "checkedAt": "2026-11-27T10:36:39.657Z",
         "osmEmail": "support@amruthahearthospital.co.in",
         "email": "support@amruthahearthospital.co.in",
         "emailSource": "openstreetmap, confirmed on site",
@@ -8415,7 +8418,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:20:43.445Z",
+      "updatedAt": "2026-11-27T10:36:43.765Z",
       "osmEmail": "mkdentalortho@gmail.com",
       "emailSource": "openstreetmap, confirmed on site",
       "emailFoundOn": "https://mkdentals.com/",
@@ -8429,7 +8432,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:20:43.425Z",
+        "checkedAt": "2026-11-27T10:36:43.745Z",
         "osmEmail": "mkdentalortho@gmail.com",
         "email": "mkdentalortho@gmail.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -8476,7 +8479,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:20:48.150Z",
+      "updatedAt": "2026-11-27T10:36:46.074Z",
       "osmEmail": "karthik@prathikdental.com",
       "emailSource": "openstreetmap, confirmed on site",
       "emailFoundOn": "https://prathikdental.com/",
@@ -8490,7 +8493,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:20:48.124Z",
+        "checkedAt": "2026-11-27T10:36:46.028Z",
         "osmEmail": "karthik@prathikdental.com",
         "email": "karthik@prathikdental.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -8618,7 +8621,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:20:53.064Z",
+      "updatedAt": "2026-11-27T10:36:50.703Z",
       "osmEmail": "thedentalstudiovizag@gmail.com",
       "emailSource": "openstreetmap, confirmed on site",
       "emailFoundOn": "http://thedentalstudiovizag.com/",
@@ -8632,7 +8635,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:20:53.053Z",
+        "checkedAt": "2026-11-27T10:36:50.691Z",
         "osmEmail": "thedentalstudiovizag@gmail.com",
         "email": "thedentalstudiovizag@gmail.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -8680,7 +8683,7 @@
         "result": "ok",
         "rendered": true
       },
-      "updatedAt": "2026-11-26T14:20:59.075Z",
+      "updatedAt": "2026-11-27T10:36:56.307Z",
       "osmEmail": "kalyanispecialitydental16@gmail.com",
       "emailSource": "openstreetmap, confirmed on site",
       "emailFoundOn": "https://www.kalyanidentalclinics.com/",
@@ -8694,7 +8697,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:20:59.069Z",
+        "checkedAt": "2026-11-27T10:36:56.301Z",
         "osmEmail": "kalyanispecialitydental16@gmail.com",
         "email": "kalyanispecialitydental16@gmail.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -8818,7 +8821,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:21:02.608Z",
+      "updatedAt": "2026-11-27T10:36:59.467Z",
       "osmEmail": "info@praveendental.in",
       "emailSource": "openstreetmap, confirmed on site",
       "emailFoundOn": "https://praveendental.in/",
@@ -8832,7 +8835,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:21:02.593Z",
+        "checkedAt": "2026-11-27T10:36:59.453Z",
         "osmEmail": "info@praveendental.in",
         "email": "info@praveendental.in",
         "emailSource": "openstreetmap, confirmed on site",
@@ -8946,7 +8949,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:21:05.565Z",
+      "updatedAt": "2026-11-27T10:37:02.396Z",
       "osmEmail": "smartcaredentalhospital@gmail.com",
       "emailSource": "openstreetmap, confirmed on site",
       "emailFoundOn": "https://smartcaredentalhospital.com/",
@@ -8960,7 +8963,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:21:05.558Z",
+        "checkedAt": "2026-11-27T10:37:02.390Z",
         "osmEmail": "smartcaredentalhospital@gmail.com",
         "email": "smartcaredentalhospital@gmail.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -9048,7 +9051,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:21:06.188Z",
+      "updatedAt": "2026-11-27T10:37:02.980Z",
       "osmEmail": "sunetraeyecare2020@gmail.com",
       "emailSource": "openstreetmap, confirmed on site",
       "emailFoundOn": "https://www.drswethasajja.com/",
@@ -9062,7 +9065,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:21:06.182Z",
+        "checkedAt": "2026-11-27T10:37:02.974Z",
         "osmEmail": "sunetraeyecare2020@gmail.com",
         "email": "sunetraeyecare2020@gmail.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -9110,7 +9113,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:21:11.364Z",
+      "updatedAt": "2026-11-27T10:37:07.782Z",
       "osmEmail": "mjnaiduhospitals@gmail.com",
       "emailSource": "openstreetmap, confirmed on site",
       "emailFoundOn": "https://mjnaiduhospitals.com/",
@@ -9124,7 +9127,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:21:11.314Z",
+        "checkedAt": "2026-11-27T10:37:07.734Z",
         "osmEmail": "mjnaiduhospitals@gmail.com",
         "email": "mjnaiduhospitals@gmail.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -9172,7 +9175,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:21:13.899Z",
+      "updatedAt": "2026-11-27T10:37:10.349Z",
       "osmEmail": "sasyafertilitycenter@gmail.com",
       "emailSource": "openstreetmap, confirmed on site",
       "emailFoundOn": "https://www.sasyafertilitycenter.com/",
@@ -9186,7 +9189,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:21:13.891Z",
+        "checkedAt": "2026-11-27T10:37:10.341Z",
         "osmEmail": "sasyafertilitycenter@gmail.com",
         "email": "sasyafertilitycenter@gmail.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -9234,7 +9237,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:21:17.587Z",
+      "updatedAt": "2026-11-27T10:37:12.871Z",
       "osmEmail": "ravidentalcareandimplantcentre@gmail.com",
       "emailSource": "openstreetmap, confirmed on site",
       "emailFoundOn": "https://ravidentalcare.in/",
@@ -9248,7 +9251,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:21:17.565Z",
+        "checkedAt": "2026-11-27T10:37:12.850Z",
         "osmEmail": "ravidentalcareandimplantcentre@gmail.com",
         "email": "ravidentalcareandimplantcentre@gmail.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -9338,7 +9341,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:21:17.952Z",
+      "updatedAt": "2026-11-27T10:37:13.249Z",
       "osmEmail": "vignatafertilityandivfcentre@gmail.com",
       "emailSource": "openstreetmap, confirmed on site",
       "emailFoundOn": "https://vignataivfcenter.com/",
@@ -9352,7 +9355,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:21:17.937Z",
+        "checkedAt": "2026-11-27T10:37:13.234Z",
         "osmEmail": "vignatafertilityandivfcentre@gmail.com",
         "email": "vignatafertilityandivfcentre@gmail.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -9401,7 +9404,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:21:18.486Z",
+      "updatedAt": "2026-11-27T10:37:13.555Z",
       "osmEmail": "shravanienthospital@gmail.com",
       "emailSource": "openstreetmap, confirmed on site",
       "emailFoundOn": "https://shravanienthospital.com/",
@@ -9415,7 +9418,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:21:18.478Z",
+        "checkedAt": "2026-11-27T10:37:13.548Z",
         "osmEmail": "shravanienthospital@gmail.com",
         "email": "shravanienthospital@gmail.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -9464,7 +9467,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:26:16.889Z",
+      "updatedAt": "2026-11-27T10:37:13.928Z",
       "osmEmail": "drhemanthneuro@gmail.com",
       "emailSource": "openstreetmap, confirmed on site",
       "emailFoundOn": "https://neurologistinkurnool.com/",
@@ -9478,7 +9481,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:21:19.049Z",
+        "checkedAt": "2026-11-27T10:37:13.907Z",
         "osmEmail": "drhemanthneuro@gmail.com",
         "email": "drhemanthneuro@gmail.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -9526,7 +9529,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:21:20.706Z",
+      "updatedAt": "2026-11-27T10:37:15.421Z",
       "osmEmail": "deepthifertilitycentre@gmail.com",
       "emailSource": "openstreetmap, confirmed on site",
       "emailFoundOn": "https://deepthifertility.com/",
@@ -9540,7 +9543,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:21:20.679Z",
+        "checkedAt": "2026-11-27T10:37:15.395Z",
         "osmEmail": "deepthifertilitycentre@gmail.com",
         "email": "deepthifertilitycentre@gmail.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -9588,7 +9591,7 @@
         "ok": true,
         "result": "ok"
       },
-      "updatedAt": "2026-11-26T14:21:22.439Z",
+      "updatedAt": "2026-11-27T10:37:16.888Z",
       "osmEmail": "bmrhospitalsguntur@gmail.com",
       "emailSource": "openstreetmap, confirmed on site",
       "emailFoundOn": "https://saibhaskarhospital.com/",
@@ -9602,7 +9605,7 @@
       "auditAttempts": 1,
       "lastError": null,
       "emailRecheck": {
-        "checkedAt": "2026-11-26T14:21:22.425Z",
+        "checkedAt": "2026-11-27T10:37:16.875Z",
         "osmEmail": "bmrhospitalsguntur@gmail.com",
         "email": "bmrhospitalsguntur@gmail.com",
         "emailSource": "openstreetmap, confirmed on site",
@@ -9703,6 +9706,333 @@
       "status": "new",
       "firstSeenAt": "2026-11-23T01:40:01.703Z",
       "lastSeenAt": "2026-11-23T01:40:01.703Z",
+      "timesSeen": 1
+    },
+    {
+      "id": "veyehospital.com",
+      "key": "d:veyehospital.com",
+      "name": "Venkateswara Eye Hospital",
+      "website": "https://veyehospital.com/",
+      "domain": "veyehospital.com",
+      "phone": "+91 93941 41919",
+      "email": "venkateswaraeyehospitalongole@gmail.com",
+      "city": "Ongole",
+      "state": "Andhra Pradesh",
+      "country": "India",
+      "niche": "clinic",
+      "nicheLabel": null,
+      "category": null,
+      "address": "Near RTC Bus Stand, Sundarayya Bhavan Road, Ongole 523001",
+      "source": "csv",
+      "sourceUrl": "data/ap-websearch-2026-11-27.csv",
+      "status": "new",
+      "firstSeenAt": "2026-11-27T10:37:17.353Z",
+      "lastSeenAt": "2026-11-27T10:37:17.353Z",
+      "timesSeen": 1,
+      "screen": {
+        "checkedAt": "2026-11-27T10:38:48.962Z",
+        "osmEmail": "venkateswaraeyehospitalongole@gmail.com",
+        "email": null,
+        "emailSource": null,
+        "foundOn": null,
+        "siteEmails": [],
+        "ok": false,
+        "result": "unreachable",
+        "httpStatus": 0,
+        "reason": "site unreachable (UND_ERR_CONNECT_TIMEOUT)"
+      },
+      "updatedAt": "2026-11-27T10:38:48.964Z"
+    },
+    {
+      "id": "vijayahospitalvzm.com",
+      "key": "d:vijayahospitalvzm.com",
+      "name": "Vijaya Hospital",
+      "website": "https://vijayahospitalvzm.com/",
+      "domain": "vijayahospitalvzm.com",
+      "phone": "+91 8922 233528",
+      "email": "drudayakumar65@gmail.com",
+      "city": "Vizianagaram",
+      "state": "Andhra Pradesh",
+      "country": "India",
+      "niche": "clinic",
+      "nicheLabel": null,
+      "category": null,
+      "address": "Backside of Sri Pyditalli Ammavari Temple, Old Branch School Street, Three Lamps Jn, Vizianagaram 535002",
+      "source": "csv",
+      "sourceUrl": "data/ap-websearch-2026-11-27.csv",
+      "status": "new",
+      "firstSeenAt": "2026-11-27T10:37:17.360Z",
+      "lastSeenAt": "2026-11-27T10:37:17.360Z",
+      "timesSeen": 1,
+      "screen": {
+        "checkedAt": "2026-11-27T10:38:49.269Z",
+        "osmEmail": "drudayakumar65@gmail.com",
+        "email": null,
+        "emailSource": null,
+        "foundOn": null,
+        "siteEmails": [],
+        "ok": false,
+        "result": "unreachable",
+        "httpStatus": 403,
+        "reason": "homepage returned HTTP 403"
+      },
+      "updatedAt": "2026-11-27T10:38:52.493Z"
+    },
+    {
+      "id": "desaieyecare.in",
+      "key": "d:desaieyecare.in",
+      "name": "Desai Eye Care",
+      "website": "https://desaieyecare.in/",
+      "domain": "desaieyecare.in",
+      "phone": "+91 91002 08048",
+      "email": "desaieyecares@gmail.com",
+      "city": "Nellore",
+      "state": "Andhra Pradesh",
+      "country": "India",
+      "niche": "clinic",
+      "nicheLabel": null,
+      "category": null,
+      "address": "16-1-676, near Clock Tower, VRC Centre, Nellore 524001",
+      "source": "csv",
+      "sourceUrl": "data/ap-websearch-2026-11-27.csv",
+      "status": "audited",
+      "firstSeenAt": "2026-11-27T10:37:17.366Z",
+      "lastSeenAt": "2026-11-27T10:37:17.366Z",
+      "timesSeen": 1,
+      "screen": {
+        "checkedAt": "2026-11-27T10:39:02.302Z",
+        "osmEmail": "desaieyecares@gmail.com",
+        "email": "desaieyecares@gmail.com",
+        "emailSource": "openstreetmap, confirmed on site",
+        "foundOn": "https://desaieyecare.in/",
+        "siteEmails": [
+          "desaieyecares@gmail.com"
+        ],
+        "ok": true,
+        "result": "ok"
+      },
+      "updatedAt": "2026-11-27T10:40:31.707Z",
+      "osmEmail": "desaieyecares@gmail.com",
+      "emailSource": "openstreetmap, confirmed on site",
+      "emailFoundOn": "https://desaieyecare.in/",
+      "lastAuditedAt": {
+        "iso": "2026-11-27",
+        "long": "27 November 2026",
+        "measuredIst": "27/11/2026, 4:09:02 pm"
+      },
+      "lastAuditRef": "SP-AUD-2026-11-27-DEC",
+      "lastAuditPdf": "reports/desai-eye-care/Smart-Pursuit-Audit-Desai-Eye-Care.pdf",
+      "auditAttempts": 1,
+      "lastError": null
+    },
+    {
+      "id": "padmavathisdental.com",
+      "key": "d:padmavathisdental.com",
+      "name": "Dr. Padmavathi Dental Hospital & Implant Centre",
+      "website": "https://padmavathisdental.com/",
+      "domain": "padmavathisdental.com",
+      "phone": "+91 85018 02222",
+      "email": "dr.padmavathi25@gmail.com",
+      "city": "Kakinada",
+      "state": "Andhra Pradesh",
+      "country": "India",
+      "niche": "dentist",
+      "nicheLabel": null,
+      "category": null,
+      "address": "7-102, Suruchi Foods upstairs, Thimmapuram, Kakinada 533005",
+      "source": "csv",
+      "sourceUrl": "data/ap-websearch-2026-11-27.csv",
+      "status": "audited",
+      "firstSeenAt": "2026-11-27T10:37:17.372Z",
+      "lastSeenAt": "2026-11-27T10:37:17.372Z",
+      "timesSeen": 1,
+      "screen": {
+        "checkedAt": "2026-11-27T10:40:34.355Z",
+        "osmEmail": "dr.padmavathi25@gmail.com",
+        "email": "dr.padmavathi25@gmail.com",
+        "emailSource": "openstreetmap, confirmed on site",
+        "foundOn": "https://padmavathisdental.com/",
+        "siteEmails": [
+          "dr.padmavathi25@gmail.com"
+        ],
+        "ok": true,
+        "result": "ok"
+      },
+      "updatedAt": "2026-11-27T10:41:57.706Z",
+      "osmEmail": "dr.padmavathi25@gmail.com",
+      "emailSource": "openstreetmap, confirmed on site",
+      "emailFoundOn": "https://padmavathisdental.com/",
+      "lastAuditedAt": {
+        "iso": "2026-11-27",
+        "long": "27 November 2026",
+        "measuredIst": "27/11/2026, 4:10:34 pm"
+      },
+      "lastAuditRef": "SP-AUD-2026-11-27-DPD",
+      "lastAuditPdf": "reports/dr-padmavathi-dental-hospital-and-implant-centre/Smart-Pursuit-Audit-Dr.-Padmavathi-Dental-Hospital-Implant-Centre.pdf",
+      "auditAttempts": 1,
+      "lastError": null
+    },
+    {
+      "id": "aahospitals.in",
+      "key": "d:aahospitals.in",
+      "name": "AA Hospitals",
+      "website": "https://aahospitals.in/",
+      "domain": "aahospitals.in",
+      "phone": "+91 93467 36775",
+      "email": "anila.amudalapalli@gmail.com",
+      "city": "Eluru",
+      "state": "Andhra Pradesh",
+      "country": "India",
+      "niche": "clinic",
+      "nicheLabel": null,
+      "category": null,
+      "address": "Ramachandra Rao Pet, Eluru 534006",
+      "source": "csv",
+      "sourceUrl": "data/ap-websearch-2026-11-27.csv",
+      "status": "audited",
+      "firstSeenAt": "2026-11-27T10:37:17.378Z",
+      "lastSeenAt": "2026-11-27T10:37:17.378Z",
+      "timesSeen": 1,
+      "screen": {
+        "checkedAt": "2026-11-27T10:41:58.960Z",
+        "osmEmail": "anila.amudalapalli@gmail.com",
+        "email": "anila.amudalapalli@gmail.com",
+        "emailSource": "openstreetmap, confirmed on site",
+        "foundOn": "https://aahospitals.in/",
+        "siteEmails": [
+          "anila.amudalapalli@gmail.com"
+        ],
+        "ok": true,
+        "result": "ok"
+      },
+      "updatedAt": "2026-11-27T10:42:59.196Z",
+      "osmEmail": "anila.amudalapalli@gmail.com",
+      "emailSource": "openstreetmap, confirmed on site",
+      "emailFoundOn": "https://aahospitals.in/",
+      "lastAuditedAt": {
+        "iso": "2026-11-27",
+        "long": "27 November 2026",
+        "measuredIst": "27/11/2026, 4:11:59 pm"
+      },
+      "lastAuditRef": "SP-AUD-2026-11-27-AH",
+      "lastAuditPdf": "reports/aa-hospitals/Smart-Pursuit-Audit-AA-Hospitals.pdf",
+      "auditAttempts": 1,
+      "lastError": null
+    },
+    {
+      "id": "leelavathiadvancedskinandlasercentre.in",
+      "key": "d:leelavathiadvancedskinandlasercentre.in",
+      "name": "Leelavathi Advanced Skin & Laser Centre",
+      "website": "https://www.leelavathiadvancedskinandlasercentre.in/",
+      "domain": "leelavathiadvancedskinandlasercentre.in",
+      "phone": "+91 93929 30422",
+      "email": "leelavathiskincentre@gmail.com",
+      "city": "Guntur",
+      "state": "Andhra Pradesh",
+      "country": "India",
+      "niche": "clinic",
+      "nicheLabel": null,
+      "category": null,
+      "address": "Puvada Vari Street, Pottur Vari Thota, near Anna Srinivasa Rao Kalyana Mandapam Road, Guntur 522001",
+      "source": "csv",
+      "sourceUrl": "data/ap-websearch-2026-11-27.csv",
+      "status": "audited",
+      "firstSeenAt": "2026-11-27T10:37:17.385Z",
+      "lastSeenAt": "2026-11-27T10:37:17.385Z",
+      "timesSeen": 1,
+      "screen": {
+        "checkedAt": "2026-11-27T10:43:11.690Z",
+        "osmEmail": "leelavathiskincentre@gmail.com",
+        "email": "leelavathiskincentre@gmail.com",
+        "emailSource": "openstreetmap, confirmed on site",
+        "foundOn": "https://www.leelavathiadvancedskinandlasercentre.in/",
+        "siteEmails": [
+          "leelavathiskincentre@gmail.com"
+        ],
+        "ok": true,
+        "result": "ok"
+      },
+      "updatedAt": "2026-11-27T10:44:34.733Z",
+      "osmEmail": "leelavathiskincentre@gmail.com",
+      "emailSource": "openstreetmap, confirmed on site",
+      "emailFoundOn": "https://www.leelavathiadvancedskinandlasercentre.in/",
+      "lastAuditedAt": {
+        "iso": "2026-11-27",
+        "long": "27 November 2026",
+        "measuredIst": "27/11/2026, 4:13:11 pm"
+      },
+      "lastAuditRef": "SP-AUD-2026-11-27-LAS",
+      "lastAuditPdf": "reports/leelavathi-advanced-skin-and-laser-centre/Smart-Pursuit-Audit-Leelavathi-Advanced-Skin-Laser-Centre.pdf",
+      "auditAttempts": 1,
+      "lastError": null
+    },
+    {
+      "id": "skinfirst.in",
+      "key": "d:skinfirst.in",
+      "name": "Skin First",
+      "website": "https://www.skinfirst.in/",
+      "domain": "skinfirst.in",
+      "phone": "+91 99235 92359",
+      "email": "skinfirstk@gmail.com",
+      "city": "Vijayawada",
+      "state": "Andhra Pradesh",
+      "country": "India",
+      "niche": "clinic",
+      "nicheLabel": null,
+      "category": null,
+      "address": "Opposite NAC Kalyana Vedika, Gurunanak Colony Main Road, Vijayawada 520010",
+      "source": "csv",
+      "sourceUrl": "data/ap-websearch-2026-11-27.csv",
+      "status": "audited",
+      "firstSeenAt": "2026-11-27T10:37:17.395Z",
+      "lastSeenAt": "2026-11-27T10:37:17.395Z",
+      "timesSeen": 1,
+      "screen": {
+        "checkedAt": "2026-11-27T10:44:38.894Z",
+        "osmEmail": "skinfirstk@gmail.com",
+        "email": "skinfirstk@gmail.com",
+        "emailSource": "openstreetmap, confirmed on site",
+        "foundOn": "https://www.skinfirst.in/",
+        "siteEmails": [
+          "skinfirstk@gmail.com"
+        ],
+        "ok": true,
+        "result": "ok"
+      },
+      "updatedAt": "2026-11-27T10:46:06.478Z",
+      "osmEmail": "skinfirstk@gmail.com",
+      "emailSource": "openstreetmap, confirmed on site",
+      "emailFoundOn": "https://www.skinfirst.in/",
+      "lastAuditedAt": {
+        "iso": "2026-11-27",
+        "long": "27 November 2026",
+        "measuredIst": "27/11/2026, 4:14:39 pm"
+      },
+      "lastAuditRef": "SP-AUD-2026-11-27-SF",
+      "lastAuditPdf": "reports/skin-first/Smart-Pursuit-Audit-Skin-First.pdf",
+      "auditAttempts": 1,
+      "lastError": null
+    },
+    {
+      "id": "kamakshihospital.com",
+      "key": "d:kamakshihospital.com",
+      "name": "Kamakshi Hospital",
+      "website": "https://www.kamakshihospital.com/",
+      "domain": "kamakshihospital.com",
+      "phone": "+91 99592 72250",
+      "email": "kamakshihospitaltpt2022@gmail.com",
+      "city": "Tirupati",
+      "state": "Andhra Pradesh",
+      "country": "India",
+      "niche": "clinic",
+      "nicheLabel": null,
+      "category": null,
+      "address": "10-13-509, ICICI Bank Lane, Reddy and Reddy's Colony, Tirupati 517501",
+      "source": "csv",
+      "sourceUrl": "data/ap-websearch-2026-11-27.csv",
+      "status": "new",
+      "firstSeenAt": "2026-11-27T10:37:17.407Z",
+      "lastSeenAt": "2026-11-27T10:37:17.407Z",
       "timesSeen": 1
     }
   ]

@@ -1,0 +1,25 @@
+{
+  "name": "Skin First",
+  "domain": "skinfirst.in",
+  "city": "Vijayawada",
+  "state": "Andhra Pradesh",
+  "email": "skinfirstk@gmail.com",
+  "phone": "+91 99235 92359",
+  "ref": "SP-AUD-2026-11-27-SF",
+  "date": "2026-11-27",
+  "overall": 65,
+  "scores": {
+    "speed": 3,
+    "mobile": 7,
+    "conversion": 8,
+    "design": 10,
+    "seo": 7,
+    "overall": 65
+  },
+  "pdf": "Smart-Pursuit-Audit-Skin-First.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://www.skinfirst.in/",
+    "checkedAt": "2026-11-27"
+  }
+}

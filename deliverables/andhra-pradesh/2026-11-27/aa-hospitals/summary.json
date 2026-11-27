@@ -1,0 +1,25 @@
+{
+  "name": "AA Hospitals",
+  "domain": "aahospitals.in",
+  "city": "Eluru",
+  "state": "Andhra Pradesh",
+  "email": "anila.amudalapalli@gmail.com",
+  "phone": "+91 93467 36775",
+  "ref": "SP-AUD-2026-11-27-AH",
+  "date": "2026-11-27",
+  "overall": 78,
+  "scores": {
+    "speed": 5,
+    "mobile": 9,
+    "conversion": 10,
+    "design": 8,
+    "seo": 8,
+    "overall": 78
+  },
+  "pdf": "Smart-Pursuit-Audit-AA-Hospitals.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://aahospitals.in/",
+    "checkedAt": "2026-11-27"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-26T14:27:17.438Z",
+  "updatedAt": "2026-11-27T10:46:06.476Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -1441,6 +1441,126 @@
         "html": "reports/vignata-fertility-and-ivf-center/report.html"
       },
       "fingerprint": "5726a688cd3eb7a4"
+    },
+    {
+      "domain": "desaieyecare.in",
+      "name": "Desai Eye Care",
+      "ref": "SP-AUD-2026-11-27-DEC",
+      "generatedAt": "2026-11-27T10:40:31.704Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 7,
+        "conversion": 10,
+        "design": 8,
+        "seo": 8,
+        "overall": 74
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2108376,
+      "files": {
+        "pdf": "reports/desai-eye-care/Smart-Pursuit-Audit-Desai-Eye-Care.pdf",
+        "audit": "reports/desai-eye-care/audit.json",
+        "html": "reports/desai-eye-care/report.html"
+      },
+      "fingerprint": "61d7f5127bbe2f1d"
+    },
+    {
+      "domain": "padmavathisdental.com",
+      "name": "Dr. Padmavathi Dental Hospital & Implant Centre",
+      "ref": "SP-AUD-2026-11-27-DPD",
+      "generatedAt": "2026-11-27T10:41:57.703Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 4,
+        "mobile": 6,
+        "conversion": 10,
+        "design": 10,
+        "seo": 10,
+        "overall": 74
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2073696,
+      "files": {
+        "pdf": "reports/dr-padmavathi-dental-hospital-and-implant-centre/Smart-Pursuit-Audit-Dr.-Padmavathi-Dental-Hospital-Implant-Centre.pdf",
+        "audit": "reports/dr-padmavathi-dental-hospital-and-implant-centre/audit.json",
+        "html": "reports/dr-padmavathi-dental-hospital-and-implant-centre/report.html"
+      },
+      "fingerprint": "3222b15c926bb15c"
+    },
+    {
+      "domain": "aahospitals.in",
+      "name": "AA Hospitals",
+      "ref": "SP-AUD-2026-11-27-AH",
+      "generatedAt": "2026-11-27T10:42:59.193Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 9,
+        "conversion": 10,
+        "design": 8,
+        "seo": 8,
+        "overall": 78
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2468281,
+      "files": {
+        "pdf": "reports/aa-hospitals/Smart-Pursuit-Audit-AA-Hospitals.pdf",
+        "audit": "reports/aa-hospitals/audit.json",
+        "html": "reports/aa-hospitals/report.html"
+      },
+      "fingerprint": "8063502e386166f5"
+    },
+    {
+      "domain": "leelavathiadvancedskinandlasercentre.in",
+      "name": "Leelavathi Advanced Skin & Laser Centre",
+      "ref": "SP-AUD-2026-11-27-LAS",
+      "generatedAt": "2026-11-27T10:44:34.729Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 4,
+        "mobile": 7,
+        "conversion": 10,
+        "design": 8,
+        "seo": 8,
+        "overall": 71
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2578498,
+      "files": {
+        "pdf": "reports/leelavathi-advanced-skin-and-laser-centre/Smart-Pursuit-Audit-Leelavathi-Advanced-Skin-Laser-Centre.pdf",
+        "audit": "reports/leelavathi-advanced-skin-and-laser-centre/audit.json",
+        "html": "reports/leelavathi-advanced-skin-and-laser-centre/report.html"
+      },
+      "fingerprint": "5ce524161f23fa11"
+    },
+    {
+      "domain": "skinfirst.in",
+      "name": "Skin First",
+      "ref": "SP-AUD-2026-11-27-SF",
+      "generatedAt": "2026-11-27T10:46:06.476Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 3,
+        "mobile": 7,
+        "conversion": 8,
+        "design": 10,
+        "seo": 7,
+        "overall": 65
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1698537,
+      "files": {
+        "pdf": "reports/skin-first/Smart-Pursuit-Audit-Skin-First.pdf",
+        "audit": "reports/skin-first/audit.json",
+        "html": "reports/skin-first/report.html"
+      },
+      "fingerprint": "c4545e3b8a317040"
     }
   ]
 }

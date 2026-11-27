@@ -1,0 +1,76 @@
+{
+  "business": "Desai Eye Care",
+  "domain": "desaieyecare.in",
+  "ref": "SP-AUD-2026-11-27-DEC",
+  "createdAt": "2026-11-27T10:40:31.717Z",
+  "sendDate": "2026-11-27",
+  "cadenceDays": [
+    3,
+    3,
+    3
+  ],
+  "to": "desaieyecares@gmail.com",
+  "status": "draft",
+  "neverSendAutomatically": true,
+  "note": "Dates shift if the operator sends email 1 on a different day — recompute with `sequence --send-date YYYY-MM-DD`.",
+  "emails": [
+    {
+      "step": 1,
+      "id": "first",
+      "purpose": "deliver the audit, earn a reply",
+      "attachments": [
+        "reports/desai-eye-care/Smart-Pursuit-Audit-Desai-Eye-Care.pdf"
+      ],
+      "subject": "Desai Eye Care — what I found testing desaieyecare.in",
+      "words": 113,
+      "scheduledFor": "2026-11-27",
+      "scheduledForLong": "27 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/desai-eye-care/email-1-first.md"
+    },
+    {
+      "step": 2,
+      "id": "followup-1",
+      "purpose": "turn the top measured finding into a money argument",
+      "attachments": [],
+      "subject": "Re: Desai Eye Care — what I found testing desaieyecare.in",
+      "words": 102,
+      "scheduledFor": "2026-11-30",
+      "scheduledForLong": "30 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/desai-eye-care/email-2-followup-1.md"
+    },
+    {
+      "step": 3,
+      "id": "followup-2",
+      "purpose": "make the next step concrete without promising an outcome",
+      "attachments": [],
+      "subject": "Re: Desai Eye Care — the next step, if useful",
+      "words": 106,
+      "scheduledFor": "2026-12-03",
+      "scheduledForLong": "3 December 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/desai-eye-care/email-3-followup-2.md"
+    },
+    {
+      "step": 4,
+      "id": "followup-3-final",
+      "purpose": "final mail, leave the door open, no pressure",
+      "attachments": [],
+      "subject": "Closing the loop — Desai Eye Care",
+      "words": 98,
+      "scheduledFor": "2026-12-06",
+      "scheduledForLong": "6 December 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/desai-eye-care/email-4-followup-3-final.md"
+    }
+  ]
+}

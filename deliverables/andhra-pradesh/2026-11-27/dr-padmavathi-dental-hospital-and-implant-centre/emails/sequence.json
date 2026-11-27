@@ -1,0 +1,76 @@
+{
+  "business": "Dr. Padmavathi Dental Hospital & Implant Centre",
+  "domain": "padmavathisdental.com",
+  "ref": "SP-AUD-2026-11-27-DPD",
+  "createdAt": "2026-11-27T10:41:57.710Z",
+  "sendDate": "2026-11-27",
+  "cadenceDays": [
+    3,
+    3,
+    3
+  ],
+  "to": "dr.padmavathi25@gmail.com",
+  "status": "draft",
+  "neverSendAutomatically": true,
+  "note": "Dates shift if the operator sends email 1 on a different day — recompute with `sequence --send-date YYYY-MM-DD`.",
+  "emails": [
+    {
+      "step": 1,
+      "id": "first",
+      "purpose": "deliver the audit, earn a reply",
+      "attachments": [
+        "reports/dr-padmavathi-dental-hospital-and-implant-centre/Smart-Pursuit-Audit-Dr.-Padmavathi-Dental-Hospital-Implant-Centre.pdf"
+      ],
+      "subject": "Dr. Padmavathi Dental Hospital — what I found testing padmavathisdental.com",
+      "words": 113,
+      "scheduledFor": "2026-11-27",
+      "scheduledForLong": "27 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/dr-padmavathi-dental-hospital-and-implant-centre/email-1-first.md"
+    },
+    {
+      "step": 2,
+      "id": "followup-1",
+      "purpose": "turn the top measured finding into a money argument",
+      "attachments": [],
+      "subject": "Re: Dr. Padmavathi Dental Hospital — what I found testing padmavathisdental.com",
+      "words": 102,
+      "scheduledFor": "2026-11-30",
+      "scheduledForLong": "30 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/dr-padmavathi-dental-hospital-and-implant-centre/email-2-followup-1.md"
+    },
+    {
+      "step": 3,
+      "id": "followup-2",
+      "purpose": "make the next step concrete without promising an outcome",
+      "attachments": [],
+      "subject": "Re: Dr. Padmavathi Dental Hospital — the next step, if useful",
+      "words": 106,
+      "scheduledFor": "2026-12-03",
+      "scheduledForLong": "3 December 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/dr-padmavathi-dental-hospital-and-implant-centre/email-3-followup-2.md"
+    },
+    {
+      "step": 4,
+      "id": "followup-3-final",
+      "purpose": "final mail, leave the door open, no pressure",
+      "attachments": [],
+      "subject": "Closing the loop — Dr. Padmavathi Dental Hospital",
+      "words": 98,
+      "scheduledFor": "2026-12-06",
+      "scheduledForLong": "6 December 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/dr-padmavathi-dental-hospital-and-implant-centre/email-4-followup-3-final.md"
+    }
+  ]
+}
