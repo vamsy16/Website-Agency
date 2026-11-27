@@ -42,7 +42,11 @@ PATTERNS = [
     ("unmeasured-score", r"—/100|-/100\b", "defect", 'a score printed although the test did not complete'),
     ("only-zero", r"\bOnly 0\b", "defect", '"Only 0 ..." wording'),
     ("dead-links", r"\bdead links?\b", "defect", 'links to "#" called dead links'),
-    ("bad-ref", r"SP-AUD-\d{4}-\d{2}-\d{2}-(?![A-Z0-9]{3}\b)[^\s]{1,6}", "defect", 'a malformed audit reference'),
+    # 1-3 initials, letters and digits only (src/util.mjs auditRef; verify report.ref).
+    # Two-word names legitimately give two initials ("Skin First" -> SF); the defect
+    # this catches is a stray symbol such as "SP-AUD-2026-11-26-VF&".
+    ("bad-ref", r"SP-AUD-\d{4}-\d{2}-\d{2}-(?![A-Z0-9]{1,3}(?:\s|$))[^\s]{1,6}", "defect", 'a malformed audit reference'),
+    ("schema-comma", r"\b[A-Z][A-Za-z]+,[A-Z][A-Za-z]+ structured data", "defect", 'an array schema type printed comma-joined ("Person,Organization")'),
     ("zero-cost", r"\bcosting [01] ms\b|\b[01] ms of (?:render-)?blocking", "defect", 'a zero cost listed as evidence'),
     ("zero-h1", r"\b0 H1\b", "h1", 'hidden H1s reported as "0 H1"'),
     ("webpage-schema", r"\b(?:WebPage|WebSite)\b[^.]{0,80}\b(?:missing|lacks|without)\b[^.]{0,40}\b(?:phone|telephone|address)", "defect",
@@ -90,8 +94,14 @@ def review(folder, render_dir=None):
         checks = v.get("checks", [])
         passed = sum(1 for c in checks if c.get("ok"))
         r["verify"] = f"{passed}/{len(checks)}"
-        if not v.get("ok") or passed != len(checks):
+        failed = [c for c in checks if not c.get("ok")]
+        if not v.get("ok") or any(c.get("severity") != "warning" for c in failed):
             r["defects"].append(f"verify.json not clean ({r['verify']}, ok={v.get('ok')})")
+        # A warning (facts.zoom: the phone view was zoomed at load) does not
+        # block publishing; the review decides what the report should say.
+        for c in failed:
+            if c.get("severity") == "warning":
+                r["checks"].append(f"verify warning {c.get('id')}: {c.get('detail')}")
     else:
         r["defects"].append("verify.json missing")
     # Hidden H1 count from verify's facts.viewport ("visible H1 0/0, hidden 1, ...").
@@ -119,6 +129,34 @@ def review(folder, render_dir=None):
                 else:
                     kind_now = kind
                 (r["defects"] if kind_now == "defect" else r["checks"]).append(hit)
+    # Page height and screen count must agree (27 Nov review: 9,944 px printed
+    # as "about 3 phone screens"). verify's facts.screens names the screen
+    # height used; without it, 844 px (390 px layout) or 2,121 px (980 px
+    # layout, no viewport tag) are the two layouts seen so far.
+    mh = re.search(r"([\d,]+) px page height — about (\d+) phone screen", text)
+    if mh:
+        px, n = int(mh.group(1).replace(",", "")), int(mh.group(2))
+        fs = next((c for c in (checks if os.path.exists(vpath) else []) if c.get("id") == "facts.screens"), None)
+        sh = re.search(r"over a (\d+) px screen", (fs or {}).get("detail", ""))
+        bases = [int(sh.group(1))] if sh else [844, 2121]
+        if not any(abs(round(px / b) - n) <= (0 if sh else 1) for b in bases):
+            r["defects"].append(f"p4 [screens] {px:,} px printed as about {n} phone screens (screen of {bases} px)")
+        mt = re.search(r"≈(\d+) screens tall", text)
+        if mt and int(mt.group(1)) != n:
+            r["defects"].append(f"p3/p4 [screens] ≈{mt.group(1)} screens tall vs about {n} phone screens")
+    ml = re.search(r"the last screen of about (\d+)", text)
+    if ml and int(ml.group(1)) >= 7:
+        r["defects"].append(f"p4 [last-screen] screen 7 captioned as the last screen of about {ml.group(1)}")
+    # A storage bucket named for the business is its own, not an outside
+    # service (27 Nov review: the clinic's media bucket counted as third party).
+    if os.path.exists(spath):
+        dom_ = (s.get("domain") or "").lower().replace("www.", "")
+        labels = dom_.split(".")
+        own = (labels[-3] if len(labels) >= 3 and labels[-2] in ("co", "org", "net", "gov", "ac", "edu", "res", "gen", "firm", "ind", "com") else labels[-2] if len(labels) >= 2 else dom_)
+        own = re.sub(r"[^a-z0-9]", "", own)
+        for host in set(re.findall(r"([a-z0-9][a-z0-9.-]*\.(?:amazonaws\.com|digitaloceanspaces\.com|r2\.dev|blob\.core\.windows\.net|storage\.googleapis\.com|b-cdn\.net))", text.replace("- ", "-").replace(" ", ""))):
+            if len(own) >= 6 and own in re.sub(r"[^a-z0-9]", "", host.split(".")[0]):
+                r["defects"].append(f"[own-bucket] the business's own storage host listed as external: {host}")
     pdf_flat = text.replace(" ", "")
     for md in sorted(glob.glob(os.path.join(folder, "emails", "email-*.md"))):
         name = os.path.basename(md)

@@ -12,7 +12,7 @@
 import path from "node:path";
 import fs from "node:fs";
 import { spawnSync } from "node:child_process";
-import { ROOT, ensureDir, isoDate, writeJSON, readJSON, round, log } from "./util.mjs";
+import { ROOT, ensureDir, isoDate, writeJSON, readJSON, round, log, isOwnStorageHost } from "./util.mjs";
 import { resolveBrowser, launchOptions, describeBrowser, systemBrowsers } from "./browser.mjs";
 
 const UA_MOBILE =
@@ -124,10 +124,30 @@ async function frameRoutes(page) {
   return out;
 }
 
-function collectDom() {
+function collectDom(screen) {
   const de = document.documentElement;
-  const vh = window.innerHeight;
-  const vw = window.innerWidth;
+  // The page's layout width, read from media queries: unlike innerWidth and
+  // innerHeight it does not change when the browser zooms the view.
+  const layoutWidth = (() => {
+    if (!matchMedia("(min-width: 1px)").matches) return de.clientWidth || window.innerWidth;
+    let lo = 1, hi = 8192;
+    if (matchMedia(`(min-width: ${hi}px)`).matches) return hi;
+    while (hi - lo > 1) {
+      const mid = (lo + hi) >> 1;
+      if (matchMedia(`(min-width: ${mid}px)`).matches) lo = mid; else hi = mid;
+    }
+    return lo;
+  })();
+  // One screen = the device's screen at the page's own layout scale: a page laid
+  // out wider than the phone (no viewport tag: 980 px) is shown shrunk to fit,
+  // so each screen holds proportionally more of it. innerHeight is not used:
+  // when an element is wider than the screen and the viewport tag sets no
+  // initial-scale, the browser zooms the view out to fit it and innerHeight
+  // grows with the zoom. AA Hospitals measured innerHeight of about 3,300 px at
+  // load and printed "about 3 phone screens" for a 9,944 px page, 11.8 screens
+  // of 844 px (27 Nov review).
+  const vw = screen?.width ? layoutWidth : window.innerWidth;
+  const vh = screen?.height ? Math.round((screen.height * layoutWidth) / screen.width) : window.innerHeight;
   const q = (sel, root = document) => [...root.querySelectorAll(sel)];
   const visible = el => {
     const r = el.getBoundingClientRect();
@@ -281,11 +301,47 @@ function collectDom() {
     return (p === "fixed" || p === "sticky") && r.height < vh * 0.5;
   });
 
+  // What the browser reported, for the verifier: a view zoomed away from the
+  // page's own scale at load means a visitor's first view differs from the
+  // screenshots. The element reaching furthest past the layout width is what
+  // makes the browser zoom out.
+  let widest = null;
+  if (Math.max(window.innerWidth, de.scrollWidth) > layoutWidth + 1 && document.body) {
+    // An element's own box, or its content when that spills out unclipped
+    // (a line of text that does not wrap). Ties go to the deepest element,
+    // which is the one causing the overflow rather than a wrapper around it.
+    let best = null;
+    for (const el of document.body.querySelectorAll("*")) {
+      const r = el.getBoundingClientRect();
+      if (!(r.width > 0 && r.height > 0)) continue;
+      let right = r.right;
+      if (el.scrollWidth > el.clientWidth + 1 && getComputedStyle(el).overflowX === "visible") right = Math.max(right, r.left + el.scrollWidth);
+      right += window.scrollX;
+      if (right > layoutWidth + 1 && (!best || right >= best.right)) best = { right, el };
+    }
+    if (best) {
+      const e = best.el;
+      const cls = typeof e.className === "string" ? e.className.trim().split(/\s+/).filter(Boolean).slice(0, 3).join(".") : "";
+      widest = { right: Math.round(best.right), element: `${e.tagName.toLowerCase()}${e.id ? `#${e.id}` : ""}${cls ? `.${cls}` : ""}`.slice(0, 100) };
+    }
+  }
+  const browserViewport = {
+    layoutWidth,
+    innerWidth: window.innerWidth,
+    innerHeight: window.innerHeight,
+    scale: window.visualViewport ? Math.round(window.visualViewport.scale * 1000) / 1000 : null,
+    clientWidth: de.clientWidth,
+    scrollWidth: de.scrollWidth,
+    metaViewport: (document.querySelector('meta[name="viewport"]')?.getAttribute("content") || "").slice(0, 160) || null,
+    widest,
+  };
+
   return {
     url: location.href,
     title: document.title,
     lang: document.documentElement.lang || null,
     viewport: { width: vw, height: vh },
+    browserViewport,
     scrollWidth: de.scrollWidth,
     clientWidth: de.clientWidth,
     overflowX: Math.max(0, de.scrollWidth - de.clientWidth),
@@ -359,8 +415,9 @@ export async function measureSite(website, opts = {}) {
   const ownHosts = new Set([siteHost(base.hostname)]);
   const isFirstParty = url => {
     try {
-      const h = siteHost(new URL(url).hostname);
-      return [...ownHosts].some(o => h === o || h.endsWith(`.${o}`));
+      const host = new URL(url).hostname;
+      const h = siteHost(host);
+      return [...ownHosts].some(o => h === o || h.endsWith(`.${o}`)) || isOwnStorageHost(host, base.hostname);
     } catch {
       return false;
     }
@@ -435,7 +492,7 @@ export async function measureSite(website, opts = {}) {
     if (navError) {
       result.mobile = { status: 0, navError, loadMs };
     } else {
-      const dom = await mobile.evaluate(collectDom);
+      const dom = await mobile.evaluate(collectDom, settings.audit.viewport);
       const headers = await mainResponse.allHeaders();
       const resources = await mobile.evaluate(() => performance.getEntriesByType("resource").map(r => ({
         name: r.name.slice(0, 400),
@@ -522,8 +579,19 @@ export async function measureSite(website, opts = {}) {
         return file;
       };
 
+      // Finite animations (counters rolling, reveal effects) finish before a
+      // screen is captured, up to 3 s. AA Hospitals' "screen 7" caught its
+      // counters mid-roll, digits overlapping (27 Nov review). Infinite ones
+      // (spinners, marquees) never finish and are not waited for.
+      const settle = () => mobile.waitForFunction(() => document.getAnimations().every(a => {
+        if (a.playState !== "running") return true;
+        const end = a.effect?.getComputedTiming?.().endTime;
+        return !Number.isFinite(end);
+      }), null, { timeout: 3000, polling: 100 }).catch(() => {});
+
       await shot("mobile-fold");
       await shot("mobile-full", { fullPage: true });
+      await settle();
       await shot("screen-1");
 
       // Scroll-and-shoot at fixed phone-screen offsets: screen-1, screen-7, screen-14
@@ -533,6 +601,7 @@ export async function measureSite(website, opts = {}) {
         if (y <= 0) continue;
         await mobile.evaluate(yy => window.scrollTo(0, yy), y);
         await mobile.waitForTimeout(600);
+        await settle();
         await shot(`screen-${n}`);
       }
       await mobile.evaluate(() => window.scrollTo(0, 0));
@@ -544,8 +613,8 @@ export async function measureSite(website, opts = {}) {
       // five (26 Nov review). Each count is the larger of the two passes, and
       // both passes are kept for the verifier.
       try {
-        const after = await mobile.evaluate(collectDom);
-        const pick = d => ({ telLinks: d.telLinks, whatsapp: d.whatsapp, visibleForms: d.visibleForms, h1Count: d.h1Count, h1Hidden: d.h1Hidden, h2Count: d.h2Count, words: d.words });
+        const after = await mobile.evaluate(collectDom, settings.audit.viewport);
+        const pick = d => ({ telLinks: d.telLinks, whatsapp: d.whatsapp, visibleForms: d.visibleForms, h1Count: d.h1Count, h1Hidden: d.h1Hidden, h2Count: d.h2Count, words: d.words, browserViewport: d.browserViewport });
         dom.atLoad = pick(dom);
         dom.afterScroll = pick(after);
         for (const k of ["telLinks", "mailLinks", "whatsapp", "stickyTel", "stickyWhatsapp", "h2Count", "words"]) dom[k] = Math.max(dom[k] ?? 0, after[k] ?? 0);
@@ -602,7 +671,7 @@ export async function measureSite(website, opts = {}) {
         .filter(i => { const r = i.getBoundingClientRect(); return r.width > 0 && r.top < innerHeight && r.bottom > 0; })
         .every(i => i.complete && i.naturalWidth > 0), null, { timeout: 8000 }).catch(() => {});
       await desk.waitForTimeout(1000);
-      const dom = await desk.evaluate(collectDom);
+      const dom = await desk.evaluate(collectDom, settings.audit.desktopViewport);
       try {
         const fr = await frameRoutes(desk);
         dom.inFrames = fr;

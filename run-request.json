@@ -4,10 +4,15 @@
   "target": 5,
   "leadsLimit": 10,
   "niches": [],
-  "requestedAt": "2026-11-27T10:28:26Z",
+  "requestedAt": "2026-11-27T11:07:47Z",
   "csv": "data/ap-websearch-2026-11-27.csv",
   "csvOnly": true,
-  "repairOnly": false,
+  "repairOnly": true,
   "disabled": false,
-  "reaudit": []
+  "reaudit": [
+    "aahospitals.in",
+    "padmavathisdental.com",
+    "desaieyecare.in"
+  ],
+  "reauditReason": "27 Nov independent review: screen count against the layout viewport, own storage bucket first party, schema type wording (1.4.6)"
 }

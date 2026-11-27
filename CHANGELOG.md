@@ -3,6 +3,17 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## 1.4.6 — 27 November 2026
+
+From the 27 November independent review (Andhra Pradesh, run 45982415490).
+
+- **Phone screens are counted against the page's layout, not the browser window** (`src/measure.mjs`). AA Hospitals printed "about 3 phone screens" for a 9,944 px page (11.8 screens of 844 px): an element wider than the phone at load makes Chrome report `innerHeight` of about 3,300 px, whatever the zoom, and the count divided by that. It also cost the long-page finding, a mobile-score point and put "Last screen" over screen 7. A screen is now 844 px at a 390 px layout (scaled for wider layouts, such as 980 px pages without a viewport tag); `firstScreenClaims` and the slide check use the same box. Reproduced and tested in local Chromium under the same mobile emulation.
+- `verify`: **`facts.screens`** (blocker) checks that the count equals page height over that screen; **`facts.zoom`** (warning) records the view scale at load and after scrolling, the viewport tag and the widest overflowing element, so the review can tell whether a visitor first sees the page shrunk.
+- Screens are captured after finite animations finish (up to 3 s): AA Hospitals' screen 7 caught its counters mid-roll, digits overlapping.
+- **A storage bucket named for the business is first party** (`isOwnStorageHost`, `src/util.mjs`): Dr. Padmavathi Dental's own media bucket on S3 was counted as one of "6 external domains" sharing visitor data. `facts.firstParty` checks it too.
+- An array `@type` ("Person,Organization") is printed as the business type alone ("Organization structured data is missing telephone and address"); `copy.honesty` blocks a comma-joined type.
+- `tools/review-pdfs.py`: flags a screen count that disagrees with the page height, "the last screen of about N" for N ≥ 7, a comma-joined schema type and the business's own bucket listed as external; a two-letter audit reference ("SF" for Skin First) is no longer reported as malformed; verify warnings are listed for a look instead of failing the scan.
+
 ## Handoff — 27 November 2026
 
 **Everything in GitHub, merged into `main`** (operator: "keep everything in GitHub, so that if I run this repo in another agent nothing is missed").
