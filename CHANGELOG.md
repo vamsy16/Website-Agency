@@ -3,7 +3,12 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
-## 1.4.5 — 26 November 2026
+## Outreach — 27 November 2026
+
+- Step-1 Gmail drafts for the five 26 November audits, created in smartpursuit3@gmail.com at the operator's request after they reviewed the PDFs, each with its approved PDF attached. A Gmail search found no earlier mail or drafts for these recipients; each draft was read back. Draft IDs are recorded on step 1 of each `sequence.json` (`gmailDraft`), because the git-ignored `outreach/` copies were lost in a sandbox reset. No follow-up drafts; nothing sent.
+- `docs/ARENA-LEADS-TO-GMAIL.md` §6: record each draft's ID and creation time in the deliverable's `sequence.json` as well.
+
+## 1.4.5 — 27 November 2026
 
 - `findings.mjs` — the speed finding's title put "A" before every mobile score, so Dr K Hemanth Kumar's report and email 1 read "A 81/100 mobile score". The article now follows the number (8, 11, 18, 80–89 take "an"), as it already did for the LCP. His approved PDF keeps the old wording (pages 2 and 5); his `email-1-first.md` and Gmail draft say "An 81/100".
 

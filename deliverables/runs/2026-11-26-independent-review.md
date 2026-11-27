@@ -109,6 +109,15 @@ Every final PDF was re-read as text, and pages 3, 4 and 8 were also checked visu
 
 Four CSV leads were not attempted because the target was reached: Simhapuri Dental Hospital (simhapuridental.com), Madhu Dental Clinic (madhudentalclinic.com), Fortune Dental (fortunedentalclinics.com) and Viswanadha Hospital (viswanadhahospital.com). Each has an address on its own site, and all four are behind the Hostinger CDN. They stay in the registry as `new`: never audited, never contacted.
 
+## Addendum: Gmail drafts (27 November 2026)
+
+The operator reviewed the five PDFs and asked for the first emails only. Five Gmail drafts were created in smartpursuit3@gmail.com (the mailbox's only send-as address) between 12:46 and 12:47 IST. Each is addressed to the email in the table above, with its approved PDF attached.
+
+- Before drafting, a Gmail search of all folders (including spam and trash) for the five addresses, websites, audit references and business names found no earlier mail or drafts. A control search returned an existing thread, so the search itself worked.
+- Each draft was read back: recipient, subject, body (the text after `---` in `email-1-first.md`) and attachment size match, and the body holds only the recipient-facing email.
+- Dr K Hemanth Kumar's email was corrected from "A 81/100" to "An 81/100" (1.4.5, aa8f3f2). His PDF keeps "A 81/100" on pages 2 and 5; re-rendering it would mean a new test run with different numbers.
+- Draft IDs are recorded on step 1 of each `sequence.json` (`gmailDraft`). No follow-up drafts were created and nothing was sent. Each follow-up is due 3 days after the previous email actually goes out, and only if there is no reply.
+
 ## Limits
 
 - An email published on the business's own site is not proof of inbox deliverability, registration or credentials.

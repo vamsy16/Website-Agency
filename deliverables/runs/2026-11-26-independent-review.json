@@ -59,5 +59,14 @@
   "fortunedentalclinics.com",
   "viswanadhahospital.com"
  ],
- "withheldOtherDomains": []
+ "withheldOtherDomains": [],
+ "gmailDrafts": {
+  "date": "2026-11-27",
+  "step": 1,
+  "mailbox": "smartpursuit3@gmail.com",
+  "count": 5,
+  "followUpDrafts": 0,
+  "sent": 0,
+  "record": "emails[0].gmailDraft in each deliverable's sequence.json"
+ }
 }

@@ -159,7 +159,11 @@ Keep those details in `gmail-drafts.json`, `sequence.json` and the report.
 Save returned Gmail draft IDs, recipients, email sources, steps, and planned dates in
 `outreach/<business>/gmail-drafts.json`, alongside the existing `sequence.json`.
 Preserve `status: "draft"` and `neverSendAutomatically: true`. These files contain
-prospect data and must remain git-ignored.
+prospect data and must remain git-ignored. Because `outreach/` does not survive a
+sandbox reset, also record each draft on its step in the deliverable's tracked
+`sequence.json` as `gmailDraft` (mailbox, draft ID, creation time, attachment name
+and size). That record holds no contact data beyond the `to` already in the file,
+and the next run's duplicate-draft check starts from it.
 
 Never call `send_draft`, `send_message`, or any other send operation. Do not create
 scheduled sends or calendar reminders. The available Gmail draft tools create

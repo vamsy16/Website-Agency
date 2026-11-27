@@ -28,6 +28,14 @@
       "status": "draft",
       "approvedBy": null,
       "sentAt": null,
+      "gmailDraft": {
+        "mailbox": "smartpursuit3@gmail.com",
+        "draftId": "r4163938217448806852",
+        "createdAt": "2026-11-27T12:47:01+05:30",
+        "attachment": "Smart-Pursuit-Audit-Shravani-ENT-Hospital.pdf",
+        "attachmentBytes": 1571307,
+        "verified": "read back 2026-11-27: recipient, subject, body and attachment size match; body is only the recipient-facing email"
+      },
       "file": "outreach/shravani-ent-hospital/email-1-first.md"
     },
     {
