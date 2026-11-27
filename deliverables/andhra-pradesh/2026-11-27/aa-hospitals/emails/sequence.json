@@ -2,7 +2,7 @@
   "business": "AA Hospitals",
   "domain": "aahospitals.in",
   "ref": "SP-AUD-2026-11-27-AH",
-  "createdAt": "2026-11-27T10:42:59.203Z",
+  "createdAt": "2026-11-27T11:14:59.697Z",
   "sendDate": "2026-11-27",
   "cadenceDays": [
     3,
@@ -22,7 +22,7 @@
         "reports/aa-hospitals/Smart-Pursuit-Audit-AA-Hospitals.pdf"
       ],
       "subject": "AA Hospitals — what I found testing aahospitals.in",
-      "words": 120,
+      "words": 113,
       "scheduledFor": "2026-11-27",
       "scheduledForLong": "27 November 2026",
       "status": "draft",

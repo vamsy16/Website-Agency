@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-27-DEC",
   "domain": "desaieyecare.in",
-  "verifiedAt": "2026-11-27T10:40:31.704Z",
+  "verifiedAt": "2026-11-27T11:18:01.628Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/desai-eye-care/2026-11-27T10-39-02-359Z.json",
+      "detail": "raw measurement: data/raw/desai-eye-care/2026-11-27T11-16-32-617Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 27/11/2026, 4:09:02 pm",
+      "detail": "measurement timestamp: 27/11/2026, 4:46:32 pm",
       "severity": "ok"
     },
     {
@@ -111,9 +111,21 @@
       "severity": "ok"
     },
     {
+      "id": "facts.screens",
+      "ok": true,
+      "detail": "8454 px over a 844 px screen (layout 390 px wide) = 10; printed 10",
+      "severity": "ok"
+    },
+    {
+      "id": "facts.zoom",
+      "ok": true,
+      "detail": "view scale 1.00 at load, 1.00 after scrolling (page's own scale 1.00); window 390×844 at load, content 390 px wide; viewport tag \"width=device-width, initial-scale=1\"",
+      "severity": "ok"
+    },
+    {
       "id": "numbers.traceable",
       "ok": true,
-      "detail": "all 76 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "detail": "all 79 distinct numbers in the report trace to the measurement, the rubric or a stated target",
       "severity": "ok"
     },
     {
@@ -155,7 +167,7 @@
     {
       "id": "pdf.size",
       "ok": true,
-      "detail": "2.01 MB",
+      "detail": "2.00 MB",
       "severity": "ok"
     },
     {

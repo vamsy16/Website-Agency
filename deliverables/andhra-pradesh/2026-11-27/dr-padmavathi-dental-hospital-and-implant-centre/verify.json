@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-27-DPD",
   "domain": "padmavathisdental.com",
-  "verifiedAt": "2026-11-27T10:41:57.703Z",
+  "verifiedAt": "2026-11-27T11:16:22.211Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/dr-padmavathi-dental-hospital-and-implant-centre/2026-11-27T10-40-34-378Z.json",
+      "detail": "raw measurement: data/raw/dr-padmavathi-dental-hospital-and-implant-centre/2026-11-27T11-14-59-880Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 27/11/2026, 4:10:34 pm",
+      "detail": "measurement timestamp: 27/11/2026, 4:44:59 pm",
       "severity": "ok"
     },
     {
@@ -111,9 +111,21 @@
       "severity": "ok"
     },
     {
+      "id": "facts.screens",
+      "ok": true,
+      "detail": "13650 px over a 844 px screen (layout 390 px wide) = 16.2; printed 16.2",
+      "severity": "ok"
+    },
+    {
+      "id": "facts.zoom",
+      "ok": true,
+      "detail": "view scale 1.00 at load, 1.00 after scrolling (page's own scale 1.00); window 390×844 at load, content 390 px wide; viewport tag \"width=device-width, initial-scale=1\"",
+      "severity": "ok"
+    },
+    {
       "id": "numbers.traceable",
       "ok": true,
-      "detail": "all 78 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "detail": "all 75 distinct numbers in the report trace to the measurement, the rubric or a stated target",
       "severity": "ok"
     },
     {
@@ -155,7 +167,7 @@
     {
       "id": "pdf.size",
       "ok": true,
-      "detail": "1.98 MB",
+      "detail": "1.71 MB",
       "severity": "ok"
     },
     {
