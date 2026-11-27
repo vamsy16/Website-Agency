@@ -134,6 +134,35 @@ export function auditRef(prefix, date, name) {
   return `${prefix}-${isoDate(date)}-${initials}`;
 }
 
+/**
+ * The registrable label of a domain: "padmavathisdental" for
+ * padmavathisdental.com, "aahospitals" for aahospitals.in, "example" for
+ * www.example.co.in.
+ */
+export function siteLabel(domain) {
+  const labels = String(domain || "").toLowerCase().replace(/^www\./, "").split(".").filter(Boolean);
+  if (labels.length < 2) return labels[0] || "";
+  const sld = labels[labels.length - 2];
+  const secondLevel = labels.length >= 3 && /^(?:co|org|net|gov|ac|edu|res|gen|firm|ind|com)$/.test(sld);
+  return secondLevel ? labels[labels.length - 3] : sld;
+}
+
+const STORAGE_HOST = /\.(?:amazonaws\.com|digitaloceanspaces\.com|r2\.dev|r2\.cloudflarestorage\.com|blob\.core\.windows\.net|storage\.googleapis\.com|b-cdn\.net|backblazeb2\.com|wasabisys\.com)$/i;
+
+/**
+ * A cloud storage bucket named for the business holds the site's own files,
+ * like the site's own host: "padmavathis-dental-clinic-media.s3.ap-south-1.
+ * amazonaws.com" for padmavathisdental.com. Counted as third party, it printed
+ * "138 third-party requests from 6 external domains" for a page whose own
+ * images live in that bucket (27 Nov review).
+ */
+export function isOwnStorageHost(host, domain) {
+  const h = String(host || "").toLowerCase();
+  const own = siteLabel(domain).replace(/[^a-z0-9]/g, "");
+  if (own.length < 6 || !STORAGE_HOST.test(h)) return false;
+  return h.split(".")[0].replace(/[^a-z0-9]/g, "").includes(own);
+}
+
 export function clamp(n, min, max) {
   return Math.min(max, Math.max(min, n));
 }

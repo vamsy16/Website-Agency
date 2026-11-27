@@ -1,0 +1,25 @@
+{
+  "name": "Desai Eye Care",
+  "domain": "desaieyecare.in",
+  "city": "Nellore",
+  "state": "Andhra Pradesh",
+  "email": "desaieyecares@gmail.com",
+  "phone": "+91 91002 08048",
+  "ref": "SP-AUD-2026-11-27-DEC",
+  "date": "2026-11-27",
+  "overall": 74,
+  "scores": {
+    "speed": 5,
+    "mobile": 7,
+    "conversion": 10,
+    "design": 8,
+    "seo": 8,
+    "overall": 74
+  },
+  "pdf": "Smart-Pursuit-Audit-Desai-Eye-Care.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://desaieyecare.in/",
+    "checkedAt": "2026-11-27"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "state": "Andhra Pradesh",
+  "reviewDate": "2026-11-27",
+  "run": "45987926898",
+  "runs": {
+    "45982415490": "Run on data/ap-websearch-2026-11-27.csv (8 vetted, non-Hostinger businesses, target 5, max 8, CSV only): Venkateswara Eye Hospital timed out and Vijaya Hospital answered HTTP 403 at the screen (not audited, not counted); 5 audited, verify 26/26 each; Kamakshi Hospital not attempted (target reached). All five held: AA Hospitals (screen count from a widened window, counters caught mid-roll), Dr. Padmavathi Dental (own S3 bucket counted as an external domain) and Desai Eye Care (comma-joined schema type) had defects. Leelavathi and Skin First read clean: these are their published files.",
+    "45987926898": "Re-audit of AA Hospitals, Dr. Padmavathi Dental and Desai Eye Care with 1.4.6 (repairOnly): verify 28/28 each, including facts.screens and facts.zoom (AA: view scale 1.00 at load and after scrolling, viewport tag initial-scale=1.0; div.bottom reaches 1,566 px). All three read clean: these are their published files."
+  },
+  "requested": 5,
+  "status": "approved-after-reaudit",
+  "dedupeAuthority": [
+    "data/leads.json",
+    "data/audits.json",
+    "git history of every branch of this repository"
+  ],
+  "neverSendAutomatically": true,
+  "businessChecks": "All five confirmed as real, independent local healthcare businesses in Andhra Pradesh; each To: address is published on the business's own website and was read there by this review (before the run, and again after it where the PDF made a claim about the page); doctors, addresses and phone numbers cross-checked against the live sites and public listings (Justdial, the All India Ophthalmological Society list). None matches any domain, email, phone or name+city ever recorded in this repository (all 8 branches, full history). Hostinger-CDN sites were excluded from the queue.",
+  "leads": [
+    {
+      "domain": "desaieyecare.in",
+      "approved": true,
+      "reason": "Approved after re-audit 45987926898: verify 28/28, 10-page A4, 0 mm overflow, every page re-read. Desai Eye Care (Nellore). 16-1-676, near Clock Tower, VRC Centre, Nellore 524001; +91 91002 08048; Dr Sanjeeva Kumar Desai, MS, FIAS; desaieyecares@gmail.com published on https://desaieyecare.in/ (header and footer). 74/100, 4 supported findings; 'Organization structured data is missing telephone and address'; email 1 quotes the PDF's numbers."
+    },
+    {
+      "domain": "padmavathisdental.com",
+      "approved": true,
+      "reason": "Approved after re-audit 45987926898: verify 28/28, 10-page A4, 0 mm overflow, every page re-read. Dr. Padmavathi Dental Hospital & Implant Centre (Kakinada). 7-102, above Suruchi Foods, Thimmapuram, Kakinada 533005 (site structured data; Justdial agrees); 85018 02222, WhatsApp 98490 62794; Dr Padmavathi Devi, BDS, MDS, FAGE; dr.padmavathi25@gmail.com published on https://padmavathisdental.com/ (homepage and /contact). 74/100, 4 supported findings; the clinic's own S3 bucket is no longer listed as an external domain (5 external domains); email 1 quotes the PDF's numbers."
+    },
+    {
+      "domain": "aahospitals.in",
+      "approved": true,
+      "reason": "Approved after re-audit 45987926898: verify 28/28, 10-page A4, 0 mm overflow, every page re-read. AA Hospitals (Eluru). Ramachandra Rao Pet, Eluru 534006; +91 93467 36775, 08812 236399; Dr Anila Sarvani Amudalapalli, MS (Ophthalmology), FOOS (AIOS list); anila.amudalapalli@gmail.com published on https://aahospitals.in/contact (and found on the homepage). 79/100, 4 supported findings (9,944 px = about 12 phone screens; view scale 1.00, sideways overflow 1,176 px); email 1 quotes the PDF's numbers. Accepted cosmetic: '1176 px' printed without a thousands separator (code fixed)."
+    },
+    {
+      "domain": "leelavathiadvancedskinandlasercentre.in",
+      "approved": true,
+      "reason": "Approved, run 45982415490: verify 26/26, 10-page A4, 0 mm overflow, every page re-read. Leelavathi Advanced Skin & Laser Centre (Guntur). Puvada Vari Street, Pottur Vari Thota, Guntur 522001; +91 93929 30422; Dr Kavya Chennamsetty, MD; leelavathiskincentre@gmail.com published on https://www.leelavathiadvancedskinandlasercentre.in/ (header, contact page and footer). 71/100, 3 supported findings; email 1 quotes the PDF's numbers."
+    },
+    {
+      "domain": "skinfirst.in",
+      "approved": true,
+      "reason": "Approved, run 45982415490: verify 26/26, 10-page A4, 0 mm overflow, every page re-read. Skin First (Vijayawada). Opposite NAC Kalyana Vedika, Gurunanak Colony Main Road, Vijayawada 520010; +91 99235 92359, 0866 254 2359; Dr Cherukuri Keerti Chowdary, MBBS, MD (DVL); skinfirstk@gmail.com published on https://www.skinfirst.in/ as text (its contact-page mail link is broken, mailto:#). 65/100, 5 supported findings; no homepage form and 8 H1s (3 visible) confirmed on the live page; email 1 quotes the PDF's numbers."
+    }
+  ],
+  "notPublished": [
+    {
+      "domain": "veyehospital.com",
+      "reason": "Venkateswara Eye Hospital (Ongole). Run 45982415490: the screen could not connect (UND_ERR_CONNECT_TIMEOUT). Not audited; still new, 0 attempts. Its address was read on its own site; its services copy has placeholder text."
+    },
+    {
+      "domain": "vijayahospitalvzm.com",
+      "reason": "Vijaya Hospital (Vizianagaram). Run 45982415490: the homepage answered HTTP 403 to the screen. Not audited; still new, 0 attempts."
+    }
+  ],
+  "notAttempted": [
+    "kamakshihospital.com"
+  ],
+  "withheldOtherDomains": [],
+  "olderReportsScreenCount": "Six of 65 repository PDFs print a screen count that disagrees with an 844 px screen: hanuman-s-hill-rock-cafe-and-restaurant, bhimavaram-hospitals, blue-fox, karumuri-super-speciality-hospital-pvt-ltd (about 2,120 px printed as 1 screen, consistent with Chrome's 980 px layout without a viewport tag), r-k-hospital (9,106 px as 13) and aa-hospitals (fixed). Their sequences are complete or stopped except Hanuman's (step 3 due 29 November); follow-ups quote no measurements.",
+  "gmailDrafts": {
+    "date": null,
+    "step": 1,
+    "mailbox": "smartpursuit3@gmail.com",
+    "count": 0,
+    "note": "Not created: the operator reviews the PDF links first (27 November 2026)."
+  }
+}

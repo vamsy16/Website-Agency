@@ -1,0 +1,25 @@
+{
+  "name": "Dr. Padmavathi Dental Hospital & Implant Centre",
+  "domain": "padmavathisdental.com",
+  "city": "Kakinada",
+  "state": "Andhra Pradesh",
+  "email": "dr.padmavathi25@gmail.com",
+  "phone": "+91 85018 02222",
+  "ref": "SP-AUD-2026-11-27-DPD",
+  "date": "2026-11-27",
+  "overall": 74,
+  "scores": {
+    "speed": 4,
+    "mobile": 6,
+    "conversion": 10,
+    "design": 10,
+    "seo": 10,
+    "overall": 74
+  },
+  "pdf": "Smart-Pursuit-Audit-Dr.-Padmavathi-Dental-Hospital-Implant-Centre.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://padmavathisdental.com/",
+    "checkedAt": "2026-11-27"
+  }
+}

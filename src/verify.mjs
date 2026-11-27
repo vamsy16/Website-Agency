@@ -17,7 +17,7 @@
 //   live         (optional) re-fetch the page and confirm the claims still hold
 import fs from "node:fs";
 import path from "node:path";
-import { ROOT, readJSON, writeJSON, ensureDir, longDate, isoDate, log, round } from "./util.mjs";
+import { ROOT, readJSON, writeJSON, ensureDir, longDate, isoDate, log, round, isOwnStorageHost } from "./util.mjs";
 import { computeScores, buildFacts, deriveFindings, adSignals, REFERENCE_SCORES } from "./findings.mjs";
 import { inspectPdf } from "./pdf.mjs";
 import { checkHttp } from "./measure.mjs";
@@ -131,7 +131,8 @@ export async function verifyAudit({ auditPath, live = false, fixture = false }) 
     const own = String(audit.business?.domain || "").toLowerCase().replace(/^www\./, "");
     const listed = (audit.facts.metric.thirdPartyDomains || []).filter(d => {
       const h = String(d).toLowerCase().replace(/^www\./, "");
-      return own && (h === own || h.endsWith(`.${own}`));
+      // Including a storage bucket named for the business (27 Nov review).
+      return own && (h === own || h.endsWith(`.${own}`) || isOwnStorageHost(h, own));
     });
     add("facts.firstParty", listed.length === 0, listed.length ? `the site's own host is counted as third party: ${listed.join(", ")}` : "the site's own host is not counted as third party");
   }
@@ -193,6 +194,8 @@ export async function verifyAudit({ auditPath, live = false, fixture = false }) 
     if (/No dead links/i.test(text)) copyErrors.push("links to # called dead without testing them");
     if ((Number(fm.stickyTel) > 0 || Number(fm.stickyWhatsapp) > 0) && /sticky “Call \/ (?:Book|WhatsApp)” bar|sticky call bar/i.test(text)) copyErrors.push("a sticky call bar recommended to a page that already keeps call or WhatsApp buttons on screen");
     if (Number(fm.h1Count) === 0 && Number(fm.h1Hidden) > 0 && /H1 headings detected on the homepage|no H1 headline found|No H1 headline was found/i.test(text)) copyErrors.push("an H1 present in the markup but hidden at 390 px reported as missing");
+    // Added after the 27 November 2026 independent review.
+    if (/\b[A-Z][A-Za-z]+,[A-Z][A-Za-z]+ structured data\b/.test(text)) copyErrors.push("an array schema type printed comma-joined");
     add("copy.honesty", copyErrors.length === 0, copyErrors.join("; ") || "known unsupported narrative claims absent");
     // Counts that depend on the viewport or on scrolling must say so. The
     // detail records both passes and the desktop count (26 Nov review: a page
@@ -204,6 +207,36 @@ export async function verifyAudit({ auditPath, live = false, fixture = false }) 
       const said = /on the desktop layout/.test(text);
       add("facts.viewport", !differs || said,
         `click-to-call links: ${a.telLinks ?? "?"} at load, ${s.telLinks ?? "?"} after scrolling, ${dom.inFrames?.tel ?? 0} in embedded frames, printed ${fm.telLinks}, desktop ${fm.telLinksDesktop ?? "?"}${differs ? (said ? " (difference stated)" : " (difference not stated)") : ""}; WhatsApp ${a.whatsapp ?? "?"}/${s.whatsapp ?? "?"}; forms ${a.visibleForms ?? "?"}/${s.visibleForms ?? "?"}; visible H1 ${a.h1Count ?? "?"}/${s.h1Count ?? "?"}, hidden ${fm.h1Hidden ?? "?"}, desktop ${fm.h1CountDesktop ?? "?"}; words ${a.words ?? "?"}/${s.words ?? "?"}`);
+    }
+    // The screen count must be the page height over one phone screen at the
+    // page's own layout scale. "About 3 phone screens" was printed for a
+    // 9,944 px page measured while the browser had zoomed the view out
+    // (27 Nov review: 11.8 screens of 844 px).
+    {
+      const dom = raw?.mobile?.dom || {};
+      const bv = dom.browserViewport || null;
+      const phone = readJSON(path.join(ROOT, "config", "settings.json")).audit?.viewport || { width: 390, height: 844 };
+      const screenH = Number(dom.viewport?.height);
+      const expectedH = bv?.layoutWidth ? Math.round((phone.height * bv.layoutWidth) / phone.width) : screenH;
+      const expected = screenH > 0 ? Math.round((Number(dom.pageHeightPx) / screenH) * 10) / 10 : NaN;
+      const printed = Number(fm.screens);
+      const ok = Number.isFinite(expected) && Math.abs(expected - printed) <= 0.1 && Math.abs(screenH - expectedH) <= 1;
+      add("facts.screens", ok,
+        `${dom.pageHeightPx ?? "?"} px over a ${screenH || "?"} px screen${bv ? ` (layout ${bv.layoutWidth} px wide)` : ""} = ${Number.isFinite(expected) ? expected : "?"}; printed ${fm.screens ?? "?"}${Math.abs(screenH - expectedH) > 1 ? `; screen should be ${expectedH} px` : ""}`);
+      // A view zoomed away from the page's own scale at load or after
+      // scrolling: a visitor may first see the page shrunk (an element wider
+      // than the screen, and no initial-scale in the viewport tag). Recorded
+      // for the independent review, which decides what the report says.
+      const scales = [dom.atLoad?.browserViewport, dom.afterScroll?.browserViewport, bv].filter(Boolean);
+      if (scales.length) {
+        const own = phone.width / (bv?.layoutWidth || phone.width);
+        const fmtS = v => (v && Number.isFinite(Number(v.scale)) ? Number(v.scale).toFixed(2) : "?");
+        const a = dom.atLoad?.browserViewport || bv, z = dom.afterScroll?.browserViewport;
+        const zoomed = [a, z].some(v => v && Number.isFinite(Number(v.scale)) && Number(v.scale) < own * 0.95);
+        add("facts.zoom", !zoomed,
+          `view scale ${fmtS(a)} at load, ${fmtS(z)} after scrolling (page's own scale ${own.toFixed(2)}); window ${a?.innerWidth ?? "?"}×${a?.innerHeight ?? "?"} at load, content ${a?.scrollWidth ?? "?"} px wide${a?.widest ? `, widest ${a.widest.element} to ${a.widest.right} px` : ""}; viewport tag "${a?.metaViewport ?? "none"}"`,
+          "warning");
+      }
     }
     const allowed = new Set(STRUCTURAL);
     flattenNumbers(audit.facts, allowed);

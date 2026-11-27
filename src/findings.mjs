@@ -535,10 +535,13 @@ export function deriveAlsoItems(raw, facts, printed = []) {
     const missing = [!h.schemaHasPhone ? "telephone" : null, !h.schemaHasAddress ? "address" : null].filter(Boolean).join(" and ");
     // "WebPage structured data is missing telephone and address" (26 Nov
     // review) asked a type that cannot hold those fields to hold them.
+    // A node typed with an array arrives joined ("Person,Organization") and
+    // was printed that way (27 Nov review): name the business type alone.
     const biz = h.schemaTypes.find(t => BUSINESS_SCHEMA.test(t));
-    items.push(biz
-      ? `<b>${escapeText(biz)}</b> structured data is missing ${missing}`
-      : `Structured data (${h.schemaTypes.slice(0, 3).map(escapeText).join(", ")}) has no business entry with ${missing}`);
+    const bizType = biz ? String(biz).split(",").map(t => t.trim()).find(t => BUSINESS_SCHEMA.test(t)) || String(biz) : null;
+    items.push(bizType
+      ? `<b>${escapeText(bizType)}</b> structured data is missing ${missing}`
+      : `Structured data (${h.schemaTypes.slice(0, 3).map(t => escapeText(String(t).split(",").join(" / "))).join(", ")}) has no business entry with ${missing}`);
   }
   if (h.ogSiteName && facts.business.name && !h.ogSiteName.toLowerCase().includes(facts.business.name.toLowerCase().split(" ")[0])) {
     items.push(`<span class="mono">og:site_name</span> reads “${escapeText(h.ogSiteName)}”, not the business name`);
@@ -553,7 +556,7 @@ export function deriveAlsoItems(raw, facts, printed = []) {
   }
   if (m.h2Count < 3) items.push(`${m.h2Count === 0 ? "No H2 headings" : `Only ${m.h2Count} H2 heading${m.h2Count === 1 ? "" : "s"}`} for ${fmtInt(m.words)} words of content`);
   if (!covered.has("metric.smallTapTargets") && m.smallTapTargets > 0) items.push(`${m.smallTapTargets} tap targets are under 40 px`);
-  if (m.overflowX > 0) items.push(`The layout overflows the viewport by ${m.overflowX} px`);
+  if (m.overflowX > 0) items.push(`The layout overflows the viewport by ${fmtInt(m.overflowX)} px`);
   if (h.wordpress) items.push(`Built on WordPress${h.wpTheme ? ` (${escapeText(h.wpTheme)} theme)` : ""}${h.wpPlugins?.length ? ` with ${h.wpPlugins.length} plugin asset paths` : ""}`);
   return items.slice(0, 6);
 }

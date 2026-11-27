@@ -2,7 +2,7 @@
 
 **To:** shravanienthospital@gmail.com
 **Subject:** Shravani ENT Hospital — what I found testing shravanienthospital.com
-**Send:** 26 November 2026
+**Send:** 27 November 2026
 **Attachments:** reports/shravani-ent-hospital/Smart-Pursuit-Audit-Shravani-ENT-Hospital.pdf
 
 ---

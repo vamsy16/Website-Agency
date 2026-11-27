@@ -2,7 +2,7 @@
 
 **To:** vignatafertilityandivfcentre@gmail.com
 **Subject:** Re: Vignata Fertility & IVF Center — the next step, if useful
-**Send:** 2 December 2026
+**Send:** 3 December 2026
 **Attachments:** none
 
 ---

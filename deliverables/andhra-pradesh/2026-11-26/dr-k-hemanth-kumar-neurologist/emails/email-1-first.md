@@ -2,7 +2,7 @@
 
 **To:** drhemanthneuro@gmail.com
 **Subject:** Dr. K. Hemanth Kumar Neurologist — what I found testing your website
-**Send:** 26 November 2026
+**Send:** 27 November 2026
 **Attachments:** reports/dr-k-hemanth-kumar-neurologist/Smart-Pursuit-Audit-Dr.-K.-Hemanth-Kumar-Neurologist.pdf
 
 ---

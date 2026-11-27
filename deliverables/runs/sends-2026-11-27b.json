@@ -1,0 +1,49 @@
+{
+  "source": "Gmail smartpursuit3@gmail.com, in:sent after:2026/11/27 (read 27 Nov 2026 15:49 and 15:56 IST); sentAt = Gmail internal_date in IST",
+  "note": "Scheduled by the operator on 27 Nov; all seven went out at the scheduled minute. Inbox since 26 Nov: no replies or bounces from any tracked sequence (one reply from Milestone Solarcom, an earlier campaign this repo does not track).",
+  "sends": [
+    {
+      "sequence": "2026-11-20/hr-dental-hospital",
+      "step": 2,
+      "sentAt": "2026-11-27T14:12:00+05:30",
+      "gmailMessageId": "1a21c2b273ef6f4d"
+    },
+    {
+      "sequence": "2026-11-20/dr-sushma-dental",
+      "step": 2,
+      "sentAt": "2026-11-27T14:27:00+05:30",
+      "gmailMessageId": "1a21c38e3d177fb5"
+    },
+    {
+      "sequence": "2026-11-26/vignata-fertility-and-ivf-center",
+      "step": 1,
+      "sentAt": "2026-11-27T14:59:00+05:30",
+      "gmailMessageId": "1a21c562eddf9155"
+    },
+    {
+      "sequence": "2026-11-26/sai-bhaskar-hospitals",
+      "step": 1,
+      "sentAt": "2026-11-27T15:13:00+05:30",
+      "gmailMessageId": "1a21c63005c87ce9"
+    },
+    {
+      "sequence": "2026-11-26/dr-k-hemanth-kumar-neurologist",
+      "step": 1,
+      "sentAt": "2026-11-27T15:25:00+05:30",
+      "gmailMessageId": "1a21c6dfc9a4c944"
+    },
+    {
+      "sequence": "2026-11-26/shravani-ent-hospital",
+      "step": 1,
+      "sentAt": "2026-11-27T15:38:00+05:30",
+      "gmailMessageId": "1a21c79e59a56363"
+    },
+    {
+      "sequence": "2026-11-26/deepthi-fertility-centre",
+      "step": 1,
+      "sentAt": "2026-11-27T15:51:00+05:30",
+      "gmailMessageId": "1a21c85cac2eb9b3"
+    }
+  ],
+  "stops": []
+}

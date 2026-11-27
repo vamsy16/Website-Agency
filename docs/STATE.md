@@ -1,7 +1,16 @@
 # STATE — read this first
 
-_Handoff for the next agent. Last updated 27 November 2026, 14:05 IST by the Arena agent on branch
-`arena/d4c9edee-website-agency`, which is merged into `main`._
+_Handoff for the next agent. Last updated 27 November 2026, about 17:00 IST by the Arena agent on branch
+`arena/65e78ab2-website-agency` (merged into `main` through a pull request)._
+
+> **Latest (27 Nov):** five new Andhra Pradesh audits approved, in
+> `deliverables/andhra-pradesh/2026-11-27/`: AA Hospitals (Eluru), Desai Eye Care
+> (Nellore), Dr. Padmavathi Dental Hospital & Implant Centre (Kakinada),
+> Leelavathi Advanced Skin & Laser Centre (Guntur) and Skin First (Vijayawada).
+> Review: `deliverables/runs/2026-11-27-independent-review.md` (three re-audited
+> after the third-eye review; fixes in 1.4.6). **The operator is reviewing the PDF
+> links. Do not create their Gmail drafts until he says so** (then: first email
+> only, PDF attached).
 
 This repository is the single source of truth for the agency's work. Everything
 needed to continue is committed here; nothing lives only in a chat or a sandbox.
@@ -54,8 +63,15 @@ mailbox and its only send-as address) · +91 70950 24220. Operator: Vamsi.
 
 ### Registries
 
-- `data/leads.json`: 259 leads — 160 new, 59 audited, 40 audit-failed
-  (0 duplicate domains). `data/audits.json`: 60 audits (0 duplicate domains).
+- `data/leads.json`: 267 leads — 163 new, 64 audited, 40 audit-failed
+  (0 duplicate domains). `data/audits.json`: 65 audits (0 duplicate domains).
+- Vetted, not behind the Hostinger CDN, not yet audited (status `new`), in
+  `data/ap-websearch-2026-11-27.csv`: kamakshihospital.com, Tirupati
+  (kamakshihospitaltpt2022@gmail.com; not attempted, target reached);
+  veyehospital.com, Ongole (venkateswaraeyehospitalongole@gmail.com; the screen
+  timed out on 27 Nov); vijayahospitalvzm.com, Vizianagaram
+  (drudayakumar65@gmail.com; answered HTTP 403 to the screen on 27 Nov).
+  Re-read each site before queuing it again.
 - Vetted but not attempted (status `new`, email read on each own site, all behind
   the Hostinger CDN, so queue them last), in `data/ap-websearch-2026-11-26.csv`:
   simhapuridental.com (simhapuridental.nellore@gmail.com), madhudentalclinic.com
@@ -70,19 +86,18 @@ mailbox and its only send-as address) · +91 70950 24220. Operator: Vamsi.
 
 | Folder `deliverables/andhra-pradesh/…` | Businesses | Review | Email 1 |
 |---|---|---|---|
-| `2026-11-26/` | Vignata Fertility & IVF Center (Guntur), Sai Bhaskar Hospitals (Guntur), Dr K Hemanth Kumar, neurologist (Kurnool), Shravani ENT Hospital (Kakinada), Deepthi Fertility Centre (Nellore) | `runs/2026-11-26-independent-review.md` | drafted 27 Nov 12:46 IST; the operator scheduled them for 27 Nov 14:59–15:51 IST |
+| `2026-11-27/` | AA Hospitals (Eluru), Desai Eye Care (Nellore), Dr. Padmavathi Dental Hospital & Implant Centre (Kakinada), Leelavathi Advanced Skin & Laser Centre (Guntur), Skin First (Vijayawada) | `runs/2026-11-27-independent-review.md` | not drafted: the operator is reviewing the PDFs |
+| `2026-11-26/` | Vignata Fertility & IVF Center (Guntur), Sai Bhaskar Hospitals (Guntur), Dr K Hemanth Kumar, neurologist (Kurnool), Shravani ENT Hospital (Kakinada), Deepthi Fertility Centre (Nellore) | `runs/2026-11-26-independent-review.md` | sent 27 Nov 14:59–15:51 IST (recorded) |
 | `2026-11-23/` | Smart Care Dental Hospital (Nellore), Dr Swetha Sajja Eye Hospital (Rajahmundry), MJ Naidu Super Speciality Hospital (Vijayawada), Sasya Fertility Centre (Guntur), Ravi Dental Care and Implant Center (Vijayawada) | `runs/2026-11-23-independent-review.md` | sent 23 Nov |
 | `2026-11-22/` | MK Dental, Prathik Dental and Implant Centre (Anantapur), The Dental Studio (Visakhapatnam), Kalyani Dental Clinic, Praveen Dental Care (Tirupati) | `runs/2026-11-22-independent-review.md` | sent 23 Nov |
 | `2026-11-20/`, `2026-11-15/`, `2026-11-16/` | earlier batches (the full list is `deliverables/README.md`) | `runs/2026-11-21-*`, `runs/2026-11-16-*` | sent 16 and 21 Nov |
 
-### Follow-ups — `node tools/followups.mjs` at 27 November 2026, 14:05 IST
+### Follow-ups — `node tools/followups.mjs` at 27 November 2026, about 16:55 IST
 
 ```text
 Follow-ups as of 27 November 2026 (IST): each is due 3 days after the previous email went out, only if there is no reply.
 
 STATE        DUE         STEP  BUSINESS                                     LAST SENT
-overdue 3d   2026-11-24  2/4   Dr. Sushma Dental                            step 1 · 2026-11-21 13:26 IST
-overdue 3d   2026-11-24  2/4   HR Dental Hospital                           step 1 · 2026-11-21 13:38 IST
 in 2 days    2026-11-29  3/4   Dr Swetha Sajja Eye Hospital                 step 2 · 2026-11-26 17:16 IST
 in 2 days    2026-11-29  3/4   Dr. Ramya Sadaram                            step 2 · 2026-11-26 16:40 IST
 in 2 days    2026-11-29  3/4   Hanuman's Hill Rock Cafe & Restaurant        step 2 · 2026-11-26 21:25 IST
@@ -104,8 +119,15 @@ in 2 days    2026-11-29  3/4   Smart Care Dental Hospital                   step
 in 2 days    2026-11-29  3/4   Sri Ramadas Motor Transport Ltd              step 2 · 2026-11-26 21:37 IST
 in 2 days    2026-11-29  3/4   Sri Sai P.V.R. Hospitals                     step 2 · 2026-11-26 21:13 IST
 in 2 days    2026-11-29  3/4   The Dental Studio                            step 2 · 2026-11-26 18:25 IST
+in 3 days    2026-11-30  2/4   Deepthi Fertility Centre                     step 1 · 2026-11-27 15:51 IST
+in 3 days    2026-11-30  2/4   Dr. K. Hemanth Kumar Neurologist             step 1 · 2026-11-27 15:25 IST
+in 3 days    2026-11-30  3/4   Dr. Sushma Dental                            step 2 · 2026-11-27 14:27 IST
+in 3 days    2026-11-30  3/4   HR Dental Hospital                           step 2 · 2026-11-27 14:12 IST
 in 3 days    2026-11-30  3/4   Jamili Dental Care                           step 2 · 2026-11-27 13:45 IST
+in 3 days    2026-11-30  2/4   Sai Bhaskar Hospitals                        step 1 · 2026-11-27 15:13 IST
+in 3 days    2026-11-30  2/4   Shravani ENT Hospital                        step 1 · 2026-11-27 15:38 IST
 in 3 days    2026-11-30  3/4   Sri Ramachandra Children and Dental Hospital step 2 · 2026-11-27 13:58 IST
+in 3 days    2026-11-30  2/4   Vignata Fertility & IVF Center               step 1 · 2026-11-27 14:59 IST
 
 Stopped (5):
   Bhimavaram Hospitals — bounced: info@bhimavaramhospitals.com — no mail server found for the domain (DNS MX lookup failed; Gmail gave up after two days)
@@ -129,19 +151,26 @@ Complete (10):
 Not started: 19 sequences (no email sent yet).
 ```
 
-- Scheduled in Gmail but not yet in Sent when this was written (record them once
-  they appear): step 2 for HR Dental Hospital (14:12) and Dr. Sushma Dental (14:27),
-  and step 1 for the five 26 November audits (Vignata 14:59, Sai Bhaskar 15:13,
-  Dr K Hemanth Kumar 15:25, Shravani 15:38, Deepthi 15:51 IST), all on 27 Nov.
-- Gmail Drafts was empty at 13:5x IST on 27 Nov. No replies or bounces arrived
-  between 25 Nov and 27 Nov 13:5x IST.
-- Coming up: 29 Nov — step 3 for 21 sequences; 30 Nov — step 3 for Jamili and Sri
-  Ramachandra; and, if the 26 November first emails go out on 27 Nov, their step 2
-  on 30 Nov. Draft only when the operator asks, after checking each thread for a
+- Every mail the operator scheduled for 27 Nov went out on time and is recorded
+  (`deliverables/runs/sends-2026-11-27b.json`): step 2 for HR Dental Hospital
+  (14:12) and Dr. Sushma Dental (14:27); step 1 for Vignata (14:59), Sai Bhaskar
+  (15:13), Dr K Hemanth Kumar (15:25), Shravani (15:38) and Deepthi (15:51 IST).
+  Gmail thread ids for their follow-ups are in each `sequence.json` and in
+  `outreach/<slug>/gmail-drafts.json`.
+- Inbox, 26–27 Nov: no bounces or opt-outs. **One reply:** Milestone Solarcom Pvt.
+  Ltd. (milestonesolarcomsales@gmail.com, Bilal Mohd. Zaheeruddin) wrote on
+  27 Nov at 15:04 IST: "Can you share your marketing packages proposal please".
+  It answers Vamsi's 24 Nov follow-up to a 14 Nov report ("Milestone Solar: 6 live
+  Google ads, and every trust counter on the landing page reads zero"); that
+  campaign is not tracked in this repository. Gmail message 1a21c5bd52df544c,
+  thread 1a1c50f925f30304. **Nothing drafted or sent: waiting for the operator.**
+- Coming up: 29 Nov — step 3 for 21 sequences; 30 Nov — step 3 for Jamili, Sri
+  Ramachandra, HR Dental and Dr. Sushma, and step 2 for the five 26 November
+  audits. Draft only when the operator asks, after checking each thread for a
   reply or opt-out.
-- Send records: `deliverables/runs/sends-2026-11-27.json` (30 sends recorded on
-  27 Nov). Earlier sends (64 across 40 sequences, recorded 26 Nov) are in the
-  `sentAt` fields of each `sequence.json`.
+- Send records: `deliverables/runs/sends-2026-11-27.json` (30) and
+  `sends-2026-11-27b.json` (7). Earlier sends (64 across 40 sequences, recorded
+  26 Nov) are in the `sentAt` fields of each `sequence.json`.
 
 ## 4. Recording sends and drafting in Gmail
 
@@ -166,7 +195,13 @@ Not started: 19 sequences (no email sent yet).
 
 ## 5. Running audits (GitHub Actions only)
 
-- This sandbox has no Chromium and no general internet, so audits run in
+- To test measurement code (not to audit: the sandbox cannot reach the sites),
+  a Chromium comes from npm: `npm install @sparticuz/chromium playwright-core`
+  in a scratch folder, unpack `bin/chromium.br` (its `executablePath()` writes
+  `/tmp/chromium`) and `bin/al2023.tar.br` (brotli, then tar), and run with
+  `LD_LIBRARY_PATH=<unpacked>/lib`. 1.4.6's screen-count fix was reproduced and
+  tested this way with Playwright's mobile emulation.
+- This sandbox has no Chromium of its own and no general internet, so audits run in
   `.github/workflows/agency-run.yml`, triggered by pushing a changed
   `run-request.json` (`state`, `target`, `max`, `leadsLimit`, `csv`, `csvOnly`,
   `repairOnly` = re-audit only, `reaudit` = domains, `reauditReason`,
@@ -195,6 +230,10 @@ Not started: 19 sequences (no email sent yet).
   these records are visible to anyone. **Open:** make it private?
 - **Open:** mark emailed leads `contacted` in `data/leads.json`? First widen the
   twin-email check in `src/cli.mjs` (it only matches `audited`).
+- **Open:** reply to Milestone Solarcom's request for a marketing packages
+  proposal (section 3)? Draft nothing until the operator says what to offer.
+- Known cosmetic slip: AA Hospitals' PDF prints "1176 px" without a thousands
+  separator (page 6); accepted, code fixed in 1.4.6.
 - Known wording slip: Dr K Hemanth Kumar's PDF says "A 81/100" (pages 2 and 5).
   1.4.5 fixed the template; his email says "An 81/100".
 
