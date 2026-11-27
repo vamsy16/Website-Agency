@@ -380,10 +380,13 @@ export function deriveFindings(raw, facts, business) {
   }
 
   if ((m.perfMobile !== "—" && m.perfMobile < 50) || (m.lcpMs && m.lcpMs > 4000)) {
+    // "an" before 8, 11, 18 and 80–89 ("an 81/100", "an 8.2 s"): the score
+    // always had "A", printed as "A 81/100 mobile score" (26 Nov review).
+    const an = (v) => /^(8|1[18](?!\d))/.test(String(v));
     candidates.push({
       severity: "High",
       tone: "med",
-      title: `A ${m.perfMobile}/100 mobile score and ${/^(8|1[18](?![\d]))/.test(String(m.lcp)) ? "an" : "a"} ${m.lcp} LCP`,
+      title: `${an(m.perfMobile) ? "An" : "A"} ${m.perfMobile}/100 mobile score and ${an(m.lcp) ? "an" : "a"} ${m.lcp} LCP`,
       // Only costs that exist are listed: "render-blocking CSS/JS costing
       // 0 ms" was printed as evidence on a High finding (26 Nov review).
       measured: [

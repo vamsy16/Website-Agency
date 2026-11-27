@@ -3,6 +3,10 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## 1.4.5 — 26 November 2026
+
+- `findings.mjs` — the speed finding's title put "A" before every mobile score, so Dr K Hemanth Kumar's report and email 1 read "A 81/100 mobile score". The article now follows the number (8, 11, 18, 80–89 take "an"), as it already did for the LCP. His approved PDF keeps the old wording (pages 2 and 5); his `email-1-first.md` and Gmail draft say "An 81/100".
+
 ## Review — 26 November 2026
 
 - Five new Andhra Pradesh audits approved after re-audit with 1.4.3 and 1.4.4 (runs 45814540402, 45820025821, 45824308238, 45825535687, 45830272690, 45831617819, 45837237021): Vignata Fertility & IVF Center (Guntur), Shravani ENT Hospital (Kakinada), Dr K Hemanth Kumar, neurologist (Kurnool), Deepthi Fertility Centre (Nellore) and Sai Bhaskar Hospitals (Guntur). Each To: address was read on the business's own website, the duplicate check used only this repository, every audit passed verify 26/26, and every final page was re-read. Record: `deliverables/runs/2026-11-26-independent-review.md`. Nothing was sent.
