@@ -1,0 +1,25 @@
+{
+  "name": "Varma Hospitals",
+  "domain": "varmahospitals.com",
+  "city": "Bhimavaram",
+  "state": "Andhra Pradesh",
+  "email": "varmahospitals@gmail.com",
+  "phone": "+91 8816 227268",
+  "ref": "SP-AUD-2026-11-28-VH",
+  "date": "2026-11-28",
+  "overall": 64,
+  "scores": {
+    "speed": 5,
+    "mobile": 6,
+    "conversion": 7,
+    "design": 9,
+    "seo": 6,
+    "overall": 64
+  },
+  "pdf": "Smart-Pursuit-Audit-Varma-Hospitals.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on http://varmahospitals.com/",
+    "checkedAt": "2026-11-28"
+  }
+}

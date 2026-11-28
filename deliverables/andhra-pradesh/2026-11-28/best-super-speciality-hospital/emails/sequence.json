@@ -1,0 +1,76 @@
+{
+  "business": "BEST Super Speciality Hospital",
+  "domain": "bestsuperspeciality.com",
+  "ref": "SP-AUD-2026-11-28-BSS",
+  "createdAt": "2026-11-28T11:44:54.437Z",
+  "sendDate": "2026-11-28",
+  "cadenceDays": [
+    3,
+    3,
+    3
+  ],
+  "to": "bestsuperspecialityvja@gmail.com",
+  "status": "draft",
+  "neverSendAutomatically": true,
+  "note": "Dates shift if the operator sends email 1 on a different day — recompute with `sequence --send-date YYYY-MM-DD`.",
+  "emails": [
+    {
+      "step": 1,
+      "id": "first",
+      "purpose": "deliver the audit, earn a reply",
+      "attachments": [
+        "reports/best-super-speciality-hospital/Smart-Pursuit-Audit-BEST-Super-Speciality-Hospital.pdf"
+      ],
+      "subject": "BEST Super Speciality Hospital — what I found testing bestsuperspeciality.com",
+      "words": 113,
+      "scheduledFor": "2026-11-28",
+      "scheduledForLong": "28 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/best-super-speciality-hospital/email-1-first.md"
+    },
+    {
+      "step": 2,
+      "id": "followup-1",
+      "purpose": "turn the top measured finding into a money argument",
+      "attachments": [],
+      "subject": "Re: BEST Super Speciality Hospital — what I found testing bestsuperspeciality.com",
+      "words": 102,
+      "scheduledFor": "2026-12-01",
+      "scheduledForLong": "1 December 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/best-super-speciality-hospital/email-2-followup-1.md"
+    },
+    {
+      "step": 3,
+      "id": "followup-2",
+      "purpose": "make the next step concrete without promising an outcome",
+      "attachments": [],
+      "subject": "Re: BEST Super Speciality Hospital — the next step, if useful",
+      "words": 106,
+      "scheduledFor": "2026-12-04",
+      "scheduledForLong": "4 December 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/best-super-speciality-hospital/email-3-followup-2.md"
+    },
+    {
+      "step": 4,
+      "id": "followup-3-final",
+      "purpose": "final mail, leave the door open, no pressure",
+      "attachments": [],
+      "subject": "Closing the loop — BEST Super Speciality Hospital",
+      "words": 98,
+      "scheduledFor": "2026-12-07",
+      "scheduledForLong": "7 December 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/best-super-speciality-hospital/email-4-followup-3-final.md"
+    }
+  ]
+}

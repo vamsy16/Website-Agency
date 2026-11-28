@@ -1,0 +1,25 @@
+{
+  "name": "BEST Super Speciality Hospital",
+  "domain": "bestsuperspeciality.com",
+  "city": "Vijayawada",
+  "state": "Andhra Pradesh",
+  "email": "bestsuperspecialityvja@gmail.com",
+  "phone": "+91 83677 22722",
+  "ref": "SP-AUD-2026-11-28-BSS",
+  "date": "2026-11-28",
+  "overall": 72,
+  "scores": {
+    "speed": 4,
+    "mobile": 5,
+    "conversion": 10,
+    "design": 10,
+    "seo": 10,
+    "overall": 72
+  },
+  "pdf": "Smart-Pursuit-Audit-BEST-Super-Speciality-Hospital.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://www.bestsuperspeciality.com/",
+    "checkedAt": "2026-11-28"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-28T08:38:30.058Z",
+  "updatedAt": "2026-11-28T11:44:54.429Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -1563,28 +1563,28 @@
       "fingerprint": "c4545e3b8a317040"
     },
     {
-      "domain": "vedanthahospital.com",
-      "name": "Vedanta Hospitals",
+      "domain": "varmahospitals.com",
+      "name": "Varma Hospitals",
       "ref": "SP-AUD-2026-11-28-VH",
-      "generatedAt": "2026-11-28T08:34:20.219Z",
+      "generatedAt": "2026-11-28T11:43:41.582Z",
       "status": "complete",
       "mode": "live",
       "scores": {
         "speed": 5,
         "mobile": 6,
-        "conversion": 10,
+        "conversion": 7,
         "design": 9,
-        "seo": 9,
-        "overall": 75
+        "seo": 6,
+        "overall": 64
       },
       "pdfPages": 10,
-      "pdfBytes": 2229786,
+      "pdfBytes": 3597152,
       "files": {
-        "pdf": "reports/vedanta-hospitals/Smart-Pursuit-Audit-Vedanta-Hospitals.pdf",
-        "audit": "reports/vedanta-hospitals/audit.json",
-        "html": "reports/vedanta-hospitals/report.html"
+        "pdf": "reports/varma-hospitals/Smart-Pursuit-Audit-Varma-Hospitals.pdf",
+        "audit": "reports/varma-hospitals/audit.json",
+        "html": "reports/varma-hospitals/report.html"
       },
-      "fingerprint": "72b646ffb3d072dc"
+      "fingerprint": "43fe33f60555e056"
     },
     {
       "domain": "drsnehasskinclin.in",
@@ -1681,6 +1681,102 @@
         "html": "reports/nandan-hospitals/report.html"
       },
       "fingerprint": "73ae0de46ebbcccb"
+    },
+    {
+      "domain": "arkaeyehospital.com",
+      "name": "Arka Eye Hospital",
+      "ref": "SP-AUD-2026-11-28-AEH",
+      "generatedAt": "2026-11-28T11:40:31.947Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 6,
+        "mobile": 9,
+        "conversion": 8,
+        "design": 8,
+        "seo": 9,
+        "overall": 77
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1346042,
+      "files": {
+        "pdf": "reports/arka-eye-hospital/Smart-Pursuit-Audit-Arka-Eye-Hospital.pdf",
+        "audit": "reports/arka-eye-hospital/audit.json",
+        "html": "reports/arka-eye-hospital/report.html"
+      },
+      "fingerprint": "e5b1b5612e879a2d"
+    },
+    {
+      "domain": "bestrehabphysio.com",
+      "name": "Best Rehab",
+      "ref": "SP-AUD-2026-11-28-BR",
+      "generatedAt": "2026-11-28T11:41:25.414Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 6,
+        "mobile": 4,
+        "conversion": 10,
+        "design": 10,
+        "seo": 9,
+        "overall": 75
+      },
+      "pdfPages": 10,
+      "pdfBytes": 3649395,
+      "files": {
+        "pdf": "reports/best-rehab/Smart-Pursuit-Audit-Best-Rehab.pdf",
+        "audit": "reports/best-rehab/audit.json",
+        "html": "reports/best-rehab/report.html"
+      },
+      "fingerprint": "a26df250a96417ce"
+    },
+    {
+      "domain": "happy-hospitals.com",
+      "name": "Happy Hospitals",
+      "ref": "SP-AUD-2026-11-28-HH",
+      "generatedAt": "2026-11-28T11:42:26.973Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 8,
+        "mobile": 5,
+        "conversion": 10,
+        "design": 9,
+        "seo": 10,
+        "overall": 83
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2888225,
+      "files": {
+        "pdf": "reports/happy-hospitals/Smart-Pursuit-Audit-Happy-Hospitals.pdf",
+        "audit": "reports/happy-hospitals/audit.json",
+        "html": "reports/happy-hospitals/report.html"
+      },
+      "fingerprint": "e0a0bd44a32b7e8c"
+    },
+    {
+      "domain": "bestsuperspeciality.com",
+      "name": "BEST Super Speciality Hospital",
+      "ref": "SP-AUD-2026-11-28-BSS",
+      "generatedAt": "2026-11-28T11:44:54.429Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 4,
+        "mobile": 5,
+        "conversion": 10,
+        "design": 10,
+        "seo": 10,
+        "overall": 72
+      },
+      "pdfPages": 10,
+      "pdfBytes": 4241334,
+      "files": {
+        "pdf": "reports/best-super-speciality-hospital/Smart-Pursuit-Audit-BEST-Super-Speciality-Hospital.pdf",
+        "audit": "reports/best-super-speciality-hospital/audit.json",
+        "html": "reports/best-super-speciality-hospital/report.html"
+      },
+      "fingerprint": "bdbde9e954945e64"
     }
   ]
 }

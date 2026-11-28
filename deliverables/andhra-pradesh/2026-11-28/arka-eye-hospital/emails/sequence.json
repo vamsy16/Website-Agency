@@ -1,0 +1,76 @@
+{
+  "business": "Arka Eye Hospital",
+  "domain": "arkaeyehospital.com",
+  "ref": "SP-AUD-2026-11-28-AEH",
+  "createdAt": "2026-11-28T11:40:31.955Z",
+  "sendDate": "2026-11-28",
+  "cadenceDays": [
+    3,
+    3,
+    3
+  ],
+  "to": "info@arkaeyehospital.com",
+  "status": "draft",
+  "neverSendAutomatically": true,
+  "note": "Dates shift if the operator sends email 1 on a different day — recompute with `sequence --send-date YYYY-MM-DD`.",
+  "emails": [
+    {
+      "step": 1,
+      "id": "first",
+      "purpose": "deliver the audit, earn a reply",
+      "attachments": [
+        "reports/arka-eye-hospital/Smart-Pursuit-Audit-Arka-Eye-Hospital.pdf"
+      ],
+      "subject": "Arka Eye Hospital — what I found testing arkaeyehospital.com",
+      "words": 117,
+      "scheduledFor": "2026-11-28",
+      "scheduledForLong": "28 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/arka-eye-hospital/email-1-first.md"
+    },
+    {
+      "step": 2,
+      "id": "followup-1",
+      "purpose": "turn the top measured finding into a money argument",
+      "attachments": [],
+      "subject": "Re: Arka Eye Hospital — what I found testing arkaeyehospital.com",
+      "words": 101,
+      "scheduledFor": "2026-12-01",
+      "scheduledForLong": "1 December 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/arka-eye-hospital/email-2-followup-1.md"
+    },
+    {
+      "step": 3,
+      "id": "followup-2",
+      "purpose": "make the next step concrete without promising an outcome",
+      "attachments": [],
+      "subject": "Re: Arka Eye Hospital — the next step, if useful",
+      "words": 106,
+      "scheduledFor": "2026-12-04",
+      "scheduledForLong": "4 December 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/arka-eye-hospital/email-3-followup-2.md"
+    },
+    {
+      "step": 4,
+      "id": "followup-3-final",
+      "purpose": "final mail, leave the door open, no pressure",
+      "attachments": [],
+      "subject": "Closing the loop — Arka Eye Hospital",
+      "words": 98,
+      "scheduledFor": "2026-12-07",
+      "scheduledForLong": "7 December 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/arka-eye-hospital/email-4-followup-3-final.md"
+    }
+  ]
+}

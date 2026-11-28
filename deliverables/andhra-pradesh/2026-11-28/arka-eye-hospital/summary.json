@@ -1,0 +1,25 @@
+{
+  "name": "Arka Eye Hospital",
+  "domain": "arkaeyehospital.com",
+  "city": "Nellore",
+  "state": "Andhra Pradesh",
+  "email": "info@arkaeyehospital.com",
+  "phone": "+91 99480 00930",
+  "ref": "SP-AUD-2026-11-28-AEH",
+  "date": "2026-11-28",
+  "overall": 77,
+  "scores": {
+    "speed": 6,
+    "mobile": 9,
+    "conversion": 8,
+    "design": 8,
+    "seo": 9,
+    "overall": 77
+  },
+  "pdf": "Smart-Pursuit-Audit-Arka-Eye-Hospital.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://arkaeyehospital.com/",
+    "checkedAt": "2026-11-28"
+  }
+}

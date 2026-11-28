@@ -1,0 +1,25 @@
+{
+  "name": "Happy Hospitals",
+  "domain": "happy-hospitals.com",
+  "city": "Guntur",
+  "state": "Andhra Pradesh",
+  "email": "srjrcortho@gmail.com",
+  "phone": "+91 90307 97989",
+  "ref": "SP-AUD-2026-11-28-HH",
+  "date": "2026-11-28",
+  "overall": 83,
+  "scores": {
+    "speed": 8,
+    "mobile": 5,
+    "conversion": 10,
+    "design": 9,
+    "seo": 10,
+    "overall": 83
+  },
+  "pdf": "Smart-Pursuit-Audit-Happy-Hospitals.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://happy-hospitals.com/",
+    "checkedAt": "2026-11-28"
+  }
+}

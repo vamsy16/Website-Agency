@@ -1,0 +1,186 @@
+{
+  "ref": "SP-AUD-2026-11-28-VH",
+  "domain": "varmahospitals.com",
+  "verifiedAt": "2026-11-28T11:43:41.581Z",
+  "live": false,
+  "fixture": false,
+  "ok": true,
+  "blockers": 0,
+  "warnings": 0,
+  "checks": [
+    {
+      "id": "provenance.file",
+      "ok": true,
+      "detail": "raw measurement: data/raw/varma-hospitals/2026-11-28T11-42-28-860Z.json",
+      "severity": "ok"
+    },
+    {
+      "id": "provenance.age",
+      "ok": true,
+      "detail": "measured 0 h ago (limit 72 h, on 28 November 2026)",
+      "severity": "ok"
+    },
+    {
+      "id": "provenance.url",
+      "ok": true,
+      "detail": "raw measurement is for http://varmahospitals.com/",
+      "severity": "ok"
+    },
+    {
+      "id": "provenance.status",
+      "ok": true,
+      "detail": "homepage returned HTTP 200",
+      "severity": "ok"
+    },
+    {
+      "id": "provenance.tool",
+      "ok": true,
+      "detail": "Lighthouse 12.8.2; screenshots: 6",
+      "severity": "ok"
+    },
+    {
+      "id": "provenance.ist",
+      "ok": true,
+      "detail": "measurement timestamp: 28/11/2026, 5:12:28 pm",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.speed",
+      "ok": true,
+      "detail": "report prints 5, rubric computes 5",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.mobile",
+      "ok": true,
+      "detail": "report prints 6, rubric computes 6",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.conversion",
+      "ok": true,
+      "detail": "report prints 7, rubric computes 7",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.design",
+      "ok": true,
+      "detail": "report prints 9, rubric computes 9",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.seo",
+      "ok": true,
+      "detail": "report prints 6, rubric computes 6",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.overall",
+      "ok": true,
+      "detail": "report prints 64, rubric computes 64",
+      "severity": "ok"
+    },
+    {
+      "id": "facts.consistent",
+      "ok": true,
+      "detail": "every printed metric equals the raw measurement",
+      "severity": "ok"
+    },
+    {
+      "id": "facts.firstParty",
+      "ok": true,
+      "detail": "the site's own host is not counted as third party",
+      "severity": "ok"
+    },
+    {
+      "id": "findings.evidence",
+      "ok": true,
+      "detail": "6 findings, every evidence field present in the measurement",
+      "severity": "ok"
+    },
+    {
+      "id": "copy.honesty",
+      "ok": true,
+      "detail": "known unsupported narrative claims absent",
+      "severity": "ok"
+    },
+    {
+      "id": "facts.viewport",
+      "ok": true,
+      "detail": "click-to-call links: 1 at load, 1 after scrolling, 0 in embedded frames, printed 1, desktop 1; WhatsApp 1/1; forms 0/0; visible H1 2/2, hidden 0, desktop 2; words 614/613",
+      "severity": "ok"
+    },
+    {
+      "id": "facts.screens",
+      "ok": true,
+      "detail": "7017 px over a 844 px screen (layout 390 px wide) = 8.3; printed 8.3",
+      "severity": "ok"
+    },
+    {
+      "id": "facts.zoom",
+      "ok": true,
+      "detail": "view scale 1.00 at load, 1.00 after scrolling (page's own scale 1.00); window 469×1013 at load, content 469 px wide, widest div.owl-stage to 14870 px; viewport tag \"width=device-width, initial-scale=1.0\"",
+      "severity": "ok"
+    },
+    {
+      "id": "facts.popupForm",
+      "ok": true,
+      "detail": "0 pop-up button(s), 0 about booking; not clicked; 0 field(s) in a hidden pop-up form",
+      "severity": "ok"
+    },
+    {
+      "id": "numbers.traceable",
+      "ok": true,
+      "detail": "all 77 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "severity": "ok"
+    },
+    {
+      "id": "report.date",
+      "ok": true,
+      "detail": "report states 28 November 2026",
+      "severity": "ok"
+    },
+    {
+      "id": "report.ref",
+      "ok": true,
+      "detail": "audit reference SP-AUD-2026-11-28-VH printed",
+      "severity": "ok"
+    },
+    {
+      "id": "report.hash",
+      "ok": true,
+      "detail": "report HTML unchanged since QA",
+      "severity": "ok"
+    },
+    {
+      "id": "screenshots.real",
+      "ok": true,
+      "detail": "6 screenshots, all non-blank",
+      "severity": "ok"
+    },
+    {
+      "id": "pdf.pages",
+      "ok": true,
+      "detail": "PDF has 10 pages",
+      "severity": "ok"
+    },
+    {
+      "id": "pdf.format",
+      "ok": true,
+      "detail": "A4 media box",
+      "severity": "ok"
+    },
+    {
+      "id": "pdf.size",
+      "ok": true,
+      "detail": "3.43 MB",
+      "severity": "ok"
+    },
+    {
+      "id": "pdf.header",
+      "ok": true,
+      "detail": "valid PDF header",
+      "severity": "ok"
+    }
+  ]
+}
