@@ -4,11 +4,17 @@
   "target": 5,
   "leadsLimit": 10,
   "niches": [],
-  "requestedAt": "2026-11-28T11:32:38Z",
+  "requestedAt": "2026-11-28T11:55:57Z",
   "csv": "data/ap-websearch-2026-11-28c.csv",
   "csvOnly": true,
-  "repairOnly": false,
+  "repairOnly": true,
   "disabled": false,
-  "reaudit": [],
-  "reauditReason": ""
+  "reaudit": [
+    "arkaeyehospital.com",
+    "bestrehabphysio.com",
+    "bestsuperspeciality.com",
+    "happy-hospitals.com",
+    "varmahospitals.com"
+  ],
+  "reauditReason": "1.4.8 (28 Nov evening review): a 'page not found' page is not a contact page or a sitemap, 'Read More...' links counted, a pop-up open on arrival closed before screens 7/14 and the laptop view"
 }

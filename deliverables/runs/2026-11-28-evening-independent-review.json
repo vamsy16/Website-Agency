@@ -1,8 +1,10 @@
 {
   "state": "Andhra Pradesh",
   "reviewDate": "2026-11-28",
-  "run": null,
-  "runs": {},
+  "run": 46140450908,
+  "runs": {
+    "46140450908": "data/ap-websearch-2026-11-28c.csv (8 vetted, target 5, max 8, CSV only): 5 audited with verify 29/29 (Arka Eye Hospital, Varma Hospitals) and 28/28 (Best Rehab, Happy Hospitals, BEST Super Speciality Hospital); 9Fertility screened out (the run's site screen found no email on the page, although the agent read 9fertility@gmail.com on its homepage; not audited, never emailed); Star Dental Experts and Sunray SVR Hospital not attempted (target reached). All held: the review found three defects (fixed in 1.4.8, re-audit requested): Arka's scorecard called a 'page not found' page a reachable contact page; BEST Super Speciality's 'Read More...' links were counted as 0; BEST Super Speciality's screen 7 showed the entry pop-up instead of the page."
+  },
   "requested": 5,
   "status": "pending-independent-review",
   "dedupeAuthority": [
@@ -26,7 +28,7 @@
     {
       "domain": "9fertility.com",
       "approved": false,
-      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. 9Fertility (Tirupati); 9fertility@gmail.com read on https://9fertility.com/ (homepage 'Contact Us Now' block)."
+      "reason": "Not audited: the run's site screen (run 46140450908) found no email on the site, although the agent read 9fertility@gmail.com on https://9fertility.com/ ('Contact Us Now' block). Status new; never emailed."
     },
     {
       "domain": "happy-hospitals.com",
@@ -46,15 +48,20 @@
     {
       "domain": "stardentalexperts.com",
       "approved": false,
-      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Star Dental Experts (Eluru); stardentistreeeluru@gmail.com read on http://www.stardentalexperts.com/ (header and contact block; Justdial JD Omni site). Backup."
+      "reason": "Not attempted in run 46140450908 (target reached). Star Dental Experts (Eluru); stardentistreeeluru@gmail.com read on http://www.stardentalexperts.com/ (header and contact block; Justdial JD Omni site). Backup."
     },
     {
       "domain": "sunraysvrhospital.com",
       "approved": false,
-      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Sunray SVR Hospital (Anantapur); sunraysvrhospital24@gmail.com is shown in the homepage 'Reach Us' block by the search index, but the agent's page reader strips that block, so the run's own site screen must confirm it. Backup, last."
+      "reason": "Not attempted in run 46140450908 (target reached). Sunray SVR Hospital (Anantapur); sunraysvrhospital24@gmail.com is shown in the homepage 'Reach Us' block by the search index, but the agent's page reader strips that block, so the run's own site screen must confirm it. Backup, last."
     }
   ],
-  "notPublished": [],
-  "notAttempted": [],
+  "notPublished": [
+    "9fertility.com"
+  ],
+  "notAttempted": [
+    "stardentalexperts.com",
+    "sunraysvrhospital.com"
+  ],
   "withheldOtherDomains": []
 }

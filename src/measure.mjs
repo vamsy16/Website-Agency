@@ -167,6 +167,87 @@ async function openPopupForm(page) {
   return { ...out, opened: after.forms > 0, fields: after.fields };
 }
 
+/**
+ * A pop-up that opens on arrival (an offer, a notice, a newsletter box) covers
+ * every screen until it is closed: BEST Super Speciality Hospital's "screen 7"
+ * showed the same pop-up as its screen 1 (28 Nov evening review). Screen 1
+ * keeps the pop-up, as a visitor first sees it; this then closes it the way a
+ * visitor would (its own close button, else Escape) before the later screens
+ * are captured. Only a fixed box marked as a pop-up (modal, popup, overlay,
+ * dialog, ...), covering at least 40% of the screen and on top at its centre,
+ * counts; a click never follows a link off the page.
+ */
+export async function closeEntryPopup(page) {
+  const info = await page.evaluate(() => {
+    const MARK = /modal|popup|pop-up|overlay|lightbox|dialog|fancybox|mfp-|pum-|newsletter|offer|promo|announcement/i;
+    const vw = innerWidth, vh = innerHeight;
+    const shown = el => { const s = getComputedStyle(el), r = el.getBoundingClientRect(); return s.display !== "none" && s.visibility !== "hidden" && Number(s.opacity) > 0.05 && r.width > 0 && r.height > 0; };
+    const cover = el => { const r = el.getBoundingClientRect(); const w = Math.max(0, Math.min(r.right, vw) - Math.max(r.left, 0)); const h = Math.max(0, Math.min(r.bottom, vh) - Math.max(r.top, 0)); return (w * h) / (vw * vh); };
+    const name = el => `${el.id || ""} ${typeof el.className === "string" ? el.className : (el.className && el.className.baseVal) || ""}`.trim();
+    const marked = el => { for (let e = el, i = 0; e && e !== document.body && i < 4; e = e.parentElement, i++) { if (MARK.test(name(e)) || e.getAttribute("role") === "dialog" || e.getAttribute("aria-modal") === "true" || e.tagName === "DIALOG") return true; } return false; };
+    document.querySelectorAll("[data-sp-entry-popup],[data-sp-entry-close]").forEach(e => { e.removeAttribute("data-sp-entry-popup"); e.removeAttribute("data-sp-entry-close"); });
+    const top = document.elementFromPoint(vw / 2, vh / 2);
+    if (!top) return { found: false };
+    const boxes = [...document.querySelectorAll("body *")].filter(el => {
+      const s = getComputedStyle(el);
+      return (s.position === "fixed" || (el.tagName === "DIALOG" && el.open)) && shown(el) && cover(el) >= 0.4 && marked(el);
+    });
+    const roots = boxes.filter(b => !boxes.some(o => o !== b && o.contains(b)));
+    if (!roots.some(r => r === top || r.contains(top))) return { found: false };
+    roots.forEach(r => r.setAttribute("data-sp-entry-popup", "1"));
+    const CLOSE_TEXT = /^(?:×|✕|✖|x|close|close ×|no,? thanks|skip|dismiss)$/i;
+    let best = null, bestScore = 0;
+    for (const root of roots) {
+      for (const el of root.querySelectorAll("button, a, span, i, div, svg, [role=button]")) {
+        if (!shown(el)) continue;
+        const r = el.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > vh || r.right < 0 || r.left > vw) continue;
+        const href = el.tagName === "A" ? (el.getAttribute("href") || "") : "";
+        if (href && !/^\s*(#|javascript:)/i.test(href)) continue;
+        const txt = (el.innerText || el.textContent || "").trim();
+        const attrs = `${name(el)} ${el.getAttribute("aria-label") || ""} ${el.getAttribute("title") || ""}`;
+        let score = 0;
+        if (el.hasAttribute("data-dismiss") || el.hasAttribute("data-bs-dismiss")) score += 5;
+        if (/close|dismiss/i.test(attrs)) score += 4;
+        if (CLOSE_TEXT.test(txt)) score += 4;
+        if (!(r.width <= 80 && r.height <= 80) && score < 5) continue;
+        if (score > bestScore) { best = el; bestScore = score; }
+      }
+    }
+    if (best && bestScore >= 4) best.setAttribute("data-sp-entry-close", "1");
+    return { found: true, cover: Math.round(Math.max(...roots.map(cover)) * 100) / 100, marker: (name(roots[0]) || roots[0].tagName.toLowerCase()).slice(0, 80), hasClose: !!(best && bestScore >= 4) };
+  });
+  if (!info.found) return info;
+  const stillOpen = () => page.evaluate(() => {
+    const vw = innerWidth, vh = innerHeight;
+    return [...document.querySelectorAll("[data-sp-entry-popup]")].some(el => {
+      const s = getComputedStyle(el), r = el.getBoundingClientRect();
+      if (s.display === "none" || s.visibility === "hidden" || Number(s.opacity) <= 0.05) return false;
+      const w = Math.max(0, Math.min(r.right, vw) - Math.max(r.left, 0));
+      const h = Math.max(0, Math.min(r.bottom, vh) - Math.max(r.top, 0));
+      return (w * h) / (vw * vh) >= 0.4;
+    });
+  }).catch(() => false);
+  const url = page.url().split("#")[0];
+  let closedBy = null;
+  if (info.hasClose) {
+    // A link inside the pop-up is never followed off the page.
+    await page.evaluate(() => document.addEventListener("click", e => {
+      const a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+      if (a && !/^\s*(#|javascript:)/i.test(a.getAttribute("href") || "")) e.preventDefault();
+    }, { capture: true, once: true }));
+    await page.click("[data-sp-entry-close]", { timeout: 2000 }).catch(() => page.evaluate(() => document.querySelector("[data-sp-entry-close]")?.click()).catch(() => {}));
+    await page.waitForTimeout(800);
+    if (!(await stillOpen())) closedBy = "close button";
+  }
+  if (!closedBy) {
+    await page.keyboard.press("Escape").catch(() => {});
+    await page.waitForTimeout(600);
+    if (!(await stillOpen())) closedBy = "Escape";
+  }
+  return { ...info, closed: !!closedBy, closedBy, leftPage: page.url().split("#")[0] !== url };
+}
+
 function collectDom(screen) {
   const de = document.documentElement;
   // The page's layout width, read from media queries: unlike innerWidth and
@@ -293,7 +374,10 @@ function collectDom(screen) {
   };
   const stickyTel = telLinks.filter(a => visible(a) && onScreen(a)).length;
   const stickyWhatsapp = q("a[href*='wa.me'], a[href*='whatsapp']").filter(a => visible(a) && onScreen(a)).length;
-  const readMore = anchors.filter(a => /^read\s*more$/i.test((a.innerText || "").trim()));
+  // "Read More...", "Read more »" and "Read More >>" are the same generic link:
+  // BEST Super Speciality Hospital's four "Read More..." links were counted as
+  // 0 (28 Nov evening review).
+  const readMore = anchors.filter(a => /^read\s*more[\s.…!»›>→-]*$/i.test((a.innerText || "").trim()));
   const deadLinks = anchors.filter(a => {
     const h = (a.getAttribute("href") || "").trim();
     return h === "#" || h === "" || h === "javascript:void(0)" || h === "javascript:;";
@@ -641,6 +725,10 @@ export async function measureSite(website, opts = {}) {
       await shot("mobile-full", { fullPage: true });
       await settle();
       await shot("screen-1");
+      // Screen 1 shows a pop-up that opens on arrival; the later screens are
+      // captured after closing it, as a visitor would (28 Nov evening review).
+      try { dom.entryPopup = await closeEntryPopup(mobile); }
+      catch (err) { dom.entryPopup = { error: String(err.message || err).split("\n")[0] }; }
 
       // Scroll-and-shoot at fixed phone-screen offsets: screen-1, screen-7, screen-14
       // One screen = the phone screen at the page's layout scale (dom.viewport):
@@ -733,13 +821,18 @@ export async function measureSite(website, opts = {}) {
         .filter(i => { const r = i.getBoundingClientRect(); return r.width > 0 && r.top < innerHeight && r.bottom > 0; })
         .every(i => i.complete && i.naturalWidth > 0), null, { timeout: 8000 }).catch(() => {});
       await desk.waitForTimeout(1000);
+      // The laptop view is the page itself: a pop-up open on arrival is closed
+      // first, and the caption says so (28 Nov evening review).
+      let deskPopup = null;
+      try { deskPopup = await closeEntryPopup(desk); }
+      catch (err) { deskPopup = { error: String(err.message || err).split("\n")[0] }; }
       const dom = await desk.evaluate(collectDom, settings.audit.desktopViewport);
       try {
         const fr = await frameRoutes(desk);
         dom.inFrames = fr;
         dom.telLinks += fr.tel; dom.mailLinks = (dom.mailLinks ?? 0) + fr.mail; dom.whatsapp += fr.whatsapp;
       } catch {}
-      result.desktop = { status: deskStatus, dom, pageErrors: deskErrors };
+      result.desktop = { status: deskStatus, dom, pageErrors: deskErrors, entryPopup: deskPopup };
       const file = path.join(shotDir, "desktop-fold.png");
       await desk.screenshot({ path: file });
       const stats = await imageStats(browser, file);
@@ -764,6 +857,23 @@ export async function measureSite(website, opts = {}) {
   writeJSON(outFile, result);
   result.rawFile = path.relative(ROOT, outFile).replace(/\\/g, "/");
   return result;
+}
+
+// A "page not found" page served with status 200 (a soft 404). Arka Eye
+// Hospital's /contact/ and /sitemap.xml both answered 200 with "The page you
+// were looking for doesn't exist", and its report called the contact page
+// reachable (28 Nov evening review).
+const NOT_FOUND_TEXT = /\b(?:page|file|url)\s+(?:you\s+(?:were|are)\s+looking\s+for\s+|you\s+requested\s+)?(?:was\s+|is\s+|could\s+)?(?:not\s+(?:be\s+)?found|doesn['’]?t\s+exist|does\s+not\s+exist|cannot\s+be\s+found|can['’]?t\s+be\s+found|no\s+longer\s+exists)|\berror\s*404\b|\b404\s*(?:error|not\s+found|page)\b|\bpage\s+not\s+found\b/i;
+export function looksNotFound(html = "") {
+  const title = (String(html).match(/<title[^>]*>([^<]*)<\/title>/i) || [])[1] || "";
+  if (/\b404\b|\bnot\s+found\b/i.test(title)) return true;
+  const text = String(html)
+    .replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<noscript[\s\S]*?<\/noscript>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/g, " ").replace(/&#39;|&rsquo;/g, "’")
+    .replace(/\s+/g, " ")
+    .slice(0, 30000);
+  return NOT_FOUND_TEXT.test(text);
 }
 
 /** Direct fetch checks. These back the "verifiable fact" claims in the report. */
@@ -806,9 +916,11 @@ export async function checkHttp(website, settings) {
       info.shortcode = (r.bodyStart.match(SHORTCODE_RE) || [])[0] || null;
       info.formCount = (r.bodyStart.match(/<form\b/gi) || []).length;
       info.titleMatch = (r.bodyStart.match(/<title[^>]*>([^<]*)<\/title>/i) || [])[1] || null;
+      info.notFoundPage = r.status === 200 && looksNotFound(r.bodyStart);
     }
     if (p === "/sitemap.xml") {
       info.looksLikeSitemap = /<(urlset|sitemapindex)[\s>]/i.test(r.bodyStart);
+      info.notFoundPage = r.status === 200 && !info.looksLikeSitemap && looksNotFound(r.bodyStart);
     }
     if (p === "/robots.txt") {
       info.disallowAll = /^\s*user-agent:\s*\*/im.test(r.bodyStart) && /^\s*disallow:\s*\/\s*$/im.test(r.bodyStart);

@@ -3,6 +3,16 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## 1.4.8 — 28 November 2026
+
+From the 28 November evening independent review (Andhra Pradesh, run 46140450908), before the operator saw the PDFs.
+
+- **A "page not found" page is not a contact page** (`src/measure.mjs`, `src/findings.mjs`). Arka Eye Hospital's scorecard said "Contact page reachable", but its `/contact/` (like every unknown address on that site) answers HTTP 200 with "The page you were looking for doesn't exist". The `/contact/` and `/sitemap.xml` probes now recognise such pages (`looksNotFound`: a 404 or "not found" title, or "page … not found / doesn't exist", "Error 404", "Page not found" in the text, scripts excluded); a contact probe that lands on one is not reachable.
+- **A sitemap address that answers with a "page not found" page is reported as a missing sitemap**, in those words ("answered 200 with a “page not found” page, not a <urlset>"), instead of "returns a web page instead of a sitemap".
+- **"Read More..." links are counted** with the plain "Read More" ones (trailing dots, », >, → allowed): BEST Super Speciality Hospital's scorecard said "0 “Read More” links" for a homepage with four "Read More..." links.
+- **A pop-up that opens on arrival is closed before the later screens** (`closeEntryPopup`, `src/measure.mjs`). BEST Super Speciality Hospital's "screen 7" showed the same promotional pop-up as its screen 1, and its laptop view was dimmed by the pop-up's backdrop. Screen 1 keeps the pop-up, as a visitor first sees it, and its caption says so; the pop-up is then closed the way a visitor would close it (its own close button, else Escape), and the screen 7 caption says "after closing the pop-up" (or "with the pop-up still open" when it would not close). The laptop view closes it first and says so. Only a fixed box marked as a pop-up (modal, popup, overlay, dialog …), covering at least 40% of the screen and on top at its centre, counts; a click never follows a link off the page. Tested in local Chromium (mobile emulation) on a Bootstrap-style modal, an Elementor-style pop-up, an Escape-only pop-up, a pop-up whose only "×" is an off-site link (left open, page not left), a fixed background overlay, a cookie bar, an off-screen menu and a plain page.
+- `verify`: **`facts.entryPopup`** (warning) records a pop-up open on arrival and how it was closed; copy checks block pop-up wording without the measurement and the soft-404 sitemap wording without `http.sitemapNotFoundPage`.
+
 ## Outreach — 28 November 2026, evening
 
 - First-email Gmail drafts for the five 28 November audits, after the operator reviewed and approved the PDFs: Vedanta Hospitals, Dr Sneha's Skinclin, Skinmed Skin Clinic, SV Children's Hospital and Nandan Hospitals. Created in smartpursuit3@gmail.com at 16:39 IST as new threads with the approved PDF attached, and read back: recipient, subject and body identical to `email-1-first.md`, attachment the size of the file. Before that, Gmail had nothing for any of the five addresses (every folder, spam and trash included). Recorded on step 1 of each `sequence.json` (`gmailDraft`) and in `outreach/<slug>/gmail-drafts.json`. No follow-up drafts; nothing sent.
