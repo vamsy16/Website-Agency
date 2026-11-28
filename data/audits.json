@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-28T13:28:44.151Z",
+  "updatedAt": "2026-11-28T13:40:05.878Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -1734,25 +1734,25 @@
       "domain": "happy-hospitals.com",
       "name": "Happy Hospitals",
       "ref": "SP-AUD-2026-11-28-HH",
-      "generatedAt": "2026-11-28T13:24:51.318Z",
+      "generatedAt": "2026-11-28T13:40:05.878Z",
       "status": "complete",
       "mode": "live",
       "scores": {
         "speed": 8,
         "mobile": 5,
-        "conversion": 10,
+        "conversion": 7,
         "design": 9,
         "seo": 10,
-        "overall": 83
+        "overall": 75
       },
       "pdfPages": 10,
-      "pdfBytes": 2886358,
+      "pdfBytes": 2896567,
       "files": {
         "pdf": "reports/happy-hospitals/Smart-Pursuit-Audit-Happy-Hospitals.pdf",
         "audit": "reports/happy-hospitals/audit.json",
         "html": "reports/happy-hospitals/report.html"
       },
-      "fingerprint": "e0a0bd44a32b7e8c"
+      "fingerprint": "8f25d50d5314d19c"
     },
     {
       "domain": "bestsuperspeciality.com",

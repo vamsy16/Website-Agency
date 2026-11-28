@@ -13,8 +13,8 @@ I ran a live website audit of happy-hospitals.com and put the results in the att
 
 Two things stood out:
 
-1. 33 screen heights of homepage content. A long page can require more navigation.
-2. 68 tap targets smaller than a fingertip. Small controls can be difficult to select on touchscreens.
+1. No appointment form fields were detected on the homepage. A patient may prefer a written appointment request.
+2. 33 screen heights of homepage content. A long page can require more navigation.
 
 The report includes test measurements, screenshots and suggested fixes. Recommendations and effort estimates are distinguished from measured results.
 

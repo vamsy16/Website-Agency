@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-28-HH",
   "domain": "happy-hospitals.com",
-  "verifiedAt": "2026-11-28T13:24:51.318Z",
+  "verifiedAt": "2026-11-28T13:40:05.876Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/happy-hospitals/2026-11-28T13-23-51-220Z.json",
+      "detail": "raw measurement: data/raw/happy-hospitals/2026-11-28T13-39-12-195Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 28/11/2026, 6:53:51 pm",
+      "detail": "measurement timestamp: 28/11/2026, 7:09:12 pm",
       "severity": "ok"
     },
     {
@@ -59,7 +59,7 @@
     {
       "id": "scores.conversion",
       "ok": true,
-      "detail": "report prints 10, rubric computes 10",
+      "detail": "report prints 7, rubric computes 7",
       "severity": "ok"
     },
     {
@@ -77,7 +77,7 @@
     {
       "id": "scores.overall",
       "ok": true,
-      "detail": "report prints 83, rubric computes 83",
+      "detail": "report prints 75, rubric computes 75",
       "severity": "ok"
     },
     {
@@ -95,7 +95,7 @@
     {
       "id": "findings.evidence",
       "ok": true,
-      "detail": "2 findings, every evidence field present in the measurement",
+      "detail": "3 findings, every evidence field present in the measurement",
       "severity": "ok"
     },
     {
@@ -107,7 +107,7 @@
     {
       "id": "facts.viewport",
       "ok": true,
-      "detail": "click-to-call links: 1 at load, 1 after scrolling, 0 in embedded frames, printed 1, desktop 1; WhatsApp 2/2; forms 1/1; visible H1 1/1, hidden 0, desktop 1; words 2700/2700",
+      "detail": "click-to-call links: 1 at load, 1 after scrolling, 0 in embedded frames, printed 1, desktop 1; WhatsApp 2/2; forms 0/0; visible H1 1/1, hidden 0, desktop 1; words 2700/2700",
       "severity": "ok"
     },
     {
@@ -123,9 +123,15 @@
       "severity": "ok"
     },
     {
+      "id": "facts.popupForm",
+      "ok": true,
+      "detail": "2 pop-up button(s), 0 about booking; not clicked; 0 field(s) in a hidden pop-up form",
+      "severity": "ok"
+    },
+    {
       "id": "facts.counted",
       "ok": true,
-      "detail": "0 \"Read More\" link(s); 1 form(s): form 1 field(s) [email:subscribe] button \"Subscribe\" @27492px under \"Useful Links\"; 24 link(s) to # or javascript:; 68 of 113 tap targets under 40 px; 0 slider copies skipped",
+      "detail": "0 \"Read More\" link(s); 1 form(s): form 1 field(s) [email:subscribe] button \"Subscribe\" @27492px under \"Useful Links\" (newsletter sign-up, not counted); 24 link(s) to # or javascript:; 68 of 113 tap targets under 40 px; 0 slider copies skipped",
       "severity": "ok"
     },
     {
@@ -137,7 +143,7 @@
     {
       "id": "numbers.traceable",
       "ok": true,
-      "detail": "all 74 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "detail": "all 72 distinct numbers in the report trace to the measurement, the rubric or a stated target",
       "severity": "ok"
     },
     {
@@ -179,7 +185,7 @@
     {
       "id": "pdf.size",
       "ok": true,
-      "detail": "2.75 MB",
+      "detail": "2.76 MB",
       "severity": "ok"
     },
     {

@@ -2,7 +2,7 @@
   "business": "Happy Hospitals",
   "domain": "happy-hospitals.com",
   "ref": "SP-AUD-2026-11-28-HH",
-  "createdAt": "2026-11-28T13:24:51.331Z",
+  "createdAt": "2026-11-28T13:40:05.890Z",
   "sendDate": "2026-11-28",
   "cadenceDays": [
     3,
@@ -22,7 +22,7 @@
         "reports/happy-hospitals/Smart-Pursuit-Audit-Happy-Hospitals.pdf"
       ],
       "subject": "Happy Hospitals — what I found testing happy-hospitals.com",
-      "words": 108,
+      "words": 109,
       "scheduledFor": "2026-11-28",
       "scheduledForLong": "28 November 2026",
       "status": "draft",
@@ -36,7 +36,7 @@
       "purpose": "turn the top measured finding into a money argument",
       "attachments": [],
       "subject": "Re: Happy Hospitals — what I found testing happy-hospitals.com",
-      "words": 102,
+      "words": 101,
       "scheduledFor": "2026-12-01",
       "scheduledForLong": "1 December 2026",
       "status": "draft",
