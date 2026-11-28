@@ -1,0 +1,34 @@
+{
+  "business": "Dr. Padmavathi Dental Hospital & Implant Centre",
+  "domain": "padmavathisdental.com",
+  "ref": "SP-AUD-2026-11-27-DPD",
+  "to": "dr.padmavathi25@gmail.com",
+  "emailSource": "openstreetmap, confirmed on site",
+  "emailFoundOn": "https://padmavathisdental.com/",
+  "mailbox": "smartpursuit3@gmail.com",
+  "status": "draft",
+  "neverSendAutomatically": true,
+  "drafts": [
+    {
+      "step": 1,
+      "draftId": "r4588748196827983982",
+      "createdAt": "2026-11-28T12:46:49+05:30",
+      "subject": "Dr. Padmavathi Dental Hospital — what I found testing padmavathisdental.com",
+      "attachment": {
+        "filename": "Smart-Pursuit-Audit-Dr.-Padmavathi-Dental-Hospital-Implant-Centre.pdf",
+        "bytes": 1794809
+      },
+      "verified": "read back 2026-11-28: recipient, subject, body and attachment size match; body is only the recipient-facing email"
+    }
+  ],
+  "followUps": {
+    "rule": "Not drafted. Each is due 3 days after the previous email is actually sent, only if there is no reply; draft only when the operator asks, as a reply in this thread.",
+    "ifEmail1SentOn": "2026-11-28",
+    "plannedDates": {
+      "step2": "2026-12-01",
+      "step3": "2026-12-04",
+      "step4": "2026-12-07"
+    }
+  },
+  "sequence": "deliverables/andhra-pradesh/2026-11-27/dr-padmavathi-dental-hospital-and-implant-centre/emails/sequence.json"
+}
