@@ -3,7 +3,9 @@
   "reviewDate": "2026-11-28",
   "run": 46140450908,
   "runs": {
-    "46140450908": "data/ap-websearch-2026-11-28c.csv (8 vetted, target 5, max 8, CSV only): 5 audited with verify 29/29 (Arka Eye Hospital, Varma Hospitals) and 28/28 (Best Rehab, Happy Hospitals, BEST Super Speciality Hospital); 9Fertility screened out (the run's site screen found no email on the page, although the agent read 9fertility@gmail.com on its homepage; not audited, never emailed); Star Dental Experts and Sunray SVR Hospital not attempted (target reached). All held: the review found three defects (fixed in 1.4.8, re-audit requested): Arka's scorecard called a 'page not found' page a reachable contact page; BEST Super Speciality's 'Read More...' links were counted as 0; BEST Super Speciality's screen 7 showed the entry pop-up instead of the page."
+    "46140450908": "data/ap-websearch-2026-11-28c.csv (8 vetted, target 5, max 8, CSV only): 5 audited with verify 29/29 (Arka Eye Hospital, Varma Hospitals) and 28/28 (Best Rehab, Happy Hospitals, BEST Super Speciality Hospital); 9Fertility screened out (the run's site screen found no email on the page, although the agent read 9fertility@gmail.com on its homepage; not audited, never emailed); Star Dental Experts and Sunray SVR Hospital not attempted (target reached). All held: the review found three defects (fixed in 1.4.8, re-audit requested): Arka's scorecard called a 'page not found' page a reachable contact page; BEST Super Speciality's 'Read More...' links were counted as 0; BEST Super Speciality's screen 7 showed the entry pop-up instead of the page.",
+    "46142207127": "Re-audit with 1.4.8 (repair only): Best Rehab, Happy Hospitals, Varma Hospitals and BEST Super Speciality Hospital re-audited, verify passed, layout checks ok; arkaeyehospital.com unreachable from the runner (UND_ERR_CONNECT_TIMEOUT), skipped. The review then found BEST Super Speciality's laptop view caught between two banner slides and DOM counts that included slider copies (5 'Read More' links counted for the 4 on its page): fixed in 1.4.9.",
+    "46143717528": "Re-audit of Arka Eye Hospital with 1.4.8 (retry): unreachable again from the runner (UND_ERR_CONNECT_TIMEOUT, about 17:55 IST); nothing re-audited."
   },
   "requested": 5,
   "status": "pending-independent-review",
@@ -18,12 +20,12 @@
     {
       "domain": "arkaeyehospital.com",
       "approved": false,
-      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Arka Eye Hospital (Nellore); info@arkaeyehospital.com read on https://arkaeyehospital.com/ (homepage header). Vetted 28 Nov (data/ap-websearch-2026-11-28b.csv), not attempted then; never audited or emailed."
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Arka Eye Hospital (Nellore); info@arkaeyehospital.com read on https://arkaeyehospital.com/ (homepage header). Vetted 28 Nov (data/ap-websearch-2026-11-28b.csv), not attempted then; never audited or emailed. Its run-1 report (1.4.7) said \"Contact page reachable\" for a page-not-found page; the 1.4.8 re-audits (runs 46142207127 and 46143717528) could not reach the site from the Actions runner (UND_ERR_CONNECT_TIMEOUT), although it answered the agent's own fetch at 17:44 IST. Retried once more with 1.4.9; if it is unreachable again it stays held and the CSV backup takes its place."
     },
     {
       "domain": "bestrehabphysio.com",
       "approved": false,
-      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Best Rehab (Vijayawada); bestrehabphysio@gmail.com read on https://www.bestrehabphysio.com/ (header) and /contact.html. Vetted 28 Nov (data/ap-websearch-2026-11-28b.csv), not attempted then; never audited or emailed."
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Best Rehab (Vijayawada); bestrehabphysio@gmail.com read on https://www.bestrehabphysio.com/ (header) and /contact.html. Vetted 28 Nov (data/ap-websearch-2026-11-28b.csv), not attempted then; never audited or emailed. Re-audited with 1.4.8 in run 46142207127 (verify passed); held for the 1.4.9 fixes, so all four are re-audited with 1.4.9 before the review continues."
     },
     {
       "domain": "9fertility.com",
@@ -33,27 +35,27 @@
     {
       "domain": "happy-hospitals.com",
       "approved": false,
-      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Happy Hospitals / Shri Ramachandra Joint Replacement Center, Dr Sivaiah Potla (Guntur); srjrcortho@gmail.com read on https://happy-hospitals.com/contact-shri-ramachandra-joint-replacement-center (contact page). Not related to Sri Ramachandra Children's and Dental Hospital (sriramachandrahospital.com, audited 15 Nov): different doctor, specialty, phone and email."
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Happy Hospitals / Shri Ramachandra Joint Replacement Center, Dr Sivaiah Potla (Guntur); srjrcortho@gmail.com read on https://happy-hospitals.com/contact-shri-ramachandra-joint-replacement-center (contact page). Not related to Sri Ramachandra Children's and Dental Hospital (sriramachandrahospital.com, audited 15 Nov): different doctor, specialty, phone and email. Re-audited with 1.4.8 in run 46142207127 (verify passed); held for the 1.4.9 fixes, so all four are re-audited with 1.4.9 before the review continues."
     },
     {
       "domain": "varmahospitals.com",
       "approved": false,
-      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Varma Hospitals (Bhimavaram); varmahospitals@gmail.com read on http://varmahospitals.com/ (homepage header)."
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Varma Hospitals (Bhimavaram); varmahospitals@gmail.com read on http://varmahospitals.com/ (homepage header). Re-audited with 1.4.8 in run 46142207127 (verify passed); held for the 1.4.9 fixes, so all four are re-audited with 1.4.9 before the review continues."
     },
     {
       "domain": "bestsuperspeciality.com",
       "approved": false,
-      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. BEST Super Speciality Hospital (Vijayawada); bestsuperspecialityvja@gmail.com read on https://www.bestsuperspeciality.com/ (header, every page). Backup. A separate business from Best Rehab: different address (Suryaraopeta vs Bharati Nagar), phone, email and social accounts; no cross-links found."
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. BEST Super Speciality Hospital (Vijayawada); bestsuperspecialityvja@gmail.com read on https://www.bestsuperspeciality.com/ (header, every page). Backup. A separate business from Best Rehab: different address (Suryaraopeta vs Bharati Nagar), phone, email and social accounts; no cross-links found. Re-audited with 1.4.8 in run 46142207127 (verify passed); held for the 1.4.9 fixes, so all four are re-audited with 1.4.9 before the review continues."
     },
     {
       "domain": "stardentalexperts.com",
       "approved": false,
-      "reason": "Not attempted in run 46140450908 (target reached). Star Dental Experts (Eluru); stardentistreeeluru@gmail.com read on http://www.stardentalexperts.com/ (header and contact block; Justdial JD Omni site). Backup."
+      "reason": "Not attempted in run 46140450908 (target reached). Star Dental Experts (Eluru); stardentistreeeluru@gmail.com read on http://www.stardentalexperts.com/ (header and contact block; Justdial JD Omni site). Backup. Backup for Arka Eye Hospital in the 1.4.9 run (target 1, Star Dental Experts first)."
     },
     {
       "domain": "sunraysvrhospital.com",
       "approved": false,
-      "reason": "Not attempted in run 46140450908 (target reached). Sunray SVR Hospital (Anantapur); sunraysvrhospital24@gmail.com is shown in the homepage 'Reach Us' block by the search index, but the agent's page reader strips that block, so the run's own site screen must confirm it. Backup, last."
+      "reason": "Not attempted in run 46140450908 (target reached). Sunray SVR Hospital (Anantapur); sunraysvrhospital24@gmail.com is shown in the homepage 'Reach Us' block by the search index, but the agent's page reader strips that block, so the run's own site screen must confirm it. Backup, last. Backup for Arka Eye Hospital in the 1.4.9 run (target 1, Star Dental Experts first)."
     }
   ],
   "notPublished": [

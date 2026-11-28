@@ -272,7 +272,13 @@ function collectDom(screen) {
   // of 844 px (27 Nov review).
   const vw = screen?.width ? layoutWidth : window.innerWidth;
   const vh = screen?.height ? Math.round((screen.height * layoutWidth) / screen.width) : window.innerHeight;
-  const q = (sel, root = document) => [...root.querySelectorAll(sel)];
+  // Slider plugins copy slides so they can loop (Owl's .owl-item.cloned,
+  // Slick's .slick-cloned, Swiper's duplicates, Splide, Glide, bxSlider and
+  // FlexSlider clones). A copy is not a second link, image, form or tap target
+  // on the site, so every count skips it: BEST Super Speciality Hospital's page
+  // shows 4 "Read More" links and 5 were counted (28 Nov evening review).
+  const SLIDER_COPY = ".owl-item.cloned, .slick-cloned, .swiper-slide-duplicate, .splide__slide--clone, .glide__slide--clone, .bx-clone, .clone[aria-hidden='true']";
+  const q = (sel, root = document) => [...root.querySelectorAll(sel)].filter(el => !el.closest(SLIDER_COPY));
   const visible = el => {
     const r = el.getBoundingClientRect();
     const s = getComputedStyle(el);
@@ -507,6 +513,14 @@ function collectDom(screen) {
     stickyTel,
     stickyWhatsapp,
     readMoreLinks: readMore.length,
+    // What the "Read More" count was made of, for the independent review to
+    // check against the live page (verify.json facts.counted).
+    readMoreSamples: readMore.slice(0, 12).map(a => ({
+      text: (a.innerText || "").replace(/\s+/g, " ").trim().slice(0, 30),
+      href: (a.getAttribute("href") || "").trim().slice(0, 120),
+      shown: visible(a),
+    })),
+    sliderCopiesSkipped: document.querySelectorAll(SLIDER_COPY).length,
     deadLinks: deadLinks.length,
     forms,
     visibleForms: visibleForms.length,
@@ -833,6 +847,22 @@ export async function measureSite(website, opts = {}) {
         dom.telLinks += fr.tel; dom.mailLinks = (dom.mailLinks ?? 0) + fr.mail; dom.whatsapp += fr.whatsapp;
       } catch {}
       result.desktop = { status: deskStatus, dom, pageErrors: deskErrors, entryPopup: deskPopup };
+      // The laptop view is captured between slides, as the phone screens are:
+      // BEST Super Speciality Hospital's caught two banner slides mid-fade
+      // (28 Nov evening review). Slider autoplay is paused where the page
+      // exposes it (Bootstrap, Owl, Slick, Swiper), then finite animations
+      // finish (up to 3 s).
+      await desk.evaluate(() => {
+        try { const $ = window.jQuery; if ($) { if ($.fn.carousel) $(".carousel").carousel("pause"); $(".owl-carousel").trigger("stop.owl.autoplay"); if ($.fn.slick) $(".slick-initialized").slick("slickPause"); } } catch {}
+        try { document.querySelectorAll(".carousel").forEach(el => window.bootstrap?.Carousel?.getInstance?.(el)?.pause?.()); } catch {}
+        try { document.querySelectorAll(".swiper, .swiper-container").forEach(el => el.swiper?.autoplay?.stop?.()); } catch {}
+      }).catch(() => {});
+      await desk.waitForFunction(() => document.getAnimations().every(a => {
+        if (a.playState !== "running") return true;
+        const end = a.effect?.getComputedTiming?.().endTime;
+        return !Number.isFinite(end);
+      }), null, { timeout: 3000, polling: 100 }).catch(() => {});
+      result.desktop.runningAnimationsAtShot = await desk.evaluate(() => document.getAnimations().filter(a => a.playState === "running" && Number.isFinite(a.effect?.getComputedTiming?.().endTime)).length).catch(() => null);
       const file = path.join(shotDir, "desktop-fold.png");
       await desk.screenshot({ path: file });
       const stats = await imageStats(browser, file);

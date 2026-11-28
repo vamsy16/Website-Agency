@@ -3,6 +3,12 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## 1.4.9 — 28 November 2026
+
+- **The laptop view is captured between slides** (`src/measure.mjs`), as the phone screens already were: BEST Super Speciality Hospital's re-audited laptop view (1.4.8) caught two banner slides mid-fade, their text overlapping. Slider autoplay is paused where the page exposes it (Bootstrap, Owl, Slick, Swiper) and finite animations finish (up to 3 s) before the shot; `runningAnimationsAtShot` records what was still moving. Tested in local Chromium on a cross-fading slider caught mid-fade.
+- **Slider copies are not counted** (`src/measure.mjs`): Owl, Slick, Swiper, Splide, Glide, bxSlider and FlexSlider copy slides so they can loop, and every DOM count ("Read More" links, links to #, images without alt text, tap targets, forms, sections) counted each copy again. BEST Super Speciality Hospital's page shows 4 "Read More..." links and 5 were counted. Tested in local Chromium on a page with Owl and Slick clones (6 of 6 real links counted, 5 copies skipped).
+- `verify`: **`facts.counted`** (a record, never a blocker) lists what the printed counts were made of: each "Read More" link, each form with its field count, the links to #, the small tap targets and the slider copies skipped, so the independent review can check them against the live page.
+
 ## 1.4.8 — 28 November 2026
 
 From the 28 November evening independent review (Andhra Pradesh, run 46140450908), before the operator saw the PDFs.

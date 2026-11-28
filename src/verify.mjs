@@ -261,6 +261,20 @@ export async function verifyAudit({ auditPath, live = false, fixture = false }) 
           pf ? (pf.error ? `pop-up probe failed: ${pf.error}` : `${pf.triggers ?? 0} pop-up button(s), ${pf.bookingTriggers ?? 0} about booking${pf.label ? ` ("${pf.label}")` : ""}; ${pf.bookingTriggers ? (pf.leftPage ? "the click left the page" : `opened: ${pf.opened ? "yes" : "no"}, ${pf.fields ?? 0} field(s) visible after the click`) : "not clicked"}; ${pf.hiddenFields ?? 0} field(s) in a hidden pop-up form`) : "no pop-up probe recorded (measured before 1.4.7)",
           "warning");
       }
+      // What the counts printed in the report were made of, for the
+      // independent review to check against the live page (28 Nov evening
+      // review: 5 "Read More" links were counted where the page shows 4).
+      // A record, never a blocker.
+      {
+        const rm = Array.isArray(dom.readMoreSamples) ? dom.readMoreSamples : null;
+        const fl = Array.isArray(dom.forms) ? dom.forms : [];
+        const short = h => String(h || "?").replace(/^https?:\/\/[^/]+/i, "") || "/";
+        add("facts.counted", true,
+          `${dom.readMoreLinks ?? "?"} "Read More" link(s)${rm ? (rm.length ? `: ${rm.map(r => `${short(r.href)}${r.shown ? "" : " (not shown)"}`).join(", ")}` : "") : " (links not recorded before 1.4.9)"}; ` +
+          `${fl.length} form(s)${fl.length ? `: ${fl.map(f => `${f.id ? "#" + f.id : short(f.action || "form")} ${f.fields} field(s)${f.visible ? "" : " (hidden)"}`).join(", ")}` : ""}; ` +
+          `${dom.deadLinks ?? "?"} link(s) to # or javascript:; ${dom.smallTapTargets ?? "?"} of ${dom.tapTargets ?? "?"} tap targets under 40 px; ` +
+          `${dom.sliderCopiesSkipped ?? "?"} slider cop${dom.sliderCopiesSkipped === 1 ? "y" : "ies"} skipped`);
+      }
       // A pop-up open on arrival is closed before screens 7 and 14 (28 Nov
       // evening review). Recorded for the independent review; a warning when
       // it could not be closed, because those screens then show the pop-up.

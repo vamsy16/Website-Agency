@@ -12,6 +12,11 @@ _Handoff for the next agent. Last updated 28 November 2026, about 16:50 IST by t
 > `deliverables/runs/2026-11-28-evening-independent-review.json` until the
 > third-eye review is done; no Gmail draft until the operator approves the PDFs.
 > If you find this note and the run is finished, do the review (section 5).
+> 18:10 IST: run 1 (46140450908) audited Arka, Best Rehab, Happy, Varma and BEST
+> Super Speciality (9Fertility screened out). The review held all five: 1.4.8 and
+> 1.4.9 fixed what it found (see CHANGELOG). Arka's site timed out from Actions in
+> both 1.4.8 re-audits; the 1.4.9 run re-audits the four, retries Arka and audits
+> one CSV backup (Star Dental Experts, then Sunray SVR) to replace Arka if needed.
 
 > **Latest (28 Nov, 16:50 IST): the five 28 November audits have their first
 > emails in Gmail Drafts.** The operator reviewed and approved the PDFs; the
