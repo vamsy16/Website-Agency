@@ -28,6 +28,14 @@
       "status": "draft",
       "approvedBy": null,
       "sentAt": null,
+      "gmailDraft": {
+        "mailbox": "smartpursuit3@gmail.com",
+        "draftId": "r4673758388688894428",
+        "createdAt": "2026-11-28T16:39:09+05:30",
+        "attachment": "Smart-Pursuit-Audit-Dr-Sneha-s-Skinclin.pdf",
+        "attachmentBytes": 2108017,
+        "verified": "read back 2026-11-28: recipient, subject, body and attachment size match; body is only the recipient-facing email"
+      },
       "file": "outreach/dr-sneha-s-skinclin/email-1-first.md"
     },
     {

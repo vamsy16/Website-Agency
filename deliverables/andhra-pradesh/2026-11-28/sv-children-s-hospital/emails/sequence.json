@@ -28,6 +28,14 @@
       "status": "draft",
       "approvedBy": null,
       "sentAt": null,
+      "gmailDraft": {
+        "mailbox": "smartpursuit3@gmail.com",
+        "draftId": "r-4358211397666800994",
+        "createdAt": "2026-11-28T16:39:16+05:30",
+        "attachment": "Smart-Pursuit-Audit-SV-Children-s-Hospital.pdf",
+        "attachmentBytes": 1855262,
+        "verified": "read back 2026-11-28: recipient, subject, body and attachment size match; body is only the recipient-facing email"
+      },
       "file": "outreach/sv-children-s-hospital/email-1-first.md"
     },
     {

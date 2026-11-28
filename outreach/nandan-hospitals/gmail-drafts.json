@@ -1,0 +1,34 @@
+{
+  "business": "Nandan Hospitals",
+  "domain": "nandanhospitals.com",
+  "ref": "SP-AUD-2026-11-28-NH",
+  "to": "nandanhospitalsvijayawada@gmail.com",
+  "emailSource": "openstreetmap, confirmed on site",
+  "emailFoundOn": "https://nandanhospitals.com/",
+  "mailbox": "smartpursuit3@gmail.com",
+  "status": "draft",
+  "neverSendAutomatically": true,
+  "drafts": [
+    {
+      "step": 1,
+      "draftId": "r4267340861630277595",
+      "createdAt": "2026-11-28T16:39:20+05:30",
+      "subject": "Nandan Hospitals — what I found testing nandanhospitals.com",
+      "attachment": {
+        "filename": "Smart-Pursuit-Audit-Nandan-Hospitals.pdf",
+        "bytes": 1675309
+      },
+      "verified": "read back 2026-11-28: recipient, subject, body and attachment size match; body is only the recipient-facing email"
+    }
+  ],
+  "followUps": {
+    "rule": "Not drafted. Each is due 3 days after the previous email is actually sent, only if there is no reply; draft only when the operator asks, as a reply in this thread.",
+    "ifEmail1SentOn": "2026-11-28",
+    "plannedDates": {
+      "step2": "2026-12-01",
+      "step3": "2026-12-04",
+      "step4": "2026-12-07"
+    }
+  },
+  "sequence": "deliverables/andhra-pradesh/2026-11-28/nandan-hospitals/emails/sequence.json"
+}

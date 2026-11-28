@@ -1,0 +1,21 @@
+{
+  "source": "Gmail smartpursuit3@gmail.com, in:sent after:2026/11/28 and in:sent to:<address> (read 28 Nov 2026 16:42 IST); sentAt = Gmail internal_date in IST",
+  "note": "First emails of the five 27 November audits, sent by the operator from the Gmail drafts created 28 Nov 12:46 IST. At 16:42 IST AA Hospitals and Desai Eye Care had gone out; Dr. Padmavathi (16:43), Leelavathi (16:54) and Skin First (17:09) were still scheduled, as were step 3 for nine older sequences (19:47-21:26 IST), so none of those is recorded here: record each once it shows in Sent. Inbox, last 24 hours (every folder, spam and trash included): no replies, bounces or opt-outs from any tracked sequence.",
+  "sends": [
+    {
+      "sequence": "2026-11-27/aa-hospitals",
+      "step": 1,
+      "sentAt": "2026-11-28T16:21:23+05:30",
+      "gmailMessageId": "1a221c7fd5cac3e7",
+      "gmailThreadId": "1a2210373f7d2b39"
+    },
+    {
+      "sequence": "2026-11-27/desai-eye-care",
+      "step": 1,
+      "sentAt": "2026-11-28T16:33:00+05:30",
+      "gmailMessageId": "1a221d29bc6ea03e",
+      "gmailThreadId": "1a221037d658d072"
+    }
+  ],
+  "stops": []
+}
