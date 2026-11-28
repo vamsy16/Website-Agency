@@ -1,28 +1,40 @@
 # STATE — read this first
 
-_Handoff for the next agent. Last updated 28 November 2026, about 14:40 IST by the Arena agent on branch
-`arena/9f36e1d5-website-agency` (merged into `main` through a pull request)._
+_Handoff for the next agent. Last updated 28 November 2026, about 16:50 IST by the Arena agent on branch
+`arena/1dd72874-website-agency` (merged into `main` through a pull request)._
 
-> **Latest (28 Nov, 14:40 IST): five new Andhra Pradesh audits approved, waiting
-> for the operator's PDF review.** Vedanta Hospitals (Kadapa, 75), Dr Sneha's
-> Skinclin (Visakhapatnam, 64), Skinmed Skin Clinic (Visakhapatnam, 63), SV
-> Children's Hospital (Tirupati, 79) and Nandan Hospitals (Vijayawada, 76), in
-> `deliverables/andhra-pradesh/2026-11-28/`; review
-> `deliverables/runs/2026-11-28-independent-review.md`. The third-eye review held
+> **Latest (28 Nov, 16:50 IST): the five 28 November audits have their first
+> emails in Gmail Drafts.** The operator reviewed and approved the PDFs; the
+> drafts were created at 16:39 IST as new threads, PDF attached, and read back
+> (recipient, subject and body identical to `email-1-first.md`; attachment the
+> size of the file): Vedanta Hospitals, Dr Sneha's Skinclin, Skinmed Skin Clinic,
+> SV Children's Hospital and Nandan Hospitals
+> (`deliverables/andhra-pradesh/2026-11-28/`). Draft IDs are on step 1 of each
+> `sequence.json` (`gmailDraft`) and in `outreach/<slug>/gmail-drafts.json`.
+> **Not sent yet**: when they reach Gmail's Sent folder, record `sentAt`
+> (section 4).
+
+> **To record next: mail the operator scheduled, not yet sent at 16:42 IST.**
+> Step 1 for Dr. Padmavathi Dental Hospital & Implant Centre (16:43), Leelavathi
+> Advanced Skin & Laser Centre (16:54) and Skin First (17:09), from the 27
+> November drafts; AA Hospitals (16:21) and Desai Eye Care (16:33) went out and
+> are recorded (`deliverables/runs/sends-2026-11-28.json`). Step 3 for nine
+> sequences on 28 Nov, 19:47–21:26 IST: Iris International Dental Care, Sri Sai
+> P.V.R. Hospitals, Hanuman's Hill Rock Cafe & Restaurant, Krishna Hospital,
+> Orange Tours & Travels, Majji Export Import, Sri Ramadas Motor Transport, MS
+> Dental Hospital and Krishna Multispeciality Dental Clinic. By the 3-day rule
+> these nine are due 29 Nov (pointed out to the operator on 28 Nov). Their text is
+> the operator's own short check-in ("Checking in once more on the website audit I
+> sent on 21 November…"), not `email-3-followup-2.md`; read on 28 Nov: no
+> internal notes, and 21 November is right for all nine. Record each once it shows
+> in Sent. Thirteen replies of the solar-ads campaign are scheduled the same
+> evening; that campaign is not tracked here.
+
+> **Earlier (28 Nov):** the five 28 November audits were approved after a
+> third-eye review (`deliverables/runs/2026-11-28-independent-review.md`). It held
 > the first run: Vedanta's report and email 1 claimed "no appointment form" while
-> its "Book Appointment" pop-up has 4 fields, and two screen counts or captions were
-> off. Fixed in 1.4.7 and re-audited. **No Gmail drafts yet**: the operator asked
-> to review the PDFs first; draft first emails only when he approves them.
-
-> **Earlier (28 Nov):** the five 27 November audits (AA Hospitals, Desai Eye Care,
-> Dr. Padmavathi Dental Hospital & Implant Centre, Leelavathi Advanced Skin & Laser
-> Centre, Skin First; `deliverables/andhra-pradesh/2026-11-27/`) have their **first
-> emails in Gmail Drafts** since 28 Nov 12:46 IST, at the operator's request, PDF
-> attached and read back. Draft IDs are on step 1 of each `sequence.json`
-> (`gmailDraft`) and in `outreach/<slug>/gmail-drafts.json`. **Not sent yet**:
-> when they reach Gmail's Sent folder, record `sentAt` (section 4); their first
-> follow-ups fall due 3 days after that. Follow-up check on 28 Nov: nothing due
-> that day; 21 due on 29 Nov, 9 on 30 Nov (section 3).
+> its "Book Appointment" pop-up has 4 fields, and two screen counts or captions
+> were off. Fixed in 1.4.7 and re-audited before the operator saw the PDFs.
 
 This repository is the single source of truth for the agency's work. Everything
 needed to continue is committed here; nothing lives only in a chat or a sandbox.
@@ -106,14 +118,14 @@ mailbox and its only send-as address) · +91 70950 24220. Operator: Vamsi.
 
 | Folder `deliverables/andhra-pradesh/…` | Businesses | Review | Email 1 |
 |---|---|---|---|
-| `2026-11-28/` | Vedanta Hospitals (Kadapa), Dr Sneha's Skinclin (Visakhapatnam), Skinmed Skin Clinic (Visakhapatnam), SV Children's Hospital (Tirupati), Nandan Hospitals (Vijayawada) | `runs/2026-11-28-independent-review.md` | not drafted: the operator reviews the PDFs first |
-| `2026-11-27/` | AA Hospitals (Eluru), Desai Eye Care (Nellore), Dr. Padmavathi Dental Hospital & Implant Centre (Kakinada), Leelavathi Advanced Skin & Laser Centre (Guntur), Skin First (Vijayawada) | `runs/2026-11-27-independent-review.md` | drafted in Gmail 28 Nov 12:46 IST (PDF attached, read back); not sent yet |
+| `2026-11-28/` | Vedanta Hospitals (Kadapa), Dr Sneha's Skinclin (Visakhapatnam), Skinmed Skin Clinic (Visakhapatnam), SV Children's Hospital (Tirupati), Nandan Hospitals (Vijayawada) | `runs/2026-11-28-independent-review.md` | drafted in Gmail 28 Nov 16:39 IST after the operator approved the PDFs (PDF attached, read back); not sent yet |
+| `2026-11-27/` | AA Hospitals (Eluru), Desai Eye Care (Nellore), Dr. Padmavathi Dental Hospital & Implant Centre (Kakinada), Leelavathi Advanced Skin & Laser Centre (Guntur), Skin First (Vijayawada) | `runs/2026-11-27-independent-review.md` | drafted 28 Nov 12:46 IST; sent 28 Nov: AA Hospitals 16:21 and Desai Eye Care 16:33 (recorded); Dr. Padmavathi 16:43, Leelavathi 16:54 and Skin First 17:09 scheduled (record when sent) |
 | `2026-11-26/` | Vignata Fertility & IVF Center (Guntur), Sai Bhaskar Hospitals (Guntur), Dr K Hemanth Kumar, neurologist (Kurnool), Shravani ENT Hospital (Kakinada), Deepthi Fertility Centre (Nellore) | `runs/2026-11-26-independent-review.md` | sent 27 Nov 14:59–15:51 IST (recorded) |
 | `2026-11-23/` | Smart Care Dental Hospital (Nellore), Dr Swetha Sajja Eye Hospital (Rajahmundry), MJ Naidu Super Speciality Hospital (Vijayawada), Sasya Fertility Centre (Guntur), Ravi Dental Care and Implant Center (Vijayawada) | `runs/2026-11-23-independent-review.md` | sent 23 Nov |
 | `2026-11-22/` | MK Dental, Prathik Dental and Implant Centre (Anantapur), The Dental Studio (Visakhapatnam), Kalyani Dental Clinic, Praveen Dental Care (Tirupati) | `runs/2026-11-22-independent-review.md` | sent 23 Nov |
 | `2026-11-20/`, `2026-11-15/`, `2026-11-16/` | earlier batches (the full list is `deliverables/README.md`) | `runs/2026-11-21-*`, `runs/2026-11-16-*` | sent 16 and 21 Nov |
 
-### Follow-ups — `node tools/followups.mjs` at 28 November 2026, about 12:55 IST
+### Follow-ups — `node tools/followups.mjs` at 28 November 2026, about 16:45 IST
 
 ```text
 Follow-ups as of 28 November 2026 (IST): each is due 3 days after the previous email went out, only if there is no reply.
@@ -149,6 +161,8 @@ in 2 days    2026-11-30  2/4   Sai Bhaskar Hospitals                        step
 in 2 days    2026-11-30  2/4   Shravani ENT Hospital                        step 1 · 2026-11-27 15:38 IST
 in 2 days    2026-11-30  3/4   Sri Ramachandra Children and Dental Hospital step 2 · 2026-11-27 13:58 IST
 in 2 days    2026-11-30  2/4   Vignata Fertility & IVF Center               step 1 · 2026-11-27 14:59 IST
+in 3 days    2026-12-01  2/4   AA Hospitals                                 step 1 · 2026-11-28 16:21 IST
+in 3 days    2026-12-01  2/4   Desai Eye Care                               step 1 · 2026-11-28 16:33 IST
 
 Stopped (5):
   Bhimavaram Hospitals — bounced: info@bhimavaramhospitals.com — no mail server found for the domain (DNS MX lookup failed; Gmail gave up after two days)
@@ -169,20 +183,21 @@ Complete (10):
   Raghuram Children Hospital (final email 2026-11-26 20:17 IST)
   Sandhya Hi-Tech Vision Care Center (final email 2026-11-26 20:41 IST)
 
-Not started: 24 sequences (no email sent yet).
+Not started: 22 sequences (no email sent yet).
 ```
 
-- **Nothing due on 28 Nov.** Gmail checked at 12:50 IST: nothing has reached the
-  Sent folder since the last record (27 Nov 15:51 IST, Deepthi step 1), so every
-  date above stands. The five 27 November first emails are drafts, not sends.
+- **Nothing due on 28 Nov.** Gmail read at 16:42 IST: step 1 for AA Hospitals and
+  Desai Eye Care is recorded (`deliverables/runs/sends-2026-11-28.json`). The
+  scheduled mail listed at the top is not recorded yet, so the table still shows
+  those nine step-3 follow-ups as due 29 Nov and counts Dr. Padmavathi, Leelavathi
+  and Skin First as not started; record them once they show in Sent
+  (`in:sent after:2026/11/28`) and the dates recompute.
 - Every mail the operator scheduled for 27 Nov went out on time and is recorded
   (`deliverables/runs/sends-2026-11-27b.json`): step 2 for HR Dental Hospital
   (14:12) and Dr. Sushma Dental (14:27); step 1 for Vignata (14:59), Sai Bhaskar
   (15:13), Dr K Hemanth Kumar (15:25), Shravani (15:38) and Deepthi (15:51 IST).
-  Gmail thread ids for their follow-ups are in each `sequence.json` and in
-  `outreach/<slug>/gmail-drafts.json`.
-- Inbox, 26–28 Nov (every folder, spam and trash included): no bounces, replies or
-  opt-outs from any lead. **One reply, still unanswered on 28 Nov:** Milestone
+- Inbox, 26–28 Nov (every folder, spam and trash included; last read 28 Nov 16:45
+  IST): no bounces, replies or opt-outs from any lead. **One reply, still unanswered on 28 Nov:** Milestone
   Solarcom Pvt. Ltd. (milestonesolarcomsales@gmail.com, Bilal Mohd. Zaheeruddin)
   wrote on 27 Nov at 15:04 IST: "Can you share your marketing packages proposal
   please". It answers Vamsi's 24 Nov follow-up to a 14 Nov report ("Milestone
@@ -190,17 +205,22 @@ Not started: 24 sequences (no email sent yet).
   zero"); that campaign is not tracked in this repository. Gmail message
   1a21c5bd52df544c, thread 1a1c50f925f30304. **Nothing drafted or sent: waiting
   for the operator.**
-- Coming up: 29 Nov — step 3 for 21 sequences; 30 Nov — step 3 for Jamili, Sri
+- Coming up: 29 Nov — step 3 for 21 sequences (nine of them scheduled by the
+  operator for the evening of 28 Nov); 30 Nov — step 3 for Jamili, Sri
   Ramachandra, HR Dental and Dr. Sushma, and step 2 for the five 26 November
-  audits. Draft only when the operator asks, after checking each thread for a
-  reply or opt-out.
-- "Not started: 24" is the five 28 November audits (not drafted), the five 27
-  November audits (drafted, not sent) and 14 older
+  audits; 1 Dec — step 2 for AA Hospitals and Desai Eye Care (and for Dr.
+  Padmavathi, Leelavathi and Skin First once their sends are recorded). Draft only
+  when the operator asks, after checking each thread for a reply or opt-out.
+- "Not started: 22" is the five 28 November audits (drafted, not sent), Dr.
+  Padmavathi, Leelavathi and Skin First (scheduled, not yet recorded) and 14 older
   audits deliberately not emailed: chains, nonprofits, or held by an independent
   review (`deliverables/README.md`, Send? ❌).
-- Send records: `deliverables/runs/sends-2026-11-27.json` (30) and
-  `sends-2026-11-27b.json` (7). Earlier sends (64 across 40 sequences, recorded
-  26 Nov) are in the `sentAt` fields of each `sequence.json`.
+- Send records: `deliverables/runs/sends-2026-11-27.json` (30),
+  `sends-2026-11-27b.json` (7) and `sends-2026-11-28.json` (2). Earlier sends (64
+  across 40 sequences, recorded 26 Nov) are in the `sentAt` fields of each
+  `sequence.json`.
+- Gmail thread ids: the send records carry `gmailThreadId` from 28 Nov; for older
+  sends find the thread with `in:sent to:<address>` (section 4).
 
 ## 4. Recording sends and drafting in Gmail
 

@@ -3,6 +3,12 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## Outreach — 28 November 2026, evening
+
+- First-email Gmail drafts for the five 28 November audits, after the operator reviewed and approved the PDFs: Vedanta Hospitals, Dr Sneha's Skinclin, Skinmed Skin Clinic, SV Children's Hospital and Nandan Hospitals. Created in smartpursuit3@gmail.com at 16:39 IST as new threads with the approved PDF attached, and read back: recipient, subject and body identical to `email-1-first.md`, attachment the size of the file. Before that, Gmail had nothing for any of the five addresses (every folder, spam and trash included). Recorded on step 1 of each `sequence.json` (`gmailDraft`) and in `outreach/<slug>/gmail-drafts.json`. No follow-up drafts; nothing sent.
+- Sends recorded (`deliverables/runs/sends-2026-11-28.json`, which now also keeps `gmailThreadId`): step 1 for AA Hospitals (16:21 IST) and Desai Eye Care (16:33 IST), from the 27 November drafts; their step 2 falls due 1 Dec. Not recorded yet, because they were still scheduled at 16:42 IST: step 1 for Dr. Padmavathi (16:43), Leelavathi (16:54) and Skin First (17:09), and step 3 for nine older sequences (19:47–21:26 IST; due 29 Nov by the 3-day rule; the operator's own wording, not `email-3-followup-2.md`). Inbox, last 24 hours: no replies, bounces or opt-outs.
+- `docs/STATE.md` said Gmail thread ids were kept in each `sequence.json`; they never were. The send records carry them from 28 Nov, and older threads are found with `in:sent to:<address>`.
+
 ## Review — 28 November 2026
 
 - Five new Andhra Pradesh audits approved (runs 46122437174 and 46125570076): Vedanta Hospitals (Kadapa, 75), Dr Sneha's Skinclin (Visakhapatnam, 64), Skinmed Skin Clinic (Visakhapatnam, 63), SV Children's Hospital (Tirupati, 79) and Nandan Hospitals (Vijayawada, 76). Each email was read on the business's own site. None matches anything in the registries, deliverables or the full history of every branch (Gmail was not used for duplicates), and none is behind the Hostinger CDN. `deliverables/runs/2026-11-28-independent-review.{md,json}`.

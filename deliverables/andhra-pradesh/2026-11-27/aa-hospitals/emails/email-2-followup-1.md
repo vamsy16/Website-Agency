@@ -2,7 +2,7 @@
 
 **To:** anila.amudalapalli@gmail.com
 **Subject:** Re: AA Hospitals — what I found testing aahospitals.in
-**Send:** 30 November 2026
+**Send:** 1 December 2026
 **Attachments:** none
 
 ---

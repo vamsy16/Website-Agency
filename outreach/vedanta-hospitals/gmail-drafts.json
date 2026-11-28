@@ -1,0 +1,34 @@
+{
+  "business": "Vedanta Hospitals",
+  "domain": "vedanthahospital.com",
+  "ref": "SP-AUD-2026-11-28-VH",
+  "to": "vedantahospitalkadapa@gmail.com",
+  "emailSource": "openstreetmap, confirmed on site",
+  "emailFoundOn": "https://vedanthahospital.com/",
+  "mailbox": "smartpursuit3@gmail.com",
+  "status": "draft",
+  "neverSendAutomatically": true,
+  "drafts": [
+    {
+      "step": 1,
+      "draftId": "r-5337263817076243959",
+      "createdAt": "2026-11-28T16:39:06+05:30",
+      "subject": "Vedanta Hospitals — what I found testing vedanthahospital.com",
+      "attachment": {
+        "filename": "Smart-Pursuit-Audit-Vedanta-Hospitals.pdf",
+        "bytes": 2229786
+      },
+      "verified": "read back 2026-11-28: recipient, subject, body and attachment size match; body is only the recipient-facing email"
+    }
+  ],
+  "followUps": {
+    "rule": "Not drafted. Each is due 3 days after the previous email is actually sent, only if there is no reply; draft only when the operator asks, as a reply in this thread.",
+    "ifEmail1SentOn": "2026-11-28",
+    "plannedDates": {
+      "step2": "2026-12-01",
+      "step3": "2026-12-04",
+      "step4": "2026-12-07"
+    }
+  },
+  "sequence": "deliverables/andhra-pradesh/2026-11-28/vedanta-hospitals/emails/sequence.json"
+}

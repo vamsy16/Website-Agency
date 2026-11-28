@@ -2,7 +2,7 @@
 
 **To:** anila.amudalapalli@gmail.com
 **Subject:** AA Hospitals — what I found testing aahospitals.in
-**Send:** 27 November 2026
+**Send:** 28 November 2026
 **Attachments:** reports/aa-hospitals/Smart-Pursuit-Audit-AA-Hospitals.pdf
 
 ---
