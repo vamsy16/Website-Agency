@@ -1,0 +1,25 @@
+{
+  "name": "Dr Sneha's Skinclin",
+  "domain": "drsnehasskinclin.in",
+  "city": "Visakhapatnam",
+  "state": "Andhra Pradesh",
+  "email": "skinclinvizag@gmail.com",
+  "phone": "+91 81210 46464",
+  "ref": "SP-AUD-2026-11-28-DSS",
+  "date": "2026-11-28",
+  "overall": 64,
+  "scores": {
+    "speed": 2,
+    "mobile": 5,
+    "conversion": 10,
+    "design": 10,
+    "seo": 8,
+    "overall": 64
+  },
+  "pdf": "Smart-Pursuit-Audit-Dr-Sneha-s-Skinclin.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://www.drsnehasskinclin.in/contact",
+    "checkedAt": "2026-11-28"
+  }
+}

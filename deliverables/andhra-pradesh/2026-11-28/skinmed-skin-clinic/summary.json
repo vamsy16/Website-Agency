@@ -1,0 +1,25 @@
+{
+  "name": "Skinmed Skin Clinic",
+  "domain": "theskinmed.com",
+  "city": "Visakhapatnam",
+  "state": "Andhra Pradesh",
+  "email": "skinmedvizag@gmail.com",
+  "phone": "+91 93910 82255",
+  "ref": "SP-AUD-2026-11-28-SSC",
+  "date": "2026-11-28",
+  "overall": 63,
+  "scores": {
+    "speed": 2,
+    "mobile": 5,
+    "conversion": 10,
+    "design": 10,
+    "seo": 7,
+    "overall": 63
+  },
+  "pdf": "Smart-Pursuit-Audit-Skinmed-Skin-Clinic.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://www.theskinmed.com/",
+    "checkedAt": "2026-11-28"
+  }
+}

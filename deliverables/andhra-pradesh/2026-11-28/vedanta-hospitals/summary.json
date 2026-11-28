@@ -1,0 +1,25 @@
+{
+  "name": "Vedanta Hospitals",
+  "domain": "vedanthahospital.com",
+  "city": "Kadapa",
+  "state": "Andhra Pradesh",
+  "email": "vedantahospitalkadapa@gmail.com",
+  "phone": "+91 8562 256789",
+  "ref": "SP-AUD-2026-11-28-VH",
+  "date": "2026-11-28",
+  "overall": 67,
+  "scores": {
+    "speed": 5,
+    "mobile": 6,
+    "conversion": 7,
+    "design": 9,
+    "seo": 9,
+    "overall": 67
+  },
+  "pdf": "Smart-Pursuit-Audit-Vedanta-Hospitals.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://vedanthahospital.com/",
+    "checkedAt": "2026-11-28"
+  }
+}

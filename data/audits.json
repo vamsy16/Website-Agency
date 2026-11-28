@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-27T11:18:01.629Z",
+  "updatedAt": "2026-11-28T08:03:18.681Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -1561,6 +1561,102 @@
         "html": "reports/skin-first/report.html"
       },
       "fingerprint": "c4545e3b8a317040"
+    },
+    {
+      "domain": "vedanthahospital.com",
+      "name": "Vedanta Hospitals",
+      "ref": "SP-AUD-2026-11-28-VH",
+      "generatedAt": "2026-11-28T07:54:21.076Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 6,
+        "conversion": 7,
+        "design": 9,
+        "seo": 9,
+        "overall": 67
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2207260,
+      "files": {
+        "pdf": "reports/vedanta-hospitals/Smart-Pursuit-Audit-Vedanta-Hospitals.pdf",
+        "audit": "reports/vedanta-hospitals/audit.json",
+        "html": "reports/vedanta-hospitals/report.html"
+      },
+      "fingerprint": "36d8c17c5d2bbc3e"
+    },
+    {
+      "domain": "drsnehasskinclin.in",
+      "name": "Dr Sneha's Skinclin",
+      "ref": "SP-AUD-2026-11-28-DSS",
+      "generatedAt": "2026-11-28T08:00:10.186Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 2,
+        "mobile": 5,
+        "conversion": 10,
+        "design": 10,
+        "seo": 8,
+        "overall": 64
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2104397,
+      "files": {
+        "pdf": "reports/dr-sneha-s-skinclin/Smart-Pursuit-Audit-Dr-Sneha-s-Skinclin.pdf",
+        "audit": "reports/dr-sneha-s-skinclin/audit.json",
+        "html": "reports/dr-sneha-s-skinclin/report.html"
+      },
+      "fingerprint": "803d79d556661063"
+    },
+    {
+      "domain": "theskinmed.com",
+      "name": "Skinmed Skin Clinic",
+      "ref": "SP-AUD-2026-11-28-SSC",
+      "generatedAt": "2026-11-28T08:01:25.267Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 2,
+        "mobile": 5,
+        "conversion": 10,
+        "design": 10,
+        "seo": 7,
+        "overall": 63
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2272198,
+      "files": {
+        "pdf": "reports/skinmed-skin-clinic/Smart-Pursuit-Audit-Skinmed-Skin-Clinic.pdf",
+        "audit": "reports/skinmed-skin-clinic/audit.json",
+        "html": "reports/skinmed-skin-clinic/report.html"
+      },
+      "fingerprint": "50093333b09474ba"
+    },
+    {
+      "domain": "svchildrenhospital.com",
+      "name": "SV Children's Hospital",
+      "ref": "SP-AUD-2026-11-28-SCH",
+      "generatedAt": "2026-11-28T08:03:18.680Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 6,
+        "mobile": 8,
+        "conversion": 10,
+        "design": 8,
+        "seo": 8,
+        "overall": 79
+      },
+      "pdfPages": 10,
+      "pdfBytes": 1859493,
+      "files": {
+        "pdf": "reports/sv-children-s-hospital/Smart-Pursuit-Audit-SV-Children-s-Hospital.pdf",
+        "audit": "reports/sv-children-s-hospital/audit.json",
+        "html": "reports/sv-children-s-hospital/report.html"
+      },
+      "fingerprint": "a3f0bb893cc868ff"
     }
   ]
 }

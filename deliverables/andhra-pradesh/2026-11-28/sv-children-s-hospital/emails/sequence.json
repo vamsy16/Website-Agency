@@ -1,0 +1,76 @@
+{
+  "business": "SV Children's Hospital",
+  "domain": "svchildrenhospital.com",
+  "ref": "SP-AUD-2026-11-28-SCH",
+  "createdAt": "2026-11-28T08:03:18.690Z",
+  "sendDate": "2026-11-28",
+  "cadenceDays": [
+    3,
+    3,
+    3
+  ],
+  "to": "svchildrens@gmail.com",
+  "status": "draft",
+  "neverSendAutomatically": true,
+  "note": "Dates shift if the operator sends email 1 on a different day — recompute with `sequence --send-date YYYY-MM-DD`.",
+  "emails": [
+    {
+      "step": 1,
+      "id": "first",
+      "purpose": "deliver the audit, earn a reply",
+      "attachments": [
+        "reports/sv-children-s-hospital/Smart-Pursuit-Audit-SV-Children-s-Hospital.pdf"
+      ],
+      "subject": "SV Children's Hospital — what I found testing svchildrenhospital.com",
+      "words": 131,
+      "scheduledFor": "2026-11-28",
+      "scheduledForLong": "28 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/sv-children-s-hospital/email-1-first.md"
+    },
+    {
+      "step": 2,
+      "id": "followup-1",
+      "purpose": "turn the top measured finding into a money argument",
+      "attachments": [],
+      "subject": "Re: SV Children's Hospital — what I found testing svchildrenhospital.com",
+      "words": 102,
+      "scheduledFor": "2026-12-01",
+      "scheduledForLong": "1 December 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/sv-children-s-hospital/email-2-followup-1.md"
+    },
+    {
+      "step": 3,
+      "id": "followup-2",
+      "purpose": "make the next step concrete without promising an outcome",
+      "attachments": [],
+      "subject": "Re: SV Children's Hospital — the next step, if useful",
+      "words": 106,
+      "scheduledFor": "2026-12-04",
+      "scheduledForLong": "4 December 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/sv-children-s-hospital/email-3-followup-2.md"
+    },
+    {
+      "step": 4,
+      "id": "followup-3-final",
+      "purpose": "final mail, leave the door open, no pressure",
+      "attachments": [],
+      "subject": "Closing the loop — SV Children's Hospital",
+      "words": 98,
+      "scheduledFor": "2026-12-07",
+      "scheduledForLong": "7 December 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/sv-children-s-hospital/email-4-followup-3-final.md"
+    }
+  ]
+}

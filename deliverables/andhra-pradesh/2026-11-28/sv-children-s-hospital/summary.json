@@ -1,0 +1,25 @@
+{
+  "name": "SV Children's Hospital",
+  "domain": "svchildrenhospital.com",
+  "city": "Tirupati",
+  "state": "Andhra Pradesh",
+  "email": "svchildrens@gmail.com",
+  "phone": "+91 877 228 8055",
+  "ref": "SP-AUD-2026-11-28-SCH",
+  "date": "2026-11-28",
+  "overall": 79,
+  "scores": {
+    "speed": 6,
+    "mobile": 8,
+    "conversion": 10,
+    "design": 8,
+    "seo": 8,
+    "overall": 79
+  },
+  "pdf": "Smart-Pursuit-Audit-SV-Children-s-Hospital.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://svchildrenhospital.com/",
+    "checkedAt": "2026-11-28"
+  }
+}
