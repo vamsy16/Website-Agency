@@ -1,0 +1,14 @@
+{
+  "source": "Gmail smartpursuit3@gmail.com, in:sent after:2026/11/28 (read 28 Nov 2026 17:28 IST); sentAt = Gmail internal_date in IST",
+  "note": "The last first email of the 27 November audits went out as the operator scheduled it: Skin First at 17:09 IST. All five 27 November first emails are now recorded. Step 3 for nine older sequences (scheduled 19:47-21:26 IST) had not gone out yet; record each once it shows in Sent. A reply in the solar-ads campaign also went out (SunWorks Energy, 17:20 IST); that campaign is not tracked here.",
+  "sends": [
+    {
+      "sequence": "2026-11-27/skin-first",
+      "step": 1,
+      "sentAt": "2026-11-28T17:09:00+05:30",
+      "gmailMessageId": "1a221f39038b5967",
+      "gmailThreadId": "1a22103a8b8feb80"
+    }
+  ],
+  "stops": []
+}

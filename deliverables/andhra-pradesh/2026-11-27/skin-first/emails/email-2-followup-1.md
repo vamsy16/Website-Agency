@@ -2,7 +2,7 @@
 
 **To:** skinfirstk@gmail.com
 **Subject:** Re: Skin First — what I found testing skinfirst.in
-**Send:** 30 November 2026
+**Send:** 1 December 2026
 **Attachments:** none
 
 ---
