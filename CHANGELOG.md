@@ -3,6 +3,11 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## Outreach — 28 November 2026
+
+- First-email Gmail drafts for the five 27 November audits, at the operator's request: AA Hospitals, Desai Eye Care, Dr. Padmavathi Dental Hospital & Implant Centre, Leelavathi Advanced Skin & Laser Centre and Skin First. Created in smartpursuit3@gmail.com at 12:46 IST with the approved PDF attached and read back: recipient, subject and body identical to `email-1-first.md`, attachment the size of the file. Recorded on step 1 of each `sequence.json` (`gmailDraft`) and in `outreach/<slug>/gmail-drafts.json`. No follow-up drafts; nothing sent.
+- Follow-up check at 12:50 IST: nothing reached Gmail's Sent folder after 27 Nov 15:51 and no lead bounced, replied or opted out, so no dates moved. Nothing due on 28 Nov; 29 Nov — step 3 for 21 sequences; 30 Nov — step 3 for four and step 2 for the five 26 November audits. `docs/STATE.md` updated.
+
 ## 1.4.6 — 27 November 2026
 
 From the 27 November independent review (Andhra Pradesh, run 45982415490).

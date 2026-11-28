@@ -28,6 +28,14 @@
       "status": "draft",
       "approvedBy": null,
       "sentAt": null,
+      "gmailDraft": {
+        "mailbox": "smartpursuit3@gmail.com",
+        "draftId": "r5471066837445793548",
+        "createdAt": "2026-11-28T12:46:54+05:30",
+        "attachment": "Smart-Pursuit-Audit-Leelavathi-Advanced-Skin-Laser-Centre.pdf",
+        "attachmentBytes": 2578498,
+        "verified": "read back 2026-11-28: recipient, subject, body and attachment size match; body is only the recipient-facing email"
+      },
       "file": "outreach/leelavathi-advanced-skin-and-laser-centre/email-1-first.md"
     },
     {

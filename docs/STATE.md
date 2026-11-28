@@ -1,16 +1,17 @@
 # STATE — read this first
 
-_Handoff for the next agent. Last updated 27 November 2026, about 17:00 IST by the Arena agent on branch
-`arena/65e78ab2-website-agency` (merged into `main` through a pull request)._
+_Handoff for the next agent. Last updated 28 November 2026, about 13:00 IST by the Arena agent on branch
+`arena/13b58292-website-agency` (merged into `main` through a pull request)._
 
-> **Latest (27 Nov):** five new Andhra Pradesh audits approved, in
-> `deliverables/andhra-pradesh/2026-11-27/`: AA Hospitals (Eluru), Desai Eye Care
-> (Nellore), Dr. Padmavathi Dental Hospital & Implant Centre (Kakinada),
-> Leelavathi Advanced Skin & Laser Centre (Guntur) and Skin First (Vijayawada).
-> Review: `deliverables/runs/2026-11-27-independent-review.md` (three re-audited
-> after the third-eye review; fixes in 1.4.6). **The operator is reviewing the PDF
-> links. Do not create their Gmail drafts until he says so** (then: first email
-> only, PDF attached).
+> **Latest (28 Nov):** the five 27 November audits (AA Hospitals, Desai Eye Care,
+> Dr. Padmavathi Dental Hospital & Implant Centre, Leelavathi Advanced Skin & Laser
+> Centre, Skin First; `deliverables/andhra-pradesh/2026-11-27/`) have their **first
+> emails in Gmail Drafts** since 28 Nov 12:46 IST, at the operator's request, PDF
+> attached and read back. Draft IDs are on step 1 of each `sequence.json`
+> (`gmailDraft`) and in `outreach/<slug>/gmail-drafts.json`. **Not sent yet**:
+> when they reach Gmail's Sent folder, record `sentAt` (section 4); their first
+> follow-ups fall due 3 days after that. Follow-up check on 28 Nov: nothing due
+> that day; 21 due on 29 Nov, 9 on 30 Nov (section 3).
 
 This repository is the single source of truth for the agency's work. Everything
 needed to continue is committed here; nothing lives only in a chat or a sandbox.
@@ -86,48 +87,48 @@ mailbox and its only send-as address) · +91 70950 24220. Operator: Vamsi.
 
 | Folder `deliverables/andhra-pradesh/…` | Businesses | Review | Email 1 |
 |---|---|---|---|
-| `2026-11-27/` | AA Hospitals (Eluru), Desai Eye Care (Nellore), Dr. Padmavathi Dental Hospital & Implant Centre (Kakinada), Leelavathi Advanced Skin & Laser Centre (Guntur), Skin First (Vijayawada) | `runs/2026-11-27-independent-review.md` | not drafted: the operator is reviewing the PDFs |
+| `2026-11-27/` | AA Hospitals (Eluru), Desai Eye Care (Nellore), Dr. Padmavathi Dental Hospital & Implant Centre (Kakinada), Leelavathi Advanced Skin & Laser Centre (Guntur), Skin First (Vijayawada) | `runs/2026-11-27-independent-review.md` | drafted in Gmail 28 Nov 12:46 IST (PDF attached, read back); not sent yet |
 | `2026-11-26/` | Vignata Fertility & IVF Center (Guntur), Sai Bhaskar Hospitals (Guntur), Dr K Hemanth Kumar, neurologist (Kurnool), Shravani ENT Hospital (Kakinada), Deepthi Fertility Centre (Nellore) | `runs/2026-11-26-independent-review.md` | sent 27 Nov 14:59–15:51 IST (recorded) |
 | `2026-11-23/` | Smart Care Dental Hospital (Nellore), Dr Swetha Sajja Eye Hospital (Rajahmundry), MJ Naidu Super Speciality Hospital (Vijayawada), Sasya Fertility Centre (Guntur), Ravi Dental Care and Implant Center (Vijayawada) | `runs/2026-11-23-independent-review.md` | sent 23 Nov |
 | `2026-11-22/` | MK Dental, Prathik Dental and Implant Centre (Anantapur), The Dental Studio (Visakhapatnam), Kalyani Dental Clinic, Praveen Dental Care (Tirupati) | `runs/2026-11-22-independent-review.md` | sent 23 Nov |
 | `2026-11-20/`, `2026-11-15/`, `2026-11-16/` | earlier batches (the full list is `deliverables/README.md`) | `runs/2026-11-21-*`, `runs/2026-11-16-*` | sent 16 and 21 Nov |
 
-### Follow-ups — `node tools/followups.mjs` at 27 November 2026, about 16:55 IST
+### Follow-ups — `node tools/followups.mjs` at 28 November 2026, about 12:55 IST
 
 ```text
-Follow-ups as of 27 November 2026 (IST): each is due 3 days after the previous email went out, only if there is no reply.
+Follow-ups as of 28 November 2026 (IST): each is due 3 days after the previous email went out, only if there is no reply.
 
 STATE        DUE         STEP  BUSINESS                                     LAST SENT
-in 2 days    2026-11-29  3/4   Dr Swetha Sajja Eye Hospital                 step 2 · 2026-11-26 17:16 IST
-in 2 days    2026-11-29  3/4   Dr. Ramya Sadaram                            step 2 · 2026-11-26 16:40 IST
-in 2 days    2026-11-29  3/4   Hanuman's Hill Rock Cafe & Restaurant        step 2 · 2026-11-26 21:25 IST
-in 2 days    2026-11-29  3/4   Iris International Dental Care               step 2 · 2026-11-26 21:49 IST
-in 2 days    2026-11-29  3/4   Kalyani Dental Clinic                        step 2 · 2026-11-26 18:14 IST
-in 2 days    2026-11-29  3/4   Krishna Hospital                             step 2 · 2026-11-26 21:02 IST
-in 2 days    2026-11-29  3/4   Krishna Multispeciality Dental Clinic        step 2 · 2026-11-26 22:24 IST
-in 2 days    2026-11-29  3/4   Majji Export Import                          step 2 · 2026-11-26 22:13 IST
-in 2 days    2026-11-29  3/4   Milk n More                                  step 2 · 2026-11-26 16:50 IST
-in 2 days    2026-11-29  3/4   MJ Naidu Super Speciality Hospital           step 2 · 2026-11-26 17:52 IST
-in 2 days    2026-11-29  3/4   MK Dental                                    step 2 · 2026-11-26 18:48 IST
-in 2 days    2026-11-29  3/4   MS Dental Hospital                           step 2 · 2026-11-26 22:01 IST
-in 2 days    2026-11-29  3/4   Orange Tours & Travels                       step 2 · 2026-11-26 20:52 IST
-in 2 days    2026-11-29  3/4   Prathik Dental and Implant Centre            step 2 · 2026-11-26 18:36 IST
-in 2 days    2026-11-29  3/4   Praveen Dental Care                          step 2 · 2026-11-26 18:02 IST
-in 2 days    2026-11-29  3/4   Ravi Dental Care and Implant Center          step 2 · 2026-11-26 17:40 IST
-in 2 days    2026-11-29  3/4   Sasya Fertility Centre                       step 2 · 2026-11-26 17:27 IST
-in 2 days    2026-11-29  3/4   Smart Care Dental Hospital                   step 2 · 2026-11-26 17:03 IST
-in 2 days    2026-11-29  3/4   Sri Ramadas Motor Transport Ltd              step 2 · 2026-11-26 21:37 IST
-in 2 days    2026-11-29  3/4   Sri Sai P.V.R. Hospitals                     step 2 · 2026-11-26 21:13 IST
-in 2 days    2026-11-29  3/4   The Dental Studio                            step 2 · 2026-11-26 18:25 IST
-in 3 days    2026-11-30  2/4   Deepthi Fertility Centre                     step 1 · 2026-11-27 15:51 IST
-in 3 days    2026-11-30  2/4   Dr. K. Hemanth Kumar Neurologist             step 1 · 2026-11-27 15:25 IST
-in 3 days    2026-11-30  3/4   Dr. Sushma Dental                            step 2 · 2026-11-27 14:27 IST
-in 3 days    2026-11-30  3/4   HR Dental Hospital                           step 2 · 2026-11-27 14:12 IST
-in 3 days    2026-11-30  3/4   Jamili Dental Care                           step 2 · 2026-11-27 13:45 IST
-in 3 days    2026-11-30  2/4   Sai Bhaskar Hospitals                        step 1 · 2026-11-27 15:13 IST
-in 3 days    2026-11-30  2/4   Shravani ENT Hospital                        step 1 · 2026-11-27 15:38 IST
-in 3 days    2026-11-30  3/4   Sri Ramachandra Children and Dental Hospital step 2 · 2026-11-27 13:58 IST
-in 3 days    2026-11-30  2/4   Vignata Fertility & IVF Center               step 1 · 2026-11-27 14:59 IST
+in 1 day     2026-11-29  3/4   Dr Swetha Sajja Eye Hospital                 step 2 · 2026-11-26 17:16 IST
+in 1 day     2026-11-29  3/4   Dr. Ramya Sadaram                            step 2 · 2026-11-26 16:40 IST
+in 1 day     2026-11-29  3/4   Hanuman's Hill Rock Cafe & Restaurant        step 2 · 2026-11-26 21:25 IST
+in 1 day     2026-11-29  3/4   Iris International Dental Care               step 2 · 2026-11-26 21:49 IST
+in 1 day     2026-11-29  3/4   Kalyani Dental Clinic                        step 2 · 2026-11-26 18:14 IST
+in 1 day     2026-11-29  3/4   Krishna Hospital                             step 2 · 2026-11-26 21:02 IST
+in 1 day     2026-11-29  3/4   Krishna Multispeciality Dental Clinic        step 2 · 2026-11-26 22:24 IST
+in 1 day     2026-11-29  3/4   Majji Export Import                          step 2 · 2026-11-26 22:13 IST
+in 1 day     2026-11-29  3/4   Milk n More                                  step 2 · 2026-11-26 16:50 IST
+in 1 day     2026-11-29  3/4   MJ Naidu Super Speciality Hospital           step 2 · 2026-11-26 17:52 IST
+in 1 day     2026-11-29  3/4   MK Dental                                    step 2 · 2026-11-26 18:48 IST
+in 1 day     2026-11-29  3/4   MS Dental Hospital                           step 2 · 2026-11-26 22:01 IST
+in 1 day     2026-11-29  3/4   Orange Tours & Travels                       step 2 · 2026-11-26 20:52 IST
+in 1 day     2026-11-29  3/4   Prathik Dental and Implant Centre            step 2 · 2026-11-26 18:36 IST
+in 1 day     2026-11-29  3/4   Praveen Dental Care                          step 2 · 2026-11-26 18:02 IST
+in 1 day     2026-11-29  3/4   Ravi Dental Care and Implant Center          step 2 · 2026-11-26 17:40 IST
+in 1 day     2026-11-29  3/4   Sasya Fertility Centre                       step 2 · 2026-11-26 17:27 IST
+in 1 day     2026-11-29  3/4   Smart Care Dental Hospital                   step 2 · 2026-11-26 17:03 IST
+in 1 day     2026-11-29  3/4   Sri Ramadas Motor Transport Ltd              step 2 · 2026-11-26 21:37 IST
+in 1 day     2026-11-29  3/4   Sri Sai P.V.R. Hospitals                     step 2 · 2026-11-26 21:13 IST
+in 1 day     2026-11-29  3/4   The Dental Studio                            step 2 · 2026-11-26 18:25 IST
+in 2 days    2026-11-30  2/4   Deepthi Fertility Centre                     step 1 · 2026-11-27 15:51 IST
+in 2 days    2026-11-30  2/4   Dr. K. Hemanth Kumar Neurologist             step 1 · 2026-11-27 15:25 IST
+in 2 days    2026-11-30  3/4   Dr. Sushma Dental                            step 2 · 2026-11-27 14:27 IST
+in 2 days    2026-11-30  3/4   HR Dental Hospital                           step 2 · 2026-11-27 14:12 IST
+in 2 days    2026-11-30  3/4   Jamili Dental Care                           step 2 · 2026-11-27 13:45 IST
+in 2 days    2026-11-30  2/4   Sai Bhaskar Hospitals                        step 1 · 2026-11-27 15:13 IST
+in 2 days    2026-11-30  2/4   Shravani ENT Hospital                        step 1 · 2026-11-27 15:38 IST
+in 2 days    2026-11-30  3/4   Sri Ramachandra Children and Dental Hospital step 2 · 2026-11-27 13:58 IST
+in 2 days    2026-11-30  2/4   Vignata Fertility & IVF Center               step 1 · 2026-11-27 14:59 IST
 
 Stopped (5):
   Bhimavaram Hospitals — bounced: info@bhimavaramhospitals.com — no mail server found for the domain (DNS MX lookup failed; Gmail gave up after two days)
@@ -151,23 +152,31 @@ Complete (10):
 Not started: 19 sequences (no email sent yet).
 ```
 
+- **Nothing due on 28 Nov.** Gmail checked at 12:50 IST: nothing has reached the
+  Sent folder since the last record (27 Nov 15:51 IST, Deepthi step 1), so every
+  date above stands. The five 27 November first emails are drafts, not sends.
 - Every mail the operator scheduled for 27 Nov went out on time and is recorded
   (`deliverables/runs/sends-2026-11-27b.json`): step 2 for HR Dental Hospital
   (14:12) and Dr. Sushma Dental (14:27); step 1 for Vignata (14:59), Sai Bhaskar
   (15:13), Dr K Hemanth Kumar (15:25), Shravani (15:38) and Deepthi (15:51 IST).
   Gmail thread ids for their follow-ups are in each `sequence.json` and in
   `outreach/<slug>/gmail-drafts.json`.
-- Inbox, 26–27 Nov: no bounces or opt-outs. **One reply:** Milestone Solarcom Pvt.
-  Ltd. (milestonesolarcomsales@gmail.com, Bilal Mohd. Zaheeruddin) wrote on
-  27 Nov at 15:04 IST: "Can you share your marketing packages proposal please".
-  It answers Vamsi's 24 Nov follow-up to a 14 Nov report ("Milestone Solar: 6 live
-  Google ads, and every trust counter on the landing page reads zero"); that
-  campaign is not tracked in this repository. Gmail message 1a21c5bd52df544c,
-  thread 1a1c50f925f30304. **Nothing drafted or sent: waiting for the operator.**
+- Inbox, 26–28 Nov (every folder, spam and trash included): no bounces, replies or
+  opt-outs from any lead. **One reply, still unanswered on 28 Nov:** Milestone
+  Solarcom Pvt. Ltd. (milestonesolarcomsales@gmail.com, Bilal Mohd. Zaheeruddin)
+  wrote on 27 Nov at 15:04 IST: "Can you share your marketing packages proposal
+  please". It answers Vamsi's 24 Nov follow-up to a 14 Nov report ("Milestone
+  Solar: 6 live Google ads, and every trust counter on the landing page reads
+  zero"); that campaign is not tracked in this repository. Gmail message
+  1a21c5bd52df544c, thread 1a1c50f925f30304. **Nothing drafted or sent: waiting
+  for the operator.**
 - Coming up: 29 Nov — step 3 for 21 sequences; 30 Nov — step 3 for Jamili, Sri
   Ramachandra, HR Dental and Dr. Sushma, and step 2 for the five 26 November
   audits. Draft only when the operator asks, after checking each thread for a
   reply or opt-out.
+- "Not started: 19" is the five 27 November audits (drafted, not sent) and 14 older
+  audits deliberately not emailed: chains, nonprofits, or held by an independent
+  review (`deliverables/README.md`, Send? ❌).
 - Send records: `deliverables/runs/sends-2026-11-27.json` (30) and
   `sends-2026-11-27b.json` (7). Earlier sends (64 across 40 sequences, recorded
   26 Nov) are in the `sentAt` fields of each `sequence.json`.
@@ -231,7 +240,8 @@ Not started: 19 sequences (no email sent yet).
 - **Open:** mark emailed leads `contacted` in `data/leads.json`? First widen the
   twin-email check in `src/cli.mjs` (it only matches `audited`).
 - **Open:** reply to Milestone Solarcom's request for a marketing packages
-  proposal (section 3)? Draft nothing until the operator says what to offer.
+  proposal (section 3)? Still unanswered on 28 Nov. Draft nothing until the
+  operator says what to offer.
 - Known cosmetic slip: AA Hospitals' PDF prints "1176 px" without a thousands
   separator (page 6); accepted, code fixed in 1.4.6.
 - Known wording slip: Dr K Hemanth Kumar's PDF says "A 81/100" (pages 2 and 5).

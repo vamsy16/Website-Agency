@@ -1,0 +1,34 @@
+{
+  "business": "Skin First",
+  "domain": "skinfirst.in",
+  "ref": "SP-AUD-2026-11-27-SF",
+  "to": "skinfirstk@gmail.com",
+  "emailSource": "openstreetmap, confirmed on site",
+  "emailFoundOn": "https://www.skinfirst.in/",
+  "mailbox": "smartpursuit3@gmail.com",
+  "status": "draft",
+  "neverSendAutomatically": true,
+  "drafts": [
+    {
+      "step": 1,
+      "draftId": "r-8052750818874630874",
+      "createdAt": "2026-11-28T12:46:57+05:30",
+      "subject": "Skin First — what I found testing skinfirst.in",
+      "attachment": {
+        "filename": "Smart-Pursuit-Audit-Skin-First.pdf",
+        "bytes": 1698537
+      },
+      "verified": "read back 2026-11-28: recipient, subject, body and attachment size match; body is only the recipient-facing email"
+    }
+  ],
+  "followUps": {
+    "rule": "Not drafted. Each is due 3 days after the previous email is actually sent, only if there is no reply; draft only when the operator asks, as a reply in this thread.",
+    "ifEmail1SentOn": "2026-11-28",
+    "plannedDates": {
+      "step2": "2026-12-01",
+      "step3": "2026-12-04",
+      "step4": "2026-12-07"
+    }
+  },
+  "sequence": "deliverables/andhra-pradesh/2026-11-27/skin-first/emails/sequence.json"
+}

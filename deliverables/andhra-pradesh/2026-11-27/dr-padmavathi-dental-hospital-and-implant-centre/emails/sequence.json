@@ -28,6 +28,14 @@
       "status": "draft",
       "approvedBy": null,
       "sentAt": null,
+      "gmailDraft": {
+        "mailbox": "smartpursuit3@gmail.com",
+        "draftId": "r4588748196827983982",
+        "createdAt": "2026-11-28T12:46:49+05:30",
+        "attachment": "Smart-Pursuit-Audit-Dr.-Padmavathi-Dental-Hospital-Implant-Centre.pdf",
+        "attachmentBytes": 1794809,
+        "verified": "read back 2026-11-28: recipient, subject, body and attachment size match; body is only the recipient-facing email"
+      },
       "file": "outreach/dr-padmavathi-dental-hospital-and-implant-centre/email-1-first.md"
     },
     {
