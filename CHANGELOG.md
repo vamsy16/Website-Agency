@@ -3,6 +3,30 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## Review — 28 November 2026, evening
+
+- Five more Andhra Pradesh audits approved: Best Rehab (Vijayawada, 75), BEST Super Speciality Hospital (Vijayawada, 69), Happy Hospitals (Guntur, 75), Varma Hospitals (Bhimavaram, 64) and Sunray SVR Hospital (Anantapur, 71). They come from nine Actions runs (46140450908 to 46151816885).
+  - Each email was read on the business's own site.
+  - None matches anything in the registries, deliverables or the full history of every branch (Gmail was not used for duplicates).
+  - Review record: `deliverables/runs/2026-11-28-evening-independent-review.{md,json}`.
+- The third-eye review held each round until it was clean, and six tool fixes followed (1.4.8 to 1.4.13):
+  - a "page not found" page counted as a reachable contact page;
+  - "Read More..." links not counted;
+  - an arrival pop-up over later screens, and a laptop view caught mid-slide;
+  - carousel copies counted;
+  - search boxes and newsletter boxes counted as enquiry forms;
+  - hidden duplicate links counted;
+  - two businesses given the same audit reference, so that Vedanta Hospitals' approved audit row was overwritten. The row is restored, and Varma is now SP-AUD-2026-11-28-VH2.
+- Arka Eye Hospital (Nellore) is held and was replaced by Sunray SVR Hospital: GitHub Actions timed out on its site in four runs. Star Dental Experts timed out twice and 9Fertility was screened out (a screen false negative). None was emailed.
+- The morning five were re-checked against tonight's findings (Read More counts, forms): all match their live pages.
+- The workflow triggers on `arena/9429fd42-website-agency`, and `run-request.json` is disabled. No Gmail drafts: the operator reviews the PDFs first.
+
+## Outreach — 28 November 2026, late evening
+
+- Sends recorded from Gmail's Sent folder (`node tools/followups.mjs --record`): step 1 for Dr. Padmavathi Dental Hospital & Implant Centre (16:43 IST) and Leelavathi Advanced Skin & Laser Centre (16:54 IST), in `deliverables/runs/sends-2026-11-28b.json`; Skin First (17:09 IST), in `sends-2026-11-28c.json`. With AA Hospitals and Desai Eye Care, all five 27 November first emails are out, and their step 2 falls due 1 Dec.
+- Inbox at 17:06 and 17:28 IST: no replies, bounces or opt-outs. A solar-campaign reply (SunWorks, 17:20) is not part of this agency's outreach.
+- Still scheduled, to record once sent: step 3 for nine older sequences (19:47–21:26 IST).
+
 ## 1.4.13 — 28 November 2026
 
 - **Audit references are unique, and an audit never overwrites another business's row** (`src/dedupe.mjs`, `src/cli.mjs`). "Vedanta Hospitals" (morning) and "Varma Hospitals" (evening), both audited on 28 November, got the same reference, SP-AUD-2026-11-28-VH. `recordAudit` matched rows by reference first, so Varma's audit replaced Vedanta's row and `data/audits.json` lost an approved audit (70 + 5 = 74 rows instead of 75). The history of `data/audits.json` on every branch shows no other reference ever held by two domains.
@@ -30,7 +54,7 @@ if the reason is not obvious.
 ## 1.4.9 — 28 November 2026
 
 - **The laptop view is captured between slides** (`src/measure.mjs`), as the phone screens already were: BEST Super Speciality Hospital's re-audited laptop view (1.4.8) caught two banner slides mid-fade, their text overlapping. Slider autoplay is paused where the page exposes it (Bootstrap, Owl, Slick, Swiper) and finite animations finish (up to 3 s) before the shot; `runningAnimationsAtShot` records what was still moving. Tested in local Chromium on a cross-fading slider caught mid-fade.
-- **Slider copies are not counted** (`src/measure.mjs`): Owl, Slick, Swiper, Splide, Glide, bxSlider and FlexSlider copy slides so they can loop, and every DOM count ("Read More" links, links to #, images without alt text, tap targets, forms, sections) counted each copy again. BEST Super Speciality Hospital's page shows 4 "Read More..." links and 5 were counted. Tested in local Chromium on a page with Owl and Slick clones (6 of 6 real links counted, 5 copies skipped).
+- **Slider copies are not counted** (`src/measure.mjs`): Owl, Slick, Swiper, Splide, Glide, bxSlider and FlexSlider copy slides so they can loop, and every DOM count ("Read More" links, links to #, images without alt text, tap targets, forms, sections) counted each copy again. Varma Hospitals' images without alt text went from 65 to 33. (This entry first said BEST Super Speciality Hospital's page shows 4 "Read More..." links where 5 were counted. That was the review's error: the fifth, in the band above its footer, was missing from the review's own fetch of the page, and the count of 5 is right.) Tested in local Chromium on a page with Owl and Slick clones (6 of 6 real links counted, 5 copies skipped).
 - `verify`: **`facts.counted`** (a record, never a blocker) lists what the printed counts were made of: each "Read More" link, each form with its field count, the links to #, the small tap targets and the slider copies skipped, so the independent review can check them against the live page.
 
 ## 1.4.8 — 28 November 2026
@@ -39,7 +63,7 @@ From the 28 November evening independent review (Andhra Pradesh, run 46140450908
 
 - **A "page not found" page is not a contact page** (`src/measure.mjs`, `src/findings.mjs`). Arka Eye Hospital's scorecard said "Contact page reachable", but its `/contact/` (like every unknown address on that site) answers HTTP 200 with "The page you were looking for doesn't exist". The `/contact/` and `/sitemap.xml` probes now recognise such pages (`looksNotFound`: a 404 or "not found" title, or "page … not found / doesn't exist", "Error 404", "Page not found" in the text, scripts excluded); a contact probe that lands on one is not reachable.
 - **A sitemap address that answers with a "page not found" page is reported as a missing sitemap**, in those words ("answered 200 with a “page not found” page, not a <urlset>"), instead of "returns a web page instead of a sitemap".
-- **"Read More..." links are counted** with the plain "Read More" ones (trailing dots, », >, → allowed): BEST Super Speciality Hospital's scorecard said "0 “Read More” links" for a homepage with four "Read More..." links.
+- **"Read More..." links are counted** with the plain "Read More" ones (trailing dots, », >, → allowed): BEST Super Speciality Hospital's scorecard said "0 “Read More” links" for a homepage with five "Read More..." links (four in its about section, one in the band above its footer).
 - **A pop-up that opens on arrival is closed before the later screens** (`closeEntryPopup`, `src/measure.mjs`). BEST Super Speciality Hospital's "screen 7" showed the same promotional pop-up as its screen 1, and its laptop view was dimmed by the pop-up's backdrop. Screen 1 keeps the pop-up, as a visitor first sees it, and its caption says so; the pop-up is then closed the way a visitor would close it (its own close button, else Escape), and the screen 7 caption says "after closing the pop-up" (or "with the pop-up still open" when it would not close). The laptop view closes it first and says so. Only a fixed box marked as a pop-up (modal, popup, overlay, dialog …), covering at least 40% of the screen and on top at its centre, counts; a click never follows a link off the page. Tested in local Chromium (mobile emulation) on a Bootstrap-style modal, an Elementor-style pop-up, an Escape-only pop-up, a pop-up whose only "×" is an off-site link (left open, page not left), a fixed background overlay, a cookie bar, an off-screen menu and a plain page.
 - `verify`: **`facts.entryPopup`** (warning) records a pop-up open on arrival and how it was closed; copy checks block pop-up wording without the measurement and the soft-404 sitemap wording without `http.sitemapNotFoundPage`.
 

@@ -8,7 +8,7 @@
   "csv": "data/ap-websearch-2026-11-28c.csv",
   "csvOnly": true,
   "repairOnly": true,
-  "disabled": false,
+  "disabled": true,
   "reaudit": [
     "varmahospitals.com"
   ],

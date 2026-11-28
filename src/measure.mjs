@@ -280,8 +280,8 @@ function collectDom(screen) {
   // Slider plugins copy slides so they can loop (Owl's .owl-item.cloned,
   // Slick's .slick-cloned, Swiper's duplicates, Splide, Glide, bxSlider and
   // FlexSlider clones). A copy is not a second link, image, form or tap target
-  // on the site, so every count skips it: BEST Super Speciality Hospital's page
-  // shows 4 "Read More" links and 5 were counted (28 Nov evening review).
+  // on the site, so every count skips it: Varma Hospitals' images without alt
+  // text read 65 with the copies and 33 without (28 Nov evening review).
   const SLIDER_COPY = ".owl-item.cloned, .slick-cloned, .swiper-slide-duplicate, .splide__slide--clone, .glide__slide--clone, .bx-clone, .clone[aria-hidden='true']";
   const q = (sel, root = document) => [...root.querySelectorAll(sel)].filter(el => !el.closest(SLIDER_COPY));
   const visible = el => {
@@ -386,7 +386,7 @@ function collectDom(screen) {
   const stickyTel = telLinks.filter(a => visible(a) && onScreen(a)).length;
   const stickyWhatsapp = q("a[href*='wa.me'], a[href*='whatsapp']").filter(a => visible(a) && onScreen(a)).length;
   // "Read More...", "Read more »" and "Read More >>" are the same generic link:
-  // BEST Super Speciality Hospital's four "Read More..." links were counted as
+  // BEST Super Speciality Hospital's five "Read More..." links were counted as
   // 0 (28 Nov evening review).
   const readMore = anchors.filter(a => /^read\s*more[\s.…!»›>→-]*$/i.test((a.innerText || "").trim()));
   const deadLinks = anchors.filter(a => {

@@ -1,29 +1,29 @@
 # STATE — read this first
 
-_Handoff for the next agent. Last updated 28 November 2026, about 16:50 IST by the Arena agent on branch
-`arena/1dd72874-website-agency` (merged into `main` through a pull request)._
+_Handoff for the next agent. Last updated 28 November 2026, about 19:40 IST by the Arena agent on branch
+`arena/9429fd42-website-agency` (merged into `main` through a pull request)._
 
-> **In flight (28 Nov, from 17:05 IST): a new Andhra Pradesh run of 5 leads** on
-> branch `arena/9429fd42-website-agency` (workflow trigger and `ARENA_BRANCH` point
-> there). `data/ap-websearch-2026-11-28c.csv`: Arka Eye Hospital, Best Rehab,
-> 9Fertility, Happy Hospitals, Varma Hospitals; backups BEST Super Speciality
-> Hospital, Star Dental Experts, Sunray SVR Hospital (target 5, max 8, CSV only).
-> All eight are held (`approved: false`) in
-> `deliverables/runs/2026-11-28-evening-independent-review.json` until the
-> third-eye review is done; no Gmail draft until the operator approves the PDFs.
-> If you find this note and the run is finished, do the review (section 5).
-> 18:10 IST: run 1 (46140450908) audited Arka, Best Rehab, Happy, Varma and BEST
-> Super Speciality (9Fertility screened out). The review held all five: 1.4.8 and
-> 1.4.9 fixed what it found (see CHANGELOG). Arka's site timed out from Actions in
-> both 1.4.8 re-audits; the 1.4.9 run re-audits the four, retries Arka and audits
-> one CSV backup (Star Dental Experts, then Sunray SVR) to replace Arka if needed.
-> 18:50 IST: Best Rehab, Happy, Varma (1.4.9) and BEST Super Speciality (1.4.9, retry)
-> re-audited; Arka unreachable from Actions in four runs, so it stays held and the
-> CSV backup replaces it. 1.4.10 re-audits BEST, Happy and Best Rehab to identify
-> their forms (a search box is not a form) and audits the backup.
+> **Latest (28 Nov, 19:40 IST): five evening Andhra Pradesh audits approved; PDF
+> links sent to the operator for review. No Gmail draft until he approves them.**
+> Best Rehab (Vijayawada), BEST Super Speciality Hospital (Vijayawada), Happy
+> Hospitals (Guntur), Varma Hospitals (Bhimavaram) and Sunray SVR Hospital
+> (Anantapur), in `deliverables/andhra-pradesh/2026-11-28/` beside the morning five.
+> The review (`deliverables/runs/2026-11-28-evening-independent-review.md`) took
+> nine Actions runs and six tool fixes (1.4.8 to 1.4.13, see CHANGELOG). Among them:
+> - a newsletter box was counted as an enquiry form;
+> - a hidden duplicate "Read More" link was counted;
+> - Varma's audit took Vedanta Hospitals' reference SP-AUD-2026-11-28-VH and
+>   overwrote Vedanta's row in `data/audits.json`. The row is restored, and Varma is
+>   now SP-AUD-2026-11-28-VH2.
+>
+> Arka Eye Hospital (Nellore) is held and was replaced by Sunray. GitHub Actions
+> timed out on its site in four runs, and its only PDF (1.4.7) has known defects.
+> When the operator approves the five PDFs, create their step-1 drafts (section 4;
+> PDF attached, read back). `run-request.json` is `disabled: true`, and the workflow
+> still triggers on `arena/9429fd42-website-agency` (repoint it, section 1).
 
-> **Latest (28 Nov, 16:50 IST): the five 28 November audits have their first
-> emails in Gmail Drafts.** The operator reviewed and approved the PDFs; the
+> **Earlier (28 Nov, 16:50 IST): the five 28 November (morning) audits have their
+> first emails in Gmail Drafts.** The operator reviewed and approved the PDFs; the
 > drafts were created at 16:39 IST as new threads, PDF attached, and read back
 > (recipient, subject and body identical to `email-1-first.md`; attachment the
 > size of the file): Vedanta Hospitals, Dr Sneha's Skinclin, Skinmed Skin Clinic,
@@ -33,21 +33,24 @@ _Handoff for the next agent. Last updated 28 November 2026, about 16:50 IST by t
 > **Not sent yet**: when they reach Gmail's Sent folder, record `sentAt`
 > (section 4).
 
-> **To record next: mail the operator scheduled, not yet sent at 16:42 IST.**
-> Step 1 for Dr. Padmavathi Dental Hospital & Implant Centre (16:43), Leelavathi
-> Advanced Skin & Laser Centre (16:54) and Skin First (17:09), from the 27
-> November drafts; AA Hospitals (16:21) and Desai Eye Care (16:33) went out and
-> are recorded (`deliverables/runs/sends-2026-11-28.json`). Step 3 for nine
-> sequences on 28 Nov, 19:47–21:26 IST: Iris International Dental Care, Sri Sai
-> P.V.R. Hospitals, Hanuman's Hill Rock Cafe & Restaurant, Krishna Hospital,
-> Orange Tours & Travels, Majji Export Import, Sri Ramadas Motor Transport, MS
-> Dental Hospital and Krishna Multispeciality Dental Clinic. By the 3-day rule
-> these nine are due 29 Nov (pointed out to the operator on 28 Nov). Their text is
-> the operator's own short check-in ("Checking in once more on the website audit I
-> sent on 21 November…"), not `email-3-followup-2.md`; read on 28 Nov: no
-> internal notes, and 21 November is right for all nine. Record each once it shows
-> in Sent. Thirteen replies of the solar-ads campaign are scheduled the same
-> evening; that campaign is not tracked here.
+> **To record next: mail the operator scheduled, not yet sent at 17:28 IST.**
+> Step 1 for Dr. Padmavathi (16:43), Leelavathi (16:54) and Skin First (17:09) went
+> out and are recorded (`deliverables/runs/sends-2026-11-28b.json`, `-28c.json`),
+> with AA Hospitals and Desai Eye Care (`sends-2026-11-28.json`). Their step 2 falls
+> due 1 Dec.
+>
+> Still to record: step 3 for nine sequences scheduled on 28 Nov, 19:47–21:26 IST:
+> Iris International Dental Care, Sri Sai P.V.R. Hospitals, Hanuman's Hill Rock
+> Cafe & Restaurant, Krishna Hospital, Orange Tours & Travels, Majji Export Import,
+> Sri Ramadas Motor Transport, MS Dental Hospital and Krishna Multispeciality Dental
+> Clinic. By the 3-day rule these nine are due 29 Nov (pointed out to the operator
+> on 28 Nov). Their text is the operator's own short check-in ("Checking in once
+> more on the website audit I sent on 21 November…"), not `email-3-followup-2.md`.
+> It was read on 28 Nov: no internal notes, and 21 November is right for all nine.
+> Record each once it shows in Sent.
+>
+> Thirteen replies of the solar-ads campaign are scheduled the same evening; that
+> campaign is not tracked here. A SunWorks solar reply (28 Nov 17:20) is not ours.
 
 > **Earlier (28 Nov):** the five 28 November audits were approved after a
 > third-eye review (`deliverables/runs/2026-11-28-independent-review.md`). It held
@@ -106,18 +109,26 @@ mailbox and its only send-as address) · +91 70950 24220. Operator: Vamsi.
 
 ### Registries
 
-- `data/leads.json`: 277 leads — 165 new, 69 audited, 43 audit-failed
-  (0 duplicate domains). `data/audits.json`: 70 audits (0 duplicate domains).
-- Vetted, not behind the Hostinger CDN, not yet audited (status `new`), in
-  `data/ap-websearch-2026-11-28b.csv`: arkaeyehospital.com, Nellore
-  (info@arkaeyehospital.com, homepage header; its /contact.php is a 404 page) and
-  bestrehabphysio.com, Vijayawada (bestrehabphysio@gmail.com, contact page); not
-  attempted on 28 Nov, target reached. maaeyecare.com, Kadapa
-  (maa4eyecare@gmail.com) was screened out as "foreign" on 28 Nov, a false
-  negative on its Wix page; the screen retries it after 28 Dec. In
-  `data/ap-websearch-2026-11-27.csv`: veyehospital.com, Ongole (venkateswaraeyehospitalongole@gmail.com; the screen
-  timed out on 27 Nov); vijayahospitalvzm.com, Vizianagaram
-  (drudayakumar65@gmail.com; answered HTTP 403 to the screen on 27 Nov).
+- `data/leads.json`: 283 leads — 165 new, 75 audited, 43 audit-failed
+  (0 duplicate domains). `data/audits.json`: 76 audits (0 duplicate domains, no
+  reference held twice since 1.4.13).
+- Held: arkaeyehospital.com, Nellore (info@arkaeyehospital.com, homepage header).
+  It was audited once (1.4.7, defects since fixed), then GitHub Actions timed out on
+  it in four runs. Re-audit (`reaudit: ["arkaeyehospital.com"]`) and review before
+  it is ever sent.
+- Vetted, `new`, not audited, in `data/ap-websearch-2026-11-28c.csv`:
+  - stardentalexperts.com, Eluru (stardentistreeeluru@gmail.com): Actions timed out
+    twice, screen `unreachable`, re-queued after 30 days.
+  - 9fertility.com, Tirupati (9fertility@gmail.com is on its homepage, but the
+    run's screen missed it): re-screened after 30 days.
+- maaeyecare.com, Kadapa (maa4eyecare@gmail.com) was screened out as "foreign" on
+  28 Nov, a false negative on its Wix page; the screen retries it after 28 Dec.
+- In `data/ap-websearch-2026-11-27.csv`:
+  - veyehospital.com, Ongole (venkateswaraeyehospitalongole@gmail.com; the screen
+    timed out on 27 Nov);
+  - vijayahospitalvzm.com, Vizianagaram (drudayakumar65@gmail.com; answered HTTP
+    403 to the screen on 27 Nov).
+
   Re-read each site before queuing it again.
 - Vetted but not attempted (status `new`, email read on each own site, all behind
   the Hostinger CDN, so queue them last), in `data/ap-websearch-2026-11-26.csv`:
@@ -137,14 +148,15 @@ mailbox and its only send-as address) · +91 70950 24220. Operator: Vamsi.
 
 | Folder `deliverables/andhra-pradesh/…` | Businesses | Review | Email 1 |
 |---|---|---|---|
-| `2026-11-28/` | Vedanta Hospitals (Kadapa), Dr Sneha's Skinclin (Visakhapatnam), Skinmed Skin Clinic (Visakhapatnam), SV Children's Hospital (Tirupati), Nandan Hospitals (Vijayawada) | `runs/2026-11-28-independent-review.md` | drafted in Gmail 28 Nov 16:39 IST after the operator approved the PDFs (PDF attached, read back); not sent yet |
-| `2026-11-27/` | AA Hospitals (Eluru), Desai Eye Care (Nellore), Dr. Padmavathi Dental Hospital & Implant Centre (Kakinada), Leelavathi Advanced Skin & Laser Centre (Guntur), Skin First (Vijayawada) | `runs/2026-11-27-independent-review.md` | drafted 28 Nov 12:46 IST; sent 28 Nov: AA Hospitals 16:21 and Desai Eye Care 16:33 (recorded); Dr. Padmavathi 16:43, Leelavathi 16:54 and Skin First 17:09 scheduled (record when sent) |
+| `2026-11-28/` (evening) | Best Rehab (Vijayawada), BEST Super Speciality Hospital (Vijayawada), Happy Hospitals (Guntur), Varma Hospitals (Bhimavaram), Sunray SVR Hospital (Anantapur) | `runs/2026-11-28-evening-independent-review.md` | approved 28 Nov 19:33 IST; PDF links sent to the operator for review; no drafts yet |
+| `2026-11-28/` (morning) | Vedanta Hospitals (Kadapa), Dr Sneha's Skinclin (Visakhapatnam), Skinmed Skin Clinic (Visakhapatnam), SV Children's Hospital (Tirupati), Nandan Hospitals (Vijayawada) | `runs/2026-11-28-independent-review.md` | drafted in Gmail 28 Nov 16:39 IST after the operator approved the PDFs (PDF attached, read back); not sent yet |
+| `2026-11-27/` | AA Hospitals (Eluru), Desai Eye Care (Nellore), Dr. Padmavathi Dental Hospital & Implant Centre (Kakinada), Leelavathi Advanced Skin & Laser Centre (Guntur), Skin First (Vijayawada) | `runs/2026-11-27-independent-review.md` | drafted 28 Nov 12:46 IST; sent 28 Nov 16:21–17:09 IST, all five recorded; step 2 due 1 Dec |
 | `2026-11-26/` | Vignata Fertility & IVF Center (Guntur), Sai Bhaskar Hospitals (Guntur), Dr K Hemanth Kumar, neurologist (Kurnool), Shravani ENT Hospital (Kakinada), Deepthi Fertility Centre (Nellore) | `runs/2026-11-26-independent-review.md` | sent 27 Nov 14:59–15:51 IST (recorded) |
 | `2026-11-23/` | Smart Care Dental Hospital (Nellore), Dr Swetha Sajja Eye Hospital (Rajahmundry), MJ Naidu Super Speciality Hospital (Vijayawada), Sasya Fertility Centre (Guntur), Ravi Dental Care and Implant Center (Vijayawada) | `runs/2026-11-23-independent-review.md` | sent 23 Nov |
 | `2026-11-22/` | MK Dental, Prathik Dental and Implant Centre (Anantapur), The Dental Studio (Visakhapatnam), Kalyani Dental Clinic, Praveen Dental Care (Tirupati) | `runs/2026-11-22-independent-review.md` | sent 23 Nov |
 | `2026-11-20/`, `2026-11-15/`, `2026-11-16/` | earlier batches (the full list is `deliverables/README.md`) | `runs/2026-11-21-*`, `runs/2026-11-16-*` | sent 16 and 21 Nov |
 
-### Follow-ups — `node tools/followups.mjs` at 28 November 2026, about 16:45 IST
+### Follow-ups — `node tools/followups.mjs` at 28 November 2026, about 19:36 IST
 
 ```text
 Follow-ups as of 28 November 2026 (IST): each is due 3 days after the previous email went out, only if there is no reply.
@@ -182,6 +194,9 @@ in 2 days    2026-11-30  3/4   Sri Ramachandra Children and Dental Hospital step
 in 2 days    2026-11-30  2/4   Vignata Fertility & IVF Center               step 1 · 2026-11-27 14:59 IST
 in 3 days    2026-12-01  2/4   AA Hospitals                                 step 1 · 2026-11-28 16:21 IST
 in 3 days    2026-12-01  2/4   Desai Eye Care                               step 1 · 2026-11-28 16:33 IST
+in 3 days    2026-12-01  2/4   Dr. Padmavathi Dental Hospital & Implant Cen step 1 · 2026-11-28 16:43 IST
+in 3 days    2026-12-01  2/4   Leelavathi Advanced Skin & Laser Centre      step 1 · 2026-11-28 16:54 IST
+in 3 days    2026-12-01  2/4   Skin First                                   step 1 · 2026-11-28 17:09 IST
 
 Stopped (5):
   Bhimavaram Hospitals — bounced: info@bhimavaramhospitals.com — no mail server found for the domain (DNS MX lookup failed; Gmail gave up after two days)
@@ -202,7 +217,7 @@ Complete (10):
   Raghuram Children Hospital (final email 2026-11-26 20:17 IST)
   Sandhya Hi-Tech Vision Care Center (final email 2026-11-26 20:41 IST)
 
-Not started: 22 sequences (no email sent yet).
+Not started: 25 sequences (no email sent yet).
 ```
 
 - **Nothing due on 28 Nov.** Gmail read at 16:42 IST: step 1 for AA Hospitals and
@@ -291,6 +306,20 @@ Not started: 22 sequences (no email sent yet).
   pending run, so list every domain that still needs a re-audit in the latest
   request. `gh run cancel` returns 403. Poll
   `gh run view <id> --json status,conclusion` (steps: `--json jobs`).
+- Some sites time out from Actions (`UND_ERR_CONNECT_TIMEOUT`) while they load
+  for the agent's fetch:
+  - Arka Eye Hospital in four runs on 28 Nov;
+  - Star Dental Experts in two;
+  - BEST Super Speciality Hospital and Sunray SVR Hospital once, then reached.
+
+  The lead is skipped and its `screen` set to `unreachable`, which keeps it out of
+  `pendingLeads` for 30 days; delete that `screen` in `data/leads.json` to retry
+  sooner. Keep a vetted backup in the CSV for each run.
+- From 1.4.10, `verify.json` `facts.counted` lists every counted form (its fields,
+  button and place on the page) and every "Read More" link (place, shown or not),
+  plus how many call and WhatsApp links were shown. Match each against the live
+  page in the review. Search boxes and newsletter sign-ups are not forms
+  (1.4.10/1.4.11), and links hidden at 390 px are not counted (1.4.12).
 - Lighthouse varies between runs (Dr K Hemanth Kumar's mobile score read 64, 73
   and 81): decide to accept a re-run before seeing it. Hostinger/Zyro-hosted sites
   often fail (`ERRORED_DOCUMENT_REQUEST`, `NO_FCP`).

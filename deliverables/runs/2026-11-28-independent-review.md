@@ -111,6 +111,8 @@ One wording item was accepted. Dr Sneha's finding 04 lists three Wix file server
 
 Arka Eye Hospital (arkaeyehospital.com, Nellore) and Best Rehab (bestrehabphysio.com, Vijayawada) were not attempted because the target was reached. Both stay `new`: never audited, never contacted.
 
+**Update, 28 November evening:** both were audited in the evening run. Best Rehab was approved and its hold here lifted; Arka Eye Hospital is held. See [2026-11-28-evening-independent-review.md](2026-11-28-evening-independent-review.md).
+
 ## Limits
 
 - An email published on the business's own site is not proof of inbox deliverability, registration or credentials.
