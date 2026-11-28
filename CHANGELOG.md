@@ -3,6 +3,11 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## 1.4.11 — 28 November 2026
+
+- **A newsletter sign-up is not an enquiry form** (`src/measure.mjs`). With 1.4.10's form record the review could see what each counted form was: Happy Hospitals' only homepage form is "Subscribe" with one email field, yet its report scored conversion 10/10 and planned to "test the contact form". A form whose only field is an email address and whose button or names say subscribe, sign up, join or newsletter is no longer counted as a visible form, so the pop-up booking probe runs and the no-form finding applies, as for any page without an enquiry form. The pop-up probe ignores such forms too. Best Rehab (a 5-field appointment form in a pop-up), BEST Super Speciality Hospital and Sunray SVR Hospital (visible appointment forms) also have newsletter boxes; their reports' statements stay true.
+- `verify`: `facts.counted` marks newsletter sign-ups.
+
 ## 1.4.10 — 28 November 2026
 
 - **A search box is not a visible form** (`src/measure.mjs`). Happy Hospitals' only homepage "form" had one field and no action, and its report counted "1 visible form" and planned to "test the contact form". A form with `role=search`, a search field, a search action, a single `s`/`q`/`search` field or a "Search" button is no longer counted (the pop-up booking probe then runs as for a page with no form). Each form records the fields it asks for and its button text.

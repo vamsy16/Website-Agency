@@ -271,7 +271,7 @@ export async function verifyAudit({ auditPath, live = false, fixture = false }) 
         const short = h => String(h || "?").replace(/^https?:\/\/[^/]+/i, "") || "/";
         add("facts.counted", true,
           `${dom.readMoreLinks ?? "?"} "Read More" link(s)${rm ? (rm.length ? `: ${rm.map(r => `${short(r.href)}${Number.isFinite(r.at) ? ` @${r.at}px` : ""}${r.under ? ` under "${r.under}"` : ""}${r.shown ? "" : " (not shown)"}`).join(", ")}` : "") : " (links not recorded before 1.4.9)"}; ` +
-          `${fl.length} form(s)${fl.length ? `: ${fl.map(f => `${f.id ? "#" + f.id : short(f.action || "form")} ${f.fields} field(s)${Array.isArray(f.asks) ? ` [${f.asks.join(" ")}]` : ""}${f.button ? ` button "${f.button}"` : ""}${Number.isFinite(f.at) ? ` @${f.at}px` : ""}${f.under ? ` under "${f.under}"` : ""}${f.visible ? "" : " (hidden)"}${f.search ? " (search box, not counted)" : ""}`).join(", ")}` : ""}; ` +
+          `${fl.length} form(s)${fl.length ? `: ${fl.map(f => `${f.id ? "#" + f.id : short(f.action || "form")} ${f.fields} field(s)${Array.isArray(f.asks) ? ` [${f.asks.join(" ")}]` : ""}${f.button ? ` button "${f.button}"` : ""}${Number.isFinite(f.at) ? ` @${f.at}px` : ""}${f.under ? ` under "${f.under}"` : ""}${f.visible ? "" : " (hidden)"}${f.search ? " (search box, not counted)" : ""}${f.newsletter ? " (newsletter sign-up, not counted)" : ""}`).join(", ")}` : ""}; ` +
           `${dom.deadLinks ?? "?"} link(s) to # or javascript:; ${dom.smallTapTargets ?? "?"} of ${dom.tapTargets ?? "?"} tap targets under 40 px; ` +
           `${dom.sliderCopiesSkipped ?? "?"} slider cop${dom.sliderCopiesSkipped === 1 ? "y" : "ies"} skipped`);
       }

@@ -152,7 +152,8 @@ async function openPopupForm(page) {
     // screen before the click was not opened by it.
     const searchy = f => f.matches("[role=search]") || !!f.closest("[role=search]") || /search/i.test(f.getAttribute("action") || "") || !!f.querySelector("input[type=search]") || [...f.querySelectorAll("input")].some(i => /^(s|q|query|search|keywords?|search_query)$/i.test(i.name || ""));
     document.querySelectorAll("form").forEach(f => { if (vis(f)) f.setAttribute("data-sp-was-visible", "1"); });
-    const hidden = [...document.querySelectorAll("form")].filter(f => !vis(f) && f.closest(box) && !searchy(f)).map(fieldsOf).filter(n => n > 0);
+    const signup = f => fieldsOf(f) === 1 && !!f.querySelector("input[type=email]");
+    const hidden = [...document.querySelectorAll("form")].filter(f => !vis(f) && f.closest(box) && !searchy(f) && !signup(f)).map(fieldsOf).filter(n => n > 0);
     return { triggers: triggers.length, bookingTriggers: booking.length, label: booking[0] ? textOf(booking[0]) : null, hiddenFields: hidden.length ? Math.max(...hidden) : 0, url: location.href.split("#")[0] };
   }, [POPUP_TRIGGER, BOOKING_LABEL]);
   const out = { triggers: found.triggers, bookingTriggers: found.bookingTriggers, label: found.label, hiddenFields: found.bookingTriggers ? found.hiddenFields : 0, opened: false, fields: 0 };
@@ -163,7 +164,7 @@ async function openPopupForm(page) {
   const after = await page.evaluate(() => {
     const vis = el => { const r = el.getBoundingClientRect(); const s = getComputedStyle(el); return r.width > 0 && r.height > 0 && s.visibility !== "hidden" && s.display !== "none" && Number(s.opacity) > 0; };
     const fieldsOf = f => [...f.querySelectorAll("input, select, textarea")].filter(i => !["hidden", "submit", "button", "reset", "image"].includes((i.type || "").toLowerCase())).length;
-    const forms = [...document.querySelectorAll("form")].filter(f => vis(f) && !f.hasAttribute("data-sp-was-visible")).map(fieldsOf).filter(n => n > 0);
+    const forms = [...document.querySelectorAll("form")].filter(f => vis(f) && !f.hasAttribute("data-sp-was-visible") && !(fieldsOf(f) === 1 && f.querySelector("input[type=email]"))).map(fieldsOf).filter(n => n > 0);
     return { forms: forms.length, fields: forms.length ? Math.max(...forms) : 0, url: location.href.split("#")[0] };
   }).catch(() => null);
   // A click that loaded another page says nothing about this one.
@@ -425,6 +426,17 @@ function collectDom(screen) {
     }
     return { at: Math.round(el.getBoundingClientRect().top + window.scrollY), under };
   };
+  // A newsletter sign-up is not an enquiry form either: Happy Hospitals' only
+  // homepage form was "Subscribe" with one email field, and its report scored
+  // conversion as if patients could send a request (28 Nov evening review).
+  const isNewsletterForm = f => {
+    const fl = formFields(f);
+    if (fl.length !== 1) return false;
+    const i = fl[0];
+    const hint = `${i.name || ""} ${i.id || ""} ${i.getAttribute("placeholder") || ""} ${f.id || ""} ${typeof f.className === "string" ? f.className : ""} ${f.getAttribute("action") || ""}`;
+    const emailOnly = (i.type || "").toLowerCase() === "email" || /e-?mail|subscri|newsletter/i.test(hint);
+    return emailOnly && /subscri|sign ?up|join|newsletter|notify|updates/i.test(`${formButton(f)} ${hint}`);
+  };
   const forms = q("form").map(f => ({
     id: f.id || null,
     action: f.getAttribute("action") || null,
@@ -432,11 +444,12 @@ function collectDom(screen) {
     fields: q("input, select, textarea", f).filter(i => !["hidden", "submit", "button"].includes((i.type || "").toLowerCase())).length,
     visible: visible(f),
     search: isSearchForm(f),
+    newsletter: isNewsletterForm(f),
     asks: formFields(f).slice(0, 6).map(i => `${i.tagName === "INPUT" ? (i.type || "text").toLowerCase() : i.tagName.toLowerCase()}:${(i.name || i.id || i.getAttribute("placeholder") || "").replace(/\s+/g, " ").trim().slice(0, 20)}`),
     button: formButton(f),
     ...placeOf(f),
   }));
-  const visibleForms = forms.filter(f => f.visible && f.fields > 0 && !f.search);
+  const visibleForms = forms.filter(f => f.visible && f.fields > 0 && !f.search && !f.newsletter);
 
   const bodyText = document.body?.innerText || "";
   const shortcode = bodyText.match(/\[(?:contact-form-7|contact-form|gravityform|wpforms|ninja_form|formidable|caldera_form)[^\]]{0,160}\]/i);

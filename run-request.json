@@ -4,15 +4,13 @@
   "target": 1,
   "leadsLimit": 10,
   "niches": [],
-  "requestedAt": "2026-11-28T13:15:36Z",
+  "requestedAt": "2026-11-28T13:31:50Z",
   "csv": "data/ap-websearch-2026-11-28c.csv",
   "csvOnly": true,
-  "repairOnly": false,
+  "repairOnly": true,
   "disabled": false,
   "reaudit": [
-    "bestsuperspeciality.com",
-    "happy-hospitals.com",
-    "bestrehabphysio.com"
+    "happy-hospitals.com"
   ],
-  "reauditReason": "1.4.10 (28 Nov evening review): search boxes are not forms; each counted form and 'Read More' link recorded with its fields, button and place. Arka Eye Hospital is replaced: unreachable from the runner in four runs. Target 1 from the CSV is its backup (Star Dental Experts, then Sunray SVR Hospital)"
+  "reauditReason": "1.4.11 (28 Nov evening review): Happy Hospitals' only homepage form is a one-field newsletter sign-up ('Subscribe'), counted as an enquiry form in its 1.4.10 report"
 }
