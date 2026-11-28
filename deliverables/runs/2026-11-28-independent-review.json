@@ -1,0 +1,60 @@
+{
+  "state": "Andhra Pradesh",
+  "reviewDate": "2026-11-28",
+  "run": null,
+  "runs": {},
+  "requested": 5,
+  "status": "pending-independent-review",
+  "dedupeAuthority": [
+    "data/leads.json",
+    "data/audits.json",
+    "git history of every branch of this repository"
+  ],
+  "neverSendAutomatically": true,
+  "businessChecks": "Pre-run vetting (28 Nov 2026): each business's own live site was read by the agent; the To: address is published there as text; each is an independent local healthcare business in Andhra Pradesh (no chain, public body, college or charity); none matches any domain, email, phone or name+city recorded in this repository (data/leads.json, data/audits.json, deliverables/ and the full git history of all 10 branches), except Kamakshi Hospital, which is in data/leads.json as a vetted lead (status new, 0 audit attempts, never emailed) carried over from 27 Nov. No site is behind the Hostinger CDN (*.cdn.hstgr.net / dns-parking.com). Rejected while vetting: dead sites (srilalithadental.com, maheshorthoandspinecentre.com, mgbclinics.com, adityamultispecialityatp.com bare domain), chains (Partha Dental, Medicover, Aravind, Indira IVF partner, Universal Srushti), a dental college, a Rotary charity hospital, pragatiivfcentre.com (Pragathi already in the registry as pragathiivfcentre.com) and saradentalknl.com (Hostinger CDN, rejected 27 Nov).",
+  "leads": [
+    {
+      "domain": "kamakshihospital.com",
+      "approved": false,
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Kamakshi Hospital (Tirupati); kamakshihospitaltpt2022@gmail.com read on https://www.kamakshihospital.com/ (homepage contact block)."
+    },
+    {
+      "domain": "maaeyecare.com",
+      "approved": false,
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Maa Eye Care (Kadapa); maa4eyecare@gmail.com read on https://www.maaeyecare.com/ (homepage 'Contact us' block)."
+    },
+    {
+      "domain": "vedanthahospital.com",
+      "approved": false,
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Vedanta Hospitals (Kadapa); vedantahospitalkadapa@gmail.com read on https://vedanthahospital.com/ (footer 'Reach out' on every page, incl. /contact/)."
+    },
+    {
+      "domain": "srirkhospital.com",
+      "approved": false,
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Sri RK Mother & Child Care Hospital (Srikakulam); srirkmchospital.sklm@gmail.com read on http://www.srirkhospital.com/contact.php (contact page (also About page))."
+    },
+    {
+      "domain": "drsnehasskinclin.in",
+      "approved": false,
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Dr Sneha's Skinclin (Visakhapatnam); skinclinvizag@gmail.com read on https://www.drsnehasskinclin.in/contact (contact page)."
+    },
+    {
+      "domain": "theskinmed.com",
+      "approved": false,
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Skinmed Skin Clinic (Visakhapatnam); skinmedvizag@gmail.com read on https://www.theskinmed.com/contact (contact page (backup))."
+    },
+    {
+      "domain": "konceptskin.com",
+      "approved": false,
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Koncept Skin (Visakhapatnam); konceptskinclinics@gmail.com read on https://www.konceptskin.com/contact.php (contact page (backup))."
+    },
+    {
+      "domain": "svchildrenhospital.com",
+      "approved": false,
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. SV Children's Hospital (Tirupati); svchildrens@gmail.com read on https://svchildrenhospital.com/ (homepage contact block (backup, last: the site carries template filler text))."
+    }
+  ],
+  "notPublished": [],
+  "notAttempted": [],
+  "withheldOtherDomains": []
+}

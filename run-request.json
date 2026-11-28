@@ -4,11 +4,11 @@
   "target": 5,
   "leadsLimit": 10,
   "niches": [],
-  "requestedAt": "2026-11-27T11:22:14Z",
-  "csv": "data/ap-websearch-2026-11-27.csv",
+  "requestedAt": "2026-11-28T07:42:00Z",
+  "csv": "data/ap-websearch-2026-11-28.csv",
   "csvOnly": true,
-  "repairOnly": true,
-  "disabled": true,
+  "repairOnly": false,
+  "disabled": false,
   "reaudit": [],
   "reauditReason": ""
 }

@@ -20,7 +20,7 @@ name: Agency Run
 
 on:
   push:
-    branches: [arena/65e78ab2-website-agency]
+    branches: [arena/9f36e1d5-website-agency]
     paths: [run-request.json]
   workflow_dispatch:
 
@@ -32,7 +32,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  ARENA_BRANCH: arena/65e78ab2-website-agency
+  ARENA_BRANCH: arena/9f36e1d5-website-agency
 
 jobs:
   request-gate:

@@ -1,7 +1,16 @@
 # STATE — read this first
 
-_Handoff for the next agent. Last updated 28 November 2026, about 13:00 IST by the Arena agent on branch
-`arena/13b58292-website-agency` (merged into `main` through a pull request)._
+_Handoff for the next agent. Last updated 28 November 2026, about 13:15 IST by the Arena agent on branch
+`arena/9f36e1d5-website-agency` (to be merged into `main` through a pull request)._
+
+> **In flight (28 Nov, from about 13:15 IST):** an Andhra Pradesh run for 5 new
+> leads on branch `arena/9f36e1d5-website-agency`, from
+> `data/ap-websearch-2026-11-28.csv` (8 vetted businesses, target 5, max 8,
+> CSV only: Kamakshi Hospital, Maa Eye Care, Vedanta Hospitals, Sri RK Mother &
+> Child Care Hospital, Dr Sneha's Skinclin; backups Skinmed Skin Clinic, Koncept
+> Skin, SV Children's Hospital). All are held (`approved: false`) in
+> `deliverables/runs/2026-11-28-independent-review.json` until the third-eye
+> review is done. The operator reviews the PDFs before any Gmail draft.
 
 > **Latest (28 Nov):** the five 27 November audits (AA Hospitals, Desai Eye Care,
 > Dr. Padmavathi Dental Hospital & Implant Centre, Leelavathi Advanced Skin & Laser
