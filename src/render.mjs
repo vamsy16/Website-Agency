@@ -276,7 +276,7 @@ ${phones
   .join("\n")}
       ${laptop ? `<div class="phone">
         <div class="frame" style="height:97mm;background:#fff;border-color:#0D2321"><img src="${e(laptop.src)}" alt="" style="object-position:${Number.isFinite(laptop.posX) ? laptop.posX : 0}% top;object-fit:cover"></div>
-        <div class="cap"><b>The same site on a laptop</b>${Number.isFinite(Number(m.perfDesktop)) && m.perfDesktop !== "—" ? `Desktop performance score: ${m.perfDesktop}/100.` : "The desktop performance test did not complete in this run."} Actual visitor device mix was not measured.</div>
+        <div class="cap"><b>The same site on a laptop</b>${Number.isFinite(Number(m.perfDesktop)) && m.perfDesktop !== "—" ? `Desktop performance score: ${m.perfDesktop}/100.` : "The desktop performance test did not complete in this run."} Actual visitor device mix was not measured.${laptop.note ? ` ${e(laptop.note)}` : ""}</div>
       </div>` : ""}
       <div style="flex:1;padding-left:2mm">
         <div class="eyebrow mut">Also measured</div>

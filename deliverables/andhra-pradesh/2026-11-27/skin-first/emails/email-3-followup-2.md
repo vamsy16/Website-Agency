@@ -2,7 +2,7 @@
 
 **To:** skinfirstk@gmail.com
 **Subject:** Re: Skin First — the next step, if useful
-**Send:** 3 December 2026
+**Send:** 4 December 2026
 **Attachments:** none
 
 ---

@@ -272,8 +272,10 @@ export function buildFacts(raw, scoring, business, settings = {}) {
       // homepage counts as a reachable contact page (independent review, 23 Nov).
       contactReachable: contactPageReachable(contact, raw.http?.homepage || {}, meta),
       contactShortcode: contact.shortcode || m.shortcodeLeak || null,
+      contactNotFoundPage: !!contact.notFoundPage,
       sitemapStatus: sitemap.status ?? 0,
       sitemapLooksValid: !!sitemap.looksLikeSitemap,
+      sitemapNotFoundPage: !!sitemap.notFoundPage,
       ...(robotsSitemaps.length ? { robotsSitemaps } : {}),
       wordpress: !!meta.wordpress,
       wpTheme: meta.theme || null,
@@ -325,6 +327,8 @@ export function buildFacts(raw, scoring, business, settings = {}) {
  */
 function contactPageReachable(contact = {}, home = {}, meta = {}) {
   if (contact.status !== 200) return false;
+  // A "page not found" page answered with 200 is not a contact page (28 Nov evening review).
+  if (contact.notFoundPage) return false;
   const norm = u => {
     try {
       const x = new URL(u);
@@ -486,19 +490,23 @@ export function deriveFindings(raw, facts, business) {
   // /sitemap.xml says nothing, and no finding is made.
   if (h.sitemapStatus && !h.sitemapLooksValid && !(h.robotsSitemaps || []).length) {
     const missing = h.sitemapStatus === 404 || h.sitemapStatus === 410;
+    // A "page not found" page answered with 200 is a missing sitemap, said as such (28 Nov evening review).
+    const softMissing = !missing && !!h.sitemapNotFoundPage;
     candidates.push({
       severity: "Medium",
       tone: "med",
-      title: missing ? `No XML sitemap was found at /sitemap.xml` : `The sitemap returns a web page instead of a sitemap`,
+      title: missing || softMissing ? `No XML sitemap was found at /sitemap.xml` : `The sitemap returns a web page instead of a sitemap`,
       measured: missing
         ? `<span class="mono">/sitemap.xml</span> answered <b>${h.sitemapStatus}</b> (not found), and robots.txt declares no other sitemap.`
-        : `<span class="mono">/sitemap.xml</span> answered <b>${h.sitemapStatus}</b> but the body is HTML, not a <span class="mono">&lt;urlset&gt;</span>. Search engines are being handed a page they cannot read.`,
-      why: missing
+        : softMissing
+          ? `<span class="mono">/sitemap.xml</span> answered <b>${h.sitemapStatus}</b> with a “page not found” page, not a <span class="mono">&lt;urlset&gt;</span>, and robots.txt declares no other sitemap.`
+          : `<span class="mono">/sitemap.xml</span> answered <b>${h.sitemapStatus}</b> but the body is HTML, not a <span class="mono">&lt;urlset&gt;</span>. Search engines are being handed a page they cannot read.`,
+      why: missing || softMissing
         ? `Without a sitemap, search engines discover new ${v.health ? "treatment" : "product and service"} pages by crawling links alone.`
         : `A broken sitemap slows discovery of new ${v.health ? "treatment" : "product and service"} pages and makes indexing depend on crawling alone.`,
       fix: `Generate a real XML sitemap and submit it in Search Console.`,
       effort: "30 minutes",
-      evidence: ["http.sitemapStatus", "http.sitemapLooksValid"],
+      evidence: ["http.sitemapStatus", "http.sitemapLooksValid", "http.sitemapNotFoundPage"],
     });
   }
 
@@ -557,7 +565,9 @@ export function deriveAlsoItems(raw, facts, printed = []) {
   if (!covered.has("http.sitemapStatus") && h.sitemapStatus && !h.sitemapLooksValid && !(h.robotsSitemaps || []).length) {
     items.push(h.sitemapStatus === 404 || h.sitemapStatus === 410
       ? `No sitemap at <span class="mono">/sitemap.xml</span> (HTTP ${h.sitemapStatus})`
-      : `<span class="mono">/sitemap.xml</span> returns a web page, not a sitemap`);
+      : h.sitemapNotFoundPage
+        ? `No sitemap at <span class="mono">/sitemap.xml</span>: it answers with a “page not found” page`
+        : `<span class="mono">/sitemap.xml</span> returns a web page, not a sitemap`);
   }
   if (m.h2Count < 3) items.push(`${m.h2Count === 0 ? "No H2 headings" : `Only ${m.h2Count} H2 heading${m.h2Count === 1 ? "" : "s"}`} for ${fmtInt(m.words)} words of content`);
   if (!covered.has("metric.smallTapTargets") && m.smallTapTargets > 0) items.push(`${m.smallTapTargets} tap targets are under 40 px`);

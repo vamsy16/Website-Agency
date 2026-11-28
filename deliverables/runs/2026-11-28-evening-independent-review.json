@@ -1,0 +1,77 @@
+{
+  "state": "Andhra Pradesh",
+  "reviewDate": "2026-11-28",
+  "run": 46140450908,
+  "runs": {
+    "46140450908": "data/ap-websearch-2026-11-28c.csv (8 vetted, target 5, max 8, CSV only): 5 audited with verify 29/29 (Arka Eye Hospital, Varma Hospitals) and 28/28 (Best Rehab, Happy Hospitals, BEST Super Speciality Hospital); 9Fertility screened out (the run's site screen found no email on the page, although the agent read 9fertility@gmail.com on its homepage; not audited, never emailed); Star Dental Experts and Sunray SVR Hospital not attempted (target reached). All held: the review found three defects (fixed in 1.4.8, re-audit requested): Arka's scorecard called a 'page not found' page a reachable contact page; BEST Super Speciality's 'Read More...' links were counted as 0; BEST Super Speciality's screen 7 showed the entry pop-up instead of the page.",
+    "46142207127": "Re-audit with 1.4.8 (repair only): Best Rehab, Happy Hospitals, Varma Hospitals and BEST Super Speciality Hospital re-audited, verify passed, layout checks ok; arkaeyehospital.com unreachable from the runner (UND_ERR_CONNECT_TIMEOUT), skipped. The review then found BEST Super Speciality's laptop view caught between two banner slides and DOM counts that included slider copies (fixed in 1.4.9; Varma's images without alt text went from 65 to 33). The review also counted 4 'Read More' links on BEST's live page against the report's 5; the fifth, in the band above its footer, was missing from the review's own fetch of the page, so the report's 5 was right (confirmed after run 46148724811).",
+    "46143717528": "Re-audit of Arka Eye Hospital with 1.4.8 (retry): unreachable again from the runner (UND_ERR_CONNECT_TIMEOUT, about 17:55 IST); nothing re-audited.",
+    "46145280391": "1.4.9 re-audit and backup: Best Rehab, Happy Hospitals and Varma Hospitals re-audited with 1.4.9 (verify passed). bestsuperspeciality.com, arkaeyehospital.com, stardentalexperts.com and sunraysvrhospital.com all unreachable from the runner (UND_ERR_CONNECT_TIMEOUT, 18:17–18:28 IST): they share three IP addresses (119.18.54.75 for BEST Super Speciality and Sunray SVR; 162.241.85.174; 103.20.127.61). Where any of these sites is hosted was not verified. Nothing else audited; the two backups are now screened 'unreachable' (re-queued only after 30 days unless cleared).",
+    "46147409817": "Retry with 1.4.9: BEST Super Speciality Hospital re-audited (verify passed; laptop view now one slide; slider copies skipped, still 5 'Read More' links, all to about-us.html; 2 forms: contact.php with 6 fields and a 1-field form posting to #). arkaeyehospital.com unreachable a fourth time (18:39–18:42 IST). Review: the 1-field forms on BEST Super Speciality and Happy Hospitals (and Best Rehab's visible one) are unidentified, and a search box would be counted as a contact form: fixed in 1.4.10.",
+    "46148724811": "1.4.10 re-audit and backup: BEST Super Speciality Hospital, Happy Hospitals and Best Rehab re-audited (verify 30/30 each). Star Dental Experts unreachable again (UND_ERR_CONNECT_TIMEOUT); Sunray SVR Hospital screened ok (sunraysvrhospital24@gmail.com on its own site) and audited, 71/100, verify 30/30. The form record showed what each counted form is: BEST Super Speciality a 6-field appointment form + a newsletter box; Sunray a 5-field appointment form + a newsletter box; Best Rehab a newsletter box + a hidden 5-field appointment form in a pop-up; Happy Hospitals only a newsletter box, scored and planned as a contact form: fixed in 1.4.11, Happy re-audited.",
+    "46150069124": "1.4.11 re-audit of Happy Hospitals: its newsletter box is no longer counted as an enquiry form; verify 31/31; 75/100 with the no-form finding, which the live homepage and contact page bear out.",
+    "46150684874": "1.4.12 re-audit of Sunray SVR Hospital: 11 'Read More' links (one in a duplicate intro hidden on phones, listed and not counted), 1 visible form (the appointment form; the newsletter box not counted), 4 of 4 call links shown; verify 30/30; 71/100.",
+    "46151816885": "1.4.13 re-audit of Varma Hospitals for its own reference: SP-AUD-2026-11-28-VH2 printed (Vedanta Hospitals keeps SP-AUD-2026-11-28-VH; Vedanta's audit row, overwritten in run 46140450908, was restored from main). Verify 31/31; 64/100; data/audits.json 76 rows, no reference held twice."
+  },
+  "requested": 5,
+  "status": "approved",
+  "dedupeAuthority": [
+    "data/leads.json",
+    "data/audits.json",
+    "git history of every branch of this repository"
+  ],
+  "neverSendAutomatically": true,
+  "businessChecks": "Pre-run vetting (28 Nov 2026, evening): each business's own live site was read by the agent; the To: address is published there as text (Sunray SVR: see its entry); each is an independent local healthcare business in Andhra Pradesh (no chain, public body, college or charity); none matches any domain, email, phone or name+city recorded in this repository (data/leads.json, data/audits.json, deliverables/, outreach/, docs/ and the full git history of all 12 branches), except Arka Eye Hospital and Best Rehab, which are in data/leads.json as vetted leads (status new, 0 audit attempts, never emailed) carried over from the 28 Nov CSV. Duplicates were checked against the repository only, never Gmail. No site is behind the Hostinger CDN (*.cdn.hstgr.net / dns-parking.com). Rejected while vetting: Hostinger (srivasavidentalhospital.in, caredentalongole.in, amruthahospital.org, lakshmanorthocare.co.in, siriskin.in, mkskin.in, sankardental.co.in, careandcurehospitals.com, gowthamihospital.com), no DNS (sankardental.com, advaitahospital.com, susrutaent.healthcare, asianenthospital.com), a hijacked domain now serving a sports-streaming site (aayushmanhospital.com), unreadable sites (physiotherapycare.in HTTP 500 on Wix, drrajasekhareyehospital.com HTTP 500, reclaimphysiohome.com, gvrchildrenhospital.com), email not on the homepage or contact page (gghospitals.in: only on a department page; rainbowdentalhospital.in: two different addresses in search snippets, none on the page), already screened out within 30 days (akiraeyehospital.in, ashalathaivf.com), rejected on 28 Nov (adityamultispecialityatp.com), chains (Partha Dental, Siri Dental, Tejasri Dental, Kolors, KIMS, Medicover, Suseela Netralaya, Ferty9, Dr Aravind's IVF), charities (CSI Arogyavaram, Mother Vannini) and already audited (desaieyecare.in, vedanthahospital.com).",
+  "leads": [
+    {
+      "domain": "arkaeyehospital.com",
+      "approved": false,
+      "reason": "Held, not published, replaced in this batch by Sunray SVR Hospital. Unreachable from GitHub Actions (UND_ERR_CONNECT_TIMEOUT) in four runs (46142207127, 46143717528, 46145280391, 46147409817), though the agent could fetch it. Its only report is the run-1 version (1.4.7, run 46140450908), with defects fixed in 1.4.8: it called its 'page not found' page (HTTP 200) a reachable contact page and mis-worded its missing sitemap. Arka Eye Hospital (Nellore); info@arkaeyehospital.com in the homepage header. Never emailed. Re-audit it (reaudit: arkaeyehospital.com) and review again before it is ever sent."
+    },
+    {
+      "domain": "bestrehabphysio.com",
+      "approved": true,
+      "reason": "Approved (run 46148724811, 1.4.10). Best Rehab, Vijayawada: bestrehabphysio@gmail.com in the header of every page and on /contact.html (Road No 1, Srinivasa Nagar Bank Colony, Bharati Nagar; 9703 907070, 7893 947847; a 50-bed inpatient rehabilitation hospital; four named physiotherapists). Checked on the live page: 5 'Read More' links (about.html and four blog posts); '1 visible form' is its newsletter box, a true count, and its 5-field appointment form opens from 'Book An Appointment', so conversion 10 and the plan to test the contact form stand. 75/100."
+    },
+    {
+      "domain": "9fertility.com",
+      "approved": false,
+      "reason": "Not audited: the run's site screen (run 46140450908) found no email on the site, although the agent read 9fertility@gmail.com on https://9fertility.com/ ('Contact Us Now' block). Status new; never emailed."
+    },
+    {
+      "domain": "happy-hospitals.com",
+      "approved": true,
+      "reason": "Approved (run 46150069124, 1.4.11). Happy Hospitals / Shri Ramachandra Joint Replacement Center, Guntur: srjrcortho@gmail.com on /contact-shri-ramachandra-joint-replacement-center and in the homepage HTML, found by the run's screen (Sanakkayala Factory Road, Pachavari Veedi, Kothapet, Guntur 522001; +91 9030797989; Dr Sivaiah Potla). Its only homepage form is a one-field newsletter sign-up and the contact page has none, so the hedged no-form finding is borne out. The dark bar over the logo in the phone screens is the phone frame's notch; the screenshot itself shows the logo clean. 75/100."
+    },
+    {
+      "domain": "varmahospitals.com",
+      "approved": true,
+      "reason": "Approved (run 46151816885, 1.4.13; reference SP-AUD-2026-11-28-VH2). Varma Hospitals, Bhimavaram: varmahospitals@gmail.com in the header and the 'Get In Touch' footer (Door No. 1-7-4/2-1, Suryanarayana Puram, J.P. Road, Bhimavaram 534202; 08816 227268, 9666399996; about 30 doctors). Checked on the live page: no homepage form; 8 'Read More' links, one on each department card; screen 7's overlapping text is the site's own (all five testimonial slides carry the same two long URLs, which wrap onto two overlapping lines at 390 px). 64/100."
+    },
+    {
+      "domain": "bestsuperspeciality.com",
+      "approved": true,
+      "reason": "Approved (run 46148724811, 1.4.10). BEST Super Speciality Hospital, Vijayawada: bestsuperspecialityvja@gmail.com in the header of every page (D.No 33-26-1, Subbarayudu Gari St, opp. Tanuja Scan, Suryaraopeta 520002; 24x7 helpline 8367722722; 12 doctors). A separate business from Best Rehab. Checked on the live page: 5 'Read More' links, all to about-us.html (intro, Mission, Vision, Values and the 'If you have any query' band above the footer); 2 visible forms, the 6-field 'Book Your Appointment' form and a newsletter box; its arrival pop-up (a neurology promotion) shows in screen 1 only, as captioned, and screen 7 and the laptop view (one banner slide) are captured after closing it. 69/100."
+    },
+    {
+      "domain": "stardentalexperts.com",
+      "approved": false,
+      "reason": "Not audited: unreachable from GitHub Actions in runs 46145280391 and 46148724811 (UND_ERR_CONNECT_TIMEOUT); screened 'unreachable', so a normal run re-queues it after 30 days. Star Dental Experts (Eluru); stardentistreeeluru@gmail.com on its own site (header and contact block). Never emailed."
+    },
+    {
+      "domain": "sunraysvrhospital.com",
+      "approved": true,
+      "reason": "Approved (run 46150684874, 1.4.12). Sunray SVR Hospital, Anantapur: sunraysvrhospital24@gmail.com in the live homepage HTML, found by the run's site screen at 18:57 and 19:16 IST, and in the search index's copy of its 'Reach Us' block; the agent's page reader strips the site's header and footer and could not show it (25-169-3, Kalyandurgam Road, Rudrampeta, Papampeta, Anantapur 515004; emergency +91 80939 36969; OP Mon-Sat 8 AM-8 PM; six named consultants). Replaces Arka Eye Hospital. Checked on the live page: 11 visible 'Read More' links (intro, nine department cards, footer; a duplicate intro hidden on phones is listed and not counted); 1 visible form, the 5-field 'Make An Appointment' form (its newsletter box not counted). 71/100."
+    }
+  ],
+  "notPublished": [
+    "arkaeyehospital.com",
+    "9fertility.com",
+    "stardentalexperts.com"
+  ],
+  "notAttempted": [],
+  "withheldOtherDomains": [],
+  "approvedCount": 5,
+  "reviewedAt": "2026-11-28T19:33:00+05:30",
+  "reviewMethod": "Every page of every final PDF read as extracted text (pymupdf), the visitor's-view pages read as images and their screenshots at full size; every ratio and screen count recomputed; every email 1 checked against its PDF and every email body for internal notes; each counted form and 'Read More' link (verify facts.counted, with fields, button and place from 1.4.10) matched to the business's live page; each business's own pages re-read after the audit (contact routes, email location, address); tools/review-pdfs.py clean on all five; nine Actions runs, six tool fixes (1.4.8-1.4.13)."
+}

@@ -148,7 +148,12 @@ async function openPopupForm(page) {
     const triggers = [...document.querySelectorAll(sel)].filter(vis);
     const booking = triggers.filter(el => new RegExp(label, "i").test(textOf(el)));
     if (booking[0]) booking[0].setAttribute("data-sp-popup-trigger", "1");
-    const hidden = [...document.querySelectorAll("form")].filter(f => !vis(f) && f.closest(box)).map(fieldsOf).filter(n => n > 0);
+    // A search box is not a booking form (1.4.10), and a form already on
+    // screen before the click was not opened by it.
+    const searchy = f => f.matches("[role=search]") || !!f.closest("[role=search]") || /search/i.test(f.getAttribute("action") || "") || !!f.querySelector("input[type=search]") || [...f.querySelectorAll("input")].some(i => /^(s|q|query|search|keywords?|search_query)$/i.test(i.name || ""));
+    document.querySelectorAll("form").forEach(f => { if (vis(f)) f.setAttribute("data-sp-was-visible", "1"); });
+    const signup = f => fieldsOf(f) === 1 && !!f.querySelector("input[type=email]");
+    const hidden = [...document.querySelectorAll("form")].filter(f => !vis(f) && f.closest(box) && !searchy(f) && !signup(f)).map(fieldsOf).filter(n => n > 0);
     return { triggers: triggers.length, bookingTriggers: booking.length, label: booking[0] ? textOf(booking[0]) : null, hiddenFields: hidden.length ? Math.max(...hidden) : 0, url: location.href.split("#")[0] };
   }, [POPUP_TRIGGER, BOOKING_LABEL]);
   const out = { triggers: found.triggers, bookingTriggers: found.bookingTriggers, label: found.label, hiddenFields: found.bookingTriggers ? found.hiddenFields : 0, opened: false, fields: 0 };
@@ -159,12 +164,93 @@ async function openPopupForm(page) {
   const after = await page.evaluate(() => {
     const vis = el => { const r = el.getBoundingClientRect(); const s = getComputedStyle(el); return r.width > 0 && r.height > 0 && s.visibility !== "hidden" && s.display !== "none" && Number(s.opacity) > 0; };
     const fieldsOf = f => [...f.querySelectorAll("input, select, textarea")].filter(i => !["hidden", "submit", "button", "reset", "image"].includes((i.type || "").toLowerCase())).length;
-    const forms = [...document.querySelectorAll("form")].filter(vis).map(fieldsOf).filter(n => n > 0);
+    const forms = [...document.querySelectorAll("form")].filter(f => vis(f) && !f.hasAttribute("data-sp-was-visible") && !(fieldsOf(f) === 1 && f.querySelector("input[type=email]"))).map(fieldsOf).filter(n => n > 0);
     return { forms: forms.length, fields: forms.length ? Math.max(...forms) : 0, url: location.href.split("#")[0] };
   }).catch(() => null);
   // A click that loaded another page says nothing about this one.
   if (!after || after.url !== found.url) return { ...out, leftPage: true };
   return { ...out, opened: after.forms > 0, fields: after.fields };
+}
+
+/**
+ * A pop-up that opens on arrival (an offer, a notice, a newsletter box) covers
+ * every screen until it is closed: BEST Super Speciality Hospital's "screen 7"
+ * showed the same pop-up as its screen 1 (28 Nov evening review). Screen 1
+ * keeps the pop-up, as a visitor first sees it; this then closes it the way a
+ * visitor would (its own close button, else Escape) before the later screens
+ * are captured. Only a fixed box marked as a pop-up (modal, popup, overlay,
+ * dialog, ...), covering at least 40% of the screen and on top at its centre,
+ * counts; a click never follows a link off the page.
+ */
+export async function closeEntryPopup(page) {
+  const info = await page.evaluate(() => {
+    const MARK = /modal|popup|pop-up|overlay|lightbox|dialog|fancybox|mfp-|pum-|newsletter|offer|promo|announcement/i;
+    const vw = innerWidth, vh = innerHeight;
+    const shown = el => { const s = getComputedStyle(el), r = el.getBoundingClientRect(); return s.display !== "none" && s.visibility !== "hidden" && Number(s.opacity) > 0.05 && r.width > 0 && r.height > 0; };
+    const cover = el => { const r = el.getBoundingClientRect(); const w = Math.max(0, Math.min(r.right, vw) - Math.max(r.left, 0)); const h = Math.max(0, Math.min(r.bottom, vh) - Math.max(r.top, 0)); return (w * h) / (vw * vh); };
+    const name = el => `${el.id || ""} ${typeof el.className === "string" ? el.className : (el.className && el.className.baseVal) || ""}`.trim();
+    const marked = el => { for (let e = el, i = 0; e && e !== document.body && i < 4; e = e.parentElement, i++) { if (MARK.test(name(e)) || e.getAttribute("role") === "dialog" || e.getAttribute("aria-modal") === "true" || e.tagName === "DIALOG") return true; } return false; };
+    document.querySelectorAll("[data-sp-entry-popup],[data-sp-entry-close]").forEach(e => { e.removeAttribute("data-sp-entry-popup"); e.removeAttribute("data-sp-entry-close"); });
+    const top = document.elementFromPoint(vw / 2, vh / 2);
+    if (!top) return { found: false };
+    const boxes = [...document.querySelectorAll("body *")].filter(el => {
+      const s = getComputedStyle(el);
+      return (s.position === "fixed" || (el.tagName === "DIALOG" && el.open)) && shown(el) && cover(el) >= 0.4 && marked(el);
+    });
+    const roots = boxes.filter(b => !boxes.some(o => o !== b && o.contains(b)));
+    if (!roots.some(r => r === top || r.contains(top))) return { found: false };
+    roots.forEach(r => r.setAttribute("data-sp-entry-popup", "1"));
+    const CLOSE_TEXT = /^(?:×|✕|✖|x|close|close ×|no,? thanks|skip|dismiss)$/i;
+    let best = null, bestScore = 0;
+    for (const root of roots) {
+      for (const el of root.querySelectorAll("button, a, span, i, div, svg, [role=button]")) {
+        if (!shown(el)) continue;
+        const r = el.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > vh || r.right < 0 || r.left > vw) continue;
+        const href = el.tagName === "A" ? (el.getAttribute("href") || "") : "";
+        if (href && !/^\s*(#|javascript:)/i.test(href)) continue;
+        const txt = (el.innerText || el.textContent || "").trim();
+        const attrs = `${name(el)} ${el.getAttribute("aria-label") || ""} ${el.getAttribute("title") || ""}`;
+        let score = 0;
+        if (el.hasAttribute("data-dismiss") || el.hasAttribute("data-bs-dismiss")) score += 5;
+        if (/close|dismiss/i.test(attrs)) score += 4;
+        if (CLOSE_TEXT.test(txt)) score += 4;
+        if (!(r.width <= 80 && r.height <= 80) && score < 5) continue;
+        if (score > bestScore) { best = el; bestScore = score; }
+      }
+    }
+    if (best && bestScore >= 4) best.setAttribute("data-sp-entry-close", "1");
+    return { found: true, cover: Math.round(Math.max(...roots.map(cover)) * 100) / 100, marker: (name(roots[0]) || roots[0].tagName.toLowerCase()).slice(0, 80), hasClose: !!(best && bestScore >= 4) };
+  });
+  if (!info.found) return info;
+  const stillOpen = () => page.evaluate(() => {
+    const vw = innerWidth, vh = innerHeight;
+    return [...document.querySelectorAll("[data-sp-entry-popup]")].some(el => {
+      const s = getComputedStyle(el), r = el.getBoundingClientRect();
+      if (s.display === "none" || s.visibility === "hidden" || Number(s.opacity) <= 0.05) return false;
+      const w = Math.max(0, Math.min(r.right, vw) - Math.max(r.left, 0));
+      const h = Math.max(0, Math.min(r.bottom, vh) - Math.max(r.top, 0));
+      return (w * h) / (vw * vh) >= 0.4;
+    });
+  }).catch(() => false);
+  const url = page.url().split("#")[0];
+  let closedBy = null;
+  if (info.hasClose) {
+    // A link inside the pop-up is never followed off the page.
+    await page.evaluate(() => document.addEventListener("click", e => {
+      const a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+      if (a && !/^\s*(#|javascript:)/i.test(a.getAttribute("href") || "")) e.preventDefault();
+    }, { capture: true, once: true }));
+    await page.click("[data-sp-entry-close]", { timeout: 2000 }).catch(() => page.evaluate(() => document.querySelector("[data-sp-entry-close]")?.click()).catch(() => {}));
+    await page.waitForTimeout(800);
+    if (!(await stillOpen())) closedBy = "close button";
+  }
+  if (!closedBy) {
+    await page.keyboard.press("Escape").catch(() => {});
+    await page.waitForTimeout(600);
+    if (!(await stillOpen())) closedBy = "Escape";
+  }
+  return { ...info, closed: !!closedBy, closedBy, leftPage: page.url().split("#")[0] !== url };
 }
 
 function collectDom(screen) {
@@ -191,7 +277,13 @@ function collectDom(screen) {
   // of 844 px (27 Nov review).
   const vw = screen?.width ? layoutWidth : window.innerWidth;
   const vh = screen?.height ? Math.round((screen.height * layoutWidth) / screen.width) : window.innerHeight;
-  const q = (sel, root = document) => [...root.querySelectorAll(sel)];
+  // Slider plugins copy slides so they can loop (Owl's .owl-item.cloned,
+  // Slick's .slick-cloned, Swiper's duplicates, Splide, Glide, bxSlider and
+  // FlexSlider clones). A copy is not a second link, image, form or tap target
+  // on the site, so every count skips it: Varma Hospitals' images without alt
+  // text read 65 with the copies and 33 without (28 Nov evening review).
+  const SLIDER_COPY = ".owl-item.cloned, .slick-cloned, .swiper-slide-duplicate, .splide__slide--clone, .glide__slide--clone, .bx-clone, .clone[aria-hidden='true']";
+  const q = (sel, root = document) => [...root.querySelectorAll(sel)].filter(el => !el.closest(SLIDER_COPY));
   const visible = el => {
     const r = el.getBoundingClientRect();
     const s = getComputedStyle(el);
@@ -293,19 +385,71 @@ function collectDom(screen) {
   };
   const stickyTel = telLinks.filter(a => visible(a) && onScreen(a)).length;
   const stickyWhatsapp = q("a[href*='wa.me'], a[href*='whatsapp']").filter(a => visible(a) && onScreen(a)).length;
-  const readMore = anchors.filter(a => /^read\s*more$/i.test((a.innerText || "").trim()));
+  // "Read More...", "Read more »" and "Read More >>" are the same generic link:
+  // BEST Super Speciality Hospital's five "Read More..." links were counted as
+  // 0 (28 Nov evening review).
+  const readMore = anchors.filter(a => /^read\s*more[\s.…!»›>→-]*$/i.test((a.innerText || "").trim()));
   const deadLinks = anchors.filter(a => {
     const h = (a.getAttribute("href") || "").trim();
     return h === "#" || h === "" || h === "javascript:void(0)" || h === "javascript:;";
   });
+  // A search box is not a way to reach the business. Happy Hospitals' only
+  // "form" had one field and no action, and its report planned to "test the
+  // contact form" (28 Nov evening review). Each form now records what it asks
+  // for and its button, for the review to check against the live page, and a
+  // search form is not counted as a visible form.
+  const formFields = f => q("input, select, textarea", f).filter(i => !["hidden", "submit", "button", "image", "reset"].includes((i.type || "").toLowerCase()));
+  const formButton = f => {
+    const b = f.querySelector("button, input[type=submit], input[type=image]");
+    return b ? ((b.innerText || b.value || b.getAttribute("aria-label") || b.getAttribute("alt") || "").replace(/\s+/g, " ").trim().slice(0, 24)) : "";
+  };
+  const isSearchForm = f => {
+    if (f.matches("[role=search]") || f.closest("[role=search]")) return true;
+    if (/search/i.test(f.getAttribute("action") || "")) return true;
+    const fl = formFields(f);
+    if (fl.some(i => (i.type || "").toLowerCase() === "search")) return true;
+    if (fl.length === 1) {
+      const i = fl[0];
+      if (/^(s|q|query|search|keywords?|search_query)$/i.test(i.name || "")) return true;
+      if (/\bsearch\b/i.test(`${i.id || ""} ${i.getAttribute("placeholder") || ""} ${i.getAttribute("aria-label") || ""}`)) return true;
+    }
+    return fl.length <= 1 && /^search$/i.test(formButton(f));
+  };
+  // Where a counted element sits: px from the top of the page and the
+  // heading above it, so the review can find it on the live page.
+  const headingsInOrder = q("h1, h2, h3, h4, h5");
+  const placeOf = el => {
+    let under = "";
+    for (const h of headingsInOrder) {
+      if (h.compareDocumentPosition(el) & Node.DOCUMENT_POSITION_FOLLOWING) under = (h.innerText || "").replace(/\s+/g, " ").trim().slice(0, 30) || under;
+      else break;
+    }
+    return { at: Math.round(el.getBoundingClientRect().top + window.scrollY), under };
+  };
+  // A newsletter sign-up is not an enquiry form either: Happy Hospitals' only
+  // homepage form was "Subscribe" with one email field, and its report scored
+  // conversion as if patients could send a request (28 Nov evening review).
+  const isNewsletterForm = f => {
+    const fl = formFields(f);
+    if (fl.length !== 1) return false;
+    const i = fl[0];
+    const hint = `${i.name || ""} ${i.id || ""} ${i.getAttribute("placeholder") || ""} ${f.id || ""} ${typeof f.className === "string" ? f.className : ""} ${f.getAttribute("action") || ""}`;
+    const emailOnly = (i.type || "").toLowerCase() === "email" || /e-?mail|subscri|newsletter/i.test(hint);
+    return emailOnly && /subscri|sign ?up|join|newsletter|notify|updates/i.test(`${formButton(f)} ${hint}`);
+  };
   const forms = q("form").map(f => ({
     id: f.id || null,
     action: f.getAttribute("action") || null,
     method: (f.getAttribute("method") || "get").toLowerCase(),
     fields: q("input, select, textarea", f).filter(i => !["hidden", "submit", "button"].includes((i.type || "").toLowerCase())).length,
     visible: visible(f),
+    search: isSearchForm(f),
+    newsletter: isNewsletterForm(f),
+    asks: formFields(f).slice(0, 6).map(i => `${i.tagName === "INPUT" ? (i.type || "text").toLowerCase() : i.tagName.toLowerCase()}:${(i.name || i.id || i.getAttribute("placeholder") || "").replace(/\s+/g, " ").trim().slice(0, 20)}`),
+    button: formButton(f),
+    ...placeOf(f),
   }));
-  const visibleForms = forms.filter(f => f.visible && f.fields > 0);
+  const visibleForms = forms.filter(f => f.visible && f.fields > 0 && !f.search && !f.newsletter);
 
   const bodyText = document.body?.innerText || "";
   const shortcode = bodyText.match(/\[(?:contact-form-7|contact-form|gravityform|wpforms|ninja_form|formidable|caldera_form)[^\]]{0,160}\]/i);
@@ -422,7 +566,23 @@ function collectDom(screen) {
     whatsapp: whatsapp.length,
     stickyTel,
     stickyWhatsapp,
-    readMoreLinks: readMore.length,
+    // Counted as a visitor sees them at 390 px: Sunray SVR Hospital's page
+    // carries its intro twice, one copy hidden on phones, and its report said
+    // 12 "Read More" links where a visitor can see 11 (28 Nov evening review).
+    // Hidden ones stay in the samples, marked, for the review.
+    readMoreLinks: readMore.filter(visible).length,
+    readMoreHidden: readMore.filter(a => !visible(a)).length,
+    telShown: telLinks.filter(visible).length,
+    whatsappShown: whatsapp.filter(visible).length,
+    // What the "Read More" count was made of, for the independent review to
+    // check against the live page (verify.json facts.counted).
+    readMoreSamples: readMore.slice(0, 12).map(a => ({
+      text: (a.innerText || "").replace(/\s+/g, " ").trim().slice(0, 30),
+      href: (a.getAttribute("href") || "").trim().slice(0, 120),
+      shown: visible(a),
+      ...placeOf(a),
+    })),
+    sliderCopiesSkipped: document.querySelectorAll(SLIDER_COPY).length,
     deadLinks: deadLinks.length,
     forms,
     visibleForms: visibleForms.length,
@@ -641,6 +801,10 @@ export async function measureSite(website, opts = {}) {
       await shot("mobile-full", { fullPage: true });
       await settle();
       await shot("screen-1");
+      // Screen 1 shows a pop-up that opens on arrival; the later screens are
+      // captured after closing it, as a visitor would (28 Nov evening review).
+      try { dom.entryPopup = await closeEntryPopup(mobile); }
+      catch (err) { dom.entryPopup = { error: String(err.message || err).split("\n")[0] }; }
 
       // Scroll-and-shoot at fixed phone-screen offsets: screen-1, screen-7, screen-14
       // One screen = the phone screen at the page's layout scale (dom.viewport):
@@ -733,13 +897,34 @@ export async function measureSite(website, opts = {}) {
         .filter(i => { const r = i.getBoundingClientRect(); return r.width > 0 && r.top < innerHeight && r.bottom > 0; })
         .every(i => i.complete && i.naturalWidth > 0), null, { timeout: 8000 }).catch(() => {});
       await desk.waitForTimeout(1000);
+      // The laptop view is the page itself: a pop-up open on arrival is closed
+      // first, and the caption says so (28 Nov evening review).
+      let deskPopup = null;
+      try { deskPopup = await closeEntryPopup(desk); }
+      catch (err) { deskPopup = { error: String(err.message || err).split("\n")[0] }; }
       const dom = await desk.evaluate(collectDom, settings.audit.desktopViewport);
       try {
         const fr = await frameRoutes(desk);
         dom.inFrames = fr;
         dom.telLinks += fr.tel; dom.mailLinks = (dom.mailLinks ?? 0) + fr.mail; dom.whatsapp += fr.whatsapp;
       } catch {}
-      result.desktop = { status: deskStatus, dom, pageErrors: deskErrors };
+      result.desktop = { status: deskStatus, dom, pageErrors: deskErrors, entryPopup: deskPopup };
+      // The laptop view is captured between slides, as the phone screens are:
+      // BEST Super Speciality Hospital's caught two banner slides mid-fade
+      // (28 Nov evening review). Slider autoplay is paused where the page
+      // exposes it (Bootstrap, Owl, Slick, Swiper), then finite animations
+      // finish (up to 3 s).
+      await desk.evaluate(() => {
+        try { const $ = window.jQuery; if ($) { if ($.fn.carousel) $(".carousel").carousel("pause"); $(".owl-carousel").trigger("stop.owl.autoplay"); if ($.fn.slick) $(".slick-initialized").slick("slickPause"); } } catch {}
+        try { document.querySelectorAll(".carousel").forEach(el => window.bootstrap?.Carousel?.getInstance?.(el)?.pause?.()); } catch {}
+        try { document.querySelectorAll(".swiper, .swiper-container").forEach(el => el.swiper?.autoplay?.stop?.()); } catch {}
+      }).catch(() => {});
+      await desk.waitForFunction(() => document.getAnimations().every(a => {
+        if (a.playState !== "running") return true;
+        const end = a.effect?.getComputedTiming?.().endTime;
+        return !Number.isFinite(end);
+      }), null, { timeout: 3000, polling: 100 }).catch(() => {});
+      result.desktop.runningAnimationsAtShot = await desk.evaluate(() => document.getAnimations().filter(a => a.playState === "running" && Number.isFinite(a.effect?.getComputedTiming?.().endTime)).length).catch(() => null);
       const file = path.join(shotDir, "desktop-fold.png");
       await desk.screenshot({ path: file });
       const stats = await imageStats(browser, file);
@@ -764,6 +949,23 @@ export async function measureSite(website, opts = {}) {
   writeJSON(outFile, result);
   result.rawFile = path.relative(ROOT, outFile).replace(/\\/g, "/");
   return result;
+}
+
+// A "page not found" page served with status 200 (a soft 404). Arka Eye
+// Hospital's /contact/ and /sitemap.xml both answered 200 with "The page you
+// were looking for doesn't exist", and its report called the contact page
+// reachable (28 Nov evening review).
+const NOT_FOUND_TEXT = /\b(?:page|file|url)\s+(?:you\s+(?:were|are)\s+looking\s+for\s+|you\s+requested\s+)?(?:was\s+|is\s+|could\s+)?(?:not\s+(?:be\s+)?found|doesn['’]?t\s+exist|does\s+not\s+exist|cannot\s+be\s+found|can['’]?t\s+be\s+found|no\s+longer\s+exists)|\berror\s*404\b|\b404\s*(?:error|not\s+found|page)\b|\bpage\s+not\s+found\b/i;
+export function looksNotFound(html = "") {
+  const title = (String(html).match(/<title[^>]*>([^<]*)<\/title>/i) || [])[1] || "";
+  if (/\b404\b|\bnot\s+found\b/i.test(title)) return true;
+  const text = String(html)
+    .replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<noscript[\s\S]*?<\/noscript>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/g, " ").replace(/&#39;|&rsquo;/g, "’")
+    .replace(/\s+/g, " ")
+    .slice(0, 30000);
+  return NOT_FOUND_TEXT.test(text);
 }
 
 /** Direct fetch checks. These back the "verifiable fact" claims in the report. */
@@ -806,9 +1008,11 @@ export async function checkHttp(website, settings) {
       info.shortcode = (r.bodyStart.match(SHORTCODE_RE) || [])[0] || null;
       info.formCount = (r.bodyStart.match(/<form\b/gi) || []).length;
       info.titleMatch = (r.bodyStart.match(/<title[^>]*>([^<]*)<\/title>/i) || [])[1] || null;
+      info.notFoundPage = r.status === 200 && looksNotFound(r.bodyStart);
     }
     if (p === "/sitemap.xml") {
       info.looksLikeSitemap = /<(urlset|sitemapindex)[\s>]/i.test(r.bodyStart);
+      info.notFoundPage = r.status === 200 && !info.looksLikeSitemap && looksNotFound(r.bodyStart);
     }
     if (p === "/robots.txt") {
       info.disallowAll = /^\s*user-agent:\s*\*/im.test(r.bodyStart) && /^\s*disallow:\s*\/\s*$/im.test(r.bodyStart);

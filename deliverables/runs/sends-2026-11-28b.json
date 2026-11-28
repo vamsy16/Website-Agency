@@ -1,0 +1,21 @@
+{
+  "source": "Gmail smartpursuit3@gmail.com, in:sent after:2026/11/28 (read 28 Nov 2026 17:06 IST); sentAt = Gmail internal_date in IST",
+  "note": "Two more first emails of the 27 November audits went out as the operator scheduled them: Dr. Padmavathi Dental Hospital at 16:43 and Leelavathi Advanced Skin & Laser Centre at 16:54 IST. At 17:06 IST Skin First (scheduled 17:09) and step 3 for nine older sequences (19:47-21:26 IST) were not in Sent yet, so they are not recorded here: record each once it shows in Sent. Mail received since 28 Nov 00:00 IST, every folder including spam and trash: nothing (no replies, bounces or opt-outs).",
+  "sends": [
+    {
+      "sequence": "2026-11-27/dr-padmavathi-dental-hospital-and-implant-centre",
+      "step": 1,
+      "sentAt": "2026-11-28T16:43:00+05:30",
+      "gmailMessageId": "1a221dbc2984f85e",
+      "gmailThreadId": "1a221038a4396d9c"
+    },
+    {
+      "sequence": "2026-11-27/leelavathi-advanced-skin-and-laser-centre",
+      "step": 1,
+      "sentAt": "2026-11-28T16:54:00+05:30",
+      "gmailMessageId": "1a221e5d5bd0b6a8",
+      "gmailThreadId": "1a221039cc6b94d3"
+    }
+  ],
+  "stops": []
+}

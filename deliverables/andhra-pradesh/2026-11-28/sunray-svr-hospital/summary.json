@@ -1,0 +1,25 @@
+{
+  "name": "Sunray SVR Hospital",
+  "domain": "sunraysvrhospital.com",
+  "city": "Anantapur",
+  "state": "Andhra Pradesh",
+  "email": "sunraysvrhospital24@gmail.com",
+  "phone": "+91 80939 36969",
+  "ref": "SP-AUD-2026-11-28-SSH",
+  "date": "2026-11-28",
+  "overall": 71,
+  "scores": {
+    "speed": 4,
+    "mobile": 5,
+    "conversion": 10,
+    "design": 10,
+    "seo": 9,
+    "overall": 71
+  },
+  "pdf": "Smart-Pursuit-Audit-Sunray-SVR-Hospital.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://www.sunraysvrhospital.com/",
+    "checkedAt": "2026-11-28"
+  }
+}

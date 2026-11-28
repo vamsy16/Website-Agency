@@ -2,7 +2,7 @@
 
 **To:** skinfirstk@gmail.com
 **Subject:** Closing the loop — Skin First
-**Send:** 6 December 2026
+**Send:** 7 December 2026
 **Attachments:** none
 
 ---

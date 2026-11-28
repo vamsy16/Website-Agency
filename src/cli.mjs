@@ -11,7 +11,7 @@ import path from "node:path";
 import fs from "node:fs";
 import { ROOT, argValue, hasFlag, parseList, readJSON, writeJSON, ensureDir, slug, domainOf, normalizeUrl, isoDate, auditRef, auditFileName, hash, log, die, fmtInt, wholeScreens } from "./util.mjs";
 import { loadSettings, resolveState } from "./config.mjs";
-import { checkAudit, recordAudit, statusSummary, pendingLeads, updateLead } from "./dedupe.mjs";
+import { checkAudit, recordAudit, statusSummary, pendingLeads, updateLead, uniqueAuditRef } from "./dedupe.mjs";
 import { fetchLeads, readCsv, OSM_ATTRIBUTION, overpassEndpoints, stateBbox } from "./leads.mjs";
 import { resolveBrowser, describeBrowser, BrowserError } from "./browser.mjs";
 import { measureSite } from "./measure.mjs";
@@ -100,6 +100,12 @@ async function cmdLeads() {
  * further right, in which case the strip is placed over the headline text
  * (centred on it when it fits, else starting just before it).
  */
+/** Caption words for a pop-up that was open on arrival: closed, or still open. */
+function popupNote(ep) {
+  if (!ep?.found) return "";
+  return ep.closed ? ", after closing the pop-up" : ", with the pop-up still open";
+}
+
 function laptopCropX(raw) {
   const box = raw.desktop?.dom?.headlineTextBox;
   const vp = raw.desktop?.dom?.viewport || {};
@@ -126,11 +132,12 @@ function buildScreens(raw, assetsDir, auditInputs) {
         sourceFile: first.file,
         label: "Screen 1",
         // With no H1 the offset is a placeholder 0, not a measurement.
-        caption: Number(raw.mobile?.dom?.h1Count) > 0
-          ? `The first thing a visitor sees at 390 px. The first H1 begins ${fmtInt(raw.mobile?.dom?.headlineOffsetPx || 0)} px down.`
+        // A pop-up open on arrival is in this shot and is said to be (28 Nov evening review).
+        caption: `The first thing a visitor sees at 390 px${raw.mobile?.dom?.entryPopup?.found ? ", with the pop-up that opens over the page" : ""}. ` + (Number(raw.mobile?.dom?.h1Count) > 0
+          ? `The first H1 begins ${fmtInt(raw.mobile?.dom?.headlineOffsetPx || 0)} px down.`
           : Number(raw.mobile?.dom?.h1Hidden) > 0
-            ? `The first thing a visitor sees at 390 px. No H1 is visible at this width.`
-            : `The first thing a visitor sees at 390 px. No H1 headline was found on the page.`,
+            ? `No H1 is visible at this width.`
+            : `No H1 headline was found on the page.`),
       });
     }
     const mid = byName["screen-7"] || byName["sec2"] || byName["mobile-full"];
@@ -146,15 +153,15 @@ function buildScreens(raw, assetsDir, auditInputs) {
         // Where the address, hours or booking controls sit was never measured,
         // so the caption does not say.
         // measure.mjs clamps the screen-7 shot to the last screen on short pages.
+        // After a pop-up open on arrival was closed, or with it still open, the
+        // caption says which (28 Nov evening review).
         caption: mid.name !== "screen-7"
           ? `Further down the same page. Check how far down the address, hours and a way to book appear.`
-          : scr >= 7
-            ? `Still scrolling: screen 7 of about ${wholeScreens(raw.mobile?.dom)}. Check how far down the address, hours and a way to book appear.`
-            : `Still scrolling: the last screen of about ${wholeScreens(raw.mobile?.dom)}. Check how far down the address, hours and a way to book appear.`,
+          : `Still scrolling${popupNote(raw.mobile?.dom?.entryPopup)}: ${scr >= 7 ? "screen 7" : "the last screen"} of about ${wholeScreens(raw.mobile?.dom)}. Check how far down the address, hours and a way to book appear.`,
       });
     }
     const desk = byName["desktop-fold"];
-    if (desk) list.push({ name: "desktop-fold", sourceFile: desk.file, label: "The same site on a laptop", posX: laptopCropX(raw) });
+    if (desk) list.push({ name: "desktop-fold", sourceFile: desk.file, label: "The same site on a laptop", posX: laptopCropX(raw), ...(raw.desktop?.entryPopup?.closed ? { note: "A pop-up that opens on arrival was closed for this view." } : {}) });
   }
 
   const screens = [];
@@ -165,7 +172,7 @@ function buildScreens(raw, assetsDir, auditInputs) {
     }
     const name = path.basename(source);
     fs.copyFileSync(source, path.join(assetsDir, name));
-    screens.push({ name: s.name, file: name, src: `assets/${name}`, label: s.label, caption: s.caption, ...(Number.isFinite(s.posX) ? { posX: s.posX } : {}) });
+    screens.push({ name: s.name, file: name, src: `assets/${name}`, label: s.label, caption: s.caption, ...(Number.isFinite(s.posX) ? { posX: s.posX } : {}), ...(s.note ? { note: s.note } : {}) });
   }
   return screens;
 }
@@ -252,6 +259,8 @@ async function runAudit({
     business.domain = business.domain || domainOf(business.url);
     business.ref = business.ref || auditRef(settings.agency.auditRefPrefix, new Date(), business.name);
   }
+  // Another business may already hold these initials for the day (1.4.13).
+  if (!fixture) business.ref = uniqueAuditRef(business.ref, business.url);
 
   const businessSlug = slug(business.name) || slug(business.domain) || "audit";
   const reportDir = ensureDir(path.join(ROOT, "reports", businessSlug));

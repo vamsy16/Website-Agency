@@ -1,0 +1,192 @@
+{
+  "ref": "SP-AUD-2026-11-28-BSS",
+  "domain": "bestsuperspeciality.com",
+  "verifiedAt": "2026-11-28T13:23:48.858Z",
+  "live": false,
+  "fixture": false,
+  "ok": true,
+  "blockers": 0,
+  "warnings": 0,
+  "checks": [
+    {
+      "id": "provenance.file",
+      "ok": true,
+      "detail": "raw measurement: data/raw/best-super-speciality-hospital/2026-11-28T13-22-32-278Z.json",
+      "severity": "ok"
+    },
+    {
+      "id": "provenance.age",
+      "ok": true,
+      "detail": "measured 0 h ago (limit 72 h, on 28 November 2026)",
+      "severity": "ok"
+    },
+    {
+      "id": "provenance.url",
+      "ok": true,
+      "detail": "raw measurement is for https://www.bestsuperspeciality.com/",
+      "severity": "ok"
+    },
+    {
+      "id": "provenance.status",
+      "ok": true,
+      "detail": "homepage returned HTTP 200",
+      "severity": "ok"
+    },
+    {
+      "id": "provenance.tool",
+      "ok": true,
+      "detail": "Lighthouse 12.8.2; screenshots: 6",
+      "severity": "ok"
+    },
+    {
+      "id": "provenance.ist",
+      "ok": true,
+      "detail": "measurement timestamp: 28/11/2026, 6:52:32 pm",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.speed",
+      "ok": true,
+      "detail": "report prints 3, rubric computes 3",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.mobile",
+      "ok": true,
+      "detail": "report prints 5, rubric computes 5",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.conversion",
+      "ok": true,
+      "detail": "report prints 10, rubric computes 10",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.design",
+      "ok": true,
+      "detail": "report prints 10, rubric computes 10",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.seo",
+      "ok": true,
+      "detail": "report prints 10, rubric computes 10",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.overall",
+      "ok": true,
+      "detail": "report prints 69, rubric computes 69",
+      "severity": "ok"
+    },
+    {
+      "id": "facts.consistent",
+      "ok": true,
+      "detail": "every printed metric equals the raw measurement",
+      "severity": "ok"
+    },
+    {
+      "id": "facts.firstParty",
+      "ok": true,
+      "detail": "the site's own host is not counted as third party",
+      "severity": "ok"
+    },
+    {
+      "id": "findings.evidence",
+      "ok": true,
+      "detail": "4 findings, every evidence field present in the measurement",
+      "severity": "ok"
+    },
+    {
+      "id": "copy.honesty",
+      "ok": true,
+      "detail": "known unsupported narrative claims absent",
+      "severity": "ok"
+    },
+    {
+      "id": "facts.viewport",
+      "ok": true,
+      "detail": "click-to-call links: 5 at load, 5 after scrolling, 0 in embedded frames, printed 5, desktop 5; WhatsApp 2/2; forms 2/2; visible H1 1/1, hidden 0, desktop 1; words 1162/1162",
+      "severity": "ok"
+    },
+    {
+      "id": "facts.screens",
+      "ok": true,
+      "detail": "11343 px over a 844 px screen (layout 390 px wide) = 13.4; printed 13.4",
+      "severity": "ok"
+    },
+    {
+      "id": "facts.zoom",
+      "ok": true,
+      "detail": "view scale 1.00 at load, 1.00 after scrolling (page's own scale 1.00); window 390×844 at load, content 390 px wide; viewport tag \"width=device-width, initial-scale=1\"",
+      "severity": "ok"
+    },
+    {
+      "id": "facts.counted",
+      "ok": true,
+      "detail": "5 \"Read More\" link(s): about-us.html @1454px under \"BEST Super Speciality Hospital\", about-us.html @1713px under \"MISSION\", about-us.html @2016px under \"VISION\", about-us.html @2296px under \"VALUES\", about-us.html @9781px under \"IF YOU HAVE ANY QUERY OR NEED \"; 2 form(s): contact.php 6 field(s) [text:name text:email text:phone select:services datetime-local:dob textarea:message] button \"Submit\" @7962px under \"Book Your Appointment\", # 1 field(s) [email:email] button \"Subscribe\" @11112px under \"Subscribe our Newsletter to ge\"; 6 link(s) to # or javascript:; 73 of 75 tap targets under 40 px; 32 slider copies skipped",
+      "severity": "ok"
+    },
+    {
+      "id": "facts.entryPopup",
+      "ok": true,
+      "detail": "pop-up open on arrival (myModal modal fade show, 100% of the screen); closed by close button",
+      "severity": "ok"
+    },
+    {
+      "id": "numbers.traceable",
+      "ok": true,
+      "detail": "all 81 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "severity": "ok"
+    },
+    {
+      "id": "report.date",
+      "ok": true,
+      "detail": "report states 28 November 2026",
+      "severity": "ok"
+    },
+    {
+      "id": "report.ref",
+      "ok": true,
+      "detail": "audit reference SP-AUD-2026-11-28-BSS printed",
+      "severity": "ok"
+    },
+    {
+      "id": "report.hash",
+      "ok": true,
+      "detail": "report HTML unchanged since QA",
+      "severity": "ok"
+    },
+    {
+      "id": "screenshots.real",
+      "ok": true,
+      "detail": "6 screenshots, all non-blank",
+      "severity": "ok"
+    },
+    {
+      "id": "pdf.pages",
+      "ok": true,
+      "detail": "PDF has 10 pages",
+      "severity": "ok"
+    },
+    {
+      "id": "pdf.format",
+      "ok": true,
+      "detail": "A4 media box",
+      "severity": "ok"
+    },
+    {
+      "id": "pdf.size",
+      "ok": true,
+      "detail": "2.84 MB",
+      "severity": "ok"
+    },
+    {
+      "id": "pdf.header",
+      "ok": true,
+      "detail": "valid PDF header",
+      "severity": "ok"
+    }
+  ]
+}

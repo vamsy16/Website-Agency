@@ -2,7 +2,7 @@
 
 **To:** leelavathiskincentre@gmail.com
 **Subject:** Closing the loop — Leelavathi Advanced Skin & Laser Centre
-**Send:** 6 December 2026
+**Send:** 7 December 2026
 **Attachments:** none
 
 ---

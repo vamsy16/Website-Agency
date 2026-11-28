@@ -1,0 +1,269 @@
+[
+  {
+    "slug": "best-rehab",
+    "layout": {
+      "ok": true,
+      "failures": [],
+      "pageCount": 10,
+      "worstOverflowMm": 0,
+      "pages": [
+        {
+          "page": 1,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 2,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 3,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 4,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 3
+        },
+        {
+          "page": 5,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 6,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 7,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 8,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 9,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 10,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        }
+      ],
+      "fontsLoaded": [
+        {
+          "name": "Instrument Serif",
+          "loaded": true
+        },
+        {
+          "name": "Inter",
+          "loaded": true
+        }
+      ],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "checkedAt": "2026-11-28T12:53:31.754Z"
+    },
+    "verification": {
+      "ok": true,
+      "blockers": 0,
+      "failedChecks": []
+    }
+  },
+  {
+    "slug": "happy-hospitals",
+    "layout": {
+      "ok": true,
+      "failures": [],
+      "pageCount": 10,
+      "worstOverflowMm": 0,
+      "pages": [
+        {
+          "page": 1,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 2,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 3,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 4,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 3
+        },
+        {
+          "page": 5,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 6,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 7,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 8,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 9,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 10,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        }
+      ],
+      "fontsLoaded": [
+        {
+          "name": "Instrument Serif",
+          "loaded": true
+        },
+        {
+          "name": "Inter",
+          "loaded": true
+        }
+      ],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "checkedAt": "2026-11-28T12:52:36.360Z"
+    },
+    "verification": {
+      "ok": true,
+      "blockers": 0,
+      "failedChecks": []
+    }
+  },
+  {
+    "slug": "varma-hospitals",
+    "layout": {
+      "ok": true,
+      "failures": [],
+      "pageCount": 10,
+      "worstOverflowMm": 0,
+      "pages": [
+        {
+          "page": 1,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 2,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 3,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 4,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 3
+        },
+        {
+          "page": 5,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 6,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 7,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 8,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 9,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        },
+        {
+          "page": 10,
+          "contentMm": 297,
+          "overflowMm": 0,
+          "images": 0
+        }
+      ],
+      "fontsLoaded": [
+        {
+          "name": "Instrument Serif",
+          "loaded": true
+        },
+        {
+          "name": "Inter",
+          "loaded": true
+        }
+      ],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "checkedAt": "2026-11-28T12:51:37.359Z"
+    },
+    "verification": {
+      "ok": true,
+      "blockers": 0,
+      "failedChecks": []
+    }
+  }
+]

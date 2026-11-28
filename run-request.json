@@ -1,19 +1,16 @@
 {
   "state": "Andhra Pradesh",
-  "max": 3,
+  "max": 2,
   "target": 1,
-  "leadsLimit": 5,
+  "leadsLimit": 10,
   "niches": [],
-  "requestedAt": "2026-11-28T08:22:44Z",
-  "csv": "data/ap-websearch-2026-11-28b.csv",
+  "requestedAt": "2026-11-28T13:52:58Z",
+  "csv": "data/ap-websearch-2026-11-28c.csv",
   "csvOnly": true,
-  "repairOnly": false,
+  "repairOnly": true,
   "disabled": true,
   "reaudit": [
-    "vedanthahospital.com",
-    "drsnehasskinclin.in",
-    "theskinmed.com",
-    "svchildrenhospital.com"
+    "varmahospitals.com"
   ],
-  "reauditReason": "1.4.7 (28 Nov review): booking pop-up form detection, whole screen counts rounded once, screen 7 in the page's own screens"
+  "reauditReason": "1.4.13 (28 Nov evening review): Varma Hospitals' audit took the reference SP-AUD-2026-11-28-VH, already Vedanta Hospitals' (morning), and replaced Vedanta's row in data/audits.json. Vedanta's row is restored; Varma is re-audited to get its own reference (VH2)"
 }

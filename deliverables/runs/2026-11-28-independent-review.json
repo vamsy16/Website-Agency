@@ -65,11 +65,6 @@
       "domain": "arkaeyehospital.com",
       "approved": false,
       "reason": "Not attempted: run 46125570076 reached its target with Nandan Hospitals. Status new; never emailed."
-    },
-    {
-      "domain": "bestrehabphysio.com",
-      "approved": false,
-      "reason": "Not attempted: run 46125570076 reached its target with Nandan Hospitals. Status new; never emailed."
     }
   ],
   "notPublished": [
@@ -79,8 +74,7 @@
     "maaeyecare.com"
   ],
   "notAttempted": [
-    "arkaeyehospital.com",
-    "bestrehabphysio.com"
+    "arkaeyehospital.com"
   ],
   "withheldOtherDomains": [],
   "approvedCount": 5,

@@ -3,6 +3,70 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## Review — 28 November 2026, evening
+
+- Five more Andhra Pradesh audits approved: Best Rehab (Vijayawada, 75), BEST Super Speciality Hospital (Vijayawada, 69), Happy Hospitals (Guntur, 75), Varma Hospitals (Bhimavaram, 64) and Sunray SVR Hospital (Anantapur, 71). They come from nine Actions runs (46140450908 to 46151816885).
+  - Each email was read on the business's own site.
+  - None matches anything in the registries, deliverables or the full history of every branch (Gmail was not used for duplicates).
+  - Review record: `deliverables/runs/2026-11-28-evening-independent-review.{md,json}`.
+- The third-eye review held each round until it was clean, and six tool fixes followed (1.4.8 to 1.4.13):
+  - a "page not found" page counted as a reachable contact page;
+  - "Read More..." links not counted;
+  - an arrival pop-up over later screens, and a laptop view caught mid-slide;
+  - carousel copies counted;
+  - search boxes and newsletter boxes counted as enquiry forms;
+  - hidden duplicate links counted;
+  - two businesses given the same audit reference, so that Vedanta Hospitals' approved audit row was overwritten. The row is restored, and Varma is now SP-AUD-2026-11-28-VH2.
+- Arka Eye Hospital (Nellore) is held and was replaced by Sunray SVR Hospital: GitHub Actions timed out on its site in four runs. Star Dental Experts timed out twice and 9Fertility was screened out (a screen false negative). None was emailed.
+- The morning five were re-checked against tonight's findings (Read More counts, forms): all match their live pages.
+- The workflow triggers on `arena/9429fd42-website-agency`, and `run-request.json` is disabled. No Gmail drafts: the operator reviews the PDFs first.
+
+## Outreach — 28 November 2026, late evening
+
+- Sends recorded from Gmail's Sent folder (`node tools/followups.mjs --record`): step 1 for Dr. Padmavathi Dental Hospital & Implant Centre (16:43 IST) and Leelavathi Advanced Skin & Laser Centre (16:54 IST), in `deliverables/runs/sends-2026-11-28b.json`; Skin First (17:09 IST), in `sends-2026-11-28c.json`. With AA Hospitals and Desai Eye Care, all five 27 November first emails are out, and their step 2 falls due 1 Dec.
+- Inbox at 17:06 and 17:28 IST: no replies, bounces or opt-outs. A solar-campaign reply (SunWorks, 17:20) is not part of this agency's outreach.
+- Still scheduled, to record once sent: step 3 for nine older sequences (19:47–21:26 IST).
+
+## 1.4.13 — 28 November 2026
+
+- **Audit references are unique, and an audit never overwrites another business's row** (`src/dedupe.mjs`, `src/cli.mjs`). "Vedanta Hospitals" (morning) and "Varma Hospitals" (evening), both audited on 28 November, got the same reference, SP-AUD-2026-11-28-VH. `recordAudit` matched rows by reference first, so Varma's audit replaced Vedanta's row and `data/audits.json` lost an approved audit (70 + 5 = 74 rows instead of 75). The history of `data/audits.json` on every branch shows no other reference ever held by two domains.
+  - `uniqueAuditRef`: a reference another business already holds gets a digit, "SP-AUD-2026-11-28-VH2"; a business keeps its own reference when re-audited.
+  - `recordAudit` replaces only a row of the same domain and refuses a reference held by another domain.
+  - `verify` accepts the digit (`report.ref`).
+  - Vedanta's row was restored exactly as it was on main (300081d), and Varma Hospitals was re-audited so its PDF prints its own reference.
+
+## 1.4.12 — 28 November 2026
+
+- **"Read More" links are counted as a visitor sees them at 390 px** (`src/measure.mjs`). Sunray SVR Hospital's homepage carries its intro twice, one copy hidden on phones; its report said 12 "Read More" links where a visitor can see 11. Hidden ones are still listed in `facts.counted`, marked "not shown, not counted". BEST Super Speciality Hospital (5), Best Rehab (5) and Varma Hospitals (8) had none hidden; the evening review confirmed BEST's fifth link in the "If you have any query" band above its footer.
+- `verify`: `facts.counted` records how many click-to-call and WhatsApp links were shown at load out of those in the page (record only, for the review).
+
+## 1.4.11 — 28 November 2026
+
+- **A newsletter sign-up is not an enquiry form** (`src/measure.mjs`). With 1.4.10's form record the review could see what each counted form was: Happy Hospitals' only homepage form is "Subscribe" with one email field, yet its report scored conversion 10/10 and planned to "test the contact form". A form whose only field is an email address and whose button or names say subscribe, sign up, join or newsletter is no longer counted as a visible form, so the pop-up booking probe runs and the no-form finding applies, as for any page without an enquiry form. The pop-up probe ignores such forms too. Best Rehab (a 5-field appointment form in a pop-up), BEST Super Speciality Hospital and Sunray SVR Hospital (visible appointment forms) also have newsletter boxes; their reports' statements stay true.
+- `verify`: `facts.counted` marks newsletter sign-ups.
+
+## 1.4.10 — 28 November 2026
+
+- **A search box is not a visible form** (`src/measure.mjs`). Happy Hospitals' only homepage "form" had one field and no action, and its report counted "1 visible form" and planned to "test the contact form". A form with `role=search`, a search field, a search action, a single `s`/`q`/`search` field or a "Search" button is no longer counted (the pop-up booking probe then runs as for a page with no form). Each form records the fields it asks for and its button text.
+- The pop-up booking probe skips search forms, and counts only forms that appear after its click: a search box already on screen read as "pop-up opened, 1 field".
+- `verify`: `facts.counted` lists each form's fields and button, marks search boxes, and gives each counted link and form its place (px from the top, the heading above it): BEST Super Speciality Hospital's fifth "Read More" link could not be found on the live page from the href alone.
+
+## 1.4.9 — 28 November 2026
+
+- **The laptop view is captured between slides** (`src/measure.mjs`), as the phone screens already were: BEST Super Speciality Hospital's re-audited laptop view (1.4.8) caught two banner slides mid-fade, their text overlapping. Slider autoplay is paused where the page exposes it (Bootstrap, Owl, Slick, Swiper) and finite animations finish (up to 3 s) before the shot; `runningAnimationsAtShot` records what was still moving. Tested in local Chromium on a cross-fading slider caught mid-fade.
+- **Slider copies are not counted** (`src/measure.mjs`): Owl, Slick, Swiper, Splide, Glide, bxSlider and FlexSlider copy slides so they can loop, and every DOM count ("Read More" links, links to #, images without alt text, tap targets, forms, sections) counted each copy again. Varma Hospitals' images without alt text went from 65 to 33. (This entry first said BEST Super Speciality Hospital's page shows 4 "Read More..." links where 5 were counted. That was the review's error: the fifth, in the band above its footer, was missing from the review's own fetch of the page, and the count of 5 is right.) Tested in local Chromium on a page with Owl and Slick clones (6 of 6 real links counted, 5 copies skipped).
+- `verify`: **`facts.counted`** (a record, never a blocker) lists what the printed counts were made of: each "Read More" link, each form with its field count, the links to #, the small tap targets and the slider copies skipped, so the independent review can check them against the live page.
+
+## 1.4.8 — 28 November 2026
+
+From the 28 November evening independent review (Andhra Pradesh, run 46140450908), before the operator saw the PDFs.
+
+- **A "page not found" page is not a contact page** (`src/measure.mjs`, `src/findings.mjs`). Arka Eye Hospital's scorecard said "Contact page reachable", but its `/contact/` (like every unknown address on that site) answers HTTP 200 with "The page you were looking for doesn't exist". The `/contact/` and `/sitemap.xml` probes now recognise such pages (`looksNotFound`: a 404 or "not found" title, or "page … not found / doesn't exist", "Error 404", "Page not found" in the text, scripts excluded); a contact probe that lands on one is not reachable.
+- **A sitemap address that answers with a "page not found" page is reported as a missing sitemap**, in those words ("answered 200 with a “page not found” page, not a <urlset>"), instead of "returns a web page instead of a sitemap".
+- **"Read More..." links are counted** with the plain "Read More" ones (trailing dots, », >, → allowed): BEST Super Speciality Hospital's scorecard said "0 “Read More” links" for a homepage with five "Read More..." links (four in its about section, one in the band above its footer).
+- **A pop-up that opens on arrival is closed before the later screens** (`closeEntryPopup`, `src/measure.mjs`). BEST Super Speciality Hospital's "screen 7" showed the same promotional pop-up as its screen 1, and its laptop view was dimmed by the pop-up's backdrop. Screen 1 keeps the pop-up, as a visitor first sees it, and its caption says so; the pop-up is then closed the way a visitor would close it (its own close button, else Escape), and the screen 7 caption says "after closing the pop-up" (or "with the pop-up still open" when it would not close). The laptop view closes it first and says so. Only a fixed box marked as a pop-up (modal, popup, overlay, dialog …), covering at least 40% of the screen and on top at its centre, counts; a click never follows a link off the page. Tested in local Chromium (mobile emulation) on a Bootstrap-style modal, an Elementor-style pop-up, an Escape-only pop-up, a pop-up whose only "×" is an off-site link (left open, page not left), a fixed background overlay, a cookie bar, an off-screen menu and a plain page.
+- `verify`: **`facts.entryPopup`** (warning) records a pop-up open on arrival and how it was closed; copy checks block pop-up wording without the measurement and the soft-404 sitemap wording without `http.sitemapNotFoundPage`.
+
 ## Outreach — 28 November 2026, evening
 
 - First-email Gmail drafts for the five 28 November audits, after the operator reviewed and approved the PDFs: Vedanta Hospitals, Dr Sneha's Skinclin, Skinmed Skin Clinic, SV Children's Hospital and Nandan Hospitals. Created in smartpursuit3@gmail.com at 16:39 IST as new threads with the approved PDF attached, and read back: recipient, subject and body identical to `email-1-first.md`, attachment the size of the file. Before that, Gmail had nothing for any of the five addresses (every folder, spam and trash included). Recorded on step 1 of each `sequence.json` (`gmailDraft`) and in `outreach/<slug>/gmail-drafts.json`. No follow-up drafts; nothing sent.

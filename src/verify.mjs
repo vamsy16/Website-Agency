@@ -185,6 +185,16 @@ export async function verifyAudit({ auditPath, live = false, fixture = false }) 
     if (/\b1 link point to\b/.test(text)) copyErrors.push("\"1 link point to\"");
     if (/Smallest body text:\s*0 px/i.test(text)) copyErrors.push("a 0 px font reported as body text");
     if (/Contact page reachable/i.test(text) && !audit.facts?.http?.contactReachable) copyErrors.push("contact page called reachable without a measured contact page");
+    // Added after the 28 November 2026 evening review: pop-up wording on the
+    // visitor's-view page only with a measured pop-up, closed or not.
+    {
+      const mp = raw?.mobile?.dom?.entryPopup || {}, dp = raw?.desktop?.entryPopup || {};
+      if (/with the pop-up that opens over the page/i.test(text) && !mp.found) copyErrors.push("a pop-up on arrival described but none was measured");
+      if (/after closing the pop-up/i.test(text) && !(mp.found && mp.closed)) copyErrors.push("a pop-up described as closed but it was not closed");
+      if (/with the pop-up still open/i.test(text) && !(mp.found && !mp.closed)) copyErrors.push("a pop-up described as still open but it was closed or never seen");
+      if (/was closed for this view/i.test(text) && !(dp.found && dp.closed)) copyErrors.push("the laptop view's pop-up described as closed but it was not");
+      if (/“page not found” page/.test(text) && !audit.facts?.http?.sitemapNotFoundPage) copyErrors.push("a soft-404 sitemap described without the measurement");
+    }
     if (/unused plugins removed/i.test(text)) copyErrors.push("plugins assumed unused without measurement");
     if (/Google’s published thresholds against your measured numbers/i.test(text)) copyErrors.push("engineering targets attributed to Google");
     // Added after the 26 November 2026 independent review.
@@ -251,6 +261,30 @@ export async function verifyAudit({ auditPath, live = false, fixture = false }) 
           pf ? (pf.error ? `pop-up probe failed: ${pf.error}` : `${pf.triggers ?? 0} pop-up button(s), ${pf.bookingTriggers ?? 0} about booking${pf.label ? ` ("${pf.label}")` : ""}; ${pf.bookingTriggers ? (pf.leftPage ? "the click left the page" : `opened: ${pf.opened ? "yes" : "no"}, ${pf.fields ?? 0} field(s) visible after the click`) : "not clicked"}; ${pf.hiddenFields ?? 0} field(s) in a hidden pop-up form`) : "no pop-up probe recorded (measured before 1.4.7)",
           "warning");
       }
+      // What the counts printed in the report were made of, for the
+      // independent review to check against the live page (28 Nov evening
+      // review: 5 "Read More" links were counted where the page shows 4).
+      // A record, never a blocker.
+      {
+        const rm = Array.isArray(dom.readMoreSamples) ? dom.readMoreSamples : null;
+        const fl = Array.isArray(dom.forms) ? dom.forms : [];
+        const short = h => String(h || "?").replace(/^https?:\/\/[^/]+/i, "") || "/";
+        add("facts.counted", true,
+          `${dom.readMoreLinks ?? "?"} "Read More" link(s)${rm ? (rm.length ? `: ${rm.map(r => `${short(r.href)}${Number.isFinite(r.at) ? ` @${r.at}px` : ""}${r.under ? ` under "${r.under}"` : ""}${r.shown ? "" : (Number.isFinite(dom.readMoreHidden) ? " (not shown, not counted)" : " (not shown)")}`).join(", ")}` : "") : " (links not recorded before 1.4.9)"}; ` +
+          (Number.isFinite(dom.telShown) ? `click-to-call ${dom.telShown} shown of ${dom.telLinks ?? "?"}, WhatsApp ${dom.whatsappShown ?? "?"} shown of ${dom.whatsapp ?? "?"} (at load); ` : "") +
+          `${fl.length} form(s)${fl.length ? `: ${fl.map(f => `${f.id ? "#" + f.id : short(f.action || "form")} ${f.fields} field(s)${Array.isArray(f.asks) ? ` [${f.asks.join(" ")}]` : ""}${f.button ? ` button "${f.button}"` : ""}${Number.isFinite(f.at) ? ` @${f.at}px` : ""}${f.under ? ` under "${f.under}"` : ""}${f.visible ? "" : " (hidden)"}${f.search ? " (search box, not counted)" : ""}${f.newsletter ? " (newsletter sign-up, not counted)" : ""}`).join(", ")}` : ""}; ` +
+          `${dom.deadLinks ?? "?"} link(s) to # or javascript:; ${dom.smallTapTargets ?? "?"} of ${dom.tapTargets ?? "?"} tap targets under 40 px; ` +
+          `${dom.sliderCopiesSkipped ?? "?"} slider cop${dom.sliderCopiesSkipped === 1 ? "y" : "ies"} skipped`);
+      }
+      // A pop-up open on arrival is closed before screens 7 and 14 (28 Nov
+      // evening review). Recorded for the independent review; a warning when
+      // it could not be closed, because those screens then show the pop-up.
+      {
+        const ep = dom.entryPopup || null;
+        add("facts.entryPopup", !(ep && ep.found && !ep.closed),
+          ep ? (ep.error ? `pop-up check failed: ${ep.error}` : ep.found ? `pop-up open on arrival (${ep.marker || "?"}, ${Math.round((ep.cover || 0) * 100)}% of the screen); ${ep.closed ? `closed by ${ep.closedBy}` : "could not be closed"}${ep.leftPage ? "; the click left the page" : ""}` : "no pop-up open on arrival") : "no pop-up check recorded (measured before 1.4.8)",
+          "warning");
+      }
     }
     const allowed = new Set(STRUCTURAL);
     flattenNumbers(audit.facts, allowed);
@@ -282,7 +316,7 @@ export async function verifyAudit({ auditPath, live = false, fixture = false }) 
     add("report.date", text.includes(longDate(isoDate(audit.date.iso))), `report states ${longDate(isoDate(audit.date.iso))}`);
     // The reference must be printed and made of letters and digits only:
     // "SP-AUD-2026-11-26-VF&" reached a client PDF (26 Nov review).
-    const refOk = /^[A-Z]+-[A-Z]+-\d{4}-\d{2}-\d{2}-[A-Z0-9]{1,3}$/.test(String(audit.ref || ""));
+    const refOk = /^[A-Z]+-[A-Z]+-\d{4}-\d{2}-\d{2}-[A-Z0-9]{1,3}[2-9]?$/.test(String(audit.ref || ""));
     add("report.ref", text.includes(audit.ref) && refOk, refOk ? `audit reference ${audit.ref} printed` : `audit reference "${audit.ref}" has characters other than letters and digits`);
 
     // Optionally confirm the rendered HTML still matches what was QA'd.

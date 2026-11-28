@@ -2,7 +2,7 @@
 
 **To:** skinfirstk@gmail.com
 **Subject:** Skin First — what I found testing skinfirst.in
-**Send:** 27 November 2026
+**Send:** 28 November 2026
 **Attachments:** reports/skin-first/Smart-Pursuit-Audit-Skin-First.pdf
 
 ---
