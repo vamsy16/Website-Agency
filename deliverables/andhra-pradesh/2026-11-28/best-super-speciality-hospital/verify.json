@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-28-BSS",
   "domain": "bestsuperspeciality.com",
-  "verifiedAt": "2026-11-28T11:44:54.428Z",
+  "verifiedAt": "2026-11-28T12:11:21.215Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/best-super-speciality-hospital/2026-11-28T11-43-44-857Z.json",
+      "detail": "raw measurement: data/raw/best-super-speciality-hospital/2026-11-28T12-10-05-950Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 28/11/2026, 5:13:44 pm",
+      "detail": "measurement timestamp: 28/11/2026, 5:40:06 pm",
       "severity": "ok"
     },
     {
@@ -123,9 +123,15 @@
       "severity": "ok"
     },
     {
+      "id": "facts.entryPopup",
+      "ok": true,
+      "detail": "pop-up open on arrival (myModal modal fade show, 100% of the screen); closed by close button",
+      "severity": "ok"
+    },
+    {
       "id": "numbers.traceable",
       "ok": true,
-      "detail": "all 76 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "detail": "all 78 distinct numbers in the report trace to the measurement, the rubric or a stated target",
       "severity": "ok"
     },
     {
@@ -167,7 +173,7 @@
     {
       "id": "pdf.size",
       "ok": true,
-      "detail": "4.04 MB",
+      "detail": "3.01 MB",
       "severity": "ok"
     },
     {

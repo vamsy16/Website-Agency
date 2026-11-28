@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-28-BR",
   "domain": "bestrehabphysio.com",
-  "verifiedAt": "2026-11-28T11:41:25.414Z",
+  "verifiedAt": "2026-11-28T12:10:03.294Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/best-rehab/2026-11-28T11-40-32-680Z.json",
+      "detail": "raw measurement: data/raw/best-rehab/2026-11-28T12-09-07-778Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 28/11/2026, 5:10:32 pm",
+      "detail": "measurement timestamp: 28/11/2026, 5:39:07 pm",
       "severity": "ok"
     },
     {
@@ -120,6 +120,12 @@
       "id": "facts.zoom",
       "ok": true,
       "detail": "view scale 1.00 at load, 1.00 after scrolling (page's own scale 1.00); window 390×844 at load, content 390 px wide; viewport tag \"width=device-width, initial-scale=1\"",
+      "severity": "ok"
+    },
+    {
+      "id": "facts.entryPopup",
+      "ok": true,
+      "detail": "no pop-up open on arrival",
       "severity": "ok"
     },
     {

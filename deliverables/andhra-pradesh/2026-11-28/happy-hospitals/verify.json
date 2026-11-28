@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-28-HH",
   "domain": "happy-hospitals.com",
-  "verifiedAt": "2026-11-28T11:42:26.972Z",
+  "verifiedAt": "2026-11-28T12:12:19.895Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/happy-hospitals/2026-11-28T11-41-33-400Z.json",
+      "detail": "raw measurement: data/raw/happy-hospitals/2026-11-28T12-11-23-456Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 28/11/2026, 5:11:33 pm",
+      "detail": "measurement timestamp: 28/11/2026, 5:41:23 pm",
       "severity": "ok"
     },
     {
@@ -123,9 +123,15 @@
       "severity": "ok"
     },
     {
+      "id": "facts.entryPopup",
+      "ok": true,
+      "detail": "no pop-up open on arrival",
+      "severity": "ok"
+    },
+    {
       "id": "numbers.traceable",
       "ok": true,
-      "detail": "all 71 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "detail": "all 74 distinct numbers in the report trace to the measurement, the rubric or a stated target",
       "severity": "ok"
     },
     {

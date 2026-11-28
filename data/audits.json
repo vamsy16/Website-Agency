@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-28T11:44:54.429Z",
+  "updatedAt": "2026-11-28T12:13:38.112Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -1566,7 +1566,7 @@
       "domain": "varmahospitals.com",
       "name": "Varma Hospitals",
       "ref": "SP-AUD-2026-11-28-VH",
-      "generatedAt": "2026-11-28T11:43:41.582Z",
+      "generatedAt": "2026-11-28T12:13:38.112Z",
       "status": "complete",
       "mode": "live",
       "scores": {
@@ -1578,7 +1578,7 @@
         "overall": 64
       },
       "pdfPages": 10,
-      "pdfBytes": 3597152,
+      "pdfBytes": 3599377,
       "files": {
         "pdf": "reports/varma-hospitals/Smart-Pursuit-Audit-Varma-Hospitals.pdf",
         "audit": "reports/varma-hospitals/audit.json",
@@ -1710,7 +1710,7 @@
       "domain": "bestrehabphysio.com",
       "name": "Best Rehab",
       "ref": "SP-AUD-2026-11-28-BR",
-      "generatedAt": "2026-11-28T11:41:25.414Z",
+      "generatedAt": "2026-11-28T12:10:03.295Z",
       "status": "complete",
       "mode": "live",
       "scores": {
@@ -1722,7 +1722,7 @@
         "overall": 75
       },
       "pdfPages": 10,
-      "pdfBytes": 3649395,
+      "pdfBytes": 3647845,
       "files": {
         "pdf": "reports/best-rehab/Smart-Pursuit-Audit-Best-Rehab.pdf",
         "audit": "reports/best-rehab/audit.json",
@@ -1734,7 +1734,7 @@
       "domain": "happy-hospitals.com",
       "name": "Happy Hospitals",
       "ref": "SP-AUD-2026-11-28-HH",
-      "generatedAt": "2026-11-28T11:42:26.973Z",
+      "generatedAt": "2026-11-28T12:12:19.896Z",
       "status": "complete",
       "mode": "live",
       "scores": {
@@ -1746,7 +1746,7 @@
         "overall": 83
       },
       "pdfPages": 10,
-      "pdfBytes": 2888225,
+      "pdfBytes": 2888205,
       "files": {
         "pdf": "reports/happy-hospitals/Smart-Pursuit-Audit-Happy-Hospitals.pdf",
         "audit": "reports/happy-hospitals/audit.json",
@@ -1758,7 +1758,7 @@
       "domain": "bestsuperspeciality.com",
       "name": "BEST Super Speciality Hospital",
       "ref": "SP-AUD-2026-11-28-BSS",
-      "generatedAt": "2026-11-28T11:44:54.429Z",
+      "generatedAt": "2026-11-28T12:11:21.216Z",
       "status": "complete",
       "mode": "live",
       "scores": {
@@ -1770,7 +1770,7 @@
         "overall": 72
       },
       "pdfPages": 10,
-      "pdfBytes": 4241334,
+      "pdfBytes": 3152241,
       "files": {
         "pdf": "reports/best-super-speciality-hospital/Smart-Pursuit-Audit-BEST-Super-Speciality-Hospital.pdf",
         "audit": "reports/best-super-speciality-hospital/audit.json",

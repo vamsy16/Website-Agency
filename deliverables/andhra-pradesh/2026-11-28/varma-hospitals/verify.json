@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-28-VH",
   "domain": "varmahospitals.com",
-  "verifiedAt": "2026-11-28T11:43:41.581Z",
+  "verifiedAt": "2026-11-28T12:13:38.111Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/varma-hospitals/2026-11-28T11-42-28-860Z.json",
+      "detail": "raw measurement: data/raw/varma-hospitals/2026-11-28T12-12-21-847Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 28/11/2026, 5:12:28 pm",
+      "detail": "measurement timestamp: 28/11/2026, 5:42:21 pm",
       "severity": "ok"
     },
     {
@@ -119,7 +119,7 @@
     {
       "id": "facts.zoom",
       "ok": true,
-      "detail": "view scale 1.00 at load, 1.00 after scrolling (page's own scale 1.00); window 469×1013 at load, content 469 px wide, widest div.owl-stage to 14870 px; viewport tag \"width=device-width, initial-scale=1.0\"",
+      "detail": "view scale 1.00 at load, 1.00 after scrolling (page's own scale 1.00); window 469×1013 at load, content 469 px wide, widest div.owl-stage to 14866 px; viewport tag \"width=device-width, initial-scale=1.0\"",
       "severity": "ok"
     },
     {
@@ -129,9 +129,15 @@
       "severity": "ok"
     },
     {
+      "id": "facts.entryPopup",
+      "ok": true,
+      "detail": "no pop-up open on arrival",
+      "severity": "ok"
+    },
+    {
       "id": "numbers.traceable",
       "ok": true,
-      "detail": "all 77 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "detail": "all 78 distinct numbers in the report trace to the measurement, the rubric or a stated target",
       "severity": "ok"
     },
     {

@@ -14,7 +14,7 @@ I ran a live website audit of varmahospitals.com and put the results in the atta
 Two things stood out:
 
 1. No appointment form fields were detected on the homepage. A patient may prefer a written appointment request.
-2. A 57/100 mobile score and a 13.6 s LCP. Google’s thresholds are 2.5 s for LCP and 200 ms for TBT.
+2. A 56/100 mobile score and a 13.6 s LCP. Google’s thresholds are 2.5 s for LCP and 200 ms for TBT.
 
 The report includes test measurements, screenshots and suggested fixes. Recommendations and effort estimates are distinguished from measured results.
 
