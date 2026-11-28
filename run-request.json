@@ -4,13 +4,13 @@
   "target": 1,
   "leadsLimit": 10,
   "niches": [],
-  "requestedAt": "2026-11-28T13:31:50Z",
+  "requestedAt": "2026-11-28T13:39:17Z",
   "csv": "data/ap-websearch-2026-11-28c.csv",
   "csvOnly": true,
   "repairOnly": true,
   "disabled": false,
   "reaudit": [
-    "happy-hospitals.com"
+    "sunraysvrhospital.com"
   ],
-  "reauditReason": "1.4.11 (28 Nov evening review): Happy Hospitals' only homepage form is a one-field newsletter sign-up ('Subscribe'), counted as an enquiry form in its 1.4.10 report"
+  "reauditReason": "1.4.12 (28 Nov evening review): Sunray SVR Hospital's report counted 12 'Read More' links, one in an intro copy hidden on phones; a visitor sees 11. Also gets 1.4.11 (its newsletter box is not an enquiry form)"
 }

@@ -3,6 +3,11 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## 1.4.12 — 28 November 2026
+
+- **"Read More" links are counted as a visitor sees them at 390 px** (`src/measure.mjs`). Sunray SVR Hospital's homepage carries its intro twice, one copy hidden on phones; its report said 12 "Read More" links where a visitor can see 11. Hidden ones are still listed in `facts.counted`, marked "not shown, not counted". BEST Super Speciality Hospital (5), Best Rehab (5) and Varma Hospitals (8) had none hidden; the evening review confirmed BEST's fifth link in the "If you have any query" band above its footer.
+- `verify`: `facts.counted` records how many click-to-call and WhatsApp links were shown at load out of those in the page (record only, for the review).
+
 ## 1.4.11 — 28 November 2026
 
 - **A newsletter sign-up is not an enquiry form** (`src/measure.mjs`). With 1.4.10's form record the review could see what each counted form was: Happy Hospitals' only homepage form is "Subscribe" with one email field, yet its report scored conversion 10/10 and planned to "test the contact form". A form whose only field is an email address and whose button or names say subscribe, sign up, join or newsletter is no longer counted as a visible form, so the pop-up booking probe runs and the no-form finding applies, as for any page without an enquiry form. The pop-up probe ignores such forms too. Best Rehab (a 5-field appointment form in a pop-up), BEST Super Speciality Hospital and Sunray SVR Hospital (visible appointment forms) also have newsletter boxes; their reports' statements stay true.

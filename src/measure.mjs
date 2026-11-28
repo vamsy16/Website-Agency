@@ -566,7 +566,14 @@ function collectDom(screen) {
     whatsapp: whatsapp.length,
     stickyTel,
     stickyWhatsapp,
-    readMoreLinks: readMore.length,
+    // Counted as a visitor sees them at 390 px: Sunray SVR Hospital's page
+    // carries its intro twice, one copy hidden on phones, and its report said
+    // 12 "Read More" links where a visitor can see 11 (28 Nov evening review).
+    // Hidden ones stay in the samples, marked, for the review.
+    readMoreLinks: readMore.filter(visible).length,
+    readMoreHidden: readMore.filter(a => !visible(a)).length,
+    telShown: telLinks.filter(visible).length,
+    whatsappShown: whatsapp.filter(visible).length,
     // What the "Read More" count was made of, for the independent review to
     // check against the live page (verify.json facts.counted).
     readMoreSamples: readMore.slice(0, 12).map(a => ({
