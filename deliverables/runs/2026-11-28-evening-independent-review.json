@@ -1,0 +1,60 @@
+{
+  "state": "Andhra Pradesh",
+  "reviewDate": "2026-11-28",
+  "run": null,
+  "runs": {},
+  "requested": 5,
+  "status": "pending-independent-review",
+  "dedupeAuthority": [
+    "data/leads.json",
+    "data/audits.json",
+    "git history of every branch of this repository"
+  ],
+  "neverSendAutomatically": true,
+  "businessChecks": "Pre-run vetting (28 Nov 2026, evening): each business's own live site was read by the agent; the To: address is published there as text (Sunray SVR: see its entry); each is an independent local healthcare business in Andhra Pradesh (no chain, public body, college or charity); none matches any domain, email, phone or name+city recorded in this repository (data/leads.json, data/audits.json, deliverables/, outreach/, docs/ and the full git history of all 12 branches), except Arka Eye Hospital and Best Rehab, which are in data/leads.json as vetted leads (status new, 0 audit attempts, never emailed) carried over from the 28 Nov CSV. Duplicates were checked against the repository only, never Gmail. No site is behind the Hostinger CDN (*.cdn.hstgr.net / dns-parking.com). Rejected while vetting: Hostinger (srivasavidentalhospital.in, caredentalongole.in, amruthahospital.org, lakshmanorthocare.co.in, siriskin.in, mkskin.in, sankardental.co.in, careandcurehospitals.com, gowthamihospital.com), no DNS (sankardental.com, advaitahospital.com, susrutaent.healthcare, asianenthospital.com), a hijacked domain now serving a sports-streaming site (aayushmanhospital.com), unreadable sites (physiotherapycare.in HTTP 500 on Wix, drrajasekhareyehospital.com HTTP 500, reclaimphysiohome.com, gvrchildrenhospital.com), email not on the homepage or contact page (gghospitals.in: only on a department page; rainbowdentalhospital.in: two different addresses in search snippets, none on the page), already screened out within 30 days (akiraeyehospital.in, ashalathaivf.com), rejected on 28 Nov (adityamultispecialityatp.com), chains (Partha Dental, Siri Dental, Tejasri Dental, Kolors, KIMS, Medicover, Suseela Netralaya, Ferty9, Dr Aravind's IVF), charities (CSI Arogyavaram, Mother Vannini) and already audited (desaieyecare.in, vedanthahospital.com).",
+  "leads": [
+    {
+      "domain": "arkaeyehospital.com",
+      "approved": false,
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Arka Eye Hospital (Nellore); info@arkaeyehospital.com read on https://arkaeyehospital.com/ (homepage header). Vetted 28 Nov (data/ap-websearch-2026-11-28b.csv), not attempted then; never audited or emailed."
+    },
+    {
+      "domain": "bestrehabphysio.com",
+      "approved": false,
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Best Rehab (Vijayawada); bestrehabphysio@gmail.com read on https://www.bestrehabphysio.com/ (header) and /contact.html. Vetted 28 Nov (data/ap-websearch-2026-11-28b.csv), not attempted then; never audited or emailed."
+    },
+    {
+      "domain": "9fertility.com",
+      "approved": false,
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. 9Fertility (Tirupati); 9fertility@gmail.com read on https://9fertility.com/ (homepage 'Contact Us Now' block)."
+    },
+    {
+      "domain": "happy-hospitals.com",
+      "approved": false,
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Happy Hospitals / Shri Ramachandra Joint Replacement Center, Dr Sivaiah Potla (Guntur); srjrcortho@gmail.com read on https://happy-hospitals.com/contact-shri-ramachandra-joint-replacement-center (contact page). Not related to Sri Ramachandra Children's and Dental Hospital (sriramachandrahospital.com, audited 15 Nov): different doctor, specialty, phone and email."
+    },
+    {
+      "domain": "varmahospitals.com",
+      "approved": false,
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Varma Hospitals (Bhimavaram); varmahospitals@gmail.com read on http://varmahospitals.com/ (homepage header)."
+    },
+    {
+      "domain": "bestsuperspeciality.com",
+      "approved": false,
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. BEST Super Speciality Hospital (Vijayawada); bestsuperspecialityvja@gmail.com read on https://www.bestsuperspeciality.com/ (header, every page). Backup. A separate business from Best Rehab: different address (Suryaraopeta vs Bharati Nagar), phone, email and social accounts; no cross-links found."
+    },
+    {
+      "domain": "stardentalexperts.com",
+      "approved": false,
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Star Dental Experts (Eluru); stardentistreeeluru@gmail.com read on http://www.stardentalexperts.com/ (header and contact block; Justdial JD Omni site). Backup."
+    },
+    {
+      "domain": "sunraysvrhospital.com",
+      "approved": false,
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Sunray SVR Hospital (Anantapur); sunraysvrhospital24@gmail.com is shown in the homepage 'Reach Us' block by the search index, but the agent's page reader strips that block, so the run's own site screen must confirm it. Backup, last."
+    }
+  ],
+  "notPublished": [],
+  "notAttempted": [],
+  "withheldOtherDomains": []
+}

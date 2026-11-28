@@ -3,6 +3,16 @@
 _Handoff for the next agent. Last updated 28 November 2026, about 16:50 IST by the Arena agent on branch
 `arena/1dd72874-website-agency` (merged into `main` through a pull request)._
 
+> **In flight (28 Nov, from 17:05 IST): a new Andhra Pradesh run of 5 leads** on
+> branch `arena/9429fd42-website-agency` (workflow trigger and `ARENA_BRANCH` point
+> there). `data/ap-websearch-2026-11-28c.csv`: Arka Eye Hospital, Best Rehab,
+> 9Fertility, Happy Hospitals, Varma Hospitals; backups BEST Super Speciality
+> Hospital, Star Dental Experts, Sunray SVR Hospital (target 5, max 8, CSV only).
+> All eight are held (`approved: false`) in
+> `deliverables/runs/2026-11-28-evening-independent-review.json` until the
+> third-eye review is done; no Gmail draft until the operator approves the PDFs.
+> If you find this note and the run is finished, do the review (section 5).
+
 > **Latest (28 Nov, 16:50 IST): the five 28 November audits have their first
 > emails in Gmail Drafts.** The operator reviewed and approved the PDFs; the
 > drafts were created at 16:39 IST as new threads, PDF attached, and read back
