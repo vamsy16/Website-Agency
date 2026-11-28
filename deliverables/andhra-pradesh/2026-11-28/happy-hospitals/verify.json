@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-28-HH",
   "domain": "happy-hospitals.com",
-  "verifiedAt": "2026-11-28T12:12:19.895Z",
+  "verifiedAt": "2026-11-28T12:52:38.530Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/happy-hospitals/2026-11-28T12-11-23-456Z.json",
+      "detail": "raw measurement: data/raw/happy-hospitals/2026-11-28T12-51-41-661Z.json",
       "severity": "ok"
     },
     {
@@ -41,13 +41,13 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 28/11/2026, 5:41:23 pm",
+      "detail": "measurement timestamp: 28/11/2026, 6:21:41 pm",
       "severity": "ok"
     },
     {
       "id": "scores.speed",
       "ok": true,
-      "detail": "report prints 8, rubric computes 8",
+      "detail": "report prints 9, rubric computes 9",
       "severity": "ok"
     },
     {
@@ -77,7 +77,7 @@
     {
       "id": "scores.overall",
       "ok": true,
-      "detail": "report prints 83, rubric computes 83",
+      "detail": "report prints 85, rubric computes 85",
       "severity": "ok"
     },
     {
@@ -123,6 +123,12 @@
       "severity": "ok"
     },
     {
+      "id": "facts.counted",
+      "ok": true,
+      "detail": "0 \"Read More\" link(s); 1 form(s): form 1 field(s); 24 link(s) to # or javascript:; 68 of 113 tap targets under 40 px; 0 slider copies skipped",
+      "severity": "ok"
+    },
+    {
       "id": "facts.entryPopup",
       "ok": true,
       "detail": "no pop-up open on arrival",
@@ -131,7 +137,7 @@
     {
       "id": "numbers.traceable",
       "ok": true,
-      "detail": "all 74 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "detail": "all 73 distinct numbers in the report trace to the measurement, the rubric or a stated target",
       "severity": "ok"
     },
     {

@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-28-VH",
   "domain": "varmahospitals.com",
-  "verifiedAt": "2026-11-28T12:13:38.111Z",
+  "verifiedAt": "2026-11-28T12:51:39.354Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/varma-hospitals/2026-11-28T12-12-21-847Z.json",
+      "detail": "raw measurement: data/raw/varma-hospitals/2026-11-28T12-50-25-270Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 28/11/2026, 5:42:21 pm",
+      "detail": "measurement timestamp: 28/11/2026, 6:20:25 pm",
       "severity": "ok"
     },
     {
@@ -129,6 +129,12 @@
       "severity": "ok"
     },
     {
+      "id": "facts.counted",
+      "ok": true,
+      "detail": "8 \"Read More\" link(s): /services/Cardiology, /services/Cardiothoracic-Surgery, /services/ent, /services/Nephrology, /services/General-Surgery, /services/Gynaecology-Obstetrics, /services/Internal-Medicine, /services/Orthopaedics; 0 form(s); 7 link(s) to # or javascript:; 29 of 38 tap targets under 40 px; 32 slider copies skipped",
+      "severity": "ok"
+    },
+    {
       "id": "facts.entryPopup",
       "ok": true,
       "detail": "no pop-up open on arrival",
@@ -137,7 +143,7 @@
     {
       "id": "numbers.traceable",
       "ok": true,
-      "detail": "all 78 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "detail": "all 75 distinct numbers in the report trace to the measurement, the rubric or a stated target",
       "severity": "ok"
     },
     {
@@ -179,7 +185,7 @@
     {
       "id": "pdf.size",
       "ok": true,
-      "detail": "3.43 MB",
+      "detail": "3.42 MB",
       "severity": "ok"
     },
     {
