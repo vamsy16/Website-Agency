@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-28-SSH",
   "domain": "sunraysvrhospital.com",
-  "verifiedAt": "2026-11-28T13:28:44.149Z",
+  "verifiedAt": "2026-11-28T13:48:25.625Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/sunray-svr-hospital/2026-11-28T13-27-24-772Z.json",
+      "detail": "raw measurement: data/raw/sunray-svr-hospital/2026-11-28T13-47-03-750Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 28/11/2026, 6:57:24 pm",
+      "detail": "measurement timestamp: 28/11/2026, 7:17:03 pm",
       "severity": "ok"
     },
     {
@@ -107,7 +107,7 @@
     {
       "id": "facts.viewport",
       "ok": true,
-      "detail": "click-to-call links: 4 at load, 4 after scrolling, 0 in embedded frames, printed 4, desktop 4; WhatsApp 0/0; forms 2/2; visible H1 1/1, hidden 0, desktop 1; words 1079/1079",
+      "detail": "click-to-call links: 4 at load, 4 after scrolling, 0 in embedded frames, printed 4, desktop 4; WhatsApp 0/0; forms 1/1; visible H1 1/1, hidden 0, desktop 1; words 1079/1079",
       "severity": "ok"
     },
     {
@@ -125,7 +125,7 @@
     {
       "id": "facts.counted",
       "ok": true,
-      "detail": "12 \"Read More\" link(s): about-hospital.html @0px under \"HOSPITAL\" (not shown), about-hospital.html @1385px under \"HOSPITAL\", nephrologist-anantapur.html @3698px under \"NEPHROLOGY\", gynecologist-anantapur.html @3698px under \"GYNECOLOGY\", general-surgeon-anantapur.html @3698px under \"GENERAL SURGERY\", urologist-anantapur.html @3698px under \"UROLOGY\", neuro-surgery-hospital-anantapur.html @3698px under \"NEURO SURGERY\", orthopedic-hospitals-anantapur.html @3698px under \"ORTHOPEDICS\", general-medicine-anantapur.html @3698px under \"GENERAL MEDICINE\", diabetes-treatment-anantapur.html @3698px under \"DIABETOLOGY\", critical-care-hospitals-anantapur.html @3698px under \"CRITICAL CARE\", about-hospital.html @10112px under \"FIGHTING INFERTILITY IS A JOUR\"; 2 form(s): appointment.php 5 field(s) [text:name text:email text:phone datetime-local:dob textarea:message] button \"Submit\" @5188px under \"MAKE AN APPOINTMENT\", form 1 field(s) [email:email] button \"Subscribe\" @10160px under \"FIGHTING INFERTILITY IS A JOUR\"; 11 link(s) to # or javascript:; 35 of 44 tap targets under 40 px; 24 slider copies skipped",
+      "detail": "11 \"Read More\" link(s): about-hospital.html @0px under \"HOSPITAL\" (not shown, not counted), about-hospital.html @1385px under \"HOSPITAL\", nephrologist-anantapur.html @3698px under \"NEPHROLOGY\", gynecologist-anantapur.html @3698px under \"GYNECOLOGY\", general-surgeon-anantapur.html @3698px under \"GENERAL SURGERY\", urologist-anantapur.html @3698px under \"UROLOGY\", neuro-surgery-hospital-anantapur.html @3698px under \"NEURO SURGERY\", orthopedic-hospitals-anantapur.html @3698px under \"ORTHOPEDICS\", general-medicine-anantapur.html @3698px under \"GENERAL MEDICINE\", diabetes-treatment-anantapur.html @3698px under \"DIABETOLOGY\", critical-care-hospitals-anantapur.html @3698px under \"CRITICAL CARE\", about-hospital.html @10112px under \"FIGHTING INFERTILITY IS A JOUR\"; click-to-call 4 shown of 4, WhatsApp 0 shown of 0 (at load); 2 form(s): appointment.php 5 field(s) [text:name text:email text:phone datetime-local:dob textarea:message] button \"Submit\" @5188px under \"MAKE AN APPOINTMENT\", form 1 field(s) [email:email] button \"Subscribe\" @10160px under \"FIGHTING INFERTILITY IS A JOUR\" (newsletter sign-up, not counted); 11 link(s) to # or javascript:; 35 of 44 tap targets under 40 px; 24 slider copies skipped",
       "severity": "ok"
     },
     {
@@ -137,7 +137,7 @@
     {
       "id": "numbers.traceable",
       "ok": true,
-      "detail": "all 80 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "detail": "all 79 distinct numbers in the report trace to the measurement, the rubric or a stated target",
       "severity": "ok"
     },
     {
@@ -179,7 +179,7 @@
     {
       "id": "pdf.size",
       "ok": true,
-      "detail": "2.28 MB",
+      "detail": "2.43 MB",
       "severity": "ok"
     },
     {

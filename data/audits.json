@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-28T13:40:05.878Z",
+  "updatedAt": "2026-11-28T13:48:25.626Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -1782,7 +1782,7 @@
       "domain": "sunraysvrhospital.com",
       "name": "Sunray SVR Hospital",
       "ref": "SP-AUD-2026-11-28-SSH",
-      "generatedAt": "2026-11-28T13:28:44.151Z",
+      "generatedAt": "2026-11-28T13:48:25.626Z",
       "status": "complete",
       "mode": "live",
       "scores": {
@@ -1794,7 +1794,7 @@
         "overall": 71
       },
       "pdfPages": 10,
-      "pdfBytes": 2389730,
+      "pdfBytes": 2548644,
       "files": {
         "pdf": "reports/sunray-svr-hospital/Smart-Pursuit-Audit-Sunray-SVR-Hospital.pdf",
         "audit": "reports/sunray-svr-hospital/audit.json",
