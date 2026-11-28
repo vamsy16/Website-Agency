@@ -2,7 +2,9 @@
   "state": "Andhra Pradesh",
   "reviewDate": "2026-11-28",
   "run": null,
-  "runs": {},
+  "runs": {
+    "46122437174": "8 vetted leads, target 5: 4 audited (verify 28/28), 3 failed verify, 1 screened out; all held by this review"
+  },
   "requested": 5,
   "status": "pending-independent-review",
   "dedupeAuthority": [
@@ -52,6 +54,21 @@
       "domain": "svchildrenhospital.com",
       "approved": false,
       "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. SV Children's Hospital (Tirupati); svchildrens@gmail.com read on https://svchildrenhospital.com/ (homepage contact block (backup, last: the site carries template filler text))."
+    },
+    {
+      "domain": "nandanhospitals.com",
+      "approved": false,
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Nandan Hospitals (Vijayawada); nandanhospitalsvijayawada@gmail.com read on https://nandanhospitals.com/contact-us.php (header on every page and the contact page)."
+    },
+    {
+      "domain": "arkaeyehospital.com",
+      "approved": false,
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Arka Eye Hospital (Nellore); info@arkaeyehospital.com read on https://arkaeyehospital.com/ (header on the homepage)."
+    },
+    {
+      "domain": "bestrehabphysio.com",
+      "approved": false,
+      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Best Rehab (Vijayawada); bestrehabphysio@gmail.com read on https://www.bestrehabphysio.com/contact.html (header and the contact page)."
     }
   ],
   "notPublished": [],

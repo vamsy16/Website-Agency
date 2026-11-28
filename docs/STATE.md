@@ -4,13 +4,17 @@ _Handoff for the next agent. Last updated 28 November 2026, about 13:15 IST by t
 `arena/9f36e1d5-website-agency` (to be merged into `main` through a pull request)._
 
 > **In flight (28 Nov, from about 13:15 IST):** an Andhra Pradesh run for 5 new
-> leads on branch `arena/9f36e1d5-website-agency`, from
-> `data/ap-websearch-2026-11-28.csv` (8 vetted businesses, target 5, max 8,
-> CSV only: Kamakshi Hospital, Maa Eye Care, Vedanta Hospitals, Sri RK Mother &
-> Child Care Hospital, Dr Sneha's Skinclin; backups Skinmed Skin Clinic, Koncept
-> Skin, SV Children's Hospital). All are held (`approved: false`) in
-> `deliverables/runs/2026-11-28-independent-review.json` until the third-eye
-> review is done. The operator reviews the PDFs before any Gmail draft.
+> leads on branch `arena/9f36e1d5-website-agency`. Run 46122437174
+> (`data/ap-websearch-2026-11-28.csv`) audited Vedanta Hospitals, Dr Sneha's
+> Skinclin, Skinmed Skin Clinic and SV Children's Hospital (verify 28/28 each);
+> Kamakshi Hospital, Sri RK and Koncept Skin failed verify and Maa Eye Care was
+> screened out. The third-eye review found a false "no appointment form" claim
+> (Vedanta's form is in a "Book Appointment" pop-up) and screen-count/caption
+> rounding errors, fixed in 1.4.7. The second run re-audits the four with 1.4.7
+> and audits one more lead from `data/ap-websearch-2026-11-28b.csv` (Nandan
+> Hospitals, Arka Eye Hospital, Best Rehab; target 1). Everything stays held
+> (`approved: false`) in `deliverables/runs/2026-11-28-independent-review.json`
+> until the review is done. The operator reviews the PDFs before any Gmail draft.
 
 > **Latest (28 Nov):** the five 27 November audits (AA Hospitals, Desai Eye Care,
 > Dr. Padmavathi Dental Hospital & Implant Centre, Leelavathi Advanced Skin & Laser

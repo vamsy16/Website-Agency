@@ -7,7 +7,7 @@
 //
 // No constant in here is a judgement about a business. Each penalty is attached
 // to one measured threshold from config/settings.json.
-import { clamp, round, fmtInt, fmtBytesKB, fmtSec, fmtCls, longDate, isoDate, audienceOf, adTechLabel, stickyRoutes, telDiffers } from "./util.mjs";
+import { clamp, round, fmtInt, fmtBytesKB, fmtSec, fmtCls, longDate, isoDate, audienceOf, adTechLabel, stickyRoutes, telDiffers, wholeScreens, noFormRoute } from "./util.mjs";
 
 const PENALTY = {
   // speed
@@ -98,8 +98,8 @@ export function computeScores(raw, settings) {
   // ---------- CONVERSION ----------
   let conversion = 10;
   if (m.shortcodeLeak) { conversion -= PENALTY.shortcode; penalties.conversion.push(`an unrendered form shortcode is visible (-${PENALTY.shortcode})`); }
-  if (!m.visibleForms) { conversion -= PENALTY.noVisibleForm; penalties.conversion.push(`no visible form with fields on the homepage (-${PENALTY.noVisibleForm})`); }
-  if (!m.visibleForms && m.whatsapp > 0) { conversion -= PENALTY.whatsappOnly; penalties.conversion.push(`WhatsApp is the only capture route (-${PENALTY.whatsappOnly})`); }
+  if (noFormRoute(m)) { conversion -= PENALTY.noVisibleForm; penalties.conversion.push(`no visible form with fields on the homepage (-${PENALTY.noVisibleForm})`); }
+  if (noFormRoute(m) && m.whatsapp > 0) { conversion -= PENALTY.whatsappOnly; penalties.conversion.push(`WhatsApp is the only capture route (-${PENALTY.whatsappOnly})`); }
   conversion = clamp(conversion, 0, 10);
 
   // ---------- DESIGN ----------
@@ -221,6 +221,7 @@ export function buildFacts(raw, scoring, business, settings = {}) {
       words: m.words ?? 0,
       sections: m.sections ?? 0,
       screens: m.screens ?? 0,
+      screensExact: m.screensExact ?? null,
       pageHeightPx: m.pageHeightPx ?? 0,
       images: m.images ?? 0,
       imagesNoAlt: m.imagesNoAlt ?? 0,
@@ -243,6 +244,10 @@ export function buildFacts(raw, scoring, business, settings = {}) {
       readMore: m.readMoreLinks ?? 0,
       deadLinks: m.deadLinks ?? 0,
       visibleForms: m.visibleForms ?? 0,
+      // A form that opens in a pop-up from a booking button (none visible on
+      // the page itself): the fields counted after one click (28 Nov review).
+      popupFormFields: Math.max(Number(m.popupForm?.fields) || 0, Number(m.popupForm?.hiddenFields) || 0),
+      popupTrigger: m.popupForm?.label || null,
       forms: Array.isArray(m.forms) ? m.forms.length : 0,
       thirdPartyRequests: mreq.thirdParty ?? 0,
       thirdPartyCookies: raw.mobile?.cookies?.thirdParty ?? 0,
@@ -360,7 +365,7 @@ export function deriveFindings(raw, facts, business) {
     });
   }
 
-  if (m.visibleForms === 0) {
+  if (noFormRoute(m)) {
     candidates.push({
       severity: "Critical",
       tone: "crit",
@@ -421,7 +426,7 @@ export function deriveFindings(raw, facts, business) {
     candidates.push({
       severity: "Medium",
       tone: "med",
-      title: `${Math.round(m.screens)} screen heights of homepage content`,
+      title: `${wholeScreens(m)} screen heights of homepage content`,
       measured: `${fmtInt(m.pageHeightPx)} px tall at 390 px wide. ${m.sections ? `${m.sections} section${m.sections === 1 ? "" : "s"}, ` : ""}${m.images} image${m.images === 1 ? "" : "s"}, ${fmtInt(m.words)} words. These dimensions alone do not establish where contact details appear.`,
       why: `A long page can require more navigation. Review the captured screens to check whether key service and contact information is easy to find; no scrolling behaviour was measured.`,
       // The rubric's own threshold (6 screens), as in plan row 06. "Five

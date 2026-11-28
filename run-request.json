@@ -1,14 +1,19 @@
 {
   "state": "Andhra Pradesh",
-  "max": 8,
-  "target": 5,
-  "leadsLimit": 10,
+  "max": 3,
+  "target": 1,
+  "leadsLimit": 5,
   "niches": [],
-  "requestedAt": "2026-11-28T07:42:00Z",
-  "csv": "data/ap-websearch-2026-11-28.csv",
+  "requestedAt": "2026-11-28T08:22:44Z",
+  "csv": "data/ap-websearch-2026-11-28b.csv",
   "csvOnly": true,
   "repairOnly": false,
   "disabled": false,
-  "reaudit": [],
-  "reauditReason": ""
+  "reaudit": [
+    "vedanthahospital.com",
+    "drsnehasskinclin.in",
+    "theskinmed.com",
+    "svchildrenhospital.com"
+  ],
+  "reauditReason": "1.4.7 (28 Nov review): booking pop-up form detection, whole screen counts rounded once, screen 7 in the page's own screens"
 }

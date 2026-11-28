@@ -124,6 +124,49 @@ async function frameRoutes(page) {
   return out;
 }
 
+// Buttons that open a pop-up instead of a page: Elementor pop-ups, Bootstrap
+// modals, Popup Maker and data-attribute triggers.
+const POPUP_TRIGGER = [
+  'a[href*="elementor-action"][href*="popup"]',
+  '[data-toggle="modal"]', '[data-bs-toggle="modal"]',
+  '[class*="popmake-"]', '[data-popup-open]', '[data-micromodal-trigger]',
+].join(", ");
+const BOOKING_LABEL = "book|appoint|enquir|inquir|consult|contact|call ?back|request|register|schedule";
+
+/**
+ * Clicks the page's booking pop-up button, if it has one, and counts the form
+ * fields a visitor then sees. Only a button whose label is about booking or
+ * contact is clicked; a click that leaves the page counts nothing. A form
+ * already in the markup, hidden inside a pop-up container, is reported too.
+ */
+async function openPopupForm(page) {
+  const found = await page.evaluate(([sel, label]) => {
+    const vis = el => { const r = el.getBoundingClientRect(); const s = getComputedStyle(el); return r.width > 0 && r.height > 0 && s.visibility !== "hidden" && s.display !== "none" && Number(s.opacity) > 0; };
+    const fieldsOf = f => [...f.querySelectorAll("input, select, textarea")].filter(i => !["hidden", "submit", "button", "reset", "image"].includes((i.type || "").toLowerCase())).length;
+    const box = '[data-elementor-type="popup"], .elementor-location-popup, .elementor-popup-modal, .modal, [role="dialog"], .pum, .pum-overlay';
+    const textOf = el => (el.innerText || el.getAttribute("aria-label") || el.getAttribute("title") || "").replace(/\s+/g, " ").trim().slice(0, 60);
+    const triggers = [...document.querySelectorAll(sel)].filter(vis);
+    const booking = triggers.filter(el => new RegExp(label, "i").test(textOf(el)));
+    if (booking[0]) booking[0].setAttribute("data-sp-popup-trigger", "1");
+    const hidden = [...document.querySelectorAll("form")].filter(f => !vis(f) && f.closest(box)).map(fieldsOf).filter(n => n > 0);
+    return { triggers: triggers.length, bookingTriggers: booking.length, label: booking[0] ? textOf(booking[0]) : null, hiddenFields: hidden.length ? Math.max(...hidden) : 0, url: location.href.split("#")[0] };
+  }, [POPUP_TRIGGER, BOOKING_LABEL]);
+  const out = { triggers: found.triggers, bookingTriggers: found.bookingTriggers, label: found.label, hiddenFields: found.bookingTriggers ? found.hiddenFields : 0, opened: false, fields: 0 };
+  if (!found.bookingTriggers) return out;
+  const sel = "[data-sp-popup-trigger]";
+  await page.click(sel, { timeout: 5000 }).catch(() => page.evaluate(s => document.querySelector(s)?.click(), sel));
+  await page.waitForTimeout(2500);
+  const after = await page.evaluate(() => {
+    const vis = el => { const r = el.getBoundingClientRect(); const s = getComputedStyle(el); return r.width > 0 && r.height > 0 && s.visibility !== "hidden" && s.display !== "none" && Number(s.opacity) > 0; };
+    const fieldsOf = f => [...f.querySelectorAll("input, select, textarea")].filter(i => !["hidden", "submit", "button", "reset", "image"].includes((i.type || "").toLowerCase())).length;
+    const forms = [...document.querySelectorAll("form")].filter(vis).map(fieldsOf).filter(n => n > 0);
+    return { forms: forms.length, fields: forms.length ? Math.max(...forms) : 0, url: location.href.split("#")[0] };
+  }).catch(() => null);
+  // A click that loaded another page says nothing about this one.
+  if (!after || after.url !== found.url) return { ...out, leftPage: true };
+  return { ...out, opened: after.forms > 0, fields: after.fields };
+}
+
 function collectDom(screen) {
   const de = document.documentElement;
   // The page's layout width, read from media queries: unlike innerWidth and
@@ -347,6 +390,11 @@ function collectDom(screen) {
     overflowX: Math.max(0, de.scrollWidth - de.clientWidth),
     pageHeightPx: de.scrollHeight,
     screens: Math.round((de.scrollHeight / vh) * 10) / 10,
+    // Unrounded, for the whole number printed in the report: rounding the
+    // 1-decimal value again printed "about 8 phone screens" for 6,311 px over
+    // 844 px, 7.48 screens (7.48 -> 7.5 -> 8; 28 Nov review). The screen here
+    // is not rounded to whole pixels either (692.5 px at a 320 px layout).
+    screensExact: Math.round((de.scrollHeight / (screen?.height && screen?.width ? (screen.height * layoutWidth) / screen.width : vh)) * 1000) / 1000,
     domNodes: document.querySelectorAll("*").length,
     words,
     textChars: text.length,
@@ -595,9 +643,13 @@ export async function measureSite(website, opts = {}) {
       await shot("screen-1");
 
       // Scroll-and-shoot at fixed phone-screen offsets: screen-1, screen-7, screen-14
+      // One screen = the phone screen at the page's layout scale (dom.viewport):
+      // 693 px on a page laid out 320 px wide, not 844. Stepping 844 px put
+      // Skinmed's "screen 7" 7.3 screens down (28 Nov review).
       const pageHeight = dom.pageHeightPx;
+      const screenStep = Number(dom.viewport?.height) > 0 ? Number(dom.viewport.height) : settings.audit.viewport.height;
       for (const n of [7, 14]) {
-        const y = Math.min(pageHeight - settings.audit.viewport.height, (n - 1) * settings.audit.viewport.height);
+        const y = Math.min(pageHeight - screenStep, (n - 1) * screenStep);
         if (y <= 0) continue;
         await mobile.evaluate(yy => window.scrollTo(0, yy), y);
         await mobile.waitForTimeout(600);
@@ -645,6 +697,16 @@ export async function measureSite(website, opts = {}) {
             clip: { x: 0, y: box.top, width: settings.audit.viewport.width, height: Math.min(box.height, 900) },
           });
         } catch {}
+      }
+
+      // A booking form can open in a pop-up from a button on the page. Its
+      // fields are hidden, or not loaded, until a visitor clicks, so the count
+      // above reads zero: Vedanta Hospitals' three "Book Appointment" buttons
+      // open an Elementor pop-up (28 Nov review). Done last, after every
+      // screenshot, so the open pop-up appears in none of them.
+      if (!dom.visibleForms) {
+        try { dom.popupForm = await openPopupForm(mobile); }
+        catch (err) { dom.popupForm = { error: String(err.message || err).split("\n")[0] }; }
       }
     }
     await mobileCtx.close();

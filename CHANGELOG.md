@@ -3,6 +3,16 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## 1.4.7 — 28 November 2026
+
+From the 28 November independent review (Andhra Pradesh, run 46122437174).
+
+- **A booking form in a pop-up is a form** (`src/measure.mjs`, `src/findings.mjs`). Vedanta Hospitals' three "Book Appointment" buttons open an Elementor pop-up, but the report led with "No appointment form fields were detected on the homepage" (and so did email 1), because only forms visible on the page were counted. With no visible form, the measurement now clicks a button whose label is about booking or contact and that opens a pop-up (Elementor pop-ups, Bootstrap modals, Popup Maker), after every screenshot, and counts the fields then shown; a form already in the markup inside a hidden pop-up counts too, and a click that leaves the page counts nothing. Such a form removes the "no form" finding and both conversion penalties, and the report says "Booking form in a pop-up (“Book An Appointment”)". Tested in local Chromium on an Elementor-style pop-up, a video-only pop-up button and a modal link that leaves the page.
+- `verify`: **`facts.popupForm`** (warning) records the pop-up buttons found, the one clicked and the fields counted; the check that blocks a "no form" claim against a measured form now covers the healthcare wording ("No appointment form …") and pop-up forms.
+- **Whole screen counts are rounded once, from the unrounded value**: "about 8 phone screens" and "≈8 screens tall" were printed for 6,311 px over 844 px, 7.48 screens (7.48 → 7.5 → 8). The screen is not rounded to whole pixels either (692.5 px at a 320 px layout). The 1-decimal value used for scoring and `facts.screens` is unchanged.
+- **Screen 7 is taken in the page's own screens**: the shot stepped 844 px down per screen, so on a page laid out 320 px wide (Wix; a screen is 692.5 px) Skinmed's "screen 7" was 7.3 screens down and Dr Sneha's "last screen" stopped 151 px above the bottom.
+- `tools/review-pdfs.py`: the screen-count check uses the unrounded screen and rounds half up as the report does (Python's `round()` rounds 10.5 down); "the last screen of about 7" is no longer flagged (screen 7 is the last screen of a 6.5–6.99-screen page); a "no form" claim is flagged when verify recorded a form in a booking pop-up.
+
 ## Outreach — 28 November 2026
 
 - First-email Gmail drafts for the five 27 November audits, at the operator's request: AA Hospitals, Desai Eye Care, Dr. Padmavathi Dental Hospital & Implant Centre, Leelavathi Advanced Skin & Laser Centre and Skin First. Created in smartpursuit3@gmail.com at 12:46 IST with the approved PDF attached and read back: recipient, subject and body identical to `email-1-first.md`, attachment the size of the file. Recorded on step 1 of each `sequence.json` (`gmailDraft`) and in `outreach/<slug>/gmail-drafts.json`. No follow-up drafts; nothing sent.

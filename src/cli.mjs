@@ -9,10 +9,7 @@
 //   selftest  prove the scoring rubric still reproduces the reference audit
 import path from "node:path";
 import fs from "node:fs";
-import {
-  ROOT, argValue, hasFlag, parseList, readJSON, writeJSON, ensureDir, slug, domainOf,
-  normalizeUrl, isoDate, auditRef, auditFileName, hash, log, die, fmtInt,
-} from "./util.mjs";
+import { ROOT, argValue, hasFlag, parseList, readJSON, writeJSON, ensureDir, slug, domainOf, normalizeUrl, isoDate, auditRef, auditFileName, hash, log, die, fmtInt, wholeScreens } from "./util.mjs";
 import { loadSettings, resolveState } from "./config.mjs";
 import { checkAudit, recordAudit, statusSummary, pendingLeads, updateLead } from "./dedupe.mjs";
 import { fetchLeads, readCsv, OSM_ATTRIBUTION, overpassEndpoints, stateBbox } from "./leads.mjs";
@@ -137,19 +134,23 @@ function buildScreens(raw, assetsDir, auditInputs) {
       });
     }
     const mid = byName["screen-7"] || byName["sec2"] || byName["mobile-full"];
+    // The screen-7 shot is the last screen exactly when the page is under 7
+    // screens (measure.mjs clamps it), judged on the unrounded count; the
+    // count printed is the unrounded one rounded once (28 Nov review).
+    const scr = Number(raw.mobile?.dom?.screensExact ?? raw.mobile?.dom?.screens) || 0;
     if (mid) {
       list.push({
         name: mid.name,
         sourceFile: mid.file,
-        label: mid.name !== "screen-7" ? "Further down" : Number(raw.mobile?.dom?.screens) >= 7 ? "Screen 7" : "Last screen",
+        label: mid.name !== "screen-7" ? "Further down" : scr >= 7 ? "Screen 7" : "Last screen",
         // Where the address, hours or booking controls sit was never measured,
         // so the caption does not say.
         // measure.mjs clamps the screen-7 shot to the last screen on short pages.
         caption: mid.name !== "screen-7"
           ? `Further down the same page. Check how far down the address, hours and a way to book appear.`
-          : Number(raw.mobile?.dom?.screens) >= 7
-            ? `Still scrolling: screen 7 of about ${Math.round(Number(raw.mobile?.dom?.screens))}. Check how far down the address, hours and a way to book appear.`
-            : `Still scrolling: the last screen of about ${Math.round(Number(raw.mobile?.dom?.screens) || 0)}. Check how far down the address, hours and a way to book appear.`,
+          : scr >= 7
+            ? `Still scrolling: screen 7 of about ${wholeScreens(raw.mobile?.dom)}. Check how far down the address, hours and a way to book appear.`
+            : `Still scrolling: the last screen of about ${wholeScreens(raw.mobile?.dom)}. Check how far down the address, hours and a way to book appear.`,
       });
     }
     const desk = byName["desktop-fold"];

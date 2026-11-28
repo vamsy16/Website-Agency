@@ -9,7 +9,7 @@
 //   3. If a narrative override references an unknown fact token the render throws.
 import fs from "node:fs";
 import path from "node:path";
-import { ROOT, escapeHtml, fmtInt, round, adTechLabel, audienceOf, stickyRoutes, telDiffers } from "./util.mjs";
+import { ROOT, escapeHtml, fmtInt, round, adTechLabel, audienceOf, stickyRoutes, telDiffers, wholeScreens, formInPopup, noFormRoute } from "./util.mjs";
 
 const STYLES = fs.readFileSync(path.join(ROOT, "src", "styles.css"), "utf8");
 const FONTS = fs.readFileSync(path.join(ROOT, "src", "fonts.css"), "utf8");
@@ -119,7 +119,9 @@ function pageSummary(a, facts) {
       <div class="kpi ${m.perfMobile < 50 ? "bad" : "warn"}"><div class="n">${m.perfMobile}<small>/100</small></div><div class="l">Mobile performance<br>Lighthouse, simulated 4G</div></div>
       <div class="kpi ${m.lcpMs > 4000 ? "bad" : "warn"}"><div class="n">${secNum(m.lcpMs)}<small>s</small></div><div class="l">Largest content appears<br>Google target: 2.5 s</div></div>
       <div class="kpi ${m.ttiMs > 5000 ? "warn" : "good"}"><div class="n">${secNum(m.ttiMs)}<small>s</small></div><div class="l">Until the page is usable<br>(time to interactive)</div></div>
-      <div class="kpi bad"><div class="n">${m.visibleForms === 0 ? "0" : m.visibleForms}</div><div class="l">${m.visibleForms === 1 ? "Form" : "Forms"} with fields detected on homepage<br>${m.visibleForms === 0 ? (facts.http.contactShortcode ? "Contact page prints raw code" : "Other contact routes may exist") : "Delivery not tested"}</div></div>
+      ${formInPopup(m)
+        ? `<div class="kpi warn"><div class="n">1</div><div class="l">Form, in a pop-up from “${e(m.popupTrigger || "a button")}”<br>Delivery not tested</div></div>`
+        : `<div class="kpi bad"><div class="n">${m.visibleForms === 0 ? "0" : m.visibleForms}</div><div class="l">${m.visibleForms === 1 ? "Form" : "Forms"} with fields detected on homepage<br>${m.visibleForms === 0 ? (facts.http.contactShortcode ? "Contact page prints raw code" : "Other contact routes may exist") : "Delivery not tested"}</div></div>`}
     </div>
 
     <div style="display:grid;grid-template-columns:1.15fr 1fr;gap:8mm;margin-top:1mm">
@@ -166,7 +168,7 @@ function defaultSummary(facts, findings) {
   // Name only the problems this site actually has.
   const issues = [
     h.contactShortcode ? "a broken contact form" : null,
-    m.visibleForms === 0 ? (v.health ? "a missing booking flow" : "no enquiry form on the homepage") : null,
+    noFormRoute(m) ? (v.health ? "a missing booking flow" : "no enquiry form on the homepage") : null,
     "unoptimised images and leftover scripts",
   ].filter(Boolean);
   const issueText = issues.length > 1 ? `${issues.slice(0, -1).join(", ")} and ${issues[issues.length - 1]}` : issues[0];
@@ -191,11 +193,12 @@ function defaultSummary(facts, findings) {
 // ---------------------------------------------------------------- 3. SCORECARD
 function pageScorecard(a, facts) {
   const s = facts.scores;
+  const v = audienceOf(facts.business);
   const rows = [
     ["Speed", s.speed, `Mobile ${facts.metric.perfMobile}/100 · LCP ${facts.metric.lcp} · TBT ${facts.metric.tbt} · ${facts.metric.requests} requests · ${facts.metric.bytes} · server response ${facts.metric.ttfb}`, 30],
-    ["Mobile experience", s.mobile, `≈${countOf(Math.round(facts.metric.screens), "screen")} tall · ${countOf(facts.metric.smallTapTargets, "tap target")} under 40 px${Number(facts.metric.minFontPx) > 0 ? ` · body text down to ${facts.metric.minFontPx} px` : ""} · ${facts.metric.h1Count > 0 ? `first H1 starts ${fmtInt(facts.metric.headlineOffsetPx)} px down` : Number(facts.metric.h1Hidden) > 0 ? "no H1 visible at 390 px" : "no H1 headline found"}`, 20],
+    ["Mobile experience", s.mobile, `≈${countOf(wholeScreens(facts.metric), "screen")} tall · ${countOf(facts.metric.smallTapTargets, "tap target")} under 40 px${Number(facts.metric.minFontPx) > 0 ? ` · body text down to ${facts.metric.minFontPx} px` : ""} · ${facts.metric.h1Count > 0 ? `first H1 starts ${fmtInt(facts.metric.headlineOffsetPx)} px down` : Number(facts.metric.h1Hidden) > 0 ? "no H1 visible at 390 px" : "no H1 headline found"}`, 20],
     // "Contact page reachable" only when the /contact/ probe found a page that is not the homepage.
-    ["Conversion", s.conversion, `${facts.metric.visibleForms === 0 ? "No visible form on the home page" : countOf(facts.metric.visibleForms, "visible form")} · ${facts.http.contactShortcode ? "Contact page prints raw code · " : facts.http.contactReachable ? "Contact page reachable · " : ""}${countOf(facts.metric.telLinks, "click-to-call link")}${telDiffers(facts.metric) ? ` (${facts.metric.telLinksDesktop} on the desktop layout)` : ""} · ${countOf(facts.metric.whatsapp, "WhatsApp element")}`, 25],
+    ["Conversion", s.conversion, `${formInPopup(facts.metric) ? `${v.health ? "Booking" : "Enquiry"} form in a pop-up (“${e(facts.metric.popupTrigger || "a button")}”)` : facts.metric.visibleForms === 0 ? "No visible form on the home page" : countOf(facts.metric.visibleForms, "visible form")} · ${facts.http.contactShortcode ? "Contact page prints raw code · " : facts.http.contactReachable ? "Contact page reachable · " : ""}${countOf(facts.metric.telLinks, "click-to-call link")}${telDiffers(facts.metric) ? ` (${facts.metric.telLinksDesktop} on the desktop layout)` : ""} · ${countOf(facts.metric.whatsapp, "WhatsApp element")}`, 25],
     ["Design &amp; clarity", s.design, `${facts.metric.sections > 0 ? `${facts.metric.sections} stacked section${facts.metric.sections === 1 ? "" : "s"} · ` : ""}${fmtInt(facts.metric.domNodes)} DOM nodes · ${facts.metric.imagesNoAlt} image${facts.metric.imagesNoAlt === 1 ? "" : "s"} without alt text`, 15],
     ["SEO", s.seo, `Lighthouse SEO ${facts.metric.seo}/100 · ${facts.metric.h1Count} ${Number(facts.metric.h1Hidden) > 0 ? "visible " : ""}H1 heading${facts.metric.h1Count === 1 ? "" : "s"}${Number(facts.metric.h1Hidden) > 0 ? ` (${facts.metric.h1Hidden} hidden)` : ""} · structured data ${schemaState(facts.http)} · ${facts.metric.readMore} “Read More” link${facts.metric.readMore === 1 ? "" : "s"}`, 10],
   ];
@@ -278,7 +281,7 @@ ${phones
       <div style="flex:1;padding-left:2mm">
         <div class="eyebrow mut">Also measured</div>
         <div style="display:flex;flex-direction:column;gap:3.4mm;margin-top:1mm">
-          <div><div style="font-family:'Instrument Serif',serif;font-size:17pt;line-height:1">${fmtInt(m.pageHeightPx)}<span style="font-size:8pt;color:var(--mut)"> px</span></div><div class="small">page height — about ${Math.round(m.screens)} phone screen${Math.round(m.screens) === 1 ? "" : "s"}</div></div>
+          <div><div style="font-family:'Instrument Serif',serif;font-size:17pt;line-height:1">${fmtInt(m.pageHeightPx)}<span style="font-size:8pt;color:var(--mut)"> px</span></div><div class="small">page height — about ${wholeScreens(m)} phone screen${wholeScreens(m) === 1 ? "" : "s"}</div></div>
           ${m.sections > 0
             ? `<div><div style="font-family:'Instrument Serif',serif;font-size:17pt;line-height:1">${m.sections}</div><div class="small">stacked section${m.sections === 1 ? "" : "s"} on one page</div></div>`
             : `<div><div style="font-family:'Instrument Serif',serif;font-size:17pt;line-height:1">${fmtInt(m.words)}</div><div class="small">words of text on the homepage</div></div>`}
@@ -567,8 +570,8 @@ function defaultPlan(facts, findings) {
   const cookies = `${m.thirdPartyCookies} third-party cookie${m.thirdPartyCookies === 1 ? "" : "s"}`;
   return [
     // A form that exists is tested, not "rebuilt": its delivery was never measured.
-    { id: "01", change: facts.http.contactShortcode ? "Contact form rebuilt" : m.visibleForms === 0 ? "Contact form" : "Contact form tested", today: facts.http.contactShortcode ? "Prints raw shortcode; collects nothing" : m.visibleForms === 0 ? "No fields detected; check other routes" : "Form fields detected; delivery untested", target: m.visibleForms > 0 && !facts.http.contactShortcode ? "Test enquiry delivered + thank-you page, tracked" : "Working form + thank-you page, tracked", effort: "<b>1 hour</b>" },
-    { id: "02", change: v.health ? "Booking path" : "Enquiry path", today: m.visibleForms === 0 ? "No form on the homepage" : "Form fields detected", target: stickyRoutes(m) ? `${v.health ? "Book" : "Enquiry"} block above fold, linked from the existing ${stickyRoutes(m)}` : v.health ? "Book block above fold + sticky call bar" : "Enquiry block above fold + sticky call bar", effort: "<b>½ day</b>" },
+    { id: "01", change: facts.http.contactShortcode ? "Contact form rebuilt" : noFormRoute(m) ? "Contact form" : "Contact form tested", today: facts.http.contactShortcode ? "Prints raw shortcode; collects nothing" : noFormRoute(m) ? "No fields detected; check other routes" : formInPopup(m) ? "Form in a pop-up; delivery untested" : "Form fields detected; delivery untested", target: !noFormRoute(m) && !facts.http.contactShortcode ? "Test enquiry delivered + thank-you page, tracked" : "Working form + thank-you page, tracked", effort: "<b>1 hour</b>" },
+    { id: "02", change: v.health ? "Booking path" : "Enquiry path", today: noFormRoute(m) ? "No form on the homepage" : formInPopup(m) ? "Form only in a pop-up" : "Form fields detected", target: stickyRoutes(m) ? `${v.health ? "Book" : "Enquiry"} block above fold, linked from the existing ${stickyRoutes(m)}` : v.health ? "Book block above fold + sticky call bar" : "Enquiry block above fold + sticky call bar", effort: "<b>½ day</b>" },
     // Rows whose target the site already meets say so instead of selling work.
     serverOk
       ? { id: "03", change: "Server &amp; caching", today: `${m.ttfb} response`, target: "Already under 500 ms", effort: "—" }
@@ -593,7 +596,7 @@ function defaultPlan(facts, findings) {
 function headlineRow(m) {
   const h1 = `${m.h1Count} ${Number(m.h1Hidden) > 0 ? "visible " : ""}H1${m.h1Count === 1 ? "" : "s"}`;
   const screens = Number(m.screens);
-  const today = Number.isFinite(screens) && screens > 0 ? `${h1}, ≈${countOf(Math.round(screens), "screen")}` : h1;
+  const today = Number.isFinite(screens) && screens > 0 ? `${h1}, ≈${countOf(wholeScreens(m), "screen")}` : h1;
   const h1Ok = m.h1Count === 1;
   const lengthOk = !(screens > 6);
   const row = (target, effort) => ({ id: "06", change: "Headline &amp; structure", today, target, effort });
@@ -678,7 +681,7 @@ function pageDirection(a, facts) {
         <div class="pr" style="font-family:'Inter';font-size:11pt;font-weight:700;line-height:1.25;letter-spacing:-.02em">Keep the design.<br>Make it work.</div>
         <div class="ds">Items 01–05 of the plan</div>
         <ul>
-          <li>${facts.http.contactShortcode ? "Contact form rebuilt" : m.visibleForms === 0 ? `Homepage ${v.health ? "booking" : "enquiry"} form added` : "Contact form tested"} &amp; tracked</li>
+          <li>${facts.http.contactShortcode ? "Contact form rebuilt" : noFormRoute(m) ? `Homepage ${v.health ? "booking" : "enquiry"} form added` : "Contact form tested"} &amp; tracked</li>
           <li>${stickyRoutes(m) ? `${v.health ? "Booking" : "Enquiry"} block, linked from the existing ${stickyRoutes(m)}` : `${v.health ? "Booking" : "Enquiry"} buttons + sticky call bar`}</li>
           <li>${speedWork(m)}</li>
           <li>Schema &amp; local SEO fields</li>
