@@ -2,7 +2,7 @@
   "business": "Vedanta Hospitals",
   "domain": "vedanthahospital.com",
   "ref": "SP-AUD-2026-11-28-VH",
-  "createdAt": "2026-11-28T07:54:21.086Z",
+  "createdAt": "2026-11-28T08:34:20.228Z",
   "sendDate": "2026-11-28",
   "cadenceDays": [
     3,
@@ -22,7 +22,7 @@
         "reports/vedanta-hospitals/Smart-Pursuit-Audit-Vedanta-Hospitals.pdf"
       ],
       "subject": "Vedanta Hospitals — what I found testing vedanthahospital.com",
-      "words": 117,
+      "words": 113,
       "scheduledFor": "2026-11-28",
       "scheduledForLong": "28 November 2026",
       "status": "draft",
@@ -36,7 +36,7 @@
       "purpose": "turn the top measured finding into a money argument",
       "attachments": [],
       "subject": "Re: Vedanta Hospitals — what I found testing vedanthahospital.com",
-      "words": 101,
+      "words": 102,
       "scheduledFor": "2026-12-01",
       "scheduledForLong": "1 December 2026",
       "status": "draft",

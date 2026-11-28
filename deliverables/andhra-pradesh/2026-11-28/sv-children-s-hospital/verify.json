@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-28-SCH",
   "domain": "svchildrenhospital.com",
-  "verifiedAt": "2026-11-28T08:03:18.680Z",
+  "verifiedAt": "2026-11-28T08:37:35.209Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/sv-children-s-hospital/2026-11-28T08-02-28-930Z.json",
+      "detail": "raw measurement: data/raw/sv-children-s-hospital/2026-11-28T08-36-45-649Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 28/11/2026, 1:32:29 pm",
+      "detail": "measurement timestamp: 28/11/2026, 2:06:45 pm",
       "severity": "ok"
     },
     {
@@ -125,7 +125,7 @@
     {
       "id": "numbers.traceable",
       "ok": true,
-      "detail": "all 74 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "detail": "all 73 distinct numbers in the report trace to the measurement, the rubric or a stated target",
       "severity": "ok"
     },
     {

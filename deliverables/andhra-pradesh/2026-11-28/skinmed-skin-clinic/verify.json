@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-28-SSC",
   "domain": "theskinmed.com",
-  "verifiedAt": "2026-11-28T08:01:25.266Z",
+  "verifiedAt": "2026-11-28T08:36:43.270Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/skinmed-skin-clinic/2026-11-28T08-00-11-860Z.json",
+      "detail": "raw measurement: data/raw/skinmed-skin-clinic/2026-11-28T08-35-34-139Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 28/11/2026, 1:30:12 pm",
+      "detail": "measurement timestamp: 28/11/2026, 2:05:34 pm",
       "severity": "ok"
     },
     {
@@ -125,7 +125,7 @@
     {
       "id": "numbers.traceable",
       "ok": true,
-      "detail": "all 75 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "detail": "all 73 distinct numbers in the report trace to the measurement, the rubric or a stated target",
       "severity": "ok"
     },
     {
@@ -167,7 +167,7 @@
     {
       "id": "pdf.size",
       "ok": true,
-      "detail": "2.17 MB",
+      "detail": "1.94 MB",
       "severity": "ok"
     },
     {

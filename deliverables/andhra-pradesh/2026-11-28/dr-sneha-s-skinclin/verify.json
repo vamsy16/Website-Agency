@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-28-DSS",
   "domain": "drsnehasskinclin.in",
-  "verifiedAt": "2026-11-28T08:00:10.185Z",
+  "verifiedAt": "2026-11-28T08:35:33.638Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/dr-sneha-s-skinclin/2026-11-28T07-58-54-284Z.json",
+      "detail": "raw measurement: data/raw/dr-sneha-s-skinclin/2026-11-28T08-34-20-595Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 28/11/2026, 1:28:54 pm",
+      "detail": "measurement timestamp: 28/11/2026, 2:04:20 pm",
       "severity": "ok"
     },
     {

@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-28-VH",
   "domain": "vedanthahospital.com",
-  "verifiedAt": "2026-11-28T07:54:21.075Z",
+  "verifiedAt": "2026-11-28T08:34:20.219Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/vedanta-hospitals/2026-11-28T07-52-26-235Z.json",
+      "detail": "raw measurement: data/raw/vedanta-hospitals/2026-11-28T08-32-25-536Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 28/11/2026, 1:22:26 pm",
+      "detail": "measurement timestamp: 28/11/2026, 2:02:25 pm",
       "severity": "ok"
     },
     {
@@ -59,7 +59,7 @@
     {
       "id": "scores.conversion",
       "ok": true,
-      "detail": "report prints 7, rubric computes 7",
+      "detail": "report prints 10, rubric computes 10",
       "severity": "ok"
     },
     {
@@ -77,7 +77,7 @@
     {
       "id": "scores.overall",
       "ok": true,
-      "detail": "report prints 67, rubric computes 67",
+      "detail": "report prints 75, rubric computes 75",
       "severity": "ok"
     },
     {
@@ -95,7 +95,7 @@
     {
       "id": "findings.evidence",
       "ok": true,
-      "detail": "5 findings, every evidence field present in the measurement",
+      "detail": "4 findings, every evidence field present in the measurement",
       "severity": "ok"
     },
     {
@@ -123,9 +123,15 @@
       "severity": "ok"
     },
     {
+      "id": "facts.popupForm",
+      "ok": true,
+      "detail": "3 pop-up button(s), 3 about booking (\"Get Appointment\"); opened: yes, 4 field(s) visible after the click; 0 field(s) in a hidden pop-up form",
+      "severity": "ok"
+    },
+    {
       "id": "numbers.traceable",
       "ok": true,
-      "detail": "all 82 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "detail": "all 79 distinct numbers in the report trace to the measurement, the rubric or a stated target",
       "severity": "ok"
     },
     {
@@ -167,7 +173,7 @@
     {
       "id": "pdf.size",
       "ok": true,
-      "detail": "2.11 MB",
+      "detail": "2.13 MB",
       "severity": "ok"
     },
     {

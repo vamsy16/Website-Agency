@@ -13,8 +13,8 @@ I ran a live website audit of vedanthahospital.com and put the results in the at
 
 Two things stood out:
 
-1. No appointment form fields were detected on the homepage. A patient may prefer a written appointment request.
-2. A 51/100 mobile score and a 13.1 s LCP. Google’s thresholds are 2.5 s for LCP and 200 ms for TBT.
+1. A 56/100 mobile score and a 13.0 s LCP. Google’s thresholds are 2.5 s for LCP and 200 ms for TBT.
+2. 13 screen heights of homepage content. A long page can require more navigation.
 
 The report includes test measurements, screenshots and suggested fixes. Recommendations and effort estimates are distinguished from measured results.
 
