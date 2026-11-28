@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-28T13:48:25.626Z",
+  "updatedAt": "2026-11-28T14:01:00.932Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -1589,8 +1589,8 @@
     {
       "domain": "varmahospitals.com",
       "name": "Varma Hospitals",
-      "ref": "SP-AUD-2026-11-28-VH",
-      "generatedAt": "2026-11-28T12:51:39.355Z",
+      "ref": "SP-AUD-2026-11-28-VH2",
+      "generatedAt": "2026-11-28T14:01:00.932Z",
       "status": "complete",
       "mode": "live",
       "scores": {
@@ -1602,13 +1602,13 @@
         "overall": 64
       },
       "pdfPages": 10,
-      "pdfBytes": 3582624,
+      "pdfBytes": 3598107,
       "files": {
         "pdf": "reports/varma-hospitals/Smart-Pursuit-Audit-Varma-Hospitals.pdf",
         "audit": "reports/varma-hospitals/audit.json",
         "html": "reports/varma-hospitals/report.html"
       },
-      "fingerprint": "43fe33f60555e056"
+      "fingerprint": "39a56fe391025545"
     },
     {
       "domain": "drsnehasskinclin.in",

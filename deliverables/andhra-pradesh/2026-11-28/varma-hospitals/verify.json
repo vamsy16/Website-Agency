@@ -1,7 +1,7 @@
 {
-  "ref": "SP-AUD-2026-11-28-VH",
+  "ref": "SP-AUD-2026-11-28-VH2",
   "domain": "varmahospitals.com",
-  "verifiedAt": "2026-11-28T12:51:39.354Z",
+  "verifiedAt": "2026-11-28T14:01:00.931Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/varma-hospitals/2026-11-28T12-50-25-270Z.json",
+      "detail": "raw measurement: data/raw/varma-hospitals/2026-11-28T13-59-46-478Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 28/11/2026, 6:20:25 pm",
+      "detail": "measurement timestamp: 28/11/2026, 7:29:46 pm",
       "severity": "ok"
     },
     {
@@ -131,7 +131,7 @@
     {
       "id": "facts.counted",
       "ok": true,
-      "detail": "8 \"Read More\" link(s): /services/Cardiology, /services/Cardiothoracic-Surgery, /services/ent, /services/Nephrology, /services/General-Surgery, /services/Gynaecology-Obstetrics, /services/Internal-Medicine, /services/Orthopaedics; 0 form(s); 7 link(s) to # or javascript:; 29 of 38 tap targets under 40 px; 32 slider copies skipped",
+      "detail": "8 \"Read More\" link(s): /services/Cardiology @2862px under \"DEPARTMENT OF CARDIOLOGY\", /services/Cardiothoracic-Surgery @3104px under \"DEPARTMENT OF CARDIOTHORACIC S\", /services/ent @3298px under \"DEPARTMENT OF ENT\", /services/Nephrology @3492px under \"DEPARTMENT OF NEPHROLOGY\", /services/General-Surgery @3710px under \"DEPARTMENT OF GENERAL SURGERY\", /services/Gynaecology-Obstetrics @3952px under \"DEPARTMENT OF GYNAECOLOGY & OB\", /services/Internal-Medicine @4170px under \"DEPARTMENT OF INTERNAL MEDICIN\", /services/Orthopaedics @4436px under \"DEPARTMENT OF ORTHOPAEDICS (TR\"; click-to-call 1 shown of 1, WhatsApp 0 shown of 1 (at load); 0 form(s); 7 link(s) to # or javascript:; 29 of 38 tap targets under 40 px; 32 slider copies skipped",
       "severity": "ok"
     },
     {
@@ -143,7 +143,7 @@
     {
       "id": "numbers.traceable",
       "ok": true,
-      "detail": "all 75 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "detail": "all 76 distinct numbers in the report trace to the measurement, the rubric or a stated target",
       "severity": "ok"
     },
     {
@@ -155,7 +155,7 @@
     {
       "id": "report.ref",
       "ok": true,
-      "detail": "audit reference SP-AUD-2026-11-28-VH printed",
+      "detail": "audit reference SP-AUD-2026-11-28-VH2 printed",
       "severity": "ok"
     },
     {
@@ -185,7 +185,7 @@
     {
       "id": "pdf.size",
       "ok": true,
-      "detail": "3.42 MB",
+      "detail": "3.43 MB",
       "severity": "ok"
     },
     {
