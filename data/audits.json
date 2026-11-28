@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-28T12:53:33.850Z",
+  "updatedAt": "2026-11-28T13:11:11.730Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -1758,25 +1758,25 @@
       "domain": "bestsuperspeciality.com",
       "name": "BEST Super Speciality Hospital",
       "ref": "SP-AUD-2026-11-28-BSS",
-      "generatedAt": "2026-11-28T12:11:21.216Z",
+      "generatedAt": "2026-11-28T13:11:11.730Z",
       "status": "complete",
       "mode": "live",
       "scores": {
-        "speed": 4,
+        "speed": 3,
         "mobile": 5,
         "conversion": 10,
         "design": 10,
         "seo": 10,
-        "overall": 72
+        "overall": 69
       },
       "pdfPages": 10,
-      "pdfBytes": 3152241,
+      "pdfBytes": 2949199,
       "files": {
         "pdf": "reports/best-super-speciality-hospital/Smart-Pursuit-Audit-BEST-Super-Speciality-Hospital.pdf",
         "audit": "reports/best-super-speciality-hospital/audit.json",
         "html": "reports/best-super-speciality-hospital/report.html"
       },
-      "fingerprint": "bdbde9e954945e64"
+      "fingerprint": "37bf3d4a701c0fb7"
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-28-BSS",
   "domain": "bestsuperspeciality.com",
-  "verifiedAt": "2026-11-28T12:11:21.215Z",
+  "verifiedAt": "2026-11-28T13:11:11.728Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/best-super-speciality-hospital/2026-11-28T12-10-05-950Z.json",
+      "detail": "raw measurement: data/raw/best-super-speciality-hospital/2026-11-28T13-09-52-067Z.json",
       "severity": "ok"
     },
     {
@@ -41,13 +41,13 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 28/11/2026, 5:40:06 pm",
+      "detail": "measurement timestamp: 28/11/2026, 6:39:52 pm",
       "severity": "ok"
     },
     {
       "id": "scores.speed",
       "ok": true,
-      "detail": "report prints 4, rubric computes 4",
+      "detail": "report prints 3, rubric computes 3",
       "severity": "ok"
     },
     {
@@ -77,7 +77,7 @@
     {
       "id": "scores.overall",
       "ok": true,
-      "detail": "report prints 72, rubric computes 72",
+      "detail": "report prints 69, rubric computes 69",
       "severity": "ok"
     },
     {
@@ -123,6 +123,12 @@
       "severity": "ok"
     },
     {
+      "id": "facts.counted",
+      "ok": true,
+      "detail": "5 \"Read More\" link(s): about-us.html, about-us.html, about-us.html, about-us.html, about-us.html; 2 form(s): contact.php 6 field(s), # 1 field(s); 6 link(s) to # or javascript:; 73 of 75 tap targets under 40 px; 32 slider copies skipped",
+      "severity": "ok"
+    },
+    {
       "id": "facts.entryPopup",
       "ok": true,
       "detail": "pop-up open on arrival (myModal modal fade show, 100% of the screen); closed by close button",
@@ -131,7 +137,7 @@
     {
       "id": "numbers.traceable",
       "ok": true,
-      "detail": "all 78 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "detail": "all 80 distinct numbers in the report trace to the measurement, the rubric or a stated target",
       "severity": "ok"
     },
     {
@@ -173,7 +179,7 @@
     {
       "id": "pdf.size",
       "ok": true,
-      "detail": "3.01 MB",
+      "detail": "2.81 MB",
       "severity": "ok"
     },
     {
