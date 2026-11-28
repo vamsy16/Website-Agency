@@ -1,22 +1,20 @@
 # STATE — read this first
 
-_Handoff for the next agent. Last updated 28 November 2026, about 13:15 IST by the Arena agent on branch
-`arena/9f36e1d5-website-agency` (to be merged into `main` through a pull request)._
+_Handoff for the next agent. Last updated 28 November 2026, about 14:40 IST by the Arena agent on branch
+`arena/9f36e1d5-website-agency` (merged into `main` through a pull request)._
 
-> **In flight (28 Nov, from about 13:15 IST):** an Andhra Pradesh run for 5 new
-> leads on branch `arena/9f36e1d5-website-agency`. Run 46122437174
-> (`data/ap-websearch-2026-11-28.csv`) audited Vedanta Hospitals, Dr Sneha's
-> Skinclin, Skinmed Skin Clinic and SV Children's Hospital (verify 28/28 each);
-> Kamakshi Hospital, Sri RK and Koncept Skin failed verify and Maa Eye Care was
-> screened out. The third-eye review found a false "no appointment form" claim
-> (Vedanta's form is in a "Book Appointment" pop-up) and screen-count/caption
-> rounding errors, fixed in 1.4.7. The second run re-audits the four with 1.4.7
-> and audits one more lead from `data/ap-websearch-2026-11-28b.csv` (Nandan
-> Hospitals, Arka Eye Hospital, Best Rehab; target 1). Everything stays held
-> (`approved: false`) in `deliverables/runs/2026-11-28-independent-review.json`
-> until the review is done. The operator reviews the PDFs before any Gmail draft.
+> **Latest (28 Nov, 14:40 IST): five new Andhra Pradesh audits approved, waiting
+> for the operator's PDF review.** Vedanta Hospitals (Kadapa, 75), Dr Sneha's
+> Skinclin (Visakhapatnam, 64), Skinmed Skin Clinic (Visakhapatnam, 63), SV
+> Children's Hospital (Tirupati, 79) and Nandan Hospitals (Vijayawada, 76), in
+> `deliverables/andhra-pradesh/2026-11-28/`; review
+> `deliverables/runs/2026-11-28-independent-review.md`. The third-eye review held
+> the first run: Vedanta's report and email 1 claimed "no appointment form" while
+> its "Book Appointment" pop-up has 4 fields, and two screen counts or captions were
+> off. Fixed in 1.4.7 and re-audited. **No Gmail drafts yet**: the operator asked
+> to review the PDFs first; draft first emails only when he approves them.
 
-> **Latest (28 Nov):** the five 27 November audits (AA Hospitals, Desai Eye Care,
+> **Earlier (28 Nov):** the five 27 November audits (AA Hospitals, Desai Eye Care,
 > Dr. Padmavathi Dental Hospital & Implant Centre, Leelavathi Advanced Skin & Laser
 > Centre, Skin First; `deliverables/andhra-pradesh/2026-11-27/`) have their **first
 > emails in Gmail Drafts** since 28 Nov 12:46 IST, at the operator's request, PDF
@@ -77,12 +75,16 @@ mailbox and its only send-as address) · +91 70950 24220. Operator: Vamsi.
 
 ### Registries
 
-- `data/leads.json`: 267 leads — 163 new, 64 audited, 40 audit-failed
-  (0 duplicate domains). `data/audits.json`: 65 audits (0 duplicate domains).
+- `data/leads.json`: 277 leads — 165 new, 69 audited, 43 audit-failed
+  (0 duplicate domains). `data/audits.json`: 70 audits (0 duplicate domains).
 - Vetted, not behind the Hostinger CDN, not yet audited (status `new`), in
-  `data/ap-websearch-2026-11-27.csv`: kamakshihospital.com, Tirupati
-  (kamakshihospitaltpt2022@gmail.com; not attempted, target reached);
-  veyehospital.com, Ongole (venkateswaraeyehospitalongole@gmail.com; the screen
+  `data/ap-websearch-2026-11-28b.csv`: arkaeyehospital.com, Nellore
+  (info@arkaeyehospital.com, homepage header; its /contact.php is a 404 page) and
+  bestrehabphysio.com, Vijayawada (bestrehabphysio@gmail.com, contact page); not
+  attempted on 28 Nov, target reached. maaeyecare.com, Kadapa
+  (maa4eyecare@gmail.com) was screened out as "foreign" on 28 Nov, a false
+  negative on its Wix page; the screen retries it after 28 Dec. In
+  `data/ap-websearch-2026-11-27.csv`: veyehospital.com, Ongole (venkateswaraeyehospitalongole@gmail.com; the screen
   timed out on 27 Nov); vijayahospitalvzm.com, Vizianagaram
   (drudayakumar65@gmail.com; answered HTTP 403 to the screen on 27 Nov).
   Re-read each site before queuing it again.
@@ -94,12 +96,17 @@ mailbox and its only send-as address) · +91 70950 24220. Operator: Vamsi.
   (viswanadhahospital@gmail.com).
 - Never retry (verify failed `screenshots.real`): kamakshisaidental.com,
   rajudental.in, prasadphysio.com, vennelahospital.com, stardentalhospital.com,
-  ratankrishnadental.com, drsiriskinclinic.com, ayushdentalcare.com.
+  ratankrishnadental.com, drsiriskinclinic.com, ayushdentalcare.com,
+  kamakshihospital.com (28 Nov: a blank section shot).
+- Failed verify on 28 Nov (1 attempt each, `audit-failed`): srirkhospital.com
+  (Lighthouse `NO_FCP`; Hostinger VPS) and konceptskin.com (a missing Lighthouse
+  score). Retry only after re-reading the site.
 
 ### Andhra Pradesh batches (most recent first)
 
 | Folder `deliverables/andhra-pradesh/…` | Businesses | Review | Email 1 |
 |---|---|---|---|
+| `2026-11-28/` | Vedanta Hospitals (Kadapa), Dr Sneha's Skinclin (Visakhapatnam), Skinmed Skin Clinic (Visakhapatnam), SV Children's Hospital (Tirupati), Nandan Hospitals (Vijayawada) | `runs/2026-11-28-independent-review.md` | not drafted: the operator reviews the PDFs first |
 | `2026-11-27/` | AA Hospitals (Eluru), Desai Eye Care (Nellore), Dr. Padmavathi Dental Hospital & Implant Centre (Kakinada), Leelavathi Advanced Skin & Laser Centre (Guntur), Skin First (Vijayawada) | `runs/2026-11-27-independent-review.md` | drafted in Gmail 28 Nov 12:46 IST (PDF attached, read back); not sent yet |
 | `2026-11-26/` | Vignata Fertility & IVF Center (Guntur), Sai Bhaskar Hospitals (Guntur), Dr K Hemanth Kumar, neurologist (Kurnool), Shravani ENT Hospital (Kakinada), Deepthi Fertility Centre (Nellore) | `runs/2026-11-26-independent-review.md` | sent 27 Nov 14:59–15:51 IST (recorded) |
 | `2026-11-23/` | Smart Care Dental Hospital (Nellore), Dr Swetha Sajja Eye Hospital (Rajahmundry), MJ Naidu Super Speciality Hospital (Vijayawada), Sasya Fertility Centre (Guntur), Ravi Dental Care and Implant Center (Vijayawada) | `runs/2026-11-23-independent-review.md` | sent 23 Nov |
@@ -162,7 +169,7 @@ Complete (10):
   Raghuram Children Hospital (final email 2026-11-26 20:17 IST)
   Sandhya Hi-Tech Vision Care Center (final email 2026-11-26 20:41 IST)
 
-Not started: 19 sequences (no email sent yet).
+Not started: 24 sequences (no email sent yet).
 ```
 
 - **Nothing due on 28 Nov.** Gmail checked at 12:50 IST: nothing has reached the
@@ -187,7 +194,8 @@ Not started: 19 sequences (no email sent yet).
   Ramachandra, HR Dental and Dr. Sushma, and step 2 for the five 26 November
   audits. Draft only when the operator asks, after checking each thread for a
   reply or opt-out.
-- "Not started: 19" is the five 27 November audits (drafted, not sent) and 14 older
+- "Not started: 24" is the five 28 November audits (not drafted), the five 27
+  November audits (drafted, not sent) and 14 older
   audits deliberately not emailed: chains, nonprofits, or held by an independent
   review (`deliverables/README.md`, Send? ❌).
 - Send records: `deliverables/runs/sends-2026-11-27.json` (30) and
@@ -222,7 +230,12 @@ Not started: 19 sequences (no email sent yet).
   in a scratch folder, unpack `bin/chromium.br` (its `executablePath()` writes
   `/tmp/chromium`) and `bin/al2023.tar.br` (brotli, then tar), and run with
   `LD_LIBRARY_PATH=<unpacked>/lib`. 1.4.6's screen-count fix was reproduced and
-  tested this way with Playwright's mobile emulation.
+  tested this way with Playwright's mobile emulation, and 1.4.7's booking pop-up
+  probe was tested on local pages (an Elementor-style pop-up form, a video-only
+  pop-up button, a modal link that leaves the page).
+- A run can re-audit and audit new leads together: `reaudit` (domains) runs first
+  and never counts toward the target, then the daily run (`csv`, `target`, `max`)
+  unless `repairOnly`.
 - This sandbox has no Chromium of its own and no general internet, so audits run in
   `.github/workflows/agency-run.yml`, triggered by pushing a changed
   `run-request.json` (`state`, `target`, `max`, `leadsLimit`, `csv`, `csvOnly`,

@@ -3,6 +3,13 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## Review — 28 November 2026
+
+- Five new Andhra Pradesh audits approved (runs 46122437174 and 46125570076): Vedanta Hospitals (Kadapa, 75), Dr Sneha's Skinclin (Visakhapatnam, 64), Skinmed Skin Clinic (Visakhapatnam, 63), SV Children's Hospital (Tirupati, 79) and Nandan Hospitals (Vijayawada, 76). Each email was read on the business's own site. None matches anything in the registries, deliverables or the full history of every branch (Gmail was not used for duplicates), and none is behind the Hostinger CDN. `deliverables/runs/2026-11-28-independent-review.{md,json}`.
+- The third-eye review held the first run and re-audited four with 1.4.7. Vedanta's report and email 1 claimed "no appointment form" although its "Book Appointment" pop-up has 4 fields. SV Children's printed "about 8 phone screens" for 7.48. Skinmed's and Dr Sneha's screen-7 shots were taken at the wrong depth.
+- Kamakshi Hospital, Sri RK Mother & Child Care Hospital and Koncept Skin failed verify, and Maa Eye Care was screened out (a false "foreign" reading of its Wix page). Arka Eye Hospital and Best Rehab were not attempted (target reached). None of them was emailed.
+- The workflow now triggers on `arena/9f36e1d5-website-agency`, and `run-request.json` is disabled. No Gmail drafts: the operator reviews the PDFs first. `tools/__pycache__/` is untracked and ignored.
+
 ## 1.4.7 — 28 November 2026
 
 From the 28 November independent review (Andhra Pradesh, run 46122437174).

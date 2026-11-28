@@ -1,12 +1,13 @@
 {
   "state": "Andhra Pradesh",
   "reviewDate": "2026-11-28",
-  "run": null,
+  "run": 46125570076,
   "runs": {
-    "46122437174": "8 vetted leads, target 5: 4 audited (verify 28/28), 3 failed verify, 1 screened out; all held by this review"
+    "46122437174": "data/ap-websearch-2026-11-28.csv (8 vetted, target 5, max 8, CSV only): 4 audited with verify 28/28 (Vedanta Hospitals, Dr Sneha's Skinclin, Skinmed Skin Clinic, SV Children's Hospital); Kamakshi Hospital, Sri RK and Koncept Skin failed verify; Maa Eye Care screened out. All held: the review found defects (fixed in 1.4.7).",
+    "46125570076": "Re-audit of the four with 1.4.7 (verify 29/29 for Vedanta, 28/28 for the others; these are their published files), then data/ap-websearch-2026-11-28b.csv (target 1): Nandan Hospitals audited, verify 28/28; target reached, Arka Eye Hospital and Best Rehab not attempted."
   },
   "requested": 5,
-  "status": "pending-independent-review",
+  "status": "approved",
   "dedupeAuthority": [
     "data/leads.json",
     "data/audits.json",
@@ -18,60 +19,71 @@
     {
       "domain": "kamakshihospital.com",
       "approved": false,
-      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Kamakshi Hospital (Tirupati); kamakshihospitaltpt2022@gmail.com read on https://www.kamakshihospital.com/ (homepage contact block)."
+      "reason": "Not published: run 46122437174 failed verify (screenshots.real: one section shot was blank white). Status audit-failed, 1 attempt; never emailed."
     },
     {
       "domain": "maaeyecare.com",
       "approved": false,
-      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Maa Eye Care (Kadapa); maa4eyecare@gmail.com read on https://www.maaeyecare.com/ (homepage 'Contact us' block)."
+      "reason": "Not audited: the run's site screen read the Wix homepage as foreign (no India, state, city or phone in the fetched text), although the live site names Kadapa. A screen false negative; status new, re-screened after 30 days; never emailed."
     },
     {
       "domain": "vedanthahospital.com",
-      "approved": false,
-      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Vedanta Hospitals (Kadapa); vedantahospitalkadapa@gmail.com read on https://vedanthahospital.com/ (footer 'Reach out' on every page, incl. /contact/)."
+      "approved": true,
+      "reason": "Approved after the 1.4.7 re-audit (run 46125570076). Vedanta Hospitals, Kadapa: vedantahospitalkadapa@gmail.com in the footer of every page, including /contact/ (59/294-5-1, Opposite Water Tank, Akkayapalli, Kadapa 516002; 08562 256789). The run 46122437174 report and email 1 claimed no appointment form; its \"Book Appointment\" pop-up shows 4 fields (facts.popupForm). The re-audit removed the claim: 75/100."
     },
     {
       "domain": "srirkhospital.com",
       "approved": false,
-      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Sri RK Mother & Child Care Hospital (Srikakulam); srirkmchospital.sklm@gmail.com read on http://www.srirkhospital.com/contact.php (contact page (also About page))."
+      "reason": "Not published: run 46122437174 failed verify (Lighthouse NO_FCP, the page painted nothing; the missing score was then printed as —/100). Status audit-failed, 1 attempt; never emailed."
     },
     {
       "domain": "drsnehasskinclin.in",
-      "approved": false,
-      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Dr Sneha's Skinclin (Visakhapatnam); skinclinvizag@gmail.com read on https://www.drsnehasskinclin.in/contact (contact page)."
+      "approved": true,
+      "reason": "Approved after the 1.4.7 re-audit (run 46125570076). Dr Sneha's Skinclin, Visakhapatnam: skinclinvizag@gmail.com on /contact (4th floor, R Square, Mithilapuri Colony, Madhurawada 530041; 81210 46464); Dr Sneha Vanapalli, 3 years' experience, read on the homepage. 2 H1s and the form confirmed on the live page. 64/100."
     },
     {
       "domain": "theskinmed.com",
-      "approved": false,
-      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Skinmed Skin Clinic (Visakhapatnam); skinmedvizag@gmail.com read on https://www.theskinmed.com/contact (contact page (backup))."
+      "approved": true,
+      "reason": "Approved after the 1.4.7 re-audit (run 46125570076). Skinmed Skin Clinic, Visakhapatnam: skinmedvizag@gmail.com on /contact and in the mobile header (+91 93910 82255; Dutt Island, Siripuram and Shantipuram); Dr Sriteja. 4 H1s and the callback form confirmed on the live page. 63/100."
     },
     {
       "domain": "konceptskin.com",
       "approved": false,
-      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Koncept Skin (Visakhapatnam); konceptskinclinics@gmail.com read on https://www.konceptskin.com/contact.php (contact page (backup))."
+      "reason": "Not published: run 46122437174 failed verify (copy.honesty: a missing score printed as —/100). Status audit-failed, 1 attempt; never emailed."
     },
     {
       "domain": "svchildrenhospital.com",
-      "approved": false,
-      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. SV Children's Hospital (Tirupati); svchildrens@gmail.com read on https://svchildrenhospital.com/ (homepage contact block (backup, last: the site carries template filler text))."
+      "approved": true,
+      "reason": "Approved after the 1.4.7 re-audit (run 46125570076). SV Children's Hospital, Tirupati: svchildrens@gmail.com on the homepage (#140-B, Opposite Anjaneya Swamy Temple, Bhavani Nagar, Tirupati 517501; 0877 2288055). Screen count now 7 (6,311 px / 844 px = 7.48; run 46122437174 printed 8). The site's template copy (\"ranks #1 …\") is not repeated in the report or emails. 79/100."
     },
     {
       "domain": "nandanhospitals.com",
-      "approved": false,
-      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Nandan Hospitals (Vijayawada); nandanhospitalsvijayawada@gmail.com read on https://nandanhospitals.com/contact-us.php (header on every page and the contact page)."
+      "approved": true,
+      "reason": "Approved (run 46125570076). Nandan Hospitals, Vijayawada: nandanhospitalsvijayawada@gmail.com in the header of every page and on /contact-us.php (#29-28/1-56, Near Pushpa Hotel Centre, Kovelamudivari Street, Suryarao Pet, Vijayawada 520002; 96663 94555; Dr Moparthi Srinivas, MS, MCh (Orthopaedics), founder). One H1, far down the page, and the appointment form confirmed on the live page. 76/100."
     },
     {
       "domain": "arkaeyehospital.com",
       "approved": false,
-      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Arka Eye Hospital (Nellore); info@arkaeyehospital.com read on https://arkaeyehospital.com/ (header on the homepage)."
+      "reason": "Not attempted: run 46125570076 reached its target with Nandan Hospitals. Status new; never emailed."
     },
     {
       "domain": "bestrehabphysio.com",
       "approved": false,
-      "reason": "Held until the independent (third-eye) review of the PDF and email drafts against the live site is complete. Best Rehab (Vijayawada); bestrehabphysio@gmail.com read on https://www.bestrehabphysio.com/contact.html (header and the contact page)."
+      "reason": "Not attempted: run 46125570076 reached its target with Nandan Hospitals. Status new; never emailed."
     }
   ],
-  "notPublished": [],
-  "notAttempted": [],
-  "withheldOtherDomains": []
+  "notPublished": [
+    "kamakshihospital.com",
+    "srirkhospital.com",
+    "konceptskin.com",
+    "maaeyecare.com"
+  ],
+  "notAttempted": [
+    "arkaeyehospital.com",
+    "bestrehabphysio.com"
+  ],
+  "withheldOtherDomains": [],
+  "approvedCount": 5,
+  "reviewedAt": "2026-11-28T14:35:00+05:30",
+  "reviewMethod": "Every page of every final PDF read as extracted text (pymupdf) and the visitor's-view pages read as images; every ratio recomputed; every email 1 checked against its PDF; each business's own pages re-read after the audit (H1s, forms, contact routes, email location, address); tools/review-pdfs.py clean on all five."
 }

@@ -8,7 +8,7 @@
   "csv": "data/ap-websearch-2026-11-28b.csv",
   "csvOnly": true,
   "repairOnly": false,
-  "disabled": false,
+  "disabled": true,
   "reaudit": [
     "vedanthahospital.com",
     "drsnehasskinclin.in",
