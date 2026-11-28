@@ -11,7 +11,7 @@ import path from "node:path";
 import fs from "node:fs";
 import { ROOT, argValue, hasFlag, parseList, readJSON, writeJSON, ensureDir, slug, domainOf, normalizeUrl, isoDate, auditRef, auditFileName, hash, log, die, fmtInt, wholeScreens } from "./util.mjs";
 import { loadSettings, resolveState } from "./config.mjs";
-import { checkAudit, recordAudit, statusSummary, pendingLeads, updateLead } from "./dedupe.mjs";
+import { checkAudit, recordAudit, statusSummary, pendingLeads, updateLead, uniqueAuditRef } from "./dedupe.mjs";
 import { fetchLeads, readCsv, OSM_ATTRIBUTION, overpassEndpoints, stateBbox } from "./leads.mjs";
 import { resolveBrowser, describeBrowser, BrowserError } from "./browser.mjs";
 import { measureSite } from "./measure.mjs";
@@ -259,6 +259,8 @@ async function runAudit({
     business.domain = business.domain || domainOf(business.url);
     business.ref = business.ref || auditRef(settings.agency.auditRefPrefix, new Date(), business.name);
   }
+  // Another business may already hold these initials for the day (1.4.13).
+  if (!fixture) business.ref = uniqueAuditRef(business.ref, business.url);
 
   const businessSlug = slug(business.name) || slug(business.domain) || "audit";
   const reportDir = ensureDir(path.join(ROOT, "reports", businessSlug));

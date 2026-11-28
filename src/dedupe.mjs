@@ -155,6 +155,23 @@ export function checkAudit(website, { cooldownDays = 60, force = false } = {}) {
   };
 }
 
+/**
+ * A reference no other business holds. Two businesses with the same initials
+ * audited on the same day got the same ref ("Vedanta Hospitals" and "Varma
+ * Hospitals", SP-AUD-2026-11-28-VH, 28 Nov): the later one now gets a digit,
+ * "SP-AUD-2026-11-28-VH2". A business keeps its own ref when it is re-audited.
+ */
+export function uniqueAuditRef(ref, website) {
+  const db = loadAudits();
+  const domain = domainOf(website);
+  const takenByOther = r => db.audits.some(a => a.ref === r && a.domain !== domain);
+  if (!takenByOther(ref)) return ref;
+  const own = db.audits.find(a => a.domain === domain && String(a.ref || "").startsWith(ref) && /^\d$/.test(String(a.ref).slice(ref.length)));
+  if (own) return own.ref;
+  for (let n = 2; n <= 9; n++) if (!takenByOther(`${ref}${n}`)) return `${ref}${n}`;
+  throw new Error(`no free audit reference for ${domain}: ${ref} and ${ref}2–${ref}9 belong to other businesses`);
+}
+
 export function recordAudit({ website, name, ref, pdfPath, auditPath, reportPath, scores, pdfPages, pdfBytes, mode = "live" }) {
   const db = loadAudits();
   const domain = domainOf(website);
@@ -176,8 +193,15 @@ export function recordAudit({ website, name, ref, pdfPath, auditPath, reportPath
   // replaces its row even when the ref's letters changed (1.4.3 corrected
   // "VF&" to "VFI" and left a second Vignata row; 26 Nov review). An audit on
   // a later date still gets its own row.
+  // A row is only ever replaced by an audit of the same domain: Varma
+  // Hospitals' SP-AUD-2026-11-28-VH replaced Vedanta Hospitals' row of the
+  // same ref and the same day, and the registry lost an approved audit (28 Nov
+  // evening review). runAudit makes refs unique (uniqueAuditRef); this guard
+  // stops a clash from ever overwriting another business again.
   const dateOf = r => (String(r || "").match(/\d{4}-\d{2}-\d{2}/) || [])[0] || null;
-  let idx = db.audits.findIndex(a => a.ref === ref);
+  const clash = db.audits.find(a => a.ref === ref && a.domain !== domain);
+  if (clash) throw new Error(`audit reference ${ref} already belongs to ${clash.domain}; not overwriting its row with ${domain}`);
+  let idx = db.audits.findIndex(a => a.ref === ref && a.domain === domain);
   if (idx === -1 && dateOf(ref)) idx = db.audits.findIndex(a => a.domain === domain && dateOf(a.ref) === dateOf(ref));
   if (idx === -1) db.audits.push(row);
   else db.audits[idx] = { ...db.audits[idx], ...row };

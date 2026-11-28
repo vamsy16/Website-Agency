@@ -1563,6 +1563,30 @@
       "fingerprint": "c4545e3b8a317040"
     },
     {
+      "domain": "vedanthahospital.com",
+      "name": "Vedanta Hospitals",
+      "ref": "SP-AUD-2026-11-28-VH",
+      "generatedAt": "2026-11-28T08:34:20.219Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 5,
+        "mobile": 6,
+        "conversion": 10,
+        "design": 9,
+        "seo": 9,
+        "overall": 75
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2229786,
+      "files": {
+        "pdf": "reports/vedanta-hospitals/Smart-Pursuit-Audit-Vedanta-Hospitals.pdf",
+        "audit": "reports/vedanta-hospitals/audit.json",
+        "html": "reports/vedanta-hospitals/report.html"
+      },
+      "fingerprint": "72b646ffb3d072dc"
+    },
+    {
       "domain": "varmahospitals.com",
       "name": "Varma Hospitals",
       "ref": "SP-AUD-2026-11-28-VH",

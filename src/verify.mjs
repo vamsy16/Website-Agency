@@ -316,7 +316,7 @@ export async function verifyAudit({ auditPath, live = false, fixture = false }) 
     add("report.date", text.includes(longDate(isoDate(audit.date.iso))), `report states ${longDate(isoDate(audit.date.iso))}`);
     // The reference must be printed and made of letters and digits only:
     // "SP-AUD-2026-11-26-VF&" reached a client PDF (26 Nov review).
-    const refOk = /^[A-Z]+-[A-Z]+-\d{4}-\d{2}-\d{2}-[A-Z0-9]{1,3}$/.test(String(audit.ref || ""));
+    const refOk = /^[A-Z]+-[A-Z]+-\d{4}-\d{2}-\d{2}-[A-Z0-9]{1,3}[2-9]?$/.test(String(audit.ref || ""));
     add("report.ref", text.includes(audit.ref) && refOk, refOk ? `audit reference ${audit.ref} printed` : `audit reference "${audit.ref}" has characters other than letters and digits`);
 
     // Optionally confirm the rendered HTML still matches what was QA'd.

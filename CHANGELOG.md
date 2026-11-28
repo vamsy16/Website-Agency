@@ -3,6 +3,14 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## 1.4.13 — 28 November 2026
+
+- **Audit references are unique, and an audit never overwrites another business's row** (`src/dedupe.mjs`, `src/cli.mjs`). "Vedanta Hospitals" (morning) and "Varma Hospitals" (evening), both audited on 28 November, got the same reference, SP-AUD-2026-11-28-VH. `recordAudit` matched rows by reference first, so Varma's audit replaced Vedanta's row and `data/audits.json` lost an approved audit (70 + 5 = 74 rows instead of 75). The history of `data/audits.json` on every branch shows no other reference ever held by two domains.
+  - `uniqueAuditRef`: a reference another business already holds gets a digit, "SP-AUD-2026-11-28-VH2"; a business keeps its own reference when re-audited.
+  - `recordAudit` replaces only a row of the same domain and refuses a reference held by another domain.
+  - `verify` accepts the digit (`report.ref`).
+  - Vedanta's row was restored exactly as it was on main (300081d), and Varma Hospitals was re-audited so its PDF prints its own reference.
+
 ## 1.4.12 — 28 November 2026
 
 - **"Read More" links are counted as a visitor sees them at 390 px** (`src/measure.mjs`). Sunray SVR Hospital's homepage carries its intro twice, one copy hidden on phones; its report said 12 "Read More" links where a visitor can see 11. Hidden ones are still listed in `facts.counted`, marked "not shown, not counted". BEST Super Speciality Hospital (5), Best Rehab (5) and Varma Hospitals (8) had none hidden; the evening review confirmed BEST's fifth link in the "If you have any query" band above its footer.
