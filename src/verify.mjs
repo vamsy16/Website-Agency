@@ -150,8 +150,10 @@ export async function verifyAudit({ auditPath, live = false, fixture = false }) 
       if (/contact page shows code|raw code|shortcode/i.test(`${f.title} ${f.measured}`) && !audit.facts?.http?.contactShortcode) {
         missing.push(`${f.id}: claims a shortcode leak but http.contactShortcode is empty`);
       }
-      if (/no way to book|no visible form|no enquiry form/i.test(f.title) && Number(audit.facts?.metric?.visibleForms) > 0) {
-        missing.push(`${f.id}: claims no form but metric.visibleForms = ${audit.facts.metric.visibleForms}`);
+      // "No appointment form" is the healthcare wording of the same claim; the
+      // check missed it, and a form in a booking pop-up also counts (28 Nov review).
+      if (/no way to book|no visible form|no (?:enquiry|appointment) form/i.test(f.title) && (Number(audit.facts?.metric?.visibleForms) > 0 || Number(audit.facts?.metric?.popupFormFields) > 0)) {
+        missing.push(`${f.id}: claims no form but metric.visibleForms = ${audit.facts.metric.visibleForms}, popupFormFields = ${audit.facts.metric.popupFormFields ?? 0}`);
       }
     }
     add("findings.evidence", missing.length === 0, missing.length ? `unsupported claims: ${missing.slice(0, 5).join("; ")}` : `${all.length} findings, every evidence field present in the measurement`);
@@ -235,6 +237,18 @@ export async function verifyAudit({ auditPath, live = false, fixture = false }) 
         const zoomed = [a, z].some(v => v && Number.isFinite(Number(v.scale)) && Number(v.scale) < own * 0.95);
         add("facts.zoom", !zoomed,
           `view scale ${fmtS(a)} at load, ${fmtS(z)} after scrolling (page's own scale ${own.toFixed(2)}); window ${a?.innerWidth ?? "?"}×${a?.innerHeight ?? "?"} at load, content ${a?.scrollWidth ?? "?"} px wide${a?.widest ? `, widest ${a.widest.element} to ${a.widest.right} px` : ""}; viewport tag "${a?.metaViewport ?? "none"}"`,
+          "warning");
+      }
+      // With no form visible, the measurement clicks the page's booking pop-up
+      // button, if it has one, and counts the fields shown (28 Nov review:
+      // Vedanta Hospitals' "Book Appointment" pop-up). Recorded for the
+      // independent review; a warning when a pop-up button was found but no
+      // fields could be counted, because "no form" may then still be wrong.
+      if (!(Number(dom.visibleForms) > 0)) {
+        const pf = dom.popupForm || null;
+        const unsure = !!pf && Number(pf.bookingTriggers) > 0 && !(Number(pf.fields) > 0) && !(Number(pf.hiddenFields) > 0);
+        add("facts.popupForm", !unsure,
+          pf ? (pf.error ? `pop-up probe failed: ${pf.error}` : `${pf.triggers ?? 0} pop-up button(s), ${pf.bookingTriggers ?? 0} about booking${pf.label ? ` ("${pf.label}")` : ""}; ${pf.bookingTriggers ? (pf.leftPage ? "the click left the page" : `opened: ${pf.opened ? "yes" : "no"}, ${pf.fields ?? 0} field(s) visible after the click`) : "not clicked"}; ${pf.hiddenFields ?? 0} field(s) in a hidden pop-up form`) : "no pop-up probe recorded (measured before 1.4.7)",
           "warning");
       }
     }

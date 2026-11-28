@@ -305,3 +305,33 @@ export function stickyRoutes(m) {
 export function telDiffers(m) {
   return m.telLinksDesktop !== null && m.telLinksDesktop !== undefined && Number(m.telLinksDesktop) !== Number(m.telLinks);
 }
+
+/**
+ * Whole phone screens, from the unrounded count. Rounding the 1-decimal value
+ * again printed "about 8" for 7.48 screens (28 Nov review). Older measurements
+ * have only the 1-decimal value.
+ */
+export function wholeScreens(m) {
+  const exact = Number(m?.screensExact);
+  return Math.round(Number.isFinite(exact) && exact > 0 ? exact : Number(m?.screens) || 0);
+}
+
+/**
+ * Form fields in a pop-up opened from a booking button. Reads the report's
+ * metric (popupFormFields) or the raw measurement (popupForm), so the score
+ * and the findings cannot disagree.
+ */
+export function popupFields(m) {
+  if (m?.popupFormFields !== undefined && m?.popupFormFields !== null) return Number(m.popupFormFields) || 0;
+  return Math.max(Number(m?.popupForm?.fields) || 0, Number(m?.popupForm?.hiddenFields) || 0);
+}
+
+/** A booking form that opens in a pop-up from a button on the page (none visible on it). */
+export function formInPopup(m) {
+  return !(Number(m?.visibleForms) > 0) && popupFields(m) > 0;
+}
+
+/** No form a visitor can reach on the homepage: none visible and none in a pop-up. */
+export function noFormRoute(m) {
+  return !(Number(m?.visibleForms) > 0) && !(popupFields(m) > 0);
+}

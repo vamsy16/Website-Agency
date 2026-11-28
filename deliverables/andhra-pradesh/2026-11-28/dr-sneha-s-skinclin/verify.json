@@ -1,0 +1,180 @@
+{
+  "ref": "SP-AUD-2026-11-28-DSS",
+  "domain": "drsnehasskinclin.in",
+  "verifiedAt": "2026-11-28T08:35:33.638Z",
+  "live": false,
+  "fixture": false,
+  "ok": true,
+  "blockers": 0,
+  "warnings": 0,
+  "checks": [
+    {
+      "id": "provenance.file",
+      "ok": true,
+      "detail": "raw measurement: data/raw/dr-sneha-s-skinclin/2026-11-28T08-34-20-595Z.json",
+      "severity": "ok"
+    },
+    {
+      "id": "provenance.age",
+      "ok": true,
+      "detail": "measured 0 h ago (limit 72 h, on 28 November 2026)",
+      "severity": "ok"
+    },
+    {
+      "id": "provenance.url",
+      "ok": true,
+      "detail": "raw measurement is for https://www.drsnehasskinclin.in/",
+      "severity": "ok"
+    },
+    {
+      "id": "provenance.status",
+      "ok": true,
+      "detail": "homepage returned HTTP 200",
+      "severity": "ok"
+    },
+    {
+      "id": "provenance.tool",
+      "ok": true,
+      "detail": "Lighthouse 12.8.2; screenshots: 7",
+      "severity": "ok"
+    },
+    {
+      "id": "provenance.ist",
+      "ok": true,
+      "detail": "measurement timestamp: 28/11/2026, 2:04:20 pm",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.speed",
+      "ok": true,
+      "detail": "report prints 2, rubric computes 2",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.mobile",
+      "ok": true,
+      "detail": "report prints 5, rubric computes 5",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.conversion",
+      "ok": true,
+      "detail": "report prints 10, rubric computes 10",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.design",
+      "ok": true,
+      "detail": "report prints 10, rubric computes 10",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.seo",
+      "ok": true,
+      "detail": "report prints 8, rubric computes 8",
+      "severity": "ok"
+    },
+    {
+      "id": "scores.overall",
+      "ok": true,
+      "detail": "report prints 64, rubric computes 64",
+      "severity": "ok"
+    },
+    {
+      "id": "facts.consistent",
+      "ok": true,
+      "detail": "every printed metric equals the raw measurement",
+      "severity": "ok"
+    },
+    {
+      "id": "facts.firstParty",
+      "ok": true,
+      "detail": "the site's own host is not counted as third party",
+      "severity": "ok"
+    },
+    {
+      "id": "findings.evidence",
+      "ok": true,
+      "detail": "5 findings, every evidence field present in the measurement",
+      "severity": "ok"
+    },
+    {
+      "id": "copy.honesty",
+      "ok": true,
+      "detail": "known unsupported narrative claims absent",
+      "severity": "ok"
+    },
+    {
+      "id": "facts.viewport",
+      "ok": true,
+      "detail": "click-to-call links: 1 at load, 1 after scrolling, 0 in embedded frames, printed 1, desktop 1; WhatsApp 0/0; forms 1/1; visible H1 2/2, hidden 0, desktop 2; words 300/301",
+      "severity": "ok"
+    },
+    {
+      "id": "facts.screens",
+      "ok": true,
+      "detail": "4811 px over a 693 px screen (layout 320 px wide) = 6.9; printed 6.9",
+      "severity": "ok"
+    },
+    {
+      "id": "facts.zoom",
+      "ok": true,
+      "detail": "view scale 1.22 at load, 1.22 after scrolling (page's own scale 1.22); window 320×693 at load, content 320 px wide; viewport tag \"width=320, user-scalable=yes\"",
+      "severity": "ok"
+    },
+    {
+      "id": "numbers.traceable",
+      "ok": true,
+      "detail": "all 75 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "severity": "ok"
+    },
+    {
+      "id": "report.date",
+      "ok": true,
+      "detail": "report states 28 November 2026",
+      "severity": "ok"
+    },
+    {
+      "id": "report.ref",
+      "ok": true,
+      "detail": "audit reference SP-AUD-2026-11-28-DSS printed",
+      "severity": "ok"
+    },
+    {
+      "id": "report.hash",
+      "ok": true,
+      "detail": "report HTML unchanged since QA",
+      "severity": "ok"
+    },
+    {
+      "id": "screenshots.real",
+      "ok": true,
+      "detail": "7 screenshots, all non-blank",
+      "severity": "ok"
+    },
+    {
+      "id": "pdf.pages",
+      "ok": true,
+      "detail": "PDF has 10 pages",
+      "severity": "ok"
+    },
+    {
+      "id": "pdf.format",
+      "ok": true,
+      "detail": "A4 media box",
+      "severity": "ok"
+    },
+    {
+      "id": "pdf.size",
+      "ok": true,
+      "detail": "2.01 MB",
+      "severity": "ok"
+    },
+    {
+      "id": "pdf.header",
+      "ok": true,
+      "detail": "valid PDF header",
+      "severity": "ok"
+    }
+  ]
+}

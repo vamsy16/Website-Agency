@@ -43,3 +43,7 @@ desktop.ini
 # Local scratch
 tmp/
 scratch/
+
+# Python bytecode (tools/review-pdfs.py)
+__pycache__/
+*.pyc

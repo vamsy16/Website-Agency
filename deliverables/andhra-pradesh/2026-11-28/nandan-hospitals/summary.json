@@ -1,0 +1,25 @@
+{
+  "name": "Nandan Hospitals",
+  "domain": "nandanhospitals.com",
+  "city": "Vijayawada",
+  "state": "Andhra Pradesh",
+  "email": "nandanhospitalsvijayawada@gmail.com",
+  "phone": "+91 96663 94555",
+  "ref": "SP-AUD-2026-11-28-NH",
+  "date": "2026-11-28",
+  "overall": 76,
+  "scores": {
+    "speed": 5,
+    "mobile": 6,
+    "conversion": 10,
+    "design": 10,
+    "seo": 9,
+    "overall": 76
+  },
+  "pdf": "Smart-Pursuit-Audit-Nandan-Hospitals.pdf",
+  "emailCheck": {
+    "status": "confirmed",
+    "note": "published on https://nandanhospitals.com/",
+    "checkedAt": "2026-11-28"
+  }
+}

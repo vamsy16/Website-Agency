@@ -22,6 +22,7 @@ the live site: it only catches the mistakes already seen once.
 """
 import glob
 import json
+import math
 import os
 import re
 import sys
@@ -138,15 +139,28 @@ def review(folder, render_dir=None):
     if mh:
         px, n = int(mh.group(1).replace(",", "")), int(mh.group(2))
         fs = next((c for c in (checks if os.path.exists(vpath) else []) if c.get("id") == "facts.screens"), None)
-        sh = re.search(r"over a (\d+) px screen", (fs or {}).get("detail", ""))
-        bases = [int(sh.group(1))] if sh else [844, 2121]
-        if not any(abs(round(px / b) - n) <= (0 if sh else 1) for b in bases):
-            r["defects"].append(f"p4 [screens] {px:,} px printed as about {n} phone screens (screen of {bases} px)")
+        detail = (fs or {}).get("detail", "")
+        sh = re.search(r"over a (\d+) px screen", detail)
+        lw = re.search(r"\(layout (\d+) px wide\)", detail)
+        # The screen at the page's layout scale, unrounded: 844 x 320 / 390 =
+        # 692.5 px, which verify prints as 693. Rounding half up, as the report
+        # does (Python's round() rounds 10.5 down to 10). 28 Nov review.
+        bases = [844 * int(lw.group(1)) / 390] if lw else [int(sh.group(1))] if sh else [844, 2121]
+        if not any(abs(math.floor(px / b + 0.5) - n) <= (0 if sh else 1) for b in bases):
+            r["defects"].append(f"p4 [screens] {px:,} px printed as about {n} phone screens (screen of {[round(b, 1) for b in bases]} px)")
         mt = re.search(r"≈(\d+) screens tall", text)
         if mt and int(mt.group(1)) != n:
             r["defects"].append(f"p3/p4 [screens] ≈{mt.group(1)} screens tall vs about {n} phone screens")
+    # A "no form" claim is a defect when verify recorded a form in a booking
+    # pop-up (28 Nov review: Vedanta Hospitals).
+    pf = next((c for c in (checks if os.path.exists(vpath) else []) if c.get("id") == "facts.popupForm"), None)
+    mp = re.search(r"(\d+) field\(s\) visible after the click", (pf or {}).get("detail", ""))
+    if mp and int(mp.group(1)) > 0 and re.search(r"No (?:appointment|enquiry) form fields were detected", text):
+        r["defects"].append(f"[form] report says no form, but the booking pop-up shows {mp.group(1)} field(s)")
+    # Screen 7 is the last screen only on a page under 7 screens, so "the last
+    # screen of about 7" (6.5 to 6.99 screens) is right; more than 7 is not.
     ml = re.search(r"the last screen of about (\d+)", text)
-    if ml and int(ml.group(1)) >= 7:
+    if ml and int(ml.group(1)) > 7:
         r["defects"].append(f"p4 [last-screen] screen 7 captioned as the last screen of about {ml.group(1)}")
     # A storage bucket named for the business is its own, not an outside
     # service (27 Nov review: the clinic's media bucket counted as third party).
