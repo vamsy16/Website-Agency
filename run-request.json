@@ -4,17 +4,14 @@
   "target": 1,
   "leadsLimit": 10,
   "niches": [],
-  "requestedAt": "2026-11-28T12:33:24Z",
+  "requestedAt": "2026-11-28T13:00:13Z",
   "csv": "data/ap-websearch-2026-11-28c.csv",
   "csvOnly": true,
-  "repairOnly": false,
+  "repairOnly": true,
   "disabled": false,
   "reaudit": [
     "bestsuperspeciality.com",
-    "varmahospitals.com",
-    "happy-hospitals.com",
-    "bestrehabphysio.com",
     "arkaeyehospital.com"
   ],
-  "reauditReason": "1.4.9 (28 Nov evening review): laptop view between slides, slider copies not counted, facts.counted record; Arka retried (UND_ERR_CONNECT_TIMEOUT in runs 46142207127 and 46143717528). Target 1 from the CSV is the backup for Arka (Star Dental Experts, then Sunray SVR Hospital)"
+  "reauditReason": "1.4.9, retry: both unreachable from the runner in run 46145280391 (UND_ERR_CONNECT_TIMEOUT, with every India-hosted site in that run); BEST Super Speciality was reached at 17:30 IST"
 }
