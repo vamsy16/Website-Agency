@@ -10905,18 +10905,6 @@
       "firstSeenAt": "2026-11-28T11:39:51.053Z",
       "lastSeenAt": "2026-11-28T11:39:51.053Z",
       "timesSeen": 1,
-      "screen": {
-        "checkedAt": "2026-11-28T12:56:37.440Z",
-        "osmEmail": "stardentistreeeluru@gmail.com",
-        "email": null,
-        "emailSource": null,
-        "foundOn": null,
-        "siteEmails": [],
-        "ok": false,
-        "result": "unreachable",
-        "httpStatus": 0,
-        "reason": "site unreachable (UND_ERR_CONNECT_TIMEOUT)"
-      },
       "updatedAt": "2026-11-28T12:56:37.443Z"
     },
     {
@@ -10940,18 +10928,6 @@
       "firstSeenAt": "2026-11-28T11:39:51.061Z",
       "lastSeenAt": "2026-11-28T11:39:51.061Z",
       "timesSeen": 1,
-      "screen": {
-        "checkedAt": "2026-11-28T12:58:08.972Z",
-        "osmEmail": "sunraysvrhospital24@gmail.com",
-        "email": null,
-        "emailSource": null,
-        "foundOn": null,
-        "siteEmails": [],
-        "ok": false,
-        "result": "unreachable",
-        "httpStatus": 0,
-        "reason": "site unreachable (UND_ERR_CONNECT_TIMEOUT)"
-      },
       "updatedAt": "2026-11-28T12:58:08.975Z"
     }
   ]

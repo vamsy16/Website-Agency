@@ -17,6 +17,10 @@ _Handoff for the next agent. Last updated 28 November 2026, about 16:50 IST by t
 > 1.4.9 fixed what it found (see CHANGELOG). Arka's site timed out from Actions in
 > both 1.4.8 re-audits; the 1.4.9 run re-audits the four, retries Arka and audits
 > one CSV backup (Star Dental Experts, then Sunray SVR) to replace Arka if needed.
+> 18:50 IST: Best Rehab, Happy, Varma (1.4.9) and BEST Super Speciality (1.4.9, retry)
+> re-audited; Arka unreachable from Actions in four runs, so it stays held and the
+> CSV backup replaces it. 1.4.10 re-audits BEST, Happy and Best Rehab to identify
+> their forms (a search box is not a form) and audits the backup.
 
 > **Latest (28 Nov, 16:50 IST): the five 28 November audits have their first
 > emails in Gmail Drafts.** The operator reviewed and approved the PDFs; the

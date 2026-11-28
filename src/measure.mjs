@@ -148,7 +148,11 @@ async function openPopupForm(page) {
     const triggers = [...document.querySelectorAll(sel)].filter(vis);
     const booking = triggers.filter(el => new RegExp(label, "i").test(textOf(el)));
     if (booking[0]) booking[0].setAttribute("data-sp-popup-trigger", "1");
-    const hidden = [...document.querySelectorAll("form")].filter(f => !vis(f) && f.closest(box)).map(fieldsOf).filter(n => n > 0);
+    // A search box is not a booking form (1.4.10), and a form already on
+    // screen before the click was not opened by it.
+    const searchy = f => f.matches("[role=search]") || !!f.closest("[role=search]") || /search/i.test(f.getAttribute("action") || "") || !!f.querySelector("input[type=search]") || [...f.querySelectorAll("input")].some(i => /^(s|q|query|search|keywords?|search_query)$/i.test(i.name || ""));
+    document.querySelectorAll("form").forEach(f => { if (vis(f)) f.setAttribute("data-sp-was-visible", "1"); });
+    const hidden = [...document.querySelectorAll("form")].filter(f => !vis(f) && f.closest(box) && !searchy(f)).map(fieldsOf).filter(n => n > 0);
     return { triggers: triggers.length, bookingTriggers: booking.length, label: booking[0] ? textOf(booking[0]) : null, hiddenFields: hidden.length ? Math.max(...hidden) : 0, url: location.href.split("#")[0] };
   }, [POPUP_TRIGGER, BOOKING_LABEL]);
   const out = { triggers: found.triggers, bookingTriggers: found.bookingTriggers, label: found.label, hiddenFields: found.bookingTriggers ? found.hiddenFields : 0, opened: false, fields: 0 };
@@ -159,7 +163,7 @@ async function openPopupForm(page) {
   const after = await page.evaluate(() => {
     const vis = el => { const r = el.getBoundingClientRect(); const s = getComputedStyle(el); return r.width > 0 && r.height > 0 && s.visibility !== "hidden" && s.display !== "none" && Number(s.opacity) > 0; };
     const fieldsOf = f => [...f.querySelectorAll("input, select, textarea")].filter(i => !["hidden", "submit", "button", "reset", "image"].includes((i.type || "").toLowerCase())).length;
-    const forms = [...document.querySelectorAll("form")].filter(vis).map(fieldsOf).filter(n => n > 0);
+    const forms = [...document.querySelectorAll("form")].filter(f => vis(f) && !f.hasAttribute("data-sp-was-visible")).map(fieldsOf).filter(n => n > 0);
     return { forms: forms.length, fields: forms.length ? Math.max(...forms) : 0, url: location.href.split("#")[0] };
   }).catch(() => null);
   // A click that loaded another page says nothing about this one.
@@ -388,14 +392,51 @@ function collectDom(screen) {
     const h = (a.getAttribute("href") || "").trim();
     return h === "#" || h === "" || h === "javascript:void(0)" || h === "javascript:;";
   });
+  // A search box is not a way to reach the business. Happy Hospitals' only
+  // "form" had one field and no action, and its report planned to "test the
+  // contact form" (28 Nov evening review). Each form now records what it asks
+  // for and its button, for the review to check against the live page, and a
+  // search form is not counted as a visible form.
+  const formFields = f => q("input, select, textarea", f).filter(i => !["hidden", "submit", "button", "image", "reset"].includes((i.type || "").toLowerCase()));
+  const formButton = f => {
+    const b = f.querySelector("button, input[type=submit], input[type=image]");
+    return b ? ((b.innerText || b.value || b.getAttribute("aria-label") || b.getAttribute("alt") || "").replace(/\s+/g, " ").trim().slice(0, 24)) : "";
+  };
+  const isSearchForm = f => {
+    if (f.matches("[role=search]") || f.closest("[role=search]")) return true;
+    if (/search/i.test(f.getAttribute("action") || "")) return true;
+    const fl = formFields(f);
+    if (fl.some(i => (i.type || "").toLowerCase() === "search")) return true;
+    if (fl.length === 1) {
+      const i = fl[0];
+      if (/^(s|q|query|search|keywords?|search_query)$/i.test(i.name || "")) return true;
+      if (/\bsearch\b/i.test(`${i.id || ""} ${i.getAttribute("placeholder") || ""} ${i.getAttribute("aria-label") || ""}`)) return true;
+    }
+    return fl.length <= 1 && /^search$/i.test(formButton(f));
+  };
+  // Where a counted element sits: px from the top of the page and the
+  // heading above it, so the review can find it on the live page.
+  const headingsInOrder = q("h1, h2, h3, h4, h5");
+  const placeOf = el => {
+    let under = "";
+    for (const h of headingsInOrder) {
+      if (h.compareDocumentPosition(el) & Node.DOCUMENT_POSITION_FOLLOWING) under = (h.innerText || "").replace(/\s+/g, " ").trim().slice(0, 30) || under;
+      else break;
+    }
+    return { at: Math.round(el.getBoundingClientRect().top + window.scrollY), under };
+  };
   const forms = q("form").map(f => ({
     id: f.id || null,
     action: f.getAttribute("action") || null,
     method: (f.getAttribute("method") || "get").toLowerCase(),
     fields: q("input, select, textarea", f).filter(i => !["hidden", "submit", "button"].includes((i.type || "").toLowerCase())).length,
     visible: visible(f),
+    search: isSearchForm(f),
+    asks: formFields(f).slice(0, 6).map(i => `${i.tagName === "INPUT" ? (i.type || "text").toLowerCase() : i.tagName.toLowerCase()}:${(i.name || i.id || i.getAttribute("placeholder") || "").replace(/\s+/g, " ").trim().slice(0, 20)}`),
+    button: formButton(f),
+    ...placeOf(f),
   }));
-  const visibleForms = forms.filter(f => f.visible && f.fields > 0);
+  const visibleForms = forms.filter(f => f.visible && f.fields > 0 && !f.search);
 
   const bodyText = document.body?.innerText || "";
   const shortcode = bodyText.match(/\[(?:contact-form-7|contact-form|gravityform|wpforms|ninja_form|formidable|caldera_form)[^\]]{0,160}\]/i);
@@ -519,6 +560,7 @@ function collectDom(screen) {
       text: (a.innerText || "").replace(/\s+/g, " ").trim().slice(0, 30),
       href: (a.getAttribute("href") || "").trim().slice(0, 120),
       shown: visible(a),
+      ...placeOf(a),
     })),
     sliderCopiesSkipped: document.querySelectorAll(SLIDER_COPY).length,
     deadLinks: deadLinks.length,

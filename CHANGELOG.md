@@ -3,6 +3,12 @@
 All notable changes to the Agency OS. Newest first. One line per change; say why
 if the reason is not obvious.
 
+## 1.4.10 — 28 November 2026
+
+- **A search box is not a visible form** (`src/measure.mjs`). Happy Hospitals' only homepage "form" had one field and no action, and its report counted "1 visible form" and planned to "test the contact form". A form with `role=search`, a search field, a search action, a single `s`/`q`/`search` field or a "Search" button is no longer counted (the pop-up booking probe then runs as for a page with no form). Each form records the fields it asks for and its button text.
+- The pop-up booking probe skips search forms, and counts only forms that appear after its click: a search box already on screen read as "pop-up opened, 1 field".
+- `verify`: `facts.counted` lists each form's fields and button, marks search boxes, and gives each counted link and form its place (px from the top, the heading above it): BEST Super Speciality Hospital's fifth "Read More" link could not be found on the live page from the href alone.
+
 ## 1.4.9 — 28 November 2026
 
 - **The laptop view is captured between slides** (`src/measure.mjs`), as the phone screens already were: BEST Super Speciality Hospital's re-audited laptop view (1.4.8) caught two banner slides mid-fade, their text overlapping. Slider autoplay is paused where the page exposes it (Bootstrap, Owl, Slick, Swiper) and finite animations finish (up to 3 s) before the shot; `runningAnimationsAtShot` records what was still moving. Tested in local Chromium on a cross-fading slider caught mid-fade.
