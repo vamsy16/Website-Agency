@@ -1,0 +1,76 @@
+{
+  "business": "Sunray SVR Hospital",
+  "domain": "sunraysvrhospital.com",
+  "ref": "SP-AUD-2026-11-28-SSH",
+  "createdAt": "2026-11-28T13:28:44.160Z",
+  "sendDate": "2026-11-28",
+  "cadenceDays": [
+    3,
+    3,
+    3
+  ],
+  "to": "sunraysvrhospital24@gmail.com",
+  "status": "draft",
+  "neverSendAutomatically": true,
+  "note": "Dates shift if the operator sends email 1 on a different day — recompute with `sequence --send-date YYYY-MM-DD`.",
+  "emails": [
+    {
+      "step": 1,
+      "id": "first",
+      "purpose": "deliver the audit, earn a reply",
+      "attachments": [
+        "reports/sunray-svr-hospital/Smart-Pursuit-Audit-Sunray-SVR-Hospital.pdf"
+      ],
+      "subject": "Sunray SVR Hospital — what I found testing sunraysvrhospital.com",
+      "words": 113,
+      "scheduledFor": "2026-11-28",
+      "scheduledForLong": "28 November 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/sunray-svr-hospital/email-1-first.md"
+    },
+    {
+      "step": 2,
+      "id": "followup-1",
+      "purpose": "turn the top measured finding into a money argument",
+      "attachments": [],
+      "subject": "Re: Sunray SVR Hospital — what I found testing sunraysvrhospital.com",
+      "words": 102,
+      "scheduledFor": "2026-12-01",
+      "scheduledForLong": "1 December 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/sunray-svr-hospital/email-2-followup-1.md"
+    },
+    {
+      "step": 3,
+      "id": "followup-2",
+      "purpose": "make the next step concrete without promising an outcome",
+      "attachments": [],
+      "subject": "Re: Sunray SVR Hospital — the next step, if useful",
+      "words": 106,
+      "scheduledFor": "2026-12-04",
+      "scheduledForLong": "4 December 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/sunray-svr-hospital/email-3-followup-2.md"
+    },
+    {
+      "step": 4,
+      "id": "followup-3-final",
+      "purpose": "final mail, leave the door open, no pressure",
+      "attachments": [],
+      "subject": "Closing the loop — Sunray SVR Hospital",
+      "words": 98,
+      "scheduledFor": "2026-12-07",
+      "scheduledForLong": "7 December 2026",
+      "status": "draft",
+      "approvedBy": null,
+      "sentAt": null,
+      "file": "outreach/sunray-svr-hospital/email-4-followup-3-final.md"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-28-BR",
   "domain": "bestrehabphysio.com",
-  "verifiedAt": "2026-11-28T12:53:33.849Z",
+  "verifiedAt": "2026-11-28T13:25:47.864Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/best-rehab/2026-11-28T12-52-39-332Z.json",
+      "detail": "raw measurement: data/raw/best-rehab/2026-11-28T13-24-51-726Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 28/11/2026, 6:22:39 pm",
+      "detail": "measurement timestamp: 28/11/2026, 6:54:51 pm",
       "severity": "ok"
     },
     {
@@ -125,7 +125,7 @@
     {
       "id": "facts.counted",
       "ok": true,
-      "detail": "5 \"Read More\" link(s): about.html, blog-physiotherapy-after-stroke-vijayawada.html, blog-fall-prevention-for-seniors-vijayawada.html, blog-caregiver-guide-rehabilitation.html, blog-active-aging-vijayawada.html; 2 form(s): contact.php 1 field(s), contact.php 5 field(s) (hidden); 7 link(s) to # or javascript:; 29 of 51 tap targets under 40 px; 8 slider copies skipped",
+      "detail": "5 \"Read More\" link(s): about.html @2534px under \"REHABILITATION & PHYSIOTHERAPY\", blog-physiotherapy-after-stroke-vijayawada.html @9265px under \"The Life after Stroke\", blog-fall-prevention-for-seniors-vijayawada.html @10283px under \"A day to remember or forget ? \", blog-caregiver-guide-rehabilitation.html @10926px under \"Palliative Care, Is it time ?\", blog-active-aging-vijayawada.html @11165px under \"Active Aging\"; 2 form(s): contact.php 1 field(s) [email:email] button \"Subscribe\" @11943px under \"NEWSLETTER\", contact.php 5 field(s) [text:name text:email text:phone datetime-local:dt-local textarea:message] button \"Submit\" @0px under \"QUICK LINKS\" (hidden); 7 link(s) to # or javascript:; 29 of 51 tap targets under 40 px; 8 slider copies skipped",
       "severity": "ok"
     },
     {
@@ -137,7 +137,7 @@
     {
       "id": "numbers.traceable",
       "ok": true,
-      "detail": "all 78 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "detail": "all 77 distinct numbers in the report trace to the measurement, the rubric or a stated target",
       "severity": "ok"
     },
     {

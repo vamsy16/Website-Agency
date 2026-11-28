@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-28-BSS",
   "domain": "bestsuperspeciality.com",
-  "verifiedAt": "2026-11-28T13:11:11.728Z",
+  "verifiedAt": "2026-11-28T13:23:48.858Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/best-super-speciality-hospital/2026-11-28T13-09-52-067Z.json",
+      "detail": "raw measurement: data/raw/best-super-speciality-hospital/2026-11-28T13-22-32-278Z.json",
       "severity": "ok"
     },
     {
@@ -41,7 +41,7 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 28/11/2026, 6:39:52 pm",
+      "detail": "measurement timestamp: 28/11/2026, 6:52:32 pm",
       "severity": "ok"
     },
     {
@@ -125,7 +125,7 @@
     {
       "id": "facts.counted",
       "ok": true,
-      "detail": "5 \"Read More\" link(s): about-us.html, about-us.html, about-us.html, about-us.html, about-us.html; 2 form(s): contact.php 6 field(s), # 1 field(s); 6 link(s) to # or javascript:; 73 of 75 tap targets under 40 px; 32 slider copies skipped",
+      "detail": "5 \"Read More\" link(s): about-us.html @1454px under \"BEST Super Speciality Hospital\", about-us.html @1713px under \"MISSION\", about-us.html @2016px under \"VISION\", about-us.html @2296px under \"VALUES\", about-us.html @9781px under \"IF YOU HAVE ANY QUERY OR NEED \"; 2 form(s): contact.php 6 field(s) [text:name text:email text:phone select:services datetime-local:dob textarea:message] button \"Submit\" @7962px under \"Book Your Appointment\", # 1 field(s) [email:email] button \"Subscribe\" @11112px under \"Subscribe our Newsletter to ge\"; 6 link(s) to # or javascript:; 73 of 75 tap targets under 40 px; 32 slider copies skipped",
       "severity": "ok"
     },
     {
@@ -137,7 +137,7 @@
     {
       "id": "numbers.traceable",
       "ok": true,
-      "detail": "all 80 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "detail": "all 81 distinct numbers in the report trace to the measurement, the rubric or a stated target",
       "severity": "ok"
     },
     {
@@ -179,7 +179,7 @@
     {
       "id": "pdf.size",
       "ok": true,
-      "detail": "2.81 MB",
+      "detail": "2.84 MB",
       "severity": "ok"
     },
     {

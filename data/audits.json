@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-28T13:11:11.730Z",
+  "updatedAt": "2026-11-28T13:28:44.151Z",
   "audits": [
     {
       "domain": "krishnadental.in",
@@ -1710,7 +1710,7 @@
       "domain": "bestrehabphysio.com",
       "name": "Best Rehab",
       "ref": "SP-AUD-2026-11-28-BR",
-      "generatedAt": "2026-11-28T12:53:33.850Z",
+      "generatedAt": "2026-11-28T13:25:47.864Z",
       "status": "complete",
       "mode": "live",
       "scores": {
@@ -1722,7 +1722,7 @@
         "overall": 75
       },
       "pdfPages": 10,
-      "pdfBytes": 3647547,
+      "pdfBytes": 3650763,
       "files": {
         "pdf": "reports/best-rehab/Smart-Pursuit-Audit-Best-Rehab.pdf",
         "audit": "reports/best-rehab/audit.json",
@@ -1734,31 +1734,31 @@
       "domain": "happy-hospitals.com",
       "name": "Happy Hospitals",
       "ref": "SP-AUD-2026-11-28-HH",
-      "generatedAt": "2026-11-28T12:52:38.531Z",
+      "generatedAt": "2026-11-28T13:24:51.318Z",
       "status": "complete",
       "mode": "live",
       "scores": {
-        "speed": 9,
+        "speed": 8,
         "mobile": 5,
         "conversion": 10,
         "design": 9,
         "seo": 10,
-        "overall": 85
+        "overall": 83
       },
       "pdfPages": 10,
-      "pdfBytes": 2888012,
+      "pdfBytes": 2886358,
       "files": {
         "pdf": "reports/happy-hospitals/Smart-Pursuit-Audit-Happy-Hospitals.pdf",
         "audit": "reports/happy-hospitals/audit.json",
         "html": "reports/happy-hospitals/report.html"
       },
-      "fingerprint": "1ebac12d09f51361"
+      "fingerprint": "e0a0bd44a32b7e8c"
     },
     {
       "domain": "bestsuperspeciality.com",
       "name": "BEST Super Speciality Hospital",
       "ref": "SP-AUD-2026-11-28-BSS",
-      "generatedAt": "2026-11-28T13:11:11.730Z",
+      "generatedAt": "2026-11-28T13:23:48.860Z",
       "status": "complete",
       "mode": "live",
       "scores": {
@@ -1770,13 +1770,37 @@
         "overall": 69
       },
       "pdfPages": 10,
-      "pdfBytes": 2949199,
+      "pdfBytes": 2980213,
       "files": {
         "pdf": "reports/best-super-speciality-hospital/Smart-Pursuit-Audit-BEST-Super-Speciality-Hospital.pdf",
         "audit": "reports/best-super-speciality-hospital/audit.json",
         "html": "reports/best-super-speciality-hospital/report.html"
       },
       "fingerprint": "37bf3d4a701c0fb7"
+    },
+    {
+      "domain": "sunraysvrhospital.com",
+      "name": "Sunray SVR Hospital",
+      "ref": "SP-AUD-2026-11-28-SSH",
+      "generatedAt": "2026-11-28T13:28:44.151Z",
+      "status": "complete",
+      "mode": "live",
+      "scores": {
+        "speed": 4,
+        "mobile": 5,
+        "conversion": 10,
+        "design": 10,
+        "seo": 9,
+        "overall": 71
+      },
+      "pdfPages": 10,
+      "pdfBytes": 2389730,
+      "files": {
+        "pdf": "reports/sunray-svr-hospital/Smart-Pursuit-Audit-Sunray-SVR-Hospital.pdf",
+        "audit": "reports/sunray-svr-hospital/audit.json",
+        "html": "reports/sunray-svr-hospital/report.html"
+      },
+      "fingerprint": "d0f6812017de6f27"
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "ref": "SP-AUD-2026-11-28-HH",
   "domain": "happy-hospitals.com",
-  "verifiedAt": "2026-11-28T12:52:38.530Z",
+  "verifiedAt": "2026-11-28T13:24:51.318Z",
   "live": false,
   "fixture": false,
   "ok": true,
@@ -11,7 +11,7 @@
     {
       "id": "provenance.file",
       "ok": true,
-      "detail": "raw measurement: data/raw/happy-hospitals/2026-11-28T12-51-41-661Z.json",
+      "detail": "raw measurement: data/raw/happy-hospitals/2026-11-28T13-23-51-220Z.json",
       "severity": "ok"
     },
     {
@@ -41,13 +41,13 @@
     {
       "id": "provenance.ist",
       "ok": true,
-      "detail": "measurement timestamp: 28/11/2026, 6:21:41 pm",
+      "detail": "measurement timestamp: 28/11/2026, 6:53:51 pm",
       "severity": "ok"
     },
     {
       "id": "scores.speed",
       "ok": true,
-      "detail": "report prints 9, rubric computes 9",
+      "detail": "report prints 8, rubric computes 8",
       "severity": "ok"
     },
     {
@@ -77,7 +77,7 @@
     {
       "id": "scores.overall",
       "ok": true,
-      "detail": "report prints 85, rubric computes 85",
+      "detail": "report prints 83, rubric computes 83",
       "severity": "ok"
     },
     {
@@ -125,7 +125,7 @@
     {
       "id": "facts.counted",
       "ok": true,
-      "detail": "0 \"Read More\" link(s); 1 form(s): form 1 field(s); 24 link(s) to # or javascript:; 68 of 113 tap targets under 40 px; 0 slider copies skipped",
+      "detail": "0 \"Read More\" link(s); 1 form(s): form 1 field(s) [email:subscribe] button \"Subscribe\" @27492px under \"Useful Links\"; 24 link(s) to # or javascript:; 68 of 113 tap targets under 40 px; 0 slider copies skipped",
       "severity": "ok"
     },
     {
@@ -137,7 +137,7 @@
     {
       "id": "numbers.traceable",
       "ok": true,
-      "detail": "all 73 distinct numbers in the report trace to the measurement, the rubric or a stated target",
+      "detail": "all 74 distinct numbers in the report trace to the measurement, the rubric or a stated target",
       "severity": "ok"
     },
     {
